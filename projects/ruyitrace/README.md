@@ -70,10 +70,10 @@ ruyitrace/
 | 9 | `wasm\trace_wasm_process_<pid>.jsonl` | `MOZ_DOM_WASM_CALL` / `_INSN` | 待做 |
 | 10 | `wasm\wasm_<sha256>_<len>.wasm` | `MOZ_DOM_WASM_DUMP` | 待做 |
 | 11 | `env\env_inventory_<pid>_<session>.json` | `MOZ_DOM_ENV_INVENTORY` | 待做 |
-| 12 | `http_packet\*.http_packet.json` + `index.jsonl` | `MOZ_DOM_HTTP_PACKET_TRACE` | 待做 |
-| 13 | `websocket_frames.jsonl` | `MOZ_DOM_WS_TRACE` | 待做 |
+| 12 | `http_packet\*.http_packet.json` + `index.jsonl` | `MOZ_DOM_HTTP_PACKET_TRACE` | ✅ 已实现 |
+| 13 | `websocket_frames.jsonl` | `MOZ_DOM_WS_TRACE` | ✅ 已实现 |
 
-进度 **8/13**（cheatsheet 的 12 类是合并了 wasm 的两项，拆分后是 13 项）。
+进度 **10/13**（cheatsheet 的 12 类是合并了 wasm 的两项，拆分后是 13 项）。
 
 ### 已验证的实现
 

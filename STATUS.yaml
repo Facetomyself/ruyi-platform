@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T17:25:00+08:00'
+generated_at: '2026-11-19T17:45:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -125,7 +125,7 @@ projects:
     repo_exists: true
     reverse_analysis:
       status: config_complete
-      progress: 74/74 开关语义 + 8/13 输出格式
+      progress: 74/74 开关语义 + 10/13 输出格式
       detail:
         anchors: 74/74
         semantics: 74/74
@@ -148,7 +148,7 @@ projects:
           PathCopy: 1
           RawOnly: 30
         tests:
-          count: 13
+          count: 14
           all_passing: true
         evidence_files: 11
       remaining: 12 类输出记录的二进制结构体与写出器
@@ -162,13 +162,17 @@ projects:
         cookie: complete (5 pathways)
         storage: complete (truncation rules + result_value)
         eval: complete (3 kinds + sha256)
-      outputs_remaining: 5
+        websocket: complete (19 fields, manual 2191-2207)
+        http_packet: complete (meta dual-write, dropped_full)
+      outputs_remaining: 3
       outputs_remaining_list:
       - wasm.jsonl
       - wasm.wasm
       - env_inventory
-      - http_packet
-      - websocket
+      outputs_remaining_tier:
+        wasm.jsonl: partial (wasm_call semantics described, record fields need sample)
+        wasm.wasm: partial (WAT dump described)
+        env_inventory: none (no field spec, needs real sample)
 reverse_analysis:
   target: domtrace
   status: not_started
