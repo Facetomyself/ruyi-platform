@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T16:35:00+08:00'
+generated_at: '2026-11-19T16:50:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -125,7 +125,7 @@ projects:
     repo_exists: true
     reverse_analysis:
       status: config_complete
-      progress: 74/74 开关读取语义已建模；剩余 12 类输出记录
+      progress: 74/74 开关语义 + 2/12 输出格式
       detail:
         anchors: 74/74
         semantics: 74/74
@@ -134,6 +134,8 @@ projects:
           P3_jscall_config: complete (15)
           P4_scattered: complete (13)
           P5_api_override: complete (5)
+          core_jsonl_record: complete
+          jscall_bin_writer: complete
         parse_modes:
           Tristate: 8
           StrictOne: 7
@@ -146,14 +148,15 @@ projects:
           PathCopy: 1
           RawOnly: 30
         tests:
-          count: 8
+          count: 11
           all_passing: true
         evidence_files: 11
       remaining: 12 类输出记录的二进制结构体与写出器
       next: jscall bin 写入器（已有 ground truth）+ 核心 jsonl 记录
       outputs_done:
         jscall_bin: complete (end-to-end verified)
-      outputs_remaining: 11
+        core_jsonl: complete (Python json.loads verified)
+      outputs_remaining: 10
 reverse_analysis:
   target: domtrace
   status: not_started
