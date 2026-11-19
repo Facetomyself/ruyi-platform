@@ -1,0 +1,9 @@
+[submodule "submodules/ruyihttp"]
+	path = submodules/ruyihttp
+	url = https://github.com/Facetomyself/ruyihttp
+[submodule "submodules/ruyijs"]
+	path = submodules/ruyijs
+	url = https://github.com/Facetomyself/ruyijs-inner
+[submodule "submodules/ruyitrace"]
+	path = submodules/ruyitrace
+	url = https://github.com/Facetomyself/ruyitrace
