@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T21:50:00+08:00'
+generated_at: '2026-11-19T22:15:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -374,3 +374,11 @@ build_capacity:
   - 在 x86_64 + glibc 2.40 主机上跑官方 linux wheel，验证链路
   - 若要内部版等价，再按 Firefox 159 pin 重建（grok-bot 或其他 x86_64 环境）
   - ruyihttp native/linux_aarch64 可在 oracle-reverse-dev 补
+evidence:
+  ledger: docs/09-evidence-ledger.md
+  verifier: scripts/verify-ledger.py (wired into verify-pins.sh §3.6)
+  grades:
+    A_measured: 5
+    B_inferred: 2
+    C_awaiting_external: 5
+  b_markers_files: 7

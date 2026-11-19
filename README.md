@@ -234,6 +234,8 @@ cat STATUS.yaml
 | `docs/05-reverse-analysis.md` | 反编译方法论（domtrace，同样适用于 ruyijs-inner） |
 | `docs/06-ruyijs-inner.md` | 内部版反编译与工程化方案 |
 | `docs/07-build-hosts.md` | **构建主机调查**（现有 fleet 的架构/内存/磁盘实测）|
+| `docs/08-firefox-commit-provenance.md` | 三个 Firefox commit 的真实归属 |
+| `docs/09-evidence-ledger.md` | **证据等级总账**（哪些实测、哪些推断、哪些待样本）|
 | [`REPRODUCE.md`](REPRODUCE.md) | **从零到这个状态的完整路径**（已实测） |
 | `conventions.md` | 写文档的规则 |
 | `PINS.md` | 所有外部依赖的固定版本 |
