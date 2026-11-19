@@ -26,6 +26,11 @@ kernel:
   build_id: "20261101193257"
   source_repo: "https://github.com/mozilla-firefox/firefox"
   source_stamp: "39bfd14cb45c"
+  source_stamp_note: >-
+    该 commit 在官方 mozilla-firefox/firefox 中不存在（2026-11-19 实测 fetch 失败）。
+    官方 FIREFOX_159_0_RELEASE = 9a2dc53c369c7ae5172018b35988e1d2ffeff402。
+    RuyiTrace 内核是私有 fork，domtrace 在官方 dom/bindings/ 里零命中。
+    见 docs/08-firefox-commit-provenance.md。
   firefox_exe_sha256: "9B5B0C5F003257780B4371DC3D7E6C3A5C33FEED9A742D1BB816638ACADB9BF2"
   xul_dll_sha256: "666AAE7E73428E40A82DA789EF1441E713C348989A1F87E799F05A6E7006A0DB"
   domtrace_source: missing      # 不在包内

@@ -14,13 +14,22 @@
 | ruyijs 内部 wheel 构建 | `9a2dc53c369c7ae5172018b35988e1d2ffeff402` | — | `_runtime/SOURCE_NOTICE.md` |
 | ff-ruyijs 上游子模块 | `2887d9de1f69c0e9776413da80e7ba0d1225dd9b` | — | `Facetomyself/ff-ruyijs` `.gitmodules` |
 
-**决策**：以 `39bfd14cb45c` 为唯一基线。理由：
+**决策已更正（2026-11-19 实地核查）**：
 
-- domtrace 插桩只在这棵树上验证过，换 commit 需重编全部内核。
-- `9a2dc53c` 是更早的构建，与 RuyiTrace 不一致。
-- `2887d9de` 是上游跟随的最新，但含上游自己的改动，不能直接当内部基线。
+| 用途 | commit | 官方可获取 |
+| --- | --- | --- |
+| **源码分析基线** | `9a2dc53c369c…` = `FIREFOX_159_0_RELEASE` | ✅ |
+| 复现 RuyiTrace 内核 | `39bfd14cb45c` | ❌ **官方不存在** |
+| 跟 ff-ruyijs | `2887d9de1f69…`（release 分支 2026-11-04） | ✅ |
 
-**后果**：`ff-ruyijs` 的 `firefox` 子模块需要改 pin 到 `39bfd14cb45c`，然后重跑 `ci/linux/build.sh donor/shell/necko`。
+原决策「以 `39bfd14c` 为唯一基线」的依据是「domtrace 只在这棵树上验证过」。
+核查后这个依据不成立：该 commit 在 `mozilla-firefox/firefox` 里拉不到，
+官方 `dom/bindings/` 里 grep `domtrace` 零命中——**domtrace 是私有 fork 的修改，不是官方功能**。
+
+详见 [`docs/08-firefox-commit-provenance.md`](docs/08-firefox-commit-provenance.md)。
+
+`ff-ruyijs` 的 `firefox` 子模块仍应 pin 到官方可验证的 commit，
+不要 pin 到 `39bfd14c`（那会让 clone 失败）。
 
 ```bash
 # 改 pin（在 ff-ruyijs 工作副本里）

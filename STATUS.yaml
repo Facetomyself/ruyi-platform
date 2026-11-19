@@ -1,11 +1,12 @@
-generated_at: '2026-11-19T20:20:00+08:00'
+generated_at: '2026-11-19T21:00:00+08:00'
 baseline:
-  firefox_commit: 39bfd14cb45c
-  firefox_buildid: '20261101193257'
-  nss: '3.132'
-  nspr: '4.40'
-  neqo: 0.33.0
-  glibc_floor: '2.38'
+  firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402   # = FIREFOX_159_0_RELEASE
+  analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
+  analysis_baseline_tag: FIREFOX_159_0_RELEASE
+  ruyitrace_kernel_commit: 39bfd14cb45c (NOT in official repo — private fork)
+  ff_ruyijs_pin: 2887d9de1f69c0e9776413da80e7ba0d1225dd9b (official release branch)
+  domtrace_in_official: false
+  verified: 2026-11-19 sparse clone + git ls-remote
 projects:
   ruyihttp:
     repo: Facetomyself/ruyihttp
