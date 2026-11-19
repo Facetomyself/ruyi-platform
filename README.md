@@ -236,6 +236,7 @@ cat STATUS.yaml
 | `docs/07-build-hosts.md` | **构建主机调查**（现有 fleet 的架构/内存/磁盘实测）|
 | `docs/08-firefox-commit-provenance.md` | 三个 Firefox commit 的真实归属 |
 | `docs/09-evidence-ledger.md` | **证据等级总账**（哪些实测、哪些推断、哪些待样本）|
+| `docs/10-build-runbook.md` | **构建机到位后的执行清单**（7 阶段，每阶段带验证点）|
 | [`HANDOVER.md`](HANDOVER.md) | **阶段总结与交接**（做了什么、可信度、卡在哪） |
 | [`REPRODUCE.md`](REPRODUCE.md) | 从零到这个状态的完整路径（已实测） |
 | `conventions.md` | 写文档的规则 |

@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T23:30:00+08:00'
+generated_at: '2026-11-19T23:45:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -417,3 +417,8 @@ handover:
   - drain/put operation encoding (~half day, low value)
   - Codegen patch as actual diff (~2 hours)
   - remaining 10 record writers (~1-2 days)
+  build_runbook:
+    doc: docs/10-build-runbook.md
+    phases: 7
+    key_milestone: 阶段 4（只编 dom/bindings，40 分钟验证补丁正确性）
+    verifier: scripts/verify-runbook.py (wired into verify-pins.sh §3.7)

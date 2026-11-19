@@ -54,6 +54,10 @@ echo "== 3.6 证据等级总账 =="
 python3 scripts/verify-ledger.py || fail=1
 
 echo
+echo "== 3.7 构建 runbook 一致性 =="
+python3 scripts/verify-runbook.py || fail=1
+
+echo
 echo "== 4. 文档内部链接 =="
 python3 scripts/verify-links.py || fail=1
 

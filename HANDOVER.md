@@ -150,6 +150,10 @@ RuyiTrace 的 39bfd14c 在官方仓库 git fetch 失败
 
 **用途**：验证 domtrace 的七层还原能否真的编出可运行的 `xul`。
 
+**拿到机器后按 [`docs/10-build-runbook.md`](docs/10-build-runbook.md) 执行**——
+7 个阶段，每阶段带验证点，关键节点是阶段 4（只编 `dom/bindings`，40 分钟就能
+知道五个补丁对不对）。
+
 **现有 fleet 不满足**：五台 aarch64，唯一 x86_64 的 `oracle-gateway` 只有 952 MB 内存。
 
 ### 条件 2 · 一次真机 `env_inventory` 采集
