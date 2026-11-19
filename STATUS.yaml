@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T15:10:00+08:00'
+generated_at: '2026-11-19T15:20:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -88,6 +88,22 @@ projects:
     outputs:
     - projects/ruyijs/reverse-analysis.md
     blocked_by: []
+    operation_enumeration:
+      top_level: 37
+      page_actions: 2
+      total: 39
+      strings_found: 32
+      strings_missing: 7
+      missing:
+      - configure_message_replay
+      - configure_timer_replay
+      - expose_data
+      - host_value
+      - pending_timers
+      - run_timer
+      - timer_realm
+      hypothesis: 'A: 功能被裁剪 / B: 动态构造 / C: 编码不同'
+      next: 实调验证假设 A
   ruyitrace:
     repo: Facetomyself/ruyitrace
     submodule: submodules/ruyitrace
@@ -108,7 +124,17 @@ projects:
       domtrace_hashes: pass
       asar_integrity: pass
       switch_count: 74/74
-    repo_exists: false
+    repo_exists: true
+    reverse_analysis:
+      status: anchors_located
+      progress: 74/74 开关读取点已定位
+      details:
+        strings: 74
+        lea_refs: 104
+        getenv_call_sites: 15816
+        paired: 74
+        reader_clusters: 5
+      next: 5 个读取器函数语义重建
 reverse_analysis:
   target: domtrace
   status: not_started
@@ -184,3 +210,16 @@ blockers:
     title: domtrace 内核源码缺失，需反编译还原
     severity: A
     decision: 反编译先行
+submodules:
+  ruyihttp:
+    url: https://github.com/Facetomyself/ruyihttp
+    commit: 6bc7a7d
+    state: added
+  ruyijs:
+    url: https://github.com/Facetomyself/ruyijs-inner
+    commit: 2bc677c
+    state: added
+  ruyitrace:
+    url: https://github.com/Facetomyself/ruyitrace
+    commit: 219cb73
+    state: added

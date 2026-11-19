@@ -7,7 +7,29 @@
 
 ## 1. 契约表（74 行主表）
 
-**状态：待填。** 字段定义见方案 §2.2。
+**状态：已完成。** 见 [`domtrace-contract.md`](domtrace-contract.md)。
+
+自动化命令：
+
+```bash
+python3 ../../scripts/domtrace-anchors.py \
+  --pe ../../artifacts/binaries/ruyitrace/xul.dll
+```
+
+实测输出：
+
+```
+开关字符串: 74
+RVA 映射: 74
+lea 引用: 104 条，覆盖 74 个字符串
+getenv IAT: RVA=0xa185ad0
+getenv 调用点: 15816 去重
+读取点配对: 74/74
+```
+
+### 原始表（保留作对照）
+
+字段定义见方案 §2.2。
 
 | # | env | kind | default | range | group | depends_on | output | impl_rva | status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -36,16 +58,45 @@ PY
 
 ## 2. 符号定位
 
-**状态：0/74。**
+**状态：74/74 完成。** 见 [`domtrace-contract.md`](domtrace-contract.md) 与 [`domtrace-readers.md`](domtrace-readers.md)。
 
-```bash
-python3 scripts/reverse-anchors.py \
-  --pe artifacts/binaries/ruyitrace/xul.dll \
-  --prefix MOZ_DOM_ \
-  --out artifacts/analysis/domtrace/anchors.json
-```
+### 关键发现
 
-`getenv` 调用点的典型形态与定位方法见方案 §3.3。
+| 项 | 值 |
+| --- | --- |
+| `getenv` 导入 DLL | `api-ms-win-crt-environment-l1-1-0.dll` |
+| `getenv` IAT RVA | `0xa185ad0` |
+| 开关字符串 | 74 个，每个只出现一次，全在 `.rdata` |
+| `lea` 引用 | 104 条（有 30 个开关被多处引用） |
+| `getenv` 调用点 | 15816 个（去重），形态分布见下 |
+
+### 调用点形态（重要）
+
+domtrace 的开关读取**不止一种形态**：
+
+| 形态 | 数量 | 代码 |
+| --- | ---: | --- |
+| `direct` | 174 | `call qword ptr [rip + getenv_IAT]` |
+| `r15` | 6147 | 函数头 `mov r15, [getenv_IAT]`，之后 `call r15` |
+| `rbx` | 3730 | 同上 |
+| `rsi` | 5192 | 同上 |
+| `rax/rcx/rdx` | 573 | 同上 |
+
+**这就是第一版脚本只配到 41/74 的原因**——只认 `direct` 形态。补齐寄存器形态后达到 74/74。
+
+### 读取器聚类
+
+74 个开关由 **5 个区域**的函数读取：
+
+| 区域 | 开关数 | 函数起点 | 覆盖 |
+| --- | ---: | --- | --- |
+| `0x180600000` | 40 | `0x18065fbfa` | 总开关 + 补环境探测 + WASM + exception |
+| `0x185600000` | 16 | `0x18563e213` | jscall 全组 |
+| `0x182a00000` | 11 | `0x182ad0720` | event + exception 部分 |
+| `0x181c00000` | 5 | `0x181c69103` | API 定制 / 随机数劫持 |
+| `0x180a00000` | 2 | `0x180a96290` | HTTP packet + WS |
+
+**含义**：只要还原这 5 个函数，就覆盖全部 74 个开关的读取逻辑。这大幅收窄了工作量。
 
 ---
 

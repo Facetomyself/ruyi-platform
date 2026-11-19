@@ -46,6 +46,63 @@ identity 总基数 **2038**（来自 `build-identity.json` 的 `source_inputs`�
 
 ---
 
+## 2.5 operation 全集与 js.exe 锚点（新增，2026-11-19）
+
+### operation 全集（已枚举）
+
+从 19 个 `.py` 提取：**37 个一级 operation + 2 个 page action**。
+
+| 文件 | 数量 | 列表 |
+| --- | ---: | --- |
+| `_scheduling.py` | 14 | `advance` `configure` `configure_message_replay` `configure_navigation_replay` `configure_timer_replay` `drain` `event_loop` `navigation_replay_status` `pending_messages` `pending_timers` `run_message` `run_timer` `status` `timer_realm` |
+| `_context.py` | 8 | `checkpoint` `close` `collect` `expose` `expose_data` `native` `page` `set` |
+| `_resources.py` | 7 | `clear` `cookies` `get` `log` `put` `resource` `status` |
+| `_inspector.py` | 4 | `api_log` `clear` `get` `peek` |
+| `_context_eval.py` | 3 | `eval` `host_value` `locals` |
+| `_random.py` | 3 | `configure_crypto_replay` `configure_random` `crypto_replay_status` |
+| `_environment.py` | 2 | `configure` `defaults` |
+| `_input.py` | 2 | `input` `user` |
+| `_console.py` | 1 | `console` |
+| page action | 2 | `load` `navigate` |
+
+产物：`artifacts/analysis/ruyijs/operations.json`
+
+### 关键发现：7 个 operation 在 js.exe 里不存在
+
+| operation | ascii | utf-16le |
+| --- | ---: | ---: |
+| `configure_message_replay` | 0 | 0 |
+| `configure_timer_replay` | 0 | 0 |
+| `expose_data` | 0 | 0 |
+| `host_value` | 0 | 0 |
+| `pending_timers` | 0 | 0 |
+| `run_timer` | 0 | 0 |
+| `timer_realm` | 0 | 0 |
+
+对照组（同期 operation）全部能命中：
+
+| operation | ascii |
+| --- | ---: |
+| `advance` | 15 |
+| `drain` | 7 |
+| `event_loop` | 4 |
+| `run_message` | 1 |
+| `navigation_replay_status` | 1 |
+
+**32/39 命中，7 个缺失。**
+
+三种可能，待验证：
+
+| 假设 | 说明 | 验证 |
+| --- | --- | --- |
+| A. 功能被裁剪 | 内部版删了定时器重放，Python 层留着调用 | 实调 `run_timer` 看错误码 |
+| B. 字符串动态构造 | 二进制按键拼接 operation 名 | 找 `event_loop` 附近的分发逻辑 |
+| C. 编码不同 | 非 ASCII 非 UTF-16LE | 全字节序列扫描 |
+
+若 A 成立，`ruyijs-inner` 需要补实现这 7 个，不是还原。
+
+---
+
 ## 3. hash_diff 中已抬出的独特控制流
 
 这些不是 identity 命中，是 dump 得到的行为细节（**有价值但不可声称等价**）：
