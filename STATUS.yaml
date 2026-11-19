@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T21:30:00+08:00'
+generated_at: '2026-11-19T21:50:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -189,6 +189,14 @@ projects:
         - protoID → 接口名反查
         - getter 指针 → 成员名
         - 四个身份槽位
+        codegen_plan:
+          doc: projects/ruyitrace/codegen-changes.md
+          change_1: CGPrototypeTraitsClass (Codegen.py:14691) — 补 InterfaceName
+          change_2: CGMemberJITInfo sidetable (Codegen.py:12100) — 以 JSJitInfo* 为键
+          change_3: GenericGetter/Setter/Method 插桩接名字
+          estimated_lines: 85
+          jitinfo_size_limit: 16 bytes, fully packed, cannot add fields
+          nativeOp_unavailable: shares storage with depth, needed by getter/setter path
 reverse_analysis:
   target: domtrace
   status: not_started

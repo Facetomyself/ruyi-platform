@@ -24,6 +24,7 @@
 | 知道现在卡在哪 | [`04-risks-and-gaps.md`](04-risks-and-gaps.md) + [`../STATUS.yaml`](../STATUS.yaml) |
 | 反编译 domtrace 内核 | [`05-reverse-analysis.md`](05-reverse-analysis.md) |
 | **domtrace 该插在哪** | [`../projects/ruyitrace/instrumentation-sites.md`](../projects/ruyitrace/instrumentation-sites.md) |
+| **要改 Codegen 的哪几处** | [`../projects/ruyitrace/codegen-changes.md`](../projects/ruyitrace/codegen-changes.md) |
 | 反编译 ruyijs 内部版 | [`06-ruyijs-inner.md`](06-ruyijs-inner.md) |
 | 要在哪台机器上构建 | [`07-build-hosts.md`](07-build-hosts.md) |
 | 从零复现这个状态 | [`../REPRODUCE.md`](../REPRODUCE.md) |

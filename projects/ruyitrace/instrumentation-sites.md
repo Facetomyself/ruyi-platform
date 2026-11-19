@@ -131,8 +131,8 @@ bool GenericGetter(JSContext* cx, unsigned argc, JS::Value* vp) {
 
 | 缺什么 | 怎么补 |
 | --- | --- |
-| `protoID` → 接口名 | Codegen 生成的 `prototypes::ID` 表已有名字，需加一个反查 API |
-| getter 指针 → 成员名 | Codegen（`Codegen.py`）里能给每个 JitInfo 附上名字 |
+| `protoID` → 接口名 | 需改 `CGPrototypeTraitsClass`（`Codegen.py:14691`），见 [`codegen-changes.md`](codegen-changes.md) |
+| getter 指针 → 成员名 | 需在 `jitInfoInitializer`（`Codegen.py:12100`）旁生成 sidetable，见 [`codegen-changes.md`](codegen-changes.md) |
 | 四个身份槽位（`id`/`nativeId`/`class`） | 需在 `JSObject` 上加/取 collection-stable id |
 | 12 类输出写入 | 我们已有（`domtrace/trace/`） |
 
