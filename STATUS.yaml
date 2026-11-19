@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T20:00:00+08:00'
+generated_at: '2026-11-19T20:20:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -280,3 +280,74 @@ tooling:
   - pefile 2024.8.26
   - capstone 5.0.7
   - pyyaml
+build_capacity:
+  investigated: '2026-11-19'
+  doc: docs/07-build-hosts.md
+  correction: 初版误以为需自己编 SpiderMonkey；ff-ruyijs v0.4.1 已发布 linux wheel
+  existing_linux_runtime:
+    source: cutetailbud/ff-ruyijs v0.4.1 release
+    wheel: ruyijs-0.4.1-py3-none-manylinux_2_39_x86_64.whl
+    size: 73961754
+    sha256: f80de6b269e0bcef9fd6dccab6c722e57d6350ce5a5ecce5c68a96270b908d37
+    contents:
+      js: 66272193
+      libruyijs_client.so: 35033
+      libs: 26
+    engine: SpiderMonkey 160
+    webcrypto: OpenSSL
+    graphics: Firefox 160 Skia 149
+    glibc: '2.39'
+    js_requires:
+    - GLIBC_2.36
+    - GLIBC_2.38
+    - GLIBC_2.39
+    deps_self_contained: true
+  gap_vs_internal: Linux 官方是 SP160，内部版是 SP159 — 不是同一套构建
+  fleet:
+    oracle-dsh:
+      arch: aarch64
+      glibc: '2.35'
+      cores: 1
+      mem_gb: 5
+      disk_free_gb: 9.8
+      verdict: glibc_too_old
+    oracle-proxy:
+      arch: aarch64
+      glibc: '2.31'
+      cores: 1
+      mem_gb: 11
+      disk_free_gb: 20
+      verdict: arch_mismatch
+    oracle-gateway:
+      arch: x86_64
+      glibc: '2.31'
+      cores: 2
+      mem_gb: 0.9
+      disk_free_gb: 34
+      verdict: arch_ok_but_glibc_old_and_oom
+    oracle-mail:
+      arch: aarch64
+      glibc: '2.28'
+      cores: 1
+      mem_gb: 5
+      disk_free_gb: 15
+      verdict: arch_mismatch
+    oracle-artex:
+      arch: aarch64
+      glibc: '2.39'
+      cores: 2
+      mem_gb: 11
+      disk_free_gb: 18
+      verdict: arch_mismatch
+    oracle-reverse-dev:
+      arch: aarch64
+      glibc: '2.39'
+      cores: 2
+      mem_gb: 10
+      disk_free_gb: 73
+      verdict: arch_mismatch
+  conclusion: fleet 无 x86_64 + glibc>=2.39；跑官方 linux wheel 需新实例或 grok-bot
+  next_actions:
+  - 在 x86_64 + glibc 2.40 主机上跑官方 linux wheel，验证链路
+  - 若要内部版等价，再按 Firefox 159 pin 重建（grok-bot 或其他 x86_64 环境）
+  - ruyihttp native/linux_aarch64 可在 oracle-reverse-dev 补

@@ -94,6 +94,15 @@ self.assertEqual(runtime_platform(), expected_platform_for_this_host)
 
 ### L2 · ruyijs 内部版 —— **上游有参照，但不能直接抄**
 
+> **补充（2026-11-19）**：ff-ruyijs v0.4.1 已发布
+> `ruyijs-0.4.1-py3-none-manylinux_2_39_x86_64.whl`（73.9 MB），内含构建好的
+> `dist/js`（66 MB，SpiderMonkey **160**）、`libruyijs_client.so` 与 26 个依赖 `.so`，
+> 依赖自洽，`runtime.json` 的 sha256 覆盖 26/26。
+>
+> 这意味着 **Linux 侧能立刻跑起来，不必自己编 SpiderMonkey**。
+> 但它与内部版不是同一套构建（SP160 vs SP159，OpenSSL vs NSS），
+> 只能做链路验证，不能当内部版的 Linux 等价物。详见 `07-build-hosts.md`。
+
 > **本条经两次更正。**
 >
 > 初版：判定「`_pipe.py` 需整文件重写 127 行」——**错**。
