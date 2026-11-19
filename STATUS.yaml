@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T19:30:00+08:00'
+generated_at: '2026-11-19T20:00:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -12,9 +12,9 @@ projects:
     submodule: submodules/ruyihttp
     source: complete
     build:
-      win_amd64: ready
-      darwin_arm64: ready
-      linux_x86_64: ready
+      win_amd64: ready (rebuilt, hash verified)
+      darwin_arm64: ready (rebuilt, hash verified)
+      linux_x86_64: ready (rebuilt, hash verified; live untested)
       darwin_x86_64: build-required
       linux_aarch64: build-required
     tests: 19/19
@@ -210,10 +210,6 @@ blockers:
     decision: pending
   B3:
     title: backports 导入写法与 pyproject 声明不一致
-    severity: B
-    decision: none
-  B4:
-    title: dist/ 两个 wheel 与 native/ 脱钩
     severity: B
     decision: none
   C1:

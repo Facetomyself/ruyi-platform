@@ -115,7 +115,10 @@ cd RuyiHttp/repo && python3 -c "import ruyihttp"
 - **验证**：干净 venv 里 `pip install -e .` 后 `import ruyihttp` 无异常
 - **注意**：上游 ruyijs 的 `vendor/.../necko/_nss.py` 有同样写法，**合流时要一起修**
 
-### B4 · `dist/` 两个 wheel 与 `native/` 脱钩
+### ~~B4 · `dist/` 两个 wheel 与 `native/` 脱钩~~ → **已解决**（2026-11-19）
+
+已归档到 `submodules/ruyihttp/dist-v0.9.0-legacy/`，三个平台重新构建并通过
+hash 校验（26 个原生文件全匹配）。详见该目录的 `VERIFICATION.md`。
 
 | wheel | 问题 |
 | --- | --- |

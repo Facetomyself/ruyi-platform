@@ -28,7 +28,7 @@ submodules/ruyihttp/
 ├── docs/              build-native / licensing / platform-support
 ├── setup.py           114 行
 ├── pyproject.toml
-└── dist/              2 个旧 wheel（建议归档）
+└── dist-v0.9.0-legacy/   2 个旧 wheel 归档 + VERIFICATION.md
 ```
 
 ## 缺失
@@ -37,4 +37,4 @@ submodules/ruyihttp/
 | --- | --- | --- |
 | 原生库 C/C++/Rust 源码 | ❌ 不在树内 | 参照 `ff-ruyijs/native/`（见 `docs/02-source-recovery.md` §1） |
 | `darwin_x86_64` / `linux_aarch64` 二进制 | ❌ 空位 | 对应平台构建 |
-| linux wheel | ❌ 未产出 | `pip wheel` on glibc ≥ 2.38 |
+| linux wheel | ✅ 可重建（未 live 验证） | `RUYIHTTP_PLATFORM=linux_x86_64 RUYIHTTP_GLIBC=2.39 pip wheel ...` |
