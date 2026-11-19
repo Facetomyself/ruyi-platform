@@ -1,0 +1,44 @@
+# 内部 wheel 0.2.2+inner.20261101191032 —— RuyiTrace 3.5.0 自带
+name: ruyijs
+version: "0.2.2+inner.20261101191032"
+channel: internal
+filename: "ruyijs-0.2.2+inner.20261101191032-py3-none-win_amd64.whl"
+size: 46616022
+sha256: "e3243d9b0dc078d97036f2f840d658da74f2b8246af7d00b4468698cc8ea8bef"
+source: "RuyiTrace-3.5.0-win64.zip → resources/ruyijs/"
+source_sha256_zip: "72db039e1842eca59916fb10c4342dcfb344678d04c8ec6f8bb671b57b1f4cf7"
+
+provenance:
+  firefox_commit: unknown       # build-identity 未记录 firefox pin
+  ff_ruyijs_commit: "aa255fbb3dd5e806f0cac9119ec9c598fd10bdb3"
+  ff_ruyijs_branch: inner
+  ff_ruyijs_dirty: true         # working_tree_changes: true
+  runtime_sha256: "5fb68b2206d463d1a81c95b595374dde766efec37408142bf53b8e58f213bcca"
+  source_files_verified: 2038   # build-identity.source_inputs 条目数
+
+contents:
+  entries: 1301
+  python_files: 17              # 无 _engine.py
+  examples: 0
+  has_engine: false
+  has_ruyijs_client_dll: true   # dist/ruyijs_client.dll 35328 B
+  extra_dist:
+    - "msvcp140_atomic_wait.dll"
+    - "vcruntime140_threads.dll"
+    - "ruyijs_client.dll"
+    - "fonts/TwemojiMozilla.ttf"
+  runtime_sums_entries: 0       # 被 RECORD 取代
+
+verification:
+  record_check: "1300/1300 pass"
+  vendor_base_manifest: pass
+
+reverse_target:
+  primary: "ruyijs/_runtime/dist/js.exe"
+  size: 49569792
+  ground_truth: "build-identity.json source_inputs（2038 条 path + sha256）"
+  plan: "docs/06-ruyijs-inner.md"
+
+notes:
+  - "working_tree_changes 为 true，base_commit 不足以复现，反编译对象以 wheel 内二进制为准"
+  - "这个构建删除了 Engine 多会话层，只保留单进程 Context"

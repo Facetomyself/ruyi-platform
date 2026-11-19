@@ -1,0 +1,51 @@
+# RuyiTrace 3.5.0 win64 —— 发布物记录（二进制不入 git）
+name: RuyiTrace
+version: "3.5.0"
+platform: win64
+filename: "RuyiTrace-3.5.0-win64.zip"
+size: 583656604
+sha256: "72db039e1842eca59916fb10c4342dcfb344678d04c8ec6f8bb671b57b1f4cf7"
+source: "https://drop-cn.zhangxuemin.work/share/select?code=3JMR2"
+fetched_at: "2026-11-19T14:11:19+08:00"
+unpacked:
+  files: 8468
+  size: "1.5 GB"
+
+app:
+  name: trace-console
+  version: "3.5.0"
+  license: MIT
+  framework: Electron
+  console_source:
+    files: 74
+    lines: 3644
+    status: complete            # unpacked from app.asar/src
+
+kernel:
+  firefox_version: "159.0"
+  build_id: "20261101193257"
+  source_repo: "https://github.com/mozilla-firefox/firefox"
+  source_stamp: "39bfd14cb45c"
+  firefox_exe_sha256: "9B5B0C5F003257780B4371DC3D7E6C3A5C33FEED9A742D1BB816638ACADB9BF2"
+  xul_dll_sha256: "666AAE7E73428E40A82DA789EF1441E713C348989A1F87E799F05A6E7006A0DB"
+  domtrace_source: missing      # 不在包内
+
+domtrace:
+  files: 10
+  manifest_verify: pass
+  switch_count: 74              # switches.js 与 xul.dll strings 一致
+  doc_claims: 69                # cheatsheet 陈旧
+  ghost_switch: MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING   # 文档有，内核无
+
+ruyijs_bundled:
+  version: "0.2.2+inner.20261101191032"
+  sha256: "e3243d9b0dc078d97036f2f840d658da74f2b8246af7d00b4468698cc8ea8bef"
+
+codex:
+  version: "0.162.1"
+  target: "x86_64-pc-windows-msvc"
+
+reverse_target:
+  primary: "resources/kernel/xul.dll"
+  size: 187741696
+  plan: "docs/05-reverse-analysis.md"

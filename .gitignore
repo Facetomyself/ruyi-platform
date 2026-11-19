@@ -1,0 +1,44 @@
+# ── 二进制（只记 hash，见 PINS.md 与 artifacts/） ──
+*.whl
+*.zip
+*.exe
+*.dll
+*.dylib
+!submodules/**/native/**/*.dll
+!submodules/**/native/**/*.dylib
+
+# ── 反编译中间产物（可再生） ──
+artifacts/analysis/
+artifacts/binaries/
+*.idb
+*.i64
+*.til
+*.asm
+*.lst
+*.dump
+*.bin
+!submodules/**/native/**/*.so
+
+# ── 原生库例外：入库（见 conventions.md §5） ──
+!submodules/*/native/**/*.so
+
+# ── 本地参考克隆（不入库，只记 pin） ──
+upstream/ff-ruyijs/
+upstream/firefox/
+upstream/*/
+
+# ── 编辑器 / 系统 ──
+.vscode/
+.idea/
+*.swp
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+
+# ── 敏感 ──
+.env
+*.pem
+*.key
+credentials/

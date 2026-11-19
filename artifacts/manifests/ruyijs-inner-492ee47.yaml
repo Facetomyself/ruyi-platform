@@ -1,0 +1,33 @@
+# 内部 wheel 0.2.2+inner.492ee47 —— 发布物记录（二进制不入 git）
+name: ruyijs
+version: "0.2.2+inner.492ee47"
+channel: internal
+filename: "ruyijs-0.2.2+inner.492ee47-py3-none-win_amd64.whl"
+size: 46030962
+sha256: "a7be9c4aa04823b32277562ec65082a4ae3844beb7ccf330a53271d8ec82a50e"
+source: "用户交付（附件）"
+
+provenance:
+  firefox_commit: "9a2dc53c369c7ae5172018b35988e1d2ffeff402"
+  firefox_note: "见 _runtime/SOURCE_NOTICE.md"
+  ff_ruyijs_commit: unknown      # 无 build-identity.json
+  ff_ruyijs_dirty: unknown
+  source_notice_claims: "pypi 0.3.3 / ruyijs 同版本源码"
+
+contents:
+  entries: 1676
+  python_files: 19
+  examples: 26                  # 含 akamai / datadome / 极验 / 数美 / 瑞数 / 1688 / 抖音 / 小红书
+  has_engine: true              # Engine / use_engine
+  has_ruyijs_client_dll: false
+  runtime_sums_entries: 1579
+  runtime_sums_line_ending: crlf
+
+verification:
+  record_check: "1675/1675 pass"
+  runtime_sums_check: "1579/1579 pass (after CRLF normalization)"
+  vendor_base_manifest: pass
+
+notes:
+  - "SOURCE_NOTICE 指向 0.3.3，与版本号 0.2.2+inner 矛盾，溯源链断裂"
+  - "无 build-identity.json，无法确定对应的 ff-ruyijs commit"
