@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T23:10:00+08:00'
+generated_at: '2026-11-19T23:30:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -199,17 +199,23 @@ projects:
           nativeOp_unavailable: shares storage with depth, needed by getter/setter path
         patches:
           location: submodules/ruyitrace/domtrace/patches/
-          count: 4
-          lines_added: 51
+          count: 5
+          lines_added: 84
           apply_order:
           - '0001'
           - '0002'
           - '0004'
+          - '0005'
           - '0003'
           apply_verified: true
-          codgen_ast_check: pass
+          codegen_ast_check: pass
+          index_chain:
+            protoID_to_interface: '0001'
+            jitinfo_registration: 0002 (generated; link-time aggregation missing)
+            member_name_table: '0004'
+            protoID_to_member_range: '0005'
           not_covered:
-          - (protoID, member index) -> string table index mapping
+          - link-time aggregation of JitInfoName entries
           - build verification
           - runtime behavior verification
 reverse_analysis:
