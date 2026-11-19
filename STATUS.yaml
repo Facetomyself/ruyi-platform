@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T22:15:00+08:00'
+generated_at: '2026-11-19T22:40:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -382,3 +382,17 @@ evidence:
     B_inferred: 2
     C_awaiting_external: 5
   b_markers_files: 7
+handover:
+  doc: HANDOVER.md
+  verified_claims:
+    verify_pins_sections: 7
+    domtrace_tests: 17
+    ruyihttp_tests: 19
+  external_conditions_needed:
+  - x86_64 + 16GB RAM + 60GB disk + glibc 2.38 (for mach build)
+  - Windows + RuyiTrace (for env_inventory sample)
+  - glibc 2.38+ x86_64 host (for live verification)
+  self_serviceable:
+  - drain/put operation encoding (~half day, low value)
+  - Codegen patch as actual diff (~2 hours)
+  - remaining 10 record writers (~1-2 days)

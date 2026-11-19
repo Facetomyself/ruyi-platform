@@ -6,7 +6,9 @@
 
 ## 我是新来的
 
-读这三份，按顺序：
+**最快：读 [`../HANDOVER.md`](../HANDOVER.md)** —— 10 分钟知道做了什么、做到哪、卡在哪。
+
+然后读这三份，按顺序：
 
 1. [`../README.md`](../README.md) —— 本仓是什么、拓扑长什么样
 2. [`01-architecture.md`](01-architecture.md) —— 三件套怎么连
