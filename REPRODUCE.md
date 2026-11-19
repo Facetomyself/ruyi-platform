@@ -1,6 +1,6 @@
 # 复现手册：从零到这个状态
 
-本仓现有 **31 篇文档 / 41 个 C++ 文件 / 16 项测试 / 13 个脚本**。
+本仓现有 **32 篇文档 / 43 个 C++ 文件 / 17 项测试 / 13 个脚本**。
 这份手册给出一条从空目录到全部验证通过的路径，每一步都能独立核对。
 
 ---
@@ -24,7 +24,7 @@ python3 -m pip install --user pyyaml pefile capstone
 ```
 
 > **不需要**：Windows、Wine、IDA、Ghidra、Firefox 源码、glibc 2.38。
-> 全部 16 项测试都是 host 可跑的纯 C++/Python。
+> 全部 17 项测试都是 host 可跑的纯 C++/Python。
 
 ---
 
@@ -72,7 +72,7 @@ bash scripts/verify-pins.sh
 
 ---
 
-## 3. 跑 domtrace 的 16 项测试
+## 3. 跑 domtrace 的 17 项测试
 
 ```bash
 cd submodules/ruyitrace
@@ -91,6 +91,7 @@ PASS  network-record: ws + http 8 组断言全通过
 PASS  p4-scattered: 13 条读取点 + 8 种解析模式对齐
 PASS  sidecar-record: 3 类侧车记录 8 组断言全部通过
 PASS  sink-dispatch: 12 组调度断言全通过
+PASS  sink-session: 6 组端到端断言全通过（真实写盘）
 PASS  storage-record: cookie/storage/eval 三类 8 组断言全通过
 PASS  switchlist: 74 条契约全部通过
 PASS  trace-config: 40 条落位 + 3 种解析器全部对齐
@@ -210,7 +211,7 @@ python3 scripts/gen-trace-config.py --asm /tmp/p1p2.asm \
 | 0 前置 | `python3 -c "import yaml, pefile, capstone"` | 全部可用 |
 | 0 前置 | `g++ -std=c++17` + `<charconv>` | 通过 |
 | 2 | `bash scripts/verify-pins.sh` | 六节全 PASS，末行「全部通过」 |
-| 3 | `bash tests/run-tests.sh` | **16 个 PASS** |
+| 3 | `bash tests/run-tests.sh` | **17 个 PASS** |
 | 5 | `verify-coverage.py` | 退出码 0，74/74/74 |
 | 5 | `verify-links.py` | 退出码 0，27 链接 |
 | 5 | `verify-manifests.py` | 3/3 通过 |
@@ -230,4 +231,4 @@ bash scripts/verify-pins.sh
 cd submodules/ruyitrace && bash tests/run-tests.sh
 ```
 
-看到 `全部通过` 两次，就说明仓库是健康的、16 项契约测试全绿、74 个开关三处一致。
+看到 `全部通过` 两次，就说明仓库是健康的、17 项契约测试全绿、74 个开关三处一致。

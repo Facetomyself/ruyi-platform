@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T18:55:00+08:00'
+generated_at: '2026-11-19T19:30:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -123,7 +123,7 @@ projects:
     repo_exists: true
     reverse_analysis:
       status: config_complete
-      progress: 74/74 开关语义 + 12/13 输出 + sink 调度层
+      progress: 74/74 开关 + 12/13 记录 + 13/13 调度 + end-to-end 写盘
       detail:
         anchors: 74/74
         semantics: 74/74
@@ -135,6 +135,7 @@ projects:
           core_jsonl_record: complete
           jscall_bin_writer: complete
           sink_dispatch: complete (13 sinks, paths verified vs cheatsheet)
+          sink_session: complete (real files, Python-verified)
         parse_modes:
           Tristate: 8
           StrictOne: 7
@@ -147,7 +148,7 @@ projects:
           PathCopy: 1
           RawOnly: 30
         tests:
-          count: 16
+          count: 17
           all_passing: true
         evidence_files: 11
         inferred_keys:
@@ -265,9 +266,8 @@ docs_health:
   total_markdown: 32
   total_cpp_files: 41
   total_scripts: 13
-  reproduce_manual: "REPRODUCE.md (逐条实测)"
-  last_full_verification: "verify-pins 六节 + 16 项 domtrace 测试 + 19 项 ruyihttp 测试 全绿"
-
+  reproduce_manual: REPRODUCE.md (逐条实测)
+  last_full_verification: verify-pins 六节 + 16 项 domtrace 测试 + 19 项 ruyihttp 测试 全绿
 tooling:
   scripts:
     domtrace-anchors.py: xul.dll 74 开关锚点提取
