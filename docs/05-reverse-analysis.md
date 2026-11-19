@@ -131,6 +131,22 @@ je      <skip>
 
 ---
 
+## 3.5 插桩点已经找到（2026-11-19）
+
+官方 159.0 源码里，**全部 WebIDL 属性读写与方法调用收敛到三个函数**：
+
+| 函数 | 位置 |
+| --- | --- |
+| `GenericGetter` | `dom/bindings/BindingUtils.cpp:3054` |
+| `GenericSetter` | 同上 |
+| `GenericMethod` | 同上 |
+
+`Codegen.py` 生成这些函数的调用（6 种 `ThisPolicy` 变体），是结构性保证。
+
+详见 [`../projects/ruyitrace/instrumentation-sites.md`](../projects/ruyitrace/instrumentation-sites.md)。
+
+---
+
 ## 4. 第三步：语义重建
 
 ### 4.1 从调用点向外扩散

@@ -1,6 +1,6 @@
-generated_at: '2026-11-19T21:00:00+08:00'
+generated_at: '2026-11-19T21:30:00+08:00'
 baseline:
-  firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402   # = FIREFOX_159_0_RELEASE
+  firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline_tag: FIREFOX_159_0_RELEASE
   ruyitrace_kernel_commit: 39bfd14cb45c (NOT in official repo — private fork)
@@ -175,6 +175,20 @@ projects:
       - env_inventory
       outputs_remaining_tier:
         env_inventory: none — 手册只有「约 1.2 MB 接口清单」一句，无字段描述，需真机样本
+      instrumentation:
+        located: true
+        sites:
+        - GenericGetter
+        - GenericSetter
+        - GenericMethod
+        file: dom/bindings/BindingUtils.cpp
+        verified_by: Codegen.py 生成的调用（6 种 ThisPolicy 变体）
+        official_source: 9a2dc53c369c7ae5172018b35988e1d2ffeff402 (FIREFOX_159_0_RELEASE)
+        doc: projects/ruyitrace/instrumentation-sites.md
+        remaining:
+        - protoID → 接口名反查
+        - getter 指针 → 成员名
+        - 四个身份槽位
 reverse_analysis:
   target: domtrace
   status: not_started
