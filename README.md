@@ -238,7 +238,8 @@ cat STATUS.yaml
 | `docs/09-evidence-ledger.md` | **证据等级总账**（哪些实测、哪些推断、哪些待样本）|
 | `docs/10-build-runbook.md` | **构建机到位后的执行清单**（7 阶段，每阶段带验证点）|
 | `docs/11-aarch64-assessment.md` | linux_aarch64 原生库的可行性评估（结论：不做）|
-| [`HANDOVER.md`](HANDOVER.md) | **阶段总结与交接**（做了什么、可信度、卡在哪） |
+| [`TIMELINE.md`](TIMELINE.md) | **工作主线**（为何做、遇到什么、怎么解决）|
+| [`HANDOVER.md`](HANDOVER.md) | 阶段总结与交接（做了什么、可信度、卡在哪） |
 | [`REPRODUCE.md`](REPRODUCE.md) | 从零到这个状态的完整路径（已实测） |
 | `conventions.md` | 写文档的规则 |
 | `PINS.md` | 所有外部依赖的固定版本 |
