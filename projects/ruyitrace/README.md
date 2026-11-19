@@ -54,3 +54,31 @@ ruyitrace/
 ## 当前状态
 
 控制台 100%，domtrace 0%。反编译方案见 [`../../docs/05-reverse-analysis.md`](../../docs/05-reverse-analysis.md)。
+
+## 输出格式进度
+
+| # | 输出 | 触发开关 | 状态 |
+| ---: | --- | --- | --- |
+| 1 | `domtrace\trace_process_<pid>.jsonl` | `MOZ_DOM_TRACE` | ✅ 已实现 |
+| 2 | `jscall\trace_jscall_*.bin` | `MOZ_DOM_JSCALL_TRACE` | ✅ 已实现，端到端解码验证 |
+| 3 | `cookie\trace_cookie_process_<pid>.jsonl` | 核心跟随 | 待做 |
+| 4 | `storage\trace_storage_process_<pid>.jsonl` | 核心跟随 | 待做 |
+| 5 | `eval\trace_eval_process_<pid>.jsonl` | 核心跟随 | 待做 |
+| 6 | `event\trace_event_process_<pid>.jsonl` | 核心跟随 | 待做 |
+| 7 | `descriptor\trace_descriptor_process_<pid>.jsonl` | 核心跟随 | 待做 |
+| 8 | `exception\trace_exception_process_<pid>.jsonl` | `MOZ_DOM_EXCEPTION_TRACE` | 待做 |
+| 9 | `wasm\trace_wasm_process_<pid>.jsonl` | `MOZ_DOM_WASM_CALL` / `_INSN` | 待做 |
+| 10 | `wasm\wasm_<sha256>_<len>.wasm` | `MOZ_DOM_WASM_DUMP` | 待做 |
+| 11 | `env\env_inventory_<pid>_<session>.json` | `MOZ_DOM_ENV_INVENTORY` | 待做 |
+| 12 | `http_packet\*.http_packet.json` + `index.jsonl` | `MOZ_DOM_HTTP_PACKET_TRACE` | 待做 |
+| 13 | `websocket_frames.jsonl` | `MOZ_DOM_WS_TRACE` | 待做 |
+
+进度 **2/13**（cheatsheet 的 12 类是合并了 wasm 的两项，拆分后是 13 项）。
+
+### 已验证的实现
+
+- `domtrace/trace/jscall-writer.cpp` —— 写出的 .bin 能被发布方
+  `tools/jscall_decode.py` 正确解码（call_id / depth / name / url /
+  entry_path / detail 值全部正确）
+- `domtrace/trace/trace-record.cpp` —— 核心 jsonl 行被 Python `json.loads`
+  解析通过，19 个字段，无裸换行
