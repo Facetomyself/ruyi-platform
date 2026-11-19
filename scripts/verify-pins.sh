@@ -46,6 +46,10 @@ for f in PINS.md docs/05-reverse-analysis.md artifacts/manifests/ruyitrace-3.5.0
 done
 
 echo
+echo "== 3.5 开关三处一致性 =="
+python3 scripts/verify-coverage.py || fail=1
+
+echo
 echo "== 4. 文档内部链接 =="
 python3 scripts/verify-links.py || fail=1
 

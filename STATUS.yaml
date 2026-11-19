@@ -126,15 +126,23 @@ projects:
       switch_count: 74/74
     repo_exists: true
     reverse_analysis:
-      status: anchors_located
-      progress: 74/74 开关读取点已定位
-      details:
-        strings: 74
-        lea_refs: 104
-        getenv_call_sites: 15816
-        paired: 74
+      status: p5_complete
+      progress: P5 完整还原；剩余 P1/P2/P3/P4 待做
+      detail:
+        anchors: 74/74
         reader_clusters: 5
-      next: 5 个读取器函数语义重建
+        reconstructed_modules:
+          P5_api_override: complete
+          P3_jscall_config: format_only
+          P1_P2_trace_config: not_started
+          P4_scattered: not_started
+        tests:
+          byte_layout: 3
+          wiring: 1
+          behavior: 0
+          all_passing: true
+        evidence_files: 4
+      next: P1+P2 TraceConfig（40 个开关，核心）
 reverse_analysis:
   target: domtrace
   status: not_started
@@ -223,3 +231,19 @@ submodules:
     url: https://github.com/Facetomyself/ruyitrace
     commit: 219cb73
     state: added
+tooling:
+  scripts:
+    domtrace-anchors.py: xul.dll 74 开关锚点提取
+    contract-gen.py: switches.js + anchors → domtrace-switchlist.h
+    annotate-asm.py: 按符号表标注反汇编
+    gen-reader-names.py: 地址→语义名映射
+    verify-coverage.py: switches.js/anchors.json/switchlist.h 三处一致
+    verify-pins.sh: pin + coverage + links + submodule 综合校验
+    verify-links.py: Markdown 链接
+    verify-manifests.py: 发布物 hash
+    reverse-anchors.py: PE 字符串锚点通用提取
+    sync-submodules.sh: submodule 同步
+  python_deps:
+  - pefile 2024.8.26
+  - capstone 5.0.7
+  - pyyaml
