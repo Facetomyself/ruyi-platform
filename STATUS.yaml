@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T22:55:00+08:00'
+generated_at: '2026-11-19T23:10:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -199,14 +199,19 @@ projects:
           nativeOp_unavailable: shares storage with depth, needed by getter/setter path
         patches:
           location: submodules/ruyitrace/domtrace/patches/
-          count: 3
-          lines_added: 35
+          count: 4
+          lines_added: 51
+          apply_order:
+          - '0001'
+          - '0002'
+          - '0004'
+          - '0003'
           apply_verified: true
-          apply_method: git apply --check on official 9a2dc53c sparse clone
+          codgen_ast_check: pass
           not_covered:
-          - macro header (provided separately)
-          - entry aggregation
+          - (protoID, member index) -> string table index mapping
           - build verification
+          - runtime behavior verification
 reverse_analysis:
   target: domtrace
   status: not_started
