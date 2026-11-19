@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T16:50:00+08:00'
+generated_at: '2026-11-19T17:05:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -125,7 +125,7 @@ projects:
     repo_exists: true
     reverse_analysis:
       status: config_complete
-      progress: 74/74 开关语义 + 2/12 输出格式
+      progress: 74/74 开关语义 + 5/13 输出格式
       detail:
         anchors: 74/74
         semantics: 74/74
@@ -148,15 +148,18 @@ projects:
           PathCopy: 1
           RawOnly: 30
         tests:
-          count: 11
+          count: 12
           all_passing: true
         evidence_files: 11
       remaining: 12 类输出记录的二进制结构体与写出器
       next: jscall bin 写入器（已有 ground truth）+ 核心 jsonl 记录
       outputs_done:
-        jscall_bin: complete (end-to-end verified)
         core_jsonl: complete (Python json.loads verified)
-      outputs_remaining: 10
+        jscall_bin: complete (end-to-end decoder verified)
+        exception: complete (schema, 10 fields)
+        event: complete (14 types + sampling rules)
+        descriptor: complete (value + 3 To-be-confirmed)
+      outputs_remaining: 8
 reverse_analysis:
   target: domtrace
   status: not_started
