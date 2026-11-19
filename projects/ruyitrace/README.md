@@ -61,9 +61,9 @@ ruyitrace/
 | ---: | --- | --- | --- |
 | 1 | `domtrace\trace_process_<pid>.jsonl` | `MOZ_DOM_TRACE` | ✅ 已实现 |
 | 2 | `jscall\trace_jscall_*.bin` | `MOZ_DOM_JSCALL_TRACE` | ✅ 已实现，端到端解码验证 |
-| 3 | `cookie\trace_cookie_process_<pid>.jsonl` | 核心跟随 | 待做 |
-| 4 | `storage\trace_storage_process_<pid>.jsonl` | 核心跟随 | 待做 |
-| 5 | `eval\trace_eval_process_<pid>.jsonl` | 核心跟随 | 待做 |
+| 3 | `cookie\trace_cookie_process_<pid>.jsonl` | 核心跟随 | ✅ 已实现 |
+| 4 | `storage\trace_storage_process_<pid>.jsonl` | 核心跟随 | ✅ 已实现 |
+| 5 | `eval\trace_eval_process_<pid>.jsonl` | 核心跟随 | ✅ 已实现 |
 | 6 | `event\trace_event_process_<pid>.jsonl` | 核心跟随 | ✅ 已实现 |
 | 7 | `descriptor\trace_descriptor_process_<pid>.jsonl` | 核心跟随 | ✅ 已实现 |
 | 8 | `exception\trace_exception_process_<pid>.jsonl` | `MOZ_DOM_EXCEPTION_TRACE` | ✅ 已实现 |
@@ -73,7 +73,7 @@ ruyitrace/
 | 12 | `http_packet\*.http_packet.json` + `index.jsonl` | `MOZ_DOM_HTTP_PACKET_TRACE` | 待做 |
 | 13 | `websocket_frames.jsonl` | `MOZ_DOM_WS_TRACE` | 待做 |
 
-进度 **5/13**（cheatsheet 的 12 类是合并了 wasm 的两项，拆分后是 13 项）。
+进度 **8/13**（cheatsheet 的 12 类是合并了 wasm 的两项，拆分后是 13 项）。
 
 ### 已验证的实现
 
