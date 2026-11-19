@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T23:45:00+08:00'
+generated_at: '2026-11-20T00:05:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -422,3 +422,15 @@ handover:
     phases: 7
     key_milestone: 阶段 4（只编 dom/bindings，40 分钟验证补丁正确性）
     verifier: scripts/verify-runbook.py (wired into verify-pins.sh §3.7)
+decisions:
+  linux_aarch64_native:
+    decision: not_now
+    doc: docs/11-aarch64-assessment.md
+    blockers:
+    - build script requires Python 3.14+ (host has 3.12)
+    - apt has no python3.14 for Ubuntu 24.04
+    - sparse checkout lacks security/nss + nsprpub
+    - clang and rust not installed
+    cost_estimate: 3.5-5 hours including debugging
+    value: fills one build-required slot; no new capability verified
+    trigger_to_revisit: confirmed demand for linux_aarch64
