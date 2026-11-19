@@ -61,22 +61,25 @@ def main():
                 ('platform_commits', 'ruyitrace_commits',
                  'ruyihttp_commits', 'ruyijs_commits'))
 
+    # commit 数有一个已知的循环性：更新 TIMELINE 的提交本身会让计数 +1。
+    # 所以声明值允许落后 1（未提交的工作区状态）或落后 2（该更新本身又被提交）。
     checks = [
-        ('文档', r'\| 文档 \| (\d+) 篇', actual['docs']),
-        ('C++ 文件', r'\| C\+\+ 文件 \| (\d+) \|', actual['cpp']),
-        ('校验脚本', r'\| 校验脚本 \| (\d+) \|', actual['scripts']),
-        ('commit 总数', r'四个仓库共 \*{0,2}(\d+)\*{0,2} 个 commit', total),
+        ('文档', r'\| 文档 \| (\d+) 篇', actual['docs'], 0),
+        ('C++ 文件', r'\| C\+\+ 文件 \| (\d+) \|', actual['cpp'], 0),
+        ('校验脚本', r'\| 校验脚本 \| (\d+) \|', actual['scripts'], 0),
+        ('commit 总数', r'四个仓库共 \*{0,2}(\d+)\*{0,2} 个 commit', total, 2),
     ]
 
     print('TIMELINE.md 数字核对：')
-    for label, pattern, expected in checks:
+    for label, pattern, expected, tolerance in checks:
         m = re.search(pattern, text)
         if not m:
             print(f'  SKIP  {label}（模式未命中）')
             continue
         declared = int(m.group(1))
-        ok = declared == expected
-        print(f'  {"OK  " if ok else "FAIL"} {label}: 声明 {declared}，实际 {expected}')
+        ok = abs(declared - expected) <= tolerance
+        note = f'（容差 ±{tolerance}）' if tolerance else ''
+        print(f'  {"OK  " if ok else "FAIL"} {label}: 声明 {declared}，实际 {expected}{note}')
         if not ok:
             failures.append(f'{label}: 声明 {declared} 实际 {expected}')
 
@@ -86,8 +89,11 @@ def main():
         declared = list(map(int, m.groups()))
         expected = [actual['platform_commits'], actual['ruyitrace_commits'],
                     actual['ruyihttp_commits'], actual['ruyijs_commits']]
-        ok = declared == expected
-        print(f'  {"OK  " if ok else "FAIL"} 分仓: {declared} vs {expected}')
+        # 分仓同样允许 platform 侧落后 2（更新 TIMELINE 的提交）
+        ok = (declared[1:] == expected[1:] and
+              abs(declared[0] - expected[0]) <= 2)
+        print(f'  {"OK  " if ok else "FAIL"} 分仓: {declared} vs {expected}'
+              f'（platform 容忍 ±2）')
         if not ok:
             failures.append(f'分仓 commit 数: {declared} vs {expected}')
     else:
