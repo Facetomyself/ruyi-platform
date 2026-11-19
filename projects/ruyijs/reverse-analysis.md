@@ -67,39 +67,42 @@ identity 总基数 **2038**（来自 `build-identity.json` 的 `source_inputs`�
 
 产物：`artifacts/analysis/ruyijs/operations.json`
 
-### 关键发现：7 个 operation 在 js.exe 里不存在
+### ~~关键发现：7 个 operation 在 js.exe 里不存在~~ → **已推翻**
 
-| operation | ascii | utf-16le |
-| --- | ---: | ---: |
-| `configure_message_replay` | 0 | 0 |
-| `configure_timer_replay` | 0 | 0 |
-| `expose_data` | 0 | 0 |
-| `host_value` | 0 | 0 |
-| `pending_timers` | 0 | 0 |
-| `run_timer` | 0 | 0 |
-| `timer_realm` | 0 | 0 |
+**上一轮判断错了。** 这 7 个 operation **全部存在于二进制里**，只是编码形式不同：
+编译期把 `if (op == "run_timer")` 优化成立即数异或比较，不在 `.rdata` 留独立
+NUL 结尾字符串；部分走 16 路跳转表 + SSE `pcmpeqb`。
 
-对照组（同期 operation）全部能命中：
+详见 [`operation-dispatch.md`](operation-dispatch.md)。
 
-| operation | ascii |
-| --- | ---: |
-| `advance` | 15 |
-| `drain` | 7 |
-| `event_loop` | 4 |
-| `run_message` | 1 |
-| `navigation_replay_status` | 1 |
+**扫描结果**（`scripts/ruyijs-ops-scan.py`）：
 
-**32/39 命中，7 个缺失。**
+```
+operation 总数: 39
+  字符串池命中: 15
+  立即数命中:   31
+  合计定位:     37/39
+  仍缺失: ['drain', 'put']
+```
 
-三种可能，待验证：
+### 上一轮 32/39 是子串误报
 
-| 假设 | 说明 | 验证 |
+| operation | 实际命中的上下文 | 是否 operation |
 | --- | --- | --- |
-| A. 功能被裁剪 | 内部版删了定时器重放，Python 层留着调用 | 实调 `run_timer` 看错误码 |
-| B. 字符串动态构造 | 二进制按键拼接 operation 名 | 找 `event_loop` 附近的分发逻辑 |
-| C. 编码不同 | 非 ASCII 非 UTF-16LE | 全字节序列扫描 |
+| `advance` | `confirmCurrentadvancesharing…` | ✗ 子串 |
+| `status` | `countryregioncommonstatusevents…` | ✗ 子串 |
+| `drain` | `ondrain` | ✗ 子串 |
+| `event_loop` | `event_loop field must be a finite number` | ✗ 错误消息 |
+| `run_message` | 独立字符串池 | ✓ 真命中 |
 
-若 A 成立，`ruyijs-inner` 需要补实现这 7 个，不是还原。
+真实的独立字符串只有 15 个，不是 32 个。
+
+### 仍然缺失的 2 个
+
+| operation | 来源 | 状态 |
+| --- | --- | --- |
+| `drain` | `_scheduling.py` | To be confirmed（4 字符，可能内联为 imm32） |
+| `put` | `_resources.py` | To be confirmed（3 字符，低于 imm32 粒度） |
 
 ---
 
