@@ -24,6 +24,7 @@
 | 知道现在卡在哪 | [`04-risks-and-gaps.md`](04-risks-and-gaps.md) + [`../STATUS.yaml`](../STATUS.yaml) |
 | 反编译 domtrace 内核 | [`05-reverse-analysis.md`](05-reverse-analysis.md) |
 | 反编译 ruyijs 内部版 | [`06-ruyijs-inner.md`](06-ruyijs-inner.md) |
+| 从零复现这个状态 | [`../REPRODUCE.md`](../REPRODUCE.md) |
 | 写/改文档 | [`../conventions.md`](../conventions.md) |
 | 提交前自检 | [`../conventions.md`](../conventions.md) §12 |
 

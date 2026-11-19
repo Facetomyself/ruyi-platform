@@ -233,6 +233,7 @@ cat STATUS.yaml
 | `docs/04-risks-and-gaps.md` | 已知缺口与待决策 |
 | `docs/05-reverse-analysis.md` | 反编译方法论（domtrace，同样适用于 ruyijs-inner） |
 | `docs/06-ruyijs-inner.md` | 内部版反编译与工程化方案 |
+| [`REPRODUCE.md`](REPRODUCE.md) | **从零到这个状态的完整路径**（已实测） |
 | `conventions.md` | 写文档的规则 |
 | `PINS.md` | 所有外部依赖的固定版本 |
 | `STATUS.yaml` | 机器可读状态 |
