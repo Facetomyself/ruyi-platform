@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T16:10:00+08:00'
+generated_at: '2026-11-19T16:35:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -17,17 +17,15 @@ projects:
       linux_x86_64: ready
       darwin_x86_64: build-required
       linux_aarch64: build-required
-    tests: 13/19
-    phase: 阶段 1（修依赖 + 参数化测试）
+    tests: 19/19
+    phase: 阶段 1 完成（依赖 + 测试参数化）
     blocked_by:
     - A2
-    - B3
-    - B4
-    - D2
     verified:
       native_hashes: pass
       verify_runtime: pass
       asar_integrity: n/a
+      deps_fixed: zstd 三级 fallback
   ruyijs:
     repo_inner: Facetomyself/ruyijs-inner
     repo_upstream_fork: Facetomyself/ff-ruyijs
@@ -153,6 +151,9 @@ projects:
         evidence_files: 11
       remaining: 12 类输出记录的二进制结构体与写出器
       next: jscall bin 写入器（已有 ground truth）+ 核心 jsonl 记录
+      outputs_done:
+        jscall_bin: complete (end-to-end verified)
+      outputs_remaining: 11
 reverse_analysis:
   target: domtrace
   status: not_started
