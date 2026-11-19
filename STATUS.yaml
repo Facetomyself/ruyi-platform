@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T18:30:00+08:00'
+generated_at: '2026-11-19T18:55:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -123,7 +123,7 @@ projects:
     repo_exists: true
     reverse_analysis:
       status: config_complete
-      progress: 74/74 开关语义 + 12/13 输出格式
+      progress: 74/74 开关语义 + 12/13 输出 + sink 调度层
       detail:
         anchors: 74/74
         semantics: 74/74
@@ -134,6 +134,7 @@ projects:
           P5_api_override: complete (5)
           core_jsonl_record: complete
           jscall_bin_writer: complete
+          sink_dispatch: complete (13 sinks, paths verified vs cheatsheet)
         parse_modes:
           Tristate: 8
           StrictOne: 7
@@ -146,7 +147,7 @@ projects:
           PathCopy: 1
           RawOnly: 30
         tests:
-          count: 15
+          count: 16
           all_passing: true
         evidence_files: 11
         inferred_keys:
