@@ -212,3 +212,41 @@ cd ../ruyihttp && python3 -m unittest discover -s tests  # 19 tests OK
 | **哪些结论可信** | `docs/09-evidence-ledger.md` |
 | **domtrace 插在哪** | `projects/ruyitrace/instrumentation-sites.md` |
 | **要改 Codegen 哪几处** | `projects/ruyitrace/codegen-changes.md` |
+
+---
+
+## 十、阶段完成判定（2026-11-19，第 24 轮）
+
+本仓在「当前外部条件下」已经做完了。
+
+### 已经做完且可验证的
+
+| 类别 | 内容 | 验证方式 |
+| --- | --- | --- |
+| 基础设施 | 主体仓 + 3 submodule、15 个脚本、9 节校验 | `verify-pins.sh` 全绿 |
+| domtrace 分析 | 74/74 开关、10 种语义、12/13 记录 | 18 项测试 |
+| domtrace 补丁 | 5 个补丁 84 行 | 官方源码 `git apply --check` |
+| ruyihttp | 19/19 测试、26 文件 hash | `unittest` + 重建校验 |
+| 可交接性 | TIMELINE / HANDOVER / REPRODUCE / 证据总账 / 构建 runbook | 44 链接全解析 |
+
+### 剩下的全部卡在外部条件
+
+| 事项 | 卡什么 | 谁能解 |
+| --- | --- | --- |
+| 验证 5 个补丁能编译 | x86_64 + 16 GB + 60 GB | 新机器 |
+| 补 `env_inventory` | Windows + RuyiTrace | 真机 |
+| `linux_aarch64` 原生库 | Python 3.14 + 4 小时 | 评估后决定不做 |
+| 官方 Linux wheel 验证 | glibc 2.38+ x86_64 | 新机器 |
+
+### 唯一还能自己做的（价值低）
+
+`drain` / `put` 两个 operation 的编码位置。能让 37/39 变成 39/39，
+但这两个名字不影响功能完整性——它们已经存在于二进制里，只是扫描没定位到。
+
+### 判定
+
+**继续在本仓内找活干，边际收益趋近于零。** 这符合目标里「避免钻牛角尖」的要求：
+识别出瓶颈不在仓库内容，而在外部资源。
+
+下一轮如果有新条件（机器 / Windows / 样本），从 `docs/10-build-runbook.md` 或
+`docs/11-aarch64-assessment.md` 接着做。
