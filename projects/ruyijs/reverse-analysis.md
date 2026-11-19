@@ -1,119 +1,129 @@
 # RuyiJS 内部版反编译进度
 
-方案：[`../../docs/06-ruyijs-inner.md`](../../docs/06-ruyijs-inner.md)
-对象：`ruyijs/_runtime/dist/js.exe`，49,569,792 B
+**已有实质进展，不是从 0 开始。**
 
----
-
-## 1. 契约提取（第一步）
-
-### 1.1 operation 全集
-
-从 19 个 `.py` 枚举 RPC 名称。**状态：未开始。**
-
-```bash
-python3 - <<'PY'
-import zipfile, re, json
-z = zipfile.ZipFile('artifacts/binaries/ruyijs/ruyijs-0.2.2+inner.20261101191032-py3-none-win_amd64.whl')
-ops = set()
-for n in z.namelist():
-    if n.startswith('ruyijs/') and n.endswith('.py') and n.count('/') == 1:
-        src = z.read(n).decode('utf-8')
-        for m in re.finditer(r'_request\(\s*"([a-z_]+)"', src):
-            ops.add(m.group(1))
-json.dump(sorted(ops), open('artifacts/analysis/ruyijs/operations.json', 'w'), indent=1)
-print(len(ops), '个 operation')
-PY
-```
-
-### 1.2 已知来源
-
-| 文件 | 提供什么 |
+| 项 | 值 |
 | --- | --- |
-| `_context_eval.py` | `eval` / `locals` |
-| `_context.py` | `load_page` / `navigate` / `set` / `expose` / `native` / `checkpoint` / `collect_garbage` |
-| `_environment.py` | `configure_fingerprint` / `configure_environment` / `get_defaults` |
-| `_scheduling.py` | 15 个时钟与定时器操作 |
-| `_resources.py` | `put_resource` / `get_resource` / `net_log` / `export_cookies` / `cookie_header` / `resource_status` / `clear_resources` |
-| `_inspector.py` | `peek_api_log` / `get_api_log` / `clear_api_log` |
-| `_input.py` | `dispatch_input` / `click` / `type` / `press` |
+| 还原仓库 | `Facetomyself/ruyijs-inner`（private，2026-11-04 创建，7.4 MB） |
+| 挂载 | `submodules/ruyijs` |
+| 反编译对象 | `dist/js.exe` 49,569,792 B，sha256 `5fb68b22…13bcca` |
+| 方案 | [`../../docs/06-ruyijs-inner.md`](../../docs/06-ruyijs-inner.md) |
+| 仓库自述 | `RECOVERY.md`（该仓自有，本文件不替代它） |
 
 ---
 
-## 2. 符号定位（第二步）
+## 1. 总体进度
 
-**状态：0/74。**
+identity 总基数 **2038**（来自 `build-identity.json` 的 `source_inputs`）。
 
-锚点工具：
+| 分类 | 数量 | 说明 |
+| --- | ---: | --- |
+| `eol-insensitive` 对齐 0.2.1 | 1792 | 仅换行差异，正文按 0.2.1 |
+| `hash_diff` | 237 | 内容与 0.2.1 不同 |
+| ├ identity SHA 命中 | **56** | 工作区字节与 `build-identity.json` 一致 |
+| └ 未命中 | **181** | 仍是缺口 |
+| `inner_only` | 9 | inner 独有，已全部语义化 |
+| ├ identity SHA 命中 | 0 | — |
+| └ 语义化完成 | 9 | evidence-backed 6 / partial 3 |
 
-```bash
-python3 scripts/reverse-anchors.py \
-  --pe artifacts/binaries/ruyijs/js.exe \
-  --strings-file artifacts/analysis/ruyijs/operations.txt \
-  --out artifacts/analysis/ruyijs/anchors.json
-```
-
-定位表（逐步填写）：
-
-| operation | 二进制字符串 | RVA | 引用点 | handler 入口 | 状态 |
-| --- | --- | --- | --- | --- | --- |
-| `eval` | To be confirmed | — | — | — | 未开始 |
-| `load_page` | To be confirmed | — | — | — | 未开始 |
-| `advance` | To be confirmed | — | — | — | 未开始 |
+**覆盖率（严格口径）**：`56 / 2038` identity 命中。剩余 1982 个是 0.2.1 正文对齐或未命中，未声称 1:1。
 
 ---
 
-## 3. 语义重建（第三步）
+## 2. 已还原的 inner_only（9 个）
 
-### 3.1 ground truth
-
-`build-identity.json` 的 `source_inputs` 给了 **2038 条** `path + sha256`：
-
-```bash
-python3 - <<'PY'
-import json, zipfile
-z = zipfile.ZipFile('artifacts/binaries/ruyijs/ruyijs-0.2.2+inner.20261101191032-py3-none-win_amd64.whl')
-bi = json.loads(z.read('ruyijs/_runtime/build-identity.json'))
-paths = sorted({i['path'] for i in bi['source_inputs']})
-print(f'{len(paths)} 个源文件')
-from collections import Counter
-top = Counter(p.split('/')[1] for p in paths if p.startswith('src/'))
-for k, v in top.most_common(): print(f'  src/{k:30s} {v}')
-PY
-```
-
-还原出的每个文件可以用 sha256 反查是否正确——**这是反编译里罕见的可验证性**。
-
-### 3.2 符号命名表
-
-| 二进制形态 | 命名 | 例 |
+| path | 完成度 | 内容 |
 | --- | --- | --- |
-| RPC 分发器 | `Dispatch<Layer>` | `DispatchEvaluation` |
-| 单个 handler | `Handle<Operation>` | `HandleEval` |
-| 值编解码 | `Encode<Type>` / `Decode<Type>` | `EncodeJSObject` |
-| 管道帧 | `Frame<Direction>` | `FrameRead` |
+| `src/browser_environment/locale_platform.h` | evidence-backed | `HostOsLocale` |
+| `src/browser_environment/locale_platform.cpp` | evidence-backed | `GetUserDefaultLocaleName` + wchar narrow |
+| `src/domain/styling/css_color_space.h` | evidence-backed | tag 0..14 签名 |
+| `src/domain/styling/css_color_space.cpp` | evidence-backed | `ToSrgb` switch |
+| `src/web_geometry/local_fonts.h` | evidence-backed | `LocalFontFamilyInstalled` |
+| `src/web_geometry/local_fonts.cpp` | evidence-backed | DWrite 缓存 |
+| `src/web_graphics/framebuffer_storage.cpp` | partial | 状态码/attach 有证据；尺寸表未定位 |
+| `src/web_graphics/glsl_exec.cpp` | partial | atom/product/sum/ctor/swizzle |
+| `src/web_trusted_types/enforcement.cpp` | partial | CreatePolicy CSP 门控 |
 
 ---
 
-## 4. 交叉验证（第四步）
+## 3. hash_diff 中已抬出的独特控制流
 
-**状态：0/N 断言。**
+这些不是 identity 命中，是 dump 得到的行为细节（**有价值但不可声称等价**）：
 
-| # | 断言 | 状态 |
+| 文件 | 发现 |
+| --- | --- |
+| `font_face.cpp` | CSS `src` comma-split / local-url / `ParseLocalName` + `ConsumeIdent` |
+| `node_receiver.cpp` | kind-iface `BrandText` |
+| `page_storage.cpp` | `Storage.key` 用 `JS::ToUint32` |
+| `web_audio/render.cpp` | `AudioBufferSource` 每 quantum 复制 128 frames |
+| `web_console/render.cpp` | `%s/%d/%i/%f/%o/%O/%c/%%` Join |
+| `http_exchange.h` | 20e9 ns / 20000 ms QPC 超时常量 |
+| `css_color_resolve.cpp` | lab/oklab/lch/oklch/hwb/`color()`（无 color-mix） |
+| `css_color_value.cpp` | color-mix 104 字 `CssSplit`；color() 94 字含 `display-p3-linear` |
+| `web_kit.cpp` | ConstructProto 报 `"Illegal "`（不是 `"Illegal constructor."`） |
+| `model_internal.h` | Protect catch 只回 ErrorCode |
+| `box_input.cpp` / `box_layout.h` | `LayoutVisit 0x1406CF4B0` 在 img/video 且宽高均 >0 时写 `replaced_aspect=w/h` |
+| `box_layout.cpp` | `Place 0x140544630` 按 `replaced_aspect>0` 用 BoxRound 耦合缺失边，缺省 300×150 |
+
+---
+
+## 4. `src/client/*`（来自 `ruyijs_client.dll`）
+
+| 项 | 还原情况 |
+| --- | --- |
+| 导出 | C 导出 |
+| 帧上限 | 16 MiB |
+| `callback_active` | `-2` |
+| 关闭协议 | close JSON |
+| 传输 | Win32 named-pipe |
+| `lifecycle.cpp` / `ruyijs.h` | identity 命中 |
+| `sizeof(ruyijs_context)` | **不是** dump 的 `0x78`（未解决） |
+| `transport.cpp` | dump 有保护，未用 OSS 冲掉 memcmp/len==0 |
+
+---
+
+## 5. 最大缺口（181 个未命中）
+
+| 模块 | 状态 |
+| --- | --- |
+| `page_storage` | 缺口最大 |
+| `browsing_context` | 缺口 |
+| `draw` | 缺口 |
+| `css_color_resolve` | 缺口 |
+
+**已穷尽手段**：独特 ASCII / UTF-16 / RTTI 针。无独特串的 TU 仍是 `unknown` / `partial`。
+
+---
+
+## 6. 不能声称的事（照抄还原仓的自我约束）
+
+- 与 wheel 内 `js.exe` 全部功能/行为等价
+- 剩余差异只是编译器结构差
+- 用本树重编即可得到同一 `js.exe` / 同一 `build-identity.json` 哈希
+- 全 API L3 parity
+
+**本仓立场**：这些约束继续有效，`docs/06-ruyijs-inner.md` 的验收标准以行为断言为准，不以 identity 命中率代替。
+
+---
+
+## 7. 下一步优先级
+
+| 优先级 | 动作 | 依据 |
 | --- | --- | --- |
-| 1 | `Context().eval("1+1") == 2` | 待跑 |
-| 2 | `eval("undefined") is UNDEFINED` | 待跑 |
-| 3 | `set()` 后 `eval` 能读到 | 待跑 |
-| 4 | `expose()` 的 Python 函数可从 JS 调用 | 待跑 |
-| 5 | 逻辑时钟 `advance(10)` 触发 `setTimeout` | 待跑 |
-| 6 | 帧长度前缀为 4 字节小端 | 待跑 |
+| P0 | 补 181 个未命中里的高价值模块：`page_storage` / `browsing_context` | 缺口最大 |
+| P1 | `src/client/*` 的 `sizeof(ruyijs_context)` 与 `transport.cpp` | 服务端集成必需 |
+| P2 | Linux 构建验证：`native/` 与 `python/` 的跨平台分支 | 见 `docs/03-linux-port.md` L2 |
+| P3 | 行为断言集（`docs/06-ruyijs-inner.md` §4）落到 `tests/contract/` | 验收标准 |
 
 ---
 
-## 5. 与 ff-ruyijs 的对照记录
+## 8. 与 ff-ruyijs 的关系
 
-**纪律**：每条标注「参照，未采用」或「与二进制一致，采用」。详见 `docs/06-ruyijs-inner.md` §5。
+`ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 `3501a90`（0.4.1）。
 
-| operation | 二进制行为（实测） | ff-ruyijs 参照（`3501a90`） | 结论 |
-| --- | --- | --- | --- |
-| To be filled | — | — | — |
+差异后果：
+
+- 0.2.1 没有跨平台代码（`_pipe.py` 是 Windows 独占）
+- 0.4.1 的 `_pipe.py` 208 行含 AF_UNIX——**这是内部版要做的事，不是已完成的事**
+
+详见 [`../../docs/06-ruyijs-inner.md`](../../docs/06-ruyijs-inner.md) §0 与 ADR 0002。

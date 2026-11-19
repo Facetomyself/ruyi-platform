@@ -81,7 +81,7 @@ RuyiTrace 有三块互不重叠的内容，混在一个仓里会互相污染版�
 | 目录 | 远端 | 可见性 | 状态 | 说明 |
 | --- | --- | --- | --- | --- |
 | `submodules/ruyihttp` | `Facetomyself/ruyihttp` | private | ✅ 已有 | 完整源码树，含三平台原生库 |
-| `submodules/ruyijs` | `Facetomyself/ruyijs-inner` | private | ⏳ 待建 | **内部版反编译产物 + 工程化源码**，wheel 的唯一来源 |
+| `submodules/ruyijs` | `Facetomyself/ruyijs-inner` | private | ✅ 已有（2026-11-04，7.4 MB） | **内部版反编译产物 + 工程化源码**，wheel 的唯一来源 |
 | `submodules/ruyitrace` | `Facetomyself/ruyitrace` | private | ⏳ 待建 | 控制台 + domtrace 还原 + 发布清单 |
 
 **不在 submodule 里**：`Facetomyself/ff-ruyijs`（public fork，只做 PR 与反编译对照）。
@@ -210,13 +210,14 @@ cat STATUS.yaml
 
 见 `STATUS.yaml`。一句话：
 
-> RuyiHttp 源码 100% 就绪；RuyiJS **内部版需反编译还原**（`ff-ruyijs` 只作对照，不能当基线）；RuyiTrace 控制台 100% 就绪、**domtrace 内核同样需反编译还原**。
+> RuyiHttp 源码 100% 就绪；RuyiJS **内部版反编译已在进行**（2038 identity 中 56 条严格命中、9 条 inner_only 已语义化，`ff-ruyijs` 只作对照不当基线）；RuyiTrace 控制台 100% 就绪、**domtrace 内核 0% 需反编译**。
 
 **反编译是本仓两条主线**：`ruyijs-inner` 与 `ruyitrace/domtrace`。两件事的方法论相同（见 `docs/05-reverse-analysis.md`），区别在于：
 
 | | ruyijs-inner | ruyitrace/domtrace |
 | --- | --- | --- |
-| 反编译对象 | `js.exe`（50 MB，C++） | `xul.dll`（178 MB，C++） |
+| 反编译对象 | `js.exe`（49.5 MB，C++） | `xul.dll`（178 MB，C++） |
+| 当前进度 | 56/2038 identity 命中 + 9/9 inner_only 语义化 | 0/74 开关定位 |
 | 已知锚点 | Python 绑定接口（`_context.py` 等 19 文件）、`build-identity.json` | 74 个 `MOZ_DOM_*` env 字符串、完整文档 |
 | 对照物 | `ff-ruyijs` public 源码（**可读，但非基线**） | 无（官方 Firefox 是否含 domtrace 待验证） |
 | 难度 | 中（有跨平台参考实现） | 高（无参考） |

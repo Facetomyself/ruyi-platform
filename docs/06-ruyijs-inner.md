@@ -2,6 +2,11 @@
 
 对象：内部 wheel `ruyijs 0.2.2+inner.*`。目标：把它的原生壳与 Python 层还原成**自有、可维护、可跨平台编译**的源码树，落在 `Facetomyself/ruyijs-inner`（private）。
 
+> **现状（2026-11-19）**：`ruyijs-inner` 仓库已于 2026-11-04 建立，语义重建正在进行。
+> identity 2038 条中：1792 条 eol-insensitive 对齐 0.2.1 正文，237 条 hash_diff（其中 **56 条 identity 命中**），9 条 inner_only 已全部语义化。
+> 进度详情见 [`../projects/ruyijs/reverse-analysis.md`](../projects/ruyijs/reverse-analysis.md)。
+> 本文描述的是**方法与标准**，不是进度。
+
 ---
 
 ## 0. 三层边界（先立规矩）
@@ -22,6 +27,8 @@ Facetomyself/ruyijs-inner  private  ← 内部版的唯一来源
 | R4 | 内部版有能力回流上游时，走 `ff-ruyijs` → `cutetailbud` 的 PR 单向流出，不回灌 |
 
 **为什么这条边界重要**：内部 wheel 的 `js.exe` 与 `ff-ruyijs` 的 `js` 是**不同构建**（前者 Firefox `9a2dc53c`，后者子模块 `2887d9de`，而 RuyiTrace 内核是 `39bfd14c`）。混用会带来无法定位的行为差异。
+
+**关键事实：`ruyijs-inner` 的 seed 是 `ff-ruyijs` 0.2.1（`c69875b5`），不是当前的 0.4.1（`3501a90`）。** 0.2.1 没有跨平台代码——`python/ruyijs/_pipe.py` 还是 Windows 独占的 127 行版本。0.4.1 里的 AF_UNIX 分支（208 行）是**后出现的能力**，只能当「这件事有人做成过」的证据，不能当「内部版已有」的依据。
 
 ---
 
@@ -313,12 +320,30 @@ with Context() as ctx:
 
 ## 8. 当前进度
 
-| 步骤 | 进度 |
-| --- | --- |
-| 契约提取 | Python 层与 build-identity 已解析；operation 全集待枚举 |
-| 符号定位 | 0/74 |
-| 语义重建 | 0% |
-| 交叉验证 | 0/40 断言 |
-| 工程化 | 未开始 |
+| 步骤 | 进度 | 位置 |
+| --- | --- | --- |
+| 契约提取 | 已完成 | `ruyijs-inner/RECOVERY.md`、`INNER-IDENTITY.json` |
+| 语义重建 | 进行中：2038 identity 中 56 条严格命中 | `ruyijs-inner/src/` |
+| 交叉验证 | 部分（Python + wheel js.exe 小范围 oracle） | 该仓 |
+| 工程化（Linux 构建） | 未开始 | 待办 |
 
-**下一步（P0）**：枚举 operation 全集，在 `js.exe` 里定位 `eval` 的分发点。
+### 分项
+
+| 分类 | 数量 | 状态 |
+| --- | ---: | --- |
+| eol-insensitive 对齐 0.2.1 | 1792 | 正文按 0.2.1 |
+| hash_diff | 237 | 56 identity 命中 / 181 未命中 |
+| inner_only | 9 | 9 语义化 / 0 identity 命中 |
+
+### 最大缺口
+
+`page_storage`、`browsing_context`、`draw`、`css_color_resolve`。
+
+### 下一步
+
+1. 补 181 个未命中里的高价值模块（P0）
+2. `src/client/*` 的 `sizeof(ruyijs_context)` 与 `transport.cpp`（P1）
+3. 跨平台分支落地 + Linux 构建（P2）
+4. 行为断言集落到 `tests/contract/`（P3）
+
+详见 [`../projects/ruyijs/reverse-analysis.md`](../projects/ruyijs/reverse-analysis.md)。

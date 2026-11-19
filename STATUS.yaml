@@ -1,18 +1,11 @@
-# 机器可读状态（契约见 conventions.md §10）
-#
-# 更新时机：任何 pin 变化、任何阶段推进、任何阻塞解除。
-# 校验：./scripts/verify-pins.sh
-
-generated_at: "2026-11-19T14:50:00+08:00"
-
+generated_at: '2026-11-19T15:10:00+08:00'
 baseline:
-  firefox_commit: "39bfd14cb45c"
-  firefox_buildid: "20261101193257"
-  nss: "3.132"
-  nspr: "4.40"
-  neqo: "0.33.0"
-  glibc_floor: "2.38"
-
+  firefox_commit: 39bfd14cb45c
+  firefox_buildid: '20261101193257'
+  nss: '3.132'
+  nspr: '4.40'
+  neqo: 0.33.0
+  glibc_floor: '2.38'
 projects:
   ruyihttp:
     repo: Facetomyself/ruyihttp
@@ -21,95 +14,116 @@ projects:
     build:
       win_amd64: ready
       darwin_arm64: ready
-      linux_x86_64: ready          # 静态检查通过，未 live
+      linux_x86_64: ready
       darwin_x86_64: build-required
       linux_aarch64: build-required
-    tests: "13/19"                 # 6 项 Windows 假设在 Linux 上必挂
-    phase: "阶段 1（修依赖 + 参数化测试）"
-    blocked_by: [A2, B3, B4, D2]
+    tests: 13/19
+    phase: 阶段 1（修依赖 + 参数化测试）
+    blocked_by:
+    - A2
+    - B3
+    - B4
+    - D2
     verified:
-      native_hashes: pass          # 26 文件 0 不符
-      verify_runtime: pass         # 三平台 markers OK
+      native_hashes: pass
+      verify_runtime: pass
       asar_integrity: n/a
-
   ruyijs:
-    repo_inner: Facetomyself/ruyijs-inner       # private，待建：内部版反编译 + 工程化
-    repo_upstream_fork: Facetomyself/ff-ruyijs   # public，PR + 反编译对照，不挂 submodule
+    repo_inner: Facetomyself/ruyijs-inner
+    repo_upstream_fork: Facetomyself/ff-ruyijs
     submodule: submodules/ruyijs
-    role_of_fork: reference_only                 # 硬规则：fork 不作内部基线
+    role_of_fork: reference_only
     source:
-      python_layer: complete                     # 19 文件 1605 行，明文
-      necko_adapter: complete                    # vendor 内 13 文件，明文
-      native_shell: missing                      # dist/js.exe 需反编译
-      necko_native: reference-ready               # 源码在 ff-ruyijs/native/
+      python_layer: complete
+      necko_adapter: complete
+      native_shell: missing
+      necko_native: reference-ready
     build:
-      win_amd64: ready                           # 两个内部 wheel 均可用
-      darwin_arm64: unknown                      # 上游支持，内部版未验
-      linux_x86_64: unknown                      # 待反编译后可编
-      linux_aarch64: unsupported                 # 上游 linux_x86_64() 不含 aarch64
-    tests: none                                  # 内部 wheel 无测试套件
-    phase: "阶段 0（契约提取 + js.exe 锚点定位）"
-    blocked_by: [A2, C3, D3, R-ruyijs]
+      win_amd64: ready
+      darwin_arm64: unknown
+      linux_x86_64: unknown
+      linux_aarch64: unsupported
+    tests: none
+    phase: 阶段 0（契约提取 + js.exe 锚点定位）
+    blocked_by:
+    - A2
+    - C3
+    - D3
+    - R-ruyijs
     verified:
-      wheel_record_492ee47: pass                 # 1675/1675
-      wheel_record_1011: pass                    # 1300/1300
-      runtime_sums_492ee47: pass                 # 1579/1579（需去 CRLF）
+      wheel_record_492ee47: pass
+      wheel_record_1011: pass
+      runtime_sums_492ee47: pass
       vendor_base_manifest: pass
-      build_identity: pass                       # 2038 源文件路径+hash，可作反编译 ground truth
-
+      build_identity: pass
+    inner_repo_state:
+      exists: true
+      created: '2026-11-04'
+      size_kb: 7416
+      default_branch: main
+      description: Private inner ruyiJS 0.2.2 tool tree
   ruyijs_reverse:
     target: dist/js.exe
     size: 49569792
-    status: not_started
-    progress: "0/74 operation 定位"
-    method: "operation 字符串锚点 → RPC 分发器 → handler 重建 → 契约断言"
-    ground_truth: build-identity.json source_inputs (2038 条 path+sha256)
-    priority:
-      P0: eval/set/expose/load_page/navigate
-      P1: pipe protocol
-      P2: configure_fingerprint/configure_environment
-      P3: configure_clock/advance/tick
-      P4: put_resource/net_log/cookie_header
-      P5: dispatch_input/click/type
-      P6: 38 subsystems completeness
+    sha256: 5fb68b2206d463d1a81c95b595374dde766efec37408142bf53b8e58f213bcca
+    status: in_progress
+    repo: Facetomyself/ruyijs-inner
+    method: semantic reconstruction against build-identity ground truth
+    identity_total: 2038
+    progress:
+      eol_insensitive_aligned: 1792
+      eol_insensitive_basis: 0.2.1 正文
+      hash_diff: 237
+      hash_diff_identity_hit: 56
+      hash_diff_identity_miss: 181
+      inner_only: 9
+      inner_only_semantic: 9
+      inner_only_identity_hit: 0
+    completion_claim: not 1:1 with js.exe; maintainable source tree
+    known_gaps:
+    - page_storage
+    - browsing_context
+    - draw
+    - css_color_resolve
     outputs:
-      - projects/ruyijs/reverse-analysis.md
-      - artifacts/analysis/ruyijs/            # gitignore，可再生
-    blocked_by: [R-ruyijs]
-
+    - projects/ruyijs/reverse-analysis.md
+    blocked_by: []
   ruyitrace:
-    repo: Facetomyself/ruyitrace   # 待建
+    repo: Facetomyself/ruyitrace
     submodule: submodules/ruyitrace
     source:
-      console: complete            # 74 文件 / 3644 行
-      domtrace: missing            # 需反编译还原
+      console: complete
+      domtrace: missing
     build:
-      win_amd64: released          # 3.5.0 包
+      win_amd64: released
       linux: none
-    tests: unknown                 # README 自述 201 项，源码不在无法跑
-    phase: "阶段 0（建仓 + 反编译立项）"
-    blocked_by: [L4, C1, C2]
+    tests: unknown
+    phase: 阶段 0（建仓 + 反编译立项）
+    blocked_by:
+    - L4
+    - C1
+    - C2
     verified:
-      kernel_hashes: pass          # firefox.exe / xul.dll
-      domtrace_hashes: pass        # 10 文件
-      asar_integrity: pass         # 抽检 300
-      switch_count: "74/74"        # switches.js 与 xul.dll strings 一致
-
+      kernel_hashes: pass
+      domtrace_hashes: pass
+      asar_integrity: pass
+      switch_count: 74/74
+    repo_exists: false
 reverse_analysis:
   target: domtrace
   status: not_started
-  progress: "0/74 开关定位"
-  method: "PE 静态分析 → 函数聚类 → 语义重建 → 交叉验证"
+  progress: 0/74 开关定位
+  method: PE 静态分析 → 函数聚类 → 语义重建 → 交叉验证
   outputs:
-    - projects/ruyitrace/domtrace-analysis.md
-    - artifacts/analysis/domtrace/         # gitignore，可再生
-  blocked_by: [L4]
-
+  - projects/ruyitrace/domtrace-analysis.md
+  - artifacts/analysis/domtrace/
+  blocked_by:
+  - L4
 artifacts:
   ruyijs-0.2.2+inner.492ee47:
     sha256: a7be9c4aa04823b32277562ec65082a4ae3844beb7ccf330a53271d8ec82a50e
     size: 46030962
-    firefox: "9a2dc53c369c7ae5172018b35988e1d2ffeff402"
+    firefox: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
     ff_ruyijs: Unknown
     in_git: false
   ruyijs-0.2.2+inner.20261101191032:
@@ -122,51 +136,51 @@ artifacts:
   ruyitrace-3.5.0-win64:
     sha256: 72db039e1842eca59916fb10c4342dcfb344678d04c8ec6f8bb671b57b1f4cf7
     size: 583656604
-    firefox: "39bfd14cb45c"
+    firefox: 39bfd14cb45c
     in_git: false
-
 blockers:
   A2:
-    title: "Linux 原生库要求 glibc 2.38"
+    title: Linux 原生库要求 glibc 2.38
     severity: A
     decision: pending
   B3:
-    title: "backports 导入写法与 pyproject 声明不一致"
+    title: backports 导入写法与 pyproject 声明不一致
     severity: B
     decision: none
   B4:
-    title: "dist/ 两个 wheel 与 native/ 脱钩"
+    title: dist/ 两个 wheel 与 native/ 脱钩
     severity: B
     decision: none
   C1:
-    title: "domtrace 开关数量文档不一致（69/67/74）"
+    title: domtrace 开关数量文档不一致（69/67/74）
     severity: C
-    decision: "以 74 为准"
+    decision: 以 74 为准
   C2:
-    title: "MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING 幽灵开关"
+    title: MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING 幽灵开关
     severity: C
-    decision: "文档标记废弃"
+    decision: 文档标记废弃
   C3:
-    title: "内部 wheel 溯源链断裂"
+    title: 内部 wheel 溯源链断裂
     severity: C
     decision: pending
   D2:
-    title: "契约测试 6 项 Windows 假设"
+    title: 契约测试 6 项 Windows 假设
     severity: D
     decision: none
   D3:
-    title: "内部 ruyijs wheel 无测试套件"
+    title: 内部 ruyijs wheel 无测试套件
     severity: D
     decision: none
   L2-gap:
-    title: "内部 wheel 落后上游 0.4.1 的 4 个平台化文件"
+    title: 内部 wheel 落后上游 0.4.1 的 4 个平台化文件
     severity: B
-    decision: "以上游为基重建"
+    decision: 以上游为基重建
   R-ruyijs:
-    title: "内部 ruyijs 原生壳需反编译还原（js.exe 49.5MB）"
-    severity: A
-    decision: "P0-P2 优先，其余保持二进制"
+    title: ruyijs 内部版原生壳需还原（js.exe 49.5MB）——已在进行
+    severity: B
+    decision: 继续语义重建，优先补 181 个未命中 identity
+    progress: 56/237 hash_diff 命中 + 9/9 inner_only 语义化
   L4:
-    title: "domtrace 内核源码缺失，需反编译还原"
+    title: domtrace 内核源码缺失，需反编译还原
     severity: A
-    decision: "反编译先行"
+    decision: 反编译先行

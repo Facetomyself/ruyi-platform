@@ -84,16 +84,38 @@ git ls-tree HEAD firefox   # 子模块 pin = 2887d9de1f69c0e9776413da80e7ba0d122
 
 | 项 | 值 |
 | --- | --- |
-| 仓库 | `Facetomyself/ruyijs-inner`（private，待建） |
+| 仓库 | `Facetomyself/ruyijs-inner`（private，**已存在**） |
+| 创建 | 2026-11-04 |
+| 大小 | 7,416 KB |
+| 默认分支 | `main` |
 | 挂载 | `submodules/ruyijs` |
-| 内容 | 反编译还原后的 `src/`（2069 文件）+ `python/ruyijs/` + `native/` |
-| 来源 | 内部 wheel `0.2.2+inner.*` 反编译 |
-| 目标 | Windows + Linux 双平台可编译 |
-| 方案 | `docs/06-ruyijs-inner.md` |
+| 描述 | `Private inner ruyiJS 0.2.2 tool tree` |
+| 状态 | 语义重建进行中，见 `projects/ruyijs/reverse-analysis.md` |
 
-**反编译的 ground truth**：`build-identity.json` 的 `source_inputs` 数组给出 2038 个源文件的路径与 sha256，可直接验证还原正确性。
+### 还原进度（不动点）
 
-见 `PINS.md` §4.2。
+| 分类 | 数量 |
+| --- | ---: |
+| identity 总数 | 2038 |
+| eol-insensitive 对齐 0.2.1 | 1792 |
+| hash_diff | 237（其中 56 identity 命中） |
+| inner_only | 9（全部语义化，0 identity 命中） |
+
+### Seed 关系
+
+| 项 | 值 |
+| --- | --- |
+| seed 仓库 | `ff-ruyijs` |
+| seed commit | `c69875b5b5c34ba95953c4f382bab6a74d55cfb4` |
+| seed 版本 | **0.2.1** |
+| 当前 fork HEAD | `3501a90`（0.4.1） |
+
+> **注意**：seed 是 0.2.1，没有跨平台代码。0.4.1 的 `_pipe.py`（208 行含 AF_UNIX）是**后出现的能力**，不能反推 0.2.1 也有。见 ADR 0002。
+
+### 分析笔记位置（该仓外部）
+
+- `workspace/ruyijs-innner/agent-notes/`（在原开发机）
+- 本仓只保留结论，不复制笔记
 
 ---
 

@@ -1,6 +1,6 @@
 # RuyiJS（内部版）
 
-仓库：`Facetomyself/ruyijs-inner`（private，待建）
+仓库：`Facetomyself/ruyijs-inner`（private，**已存在**：2026-11-04 创建，7.4 MB，默认分支 `main`）
 挂载：`submodules/ruyijs`
 上游参考：`Facetomyself/ff-ruyijs`（public fork，**只作 PR 与对照，不作基线**）
 
@@ -49,7 +49,24 @@ ruyijs-inner/
 
 ## 当前状态
 
-`0/74 operation 定位`。下一步是枚举 operation 全集，在 `js.exe` 里定位 `eval` 的分发点。
+**语义重建进行中**（不是从 0 开始）。
+
+| 分类 | 数量 |
+| --- | ---: |
+| identity 总数 | 2038 |
+| eol-insensitive 对齐 0.2.1 | 1792 |
+| hash_diff | 237（56 条 identity 命中） |
+| inner_only | 9（全部语义化） |
+
+最大缺口：`page_storage` / `browsing_context` / `draw` / `css_color_resolve`。
+
+详细进度见 [`reverse-analysis.md`](reverse-analysis.md)。
+
+## Seed 关系（重要）
+
+`ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
+
+**0.2.1 没有跨平台代码**——`python/ruyijs/_pipe.py` 仍是 Windows 独占的 127 行。0.4.1 的 AF_UNIX 分支（208 行）是后出现的能力，只能作可行性证据，不能作内部版现状依据。
 
 ## 与其他项目的关系
 
