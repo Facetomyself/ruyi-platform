@@ -34,13 +34,20 @@
 还有 `dropped_full`（2165 行）：`MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING` 满载时
 增加该字段并丢弃该 packet。
 
-### 真正缺字段的只有 1 类
+### `env_inventory` 已完成（2026-11-20）
 
-**`env_inventory`**：手册 1457 行只有一句「本构建暴露的全量接口清单（约 1.2 MB）」，
-没有任何字段描述。604 行提到产自 `__traceInventory()`、958 个接口、`proto` 桶大多为空，
-但没说 JSON 的结构。
+拿到真实样本后补齐。实测结构见 `domtrace/trace/env-inventory.h`，
+测试见 `tests/byte_layout/test_env_inventory.cpp`（7 组断言）。
 
-这一项必须等真机样本，不能凭「接口清单」四个字编结构。
+| 项 | 手册 | 实测 |
+| --- | --- | --- |
+| `schemaVersion` | 1 | **2** |
+| `interfaces` | 1060 | 1067 |
+| `windowProps` | 786 | 992 |
+| `buildId` | 未提及 | `20261101192846` |
+| `stats` 四键 | 未提及 | 已实测 |
+
+**13/13 输出格式全部完成。**
 
 ## 结论
 
