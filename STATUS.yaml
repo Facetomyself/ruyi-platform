@@ -261,6 +261,13 @@ submodules:
     url: https://github.com/Facetomyself/ruyitrace
     commit: 219cb73
     state: added
+docs_health:
+  total_markdown: 32
+  total_cpp_files: 41
+  total_scripts: 13
+  reproduce_manual: "REPRODUCE.md (逐条实测)"
+  last_full_verification: "verify-pins 六节 + 16 项 domtrace 测试 + 19 项 ruyihttp 测试 全绿"
+
 tooling:
   scripts:
     domtrace-anchors.py: xul.dll 74 开关锚点提取
