@@ -1,4 +1,4 @@
-generated_at: '2026-11-19T15:20:00+08:00'
+generated_at: '2026-11-19T16:10:00+08:00'
 baseline:
   firefox_commit: 39bfd14cb45c
   firefox_buildid: '20261101193257'
@@ -126,23 +126,33 @@ projects:
       switch_count: 74/74
     repo_exists: true
     reverse_analysis:
-      status: p5_complete
-      progress: P5 完整还原；剩余 P1/P2/P3/P4 待做
+      status: config_complete
+      progress: 74/74 开关读取语义已建模；剩余 12 类输出记录
       detail:
         anchors: 74/74
-        reader_clusters: 5
+        semantics: 74/74
         reconstructed_modules:
-          P5_api_override: complete
-          P3_jscall_config: format_only
-          P1_P2_trace_config: not_started
-          P4_scattered: not_started
+          P1P2_trace_config: complete (40)
+          P3_jscall_config: complete (15)
+          P4_scattered: complete (13)
+          P5_api_override: complete (5)
+        parse_modes:
+          Tristate: 8
+          StrictOne: 7
+          DefaultOn: 3
+          StrToL10: 9
+          CStringCopy: 1
+          StarLiteral: 1
+          DefaultInt32: 2
+          FlagOrStrict: 1
+          PathCopy: 1
+          RawOnly: 30
         tests:
-          byte_layout: 3
-          wiring: 1
-          behavior: 0
+          count: 8
           all_passing: true
-        evidence_files: 4
-      next: P1+P2 TraceConfig（40 个开关，核心）
+        evidence_files: 11
+      remaining: 12 类输出记录的二进制结构体与写出器
+      next: jscall bin 写入器（已有 ground truth）+ 核心 jsonl 记录
 reverse_analysis:
   target: domtrace
   status: not_started
