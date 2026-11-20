@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T02:25:19+08:00'
+generated_at: '2026-11-21T02:43:08+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -188,12 +188,13 @@ projects:
         console_path_integration: 'fc0bf80: Linux renderer helper + child environment + C++ synthetic writer, seven verified rows; GUI and browser not exercised'
         stock_control: '17c8e21: Firefox 159.0 ARM64 page receipts OFF/ON; stock correctly fails product ON'
         console_kernel_launch: '9e08fd4: 5/5; actual ff:launch IPC handler + stock ARM64 Firefox 159.0 + PNG/rc=0; no Electron window or instrumented capture'
+        console_core_preview: 'd0eab9c: mounted Vue log view via preload and main IPC; 12 C++ synthetic events checked, not browser output'
         audited_build:
           driver_commit: 1b9f4c6
           host: host185
           workspace_in_container: /var/tmp/ruyi-ff159-core-audited
           attempt: attempt.wtTaYr4i
-          observed_phase: '2026-11-21T02:23:20+08:00 build in progress; dom/clients/manager; result pending'
+          observed_phase: '2026-11-21T02:39:12+08:00 build in progress; dom/media/doctor; result pending'
           preflight: pass (Rust opt-level 1, both sandbox families, unmodified upstream audit)
           final_archive: pending
           risk: 'independent WASI C++ std::string link smoke failed: __cxa_throw; Gecko sandbox targets not yet verified'
