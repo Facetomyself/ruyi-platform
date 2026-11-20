@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T01:49:11+08:00'
+generated_at: '2026-11-21T02:05:26+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -185,13 +185,14 @@ projects:
         binding_probe_scope: Document.title get/set and one-string Document.createElement call
         gecko_partial_link: verified on host185; BindingUtils + six core sources, no unresolved domtrace references
         browser_capture_verified: false
+        console_path_integration: 'fc0bf80: Linux renderer helper + child environment + C++ synthetic writer, seven verified rows; GUI and browser not exercised'
         stock_control: '17c8e21: Firefox 159.0 ARM64 page receipts OFF/ON; stock correctly fails product ON'
         audited_build:
           driver_commit: 1b9f4c6
           host: host185
           workspace_in_container: /var/tmp/ruyi-ff159-core-audited
           attempt: attempt.wtTaYr4i
-          observed_phase: '2026-11-21T01:47:20+08:00 build in progress'
+          observed_phase: '2026-11-21T02:02:13+08:00 build in progress; Rust dependencies; result pending'
           preflight: pass (Rust opt-level 1, both sandbox families, unmodified upstream audit)
           final_archive: pending
           risk: 'independent WASI C++ std::string link smoke failed: __cxa_throw; Gecko sandbox targets not yet verified'
