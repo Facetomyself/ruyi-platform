@@ -33,6 +33,7 @@
 | **哪些结论可信、哪些是推断** | [`09-evidence-ledger.md`](09-evidence-ledger.md) |
 | **有机器后怎么跑** | [`10-build-runbook.md`](10-build-runbook.md) |
 | 要不要补 aarch64 原生库 | [`11-aarch64-assessment.md`](11-aarch64-assessment.md) |
+| **补丁在真实 Firefox 里验证过吗** | [`12-real-build-findings.md`](12-real-build-findings.md) |
 | 从零复现这个状态 | [`../REPRODUCE.md`](../REPRODUCE.md) |
 | 写/改文档 | [`../conventions.md`](../conventions.md) |
 | 提交前自检 | [`../conventions.md`](../conventions.md) §12 |
