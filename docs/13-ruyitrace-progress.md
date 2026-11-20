@@ -18,6 +18,12 @@
 
 host185 先复验现存 `libgkrust.a`：1,525,171,928 字节，SHA-256 `86987fa36c842b9e90902b9342b8bc7c50e656309d896a43ab05c8e9fee26a8d`。固定版本上游的 `check_binary --networking` 返回 1（`recv,send`）；在聚合对象的可执行节中定位到 24 处匹配的 ELF 重定位，包括 `nix::sys::socket`、`socket2::sys` 和 Rust 标准库接口。这是静态引用证据，尚无页面可达性或实际网络流量证据。历史“纯误报”判断撤回。只将构建树的 `config/makefiles/rust.mk` 恢复至上游（blob `60fa082aa4d2f471b3410a45b24f8fdcb3f5df2b`）；未移除构建产物、未启动全编。下次应使用受控资源的干净配置复验归档审计，通过后才进入最终链接和产品 ON/OFF 验收。此次实测源码卷位于根分区（可用 22 GiB）；`/home` 的 961 GiB 空闲不是当前 `/build` 的可用容量。
 
+### 2026-11-21 01:47 +08:00：隔离的审计构建已开跑
+
+`host185` 容器中另建 `/var/tmp/ruyi-ff159-core-audited`，新 worktree 和 objdir 均位于大卷，不覆盖旧实验构建。保留上游审计和两类沙箱；容器 9 GiB RAM / 13 GiB 含 swap、两核两路。`configure` 实读 2502 个 moz.build；`configured.json` 确认了 Linux core 后端、Rust 优化等级 1、无额外调试符号、gkrust LTO 审计条件与六类 WASI 库沙箱。第一次预检误读 export 阶段才生成的头文件，改为读取配置输出后，干净目标通过，旧目标被正确拒绝。
+
+`attempt.wtTaYr4i` 已进入编译。这是阶段观测，不是产物验收；下一轮先读回执，不重复启动。独立 WASI C 样例链接成功，但当前 Ubuntu WASI C++ 标准库样例有未解析的异常运行时符号。若工程触发同类错误，核对该 commit 的 Mozilla WASI SDK 34 工具链配方，保留现有沙箱。最终必须用归档审计回执和真实页面 get/set/call 结果判定。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论
