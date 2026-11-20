@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T04:04:08+08:00'
+generated_at: '2026-11-21T07:34:11+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -195,22 +195,31 @@ projects:
           host: host185
           workspace_in_container: /var/tmp/ruyi-ff159-core-audited
           attempt: attempt.wtTaYr4i
-          observed_phase: '2026-11-21T04:00:30+08:00 original /usr sysroot build still in progress; third_party/libwebrtc; result pending'
+          observed_phase: 'finished: build 2; system WASI libc++ unresolved __cxa_* in rlboxsoundtouch.wasm and rlbox.wasm'
           successor_handoff:
             workspace: /var/tmp/ruyi-ff159-core-wasi159
             product_inputs: d3371b7
             coordinator: 3a9c667
-            observed_phase: 'waiting_for_predecessor; no successor attempt at 04:00 +08:00'
+            observed_phase: 'automatic not_started (extra failure); manual review completed after both verified module replays'
+            attempt: attempt.iqWqH54h
+            observed_at: '2026-11-21T07:29:32+08:00: configure and preflight passed, build in progress'
+            candidate_archive_audit: pending
+            candidate_page_capture: pending
             trigger: 'exclusive old workspace lock, exact build-exit receipt and known isolated distro SoundTouch failure only'
           preflight: pass (Rust opt-level 1, both sandbox families, unmodified upstream audit)
-          final_archive: pending
-          risk: 'active /usr sysroot fails isolated replay of real RLBox SoundTouch link; previous inputs intentionally unchanged'
+          predecessor_rust_archive:
+            audit: 'pinned upstream networking check rc=0; does not qualify successor archive'
+            bytes: 160069128
+            sha256: 9e3404f9497555a570e763e6c067c39114244a8ae6641ecadf2459497aa6d1fd
+          risk: 'original distro sysroot failed both real sandbox links; new pinned-sysroot full browser build pending'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
             sha256: ced4ad66408022397388863bf5c1c3f0cea250c7445d4a5e2ab884c5a4e71660
             target: 'rlboxsoundtouch.wasm; 16 units, module validated, four API exports; not a browser run'
             module_sha256: 1972108e3f54298706b0607cab9e09aed8073e4572921a133492fdde4159d6dd
+            combined_sandbox: '6f3adb8: 53 units; rlbox.wasm validated with five function exports; not executed'
+            combined_module_sha256: b0c69b3a6bfdcead845cbc15efbe2c6dc1677617db5bcd8af4809fdf5d1b46a0
         upstream_network_audit:
           rule_restored: true
           existing_archive_sha256: 86987fa36c842b9e90902b9342b8bc7c50e656309d896a43ab05c8e9fee26a8d
