@@ -30,6 +30,12 @@ host185 先复验现存 `libgkrust.a`：1,525,171,928 字节，SHA-256 `86987fa3
 
 已有 `attempt.wtTaYr4i` 继续运行，本次没有修改它的输入或资源限额；本轮路径修复需要在后续集成中纳入。复核时日志已到编译约 18 分 44 秒，尚无构建退出回执。
 
+### 2026-11-21 02:23 +08:00：控制台主进程启动链已单独验证
+
+Linux 打包态按 `resources/kernel/firefox` 与 `libxul.so` 识别内核，不再回退到 Windows 开发路径；未附带内核时保留显式选择。默认 profile 放用户数据目录，显式 Linux profile 保留大小写。用 Electron 事件注册替身执行真实 `app:kernel` / `cfg:get` / `ff:launch`，在仅回环网络中以普通用户启动已有的 ARM64 Firefox 159.0；`about:blank` 截图 PNG 验证通过，浏览器返回 0。五项测试全过。这是主进程启动验证，不是 Electron 窗口验证，也不是带插桩 x86_64 内核的页面采集。
+
+同一审计构建在 `dom/clients/manager` 编译中，容器占用 4.336 / 9 GiB，尚无最终回执；未调整资源或重跑构建。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论
