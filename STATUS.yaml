@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T03:41:34+08:00'
+generated_at: '2026-11-21T04:04:08+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -195,7 +195,13 @@ projects:
           host: host185
           workspace_in_container: /var/tmp/ruyi-ff159-core-audited
           attempt: attempt.wtTaYr4i
-          observed_phase: '2026-11-21T03:39:21+08:00 original /usr sysroot build still in progress; layout/generic; result pending'
+          observed_phase: '2026-11-21T04:00:30+08:00 original /usr sysroot build still in progress; third_party/libwebrtc; result pending'
+          successor_handoff:
+            workspace: /var/tmp/ruyi-ff159-core-wasi159
+            product_inputs: d3371b7
+            coordinator: 3a9c667
+            observed_phase: 'waiting_for_predecessor; no successor attempt at 04:00 +08:00'
+            trigger: 'exclusive old workspace lock, exact build-exit receipt and known isolated distro SoundTouch failure only'
           preflight: pass (Rust opt-level 1, both sandbox families, unmodified upstream audit)
           final_archive: pending
           risk: 'active /usr sysroot fails isolated replay of real RLBox SoundTouch link; previous inputs intentionally unchanged'

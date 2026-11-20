@@ -56,6 +56,12 @@ Linux 日志页可按 PID 只读预览 get/set/call，展示接口、成员、�
 
 在 host185 临时目录用该 Firefox 配置的真实编译命令对本次改动的两个单元生成了 ELF 对象；20 项宿主套件及 8 项控制台组合测试通过。正在进行的原构建未包含本轮改动，03:39 仍在 `layout/generic`，没有最终回执或真实浏览器 trace。
 
+### 2026-11-21 04:00 +08:00：修正版候选就绪，仍只有一份全编
+
+原 `attempt.wtTaYr4i`（产品输入 `17c8e21`）仍在编译 `third_party/libwebrtc`，尚无退出回执。以 `d3371b7` 归档产品输入，在同一容器的 `/var/tmp/ruyi-ff159-core-wasi159` 独立检出 Firefox `9a2dc53c`，核验全部 CI sysroot 文件并检查父构建补丁与绑定补丁都能应用。新工作区无 `latest-attempt`：尚未开始配置或编译。
+
+一次性交接器 `3a9c667` 等待旧驱动的文件锁；实际观测旧 `build.lock` 与新 `handoff.lock` 分别由驱动和交接器持有，`handoff.json` 为 `waiting_for_predecessor`。只有旧任务以已知的 SoundTouch/WASI 系统库错误结束才自动交给候选构建。旧任务成功则保留其结果，审计/资源/其他错误则留待分析。分类用例和真实文件锁的互斥测试已过。该步骤不代替候选 Rust 归档审计、最终链接或受控页面验收。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论
