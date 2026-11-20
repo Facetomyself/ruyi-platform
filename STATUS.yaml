@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T00:55:00+08:00'
+generated_at: '2026-11-21T01:18:45+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -185,6 +185,11 @@ projects:
         binding_probe_scope: Document.title get/set and one-string Document.createElement call
         gecko_partial_link: verified on host185; BindingUtils + six core sources, no unresolved domtrace references
         browser_capture_verified: false
+        stock_control: '17c8e21: Firefox 159.0 ARM64 page receipts OFF/ON; stock correctly fails product ON'
+        upstream_network_audit:
+          rule_restored: true
+          existing_archive_sha256: 86987fa36c842b9e90902b9342b8bc7c50e656309d896a43ab05c8e9fee26a8d
+          result: 'fail: rc=1 (recv,send); 24 executable-section relocations; runtime reachability unknown'
       instrumentation:
         located: true
         sites:
