@@ -1,5 +1,9 @@
 # RuyiHttp 变更记录
 
+## 2026-11-20 — Linux x86_64 wheel 真机 HTTPS 验收通过
+
+在 Oracle x86_64 主机的 Ubuntu 24.04 容器运行发布格式 wheel，取代先前只有交叉打包和 ABI 检查的状态。见[验收记录](README.md#linux-x86_64-验收记录)。
+
 ## 2026-11-20 — 仓库转 public，文档与实测状态对齐
 
 - `Facetomyself/ruyihttp` 可见性由 private 改为 public；四个仓库已跟踪文件与全历史均无凭据

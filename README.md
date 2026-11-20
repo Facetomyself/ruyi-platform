@@ -201,7 +201,7 @@ cat STATUS.yaml
 
 | 项目 | 状态 |
 | --- | --- |
-| **RuyiHttp** | 源码完整，三平台原生库齐全，**测试 19/19 全绿**，26 个原生文件 hash 全匹配。唯一缺口是 Linux live 验证（需 x86_64 + glibc ≥ 2.38 主机）。仓库已转 public。 |
+| **RuyiHttp** | 源码完整，三平台原生库齐全，**测试 19/19 全绿**，26 个原生文件 hash 全匹配。Linux x86_64 wheel 已在 glibc 2.39 环境完成[实时 HTTPS 验收](projects/ruyihttp/README.md#linux-x86_64-验收记录)。仓库已转 public。 |
 | **RuyiJS 内部版** | Python 层明文可读；原生壳 `js.exe`（49.5 MB）语义重建进行中。`ff-ruyijs` 只作对照，不作基线。 |
 | **RuyiTrace** | 控制台源码完整；domtrace 行为还原与实现基本完成，**运行验证层完全没开始**。 |
 

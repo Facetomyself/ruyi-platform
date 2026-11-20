@@ -40,7 +40,7 @@ submodules/ruyihttp/
 | --- | --- | --- | --- |
 | `win_amd64` | ready | 159.0 / 3.131 / 0.32.0 | `py3-none-win_amd64` |
 | `darwin_arm64` | ready | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_26_0_arm64` |
-| `linux_x86_64` | ready（未 live 验证） | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_x86_64` |
+| `linux_x86_64` | ready（Ubuntu 24.04 容器已通过 HTTPS 验收） | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_x86_64` |
 | `darwin_x86_64` | build-required | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_11_0_x86_64` |
 | `linux_aarch64` | build-required | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_aarch64` |
 
@@ -66,7 +66,7 @@ RUYIHTTP_PLATFORM=linux_aarch64 python -m pip wheel --no-build-isolation --no-de
 | 契约测试 | **19/19 通过** | `python -m unittest discover -s tests` |
 | wheel 重建 | 3 平台成功，hash 全匹配 | 见 `dist-v0.9.0-legacy/VERIFICATION.md` |
 | `build-required` 行为 | 2 平台按预期抛错 | 见上方命令 |
-| Linux live | **未验证** | 需 x86_64 + glibc ≥ 2.38 |
+| Linux live | **通过**（2026-11-20） | `RUYIHTTP_LIVE=1 python ci/smoke_local.py`；环境见下 |
 | 仓库可见性 | public | — |
 
 ### 已完成的历史待办
@@ -78,11 +78,29 @@ RUYIHTTP_PLATFORM=linux_aarch64 python -m pip wheel --no-build-isolation --no-de
 3. `dist/` 归档 —— 已移到 `dist-v0.9.0-legacy/` 并附 `VERIFICATION.md`。
 4. 三平台重新构建 —— 已完成，26 个原生文件 hash 全匹配。
 
+### Linux x86_64 验收记录
+
+2026-11-20 23:37（UTC+8），`oracle-gateway` 原生 x86_64 CPU，宿主 glibc 2.31；无模拟器。使用 Ubuntu 24.04 amd64 容器（glibc 2.39、Python 3.12.3），镜像 `ubuntu@sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289`。
+
+- 对象：`ruyihttp-0.9.0-py3-none-manylinux_2_39_x86_64.whl`，SHA-256 `da6a8800f33c0232b2705bc9c93f70d57a5971c29b7638380f7c33373fa2ab77`。Python 文件与子模块 `b4cc7b2` 一致；在干净 venv 安装后 `pip check` 通过，包内 14 个 `.so` 哈希匹配清单。
+- 加载：进程映射确认 Necko core、QUIC、NSS 来自已安装的 wheel；原生接口返回 NSS 3.132 / NSPR 4.40。
+- 请求：本地 HTTP 返回 200 且正文一致；`https://example.com/` 返回 200，Firefox 159 profile，TLS 1.3、ALPN `h2`、cipher `0x1301`。
+- 范围：QUIC 仅验证加载。未验收 HTTP/3 握手、代理和宿主 glibc 2.31 裸机运行。`cryptography 50.0.2` 读取根证书时对非正序列号发出弃用警告，本次握手成功；升级依赖时应复测。
+
+复验时将该 wheel 与 `ci/smoke_local.py` 放入匹配的 amd64 容器，在源码树之外运行：
+
+```bash
+python3 -m venv env
+env/bin/python -m pip install ./ruyihttp-0.9.0-py3-none-manylinux_2_39_x86_64.whl
+env/bin/python -m pip check
+RUYIHTTP_LIVE=1 env/bin/python smoke_local.py
+```
+
 ## 剩余缺口
 
 | 项 | 卡在哪 |
 | --- | --- |
-| Linux live 验证 | 需 x86_64 且 glibc ≥ 2.38 的主机。本机是 aarch64 + glibc 2.35 |
+| Linux HTTP/3 | QUIC 库已加载，尚无端到端 HTTP/3 请求证据 |
 | `darwin_x86_64` / `linux_aarch64` 二进制 | 对应平台构建，评估见 `docs/11-aarch64-assessment.md`（决策：不做） |
 | 原生库 C/C++/Rust 源码 | 不在树内，来源为 `ff-ruyijs` 0.4.1 wheel，见 `docs/02-source-recovery.md` |
 
