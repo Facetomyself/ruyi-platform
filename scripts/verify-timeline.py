@@ -23,10 +23,11 @@ def count_md():
 
 
 def count_cpp():
-    n = 0
-    for base, _dirs, files in os.walk(os.path.join(ROOT, 'submodules/ruyitrace')):
-        n += sum(1 for f in files if f.endswith(('.cpp', '.h')))
-    return n
+    # Count versioned sources only: a local draft or build product must not
+    # change the expected inventory of a fresh recursive clone.
+    files = subprocess.check_output(['git', 'ls-files', '-z'],
+                                    cwd=os.path.join(ROOT, 'submodules/ruyitrace'))
+    return sum(path.endswith((b'.cpp', b'.h')) for path in files.split(b'\0'))
 
 
 def count_scripts():
