@@ -1,4 +1,4 @@
-generated_at: '2026-11-20T00:45:00+08:00'
+generated_at: '2026-11-20T19:45:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -113,9 +113,7 @@ projects:
     tests: unknown
     phase: 阶段 0（建仓 + 反编译立项）
     blocked_by:
-    - L4
-    - C1
-    - C2
+    - 32GB RAM host for full link + runtime test
     verified:
       kernel_hashes: pass
       domtrace_hashes: pass
@@ -124,7 +122,7 @@ projects:
     repo_exists: true
     reverse_analysis:
       status: config_complete
-      progress: 74/74 开关 + 13/13 记录 + 13/13 调度 + end-to-end 写盘
+      progress: 74/74 开关 + 13/13 记录 + 13/13 调度 + 编译验证通过 + 运行未验证
       detail:
         anchors: 74/74
         semantics: 74/74
@@ -217,6 +215,25 @@ projects:
           - link-time aggregation of JitInfoName entries
           - build verification
           - runtime behavior verification
+        real_build_verified:
+          date: '2026-11-20'
+          host: host185 (x86_64, Docker Ubuntu 24.04, clang 19.1.1)
+          doc: docs/12-real-build-findings.md
+          codegen_tables_generated: true
+          cpp_compiled: true
+          object_files: 4431
+          dom_bindings_objects: 42
+          bugs_found: 7
+          gkrust: OOM (unrelated to patches)
+          libxul_linked: false
+          runtime_verified: false
+      layers:
+        behavior_recovery: complete (74/74 switches, 39/39 operations)
+        output_formats: complete (13/13, 4852 lines C++)
+        instrumentation: code ready, compiles, index chain verified
+        console: complete (2919 lines, not integrated with real data)
+        runtime_verification: NOT STARTED
+    status: analysis_complete_runtime_unverified
 reverse_analysis:
   target: domtrace
   status: not_started
@@ -442,3 +459,4 @@ timeline:
     scripts: 15
     total_commits: 68
   corrections_recorded: 3
+progress_doc: docs/13-ruyitrace-progress.md

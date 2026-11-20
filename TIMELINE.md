@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-四个仓库共 **78 个 commit**（platform 45 / ruyitrace 18 / ruyihttp 5 / ruyijs 10）。
+四个仓库共 **79 个 commit**（platform 46 / ruyitrace 18 / ruyihttp 5 / ruyijs 10）。
 
 ---
 
@@ -147,8 +147,8 @@ sparse clone 缺 `security/nss`。
 
 | 项 | 值 |
 | --- | ---: |
-| 四个仓库 commit | 78 |
-| 文档 | 40 篇（含本文）|
+| 四个仓库 commit | 79 |
+| 文档 | 0 篇（含本文）|
 | C++ 文件 | 51 |
 | 校验脚本 | 15 |
 | domtrace 测试 | 19 项 |
