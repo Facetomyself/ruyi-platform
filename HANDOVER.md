@@ -9,14 +9,14 @@
 
 | 项 | 数量 |
 | --- | ---: |
-| 主体仓 commit | 31 |
-| `ruyitrace` commit | 13 |
+| 主体仓 commit | 48 |
+| `ruyitrace` commit | 18 |
 | `ruyihttp` commit | 5 |
 | `ruyijs-inner` commit | 10 |
-| 文档 | 37 篇 |
-| C++ 源码 | 44 个文件 |
-| 校验脚本 | 13 个 |
-| 测试 | 36 项（domtrace 17 + ruyihttp 19） |
+| 文档 | 41 篇 |
+| C++ 源码 | 51 个文件 |
+| 校验脚本 | 15 个 |
+| 测试 | 38 项（domtrace 19 + ruyihttp 19） |
 
 三个 submodule 全部接入，指针锁定，`verify-pins.sh` 七节全绿。
 

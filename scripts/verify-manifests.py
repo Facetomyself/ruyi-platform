@@ -23,9 +23,18 @@ def sha256(path, chunk=1 << 20):
 
 
 def find_local(filename):
+    """返回本地实物路径；悬空符号链接视同不存在。
+
+    artifacts/binaries/ 下允许放指向仓外的符号链接（大体积发布物不入 git）。
+    链接目标被移走后 os.walk 仍会列出该名字，直接 getsize 会抛
+    FileNotFoundError 中断全部核对，因此这里必须解引用后确认可读。
+    """
     for dirpath, _dirnames, filenames in os.walk(BIN_DIR):
         if filename in filenames:
-            return os.path.join(dirpath, filename)
+            candidate = os.path.join(dirpath, filename)
+            if os.path.isfile(candidate):
+                return candidate
+            print(f'     提示：{candidate} 是悬空链接（目标已移走），按缺失处理')
     return None
 
 
