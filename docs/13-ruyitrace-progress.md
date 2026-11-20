@@ -6,9 +6,11 @@
 
 ## 当前验收（Linux core writer）
 
-上一版实验内核已链接 libxul 并进入 headless，采集目录为空；其 networking 构建审计曾被跳过，不作为发布构建。后续接入尝试缺父级 DIRS，导致链接找不到运行时符号。现在已有 Linux 父构建补丁及本机验证的 core 写入路径：20 项宿主测试通过，其中新增并发落盘和限流测试。没有进行新一轮远程构建。
+上一版实验内核已链接 libxul 并进入 headless，采集目录为空；其 networking 构建审计曾被跳过，不作为发布构建。后续接入尝试缺父级 DIRS，导致链接找不到运行时符号。现在已有 Linux 父构建补丁及本机验证的 core 写入路径：20 项宿主测试通过，其中新增并发落盘和限流测试。这一步验证的是独立写入器。
 
-独立测试使用**合成事件**，不是从页面采集。下一里程碑是让真实绑定向 `Finish` 提交正确名称与值，取得同一次本地页面运行里的 `Document.title` set/get 和 `Document.createElement` call，并验证关闭时零输出。此前的格式分析、主机测试及启动验证均不能替代该验收。
+2026-11-21：已在固定 Firefox 159 的 `GenericGetter/Setter/Method` 接入最小页面验收范围：`Document.title` 的字符串读写和 `Document.createElement` 的单字符串调用。host185 上用 Gecko clangd 编译命令（局部验证覆盖优化/调试级别），串行编译真实 BindingUtils 和六个核心源文件；绑定对象确实引用写入函数，合并后的可重定位对象没有未解析的 domtrace 符号。顺带修复了 Gecko Clang 拒绝在 constexpr 中调用 strlen 的错误。方法名来自函数内部标识，接口名来自 Gecko 原有的 proto 表；生成名字区间表不是此链路的前提。
+
+**尚无来自该补丁的浏览器采集文件。** 下一步是在保留上游网络审计的构建中完成集成，用正常沙箱加载受控页面。验收要求同一 PID 按顺序出现唯一标记的 set/get 和参数为 `div` 的成功调用；关闭开关换新目录应零输出。[复现步骤与页面验收](../submodules/ruyitrace/tests/linux/README.md)。
 
 ## 此前阶段快照（以下非当前构建状态）
 

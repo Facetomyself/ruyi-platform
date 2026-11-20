@@ -1,4 +1,4 @@
-generated_at: '2026-11-20T23:53:17+08:00'
+generated_at: '2026-11-21T00:55:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -121,7 +121,7 @@ projects:
     tests: 20 host tests passing
     phase: Linux browser core capture integration
     blocked_by:
-    - real binding metadata and values; normal sandbox capture test; restore and pass upstream networking audit
+    - normal sandbox capture of real Document actions; restore and pass upstream networking audit
     verified:
       kernel_hashes: pass
       domtrace_hashes: pass
@@ -181,6 +181,9 @@ projects:
       linux_core_writer:
         commit: 4f8a838
         verification: synthetic producer, 256 concurrent rows, 17-row cap
+        binding_probe_commit: cda4f12
+        binding_probe_scope: Document.title get/set and one-string Document.createElement call
+        gecko_partial_link: verified on host185; BindingUtils + six core sources, no unresolved domtrace references
         browser_capture_verified: false
       instrumentation:
         located: true
