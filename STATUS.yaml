@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T07:34:11+08:00'
+generated_at: '2026-11-21T07:52:55+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -186,6 +186,7 @@ projects:
         gecko_partial_link: verified on host185; BindingUtils + six core sources, no unresolved domtrace references
         private_file_lifecycle: 'd3371b7: Linux core only; 0600 exclusive output, live complete line before _Exit, parent/child PID isolation and eight rejection cases'
         browser_capture_verified: false
+        live_pid_control: '81ddaab: live HTTP page acknowledgement + Firefox content process ancestry; stock ON/OFF passed, stock product and offline product checks correctly failed'
         console_path_integration: 'fc0bf80: Linux renderer helper + child environment + C++ synthetic writer, seven verified rows; GUI and browser not exercised'
         stock_control: '17c8e21: Firefox 159.0 ARM64 page receipts OFF/ON; stock correctly fails product ON'
         console_kernel_launch: '9e08fd4: 5/5; actual ff:launch IPC handler + stock ARM64 Firefox 159.0 + PNG/rc=0; no Electron window or instrumented capture'
@@ -202,7 +203,7 @@ projects:
             coordinator: 3a9c667
             observed_phase: 'automatic not_started (extra failure); manual review completed after both verified module replays'
             attempt: attempt.iqWqH54h
-            observed_at: '2026-11-21T07:29:32+08:00: configure and preflight passed, build in progress'
+            observed_at: '2026-11-21T07:49:39+08:00: configure and preflight passed, build in progress, result pending'
             candidate_archive_audit: pending
             candidate_page_capture: pending
             trigger: 'exclusive old workspace lock, exact build-exit receipt and known isolated distro SoundTouch failure only'
