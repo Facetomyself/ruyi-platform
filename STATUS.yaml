@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T02:43:08+08:00'
+generated_at: '2026-11-21T03:15:03+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -194,10 +194,16 @@ projects:
           host: host185
           workspace_in_container: /var/tmp/ruyi-ff159-core-audited
           attempt: attempt.wtTaYr4i
-          observed_phase: '2026-11-21T02:39:12+08:00 build in progress; dom/media/doctor; result pending'
+          observed_phase: '2026-11-21T03:12:28+08:00 original /usr sysroot build still in progress; gfx/gl; result pending'
           preflight: pass (Rust opt-level 1, both sandbox families, unmodified upstream audit)
           final_archive: pending
-          risk: 'independent WASI C++ std::string link smoke failed: __cxa_throw; Gecko sandbox targets not yet verified'
+          risk: 'active /usr sysroot fails isolated replay of real RLBox SoundTouch link; previous inputs intentionally unchanged'
+          verified_alternative:
+            commit: 08c55a8
+            producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
+            sha256: ced4ad66408022397388863bf5c1c3f0cea250c7445d4a5e2ab884c5a4e71660
+            target: 'rlboxsoundtouch.wasm; 16 units, module validated, four API exports; not a browser run'
+            module_sha256: 1972108e3f54298706b0607cab9e09aed8073e4572921a133492fdde4159d6dd
         upstream_network_audit:
           rule_restored: true
           existing_archive_sha256: 86987fa36c842b9e90902b9342b8bc7c50e656309d896a43ab05c8e9fee26a8d

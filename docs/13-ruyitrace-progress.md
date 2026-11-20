@@ -42,6 +42,14 @@ Linux 日志页可按 PID 只读预览 get/set/call，展示接口、成员、�
 
 同一审计构建 `attempt.wtTaYr4i` 日志到 `dom/media/doctor`，容器 4.358 / 9 GiB，仍无最终构建回执。后续需用通过上游审计的 x86_64 产物跑 ON/OFF 页面测试，再将真实 trace 交给此预览。
 
+### 2026-11-21 03:12 +08:00：已在 Firefox 实际沙箱目标上定位并修复 WASI 链接问题
+
+从该 Firefox 提交的 Mozilla CI Clang 19 基线任务 `FovSmFqBRB2BN1EcgwlFeA` 的 `MOZ_FETCHES` 找到生产任务 `CJd0ctZnQzSu4Erw4ZByrA`（run 0）。归档 10,187,126 字节，SHA-256 `ced4ad66408022397388863bf5c1c3f0cea250c7445d4a5e2ab884c5a4e71660` 与上游元数据一致；解包后逐文件核对。固定的是实际 CI 消费者的依赖，不是按日期猜选或使用 `latest`。
+
+在独立目录重放真实 `rlboxsoundtouch.wasm` 构建规则（16 个 C/C++ 单元、同一 Clang 19.1.1），只改变 `--sysroot`。系统 `/usr` 的最终链接报 `__cxa_allocate_exception` 与 `__cxa_throw`；使用上述 sysroot 成功，得到 359,701 字节 WASM，SHA-256 `1972108e3f54298706b0607cab9e09aed8073e4572921a133492fdde4159d6dd`。已由 WebAssembly 引擎验证模块格式和四个 SoundTouch API 导出，未执行音频处理。构建驱动后续要求该 sysroot，预检拒绝不匹配归档、改写过的头文件或额外文件。[复现步骤](../submodules/ruyitrace/tests/linux/README.md)。
+
+同一整机 `attempt.wtTaYr4i` 仍使用旧 `/usr` 配置，日志至 `gfx/gl`、尚无退出回执，容器 4.303 / 9 GiB。未切换运行中输入或启动第二份全编。上述成功只涵盖独立沙箱目标，不代表完整 Rust 归档审计、最终链接或浏览器采集验收。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论
