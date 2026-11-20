@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T03:15:03+08:00'
+generated_at: '2026-11-21T03:41:34+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -184,6 +184,7 @@ projects:
         binding_probe_commit: cda4f12
         binding_probe_scope: Document.title get/set and one-string Document.createElement call
         gecko_partial_link: verified on host185; BindingUtils + six core sources, no unresolved domtrace references
+        private_file_lifecycle: 'd3371b7: Linux core only; 0600 exclusive output, live complete line before _Exit, parent/child PID isolation and eight rejection cases'
         browser_capture_verified: false
         console_path_integration: 'fc0bf80: Linux renderer helper + child environment + C++ synthetic writer, seven verified rows; GUI and browser not exercised'
         stock_control: '17c8e21: Firefox 159.0 ARM64 page receipts OFF/ON; stock correctly fails product ON'
@@ -194,7 +195,7 @@ projects:
           host: host185
           workspace_in_container: /var/tmp/ruyi-ff159-core-audited
           attempt: attempt.wtTaYr4i
-          observed_phase: '2026-11-21T03:12:28+08:00 original /usr sysroot build still in progress; gfx/gl; result pending'
+          observed_phase: '2026-11-21T03:39:21+08:00 original /usr sysroot build still in progress; layout/generic; result pending'
           preflight: pass (Rust opt-level 1, both sandbox families, unmodified upstream audit)
           final_archive: pending
           risk: 'active /usr sysroot fails isolated replay of real RLBox SoundTouch link; previous inputs intentionally unchanged'
