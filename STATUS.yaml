@@ -317,22 +317,23 @@ blockers:
 submodules:
   ruyihttp:
     url: https://github.com/Facetomyself/ruyihttp
-    commit: 6bc7a7d
+    commit: b4cc7b2
+    visibility: public
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 2bc677c
+    commit: 8c87251
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: 219cb73
+    commit: 27438fc
     state: added
 docs_health:
-  total_markdown: 32
-  total_cpp_files: 41
-  total_scripts: 13
+  total_markdown: 41
+  total_cpp_files: 51
+  total_scripts: 15
   reproduce_manual: REPRODUCE.md (逐条实测)
-  last_full_verification: verify-pins 六节 + 16 项 domtrace 测试 + 19 项 ruyihttp 测试 全绿
+  last_full_verification: verify-pins 八节 + 19 项 domtrace 测试 + 19 项 ruyihttp 测试 全绿（2026-11-20 复测）
 tooling:
   scripts:
     domtrace-anchors.py: xul.dll 74 开关锚点提取
