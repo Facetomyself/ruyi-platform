@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T08:33:00+08:00'
+generated_at: '2026-11-21T08:43:07+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -205,7 +205,8 @@ projects:
             coordinator: 3a9c667
             observed_phase: 'automatic not_started (extra failure); manual review completed after both verified module replays'
             attempt: attempt.iqWqH54h
-            observed_at: '2026-11-21T08:31:41+08:00: build in progress, dom/media/mp4; result pending'
+            observed_at: '2026-11-21T08:40:51+08:00: build in progress, dom/media/webrtc; result pending'
+            packaging: 'efa0277: waiting_for_build; no mach package log, verified tar, or page launch'
             candidate_archive_audit: pending
             candidate_page_capture: pending
             trigger: 'exclusive old workspace lock, exact build-exit receipt and known isolated distro SoundTouch failure only'
