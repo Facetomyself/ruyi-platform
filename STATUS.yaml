@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T03:50:34+08:00'
+generated_at: '2026-11-22T04:30:03+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -126,7 +126,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '104 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '106 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -439,10 +439,20 @@ projects:
             attempt: attempt.8rkEG7v2
             policy: 'only native AArch64 gkrust staticlib is switched from fat LTO to ThinLTO; opt=1 and codegen-units=1; original networking audit required'
             wrapper_fixture: 'actual ARM64 Rust staticlib rc=0, pristine networking audit rc=0, fixture only'
-            observed_at: '2026-11-21T19:44:40Z: native build at Rust cc, wrapper inherited by live Cargo/rustc, oom=0 and oom_kill=0'
+            observed_at: '2026-11-21T20:23:42Z: idle after guard stop at Rust dependency stage; gkrust not reached; oom=0 and oom_kill=0'
+            stop_evidence: deliverables/linux-arm64-desktop-control-r58/build-watchdog-stop.json
+            stop_evidence_sha256: 2273903bbc991d9eedcecfc107825cb550580ab2d5c581f737ca2e14c41839a9
+            stop_result: 'build 143, host build_and_archive_audit 143, delivery observer returned 1; no archive or package'
+            new_monitor: 'daf5236 records clean inactive file versus working estimate and a hard guard; tests pass, next full run pending'
             limits: '1 job, 1.6 CPU, 8 GiB RAM and 9 GiB RAM+swap; combined memory watchdog at 8750000000 bytes'
             delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r57
-            formal_audit_and_page: pending
+            formal_audit_and_page: 'not reached in stopped attempt'
+          arm64_native_desktop_control:
+            implementation: daf5236
+            scope: 'official ARM64 Firefox 159 identity and native Electron 45.4.1 gate-negative; no product capture'
+            evidence: deliverables/linux-arm64-desktop-control-r58/stock-gate-control.json
+            evidence_sha256: 6ff0e82c23c8f12220131c16b06170bcd9728957a10fc2c6c51b0d04c7277eec
+            observed: 'sandboxed renderer seccomp=2/NoNewPrivs=1, no spawn, profile, trace or marker; old AMD64 real receipts replay byte-exact and cross-arch rejection passes'
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8

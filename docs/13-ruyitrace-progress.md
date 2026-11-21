@@ -46,6 +46,10 @@
 
 在 `/home/ubuntu/ruyitrace-arm64-r53/arm64-full-r57` 的干净 worktree 中启动新整机 `attempt.8rkEG7v2`，未复用上轮 LTO 试验归档。19:44 UTC（03:44 +08:00）日志已到 Rust `cc`（4:03），实测 Cargo/rustc 继承指定包装器、`oom=0`/`oom_kill=0`。仍为 1 作业、1.6 CPU、8 GiB RAM / 9 GiB 合计，额外看门狗监视总量。独立 `delivery-queue-r57` 按固定 attempt 等待完整构建、正式网络审计与实际 ARM64 包通过，再验收 `--parent-window-storage`；此时未触发 gkrust 包装器记录、未生成审核包或页面证据。
 
+该次构建后来在 Rust 依赖阶段被旧看门狗主动停止，`build 143`，没有到 `gkrust`。原回执的采样峰值 RAM 8,589,934,592、swap 395,255,808、合计 8,984,371,200 字节；OOM 计数始终为零。彼时旧策略只按总量判断、未采内存组成，不能据此断定触发点主要是哪种内存。`daf5236` 的新看门狗区分干净非活跃文件页和工作量估算，保留紧急总量线并记录触发采样；106 项回归通过，尚未用新策略重开整机构建。停止回执位于 `deliverables/linux-arm64-desktop-control-r58/build-watchdog-stop.json`。
+
+同一提交补齐 ARM64 原生桌面模式与回执的架构准入。本机原生 Electron 45.4.1 通过 UID/网络命名空间运行实际主进程、preload 和 Vue；Firefox 使用七文件摘要相符的官方 ARM64 对照。renderer 实测 `seccomp=2`、`NoNewPrivs=1`；无双会话资格时，正式 IPC 在启动前停止，未写 profile、日志或闸门。该结果明确标为 stock 负对照，只可由相应负对照读取器验收。旧 amd64 两份真实桌面回执可逐字节回读，错选 ARM64 会失败。回执 `deliverables/linux-arm64-desktop-control-r58/stock-gate-control.json`，仍缺 ARM64 产品实采。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
