@@ -106,6 +106,12 @@ ARM64 未插桩 Firefox 的 OFF、ON 均确认页面完成、截图有效、进�
 
 一次性交付器 `daffb7d` 对指定构建用 inotify 等待打包结果；只在同次构建、Rust 审计、包身份与指针一致时，才复制候选、复核、普通用户解包，再运行真实页面。实查 `attempt.iqWqH54h` 仍在 `gfx/vr`，打包 `waiting_for_build`，交付 `waiting_for_package`，尚无候选 tar 或正例回执。基础验收与后续窗口上下文/其他 producer 验收仍有区别。
 
+### 2026-11-21 09:21 +08:00：本次候选的 Rust 静态库通过构建中独立审计，日志预览可续读
+
+`attempt.iqWqH54h` 的 `libgkrust.a` 已生成：160,069,256 字节，SHA-256 `2c81bdb3cac5f6efd90e44cf24c0defd74b7df7710f4f184bcc37b900de00042`。09:20:58 在该候选自己的 objdir 中，确认固定源码、配置与 sysroot 后，用其 Python 环境只读执行上游 `check_binary --networking`，rc=0；设备/inode、长度、mtime/ctime 在审计前后相同。这是对上述摘要的中途实测，不是驱动的最终归档回执。候选此时仍编译 `js/src/vm`，最终 libxul 尚无，打包和页面交付继续等待。
+
+控制台 Linux JSONL 预览 `1e98ca7` 支持下一页和手动查看追加记录。每次最多 64 KiB/20 条，真实写入器输出 32 条合成事件，挂载 Vue 页面经真实 preload/main IPC 分 20+12 条核对行号与内容；12 项组合回归通过。另测 UTF-8 截断、超长行跨页跳过、PID/目录绑定、文件缩短/替换和续读标识失效。此验证不是原生 Electron 窗口验收或 Linux 浏览器采集证据。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论
