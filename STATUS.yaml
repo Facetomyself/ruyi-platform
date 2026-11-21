@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T21:44:18+08:00'
+generated_at: '2026-11-21T22:06:23+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -320,11 +320,14 @@ projects:
             state: build_running
             attempt: attempt.d7DBYN4g
             workspace_in_container: /var/tmp/ruyi-ff159-window-gate
-            observed_at: '2026-11-21T21:39:35+08:00: build reached widget (153:27 in log)'
+            observed_at: '2026-11-21T22:02:02+08:00: build active at 177:33; terminal receipts pending'
+            transfer_observer: /home/ruyi-smoke-159-x86/window-gate-d7DBYN4g-transfer-queue
           parent_window_gate:
             implementation: 8b2637c
             source_checks: '261 IPDL inputs, 17 staged objects linked, native model verifies readiness, stale epochs, shared markers, cap and I/O failure'
             qualification: '--parent-window-gate verifies ungated capture and dual-session behavior on the same package'
+            native_console_gate: 'dac2279: real preload toggles and native edge observation; completed AMD64 guard-negative with older ungated bundle, positive pending'
+            native_gate_negative_evidence: deliverables/linux-release-6D26B4Jt/amd64-gate-negative-r49.json
             browser_receipt: pending
             staged_into_current_candidate: false
           parent_window_storage:
