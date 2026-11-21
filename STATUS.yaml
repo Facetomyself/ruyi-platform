@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T07:20:55+08:00'
+generated_at: '2026-11-22T07:32:12+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -123,6 +123,13 @@ projects:
             working_peak_sample_bytes: 2795630592
             evidence: deliverables/linux-ruyijs-donor-r68/standalone-verified.json
             evidence_sha256: 95e2ff3dd42f89aafec007c73f11a81d43ad053a61dab7638e5ab467ddff1517
+          donor_relink_control:
+            tool: 23409f70af11e7b1fe209bc08a0c00fa3b1ec9e3
+            result: donor_relink_verified 0
+            actual_byte_match: true
+            scope: 'original Mozilla 28 objects and 3 archives, exact native link argv except output; JS and Promise rerun; no private shell object'
+            evidence: deliverables/linux-ruyijs-donor-r72/exact-relink.json
+            evidence_sha256: 9f59bf7e1c6f18afadc3a686a47bcef4586b5e140acfcf10ce77ebdf00e431e2
           private_product: pending
     inner_repo_state:
       exists: true
