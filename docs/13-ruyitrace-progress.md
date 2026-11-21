@@ -126,6 +126,12 @@ ARM64 未插桩 Firefox 的 OFF、ON 均确认页面完成、截图有效、进�
 
 x86_64 候选 `attempt.iqWqH54h` 在 `widget` 编译阶段，尚无最终 `libxul.so`、包身份或受控页面正例回执。本轮未触碰候选输入。
 
+### 2026-11-21 10:26 +08:00：真实候选已越过 WASI 失败点，识别并修复后续构建的版本标识缺项
+
+`attempt.iqWqH54h` 的整机构建已生成 `rlboxsoundtouch.wasm`（359,701 字节，SHA-256 `1972108e3f54298706b0607cab9e09aed8073e4572921a133492fdde4159d6dd`）及 `security/rlbox/rlbox.wasm`（4,459,037 字节，`b0c69b3a6bfdcead845cbc15efbe2c6dc1677617db5bcd8af4809fdf5d1b46a0`）。两个摘要分别与此前隔离重放完全相同；对本次对象直接验证 4+5 个代表函数导出。`dist/bin/libxul.so` 已存在，为 260,808,256 字节 ELF64 x86-64 DYN，ELF Build ID `b93f7f5b7605bece329ae34e5abaf5f688fb82c4`。可识别的 ELF 不等于构建成功、包验证或页面数据。
+
+上游默认不从 Git worktree 自动写入 SourceStamp；实际候选 `source-repo.h` 为空，生成的 `build/application.ini` 只有 BuildID `20261120232713` 而缺 SourceStamp，尚不满足分发身份要求。保持候选及已部署的严格检查原样。修复 `4eed287` 在 configure 前声明受支持的源仓及完整 SHA，核对 Git HEAD；全编前就通过上游 make 目标生成并验证两份 INI 和头文件。独立真实 configure/元数据试验得到一致的 BuildID `20261121021849` 和准确的 `9a2dc53c…`，重复生成验证通过。包检查继续拒绝缺失/错误源码戳，不以补写 INI 或旧包替代。当前候选尚在构建，打包及非 root ON/OFF 均无最终回执；本轮没有启动另一份浏览器全编。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论

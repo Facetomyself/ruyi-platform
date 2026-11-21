@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T10:04:18+08:00'
+generated_at: '2026-11-21T10:29:55+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -208,7 +208,11 @@ projects:
             coordinator: 3a9c667
             observed_phase: 'automatic not_started (extra failure); manual review completed after both verified module replays'
             attempt: attempt.iqWqH54h
-            observed_at: '2026-11-21T10:01:52+08:00: build in progress, widget; libxul and result pending'
+            observed_at: '2026-11-21T10:26:34+08:00: build in progress; dist/bin/libxul.so ELF64 present, 260808256 bytes, result pending'
+            libxul_elf_build_id: b93f7f5b7605bece329ae34e5abaf5f688fb82c4
+            wasm_target_validation: 'both actual build modules match isolated SHA-256 exactly; 4+5 representative function exports confirmed'
+            source_metadata: 'unstamped Git candidate: source-repo.h empty; generated app INI SourceStamp absent, BuildID 20261120232713'
+            source_metadata_fix: '4eed287: separate actual configure + upstream metadata targets yield both stamped INIs, BuildID 20261121021849; not applied to active attempt'
             offline_delivery: 'daffb7d: waiting_for_package; no copied candidate or browser run yet; stock transfer verified on x86_64'
             packaging: 'efa0277: waiting_for_build; no mach package log, verified tar, or page launch'
             candidate_archive_audit: 'final post-build driver receipt pending'
