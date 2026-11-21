@@ -10,7 +10,13 @@
 
 ### 下一项验收
 
-保留旧输入、原始 81,700,272 字节 tar、审计归档和旧 `libxul.so` 后，核对 Git 新旧完整 domtrace 文件树，仅替换三个有差异的原生文件，增量重配新尝试 `attempt.H5K1EqGg`（输入 `4eed287`）。真实预检：两份 INI 均有正确基线 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、BuildID `20261121023929`。10:46 +08:00 在 build，打包/页面均等待。新的正式验收还要求测试页 origin、同一顶层 WindowID 和正数序号；旧开发版不能通过这一档位。
+保留旧输入、原始 81,700,272 字节 tar、审计归档和旧 `libxul.so` 后，核对 Git 新旧完整 domtrace 文件树，仅替换三个有差异的原生文件，增量重配新尝试 `attempt.H5K1EqGg`（输入 `4eed287`）。真实预检：两份 INI 均有正确基线 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、BuildID `20261121023929`。11:17 +08:00 在 build（`dom/localstorage`），打包/页面均等待。新的正式验收还要求测试页 origin、同一顶层 WindowID 和正数序号；旧开发版不能通过这一档位。
+
+### 后续源码增量：DOM 类型和五项只读属性（尚未发布）
+
+`810c3e2` 依据 Firefox 159 的 WebIDL 声明接入 `Document.compatMode/contentType`、`Element.tagName/localName`、`Node.nodeName`。成功 `createElement` 的返回值用原生 DOM JSClass 名渲染，例如 `[Object HTMLDivElement]`，不读取页面的 `constructor` 或 `toString`；不据此生成对象关联 ID。新增 `--require-dom-shape` 档要求在同一页面窗口顺序识别八条值与类型都正确的记录。
+
+实测分层：宿主筛选/序列化和八事件判定反例通过；新绑定头在候选原配置下编译得到 489,936 字节 x86_64 ELF 对象（SHA-256 `d4ec73d4ab8528070e2916ffa1dce123b4b26ad11cc2786300e79c5a206abb9b`）。旧开发版在仅回环环境能正确执行扩展后的页面、OFF/ON 均正常退出，基础事件仍可读；严格八事件检查按预期失败。没有改动正在构建的 `4eed287`，八事件浏览器正例仍待后续集成。
 
 ## 历史过程：从宿主 writer 到首个受控页面
 
