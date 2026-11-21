@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T16:58:25+08:00'
+generated_at: '2026-11-21T17:16:07+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -272,10 +272,14 @@ projects:
             workspace_in_container: /var/tmp/ruyi-ff159-window-actor
             product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
             attempt: attempt.6D26B4Jt
-            observed_at: '2026-11-21T16:55:00+08:00: full build reached dom/media/platforms/ffmpeg/ffmpeg57 (68:14 in log); audited package and page receipts pending'
+            observed_at: '2026-11-21T17:12:56+08:00: full build reached dom/view-transitions (86:15 in log); audited package and page receipts pending'
             source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
             scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
             page_receipt: pending
+          parent_boundary_test:
+            implementation: fed4558
+            verification: '69 Linux Python tests, real writable-versus-read-only FD check; stock Firefox acknowledged top and two frames with zero output'
+            candidate_receipt: pending
           parent_window_gate:
             implementation: 8b2637c
             source_checks: '261 IPDL inputs, 17 staged objects linked, native model verifies readiness, stale epochs, shared markers, cap and I/O failure'
