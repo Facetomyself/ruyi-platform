@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T18:15:46+08:00'
+generated_at: '2026-11-21T18:32:42+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -281,7 +281,7 @@ projects:
             workspace_in_container: /var/tmp/ruyi-ff159-window-actor
             product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
             attempt: attempt.6D26B4Jt
-            observed_at: '2026-11-21T18:12:59+08:00: full build reached toolkit/components/autocomplete (146:20 in log); package and page receipts pending'
+            observed_at: '2026-11-21T18:29:18+08:00: full build reached security/nss/lib/freebl (162:38 in log); package and page receipts pending'
             source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
             scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
             page_receipt: pending
@@ -293,8 +293,9 @@ projects:
             state: awaiting_accepted_delivery_for_same_package
             candidate_receipt: pending
           next_gate_storage_input:
-            implementation: 2d368a39b7266d6237f6af831b5b742eda2fae60
-            archive_sha256: bf254c6b1382b1a681b9071fd994d6fd1b22c57717eb66a5c4cd148d6e6c5af7
+            implementation: c455562a97d6f7cc23b299596025b01406274103
+            archive_sha256: a231b92b0146a8a0310f543a122e3505992411e26a8a6c1dd551935626803518
+            acceptance: 'asynchronous gate ACK, inotify drain before each close, explicit load-barrier receipt; native model and stock controls pass'
             state: archive_staged_only
           parent_window_gate:
             implementation: 8b2637c
