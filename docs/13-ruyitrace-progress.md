@@ -24,7 +24,7 @@
 
 新便携包 264,619,758 字节、214 项，SHA-256 `f93884493703e8d44734234dc1b3caf34784cb568c006ce9cf511be4b046cf03`；同包两份启动回执位于 `deliverables/linux-release-d7DBYN4g-wayland/launch-evidence.json`。原始归档、双会话/Storage 原始验收与失败记录均保留。其他 Win64 producer 的 Linux 浏览器挂接、ARM64 插桩内核及物理显示仍需独立验证。
 
-### 原生 ARM64：配置通过，单作业全量构建中
+### 原生 ARM64：配置通过，首次全量构建在内存耗尽前主动停止
 
 `oracle-reverse-dev` 使用有独立挂载的 `ruyi-arm64-r53`，容器 8 GiB RAM / 9 GiB RAM+swap，单配置作业。新目录 `/home/ubuntu/ruyitrace-arm64-r53` 内的 Firefox Git HEAD 对应同一固定 tag 与提交；Clang 19.1.1、Rust 1.100.0 与 amd64 相同，原始 CI WASI tar 摘要保持一致，原生 Clang 已分别链接 C 和 C++ 的 WASM 模块。
 
@@ -32,7 +32,11 @@
 
 `attempt.cNI0ah7I` 是同一隔离 ARM64 工作区的新全量构建，预算 1 个作业、1.6 CPU、8 GiB RAM / 9 GiB 合计。18:05 UTC 实测到 Rust `neqo-transport`（日志 21:51），cgroup `oom=0`、`oom_kill=0`。串行流水线仅在原版实际归档审计通过后运行打包器。ARM64 原生验收入口 `50e93e6` 严格绑定宿主、镜像、回执、ELF 和 Rust 架构；95 项 Python 回归通过。
 
-独立镜像 `sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec` 以 UID 1000、仅 lo、默认 seccomp、零 capabilities 与 NoNewPrivs=1，完成官方 Firefox 159.0 两轮真实页面、截图及退出 0，日志均为空。同一官方包按产品条件的反例因缺少事件失败，回执位于 `deliverables/linux-arm64-control-r54/stock-control.json`。ARM64 产品页等待器只有在预期 attempt 的原版审计和实际包身份均通过、主机有余量时才执行；当前没有产品正例或 ARM64 控制台发布资格。
+独立镜像 `sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec` 以 UID 1000、仅 lo、默认 seccomp、零 capabilities 与 NoNewPrivs=1，完成官方 Firefox 159.0 两轮真实页面、截图及退出 0，日志均为空。同一官方包按产品条件的反例因缺少事件失败，回执位于 `deliverables/linux-arm64-control-r54/stock-control.json`。ARM64 产品页等待器只有在预期 attempt 的原版审计和实际包身份均通过、主机有余量时才执行。
+
+18:28 UTC（02:28 +08:00），`attempt.cNI0ah7I` 的原生 Rust `gkrust` 使容器 RAM 与 swap 都超过 99%，匿名内存占主导。核对固定进程组后向 GNU timeout 发 TERM。父流水线终态 `build_and_archive_audit 143`，`oom=0`、`oom_kill=0`，没有 `archive-audit.json` 或包身份；等待器 `waiting_for_audited_package 1`。老 Bash EXIT trap 在终止时误写子回执 `build 0`，阶段从未到 `complete`，打包未运行。保留该回执，`2590d1e` 让后续信号退出写明确非零，并加入实际 SIGTERM 回归。停止证据在 `deliverables/linux-arm64-control-r54/memory-pressure-stop.json`，容器限额、宿主 swap 与 SSH 保持原样。下一次整机运行前先验证降低 AArch64 Rust 实际内存峰值的方案，保持原版归档审计。
+
+同一提交补齐 `--arch aarch64` 的验收导出/导入、浏览器证据回放、闸门资格和便携组装路径。Electron ZIP、Firefox ELF、资格报告与 Node 的本机架构都须一致。官方 ARM64 和 amd64 Electron 45.4.1 ZIP 各 72 项实测只接受对应架构，旧正式 amd64 包仍可验证，错误选 ARM64 被拒绝。99 项 Python 与 23 项控制台集成通过；ARM64 产品包与资格仍为空。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
