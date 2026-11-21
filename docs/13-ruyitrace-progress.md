@@ -40,7 +40,11 @@
 
 `06cef34` 在 ARM64 已停止对象目录的独立副本中单作业重跑真实 `gkrust` 库边，原 Gecko 审计源与源树保持原样，监视器在 RAM+swap 连续三次达到 8,750,000,000 字节时才向本次组发停止信号。虽然请求 `-Clto=thin -Ccodegen-units=8`，实际 Cargo 在后部追加了上游 `codegen-units=1`，最后生效的是 **opt=1、ThinLTO、单 codegen unit**。`f3ee701` 已加入实际命令末值提取与回归。
 
-19:17 UTC（03:17 +08:00）已核实试验 `edge_audit_verified`：实际 `libgkrust.a` 173,793,714 字节、SHA-256 `46979e071d0c755b805085c43964729e5f42ca192707388f7898eadf2bb9e56f`，原版 networking 审计 rc=0；采样的 cgroup 内存峰值 8,589,930,496 字节（含文件缓存），swap 峰值 81,920 字节、总量峰值 8,590,012,416 字节，OOM 与 OOM kill 均为 0。原对象目录未生成这份归档，历史 attempt 和失败回执未重写。证据在 `deliverables/linux-arm64-rust-edge-r56/edge-observation.json`。102 项 Python 测试通过；后续应将已实测的 ThinLTO 只接到整机 ARM64 的 gkrust 边，保留原版网络审计与正常沙箱。此轮未重开整机、未打包。
+19:17 UTC（03:17 +08:00）已核实试验 `edge_audit_verified`：实际 `libgkrust.a` 173,793,714 字节、SHA-256 `46979e071d0c755b805085c43964729e5f42ca192707388f7898eadf2bb9e56f`，原版 networking 审计 rc=0；采样的 cgroup 内存峰值 8,589,930,496 字节（含文件缓存），swap 峰值 81,920 字节、总量峰值 8,590,012,416 字节，OOM 与 OOM kill 均为 0。原对象目录未生成这份归档，历史 attempt 和失败回执未重写。证据在 `deliverables/linux-arm64-rust-edge-r56/edge-observation.json`。102 项 Python 测试通过；后续应将已实测的 ThinLTO 只接到整机 ARM64 的 gkrust 边，保留原版网络审计与正常沙箱。当时未重开整机、未打包。
+
+后继 `efd4036` 新增仅对原生 AArch64 `gkrust` 静态库生效的包装器。只有实际 Cargo 命令的 target、crate 类型、opt=1、codegen-units=1、原 `-Clto` 和当次输出目录均匹配才改为 ThinLTO；其他 crate 和 amd64 透传，原版归档审计保持未修改。正式归档回执额外绑定当次包装器记录。原生小型 AArch64 Rust 静态库通过包装器与原版网络审计，只是测试 fixture。104 项 Python 回归通过。
+
+在 `/home/ubuntu/ruyitrace-arm64-r53/arm64-full-r57` 的干净 worktree 中启动新整机 `attempt.8rkEG7v2`，未复用上轮 LTO 试验归档。19:44 UTC（03:44 +08:00）日志已到 Rust `cc`（4:03），实测 Cargo/rustc 继承指定包装器、`oom=0`/`oom_kill=0`。仍为 1 作业、1.6 CPU、8 GiB RAM / 9 GiB 合计，额外看门狗监视总量。独立 `delivery-queue-r57` 按固定 attempt 等待完整构建、正式网络审计与实际 ARM64 包通过，再验收 `--parent-window-storage`；此时未触发 gkrust 包装器记录、未生成审核包或页面证据。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 

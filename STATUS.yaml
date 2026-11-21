@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T03:21:56+08:00'
+generated_at: '2026-11-22T03:50:34+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -126,7 +126,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '102 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '104 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -432,6 +432,17 @@ projects:
             evidence: deliverables/linux-arm64-rust-edge-r56/edge-observation.json
             evidence_sha256: a46d21958c23d72fba91a81882b28388276aa9afbe7078602aea76433d2afe5a
             full_build_restarted: false
+          arm64_thinlto_retry:
+            build_inputs: efd403672731f55522c6f1d35c18a5ccfd8ea773
+            evidence_tools: c16ec8a1af30d805c2e418e5e19dd8e260dfdd41
+            workspace: /home/ubuntu/ruyitrace-arm64-r53/arm64-full-r57
+            attempt: attempt.8rkEG7v2
+            policy: 'only native AArch64 gkrust staticlib is switched from fat LTO to ThinLTO; opt=1 and codegen-units=1; original networking audit required'
+            wrapper_fixture: 'actual ARM64 Rust staticlib rc=0, pristine networking audit rc=0, fixture only'
+            observed_at: '2026-11-21T19:44:40Z: native build at Rust cc, wrapper inherited by live Cargo/rustc, oom=0 and oom_kill=0'
+            limits: '1 job, 1.6 CPU, 8 GiB RAM and 9 GiB RAM+swap; combined memory watchdog at 8750000000 bytes'
+            delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r57
+            formal_audit_and_page: pending
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8
