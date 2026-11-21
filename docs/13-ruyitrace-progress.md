@@ -46,9 +46,13 @@
 
 在 `/home/ubuntu/ruyitrace-arm64-r53/arm64-full-r57` 的干净 worktree 中启动新整机 `attempt.8rkEG7v2`，未复用上轮 LTO 试验归档。19:44 UTC（03:44 +08:00）日志已到 Rust `cc`（4:03），实测 Cargo/rustc 继承指定包装器、`oom=0`/`oom_kill=0`。仍为 1 作业、1.6 CPU、8 GiB RAM / 9 GiB 合计，额外看门狗监视总量。独立 `delivery-queue-r57` 按固定 attempt 等待完整构建、正式网络审计与实际 ARM64 包通过，再验收 `--parent-window-storage`；此时未触发 gkrust 包装器记录、未生成审核包或页面证据。
 
-该次构建后来在 Rust 依赖阶段被旧看门狗主动停止，`build 143`，没有到 `gkrust`。原回执的采样峰值 RAM 8,589,934,592、swap 395,255,808、合计 8,984,371,200 字节；OOM 计数始终为零。彼时旧策略只按总量判断、未采内存组成，不能据此断定触发点主要是哪种内存。`daf5236` 的新看门狗区分干净非活跃文件页和工作量估算，保留紧急总量线并记录触发采样；106 项回归通过，尚未用新策略重开整机构建。停止回执位于 `deliverables/linux-arm64-desktop-control-r58/build-watchdog-stop.json`。
+该次构建后来在 Rust 依赖阶段被旧看门狗主动停止，`build 143`，没有到 `gkrust`。原回执的采样峰值 RAM 8,589,934,592、swap 395,255,808、合计 8,984,371,200 字节；OOM 计数始终为零。彼时旧策略只按总量判断、未采内存组成，不能据此断定触发点主要是哪种内存。`daf5236` 的新看门狗区分干净非活跃文件页和工作量估算，保留紧急总量线并记录触发采样；106 项回归通过；下一轮全量重试另记如下。停止回执位于 `deliverables/linux-arm64-desktop-control-r58/build-watchdog-stop.json`。
 
 同一提交补齐 ARM64 原生桌面模式与回执的架构准入。本机原生 Electron 45.4.1 通过 UID/网络命名空间运行实际主进程、preload 和 Vue；Firefox 使用七文件摘要相符的官方 ARM64 对照。renderer 实测 `seccomp=2`、`NoNewPrivs=1`；无双会话资格时，正式 IPC 在启动前停止，未写 profile、日志或闸门。该结果明确标为 stock 负对照，只可由相应负对照读取器验收。旧 amd64 两份真实桌面回执可逐字节回读，错选 ARM64 会失败。回执 `deliverables/linux-arm64-desktop-control-r58/stock-gate-control.json`，仍缺 ARM64 产品实采。
+
+`bfeafe6` 为缓存感知看门狗加入每 30 秒的有界 JSONL 采样，初始、终止与触发样本保留。此前 `arm64-rust-edge-r56` 的实采归档、原版审计回执、日志均保留；将 173,793,714 字节归档复制到 `retained/libgkrust.a` 并按原 SHA-256 核对后，仅清理同一试验的可再生成对象副本。两个历史整机构建目录保持原样，未调整宿主 swap 或容器限额。
+
+原生 ARM64 新工作区 `/home/ubuntu/ruyitrace-arm64-r53/arm64-full-r59` 直接检出固定 Firefox，使用已验证的 gkrust 专用 ThinLTO 包装器，单作业启动 `attempt.9PUNOGii`。20:47 UTC（04:47 +08:00）已处理实际 xpidl 构建项。60 秒的 cgroup 样本：内存 8,573,927,424、非活跃文件 5,506,314,240、工作量估算 3,067,699,200、swap 86,016 字节，OOM 和 OOM kill 均为 0。该样本只用于说明当前阶段的缓存组成，并非最终峰值或旧停止原因。证据 `deliverables/linux-arm64-retry-r59/early-memory-sample.json`。`delivery-queue-r59` 等正式 Rust 网络审计与 ARM64 包身份均通过才启动同包页面，随后仅对通过的原始证据运行导出；未生成正式 ARM64 包或页面证据。106 项 Python 回归通过。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 

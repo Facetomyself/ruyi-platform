@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T04:30:03+08:00'
+generated_at: '2026-11-22T04:54:35+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -443,7 +443,7 @@ projects:
             stop_evidence: deliverables/linux-arm64-desktop-control-r58/build-watchdog-stop.json
             stop_evidence_sha256: 2273903bbc991d9eedcecfc107825cb550580ab2d5c581f737ca2e14c41839a9
             stop_result: 'build 143, host build_and_archive_audit 143, delivery observer returned 1; no archive or package'
-            new_monitor: 'daf5236 records clean inactive file versus working estimate and a hard guard; tests pass, next full run pending'
+            new_monitor: 'daf5236 records clean inactive file versus working estimate and a hard guard; tests pass; separate newest retry is tracked below'
             limits: '1 job, 1.6 CPU, 8 GiB RAM and 9 GiB RAM+swap; combined memory watchdog at 8750000000 bytes'
             delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r57
             formal_audit_and_page: 'not reached in stopped attempt'
@@ -453,6 +453,18 @@ projects:
             evidence: deliverables/linux-arm64-desktop-control-r58/stock-gate-control.json
             evidence_sha256: 6ff0e82c23c8f12220131c16b06170bcd9728957a10fc2c6c51b0d04c7277eec
             observed: 'sandboxed renderer seccomp=2/NoNewPrivs=1, no spawn, profile, trace or marker; old AMD64 real receipts replay byte-exact and cross-arch rejection passes'
+          arm64_cache_aware_retry:
+            build_inputs: bfeafe683afc1ba54ae3b4ad757d08c390edb72b
+            workspace: /home/ubuntu/ruyitrace-arm64-r53/arm64-full-r59
+            attempt: attempt.9PUNOGii
+            observed_at: '2026-11-21T20:47:26Z: compiling xpidl outputs; oom=0 and oom_kill=0'
+            policy: '1 job, gkrust-only ThinLTO; 8 GiB memory plus 1 GiB swap; clean inactive file discount and bounded live telemetry'
+            observed_sample_bytes: {memory: 8573927424, inactive_file: 5506314240, working_estimate: 3067699200, swap: 86016}
+            evidence: deliverables/linux-arm64-retry-r59/early-memory-sample.json
+            evidence_sha256: 994be4eb748cb2f3c6ca1a9025cfee69fc4ff916a6ddaa0fc73ef2e47cf7cb56
+            delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r59
+            prior_audited_edge_retained: /home/ubuntu/ruyitrace-arm64-r53/arm64-rust-edge-r56/retained/libgkrust.a
+            formal_audit_package_and_pages: pending
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8
