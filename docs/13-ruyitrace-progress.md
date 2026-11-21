@@ -66,7 +66,7 @@
 
 `21690a1` 加固后续审计：核对路径、文件身份、大小、时间戳与 SHA-256 在原版网络检查前后一致，对归档变动返回 `invalidated`。同字节文件置换、原地改写、链接和管道负例通过；111 项 Linux Python 回归通过。当前构建输入保持原样，该候选的原版审计仍按固定版本执行。
 
-`01ae2a9` 将无额外参数的原始启动器 X11／Wayland 验收扩展到原生 ARM64：guest 入口、包回执及 Electron／Firefox／libxul ELF 必须匹配，ARM64 导入还核对便携 tar 内这三份 ELF。旧 amd64 发布归档及已有的真实 X11 截图、Wayland 回执用新版读取器逐字节复核成功，交叉当作 ARM64 会被拦截。113 项 Linux Python 回归通过；ARM64 产品窗体和物理显示未运行。21:47 UTC `attempt.gIhdRoB6` 已推进到 `geckoservo`，OOM 为零，正式 gkrust 回执仍待生成。
+`01ae2a9` 将无额外参数的原始启动器 X11／Wayland 验收扩展到原生 ARM64：guest 入口、包回执及 Electron／Firefox／libxul ELF 必须匹配，ARM64 导入还核对便携 tar 内这三份 ELF。旧 amd64 发布归档及已有的真实 X11 截图、Wayland 回执用新版读取器逐字节复核成功，交叉当作 ARM64 会被拦截。113 项 Linux Python 回归通过；ARM64 产品窗体和物理显示未运行。21:47 UTC `attempt.gIhdRoB6` 推进到 `geckoservo`；21:50 UTC 已观察正式候选启动 `gkrust`，包装器回执与运行中 `rustc` 的参数一致：AArch64 `staticlib`、ThinLTO、opt=1、单 codegen unit。见 `deliverables/linux-arm64-cgroup-r61/gkrust-invocation.json`。OOM 计数为零，实际归档审计与发布包仍待生成。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
