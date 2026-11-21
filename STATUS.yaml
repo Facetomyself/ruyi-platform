@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T06:54:01+08:00'
+generated_at: '2026-11-22T07:04:34+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -28,8 +28,15 @@ projects:
       linux_x86_64: ready (rebuilt; native x86_64 CPU, Ubuntu 24.04 container, glibc 2.39; live HTTPS 200, TLS 1.3, h2)
       darwin_x86_64: build-required
       linux_aarch64: build-required
-    tests: 19/19
-    latest_local_contract: '2026-11-22: aarch64 Python 3.10.12, 19/19; declared publicsuffixlist 1.1.2.20261121 installed into a private test directory; no native ARM64 release or live transport test'
+    tests: 21/21
+    latest_local_contract: '2026-11-22: aarch64 Python 3.10.12, 21/21 including actual native test ELF; no native ARM64 release or live transport test'
+    linux_native_candidate_preflight:
+      tool: fd3d4f34edda32b06d3128a6858ec56184ce2230
+      scope: 'static ELF, dynamic exports, dependency names, runpath and glibc; no runtime qualification'
+      amd64_historical: '14 libs, 31 core + 2 QUIC exports, highest required GLIBC_2.38; loader-path exceptions only in reference mode'
+      aarch64: 'synthetic native ELF and negative controls verified; actual Necko/NSS set remains build-required'
+      evidence: deliverables/linux-ruyihttp-preflight-r70/historical-amd64-abi.json
+      evidence_sha256: bcd399525e74cea58e86af766bd9f75d4574e5895664db849fd725a24ebcbbb6
     phase: Linux x86_64 wheel 已通过 HTTPS live smoke；其余平台见 build 矩阵
     blocked_by: []
     verified:
