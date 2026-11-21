@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T20:51:24+08:00'
+generated_at: '2026-11-21T21:18:33+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -320,7 +320,7 @@ projects:
             state: build_running
             attempt: attempt.d7DBYN4g
             workspace_in_container: /var/tmp/ruyi-ff159-window-gate
-            observed_at: '2026-11-21T20:47:35+08:00: build reached image (102:52 in log)'
+            observed_at: '2026-11-21T21:12:51+08:00: build reached netwerk/protocol/res (128:20 in log)'
           parent_window_gate:
             implementation: 8b2637c
             source_checks: '261 IPDL inputs, 17 staged objects linked, native model verifies readiness, stale epochs, shared markers, cap and I/O failure'
@@ -333,7 +333,9 @@ projects:
             source_checks: '18 staged Gecko objects linked, native 16-row summary and shared cap verified, stock x86_64 fixture passes with no trace'
             qualification: '--parent-window-storage requires ungated DOM/click/Storage summaries plus dual-session page'
             browser_receipt: pending
-          risk: 'ungated x86_64 parent capture verified; controlled sessions, Storage and native AMD64 portable desktop launch await separate acceptance'
+            console_opt_in: '0c7cc1a: typed switch, same-install seven-file receipt and raw Storage replay; ungated only, default off'
+            console_checks: '23 Node and 79 Python regressions; clean 66-file console build with rendered toggle'
+          risk: 'ungated x86_64 parent capture and AMD64 native headless window verified; controlled sessions and Storage browser proof still pending'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
