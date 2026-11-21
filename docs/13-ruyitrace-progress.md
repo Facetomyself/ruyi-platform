@@ -8,11 +8,13 @@
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
 
-同一安装副本 `boundary_verified`：顶层与同源 iframe 分属两个 WindowID、各两条点击，异源 iframe 完成页面但零输出。父进程实际持有两个输出文件的可写 FD。归档导出到本地重建并独立复验，原始 9+2 条记录已在沙箱开启的 ARM64 Electron 45.4.1 窗口逐条显示。amd64 便携目录已组装并逐文件读回验证，归档 264,593,938 字节、212 项、SHA-256 `7a54bb2ce2b4a24c4aadecac51c1a0694c40b130641854ffc115bbe6c26b2075`。交付位于 `deliverables/linux-release-6D26B4Jt`；amd64 整机桌面启动、闸门和 Storage 的浏览器正例另验。新的独立 `attempt.d7DBYN4g` 已启动，输入 `c455562`，未改原包。
+同一安装副本 `boundary_verified`：顶层与同源 iframe 分属两个 WindowID、各两条点击，异源 iframe 完成页面但零输出。父进程实际持有两个输出文件的可写 FD。归档导出到本地重建并独立复验，原始 9+2 条记录已在沙箱开启的 ARM64 Electron 45.4.1 窗口逐条显示。amd64 便携目录已组装并逐文件读回验证，归档 264,593,938 字节、212 项、SHA-256 `7a54bb2ce2b4a24c4aadecac51c1a0694c40b130641854ffc115bbe6c26b2075`。交付位于 `deliverables/linux-release-6D26B4Jt`；amd64 来宾原生窗口已另验通过，闸门和 Storage 正例仍待。新的独立 `attempt.d7DBYN4g` 已启动，输入 `c455562`，未改原包。
 
-`99cb728` 又在 host185 用 Node 22.14.0 驱动同一便携应用成品的实际主进程处理函数，内置发现及真实 `ff:launch` 接通同一审计内核。故意设置冲突的继承环境，OFF 页执行结束且零日志；ON 内容 PID 311 的 9 条 DOM 和 2 条点击在实际日志 IPC 逐字段匹配。通过报告绑定内核和控制台清单摘要，保存在 `deliverables/linux-release-6D26B4Jt/console-ipc-launch-result.json`。Electron 事件注册使用替身，amd64 原生窗口仍待；host185 `user.max_user_namespaces=0`、glibc 2.17，原设置保持不动。
+`99cb728` 又在 host185 用 Node 22.14.0 驱动同一便携应用成品的实际主进程处理函数，内置发现及真实 `ff:launch` 接通同一审计内核。故意设置冲突的继承环境，OFF 页执行结束且零日志；ON 内容 PID 311 的 9 条 DOM 和 2 条点击在实际日志 IPC 逐字段匹配。通过报告绑定内核和控制台清单摘要，保存在 `deliverables/linux-release-6D26B4Jt/console-ipc-launch-result.json`。此轮使用 Electron 事件注册替身；host185 `user.max_user_namespaces=0`、glibc 2.17，原设置保持不动。
 
-`9603ad6` 完成 amd64 桌面验收来宾预检：Debian Bookworm 的 InRelease 签名、安装镜像摘要表及内核/initrd 均核对。host185 的只读、无外网、零 capabilities QEMU 8.2.2 容器以单核、896 MiB 启动 Debian `6.1.0-50-amd64`；来宾无网卡，普通 UID 1000 顺利建立 user/net/PID 命名空间并正常关机。宿主的 Linux 策略保持原状。相同 ABI 的 ext4/SCSI/virtio-scsi 模块已核对；来宾接入实际便携包和桌面库仍待，不将此预检写成原生窗口通过。
+`9603ad6` 完成 amd64 桌面验收来宾预检：Debian Bookworm 的 InRelease 签名、安装镜像摘要表及内核/initrd 均核对。host185 的只读、无外网、零 capabilities QEMU 8.2.2 容器以单核、896 MiB 启动 Debian `6.1.0-50-amd64`；来宾无网卡，普通 UID 1000 顺利建立 user/net/PID 命名空间并正常关机。宿主的 Linux 策略保持原状。相同 ABI 的 ext4/SCSI/virtio-scsi 模块已核对。
+
+`6225121` 随后在同一隔离来宾用只读 Ubuntu 24.04 根盘启动便携归档的真实 amd64 Electron 45.4.1。验收入口独立，正式 Electron/Firefox、main/preload/Vue 文件按交付摘要核对。native BrowserWindow 的 renderer 保持 sandbox、context isolation、Node 关闭，实测 seccomp=2、NoNewPrivs=1。通过正式 preload 和主进程启动 Firefox：OFF 零文件，ON 活跃 Web 内容 PID 505 的 9 条 DOM 和 2 条点击逐单元格与原始日志相符。串口回执、两张 1000×615 窗口截图和 Firefox 页面图已通过摘要复验，保存在 `deliverables/linux-release-6D26B4Jt/amd64-native-desktop`。范围是 QEMU amd64 Ozone headless 原生窗口，原便携归档与宿主配置未改。
 
 ### 历史：x86_64 开发版基础采集
 
@@ -50,7 +52,7 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 组装器独立复验父进程传输档位的真实页面回执、审计包身份、原始 tar 摘要及 OFF/ON 的 DOM/click 记录。只有核验通过才将干净的控制台应用放入 `resources/app`、从该内核 tar 解出 `resources/kernel`。闸门资格另依据同包双会话；原始 trace 和用户配置都不进入输出。组装不更改目标机 Chromium 沙箱，也不授予特权。
 
-真实官方 Electron amd64 ZIP 的 72 个条目通过布局检查，干净控制台构建的 66 个文件通过清单核验。上一候选的实际 `run_page 1` 明确拒绝；实际 `attempt.6D26B4Jt` 作为首个通过的候选组装。只导出非闸门资格，便携目录的 amd64 原生窗口尚未实跑。
+真实官方 Electron amd64 ZIP 的 72 个条目通过布局检查，干净控制台构建的 66 个文件通过清单核验。上一候选的实际 `run_page 1` 明确拒绝；实际 `attempt.6D26B4Jt` 作为首个通过的候选组装。只导出非闸门资格；真实 amd64 Electron 窗口已通过独立的沙箱来宾联动测试。
 
 `05a766b` 增加最小交付转移：只导出验收通过的原始 tar、选中的 DOM/click/可选 Storage 或闸门日志、截图和回执。目的端重新计算逐文件摘要，从 tar 重建发行安装树，并复验 ELF 身份及真实页面判定后才发布新目录。host185 的 Python 3.6 通过白名单把固定证据交给离线工具链容器，验证器无原始目录挂载且不增加 capabilities。77 项 Python 测试通过；host185 真实工具链镜像用测试材料完成往返重建，旧发行候选的真实 `run_page 1` 被拒绝。`attempt.6D26B4Jt` 合格后实跑 host185 导出与接收重建，原始 tar 与捕获文件的摘要一致。
 
@@ -60,7 +62,7 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 真实重生成 261 个 IPDL 输入；17 个对象含两个窗口 actor 和生成的双向 IPC，通过部分链接。最终父端确认去重实现也重编链接。原生模型及 21 项控制台回归、6 项资格签发测试通过，包含父端所见 PID 不同于内层 PID 的用例。新增 `--parent-window-gate` 要求同一安装包先通过非闸门 DOM/click，再通过双会话页。`attempt.6D26B4Jt` 输入仍是 `86d4352`，保持未改；后续集成的父进程闸门仍待真实页面验证。
 
-`c455562` 修正闸门验收时序：页面让出内容主线程等待异步确认，以本地图片请求延迟截图；关闸前等待同一会话的完整 DOM 和点击写入后才移除标记。原生模型覆盖「关闸 HTTP 先到，采集 IPC 后到」；真实 stock Firefox 在模拟确认下跑完五步，去掉模拟确认后按预期缺失首个 `session_started`。73 项 Python 测试通过，父端资格还需该次真实页面原始证据。新的固定归档已存 host185，旧归档保留；串行构建入口验证前一候选的真实页面和边界回执，旧失败回执会在创建新目录之前被挡住。前序 `attempt.6D26B4Jt` 已完整通过非闸门页及来源边界；20:05 +08:00 确认唯一后继 `attempt.d7DBYN4g` 正编译，日志到 `dom/media/gmp`。
+`c455562` 修正闸门验收时序：页面让出内容主线程等待异步确认，以本地图片请求延迟截图；关闸前等待同一会话的完整 DOM 和点击写入后才移除标记。原生模型覆盖「关闸 HTTP 先到，采集 IPC 后到」；真实 stock Firefox 在模拟确认下跑完五步，去掉模拟确认后按预期缺失首个 `session_started`。73 项 Python 测试通过，父端资格还需该次真实页面原始证据。新的固定归档已存 host185，旧归档保留；串行构建入口验证前一候选的真实页面和边界回执，旧失败回执会在创建新目录之前被挡住。前序 `attempt.6D26B4Jt` 已完整通过非闸门页及来源边界；20:47 +08:00 确认唯一后继 `attempt.d7DBYN4g` 正编译，日志到 `image`。
 
 ### 可选 Web Storage 摘要 `8ac02b1`
 

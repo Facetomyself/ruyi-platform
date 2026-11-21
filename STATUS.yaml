@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T20:08:51+08:00'
+generated_at: '2026-11-21T20:51:24+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -241,7 +241,10 @@ projects:
           actual_bundle: deliverables/linux-release-6D26B4Jt/ruyitrace-linux-amd64-6D26B4Jt.tar.gz
           bundle_sha256: 7a54bb2ce2b4a24c4aadecac51c1a0694c40b130641854ffc115bbe6c26b2075
           bundle_bytes: 264593938
-          bundle_desktop_launch_verified: false
+          bundle_desktop_launch_verified: true
+          bundle_desktop_launch_scope: '6225121: amd64 QEMU TCG with actual Electron 45.4.1, headless native BrowserWindow, isolated QA entry loading byte-verified released main/preload/renderer and bundled Firefox; no physical compositor claim'
+          bundle_desktop_launch_evidence: deliverables/linux-release-6D26B4Jt/amd64-native-desktop/result.json
+          bundle_desktop_launch_evidence_sha256: bad7b7b0c4f8a308eb72a3b2cc9ff7ca7b68cf10fcaf78bf9c7094fcfb4e3829
           amd64_guest_preflight: '9603ad6: signed Debian Bookworm 6.1.0-50-amd64, QEMU 8.2.2 TCG; unprivileged user/net/PID namespaces with no NIC verified; application pending'
           amd64_guest_evidence: deliverables/linux-release-6D26B4Jt/amd64-guest-preflight.json
           release_evidence: deliverables/linux-release-6D26B4Jt/release-evidence.json
@@ -317,7 +320,7 @@ projects:
             state: build_running
             attempt: attempt.d7DBYN4g
             workspace_in_container: /var/tmp/ruyi-ff159-window-gate
-            observed_at: '2026-11-21T20:05:00+08:00: build reached dom/media/gmp (59:52 in log)'
+            observed_at: '2026-11-21T20:47:35+08:00: build reached image (102:52 in log)'
           parent_window_gate:
             implementation: 8b2637c
             source_checks: '261 IPDL inputs, 17 staged objects linked, native model verifies readiness, stale epochs, shared markers, cap and I/O failure'
