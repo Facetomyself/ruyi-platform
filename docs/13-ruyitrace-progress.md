@@ -58,6 +58,10 @@
 
 `4377a33` 为后续候选新增来源连续性校验：打包复核同次 `gkrust` 包装器记录的字节摘要，移交拒绝摘要与审计不同的包，资格记录保留明确的架构和来源。该字段对只用于有记录的 ARM64 产品包；旧回执仍兼容；此次未改动已启动过的候选输入。107 项 Python 回归、5 项闸门测试通过。
 
+空闲构建容器原 cgroup 的可回收 slab 为 1,534,912,440 字节。只重启该容器的 `sleep infinity`，同镜像、挂载、内存、CPU、PID 与安全设置下测得新基线 61,968 字节；只读检查固定源码并读取 2,048 个文件（15,671,002 字节）后为 792,584 字节，OOM 与 OOM kill 均为零。见 `deliverables/linux-arm64-cgroup-r61/memory-isolation.json`。这是源码探测，不是整机构建峰值。
+
+`bbe8632` 为已停止的 ARM64 构建增加仅复用源码的入口：要求当前历史 attempt 是 `build 143`、无正式归档或包装器回执、旧对象另存，且新 cgroup 的 slab 与 swap 有低基线。已在同一固定源码上启动 `attempt.gIhdRoB6`，旧对象完整保留在 `attempt.9PUNOGii.stopped-objects`，新候选从空对象目录单作业编译，构建输入仍为 `bfeafe6`。实测编译前内存 126,636,032 字节、可回收 slab 795,176 字节、swap 0；21:17 UTC 已输出 XPT 与 cbindgen 元数据，OOM 计数为 0。正式审计、包身份和页面导出串行等待同次候选；尚无 ARM64 产品实采。108 项 Linux Python 回归通过。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
