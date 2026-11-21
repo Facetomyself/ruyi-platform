@@ -118,6 +118,14 @@ ARM64 未插桩 Firefox 的 OFF、ON 均确认页面完成、截图有效、进�
 
 真实文件回归覆盖首条被过滤、同名文件保留、严格 1 行上限和并发上限、用子进程文件大小限制触发写入故障。12 项控制台组合测试通过；以候选 Gecko 实际编译参数生成 x86_64 ELF 目标文件，未改动候选 objdir。此增量不是在运行的候选输入。`attempt.iqWqH54h` 已编译至 `netwerk/sctp/datachannel`，仍无最终 `libxul.so`、打包或页面验收回执。
 
+### 2026-11-21 10:02 +08:00：Linux Electron 成品应用目录与真实窗口日志验收
+
+控制台 `db93c37` 从已跟踪源码和锁定依赖构建完整的六路由 renderer 及 main/preload/shared。解包目录可由本地 Electron 直接启动，不需开发服务器。Linux 改用原生窗口装饰：实测 ARM64 Electron 45.4.1 的 Ozone headless 建窗时，原先的隐藏标题栏加 overlay 组合导致 SIGSEGV，而正常窗口装饰创建成功；缺少内置 Firefox 时侧栏也不再显示内核就绪。
+
+真实 BrowserWindow 用 `file:` 加载成品，保留 sandbox、contextIsolation 和禁用 Node 的渲染页，经真实 IPC 读取原生 C++ 测试写入器生成的 32 条合成行，页面分 20/12 逐字段与磁盘对照。确认第二页内容可见并取得 1000×615 PNG（SHA-256 `5fdfc959b6542f2ba2e5af182bd8e3f38e11d641a1716091530475bd7a1a1290`）。应用目录预览归档 354,776 字节，SHA-256 `e5145b9b61dce79fb171ab12cc7e2d47a05245b40023b02484b382c50324fc57`；不包含 Electron 运行时或 Firefox 内核。该验收是 Linux ARM64 上的实际 Electron 渲染及 IPC，不是物理显示器、全部功能页或采集浏览器本身的验收。
+
+x86_64 候选 `attempt.iqWqH54h` 在 `widget` 编译阶段，尚无最终 `libxul.so`、包身份或受控页面正例回执。本轮未触碰候选输入。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论

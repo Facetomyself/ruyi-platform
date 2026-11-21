@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T09:38:33+08:00'
+generated_at: '2026-11-21T10:04:18+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -195,6 +195,7 @@ projects:
         stock_control: '17c8e21: Firefox 159.0 ARM64 page receipts OFF/ON; stock correctly fails product ON'
         console_kernel_launch: '9e08fd4: 5/5; actual ff:launch IPC handler + stock ARM64 Firefox 159.0 + PNG/rc=0; no Electron window or instrumented capture'
         console_core_preview: '1e98ca7: bounded pagination and live append; native writer -> main/preload -> mounted Vue pages (20+12 rows); synthetic, not a browser capture'
+        console_native_window: 'db93c37: six-route app directory; real ARM64 Electron 45.4.1 sandboxed BrowserWindow, file: launch/log routes, 32 synthetic events checked (20+12), visible second-page PNG 1000x615; no instrumented Firefox bundled'
         audited_build:
           driver_commit: 1b9f4c6
           host: host185
@@ -207,7 +208,7 @@ projects:
             coordinator: 3a9c667
             observed_phase: 'automatic not_started (extra failure); manual review completed after both verified module replays'
             attempt: attempt.iqWqH54h
-            observed_at: '2026-11-21T09:36:59+08:00: build in progress, netwerk/sctp/datachannel; libxul and result pending'
+            observed_at: '2026-11-21T10:01:52+08:00: build in progress, widget; libxul and result pending'
             offline_delivery: 'daffb7d: waiting_for_package; no copied candidate or browser run yet; stock transfer verified on x86_64'
             packaging: 'efa0277: waiting_for_build; no mach package log, verified tar, or page launch'
             candidate_archive_audit: 'final post-build driver receipt pending'
