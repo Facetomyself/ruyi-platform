@@ -1,4 +1,4 @@
-# RuyiTrace 整体进度评估（更新于 2026-11-21）
+# RuyiTrace 整体进度评估（更新于 2026-11-22）
 
 > 编译只是验证手段。本文回答：**RuyiTrace 这个项目实际完成了多少。**
 
@@ -16,7 +16,13 @@
 
 以上采集档验证的是 amd64 Ozone headless 原生窗口与同包链路，Storage 和闸门分开使用。
 
-`e9bf87c` 另用同一发布归档验证了**无测试入口、无额外启动参数**的 X11 启动。隔离 amd64 来宾运行带认证的 Xvfb，原样执行 `launch-ruyitrace`；复测启动页绘制完毕后截图 1280×860（可见内置 Firefox）。窗体 `0x400002` 归属发布进程 PID 135，renderer PID 264 的 `seccomp=2`、`NoNewPrivs=1`。读回验收脚本绑定了发行 tar 中启动脚本摘要、运行身份及截图摘要；保留前两轮观察器未能同时验证窗体和 renderer 的终态，以及只画出侧栏的早期帧。证据在 `deliverables/linux-release-d7DBYN4g/amd64-x11-painted`。其他 Win64 producer 的 Linux 浏览器挂接、ARM64 插桩内核及物理显示/Wayland 均需独立证据。
+`e9bf87c` 另用同一发布归档验证了**无测试入口、无额外启动参数**的 X11 启动。隔离 amd64 来宾运行带认证的 Xvfb，原样执行 `launch-ruyitrace`；复测启动页绘制完毕后截图 1280×860（可见内置 Firefox）。窗体 `0x400002` 归属发布进程 PID 135，renderer PID 264 的 `seccomp=2`、`NoNewPrivs=1`。读回验收脚本绑定了发行 tar 中启动脚本摘要、运行身份及截图摘要；保留前两轮观察器未能同时验证窗体和 renderer 的终态，以及只画出侧栏的早期帧。证据在 `deliverables/linux-release-d7DBYN4g/amd64-x11-painted`。
+
+### 同包修正版通过原生 Wayland 与 X11 启动
+
+`7d76dc1` 修复原生 Wayland 首窗先隐藏、等待 `ready-to-show` 时无法建立 `xdg_toplevel` 的问题。旧版在 Weston 中两次只观察到 `wl_surface` 与共享内存缓冲区；进程仍有正常 renderer 沙箱，保留未通过回执。修正版只在真实 Wayland 会话建立即显示的首窗，X11/显式 headless 仍沿用等待。新控制台搭配同一已审计 Firefox 和旧资格文件，实际以原 `launch-ruyitrace` 空参数在 Weston 原生提交到 `xdg_toplevel`：configure ACK 1、1 次非空缓冲区提交、1 帧回调，无 X11 socket，renderer seccomp=2、NoNewPrivs=1。同一修正版在独立认证 Xvfb 中再次完成 1280×860 主面板及 renderer 核验。
+
+新便携包 264,619,758 字节、214 项，SHA-256 `f93884493703e8d44734234dc1b3caf34784cb568c006ce9cf511be4b046cf03`；同包两份启动回执位于 `deliverables/linux-release-d7DBYN4g-wayland/launch-evidence.json`。原始归档、双会话/Storage 原始验收与失败记录均保留。其他 Win64 producer 的 Linux 浏览器挂接、ARM64 插桩内核及物理显示仍需独立验证。ARM64 host `oracle-reverse-dev` 仅做只读预检：Ubuntu 24.04.4、glibc 2.39、2 核与 11199 MiB 可用内存、APT 有 Clang 19.1.1 候选；未安装工具链或开始编译。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 

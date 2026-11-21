@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T23:52:27+08:00'
+generated_at: '2026-11-22T00:45:05+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -125,8 +125,8 @@ projects:
       domtrace: reconstructed Linux subset; original Win64 sources unavailable
     build:
       win_amd64: released
-      linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture and unmodified Xvfb X11 launch'
-    tests: '87 Linux Python tests; 23 console integration tests plus compositor witness coverage'
+      linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
+    tests: '89 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -364,7 +364,24 @@ projects:
             x11_launcher: 'e9bf87c: actual unmodified launch-ruyitrace, empty argv, authenticated Xvfb, painted main panel, sandboxed renderer PID 264; not a physical compositor or capture run'
             x11_launch_receipt: deliverables/linux-release-d7DBYN4g/amd64-x11-painted/x11-result.json
             x11_launch_receipt_sha256: 151c125831b2e16507c2153d6e7089f4129f46546c30dac9d91d8698bc190d79
-          risk: 'tested AMD64 release tiers verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
+          wayland_console_variant:
+            implementation: 7d76dc1ab78c1161e8c0c205675efd2956668723
+            path: deliverables/linux-release-d7DBYN4g-wayland/ruyitrace-linux-amd64-d7DBYN4g-wayland.tar.gz
+            evidence: deliverables/linux-release-d7DBYN4g-wayland/launch-evidence.json
+            sha256: f93884493703e8d44734234dc1b3caf34784cb568c006ce9cf511be4b046cf03
+            bytes: 264619758
+            runtime: unchanged audited d7DBYN4g Firefox
+            verified: 'no-argument original launcher in independent Xvfb and Weston-headless guests; XDG configure ACK, buffer commit, compositor frame callback, sandboxed renderer and no X11 socket in Wayland run'
+          arm64_build_preflight:
+            observed_at: '2026-11-21T16:18:50Z'
+            host: oracle-reverse-dev
+            os: Ubuntu 24.04.4 LTS
+            native_arch: aarch64
+            processors: 2
+            mem_available_mib: 11199
+            clang_19_candidate: '1:19.1.1-1ubuntu1~24.04.2'
+            result: 'read-only feasibility probe; toolchain not installed and full build not started'
+          risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
