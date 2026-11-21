@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T18:32:42+08:00'
+generated_at: '2026-11-21T18:51:32+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -227,6 +227,11 @@ projects:
           development: '3 verified real x86_64 Firefox rows from attempt.iqWqH54h / PID 341 replayed in ARM64 Electron 45.4.1; no writer ran during replay'
           evidence: deliverables/linux-console-iqWqH54h-replay
           release: pending_passing_parent_window_delivery
+        verified_delivery_transfer:
+          implementation: 05a766b
+          verification: '77 Python tests; host image rebuilt staged fixture, checked ELF build ID and page logs; prior real run_page 1 blocked'
+          host_checks: /home/ruyi-smoke-159-x86/checks-transfer-05a766b
+          real_transfer: pending_passing_parent_window_delivery
         portable_console_assembly:
           implementation: 571d380
           verification: '64 Linux Python tests; clean 66-file console build; official Electron amd64 ZIP 72 entries; real prior run_page 1 rejected'
@@ -281,7 +286,7 @@ projects:
             workspace_in_container: /var/tmp/ruyi-ff159-window-actor
             product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
             attempt: attempt.6D26B4Jt
-            observed_at: '2026-11-21T18:29:18+08:00: full build reached security/nss/lib/freebl (162:38 in log); package and page receipts pending'
+            observed_at: '2026-11-21T18:48:03+08:00: full build compiling Rust bindgen stage (181:06 in log); package and page receipts pending'
             source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
             scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
             page_receipt: pending
