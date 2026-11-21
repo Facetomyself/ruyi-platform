@@ -27,7 +27,7 @@ submodules/ruyihttp/
 │   ├── darwin_x86_64/   空（build-required，仅 README）
 │   └── linux_aarch64/   空（build-required，仅 README）
 ├── tools/               build_native.py / verify_runtime.py / check_linux_candidate.py
-├── tests/               21 项契约及 ELF 预检测试
+├── tests/               26 项契约及原生预检测试
 ├── ci/smoke_local.py
 ├── docs/                build-native / licensing / platform-support
 ├── dist-v0.9.0-legacy/  脱钩旧 wheel 归档 + VERIFICATION.md
@@ -59,6 +59,8 @@ RUYIHTTP_PLATFORM=linux_aarch64 python -m pip wheel --no-build-isolation --no-de
 `fd3d4f3` 增加只读 `check_linux_candidate.py DIR --arch aarch64`，核对完整 14 库的 ELF 架构、31 个核心和 2 个 QUIC 函数的**已定义动态导出**、依赖库名称、同级 loader 路径及至多 `GLIBC_2.39` 的符号需求。它既不加载库，也不写运行时清单。真实 ARM64 Necko/NSS 原生集仍为 `build-required`；还需实际目标机加载、NSS 版本和回环 HTTP/2／QUIC。
 
 走 `--reference` 实测历史 amd64 14 库和全部导出匹配，最高动态版本需求 `GLIBC_2.38`（发行 wheel 仍声明 2.39）。旧库的继承搜索路径超出同级，默认候选检查会拦截；未复制或改写这些库。实际证据 `deliverables/linux-ruyihttp-preflight-r70/historical-amd64-abi.json`。ARM64 测试在本机编译非产品 ELF，覆盖错误架构、漏导出和引用未定义，21 项回归通过；非 ARM64 runtime 发行证据。
+
+`2903c12` 还加入只读 `build_native.py --inspect-wheel`：先限制 ZIP 中央目录，再仅展开声明的原生库，拒绝重复 basename、链接、非本架构 Linux ELF 或检查期间变动的 wheel。历史 Win64 的六个成员通过；旧 macOS 包缺 `libnecko_quic.dylib`，按预期失败。用现有 Linux 14 库构造的布局试件与 runtime manifest 逐项相符。26 项回归通过，既有库和运行时清单保持原样。
 
 ## 为什么原生库入库
 
