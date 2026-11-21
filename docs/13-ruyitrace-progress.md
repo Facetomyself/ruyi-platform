@@ -12,6 +12,8 @@
 
 `99cb728` 又在 host185 用 Node 22.14.0 驱动同一便携应用成品的实际主进程处理函数，内置发现及真实 `ff:launch` 接通同一审计内核。故意设置冲突的继承环境，OFF 页执行结束且零日志；ON 内容 PID 311 的 9 条 DOM 和 2 条点击在实际日志 IPC 逐字段匹配。通过报告绑定内核和控制台清单摘要，保存在 `deliverables/linux-release-6D26B4Jt/console-ipc-launch-result.json`。Electron 事件注册使用替身，amd64 原生窗口仍待；host185 `user.max_user_namespaces=0`、glibc 2.17，原设置保持不动。
 
+`9603ad6` 完成 amd64 桌面验收来宾预检：Debian Bookworm 的 InRelease 签名、安装镜像摘要表及内核/initrd 均核对。host185 的只读、无外网、零 capabilities QEMU 8.2.2 容器以单核、896 MiB 启动 Debian `6.1.0-50-amd64`；来宾无网卡，普通 UID 1000 顺利建立 user/net/PID 命名空间并正常关机。宿主的 Linux 策略保持原状。相同 ABI 的 ext4/SCSI/virtio-scsi 模块已核对；来宾接入实际便携包和桌面库仍待，不将此预检写成原生窗口通过。
+
 ### 历史：x86_64 开发版基础采集
 
 `attempt.iqWqH54h`（产品输入 `d3371b7`）整机构建 `complete 0`，最终上游 Rust 网络审计通过。发行身份检查因 INI 缺少 SourceStamp 而停止；旧 tar 及失败回执原样保留。另在 UID 1000、仅 lo、seccomp=2、NoNewPrivs=1、零 capabilities 环境实跑了 45 个文件逐项核验的只读浏览器副本。OFF 页面执行成功且无文件。ON 页面回执确认活跃 Web 内容 PID 341，该 PID 文件 667 字节（SHA-256 `9c1f11baf7685271e6b9ee10f7c93525599727308ef0e8dba11f5bd84304fc78`）。控制台实际预览代码读出同轮 marker 的 `set Document.title`、`get Document.title` 和 `call Document.createElement("div")`、`ok=true`，三条顺序正确。**这是基础采集实证，不是全套 producer、Window 上下文或发行包验收。**
@@ -58,7 +60,7 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 真实重生成 261 个 IPDL 输入；17 个对象含两个窗口 actor 和生成的双向 IPC，通过部分链接。最终父端确认去重实现也重编链接。原生模型及 21 项控制台回归、6 项资格签发测试通过，包含父端所见 PID 不同于内层 PID 的用例。新增 `--parent-window-gate` 要求同一安装包先通过非闸门 DOM/click，再通过双会话页。`attempt.6D26B4Jt` 输入仍是 `86d4352`，保持未改；后续集成的父进程闸门仍待真实页面验证。
 
-`c455562` 修正闸门验收时序：页面让出内容主线程等待异步确认，以本地图片请求延迟截图；关闸前等待同一会话的完整 DOM 和点击写入后才移除标记。原生模型覆盖「关闸 HTTP 先到，采集 IPC 后到」；真实 stock Firefox 在模拟确认下跑完五步，去掉模拟确认后按预期缺失首个 `session_started`。73 项 Python 测试通过，父端资格还需该次真实页面原始证据。新的固定归档已存 host185，旧归档保留；串行构建入口验证前一候选的真实页面和边界回执，旧失败回执会在创建新目录之前被挡住。前序 `attempt.6D26B4Jt` 已完整通过非闸门页及来源边界；19:40 +08:00 确认唯一后继 `attempt.d7DBYN4g` 正编译，日志到 `dom/bindings`。
+`c455562` 修正闸门验收时序：页面让出内容主线程等待异步确认，以本地图片请求延迟截图；关闸前等待同一会话的完整 DOM 和点击写入后才移除标记。原生模型覆盖「关闸 HTTP 先到，采集 IPC 后到」；真实 stock Firefox 在模拟确认下跑完五步，去掉模拟确认后按预期缺失首个 `session_started`。73 项 Python 测试通过，父端资格还需该次真实页面原始证据。新的固定归档已存 host185，旧归档保留；串行构建入口验证前一候选的真实页面和边界回执，旧失败回执会在创建新目录之前被挡住。前序 `attempt.6D26B4Jt` 已完整通过非闸门页及来源边界；20:05 +08:00 确认唯一后继 `attempt.d7DBYN4g` 正编译，日志到 `dom/media/gmp`。
 
 ### 可选 Web Storage 摘要 `8ac02b1`
 
