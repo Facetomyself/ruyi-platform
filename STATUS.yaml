@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T02:44:04+08:00'
+generated_at: '2026-11-22T03:21:56+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -126,7 +126,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '99 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '102 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -414,6 +414,24 @@ projects:
             delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/arm64-delivery-queue-r54
             page_and_audit: 'not executed; acceptance observer exited 1 because the audited package did not exist'
             portable_and_proof_tooling: '2590d1e supports explicit aarch64 from evidence replay to Electron ZIP and native gate verifier; test fixtures passed only'
+          arm64_rust_edge_experiment:
+            implementation: '06cef34 experiment; effective flag reporting f3ee701'
+            host_workspace: /home/ubuntu/ruyitrace-arm64-r53/arm64-rust-edge-r56
+            source_attempt: attempt.cNI0ah7I
+            requested_tail_flags: ['-Clto=thin', '-Ccodegen-units=8']
+            effective_flags: ['-Copt-level=1', '-Clto=thin', '-Ccodegen-units=1']
+            optimization_level: 1
+            jobs: 1
+            preemptive_stop_bytes: 8750000000
+            scope: 'isolated Cargo gkrust output in an independent objdir copy; original networking checker runs only on completed archive'
+            observed_at: '2026-11-21T19:17:17Z: edge completed; original object archive absent, builder idle, no OOM'
+            result: edge_audit_verified
+            sampled_peak_bytes: {memory: 8589930496, swap: 81920, combined: 8590012416}
+            archive_bytes: 173793714
+            archive_sha256: 46979e071d0c755b805085c43964729e5f42ca192707388f7898eadf2bb9e56f
+            evidence: deliverables/linux-arm64-rust-edge-r56/edge-observation.json
+            evidence_sha256: a46d21958c23d72fba91a81882b28388276aa9afbe7078602aea76433d2afe5a
+            full_build_restarted: false
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8

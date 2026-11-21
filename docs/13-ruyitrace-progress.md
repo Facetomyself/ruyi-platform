@@ -38,6 +38,10 @@
 
 同一提交补齐 `--arch aarch64` 的验收导出/导入、浏览器证据回放、闸门资格和便携组装路径。Electron ZIP、Firefox ELF、资格报告与 Node 的本机架构都须一致。官方 ARM64 和 amd64 Electron 45.4.1 ZIP 各 72 项实测只接受对应架构，旧正式 amd64 包仍可验证，错误选 ARM64 被拒绝。99 项 Python 与 23 项控制台集成通过；ARM64 产品包与资格仍为空。
 
+`06cef34` 在 ARM64 已停止对象目录的独立副本中单作业重跑真实 `gkrust` 库边，原 Gecko 审计源与源树保持原样，监视器在 RAM+swap 连续三次达到 8,750,000,000 字节时才向本次组发停止信号。虽然请求 `-Clto=thin -Ccodegen-units=8`，实际 Cargo 在后部追加了上游 `codegen-units=1`，最后生效的是 **opt=1、ThinLTO、单 codegen unit**。`f3ee701` 已加入实际命令末值提取与回归。
+
+19:17 UTC（03:17 +08:00）已核实试验 `edge_audit_verified`：实际 `libgkrust.a` 173,793,714 字节、SHA-256 `46979e071d0c755b805085c43964729e5f42ca192707388f7898eadf2bb9e56f`，原版 networking 审计 rc=0；采样的 cgroup 内存峰值 8,589,930,496 字节（含文件缓存），swap 峰值 81,920 字节、总量峰值 8,590,012,416 字节，OOM 与 OOM kill 均为 0。原对象目录未生成这份归档，历史 attempt 和失败回执未重写。证据在 `deliverables/linux-arm64-rust-edge-r56/edge-observation.json`。102 项 Python 测试通过；后续应将已实测的 ThinLTO 只接到整机 ARM64 的 gkrust 边，保留原版网络审计与正常沙箱。此轮未重开整机、未打包。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
