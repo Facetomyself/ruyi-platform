@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T01:37:44+08:00'
+generated_at: '2026-11-22T02:13:01+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -126,7 +126,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '94 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '95 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -394,6 +394,21 @@ projects:
             full_build_started: false
             evidence: deliverables/linux-arm64-preflight-WmQuwb3d/arm64-preflight.json
             evidence_sha256: c5dfc7a5244d79562e51e4d77e3945901748dde0a01844a551f96d7a5b26e4e6
+          arm64_build_candidate:
+            layer: native_aarch64
+            attempt: attempt.cNI0ah7I
+            build_input_commit: 746f7db4e979c94a49482c79c27c6282ef06aff8
+            package_tools_commit: 593ce07201d6670337d4c4c443214bd88b6e6cad
+            evidence_tools_commit: 50e93e6aad245422037828959a5826ef1b7c351a
+            host_pipeline: /home/ubuntu/ruyitrace-arm64-r53/full-build-r54
+            observed_at: '2026-11-21T18:05:49Z: build Rust neqo-transport at 21:51, oom=0 and oom_kill=0'
+            jobs: 1
+            limits: '1.6 CPU, 8 GiB RAM and 9 GiB RAM+swap'
+            browser_runtime_image: sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec
+            stock_control: deliverables/linux-arm64-control-r54/stock-control.json
+            stock_control_sha256: 748c5ba5e659d1d30136671be752ef2827ec8216d9008687445d4a34af6b15f6
+            delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/arm64-delivery-queue-r54
+            page_and_audit: pending
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8
