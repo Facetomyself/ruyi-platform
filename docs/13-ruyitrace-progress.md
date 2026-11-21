@@ -54,6 +54,10 @@
 
 原生 ARM64 新工作区 `/home/ubuntu/ruyitrace-arm64-r53/arm64-full-r59` 直接检出固定 Firefox，使用已验证的 gkrust 专用 ThinLTO 包装器，单作业启动 `attempt.9PUNOGii`。20:47 UTC（04:47 +08:00）已处理实际 xpidl 构建项。60 秒的 cgroup 样本：内存 8,573,927,424、非活跃文件 5,506,314,240、工作量估算 3,067,699,200、swap 86,016 字节，OOM 和 OOM kill 均为 0。该样本只用于说明当前阶段的缓存组成，并非最终峰值或旧停止原因。证据 `deliverables/linux-arm64-retry-r59/early-memory-sample.json`。`delivery-queue-r59` 等正式 Rust 网络审计与 ARM64 包身份均通过才启动同包页面，随后仅对通过的原始证据运行导出；未生成正式 ARM64 包或页面证据。106 项 Python 回归通过。
 
+后续 `attempt.9PUNOGii` 在最后可见的 `firefox-on-glean` 构建日志后，因 `sustained_working_pressure` 主动终止，`build 143`，未进入 `gkrust`，离线观察器未启动浏览器。触发采样：匿名内存 6,892,650,496、swap 489,529,344、可回收 slab 1,534,922,824、非活跃文件页 0、工作量估算 9,078,943,744 字节，`oom=0`／`oom_kill=0`。详细回执：`deliverables/linux-arm64-retry-r59/working-pressure-stop.json`。下一轮先测量源码检出和编译在独立 cgroup 中的实际计费，再决定是否启动下一次单作业构建；保持现有限额与原版检查。
+
+`4377a33` 为后续候选新增来源连续性校验：打包复核同次 `gkrust` 包装器记录的字节摘要，移交拒绝摘要与审计不同的包，资格记录保留明确的架构和来源。该字段对只用于有记录的 ARM64 产品包；旧回执仍兼容；此次未改动已启动过的候选输入。107 项 Python 回归、5 项闸门测试通过。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。

@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T04:54:35+08:00'
+generated_at: '2026-11-22T05:09:27+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -126,7 +126,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '106 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '107 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -464,7 +464,14 @@ projects:
             evidence_sha256: 994be4eb748cb2f3c6ca1a9025cfee69fc4ff916a6ddaa0fc73ef2e47cf7cb56
             delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r59
             prior_audited_edge_retained: /home/ubuntu/ruyitrace-arm64-r53/arm64-rust-edge-r56/retained/libgkrust.a
-            formal_audit_package_and_pages: pending
+            formal_audit_package_and_pages: 'not reached; build 143 and delivery observer exited 1'
+            stop_receipt: deliverables/linux-arm64-retry-r59/working-pressure-stop.json
+            stop_receipt_sha256: 67487194978a2bdd26e1e131a9a591a08b009c1e2fd362a0a481cc38d44d102c
+            stop_sample_bytes: {anon: 6892650496, swap: 489529344, slab_reclaimable: 1534922824, inactive_file: 0, working_estimate: 9078943744}
+            next_probe: 'measure fresh compiler cgroup separate from checkout before retry; no quota increase'
+          arm64_package_rust_lineage:
+            implementation: 4377a33
+            scope: 'bind emitted wrapper digest to formal Rust audit, prospective package identity, handoff and qualification; no product candidate under these tools yet'
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8
