@@ -14,7 +14,9 @@
 
 **同一 amd64 便携包的两条原生链路均通过。** 宿主 `host185` 的 Debian 6.1/QEMU 隔离来宾使用逐项核对的 Electron、主进程/preload/Vue 和 Firefox 字节。真实 Storage 启用测试 OFF 零输出；ON 先实测 PID 504，再以已绘制帧验证复跑 PID 511，均为 10 条 DOM、2 条点击和 16 条脱敏摘要，表格逐格匹配。首轮 Storage PNG 是上一个读取帧，保留作诊断；后继通过两点同帧像素见证、剪除见证，再核对截图摘要。闸门用另一来宾运行，通过真实 IPC 启停两轮，首个落盘边界选定 PID 306，同一窗口记录 12 条 core、2 次点击、暂停零命中并最终移除标记；窗口显示四条实际会话边界。两次运行 renderer `seccomp=2`、`NoNewPrivs=1`、上下文隔离开启。统一回执在 `deliverables/linux-release-d7DBYN4g/native-release-evidence.json`。
 
-本档验证的是 amd64 Ozone headless 原生窗口与同包链路，Storage 和闸门分开使用。其他 Win64 producer 的 Linux 浏览器挂接、ARM64 插桩内核及真实 X11/Wayland 显示均需独立证据。
+以上采集档验证的是 amd64 Ozone headless 原生窗口与同包链路，Storage 和闸门分开使用。
+
+`e9bf87c` 另用同一发布归档验证了**无测试入口、无额外启动参数**的 X11 启动。隔离 amd64 来宾运行带认证的 Xvfb，原样执行 `launch-ruyitrace`；复测启动页绘制完毕后截图 1280×860（可见内置 Firefox）。窗体 `0x400002` 归属发布进程 PID 135，renderer PID 264 的 `seccomp=2`、`NoNewPrivs=1`。读回验收脚本绑定了发行 tar 中启动脚本摘要、运行身份及截图摘要；保留前两轮观察器未能同时验证窗体和 renderer 的终态，以及只画出侧栏的早期帧。证据在 `deliverables/linux-release-d7DBYN4g/amd64-x11-painted`。其他 Win64 producer 的 Linux 浏览器挂接、ARM64 插桩内核及物理显示/Wayland 均需独立证据。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
