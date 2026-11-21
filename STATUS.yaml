@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T05:30:06+08:00'
+generated_at: '2026-11-22T05:37:02+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -132,7 +132,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '108 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '111 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -488,7 +488,11 @@ projects:
             probe_sha256: e2cc77c4b49a9626714b661c35afb0779166e56454a59278f1ace7da53d92372
             slab_reclaimable_probe_bytes: {old_idle: 1534912440, restarted: 61968, after_reading_2048_files: 792584}
             compile_baseline_bytes: {memory: 126636032, slab_reclaimable: 795176, swap: 0}
-            observed_at: '2026-11-21T21:17:39Z: native build reached xpidl output and cbindgen metadata, oom=0, oom_kill=0'
+            observed_at: '2026-11-21T21:34:11Z: crossed the previous firefox-on-glean stop line, reached trust-anchor-build-util; oom=0, oom_kill=0'
+            glean_crossing_evidence: deliverables/linux-arm64-cgroup-r61/glean-crossing.json
+            glean_crossing_evidence_sha256: 8338e3c474af85532f880293cd590268c9730760f341c334726504a391a99658
+            through_1080s_max_sampled_working_bytes: 7150874624
+            new_archive_stability_tool: '21690a1; checked before/after on fixtures; active attempt inputs unchanged'
             controller: /home/ubuntu/ruyitrace-arm64-r53/compile-queue-r61
             delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r61
             formal_audit_package_and_pages: pending

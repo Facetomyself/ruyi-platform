@@ -62,6 +62,10 @@
 
 `bbe8632` 为已停止的 ARM64 构建增加仅复用源码的入口：要求当前历史 attempt 是 `build 143`、无正式归档或包装器回执、旧对象另存，且新 cgroup 的 slab 与 swap 有低基线。已在同一固定源码上启动 `attempt.gIhdRoB6`，旧对象完整保留在 `attempt.9PUNOGii.stopped-objects`，新候选从空对象目录单作业编译，构建输入仍为 `bfeafe6`。实测编译前内存 126,636,032 字节、可回收 slab 795,176 字节、swap 0；21:17 UTC 已输出 XPT 与 cbindgen 元数据，OOM 计数为 0。正式审计、包身份和页面导出串行等待同次候选；尚无 ARM64 产品实采。108 项 Linux Python 回归通过。
 
+21:34 UTC（05:34 +08:00），`attempt.gIhdRoB6` 已越过前次的 `firefox-on-glean` 停止点，继续到 `trust-anchor-build-util`。截至 1,080 秒采样中，工作量估算最高 7,150,874,624 字节，同一采样可回收 slab 70,382,712 字节，swap、OOM 事件和 OOM kill 均为零；这只是阶段性采样，非全程峰值。证据 `deliverables/linux-arm64-cgroup-r61/glean-crossing.json`，此时仍未形成正式 `gkrust` 审计或产品运行回执。
+
+`21690a1` 加固后续审计：核对路径、文件身份、大小、时间戳与 SHA-256 在原版网络检查前后一致，对归档变动返回 `invalidated`。同字节文件置换、原地改写、链接和管道负例通过；111 项 Linux Python 回归通过。当前构建输入保持原样，该候选的原版审计仍按固定版本执行。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
