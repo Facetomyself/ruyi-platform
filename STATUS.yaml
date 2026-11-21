@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T00:45:05+08:00'
+generated_at: '2026-11-22T01:37:44+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -126,7 +126,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '89 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '94 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -373,14 +373,27 @@ projects:
             runtime: unchanged audited d7DBYN4g Firefox
             verified: 'no-argument original launcher in independent Xvfb and Weston-headless guests; XDG configure ACK, buffer commit, compositor frame callback, sandboxed renderer and no X11 socket in Wayland run'
           arm64_build_preflight:
-            observed_at: '2026-11-21T16:18:50Z'
+            observed_at: '2026-11-21T17:29:25Z'
             host: oracle-reverse-dev
             os: Ubuntu 24.04.4 LTS
+            container: ruyi-arm64-r53
+            host_workspace: /home/ubuntu/ruyitrace-arm64-r53
             native_arch: aarch64
+            rust_target: aarch64-unknown-linux-gnu
             processors: 2
-            mem_available_mib: 11199
-            clang_19_candidate: '1:19.1.1-1ubuntu1~24.04.2'
-            result: 'read-only feasibility probe; toolchain not installed and full build not started'
+            configure_jobs: 1
+            mem_available_mib: 11080
+            clang: 19.1.1
+            rust: 1.100.0
+            cbindgen: 0.29.4
+            input_commit: 746f7db4e979c94a49482c79c27c6282ef06aff8
+            attempt: attempt.WmQuwb3d
+            prior_result: 'attempt.yi9VgtPy configure 1: cbindgen absent'
+            result: 'configured_only 0, native C/C++ WASI smoke passed, content and six WASI sandboxes and library LTO verified'
+            upstream_checker_smoke: 'native AArch64 fixture archive rc=0 only; real Rust browser archive audit pending'
+            full_build_started: false
+            evidence: deliverables/linux-arm64-preflight-WmQuwb3d/arm64-preflight.json
+            evidence_sha256: c5dfc7a5244d79562e51e4d77e3945901748dde0a01844a551f96d7a5b26e4e6
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8

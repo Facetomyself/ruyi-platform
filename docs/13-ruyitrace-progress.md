@@ -22,7 +22,13 @@
 
 `7d76dc1` 修复原生 Wayland 首窗先隐藏、等待 `ready-to-show` 时无法建立 `xdg_toplevel` 的问题。旧版在 Weston 中两次只观察到 `wl_surface` 与共享内存缓冲区；进程仍有正常 renderer 沙箱，保留未通过回执。修正版只在真实 Wayland 会话建立即显示的首窗，X11/显式 headless 仍沿用等待。新控制台搭配同一已审计 Firefox 和旧资格文件，实际以原 `launch-ruyitrace` 空参数在 Weston 原生提交到 `xdg_toplevel`：configure ACK 1、1 次非空缓冲区提交、1 帧回调，无 X11 socket，renderer seccomp=2、NoNewPrivs=1。同一修正版在独立认证 Xvfb 中再次完成 1280×860 主面板及 renderer 核验。
 
-新便携包 264,619,758 字节、214 项，SHA-256 `f93884493703e8d44734234dc1b3caf34784cb568c006ce9cf511be4b046cf03`；同包两份启动回执位于 `deliverables/linux-release-d7DBYN4g-wayland/launch-evidence.json`。原始归档、双会话/Storage 原始验收与失败记录均保留。其他 Win64 producer 的 Linux 浏览器挂接、ARM64 插桩内核及物理显示仍需独立验证。ARM64 host `oracle-reverse-dev` 仅做只读预检：Ubuntu 24.04.4、glibc 2.39、2 核与 11199 MiB 可用内存、APT 有 Clang 19.1.1 候选；未安装工具链或开始编译。
+新便携包 264,619,758 字节、214 项，SHA-256 `f93884493703e8d44734234dc1b3caf34784cb568c006ce9cf511be4b046cf03`；同包两份启动回执位于 `deliverables/linux-release-d7DBYN4g-wayland/launch-evidence.json`。原始归档、双会话/Storage 原始验收与失败记录均保留。其他 Win64 producer 的 Linux 浏览器挂接、ARM64 插桩内核及物理显示仍需独立验证。
+
+### 原生 ARM64 已通过配置预检，整机尚未编译
+
+`oracle-reverse-dev` 使用有独立挂载的 `ruyi-arm64-r53`，容器 8 GiB RAM / 9 GiB RAM+swap，单配置作业。新目录 `/home/ubuntu/ruyitrace-arm64-r53` 内的 Firefox Git HEAD 对应同一固定 tag 与提交；Clang 19.1.1、Rust 1.100.0 与 amd64 相同，原始 CI WASI tar 摘要保持一致，原生 Clang 已分别链接 C 和 C++ 的 WASM 模块。
+
+首次 `attempt.yi9VgtPy` 停于 configure 缺 cbindgen。容器内以 Cargo 锁定依赖编译 `cbindgen 0.29.4` 后，只复跑预检：`attempt.WmQuwb3d` 为 `configured_only 0`，AArch64 的 Rust host/target、源码戳、BuildID `20261121171734`、内容沙箱、六类 WASI sandbox 与 Rust 库 LTO 均核实。原版网络审计实际读取小型 AArch64 fixture `.a` 返回 0；此结果不能代替 `libgkrust.a` 或产品运行。AMD64 真实配置用新校验器只读复验通过。`593ce07` 的打包器接受显式 ARM64 审计架构，仍要求 `complete 0`，旧 amd64 资格不会移作 ARM64。94 项 Python 回归通过。完整证据在 `deliverables/linux-arm64-preflight-WmQuwb3d/arm64-preflight.json`。下一阶段为单作业全量构建、实物归档审计、ARM64 包与浏览器验证。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
