@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T12:35:07+08:00'
+generated_at: '2026-11-21T13:01:47+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -190,6 +190,7 @@ projects:
         dom_shape_increment: '810c3e2: five string getters and native createElement return class; Gecko x86_64 object compiled, extended workload passes on older browser, eight-event capture NOT yet verified'
         click_sidecar_increment: 'cfdf3e5: native ePointerClick dispatch for content windows, isolated PID file and shared cap; two Gecko hooks + seven units compiled/partially linked, native sink tests pass; click sidecar browser positive pending'
         gate_session_increment: '4dbbe6c: controlled core/click recorder, flushed session transitions and stale-span rejection; native arm64/amd64 checks, console IPC integration, 2 Gecko hooks + 8 runtime units partial link; browser gate test pending'
+        gate_page_protocol: 'bc0ec4c: five-stage same-window page check, native writer + modeled page positive; old x86 traced binary leaked paused marker, stock lacked session_started; integrated browser positive pending'
         browser_capture_verified: true
         browser_capture_scope: 'x86_64 development-tree functional test only: same live content PID set/get title marker and successful createElement(div); OFF page ack and zero output'
         release_package_verified: false
@@ -236,7 +237,7 @@ projects:
           stamped_retry:
             attempt: attempt.H5K1EqGg
             product_inputs: 4eed287
-            observed_at: '2026-11-21T12:32:14+08:00: incremental build in progress, netwerk/url-classifier; packaging and page delivery waiting'
+            observed_at: '2026-11-21T12:58:20+08:00: incremental build in progress, xpcom/ioutils; packaging and page delivery waiting'
             build_id: '20261121023929'
             source_stamp: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
             delivery: '0f9d799: waiting for package; candidate requires matching origin and WindowID; no page result yet'
