@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T06:40:08+08:00'
+generated_at: '2026-11-22T06:54:01+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -99,6 +99,9 @@ projects:
           limits: '2 CPU, 4 GiB including swap, make -j1, read-only source, network none'
           evidence: deliverables/linux-ruyijs-donor-r68/native-build-start.json
           evidence_sha256: a31578b414038e4fb5ee8eca6fe663953fd0693469b7a5f988f60210f98cc688
+          cxx_stage_evidence: deliverables/linux-ruyijs-donor-r68/native-cxx-stage.json
+          cxx_stage_evidence_sha256: 02687f9f836575fad2f2be6293148b9c9dc9781aba6f64916467a04b39a581a1
+          intermediate_libjsrust_bytes: 65114854
           standalone_runtime_and_private_product: pending
     inner_repo_state:
       exists: true
@@ -155,7 +158,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '115 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '116 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -517,7 +520,7 @@ projects:
             through_1080s_max_sampled_working_bytes: 7150874624
             new_archive_stability_tool: '21690a1; checked before/after on fixtures; active attempt inputs unchanged'
             later_compile_sample: '2026-11-21T21:47:39Z: reached geckoservo at build +30:25; oom=0, oom_kill=0; no gkrust receipt yet'
-            arm64_original_launch_tooling: '01ae2a9; native guest plus Firefox/Electron ELF admission, crossed-arch tests and byte-exact reading of real AMD64 receipts; ARM64 display run pending'
+            arm64_original_launch_tooling: '01ae2a9 + f9a348b: native guest and verified archive identity; real AMD64 receipts replay byte-exact and wrong real archive with same launcher rejected; ARM64 display run pending'
             gkrust_invocation: 'actual native rustc running with ThinLTO, opt=1, codegen-units=1; archive audit pending'
             gkrust_invocation_evidence: deliverables/linux-arm64-cgroup-r61/gkrust-invocation.json
             gkrust_invocation_evidence_sha256: 7a30c7162a5c6d5aabc22694ede83b56f2b54b8490daaa724feebfba1b714574
