@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T17:16:07+08:00'
+generated_at: '2026-11-21T17:37:15+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -216,7 +216,7 @@ projects:
         console_path_integration: 'fc0bf80: Linux renderer helper + child environment + C++ synthetic writer, seven verified rows; GUI and browser not exercised'
         stock_control: '17c8e21: Firefox 159.0 ARM64 page receipts OFF/ON; stock correctly fails product ON'
         console_kernel_launch: '9e08fd4: 5/5; actual ff:launch IPC handler + stock ARM64 Firefox 159.0 + PNG/rc=0; no Electron window or instrumented capture'
-        console_core_preview: '1e98ca7: bounded pagination and live append; native writer -> main/preload -> mounted Vue pages (20+12 rows); synthetic, not a browser capture'
+        console_core_preview: '9bf7c80: bounded DOM and session markers, click and redacted Storage views; native model -> main/preload -> Vue; 22 console tests and 66-file clean application build; real browser integration pending'
         console_native_window: 'db93c37: six-route app directory; real ARM64 Electron 45.4.1 sandboxed BrowserWindow, file: launch/log routes, 32 synthetic events checked (20+12), visible second-page PNG 1000x615; no instrumented Firefox bundled'
         portable_console_assembly:
           implementation: 571d380
@@ -272,7 +272,7 @@ projects:
             workspace_in_container: /var/tmp/ruyi-ff159-window-actor
             product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
             attempt: attempt.6D26B4Jt
-            observed_at: '2026-11-21T17:12:56+08:00: full build reached dom/view-transitions (86:15 in log); audited package and page receipts pending'
+            observed_at: '2026-11-21T17:33:26+08:00: full build reached intl/locale (106:49 in log); audited package and page receipts pending'
             source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
             scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
             page_receipt: pending
