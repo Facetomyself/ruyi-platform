@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T05:37:02+08:00'
+generated_at: '2026-11-22T05:50:07+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -132,7 +132,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '111 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '113 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -493,6 +493,8 @@ projects:
             glean_crossing_evidence_sha256: 8338e3c474af85532f880293cd590268c9730760f341c334726504a391a99658
             through_1080s_max_sampled_working_bytes: 7150874624
             new_archive_stability_tool: '21690a1; checked before/after on fixtures; active attempt inputs unchanged'
+            later_compile_sample: '2026-11-21T21:47:39Z: reached geckoservo at build +30:25; oom=0, oom_kill=0; no gkrust receipt yet'
+            arm64_original_launch_tooling: '01ae2a9; native guest plus Firefox/Electron ELF admission, crossed-arch tests and byte-exact reading of real AMD64 receipts; ARM64 display run pending'
             controller: /home/ubuntu/ruyitrace-arm64-r53/compile-queue-r61
             delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r61
             formal_audit_package_and_pages: pending

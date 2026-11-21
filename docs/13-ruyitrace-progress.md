@@ -66,6 +66,8 @@
 
 `21690a1` 加固后续审计：核对路径、文件身份、大小、时间戳与 SHA-256 在原版网络检查前后一致，对归档变动返回 `invalidated`。同字节文件置换、原地改写、链接和管道负例通过；111 项 Linux Python 回归通过。当前构建输入保持原样，该候选的原版审计仍按固定版本执行。
 
+`01ae2a9` 将无额外参数的原始启动器 X11／Wayland 验收扩展到原生 ARM64：guest 入口、包回执及 Electron／Firefox／libxul ELF 必须匹配，ARM64 导入还核对便携 tar 内这三份 ELF。旧 amd64 发布归档及已有的真实 X11 截图、Wayland 回执用新版读取器逐字节复核成功，交叉当作 ARM64 会被拦截。113 项 Linux Python 回归通过；ARM64 产品窗体和物理显示未运行。21:47 UTC `attempt.gIhdRoB6` 已推进到 `geckoservo`，OOM 为零，正式 gkrust 回执仍待生成。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
