@@ -94,6 +94,12 @@ ARM64 未插桩 Firefox 的 OFF、ON 均确认页面完成、截图有效、进�
 
 实查 `attempt.iqWqH54h` 阶段为 `build`；`package-review/phases.jsonl` 仅有 `waiting_for_build`，无打包命令日志及包身份回执。无第二份编译。此处既不表示已有产品包，也不表示通过页面采集。该容器不允许 `unshare -n`，后续普通用户隔离页面验收仍须使用单独合适环境，不放宽构建容器权限。
 
+### 2026-11-21 08:54 +08:00：同机 x86_64 离线浏览器负对照已实跑
+
+在 host185 单独准备 Ubuntu 24.04 运行镜像，不把构建容器改为特权模式。官方 Firefox 159.0 amd64 的发行归档经 Mozilla SHA512SUMS 核验，实际 90,055,416 字节，SHA-256 `54536fcd120af484d4c56272a5a1cf4af57b9c713d1a3b1e775da192dd541fcd`。和未来候选使用相同入口：UID 1000、只读根、只读输入、有效 capabilities 为 0、NoNewPrivs=1、seccomp=2、网络接口仅 lo。OFF 和 ON 均有页面 marker、PNG、有效 Web 内容 PID 和退出码 0，产物为空；同一浏览器跑采集诊断，准确因缺少三条记录而失败。stock 回执冒充候选的测试在浏览器启动前即失败。
+
+旧内核中 Firefox 报用户命名空间创建 `EPERM`；记录真实限制，不降低默认隔离设置，不当作完整浏览器沙箱认证。完成后烟测容器退出。候选 `attempt.iqWqH54h` 仍处于 build（`dom/workers/sharedworkers`），打包仍等待；这次验收的是运行环境和负对照，不是 RuyiTrace 的真实采集正例。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论

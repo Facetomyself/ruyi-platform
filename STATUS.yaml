@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T08:43:07+08:00'
+generated_at: '2026-11-21T08:56:46+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -187,6 +187,7 @@ projects:
         private_file_lifecycle: 'd3371b7: Linux core only; 0600 exclusive output, live complete line before _Exit, parent/child PID isolation and eight rejection cases'
         window_context_increment: '60fd178: HTTP(S) top/iframe inner WindowID, web origin, committed per-site sequences; 1027 synthetic rows and real Gecko partial link, no browser-level proof yet'
         browser_capture_verified: false
+        x86_offline_stock_control: '2dc3609: host185 stock x86_64 Firefox 159, 7-file identity, OFF/ON pass, missing-events negative and wrong-receipt controls; uid 1000 / lo / no capabilities / seccomp 2, Firefox user namespace EPERM'
         package_lineage_control: '7bb09a2: 7 critical files from ARM64 stock tar verified before and after ON/OFF; candidate package and product smoke pending'
         live_pid_control: '81ddaab: live HTTP page acknowledgement + Firefox content process ancestry; stock ON/OFF passed, stock product and offline product checks correctly failed'
         console_path_integration: 'fc0bf80: Linux renderer helper + child environment + C++ synthetic writer, seven verified rows; GUI and browser not exercised'
@@ -205,7 +206,7 @@ projects:
             coordinator: 3a9c667
             observed_phase: 'automatic not_started (extra failure); manual review completed after both verified module replays'
             attempt: attempt.iqWqH54h
-            observed_at: '2026-11-21T08:40:51+08:00: build in progress, dom/media/webrtc; result pending'
+            observed_at: '2026-11-21T08:54:22+08:00: build in progress, dom/workers/sharedworkers; result pending'
             packaging: 'efa0277: waiting_for_build; no mach package log, verified tar, or page launch'
             candidate_archive_audit: pending
             candidate_page_capture: pending
