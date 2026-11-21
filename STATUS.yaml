@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T07:43:42+08:00'
+generated_at: '2026-11-22T07:55:46+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -138,6 +138,15 @@ projects:
             scope: 'native x86_64 ET_REL object, five expected private hook references; original donor unchanged, no product link'
             evidence: deliverables/linux-ruyijs-private-shell0-r73/compile-evidence.json
             evidence_sha256: 3e5e1f832eeb71d9a8d575c2e3366e18d67384bd0a2de981dad48fd74b5e02dd
+          native_runtime_hooks:
+            input_commit: 94436d565f0e8f5257111106a3d4d272cd340b7f
+            terminal: native_hooks_verified 0
+            real_units: [arguments, exception_capture, runtime, worker_mode]
+            resolved_original_hooks: 5
+            other_unresolved_private_symbols: 229
+            relocatable_sha256: dda86055255d47912212dd17af9c14e9c8e611f228e3b6ba01533e82d60ed965
+            evidence: deliverables/linux-ruyijs-native-hooks-r74/hook-link-evidence.json
+            evidence_sha256: c4ebf1f4050ed445ce1cbfc14be4c39c2c5c08448248754b8719ca34d3d02ef3
           private_product: pending
     inner_repo_state:
       exists: true
