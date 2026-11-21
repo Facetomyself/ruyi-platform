@@ -10,7 +10,11 @@
 
 `c61c429` 改为跟踪首轮绑定的 PID、启动 ticks 与日志文件名，拒绝原进程消失、复用和 PID 归属歧义，后来出现更多 Web 进程不改变绑定。同一不可变 tar 在新目录复验 `page_verified 0`。OFF 零文件，ON 活跃 PID 321 的 10 条 DOM、2 条点击及 16 条 Storage 摘要通过；无键名或值。闸门页 PID 529 与 WindowID 12884901889 贯穿 `start1 stop1 start2 stop2 done`，两轮点击 ID 1/2、暂停段零命中；后两步均观测到 4 个 Web 进程。
 
-实际原始 Storage 摘要在 ARM64 Electron 窗口逐格回放。独立导出并重建同包后签发 `two-session-page-v1` 与 `storage_summary:ungated-v1`（分开启用）。amd64 便携归档 264,619,293 字节、213 项已逐项读回比对，SHA-256 `797cf3ce15b72b3059e7ab519e29298d12672aa4db8bc4f2d5f1746ec71d07e2`。产物在 `deliverables/linux-release-d7DBYN4g`。带资格包的 amd64 原生窗口实际 Storage 启用及双会话控制仍待验证。
+实际原始 Storage 摘要在 ARM64 Electron 窗口逐格回放。独立导出并重建同包后签发 `two-session-page-v1` 与 `storage_summary:ungated-v1`（分开启用）。amd64 便携归档 264,619,293 字节、213 项已逐项读回比对，SHA-256 `797cf3ce15b72b3059e7ab519e29298d12672aa4db8bc4f2d5f1746ec71d07e2`。产物在 `deliverables/linux-release-d7DBYN4g`。
+
+**同一 amd64 便携包的两条原生链路均通过。** 宿主 `host185` 的 Debian 6.1/QEMU 隔离来宾使用逐项核对的 Electron、主进程/preload/Vue 和 Firefox 字节。真实 Storage 启用测试 OFF 零输出；ON 先实测 PID 504，再以已绘制帧验证复跑 PID 511，均为 10 条 DOM、2 条点击和 16 条脱敏摘要，表格逐格匹配。首轮 Storage PNG 是上一个读取帧，保留作诊断；后继通过两点同帧像素见证、剪除见证，再核对截图摘要。闸门用另一来宾运行，通过真实 IPC 启停两轮，首个落盘边界选定 PID 306，同一窗口记录 12 条 core、2 次点击、暂停零命中并最终移除标记；窗口显示四条实际会话边界。两次运行 renderer `seccomp=2`、`NoNewPrivs=1`、上下文隔离开启。统一回执在 `deliverables/linux-release-d7DBYN4g/native-release-evidence.json`。
+
+本档验证的是 amd64 Ozone headless 原生窗口与同包链路，Storage 和闸门分开使用。其他 Win64 producer 的 Linux 浏览器挂接、ARM64 插桩内核及真实 X11/Wayland 显示均需独立证据。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
@@ -72,7 +76,7 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 `c455562` 修正闸门验收时序：页面让出内容主线程等待异步确认，以本地图片请求延迟截图；关闸前等待同一会话的完整 DOM 和点击写入后才移除标记。原生模型覆盖「关闸 HTTP 先到，采集 IPC 后到」；真实 stock Firefox 在模拟确认下跑完五步，去掉模拟确认后按预期缺失首个 `session_started`。73 项 Python 测试通过，父端资格还需该次真实页面原始证据。新的固定归档已存 host185，旧归档保留；串行构建入口验证前一候选的真实页面和边界回执，旧失败回执会在创建新目录之前被挡住。前序 `attempt.6D26B4Jt` 已完整通过非闸门页及来源边界；22:23 +08:00 后继 `d7DBYN4g` 已完成；一次性转移等待器正确拒绝首次失败。独立验收目录通过后另执行原包的只读导出。
 
-`dac2279` 扩展真实 amd64 窗口的双会话验收。实际 preload 闸门 IPC 操作 profile 标记；观察器只读取边界并等待活动记录落盘，再发下一步回执。正例须在同一活跃进程复验两轮会话、暂停段零命中、最终关闸及日志表四条边界。原非闸门包 `6D26B4Jt` 已在同一来宾实测启动前拦截，未启动 Firefox 或生成 profile/日志/标记，独立回执 `deliverables/linux-release-6D26B4Jt/amd64-gate-negative-r49.json`。这不是闸门正例。83 项 Python 测试通过，候选自身离线页面在独立复验通过，原生控制台闸门正例待验证。
+`dac2279` 扩展真实 amd64 窗口的双会话验收。实际 preload 闸门 IPC 操作 profile 标记；观察器只读取边界并等待活动记录落盘，再发下一步回执。正例须在同一活跃进程复验两轮会话、暂停段零命中、最终关闸及日志表四条边界。原非闸门包 `6D26B4Jt` 已在同一来宾实测启动前拦截，未启动 Firefox 或生成 profile/日志/标记，独立回执 `deliverables/linux-release-6D26B4Jt/amd64-gate-negative-r49.json`。这不是闸门正例。83 项 Python 测试通过，候选自身离线页面在独立复验通过，原生控制台闸门随后通过，见顶部回执。
 
 ### 可选 Web Storage 摘要 `8ac02b1`
 
@@ -82,7 +86,7 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 `0c7cc1a` 给启动页增加默认关闭的「Storage 摘要（非闸门）」。只有实际原始 16 条摘要复判成功、独立页面回执相符、七个关键文件逐项核对，资格记录才附 `storage_summary:"ungated-v1"`。控制台只在显式选择后注入，需要独立进程、唯一 HTTP(S) 地址及已保存的日志目录；旧资格、已改安装及同时选择闸门均停止。本轮 23 项 Node、79 项 Python 回归及 66 文件成品构建通过；当前候选尚未完成实页验收，亦未得到真实 Storage 资格。
 
-`42d58cd` 加入同包 amd64 原生窗口的 Storage 验收档。组装回执须明确 `storage_summary_qualified:true` 并匹配非闸门资格；驱动通过实际控制台启动，然后复判 16 条原始摘要，逐单元格核对 Storage 制表，读取器核对独立截图及行数。81 项 Python 回归通过。旧 `6D26B4Jt` 在扩展后的驱动中再次实测基础档通过（活跃 PID 502，9 条 DOM/2 条点击），同一回执被 Storage 档拦截，保存在 `deliverables/linux-release-6D26B4Jt/amd64-basic-recheck-r48.json`。Storage 成品的浏览器正例已在 `d7DBYN4g` 复验，amd64 窗口实采待验证。
+`42d58cd` 加入同包 amd64 原生窗口的 Storage 验收档。组装回执须明确 `storage_summary_qualified:true` 并匹配非闸门资格；驱动通过实际控制台启动，然后复判 16 条原始摘要，逐单元格核对 Storage 制表，读取器核对独立截图及行数。81 项 Python 回归通过。旧 `6D26B4Jt` 在扩展后的驱动中再次实测基础档通过（活跃 PID 502，9 条 DOM/2 条点击），同一回执被 Storage 档拦截，保存在 `deliverables/linux-release-6D26B4Jt/amd64-basic-recheck-r48.json`。Storage 成品在 `d7DBYN4g` 的浏览器与 amd64 原生窗口均通过，当前截图用已绘制帧复跑结果。
 
 ### 历史源码增量：DOM 类型和五项只读属性
 

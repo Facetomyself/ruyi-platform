@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T22:27:59+08:00'
+generated_at: '2026-11-21T23:02:42+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -121,15 +121,17 @@ projects:
     repo: Facetomyself/ruyitrace
     submodule: submodules/ruyitrace
     source:
-      console: complete
-      domtrace: missing
+      console: maintained and built
+      domtrace: reconstructed Linux subset; original Win64 sources unavailable
     build:
       win_amd64: released
-      linux: experimental browser launcher verified; core writer not browser-verified
-    tests: 20 host tests passing
-    phase: Linux browser core capture integration
-    blocked_by:
-    - normal sandbox capture of real Document actions; restore and pass upstream networking audit
+      linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless guest'
+    tests: '84 Linux Python tests; 23 console integration tests plus compositor witness coverage'
+    phase: Linux scoped release verified; broader producer and architecture parity remain
+    blocked_by: []
+    remaining:
+    - Linux browser producer coverage beyond verified DOM, click and explicit Web Storage summaries
+    - ARM64 instrumented Firefox and physical X11 or Wayland validation have separate evidence targets
     verified:
       kernel_hashes: pass
       domtrace_hashes: pass
@@ -332,7 +334,8 @@ projects:
             implementation: 8b2637c
             source_checks: '261 IPDL inputs, 17 staged objects linked, native model verifies readiness, stale epochs, shared markers, cap and I/O failure'
             qualification: '--parent-window-gate verifies ungated capture and dual-session behavior on the same package'
-            native_console_gate: 'dac2279: real preload toggles and native edge observation; completed AMD64 guard-negative with older ungated bundle, positive pending'
+            native_console_gate: 'actual amd64 Electron toggles completed two sessions with attached PID 306; zero paused markers and final marker removed; 12 core rows and 2 clicks; old-bundle guard-negative preserved'
+            native_gate_evidence: deliverables/linux-release-d7DBYN4g/amd64-native-gate/result.json
             native_gate_negative_evidence: deliverables/linux-release-6D26B4Jt/amd64-gate-negative-r49.json
             browser_receipt: 'd7DBYN4g/c61c429 recheck: PID 529, window 12884901889, sessions 1 and 2, clicks 1 and 2, zero paused markers; 4 live Web processes at stop2/done'
             staged_into_current_candidate: true
@@ -344,7 +347,7 @@ projects:
             browser_receipt: 'd7DBYN4g/c61c429: OFF zero logs; ON PID 321 has 10 DOM, 2 clicks and 16 metadata-only Storage rows; ARM64 Electron replay passed'
             console_opt_in: '0c7cc1a: typed switch, same-install seven-file receipt and raw Storage replay; ungated only, default off'
             console_checks: '23 Node and 79 Python regressions; clean 66-file console build with rendered toggle'
-            amd64_desktop_storage_check: '42d58cd: explicit package capability, native launch IPC, raw summary verification and separate Storage screenshot; qualified bundle assembled; native capture pending'
+            amd64_desktop_storage_check: 'actual qualified amd64 Electron launch: OFF zero logs, ON PID 504 and independent painted-frame rerun PID 511, 16 metadata-only rows matched the native table'
             amd64_baseline_recheck: deliverables/linux-release-6D26B4Jt/amd64-basic-recheck-r48.json
           qualified_gate_storage_bundle:
             path: deliverables/linux-release-d7DBYN4g/ruyitrace-linux-amd64-d7DBYN4g.tar.gz
@@ -353,8 +356,12 @@ projects:
             bytes: 264619293
             gate_qualified: true
             storage_summary_qualified: true
-            amd64_native_advanced_launch_verified: false
-          risk: 'x86_64 browser gate and ungated Storage proven; qualified bundle still needs actual native AMD64 gate controls and Storage capture test'
+            amd64_native_advanced_launch_verified: true
+            native_scope: 'two independent sandboxed QEMU AMD64 native window runs using measured d7DBYN4g release bytes; Storage ungated only'
+            native_storage_receipt: deliverables/linux-release-d7DBYN4g/amd64-native-storage-painted/result.json
+            native_merged_evidence: deliverables/linux-release-d7DBYN4g/native-release-evidence.json
+            native_gate_receipt: deliverables/linux-release-d7DBYN4g/amd64-native-gate/result.json
+          risk: 'tested AMD64 release tiers verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
