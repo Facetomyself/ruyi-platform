@@ -13,6 +13,8 @@ Firefox Necko/NSS 的 Requests 风格 HTTP 客户端。不启动浏览器，TLS 
 
 它不是 browser fact，也不替代 RuyiTrace、RuyiDOM 或 ruyipage。
 
+与 [ruyi-mcp](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界) 的关系是 HTTP 行为对照，两者各自运行。
+
 ## 目录
 
 ```

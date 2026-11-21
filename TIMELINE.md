@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-四个仓库共 **142 个 commit**（platform 79 / ruyitrace 47 / ruyihttp 6 / ruyijs 10）。
+五个仓库共 **197 个 commit**（platform 81 / ruyitrace 47 / ruyihttp 6 / ruyijs 10 / ruyi-mcp 53）。
 
 ---
 
@@ -143,12 +143,16 @@ sparse clone 缺 `security/nss`。
 
 ---
 
+## 2026-11-21 · 纳入 ruyi-mcp
+
+Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现固定版本，统一记录与其他组件的接口和验收状态。维护流程见 [ruyi-mcp 项目入口](projects/ruyi-mcp/README.md)。
+
 ## 关键数字
 
 | 项 | 值 |
 | --- | ---: |
-| 四个仓库 commit | 142 |
-| 文档 | 41 篇（含本文）|
+| 五个仓库 commit | 197 |
+| 文档 | 43 篇（含本文）|
 | C++ 文件 | 61 |
 | 校验脚本 | 15 |
 | domtrace 测试 | 20 项 |

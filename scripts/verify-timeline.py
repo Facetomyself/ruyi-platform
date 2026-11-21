@@ -36,9 +36,13 @@ def count_scripts():
 
 
 def count_commits(path):
-    out = subprocess.run(['git', 'log', '--oneline'], cwd=path,
-                         capture_output=True, text=True)
-    return len(out.stdout.strip().splitlines())
+    revision = 'HEAD'
+    if path != ROOT:
+        relative = os.path.relpath(path, ROOT)
+        revision = subprocess.check_output(
+            ['git', 'rev-parse', f':{relative}'], cwd=ROOT, text=True).strip()
+    return int(subprocess.check_output(
+        ['git', 'rev-list', '--count', revision], cwd=path, text=True))
 
 
 def main():
@@ -57,10 +61,9 @@ def main():
         'ruyitrace_commits': count_commits(os.path.join(ROOT, 'submodules/ruyitrace')),
         'ruyihttp_commits': count_commits(os.path.join(ROOT, 'submodules/ruyihttp')),
         'ruyijs_commits': count_commits(os.path.join(ROOT, 'submodules/ruyijs')),
+        'ruyi_mcp_commits': count_commits(os.path.join(ROOT, 'submodules/ruyi-mcp')),
     }
-    total = sum(actual[k] for k in
-                ('platform_commits', 'ruyitrace_commits',
-                 'ruyihttp_commits', 'ruyijs_commits'))
+    total = sum(value for key, value in actual.items() if key.endswith('_commits'))
 
     # commit 数有一个已知的循环性：更新 TIMELINE 的提交本身会让计数 +1。
     # 所以声明值允许落后 1（未提交的工作区状态）或落后 2（该更新本身又被提交）。
@@ -68,7 +71,7 @@ def main():
         ('文档', r'\| 文档 \| (\d+) 篇', actual['docs'], 0),
         ('C++ 文件', r'\| C\+\+ 文件 \| (\d+) \|', actual['cpp'], 0),
         ('校验脚本', r'\| 校验脚本 \| (\d+) \|', actual['scripts'], 0),
-        ('commit 总数', r'四个仓库共 \*{0,2}(\d+)\*{0,2} 个 commit', total, 2),
+        ('commit 总数', r'五个仓库共 \*{0,2}(\d+)\*{0,2} 个 commit', total, 2),
     ]
 
     print('TIMELINE.md 数字核对：')
@@ -85,11 +88,12 @@ def main():
             failures.append(f'{label}: 声明 {declared} 实际 {expected}')
 
     # 分仓 commit 数
-    m = re.search(r'platform (\d+) / ruyitrace (\d+) / ruyihttp (\d+) / ruyijs (\d+)', text)
+    m = re.search(r'platform (\d+) / ruyitrace (\d+) / ruyihttp (\d+) / ruyijs (\d+) / ruyi-mcp (\d+)', text)
     if m:
         declared = list(map(int, m.groups()))
         expected = [actual['platform_commits'], actual['ruyitrace_commits'],
-                    actual['ruyihttp_commits'], actual['ruyijs_commits']]
+                    actual['ruyihttp_commits'], actual['ruyijs_commits'],
+                    actual['ruyi_mcp_commits']]
         # 分仓同样允许 platform 侧落后 2（更新 TIMELINE 的提交）
         ok = (declared[1:] == expected[1:] and
               abs(declared[0] - expected[0]) <= 2)

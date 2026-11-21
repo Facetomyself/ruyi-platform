@@ -67,6 +67,32 @@ python3 scripts/verify-links.py || fail=1
 
 echo
 echo "== 5. submodule 状态 =="
+python3 - <<'PY' || fail=1
+from pathlib import Path
+import re
+import subprocess
+import sys
+import yaml
+
+path = 'submodules/ruyi-mcp'
+key = f'submodule.{path}'
+entry = yaml.safe_load(Path('STATUS.yaml').read_text(encoding='utf-8'))['submodules']['ruyi-mcp']
+
+def git(*args):
+    return subprocess.check_output(['git', *args], text=True).strip()
+
+indexed = git('ls-files', '--stage', '--', path).split()
+branch = git('config', '-f', '.gitmodules', '--get', f'{key}.branch')
+url = git('config', '-f', '.gitmodules', '--get', f'{key}.url')
+row = re.search(r'^\| ruyi-mcp \| .* \| `([^`]+)` \| `([0-9a-f]{40})` \|$',
+                Path('PINS.md').read_text(encoding='utf-8'), re.M)
+head = git('-C', path, 'rev-parse', 'HEAD')
+valid = (len(indexed) == 4 and indexed[0] == '160000' and indexed[2] == '0' and row
+         and indexed[1] == entry['commit'] == row[2] == head
+         and branch == entry['branch'] == row[1] and url == entry['url'])
+print(f'  ruyi-mcp gitlink / HEAD / PINS / STATUS / .gitmodules: {"PASS" if valid else "FAIL"}')
+sys.exit(0 if valid else 1)
+PY
 if [ -f .gitmodules ]; then
   git submodule status 2>/dev/null | while read -r line; do
     case "$line" in

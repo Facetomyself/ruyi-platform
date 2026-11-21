@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T16:13:48+08:00'
+generated_at: '2026-11-21T16:24:12+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -8,6 +8,14 @@ baseline:
   domtrace_in_official: false
   verified: 2026-11-19 sparse clone + git ls-remote
 projects:
+  ruyi-mcp:
+    repo: Facetomyself/ruyi-mcp
+    submodule: submodules/ruyi-mcp
+    source: complete
+    build: linux
+    tests: 80/80
+    phase: Linux 控制面验证；Docker 未实测；浏览器与 Trace 同会话待联验
+    blocked_by: [D-MCP]
   ruyihttp:
     repo: Facetomyself/ruyihttp
     visibility: public
@@ -374,6 +382,10 @@ artifacts:
     firefox: 39bfd14cb45c
     in_git: false
 blockers:
+  D-MCP:
+    title: Linux 原生 Firefox 与 Trace owner 共同验收
+    severity: D
+    decision: 控制面、浏览器、Trace 同会话分开验收
   A2:
     title: Linux 原生库要求 glibc 2.38
     severity: A
@@ -416,6 +428,12 @@ blockers:
     severity: A
     decision: 反编译先行
 submodules:
+  ruyi-mcp:
+    url: https://github.com/Facetomyself/ruyi-mcp.git
+    branch: linux
+    commit: 1c80d8889b47185f4b6f20be4b97cd9db99532f1
+    visibility: public
+    state: added
   ruyihttp:
     url: https://github.com/Facetomyself/ruyihttp
     commit: b4cc7b2
@@ -430,7 +448,7 @@ submodules:
     commit: 27438fc
     state: added
 docs_health:
-  total_markdown: 41
+  total_markdown: 43
   total_cpp_files: 51
   total_scripts: 15
   reproduce_manual: REPRODUCE.md (逐条实测)

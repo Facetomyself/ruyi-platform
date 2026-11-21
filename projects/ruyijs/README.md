@@ -72,3 +72,4 @@ ruyijs-inner/
 
 - 与 **RuyiHttp** 共享 31 个 C 符号的 necko ABI（见 `docs/01-architecture.md` §1.2）
 - 与 **RuyiTrace** 构成 trace 对账闭环：`trace_diff.py` 比对两者行为差异
+- 与 [ruyi-mcp](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界) 的关系是浏览器行为对照。

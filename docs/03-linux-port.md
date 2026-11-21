@@ -410,3 +410,9 @@ with Context() as ctx:
 ```
 
 **出口标准**：`[L1]`、`[L2]`、`[L2+]` 三行都打印出来，且 `r.tls["nss"]` 是 manifest 里声明的版本。
+
+## 6. ruyi-mcp 分阶段验收
+
+1. [项目验证](../projects/ruyi-mcp/README.md)：先跑 Linux 控制面；Docker `core` 的构建、stdio 与进程回收另跑容器门禁。
+2. [原生 Linux Firefox 验收](../submodules/ruyi-mcp/docs/linux-port.md#原生浏览器验收)：在相同 CPU 架构测试 BiDi、下载与 RDP。普通 Firefox 的结果只适用于该内核与制品身份；`browser` 镜像按架构分别认证。
+3. [Trace 共会话](../submodules/ruyi-mcp/docs/docker-design.md#4-trace-与共享服务是后续两条独立演进路径)：结合平台的 Trace 内核与 owner 进度，单独验收租约、暂停/恢复、detach、flush 与 DOMTrace。组件 pin 和控制面通过均与这一门禁独立。

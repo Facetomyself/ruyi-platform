@@ -252,3 +252,13 @@ trace jsonl ──► jscall_decode.py ──► 函数调用树 / 值快照
 **这是三件套形成闭环的设计意图**：RuyiTrace 采集真 Firefox 行为 → diff 出 ruyijs 的环境缺口 → 补 ruyijs → 用 RuyiHttp 发请求验证。
 
 Linux 适配后这条链路应保持，只是两端都换成 Linux 二进制（见 `03-linux-port.md` §5）。
+
+## 5. ruyi-mcp 控制面与组件边界
+
+| 组件 | 与 ruyi-mcp 的关系 | 交接边界 |
+| --- | --- | --- |
+| [RuyiTrace](../projects/ruyitrace/README.md) | 直接运行集成：可使用经校验的 Firefox，也可借用 Trace 正在运行的 Firefox | 独立运行时 ruyi-mcp 管理自己的浏览器；借用时 Trace owner 独占 BiDi 和进程生命周期，MCP 通过 loopback owner IPC 与租约发出操作，经 loopback RDP 调试；Trace 负责 flush 和 DOMTrace |
+| [RuyiJS](../projects/ruyijs/README.md) | 并行参考：真实浏览器脚本行为与独立 JS/DOM 运行时可做对照 | 无直接运行依赖；新对照用例显式定义 fixture、版本和结果格式 |
+| [RuyiHttp](../projects/ruyihttp/README.md) | 并行参考：浏览器请求观察与独立 HTTP 客户端可比较 | 无直接运行依赖；用各自输出对比同一 fixture 的 HTTP 行为，MCP 无需加载 RuyiHttp 原生库 |
+
+MCP 的 BiDi 事件、RDP 调试记录和内核 DOMTrace 是三种独立证据。同一用例可关联 run ID、浏览器 BuildID 与制品哈希，仍须区分各自的采集来源。Linux 真机与 Docker 的阶段边界见 [迁移路线](03-linux-port.md#6-ruyi-mcp-分阶段验收)。

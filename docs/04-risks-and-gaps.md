@@ -231,6 +231,10 @@ cd RuyiHttp/repo && /tmp/ruyivenv/bin/python -m unittest discover -s tests
 
 ---
 
+### D-MCP · Linux 浏览器与 Trace owner 联合验收
+
+控制面可先通过 Linux 源码检查；浏览器和 Trace 同会话各有独立验收条件。Linux Trace owner、实际内核身份和 DOMTrace 输出的组合门禁为 `To be confirmed`。按 [ruyi-mcp 分阶段验收](03-linux-port.md#6-ruyi-mcp-分阶段验收)记录结果，Docker `core` 可以独立推进。
+
 ## 待决策清单
 
 | # | 决策项 | 选项 | 建议 | 阻塞什么 |

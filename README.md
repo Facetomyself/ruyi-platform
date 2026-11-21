@@ -1,6 +1,6 @@
 # ruyi-platform
 
-Ruyi 三件套的**主体维护仓**：文档、结构规划、源码还原与跨平台工程化的总入口。
+Ruyi 三件套与自动化控制面 **ruyi-mcp** 的主体维护仓：文档、结构规划、源码还原与跨平台工程化的总入口。
 
 代码不在本仓内联，由 submodule 引入。本仓只负责：**说清它们是什么、边界在哪、怎么还原、怎么移植、怎么验收**。
 
@@ -26,7 +26,8 @@ ruyi-platform (private, 本仓)
 ├── submodules/
 │   ├── ruyihttp      → Facetomyself/ruyihttp        (public)   ← RuyiHttp 代码
 │   ├── ruyijs        → Facetomyself/ruyijs-inner    (private)  ← 内部版反编译 + 工程化
-│   └── ruyitrace     → Facetomyself/ruyitrace       (private)  ← RuyiTrace 主体
+│   ├── ruyitrace     → Facetomyself/ruyitrace       (private)  ← RuyiTrace 主体
+│   └── ruyi-mcp      → Facetomyself/ruyi-mcp        (public)   ← Linux 自动化与调试控制面
 │
 ├── upstream/         只读参考（不挂 submodule）
 │   ├── ff-ruyijs     → Facetomyself/ff-ruyijs        (public fork)
@@ -84,10 +85,11 @@ RuyiTrace 有三块互不重叠的内容，混在一个仓里会互相污染版�
 | `submodules/ruyihttp` | `Facetomyself/ruyihttp` | **public**（2026-11-20 起） | ✅ 已有 | 完整源码树，含 26 个原生库文件 |
 | `submodules/ruyijs` | `Facetomyself/ruyijs-inner` | private | ✅ 已有（2026-11-04） | **内部版反编译产物 + 工程化源码**，wheel 的唯一来源 |
 | `submodules/ruyitrace` | `Facetomyself/ruyitrace` | private | ✅ 已有 | 控制台 + domtrace 还原 + 发布清单 |
+| `submodules/ruyi-mcp` | `Facetomyself/ruyi-mcp` | public | ✅ 已纳管 | [MCP 项目入口](projects/ruyi-mcp/README.md)：Linux 控制面、Firefox 与 Trace 共会话 |
 
 **不在 submodule 里**：`Facetomyself/ff-ruyijs`（public fork，只做 PR 与反编译对照）。
 
-**三个 submodule 锁定同一基线**：Firefox `39bfd14cb45c`、NSS 3.132、Neqo 0.33.0。详见 `PINS.md`。
+ruyi-mcp 以 [固定 gitlink](PINS.md#9-ruyi-mcp) 接入，同时继续在组件仓 `linux` 分支独立维护。它连接 RuyiTrace 的 Firefox 运行时，与 RuyiJS、RuyiHttp 的关系见 [组件架构](docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。原生组件的 Firefox、NSS、Neqo 基线各自见 [PINS](PINS.md)，MCP 源码 pin 与浏览器发布制品独立。
 
 ---
 
@@ -97,7 +99,7 @@ RuyiTrace 有三块互不重叠的内容，混在一个仓里会互相污染版�
 ruyi-platform/
 ├── README.md                     ← 本文件
 ├── PINS.md                       ← 所有外部依赖的固定版本
-├── STATUS.yaml                   ← 三项目当前状态机（机器可读）
+├── STATUS.yaml                   ← 项目当前状态机（机器可读）
 ├── TIMELINE.md                   ← 工作主线（为何做、遇到什么、怎么解决）
 ├── HANDOVER.md                   ← 阶段总结与交接
 ├── REPRODUCE.md                  ← 从零到当前状态的完整路径（已实测）
@@ -125,7 +127,8 @@ ruyi-platform/
 │   ├── ruyihttp/                 README / structure / CHANGELOG
 │   ├── ruyijs/                   README / structure / reverse-analysis
 │   │                             / operation-dispatch / CHANGELOG
-│   └── ruyitrace/                README / structure / domtrace-analysis
+│   ├── ruyitrace/                README / structure / domtrace-analysis
+│   └── ruyi-mcp/                 README / CHANGELOG
 │                                 / domtrace-contract / domtrace-readers
 │                                 / instrumentation-sites / codegen-changes
 │                                 / outputs-remaining / CHANGELOG

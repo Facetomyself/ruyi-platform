@@ -1,12 +1,14 @@
 # RuyiTrace
 
-仓库：`Facetomyself/ruyitrace`（private，待建）
+仓库：`Facetomyself/ruyitrace`（private）
 挂载：`submodules/ruyitrace`
 发布物记录：`artifacts/manifests/ruyitrace-3.5.0-win64.yaml`
 
 ## 是什么
 
 定制 Firefox 159（domtrace 插桩）+ Electron 控制台。用于跑 domtrace 探针、分析抓取结果。
+
+同一 Firefox 会话的 MCP 接入见 [ruyi-mcp 与组件边界](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。
 
 ## 三层
 

@@ -238,3 +238,18 @@ CXXABI_1.3.9
 1. 任何 pin 变更必须同时改本文件**和** `STATUS.yaml`。
 2. 旧 pin 不删除，移入「历史 pin」小节并注明被谁替代、为什么。
 3. pin 变更后跑 `./scripts/verify-pins.sh`，失败不得提交。
+
+## 9. ruyi-mcp
+
+| 组件 | 源码仓 | 维护分支 | 平台固定提交 |
+| --- | --- | --- | --- |
+| ruyi-mcp | [Facetomyself/ruyi-mcp](https://github.com/Facetomyself/ruyi-mcp) | `linux` | `1c80d8889b47185f4b6f20be4b97cd9db99532f1` |
+
+```bash
+cd /var/lib/dsh/Ruyi/ruyi-platform
+git ls-tree HEAD -- submodules/ruyi-mcp
+git config -f .gitmodules --get submodule.submodules/ruyi-mcp.branch
+node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
+```
+
+浏览器制品身份独立于该源码 pin，按 [Linux 验收](docs/03-linux-port.md#6-ruyi-mcp-分阶段验收)记录。

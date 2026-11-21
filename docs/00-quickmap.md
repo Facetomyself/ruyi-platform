@@ -24,6 +24,7 @@
 | 搞清三个项目的边界 | [`01-architecture.md`](01-architecture.md) |
 | 拿到某个项目的源码 | [`02-source-recovery.md`](02-source-recovery.md) |
 | 把某层移植到 Linux | [`03-linux-port.md`](03-linux-port.md) |
+| 维护 ruyi-mcp、更新 pin 或验收 Docker | [ruyi-mcp 项目入口](../projects/ruyi-mcp/README.md) |
 | 知道现在卡在哪 | [`04-risks-and-gaps.md`](04-risks-and-gaps.md) + [`../STATUS.yaml`](../STATUS.yaml) |
 | 反编译 domtrace 内核 | [`05-reverse-analysis.md`](05-reverse-analysis.md) |
 | **domtrace 该插在哪** | [`../projects/ruyitrace/instrumentation-sites.md`](../projects/ruyitrace/instrumentation-sites.md) |

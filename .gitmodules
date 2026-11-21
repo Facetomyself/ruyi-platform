@@ -7,3 +7,7 @@
 [submodule "submodules/ruyitrace"]
 	path = submodules/ruyitrace
 	url = https://github.com/Facetomyself/ruyitrace
+[submodule "submodules/ruyi-mcp"]
+	path = submodules/ruyi-mcp
+	url = https://github.com/Facetomyself/ruyi-mcp.git
+	branch = linux

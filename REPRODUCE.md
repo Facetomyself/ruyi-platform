@@ -41,12 +41,14 @@ cd ruyi-platform
 git submodule update --init --recursive
 ```
 
-**验证**（三个指针应全部 OK）：
+**验证**（四个指针应全部匹配当前平台提交）：
 
 ```bash
 git submodule status
-# 期望三行，每行以 commit hash 开头，末尾 (heads/main)，无 "-" 或 "+" 前缀
+# 期望四行，每行以空格和固定 commit 开头；-、+、U 前缀表示未初始化、偏离 pin 或冲突
 ```
+
+只检出 MCP 时可运行 `git submodule update --init --checkout -- submodules/ruyi-mcp`。组件安装和 Docker 路线见 [ruyi-mcp 项目入口](projects/ruyi-mcp/README.md)。
 
 ---
 
@@ -63,6 +65,7 @@ bash scripts/verify-pins.sh
   <hash> submodules/ruyihttp (heads/main) OK
   <hash> submodules/ruyijs (heads/main) OK
   <hash> submodules/ruyitrace (heads/main) OK
+  <hash> submodules/ruyi-mcp (heads/linux) OK
 
 全部通过
 ```
