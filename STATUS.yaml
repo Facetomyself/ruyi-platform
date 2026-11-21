@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T22:06:23+08:00'
+generated_at: '2026-11-21T22:27:59+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -317,10 +317,16 @@ projects:
             implementation: c455562a97d6f7cc23b299596025b01406274103
             archive_sha256: a231b92b0146a8a0310f543a122e3505992411e26a8a6c1dd551935626803518
             acceptance: 'asynchronous gate ACK, inotify drain before each close, explicit load-barrier receipt; native model and stock controls pass'
-            state: build_running
+            state: same_package_page_recheck_verified
             attempt: attempt.d7DBYN4g
             workspace_in_container: /var/tmp/ruyi-ff159-window-gate
-            observed_at: '2026-11-21T22:02:02+08:00: build active at 177:33; terminal receipts pending'
+            observed_at: '2026-11-21T22:23:58+08:00: complete 0, audited package, independent page_verified 0; old run_page 1 retained'
+            build_id: '20261121110134'
+            elf_build_id: 70e366c3dc3528946906f1b4f0e34ecac949a24e
+            rust_archive_sha256: e95ebd7e836bceea2fb84156431e360c39ac446a25fb3d2f5cb048acbecc61c1
+            firefox_archive_sha256: 6607f9c1c69919fd08bf5dd1df7c7d66ec0397416ce22db087b7be57b16e955c
+            firefox_archive_bytes: 81719588
+            accepted_delivery: /home/ruyi-smoke-159-x86/window-gate-d7DBYN4g-recheck-c61c429
             transfer_observer: /home/ruyi-smoke-159-x86/window-gate-d7DBYN4g-transfer-queue
           parent_window_gate:
             implementation: 8b2637c
@@ -328,19 +334,27 @@ projects:
             qualification: '--parent-window-gate verifies ungated capture and dual-session behavior on the same package'
             native_console_gate: 'dac2279: real preload toggles and native edge observation; completed AMD64 guard-negative with older ungated bundle, positive pending'
             native_gate_negative_evidence: deliverables/linux-release-6D26B4Jt/amd64-gate-negative-r49.json
-            browser_receipt: pending
-            staged_into_current_candidate: false
+            browser_receipt: 'd7DBYN4g/c61c429 recheck: PID 529, window 12884901889, sessions 1 and 2, clicks 1 and 2, zero paused markers; 4 live Web processes at stop2/done'
+            staged_into_current_candidate: true
           parent_window_storage:
             implementation: 8ac02b1
             scope: 'opt-in same-window local/session Storage metadata; UTF-16 lengths and null only, no key or value bytes'
             source_checks: '18 staged Gecko objects linked, native 16-row summary and shared cap verified, stock x86_64 fixture passes with no trace'
             qualification: '--parent-window-storage requires ungated DOM/click/Storage summaries plus dual-session page'
-            browser_receipt: pending
+            browser_receipt: 'd7DBYN4g/c61c429: OFF zero logs; ON PID 321 has 10 DOM, 2 clicks and 16 metadata-only Storage rows; ARM64 Electron replay passed'
             console_opt_in: '0c7cc1a: typed switch, same-install seven-file receipt and raw Storage replay; ungated only, default off'
             console_checks: '23 Node and 79 Python regressions; clean 66-file console build with rendered toggle'
-            amd64_desktop_storage_check: '42d58cd: explicit package capability, native launch IPC, raw summary verification and separate Storage screenshot; 81 Python tests; actual Storage-positive bundle pending'
+            amd64_desktop_storage_check: '42d58cd: explicit package capability, native launch IPC, raw summary verification and separate Storage screenshot; qualified bundle assembled; native capture pending'
             amd64_baseline_recheck: deliverables/linux-release-6D26B4Jt/amd64-basic-recheck-r48.json
-          risk: 'ungated x86_64 parent capture and AMD64 native headless window verified; controlled sessions and Storage browser proof still pending'
+          qualified_gate_storage_bundle:
+            path: deliverables/linux-release-d7DBYN4g/ruyitrace-linux-amd64-d7DBYN4g.tar.gz
+            evidence: deliverables/linux-release-d7DBYN4g/release-evidence.json
+            sha256: 797cf3ce15b72b3059e7ab519e29298d12672aa4db8bc4f2d5f1746ec71d07e2
+            bytes: 264619293
+            gate_qualified: true
+            storage_summary_qualified: true
+            amd64_native_advanced_launch_verified: false
+          risk: 'x86_64 browser gate and ungated Storage proven; qualified bundle still needs actual native AMD64 gate controls and Storage capture test'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
