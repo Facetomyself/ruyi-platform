@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T11:20:19+08:00'
+generated_at: '2026-11-21T11:52:44+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -188,6 +188,7 @@ projects:
         window_context_increment: '60fd178: HTTP(S) top/iframe inner WindowID, web origin, committed per-site sequences; 1027 synthetic rows and real Gecko partial link, no browser-level proof yet'
         lazy_writer_increment: '1a326df: no output for idle or filtered scopes, one diagnostic on I/O failure, entry/commit cap checks; native regression and Gecko object compile only'
         dom_shape_increment: '810c3e2: five string getters and native createElement return class; Gecko x86_64 object compiled, extended workload passes on older browser, eight-event capture NOT yet verified'
+        click_sidecar_increment: 'cfdf3e5: native ePointerClick dispatch for content windows, isolated PID file and shared cap; two Gecko hooks + seven units compiled/partially linked, native sink tests pass; click sidecar browser positive pending'
         browser_capture_verified: true
         browser_capture_scope: 'x86_64 development-tree functional test only: same live content PID set/get title marker and successful createElement(div); OFF page ack and zero output'
         release_package_verified: false
@@ -234,7 +235,7 @@ projects:
           stamped_retry:
             attempt: attempt.H5K1EqGg
             product_inputs: 4eed287
-            observed_at: '2026-11-21T11:17:38+08:00: incremental build in progress, dom/localstorage; packaging and page delivery waiting'
+            observed_at: '2026-11-21T11:50:04+08:00: incremental build in progress, dom/xul; packaging and page delivery waiting'
             build_id: '20261121023929'
             source_stamp: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
             delivery: '0f9d799: waiting for package; candidate requires matching origin and WindowID; no page result yet'
