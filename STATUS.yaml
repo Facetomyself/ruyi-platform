@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T13:50:44+08:00'
+generated_at: '2026-11-21T15:42:31+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -255,7 +255,15 @@ projects:
             audit: 'pinned upstream networking check rc=0; does not qualify successor archive'
             bytes: 160069128
             sha256: 9e3404f9497555a570e763e6c067c39114244a8ae6641ecadf2459497aa6d1fd
-          risk: 'WASI and package provenance resolved; real audited-package content process fails first output open after lazy initialization; scoped parent-mediated output remains to implement and verify'
+          parent_window_transport:
+            workspace_in_container: /var/tmp/ruyi-ff159-window-actor
+            product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
+            attempt: attempt.6D26B4Jt
+            observed_at: '2026-11-21T15:43:25+08:00: clean checkout and four patch checks passed; configure running'
+            source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
+            scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
+            page_receipt: pending
+          risk: 'previous stamped package failed content-side output open; parent-mediated candidate needs full build, archive audit, package and browser acceptance'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0

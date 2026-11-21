@@ -16,6 +16,12 @@
 
 `e3939b3` 给 Linux 控制台受控启动增加资格检查：只有经完整 DOM/click/双会话原始数据复核的本地交付可签发小型能力记录，启动前重新核实七个关键文件；缺凭据、同尺寸改包、配置变化和取消均在启动前停止。无论文件名或构建版本都不能代替这份验收；这也不是解决上述写盘故障的修复。尚未给任何产品包发放真实闸门资格。
 
+### 父进程写入候选 `86d4352`
+
+在 `PWindowGlobal` 增加有界的类型化 DOM/click 上报。父进程从当前窗口 actor 确认来源、窗口和内容进程，并按自己配置打开私有文件。消息不携带路径、文件句柄、PID、来源或 JSON。要求明确选定单一 HTTP(S) origin；设闸门时保持停采，直至父进程可确认会话边界。原生父子进程模型通过 OFF、错误来源、非法 payload、PID 实例冲突、共享上限及 DOM/click 正例；21 项控制台组合回归通过。
+
+host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接收方、协议生成物和运行时共 16 个对象，`ld -r` 无未解析的本项目符号。上一次失败包原样保留。新工作区 `/var/tmp/ruyi-ff159-window-actor` 已通过干净检出和四项补丁检查。15:43 +08:00，`attempt.6D26B4Jt` 开始配置。一次性顺序协调器随后执行全量构建、独立审计、打包及 `--parent-window-transport` 离线验收；前一阶段失败即停止。13:43 的旧包失败结论不变；新候选尚未取得成品页面输出。
+
 ### 后续源码增量：DOM 类型和五项只读属性（尚未发布）
 
 `810c3e2` 依据 Firefox 159 的 WebIDL 声明接入 `Document.compatMode/contentType`、`Element.tagName/localName`、`Node.nodeName`。成功 `createElement` 的返回值用原生 DOM JSClass 名渲染，例如 `[Object HTMLDivElement]`，不读取页面的 `constructor` 或 `toString`；不据此生成对象关联 ID。新增 `--require-dom-shape` 档要求在同一页面窗口顺序识别八条值与类型都正确的记录。
