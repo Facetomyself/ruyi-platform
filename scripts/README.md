@@ -5,6 +5,7 @@
 | `verify-pins.sh` | 校验 PINS.md / STATUS.yaml / submodule 一致性 | bash, python3, pyyaml |
 | `verify-links.py` | 校验 Markdown 内部链接 | python3 |
 | `verify-manifests.py` | 校验发布物 manifest 与实物 hash | python3, pyyaml |
+| `verify-reference-wheel.py` | 只读校验第三方 RuyiJS Linux 样本的整包与 ZIP 成员摘要 | python3 |
 | `domtrace-anchors.py` | **从 xul.dll 提取 74 个 MOZ_DOM_* 读取点** | python3, pefile |
 | `reverse-anchors.py` | PE 字符串锚点通用提取 | python3, pefile |
 | `sync-submodules.sh` | 初始化/更新 submodule | bash, git |

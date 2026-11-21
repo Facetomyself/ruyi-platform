@@ -38,4 +38,12 @@ strings js | grep -c MOZ_DOM   → 0
 
 ## 样本本体
 
-按 `conventions.md` §5，二进制不入 git。需要时按上方 sha256 校验。
+样本现保存在本工作区的 `artifacts/binaries/ruyijs/ruyijs-0.2.2+inner.f08e835-py3-none-manylinux_2_39_x86_64.whl`，由仓库的忽略规则排除，不进入 Git，也不进入私有版发布产物。
+
+2026-11-22 用 [只读校验脚本](../../scripts/verify-reference-wheel.py) 实际复核：外层 SHA-256 与登记值一致；2,072 个 ZIP 成员都在顶层 `RECORD`，其余 2,071 个成员的 SHA-256 和长度全部匹配。`dist/js` 为原生 x86_64 ELF，SHA-256 `260caccaf87d89b3646f2184d65ea827b08ce7d1231b7fe3daf18cb55441a588`。脚本不解包、不安装、不执行样本。归档校验只证明与入库的参考字节一致，不代表重建或运行验收。
+
+```sh
+python3 -B scripts/verify-reference-wheel.py
+```
+
+在已有合法副本的其他工作区可传入 wheel 路径，脚本使用相同固定摘要。

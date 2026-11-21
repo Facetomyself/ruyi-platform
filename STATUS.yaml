@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T05:20:06+08:00'
+generated_at: '2026-11-22T05:30:06+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -29,6 +29,7 @@ projects:
       darwin_x86_64: build-required
       linux_aarch64: build-required
     tests: 19/19
+    latest_local_contract: '2026-11-22: aarch64 Python 3.10.12, 19/19; declared publicsuffixlist 1.1.2.20261121 installed into a private test directory; no native ARM64 release or live transport test'
     phase: Linux x86_64 wheel 已通过 HTTPS live smoke；其余平台见 build 矩阵
     blocked_by: []
     verified:
@@ -71,6 +72,11 @@ projects:
       runtime_sums_492ee47: pass
       vendor_base_manifest: pass
       build_identity: pass
+      external_linux_reference:
+        description: artifacts/third-party/ruyijs-inner-f08e835.md
+        archive_kept_out_of_git: true
+        verification: 'outer SHA-256 + 2071 top-level RECORD file hashes + x86_64 ELF header; no extraction or execution'
+        scope: reference-only
     inner_repo_state:
       exists: true
       created: '2026-11-04'
