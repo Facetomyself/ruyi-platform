@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T06:30:41+08:00'
+generated_at: '2026-11-22T06:40:08+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -92,6 +92,14 @@ projects:
           result: 'configured_only 0; 247 backend files, both headers verified, no native shell linked'
           evidence: deliverables/linux-ruyijs-donor-r67/native-configure.json
           evidence_sha256: f9dab31606150a5fde39d9ffd22690b5829890074106d6f0ad782df0d121cc07
+        guarded_build:
+          tool: fb4d68feed71e1bf22ab4e08d7babb988ae765cb
+          path: /home/ruyijs-donor-isolated-moz159/full-r68
+          observed: '2026-11-22T06:37:24+08:00: running JIT header/export generation, no OOM, original preflight preserved'
+          limits: '2 CPU, 4 GiB including swap, make -j1, read-only source, network none'
+          evidence: deliverables/linux-ruyijs-donor-r68/native-build-start.json
+          evidence_sha256: a31578b414038e4fb5ee8eca6fe663953fd0693469b7a5f988f60210f98cc688
+          standalone_runtime_and_private_product: pending
     inner_repo_state:
       exists: true
       created: '2026-11-04'
