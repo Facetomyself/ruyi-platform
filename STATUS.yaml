@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T19:21:43+08:00'
+generated_at: '2026-11-21T19:44:14+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -216,7 +216,8 @@ projects:
         live_pid_control: '81ddaab: live HTTP page acknowledgement + Firefox content process ancestry; stock ON/OFF passed, stock product and offline product checks correctly failed'
         console_path_integration: 'fc0bf80: Linux renderer helper + child environment + C++ synthetic writer, seven verified rows; GUI and browser not exercised'
         stock_control: '17c8e21: Firefox 159.0 ARM64 page receipts OFF/ON; stock correctly fails product ON'
-        console_kernel_launch: '9e08fd4: 5/5; actual ff:launch IPC handler + stock ARM64 Firefox 159.0 + PNG/rc=0; no Electron window or instrumented capture'
+        console_kernel_launch: '99cb728: packaged main IPC discovered and started the actual audited x86_64 kernel; OFF zero, ON PID 311 and exact 9 DOM/2 click previews; Electron event registration mocked, no native AMD64 window'
+        packaged_console_launch_receipt: deliverables/linux-release-6D26B4Jt/console-ipc-launch-result.json
         console_core_preview: '9bf7c80: bounded DOM and session markers, click and redacted Storage views; native model -> main/preload -> Vue; 22 console tests and 66-file clean application build; real browser integration pending'
         console_native_window: 'e7d2e2b: real ARM64 Electron 45.4.1 sandboxed BrowserWindow, 32 native fixture DOM rows (20+12), 2 clicks and 16 Storage summaries; legacy raw values hidden; seccomp 2 and NoNewPrivs 1; no instrumented Firefox bundled'
         console_native_window_artifact:
@@ -314,7 +315,7 @@ projects:
             state: build_running
             attempt: attempt.d7DBYN4g
             workspace_in_container: /var/tmp/ruyi-ff159-window-gate
-            observed_at: '2026-11-21T19:18:56+08:00: configure and preflight passed; build active at accessible/base (13:28 in log)'
+            observed_at: '2026-11-21T19:40:15+08:00: build reached dom/bindings (33:28 in log)'
           parent_window_gate:
             implementation: 8b2637c
             source_checks: '261 IPDL inputs, 17 staged objects linked, native model verifies readiness, stale epochs, shared markers, cap and I/O failure'
