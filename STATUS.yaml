@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T15:42:31+08:00'
+generated_at: '2026-11-21T16:13:48+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -259,10 +259,16 @@ projects:
             workspace_in_container: /var/tmp/ruyi-ff159-window-actor
             product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
             attempt: attempt.6D26B4Jt
-            observed_at: '2026-11-21T15:43:25+08:00: clean checkout and four patch checks passed; configure running'
+            observed_at: '2026-11-21T16:11:14+08:00: configure and preflight passed; full build running, audited package and page receipts pending'
             source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
             scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
             page_receipt: pending
+          parent_window_gate:
+            implementation: 8b2637c
+            source_checks: '261 IPDL inputs, 17 staged objects linked, native model verifies readiness, stale epochs, shared markers, cap and I/O failure'
+            qualification: '--parent-window-gate verifies ungated capture and dual-session behavior on the same package'
+            browser_receipt: pending
+            staged_into_current_candidate: false
           risk: 'previous stamped package failed content-side output open; parent-mediated candidate needs full build, archive audit, package and browser acceptance'
           verified_alternative:
             commit: 08c55a8
