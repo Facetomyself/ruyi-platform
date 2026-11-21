@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T16:40:44+08:00'
+generated_at: '2026-11-21T16:58:25+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -218,6 +218,11 @@ projects:
         console_kernel_launch: '9e08fd4: 5/5; actual ff:launch IPC handler + stock ARM64 Firefox 159.0 + PNG/rc=0; no Electron window or instrumented capture'
         console_core_preview: '1e98ca7: bounded pagination and live append; native writer -> main/preload -> mounted Vue pages (20+12 rows); synthetic, not a browser capture'
         console_native_window: 'db93c37: six-route app directory; real ARM64 Electron 45.4.1 sandboxed BrowserWindow, file: launch/log routes, 32 synthetic events checked (20+12), visible second-page PNG 1000x615; no instrumented Firefox bundled'
+        portable_console_assembly:
+          implementation: 571d380
+          verification: '64 Linux Python tests; clean 66-file console build; official Electron amd64 ZIP 72 entries; real prior run_page 1 rejected'
+          gate_qualification: optional_with_matching_two_session_evidence
+          actual_bundle: pending_passing_parent_window_delivery
         audited_build:
           driver_commit: 1b9f4c6
           host: host185
@@ -267,7 +272,7 @@ projects:
             workspace_in_container: /var/tmp/ruyi-ff159-window-actor
             product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
             attempt: attempt.6D26B4Jt
-            observed_at: '2026-11-21T16:36:46+08:00: full build reached dom/events (49:38 in log); audited package and page receipts pending'
+            observed_at: '2026-11-21T16:55:00+08:00: full build reached dom/media/platforms/ffmpeg/ffmpeg57 (68:14 in log); audited package and page receipts pending'
             source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
             scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
             page_receipt: pending
