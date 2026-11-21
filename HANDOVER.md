@@ -1,6 +1,6 @@
 # 阶段总结与交接
 
-**Linux 最新交接（2026-11-21）：**RuyiTrace 已在真实 x86_64 内容进程完成 `Document.title` 写/读及 `Document.createElement("div")` 的基础采集，关闭时页面执行且零文件。该开发版发行身份因缺 SourceStamp 失败；不要分发旧 tar。带正确源码标识及 Window 上下文的候选另有独立验收。当前尝试、回执与后续步骤见[实时进度](docs/13-ruyitrace-progress.md)及[机器状态](STATUS.yaml)。以下为截至 2026-11-19 的历史交接。
+**Linux 最新交接（2026-11-21）：**RuyiTrace 已在真实 x86_64 内容进程完成 `Document.title` 写/读及 `Document.createElement("div")` 的基础采集，关闭时页面执行且零文件。该开发版发行身份因缺 SourceStamp 失败；不要分发旧 tar。带正确 SourceStamp 的 `attempt.H5K1EqGg` 已完成构建、审计和包身份检查，但正式 ON 测试的 Web 内容 PID 首次打开 core 返回 `Permission denied`，预建私有模块目录仍失败。下一步修复正常沙箱下的受限父进程写入；暂不分发该候选为可用采集内核。当前尝试、回执与后续步骤见[实时进度](docs/13-ruyitrace-progress.md)及[机器状态](STATUS.yaml)。以下为截至 2026-11-19 的历史交接。
 
 本文是 17 轮工作的总账。目标：让一个新接手的人 10 分钟内知道
 **做了什么、做到哪、可信度多少、下一步卡在哪**。

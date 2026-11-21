@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T13:01:47+08:00'
+generated_at: '2026-11-21T13:50:44+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -194,6 +194,8 @@ projects:
         browser_capture_verified: true
         browser_capture_scope: 'x86_64 development-tree functional test only: same live content PID set/get title marker and successful createElement(div); OFF page ack and zero output'
         release_package_verified: false
+        stamped_package_identity_verified: true
+        gate_launch_admission: 'e3939b3: Linux gated launches require local extended-page proof and seven matching runtime hashes; no product kernel has qualified yet'
         first_browser_trace:
           attempt: attempt.iqWqH54h
           pid: 341
@@ -237,17 +239,23 @@ projects:
           stamped_retry:
             attempt: attempt.H5K1EqGg
             product_inputs: 4eed287
-            observed_at: '2026-11-21T12:58:20+08:00: incremental build in progress, xpcom/ioutils; packaging and page delivery waiting'
+            observed_at: '2026-11-21T13:43:09+08:00: complete 0; final upstream Rust audit rc=0; package_verified; page failed'
+            tar_bytes: 81711500
+            tar_sha256: ff24a6b43e8357e6df0eea4835fe4ebca9ed36120bcca932a579defbfff21ebf
+            libxul_sha256: bb90586b41a5ffb3aeec636a2d8215ba1ca59abe496fb85622fcbe017b839b66
+            elf_build_id: a561dd676730e75b180e3a39d85225dd36079351
+            rust_sha256: 2c81bdb3cac5f6efd90e44cf24c0defd74b7df7710f4f184bcc37b900de00042
             build_id: '20261121023929'
             source_stamp: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
-            delivery: '0f9d799: waiting for package; candidate requires matching origin and WindowID; no page result yet'
+            delivery: 'run_page 1: OFF passes, ON page acknowledgment/PNG/exit 0 but Web PID 290 reports core open permission denied; zero trace files'
+            reproduced: 'same verified package with and without precreated 0700 sink subdir both failed on open; normal sandbox unchanged'
             trigger: 'prior complete 0, failed package SourceStamp, prior delivery ended; old artifacts retained and source delta verified under exclusive build lock'
           preflight: pass (Rust opt-level 1, both sandbox families, unmodified upstream audit)
           predecessor_rust_archive:
             audit: 'pinned upstream networking check rc=0; does not qualify successor archive'
             bytes: 160069128
             sha256: 9e3404f9497555a570e763e6c067c39114244a8ae6641ecadf2459497aa6d1fd
-          risk: 'distro WASI failure resolved by completed CI-sysroot build; stamped successor still needs independent archive, package and context-qualified page acceptance'
+          risk: 'WASI and package provenance resolved; real audited-package content process fails first output open after lazy initialization; scoped parent-mediated output remains to implement and verify'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0

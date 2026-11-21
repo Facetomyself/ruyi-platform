@@ -8,9 +8,13 @@
 
 `attempt.iqWqH54h`（产品输入 `d3371b7`）整机构建 `complete 0`，最终上游 Rust 网络审计通过。发行身份检查因 INI 缺少 SourceStamp 而停止；旧 tar 及失败回执原样保留。另在 UID 1000、仅 lo、seccomp=2、NoNewPrivs=1、零 capabilities 环境实跑了 45 个文件逐项核验的只读浏览器副本。OFF 页面执行成功且无文件。ON 页面回执确认活跃 Web 内容 PID 341，该 PID 文件 667 字节（SHA-256 `9c1f11baf7685271e6b9ee10f7c93525599727308ef0e8dba11f5bd84304fc78`）。控制台实际预览代码读出同轮 marker 的 `set Document.title`、`get Document.title` 和 `call Document.createElement("div")`、`ok=true`，三条顺序正确。**这是基础采集实证，不是全套 producer、Window 上下文或发行包验收。**
 
-### 下一项验收
+### 带源码标识的正式候选：打包通过，页面采集失败
 
-保留旧输入、原始 81,700,272 字节 tar、审计归档和旧 `libxul.so` 后，核对 Git 新旧完整 domtrace 文件树，仅替换三个有差异的原生文件，增量重配新尝试 `attempt.H5K1EqGg`（输入 `4eed287`）。真实预检：两份 INI 均有正确基线 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、BuildID `20261121023929`。12:58 +08:00 在 build（`xpcom/ioutils`），打包/页面均等待。新的正式验收还要求测试页 origin、同一顶层 WindowID 和正数序号；旧开发版不能通过这一档位。
+`attempt.H5K1EqGg`（输入 `4eed287`）已 `complete 0`，最终原版 Rust 审计 rc=0，BuildID `20261121023929`，完整基线 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`。上游 tar.xz 81,711,500 字节，SHA-256 `ff24a6b43e8357e6df0eea4835fe4ebca9ed36120bcca932a579defbfff21ebf`；包及安装副本身份校验通过。正式交付却以 `run_page 1` 结束：OFF 零文件；ON 页面 marker、PNG 和进程退出正常，实测内容 PID 290 在首次打开 core 时记录 `open_failed: Permission denied`，无事件输出。不能把上一个开发版的三条记录移作这个包的证明。
+
+13:43 +08:00 前对同一包做隔离复测：无预建子目录时 PID 267、预建本用户 0700 `domtrace` 子目录时 PID 607 均出现相同打开错误，均零文件；新版失败摘要又关联到了 PID 311 的同类错误。只证明首次打开失败，不能由 errno 反推具体受限系统调用。未改 Firefox 沙箱、宿主目录权限、Docker seccomp 或两个 SSH 隧道。下一项工程重点是受限的父进程写入：以窗口 actor 自身的 principal/WindowID 和内容进程身份确定落点，只接收明确类型、长度和限额内的事件；不接受子进程提供的路径、PID 或原始 JSON。修复后重跑原 OFF/ON 窗口验收。
+
+`e3939b3` 给 Linux 控制台受控启动增加资格检查：只有经完整 DOM/click/双会话原始数据复核的本地交付可签发小型能力记录，启动前重新核实七个关键文件；缺凭据、同尺寸改包、配置变化和取消均在启动前停止。无论文件名或构建版本都不能代替这份验收；这也不是解决上述写盘故障的修复。尚未给任何产品包发放真实闸门资格。
 
 ### 后续源码增量：DOM 类型和五项只读属性（尚未发布）
 
