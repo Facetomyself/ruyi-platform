@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T05:52:03+08:00'
+generated_at: '2026-11-22T06:01:21+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -132,7 +132,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '113 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '115 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -498,6 +498,17 @@ projects:
             gkrust_invocation: 'actual native rustc running with ThinLTO, opt=1, codegen-units=1; archive audit pending'
             gkrust_invocation_evidence: deliverables/linux-arm64-cgroup-r61/gkrust-invocation.json
             gkrust_invocation_evidence_sha256: 7a30c7162a5c6d5aabc22694ede83b56f2b54b8490daaa724feebfba1b714574
+            gkrust_intermediate_replay:
+              tool: 8619d3a
+              build_id: '20261121211603'
+              archive_bytes: 173807936
+              archive_sha256: 3d03fcd68c117175f959eb646a5a0bc2499a14f9c78a3c4565c5f9a976a4d5f4
+              original_networking_audit_exit: 0
+              stable_bytes_before_after: true
+              evidence: deliverables/linux-arm64-cgroup-r61/gkrust-intermediate-audit.json
+              evidence_sha256: 17dff7e76967481e59dadcada2a1498000cb0fe72deb4338fd51484d9f585dc4
+              scope: 'actual candidate Rust archive, not final build, package or page acceptance'
+              observed_following_phase: '2026-11-21T21:59:57Z: still building, uniffi_macros, oom=0 and oom_kill=0'
             controller: /home/ubuntu/ruyitrace-arm64-r53/compile-queue-r61
             delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r61
             formal_audit_package_and_pages: pending

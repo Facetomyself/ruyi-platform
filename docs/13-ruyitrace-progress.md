@@ -68,6 +68,8 @@
 
 `01ae2a9` 将无额外参数的原始启动器 X11／Wayland 验收扩展到原生 ARM64：guest 入口、包回执及 Electron／Firefox／libxul ELF 必须匹配，ARM64 导入还核对便携 tar 内这三份 ELF。旧 amd64 发布归档及已有的真实 X11 截图、Wayland 回执用新版读取器逐字节复核成功，交叉当作 ARM64 会被拦截。113 项 Linux Python 回归通过；ARM64 产品窗体和物理显示未运行。21:47 UTC `attempt.gIhdRoB6` 推进到 `geckoservo`；21:50 UTC 已观察正式候选启动 `gkrust`，包装器回执与运行中 `rustc` 的参数一致：AArch64 `staticlib`、ThinLTO、opt=1、单 codegen unit。见 `deliverables/linux-arm64-cgroup-r61/gkrust-invocation.json`。OOM 计数为零，实际归档审计与发布包仍待生成。
 
+正式候选已产出自己的 `libgkrust.a`：173,807,936 字节、SHA-256 `3d03fcd68c117175f959eb646a5a0bc2499a14f9c78a3c4565c5f9a976a4d5f4`、BuildID `20261121211603`。`8619d3a` 的中途只读复核核对同次包装器回执及原版审计源码后，运行 `check_binary --networking` 返回 0；文件身份和 SHA-256 前后相同，OOM 计数为零。证据 `deliverables/linux-arm64-cgroup-r61/gkrust-intermediate-audit.json`。21:59 UTC 候选仍在构建，已继续至 `uniffi_macros`；中途回执未写进正式 attempt，也未触发打包或页面准入。115 项 Linux Python 回归通过。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
