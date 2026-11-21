@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T07:32:12+08:00'
+generated_at: '2026-11-22T07:43:42+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -130,6 +130,14 @@ projects:
             scope: 'original Mozilla 28 objects and 3 archives, exact native link argv except output; JS and Promise rerun; no private shell object'
             evidence: deliverables/linux-ruyijs-donor-r72/exact-relink.json
             evidence_sha256: 9f59bf7e1c6f18afadc3a686a47bcef4586b5e140acfcf10ce77ebdf00e431e2
+          private_shell0:
+            input_commit: 12e33c7636d172c2f22b9017f25e8f75f9d33745
+            terminal: private_shell0_verified 0
+            bytes: 6958728
+            sha256: 82f7bb61f0a9509e56e3e09c67a5fc6a21d13546f16e96e0c2968dd1a308e2a8
+            scope: 'native x86_64 ET_REL object, five expected private hook references; original donor unchanged, no product link'
+            evidence: deliverables/linux-ruyijs-private-shell0-r73/compile-evidence.json
+            evidence_sha256: 3e5e1f832eeb71d9a8d575c2e3366e18d67384bd0a2de981dad48fd74b5e02dd
           private_product: pending
     inner_repo_state:
       exists: true
