@@ -10,7 +10,7 @@
 
 ### 下一项验收
 
-保留旧输入、原始 81,700,272 字节 tar、审计归档和旧 `libxul.so` 后，核对 Git 新旧完整 domtrace 文件树，仅替换三个有差异的原生文件，增量重配新尝试 `attempt.H5K1EqGg`（输入 `4eed287`）。真实预检：两份 INI 均有正确基线 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、BuildID `20261121023929`。11:50 +08:00 在 build（`dom/xul`），打包/页面均等待。新的正式验收还要求测试页 origin、同一顶层 WindowID 和正数序号；旧开发版不能通过这一档位。
+保留旧输入、原始 81,700,272 字节 tar、审计归档和旧 `libxul.so` 后，核对 Git 新旧完整 domtrace 文件树，仅替换三个有差异的原生文件，增量重配新尝试 `attempt.H5K1EqGg`（输入 `4eed287`）。真实预检：两份 INI 均有正确基线 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、BuildID `20261121023929`。12:32 +08:00 在 build（`netwerk/url-classifier`），打包/页面均等待。新的正式验收还要求测试页 origin、同一顶层 WindowID 和正数序号；旧开发版不能通过这一档位。
 
 ### 后续源码增量：DOM 类型和五项只读属性（尚未发布）
 
@@ -23,6 +23,12 @@
 `cfdf3e5` 接入 Firefox 159 `EventDispatcher::Dispatch` 真正派发分支，只处理目标为 HTTP(S) 内容 Window 的 `ePointerClick`，不记录按键、坐标、节点正文或 listener 数据。按 PID 延迟创建独占私有 event 文件，时间、WindowID/origin、递增事件 ID 和窗口序号用于核对。不同 sink 各自停止 I/O 故障写入，Linux 实现共同遵守进程记录上限。该切片不等于 Win64 全部事件、异步队列或完整执行上下文关联。
 
 原生测试已覆盖 OFF、仅 event 不建 core、两类记录一起写、跨 sink 限流和旁路故障后 core 保持可用。真实 Gecko 的 BindingUtils、EventDispatcher 与七个运行时单元已独立串行编译并成功部分链接。受控页面执行两次 `click()`、一次非 click，监听器计数及最后 title 读回正确才发回执；已在旧 x86 开发版实跑，基础采集仍成功，新的 `--require-click-dispatch` 判定按预期未通过。带此钩子的浏览器仍待后续集成；当前 `4eed287` 候选不含该增量。
+
+### 后续源码增量：Linux 受控采集会话
+
+`4dbbe6c` 接通 `MOZ_DOM_TRACE_GATE` 与轮询间隔：默认无标记时暂停，观察到开闸后先同步写 `session_started` 再发布会话号，关闸写 `session_stopped`。core/click 提交前都重新核对入口会话，避免跨窗口调用串入新会话；限额跨会话累计。Linux 控制台只发布/移除已保存 profile 内自己格式的 `trace.on`，不会截断或移除外部标记；界面表达的是控制文件状态而非推断采集成功。
+
+在 ARM64 和 host185 的 x86_64 原生测试进程观察两轮开关、空闲边沿、旧调用拒收、跨会话上限、fork/exec 和可中断退出。16 项控制台组合回归通过；真实 Gecko 两个钩子和八个运行时单元部分链接无未解析的 domtrace 符号。闸门与各 producer 的完整浏览器沙箱内联调仍待集成；本轮未改变 `attempt.H5K1EqGg` 的输入。
 
 ## 历史过程：从宿主 writer 到首个受控页面
 
