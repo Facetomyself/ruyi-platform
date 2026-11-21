@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T06:01:21+08:00'
+generated_at: '2026-11-22T06:14:40+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -77,6 +77,15 @@ projects:
         archive_kept_out_of_git: true
         verification: 'outer SHA-256 + 2071 top-level RECORD file hashes + x86_64 ELF header; no extraction or execution'
         scope: reference-only
+      private_linux_x86_donor_source:
+        host: host185
+        offline_snapshot: 'exit 1 on missing Firefox Git blobs; OOMKilled=false; borrowed store was read-only'
+        fresh_mozilla_checkout: /home/ruyijs-donor-isolated-moz159/firefox
+        pin: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
+        official_tag: FIREFOX_159_0_RELEASE
+        observed: '2026-11-22T06:12:03+08:00: separate official source fetch in progress, no donor build'
+        evidence: deliverables/linux-ruyijs-donor-r66/source-stage.json
+        evidence_sha256: e7aa14917f59bab6dbc0e27032bd9a88d832e81194c33d511e8f2a984b186b79
     inner_repo_state:
       exists: true
       created: '2026-11-04'

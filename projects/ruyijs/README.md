@@ -62,6 +62,12 @@ ruyijs-inner/
 
 详细进度见 [`reverse-analysis.md`](reverse-analysis.md)。
 
+### Linux x86_64 私有 donor
+
+2026-11-22 在 `host185` 通过 Trace 让行和资源检查后，以 0.5 CPU、2 GiB 内存运行单独的离线快照。借用的 Firefox Git 对象库是 partial clone，实际 `checkout` 因缺少 blob 返回失败；其私有目录和日志保留，未启动 standalone 编译，容器 `OOMKilled=false`。
+
+主机已从 Mozilla 官方仓库核对 `FIREFOX_159_0_RELEASE` 对应 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`。同额度的独立源码容器开始在 `/home/ruyijs-donor-isolated-moz159/firefox` 浅取该 tag，没有 Trace 挂载。联网仅用于取官方源码，下一阶段的编译仍在独立离线容器进行。证据位于工作区 `deliverables/linux-ruyijs-donor-r66/source-stage.json`。本轮本地隔离与 donor 回归 28 项通过、1 项跳过；仍无完整 `dist/bin/js` 或私有产品 `Context.eval` 结果。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
