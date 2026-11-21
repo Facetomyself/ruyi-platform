@@ -82,6 +82,12 @@ ARM64 未插桩 Firefox 的 OFF、ON 均确认页面完成、截图有效、进�
 
 在 oracle-reverse-dev 上，真实 Firefox 159 ARM64 tar 与已安装的 7 个关键文件逐字节摘要一致（BuildID `20261022150525`）。普通用户在仅回环网络内用这份回执运行 OFF/ON，均正常退出，有截图、页面回执及内容进程证据，零 trace。五项合成单测覆盖混包、架构、归档、回执和 Build ID 异常；产品正例仍须在 x86_64 候选上运行。同一候选 `attempt.iqWqH54h` 此时编译到 `dom/canvas`、尚无退出回执。
 
+### 2026-11-21 08:31 +08:00：核心 Window 上下文与事件序号增量
+
+为现有 `Document.title` 和 `Document.createElement` 探针接入 Gecko 执行 realm 的 HTTP(S) 内容窗口：通过当前原生全局、inner WindowID、BrowsingContext 及 principal 的 web-exposed origin 区分 top/iframe，跳过不可判定的来源。每线程按 `(WindowID,type,interface,member)` 对成功写出的记录编号；键数上限 1024，饱和后保留已有序列。此切片不宣称 Worker、扩展或其他协议的支持。
+
+宿主实测 1,027 条合成 Window 行，跨线程、窗口、操作独立计数；`--require-window-context` 的判定器拒绝串窗口、错误来源/层级与无效序号。host185 对此版本真实编译 BindingUtils 和六个核心单元，`ld -r` 无未解析 domtrace 引用。尚无含此增量的浏览器级记录。原候选 `attempt.iqWqH54h` 仍基于 `d3371b7`、编译至 `dom/media/mp4`，原候选输入未改；保留原候选验收与后续增量验收的区别。
+
 ## 此前阶段快照（以下非当前构建状态）
 
 ### 当时的结论
