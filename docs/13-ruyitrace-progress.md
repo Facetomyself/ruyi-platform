@@ -4,7 +4,13 @@
 
 ---
 
-## 当前验收：x86_64 开发版已采到真实页面；发行版另验
+## 当前验收：x86_64 发行包的非闸门 DOM 与点击通过
+
+`attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
+
+同一安装副本 `boundary_verified`：顶层与同源 iframe 分属两个 WindowID、各两条点击，异源 iframe 完成页面但零输出。父进程实际持有两个输出文件的可写 FD。归档导出到本地重建并独立复验，原始 9+2 条记录已在沙箱开启的 ARM64 Electron 45.4.1 窗口逐条显示。amd64 便携目录已组装并逐文件读回验证，归档 264,593,938 字节、212 项、SHA-256 `7a54bb2ce2b4a24c4aadecac51c1a0694c40b130641854ffc115bbe6c26b2075`。交付位于 `deliverables/linux-release-6D26B4Jt`；amd64 整机桌面启动、闸门和 Storage 的浏览器正例另验。新的独立 `attempt.d7DBYN4g` 已启动，输入 `c455562`，未改原包。
+
+### 历史：x86_64 开发版基础采集
 
 `attempt.iqWqH54h`（产品输入 `d3371b7`）整机构建 `complete 0`，最终上游 Rust 网络审计通过。发行身份检查因 INI 缺少 SourceStamp 而停止；旧 tar 及失败回执原样保留。另在 UID 1000、仅 lo、seccomp=2、NoNewPrivs=1、零 capabilities 环境实跑了 45 个文件逐项核验的只读浏览器副本。OFF 页面执行成功且无文件。ON 页面回执确认活跃 Web 内容 PID 341，该 PID 文件 667 字节（SHA-256 `9c1f11baf7685271e6b9ee10f7c93525599727308ef0e8dba11f5bd84304fc78`）。控制台实际预览代码读出同轮 marker 的 `set Document.title`、`get Document.title` 和 `call Document.createElement("div")`、`ok=true`，三条顺序正确。**这是基础采集实证，不是全套 producer、Window 上下文或发行包验收。**
 
@@ -20,7 +26,7 @@
 
 在 `PWindowGlobal` 增加有界的类型化 DOM/click 上报。父进程从当前窗口 actor 确认来源、窗口和内容进程，并按自己配置打开私有文件。消息不携带路径、文件句柄、PID、来源或 JSON。要求明确选定单一 HTTP(S) origin；设闸门时保持停采，直至父进程可确认会话边界。原生父子进程模型通过 OFF、错误来源、非法 payload、PID 实例冲突、共享上限及 DOM/click 正例；21 项控制台组合回归通过。
 
-host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接收方、协议生成物和运行时共 16 个对象，`ld -r` 无未解析的本项目符号。上一次失败包原样保留。新工作区 `/var/tmp/ruyi-ff159-window-actor` 已通过干净检出和四项补丁检查。15:43 +08:00，`attempt.6D26B4Jt` 开始配置。一次性顺序协调器随后执行全量构建、独立审计、打包及 `--parent-window-transport` 离线验收；前一阶段失败即停止。13:43 的旧包失败结论不变。18:48 +08:00 复查，新候选仍在构建，已到 Rust `bindgen` 阶段（日志 181:06），最终审计、包及页面回执仍待。
+host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接收方、协议生成物和运行时共 16 个对象，`ld -r` 无未解析的本项目符号。上一次失败包原样保留。新工作区 `/var/tmp/ruyi-ff159-window-actor` 已通过干净检出和四项补丁检查。15:43 +08:00，`attempt.6D26B4Jt` 开始配置。一次性顺序协调器随后执行全量构建、独立审计、打包及 `--parent-window-transport` 离线验收；前一阶段失败即停止。13:43 的旧包失败结论保持原样；18:55 +08:00 已确认新候选构建、审计、发行包和两次真实页面验收均通过。
 
 ### 父端落盘与来源隔离验收 `fed4558`
 
@@ -40,9 +46,9 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 组装器独立复验父进程传输档位的真实页面回执、审计包身份、原始 tar 摘要及 OFF/ON 的 DOM/click 记录。只有核验通过才将干净的控制台应用放入 `resources/app`、从该内核 tar 解出 `resources/kernel`。闸门资格另依据同包双会话；原始 trace 和用户配置都不进入输出。组装不更改目标机 Chromium 沙箱，也不授予特权。
 
-64 项 Linux Python 测试通过；真实官方 Electron amd64 ZIP 的 72 个条目通过布局检查，干净控制台构建的 66 个文件通过清单核验。上一候选的实际 `run_page 1` 明确拒绝，尚未组装可交付产品目录。`attempt.6D26B4Jt` 的输入与已部署的验收档位保持不变。
+真实官方 Electron amd64 ZIP 的 72 个条目通过布局检查，干净控制台构建的 66 个文件通过清单核验。上一候选的实际 `run_page 1` 明确拒绝；实际 `attempt.6D26B4Jt` 作为首个通过的候选组装。只导出非闸门资格，便携目录的 amd64 原生窗口尚未实跑。
 
-`05a766b` 增加最小交付转移：只导出验收通过的原始 tar、选中的 DOM/click/可选 Storage 或闸门日志、截图和回执。目的端重新计算逐文件摘要，从 tar 重建发行安装树，并复验 ELF 身份及真实页面判定后才发布新目录。host185 的 Python 3.6 通过白名单把固定证据交给离线工具链容器，验证器无原始目录挂载且不增加 capabilities。77 项 Python 测试通过；host185 真实工具链镜像用测试材料完成往返重建，旧发行候选的真实 `run_page 1` 被拒绝。待 `attempt.6D26B4Jt` 产出合格回执后再导出成品。
+`05a766b` 增加最小交付转移：只导出验收通过的原始 tar、选中的 DOM/click/可选 Storage 或闸门日志、截图和回执。目的端重新计算逐文件摘要，从 tar 重建发行安装树，并复验 ELF 身份及真实页面判定后才发布新目录。host185 的 Python 3.6 通过白名单把固定证据交给离线工具链容器，验证器无原始目录挂载且不增加 capabilities。77 项 Python 测试通过；host185 真实工具链镜像用测试材料完成往返重建，旧发行候选的真实 `run_page 1` 被拒绝。`attempt.6D26B4Jt` 合格后实跑 host185 导出与接收重建，原始 tar 与捕获文件的摘要一致。
 
 ### 父进程闸门 `8b2637c`
 
@@ -50,7 +56,7 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 真实重生成 261 个 IPDL 输入；17 个对象含两个窗口 actor 和生成的双向 IPC，通过部分链接。最终父端确认去重实现也重编链接。原生模型及 21 项控制台回归、6 项资格签发测试通过，包含父端所见 PID 不同于内层 PID 的用例。新增 `--parent-window-gate` 要求同一安装包先通过非闸门 DOM/click，再通过双会话页。`attempt.6D26B4Jt` 输入仍是 `86d4352`，保持未改；后续集成的父进程闸门仍待真实页面验证。
 
-`c455562` 修正闸门验收时序：页面让出内容主线程等待异步确认，以本地图片请求延迟截图；关闸前等待同一会话的完整 DOM 和点击写入后才移除标记。原生模型覆盖「关闸 HTTP 先到，采集 IPC 后到」；真实 stock Firefox 在模拟确认下跑完五步，去掉模拟确认后按预期缺失首个 `session_started`。73 项 Python 测试通过，父端资格还需该次真实页面原始证据。新的固定归档已存 host185，旧归档保留；串行构建入口验证前一候选的真实页面和边界回执，旧失败回执会在创建新目录之前被挡住。当前仍只有 `attempt.6D26B4Jt` 一个全量构建。
+`c455562` 修正闸门验收时序：页面让出内容主线程等待异步确认，以本地图片请求延迟截图；关闸前等待同一会话的完整 DOM 和点击写入后才移除标记。原生模型覆盖「关闸 HTTP 先到，采集 IPC 后到」；真实 stock Firefox 在模拟确认下跑完五步，去掉模拟确认后按预期缺失首个 `session_started`。73 项 Python 测试通过，父端资格还需该次真实页面原始证据。新的固定归档已存 host185，旧归档保留；串行构建入口验证前一候选的真实页面和边界回执，旧失败回执会在创建新目录之前被挡住。前序 `attempt.6D26B4Jt` 已完整通过非闸门页及来源边界；19:18 +08:00 确认唯一后继 `attempt.d7DBYN4g` 已通过配置和预检，正编译，日志到 `accessible/base`。
 
 ### 可选 Web Storage 摘要 `8ac02b1`
 
@@ -58,13 +64,13 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 原生模型的 16 条记录、关闭/限额、空串与缺失状态、非 BMP 长度和拒收意外字段均已验证；18 个真实 Gecko 对象部分链接通过。官方 x86_64 Firefox 在同一离线容器中完成测试页、截图并按预期零输出，只证明页面用例可运行。后续成品由 `--parent-window-storage` 验证同一包的非闸门 DOM/click/Storage 与双会话。当前 `attempt.6D26B4Jt` 仍采用原输入 `86d4352`。
 
-### 后续源码增量：DOM 类型和五项只读属性（尚未发布）
+### 历史源码增量：DOM 类型和五项只读属性
 
 `810c3e2` 依据 Firefox 159 的 WebIDL 声明接入 `Document.compatMode/contentType`、`Element.tagName/localName`、`Node.nodeName`。成功 `createElement` 的返回值用原生 DOM JSClass 名渲染，例如 `[Object HTMLDivElement]`，不读取页面的 `constructor` 或 `toString`；不据此生成对象关联 ID。新增 `--require-dom-shape` 档要求在同一页面窗口顺序识别八条值与类型都正确的记录。
 
 实测分层：宿主筛选/序列化和八事件判定反例通过；新绑定头在候选原配置下编译得到 489,936 字节 x86_64 ELF 对象（SHA-256 `d4ec73d4ab8528070e2916ffa1dce123b4b26ad11cc2786300e79c5a206abb9b`）。旧开发版在仅回环环境能正确执行扩展后的页面、OFF/ON 均正常退出，基础事件仍可读；严格八事件检查按预期失败。没有改动正在构建的 `4eed287`，八事件浏览器正例仍待后续集成。
 
-### 后续源码增量：Linux click 派发的独立 JSONL（待集成浏览器正例）
+### 历史源码增量：Linux click 派发的独立 JSONL
 
 `cfdf3e5` 接入 Firefox 159 `EventDispatcher::Dispatch` 真正派发分支，只处理目标为 HTTP(S) 内容 Window 的 `ePointerClick`，不记录按键、坐标、节点正文或 listener 数据。按 PID 延迟创建独占私有 event 文件，时间、WindowID/origin、递增事件 ID 和窗口序号用于核对。不同 sink 各自停止 I/O 故障写入，Linux 实现共同遵守进程记录上限。该切片不等于 Win64 全部事件、异步队列或完整执行上下文关联。
 

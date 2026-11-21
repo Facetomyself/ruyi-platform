@@ -1,6 +1,6 @@
 # 阶段总结与交接
 
-**Linux 最新交接（2026-11-21）：**RuyiTrace 已在真实 x86_64 内容进程完成 `Document.title` 写/读及 `Document.createElement("div")` 的基础采集，关闭时页面执行且零文件。该开发版发行身份因缺 SourceStamp 失败；不要分发旧 tar。带正确 SourceStamp 的 `attempt.H5K1EqGg` 已完成构建、审计和包身份检查，但正式 ON 测试的 Web 内容 PID 首次打开 core 返回 `Permission denied`，预建私有模块目录仍失败。下一步修复正常沙箱下的受限父进程写入；暂不分发该候选为可用采集内核。当前尝试、回执与后续步骤见[实时进度](docs/13-ruyitrace-progress.md)及[机器状态](STATUS.yaml)。以下为截至 2026-11-19 的历史交接。
+**Linux 最新交接（2026-11-21）：**已审计的 x86_64 Firefox 159 `attempt.6D26B4Jt` 通过发行身份、真实页面 OFF/ON 及同包来源边界。OFF 零文件，ON 同一活跃窗口 9 条 DOM 与 2 条点击；父进程持有实际日志的可写 FD，异源 iframe 零输出。原始记录已在 ARM64 Electron 沙箱窗口复验，并组装了 amd64 便携目录。下一个 `attempt.d7DBYN4g` 独立验证闸门与 Storage，amd64 便携目录整机启动仍待验证。旧包 `attempt.H5K1EqGg` 的失败回执保留。见[实时进度](docs/13-ruyitrace-progress.md)及[机器状态](STATUS.yaml)。以下为历史交接。
 
 本文是 17 轮工作的总账。目标：让一个新接手的人 10 分钟内知道
 **做了什么、做到哪、可信度多少、下一步卡在哪**。

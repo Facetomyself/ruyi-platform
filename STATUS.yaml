@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T18:51:32+08:00'
+generated_at: '2026-11-21T19:21:43+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -200,8 +200,9 @@ projects:
         gate_session_increment: '4dbbe6c: controlled core/click recorder, flushed session transitions and stale-span rejection; native arm64/amd64 checks, console IPC integration, 2 Gecko hooks + 8 runtime units partial link; browser gate test pending'
         gate_page_protocol: 'bc0ec4c: five-stage same-window page check, native writer + modeled page positive; old x86 traced binary leaked paused marker, stock lacked session_started; integrated browser positive pending'
         browser_capture_verified: true
-        browser_capture_scope: 'x86_64 development-tree functional test only: same live content PID set/get title marker and successful createElement(div); OFF page ack and zero output'
-        release_package_verified: false
+        browser_capture_scope: 'audited Linux x86_64 Firefox 159: 9 DOM and 2 click rows in one live content window; OFF zero files; same-package origin and parent writer confirmed'
+        release_package_verified: true
+        release_package_scope: 'attempt.6D26B4Jt, explicit origin, ungated DOM shape and clicks only; gated and Storage builds remain separate'
         stamped_package_identity_verified: true
         gate_launch_admission: 'e3939b3: Linux gated launches require local extended-page proof and seven matching runtime hashes; no product kernel has qualified yet'
         first_browser_trace:
@@ -226,17 +227,21 @@ projects:
           implementation: 806589c
           development: '3 verified real x86_64 Firefox rows from attempt.iqWqH54h / PID 341 replayed in ARM64 Electron 45.4.1; no writer ran during replay'
           evidence: deliverables/linux-console-iqWqH54h-replay
-          release: pending_passing_parent_window_delivery
+          release: 'attempt.6D26B4Jt raw 9 DOM rows and 2 clicks matched in native ARM64 Electron 45.4.1, sandbox retained'
         verified_delivery_transfer:
           implementation: 05a766b
           verification: '77 Python tests; host image rebuilt staged fixture, checked ELF build ID and page logs; prior real run_page 1 blocked'
           host_checks: /home/ruyi-smoke-159-x86/checks-transfer-05a766b
-          real_transfer: pending_passing_parent_window_delivery
+          real_transfer: 'attempt.6D26B4Jt exported on host185; received, reconstructed and replayed against the audited build'
         portable_console_assembly:
           implementation: 571d380
           verification: '64 Linux Python tests; clean 66-file console build; official Electron amd64 ZIP 72 entries; real prior run_page 1 rejected'
           gate_qualification: optional_with_matching_two_session_evidence
-          actual_bundle: pending_passing_parent_window_delivery
+          actual_bundle: deliverables/linux-release-6D26B4Jt/ruyitrace-linux-amd64-6D26B4Jt.tar.gz
+          bundle_sha256: 7a54bb2ce2b4a24c4aadecac51c1a0694c40b130641854ffc115bbe6c26b2075
+          bundle_bytes: 264593938
+          bundle_desktop_launch_verified: false
+          release_evidence: deliverables/linux-release-6D26B4Jt/release-evidence.json
         audited_build:
           driver_commit: 1b9f4c6
           host: host185
@@ -286,22 +291,30 @@ projects:
             workspace_in_container: /var/tmp/ruyi-ff159-window-actor
             product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
             attempt: attempt.6D26B4Jt
-            observed_at: '2026-11-21T18:48:03+08:00: full build compiling Rust bindgen stage (181:06 in log); package and page receipts pending'
+            observed_at: '2026-11-21T18:55:46+08:00: complete 0, final upstream networking audit passed, parent_page_verified 0 and boundary_verified'
+            build_id: '20261121074300'
+            elf_build_id: 47bb9f26b95c2d4deb60214caff16c2293d9f5cc
+            archive_bytes: 81719908
+            archive_sha256: 51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b
+            rust_archive_sha256: 60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39
             source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
             scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
-            page_receipt: pending
+            page_receipt: 'page_verified 0; OFF zero files; ON live content PID 279, 9 DOM and 2 click rows; both normal exit and PNG'
           parent_boundary_test:
             implementation: fed4558
             coordinator: 2d368a3
             verification: '73 Linux Python tests; live FD discrimination; stock Firefox acknowledged top and two frames with zero output in recorded isolation'
             host_run: /home/ruyi-smoke-159-x86/window-actor-86d4352-boundary
-            state: awaiting_accepted_delivery_for_same_package
-            candidate_receipt: pending
+            state: boundary_verified
+            candidate_receipt: 'same archive: live PID 110, separate top and same-origin iframe WindowIDs, 2 clicks each, foreign origin zero, parent writable FDs observed'
           next_gate_storage_input:
             implementation: c455562a97d6f7cc23b299596025b01406274103
             archive_sha256: a231b92b0146a8a0310f543a122e3505992411e26a8a6c1dd551935626803518
             acceptance: 'asynchronous gate ACK, inotify drain before each close, explicit load-barrier receipt; native model and stock controls pass'
-            state: archive_staged_only
+            state: build_running
+            attempt: attempt.d7DBYN4g
+            workspace_in_container: /var/tmp/ruyi-ff159-window-gate
+            observed_at: '2026-11-21T19:18:56+08:00: configure and preflight passed; build active at accessible/base (13:28 in log)'
           parent_window_gate:
             implementation: 8b2637c
             source_checks: '261 IPDL inputs, 17 staged objects linked, native model verifies readiness, stale epochs, shared markers, cap and I/O failure'
@@ -314,7 +327,7 @@ projects:
             source_checks: '18 staged Gecko objects linked, native 16-row summary and shared cap verified, stock x86_64 fixture passes with no trace'
             qualification: '--parent-window-storage requires ungated DOM/click/Storage summaries plus dual-session page'
             browser_receipt: pending
-          risk: 'previous stamped package failed content-side output open; parent-mediated candidate needs full build, archive audit, package and browser acceptance'
+          risk: 'ungated x86_64 parent capture verified; controlled sessions, Storage and native AMD64 portable desktop launch await separate acceptance'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
