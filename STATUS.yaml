@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T10:29:55+08:00'
+generated_at: '2026-11-21T10:53:50+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -187,7 +187,15 @@ projects:
         private_file_lifecycle: 'd3371b7: Linux core only; 0600 exclusive output, live complete line before _Exit, parent/child PID isolation and eight rejection cases'
         window_context_increment: '60fd178: HTTP(S) top/iframe inner WindowID, web origin, committed per-site sequences; 1027 synthetic rows and real Gecko partial link, no browser-level proof yet'
         lazy_writer_increment: '1a326df: no output for idle or filtered scopes, one diagnostic on I/O failure, entry/commit cap checks; native regression and Gecko object compile only'
-        browser_capture_verified: false
+        browser_capture_verified: true
+        browser_capture_scope: 'x86_64 development-tree functional test only: same live content PID set/get title marker and successful createElement(div); OFF page ack and zero output'
+        release_package_verified: false
+        first_browser_trace:
+          attempt: attempt.iqWqH54h
+          pid: 341
+          bytes: 667
+          sha256: 9c1f11baf7685271e6b9ee10f7c93525599727308ef0e8dba11f5bd84304fc78
+          preview: 'real console reader verified all 3 rows; older Window-context tier not supported'
         x86_offline_stock_control: '2dc3609: host185 stock x86_64 Firefox 159, 7-file identity, OFF/ON pass, missing-events negative and wrong-receipt controls; uid 1000 / lo / no capabilities / seccomp 2, Firefox user namespace EPERM'
         package_lineage_control: '7bb09a2: 7 critical files from ARM64 stock tar verified before and after ON/OFF; candidate package and product smoke pending'
         live_pid_control: '81ddaab: live HTTP page acknowledgement + Firefox content process ancestry; stock ON/OFF passed, stock product and offline product checks correctly failed'
@@ -208,27 +216,34 @@ projects:
             coordinator: 3a9c667
             observed_phase: 'automatic not_started (extra failure); manual review completed after both verified module replays'
             attempt: attempt.iqWqH54h
-            observed_at: '2026-11-21T10:26:34+08:00: build in progress; dist/bin/libxul.so ELF64 present, 260808256 bytes, result pending'
+            observed_at: '2026-11-21T10:32:18+08:00: complete 0; original networking audit passed; Mozilla Firefox 159.0'
             libxul_elf_build_id: b93f7f5b7605bece329ae34e5abaf5f688fb82c4
             wasm_target_validation: 'both actual build modules match isolated SHA-256 exactly; 4+5 representative function exports confirmed'
             source_metadata: 'unstamped Git candidate: source-repo.h empty; generated app INI SourceStamp absent, BuildID 20261120232713'
             source_metadata_fix: '4eed287: separate actual configure + upstream metadata targets yield both stamped INIs, BuildID 20261121021849; not applied to active attempt'
-            offline_delivery: 'daffb7d: waiting_for_package; no copied candidate or browser run yet; stock transfer verified on x86_64'
-            packaging: 'efa0277: waiting_for_build; no mach package log, verified tar, or page launch'
-            candidate_archive_audit: 'final post-build driver receipt pending'
+            offline_delivery: 'ended waiting_for_package 1: formal release not handed off; development diagnostic run separately'
+            packaging: 'upstream tar created; package-review failed verify_packaged_runtime: missing SourceStamp; retained original tar sha256 bd33342076eaa46b455d748b4bb027daa396e6e33ebf170a4b80d36628b7c658'
+            candidate_archive_audit: 'final upstream rc=0, sha256 matches 2c81bdb3cac5f6efd90e44cf24c0defd74b7df7710f4f184bcc37b900de00042'
             candidate_archive_midbuild_check:
               checked_at: '2026-11-21T09:20:58+08:00'
               bytes: 160069256
               sha256: 2c81bdb3cac5f6efd90e44cf24c0defd74b7df7710f4f184bcc37b900de00042
               result: 'upstream check_binary --networking rc=0; unchanged descriptor identity and timestamps across check'
-            candidate_page_capture: pending
-            trigger: 'exclusive old workspace lock, exact build-exit receipt and known isolated distro SoundTouch failure only'
+            candidate_page_capture: 'development-tree basic capture passed; formal package identity failed, no release qualification'
+          stamped_retry:
+            attempt: attempt.H5K1EqGg
+            product_inputs: 4eed287
+            observed_at: '2026-11-21T10:46:58+08:00: configure, generated metadata and preflight passed; incremental build in progress'
+            build_id: '20261121023929'
+            source_stamp: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
+            delivery: '0f9d799: waiting for package; candidate requires matching origin and WindowID; no page result yet'
+            trigger: 'prior complete 0, failed package SourceStamp, prior delivery ended; old artifacts retained and source delta verified under exclusive build lock'
           preflight: pass (Rust opt-level 1, both sandbox families, unmodified upstream audit)
           predecessor_rust_archive:
             audit: 'pinned upstream networking check rc=0; does not qualify successor archive'
             bytes: 160069128
             sha256: 9e3404f9497555a570e763e6c067c39114244a8ae6641ecadf2459497aa6d1fd
-          risk: 'original distro sysroot failed both real sandbox links; new pinned-sysroot full browser build pending'
+          risk: 'distro WASI failure resolved by completed CI-sysroot build; stamped successor still needs independent archive, package and context-qualified page acceptance'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0

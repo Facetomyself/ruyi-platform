@@ -1,16 +1,24 @@
-# RuyiTrace 整体进度评估（2026-11-20）
+# RuyiTrace 整体进度评估（更新于 2026-11-21）
 
 > 编译只是验证手段。本文回答：**RuyiTrace 这个项目实际完成了多少。**
 
 ---
 
-## 当前验收（Linux core writer）
+## 当前验收：x86_64 开发版已采到真实页面；发行版另验
+
+`attempt.iqWqH54h`（产品输入 `d3371b7`）整机构建 `complete 0`，最终上游 Rust 网络审计通过。发行身份检查因 INI 缺少 SourceStamp 而停止；旧 tar 及失败回执原样保留。另在 UID 1000、仅 lo、seccomp=2、NoNewPrivs=1、零 capabilities 环境实跑了 45 个文件逐项核验的只读浏览器副本。OFF 页面执行成功且无文件。ON 页面回执确认活跃 Web 内容 PID 341，该 PID 文件 667 字节（SHA-256 `9c1f11baf7685271e6b9ee10f7c93525599727308ef0e8dba11f5bd84304fc78`）。控制台实际预览代码读出同轮 marker 的 `set Document.title`、`get Document.title` 和 `call Document.createElement("div")`、`ok=true`，三条顺序正确。**这是基础采集实证，不是全套 producer、Window 上下文或发行包验收。**
+
+### 下一项验收
+
+保留旧输入、原始 81,700,272 字节 tar、审计归档和旧 `libxul.so` 后，核对 Git 新旧完整 domtrace 文件树，仅替换三个有差异的原生文件，增量重配新尝试 `attempt.H5K1EqGg`（输入 `4eed287`）。真实预检：两份 INI 均有正确基线 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、BuildID `20261121023929`。10:46 +08:00 在 build，打包/页面均等待。新的正式验收还要求测试页 origin、同一顶层 WindowID 和正数序号；旧开发版不能通过这一档位。
+
+## 历史过程：从宿主 writer 到首个受控页面
 
 上一版实验内核已链接 libxul 并进入 headless，采集目录为空；其 networking 构建审计曾被跳过，不作为发布构建。后续接入尝试缺父级 DIRS，导致链接找不到运行时符号。现在已有 Linux 父构建补丁及本机验证的 core 写入路径：20 项宿主测试通过，其中新增并发落盘和限流测试。这一步验证的是独立写入器。
 
 2026-11-21：已在固定 Firefox 159 的 `GenericGetter/Setter/Method` 接入最小页面验收范围：`Document.title` 的字符串读写和 `Document.createElement` 的单字符串调用。host185 上用 Gecko clangd 编译命令（局部验证覆盖优化/调试级别），串行编译真实 BindingUtils 和六个核心源文件；绑定对象确实引用写入函数，合并后的可重定位对象没有未解析的 domtrace 符号。顺带修复了 Gecko Clang 拒绝在 constexpr 中调用 strlen 的错误。方法名来自函数内部标识，接口名来自 Gecko 原有的 proto 表；生成名字区间表不是此链路的前提。
 
-**尚无来自该补丁的浏览器采集文件。** 下一步是在保留上游网络审计的构建中完成集成，用正常沙箱加载受控页面。验收要求同一 PID 按顺序出现唯一标记的 set/get 和参数为 `div` 的成功调用；关闭开关换新目录应零输出。[复现步骤与页面验收](../submodules/ruyitrace/tests/linux/README.md)。
+当时仅有局部链接证据；本页顶部现已记录后续取得的真实采集。该阶段的下一步是保留上游网络审计、用正常沙箱加载受控页面。验收要求同一 PID 按顺序出现唯一标记的 set/get 和参数为 `div` 的成功调用；关闭开关换新目录应零输出。[复现步骤与页面验收](../submodules/ruyitrace/tests/linux/README.md)。
 
 ### 2026-11-21：页面负对照与构建审计
 
