@@ -1,4 +1,4 @@
-generated_at: '2026-11-21T17:50:59+08:00'
+generated_at: '2026-11-21T18:04:29+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -222,6 +222,11 @@ projects:
           directory: deliverables/linux-console-e7d2e2b
           archive_sha256: 678ad2a18009721f76d50fba057b3dd985c9879fb05ba9449f99219b3e44c167
           archive_bytes: 364456
+        console_firefox_replay:
+          implementation: 806589c
+          development: '3 verified real x86_64 Firefox rows from attempt.iqWqH54h / PID 341 replayed in ARM64 Electron 45.4.1; no writer ran during replay'
+          evidence: deliverables/linux-console-iqWqH54h-replay
+          release: pending_passing_parent_window_delivery
         portable_console_assembly:
           implementation: 571d380
           verification: '64 Linux Python tests; clean 66-file console build; official Electron amd64 ZIP 72 entries; real prior run_page 1 rejected'
@@ -276,7 +281,7 @@ projects:
             workspace_in_container: /var/tmp/ruyi-ff159-window-actor
             product_inputs: 86d4352ad1d8ddcebb88fb8cf937e5ecaef5c9de
             attempt: attempt.6D26B4Jt
-            observed_at: '2026-11-21T17:49:39+08:00: full build reached layout/inspector (122:51 in log); audited package and page receipts pending'
+            observed_at: '2026-11-21T17:59:45+08:00: full build reached netwerk/sctp/datachannel (132:29 in log); audited package and page receipts pending'
             source_checks: '261 IPDL inputs regenerated twice; 16 staged objects compiled and partially linked; native parent/child model and 21 console combinations passed'
             scope: 'explicit single HTTP(S) origin, ungated DOM shape and click; gate configuration remains closed'
             page_receipt: pending

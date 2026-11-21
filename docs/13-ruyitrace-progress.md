@@ -20,7 +20,7 @@
 
 在 `PWindowGlobal` 增加有界的类型化 DOM/click 上报。父进程从当前窗口 actor 确认来源、窗口和内容进程，并按自己配置打开私有文件。消息不携带路径、文件句柄、PID、来源或 JSON。要求明确选定单一 HTTP(S) origin；设闸门时保持停采，直至父进程可确认会话边界。原生父子进程模型通过 OFF、错误来源、非法 payload、PID 实例冲突、共享上限及 DOM/click 正例；21 项控制台组合回归通过。
 
-host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接收方、协议生成物和运行时共 16 个对象，`ld -r` 无未解析的本项目符号。上一次失败包原样保留。新工作区 `/var/tmp/ruyi-ff159-window-actor` 已通过干净检出和四项补丁检查。15:43 +08:00，`attempt.6D26B4Jt` 开始配置。一次性顺序协调器随后执行全量构建、独立审计、打包及 `--parent-window-transport` 离线验收；前一阶段失败即停止。13:43 的旧包失败结论不变。17:49 +08:00 复查，新候选已编到 `layout/inspector`（日志 122:51），最终审计、包及页面回执仍待。
+host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接收方、协议生成物和运行时共 16 个对象，`ld -r` 无未解析的本项目符号。上一次失败包原样保留。新工作区 `/var/tmp/ruyi-ff159-window-actor` 已通过干净检出和四项补丁检查。15:43 +08:00，`attempt.6D26B4Jt` 开始配置。一次性顺序协调器随后执行全量构建、独立审计、打包及 `--parent-window-transport` 离线验收；前一阶段失败即停止。13:43 的旧包失败结论不变。17:59 +08:00 复查，新候选已编到 `netwerk/sctp/datachannel`（日志 132:29），最终审计、包及页面回执仍待。
 
 ### 父端落盘与来源隔离验收 `fed4558`
 
@@ -32,7 +32,9 @@ host185 上两次独立生成 261 个 IPDL 输入，真实编译发送方、接�
 
 日志页支持 DOM 调用和会话边界、点击、脱敏 Storage 三种只读视图。续读标识绑定视图与 PID，沿用每次 64 KiB/20 条上限，切换视图清除旧页。Storage 只返回选定字段，旧键值行会跳过，声称已脱敏却带键/值字段的行被判格式异常。实际主进程与 preload 接入挂载的 Vue 组件，复验 32 条基础 DOM、2 条点击及 16 条摘要。22 项 Node 回归、69 项 Linux Python 验收工具测试及新版 66 文件成品应用清单校验通过。
 
-`e7d2e2b` 用官方 ARM64 Electron 45.4.1 实际打开同版干净应用，逐字段核对 32 条 DOM（20+12）、2 条点击与 16 条 Storage 摘要，确认旧键值行未呈现；renderer 实测 seccomp=2、NoNewPrivs=1、context isolation 开启、页面 Node 关闭。三张 1000×615 实际窗口截图及报告保存在 `deliverables/linux-console-e7d2e2b`。归档仅含应用 67 项（含回执），364,456 字节，SHA-256 `678ad2a18009721f76d50fba057b3dd985c9879fb05ba9449f99219b3e44c167`。此处数据仍由原生测试写入器提供，Firefox 真实采集到新版窗口的集成仍待通过。
+`e7d2e2b` 用官方 ARM64 Electron 45.4.1 实际打开同版干净应用，逐字段核对 32 条 DOM（20+12）、2 条点击与 16 条 Storage 摘要，确认旧键值行未呈现；renderer 实测 seccomp=2、NoNewPrivs=1、context isolation 开启、页面 Node 关闭。三张 1000×615 实际窗口截图及报告保存在 `deliverables/linux-console-e7d2e2b`。归档仅含应用 67 项（含回执），364,456 字节，SHA-256 `678ad2a18009721f76d50fba057b3dd985c9879fb05ba9449f99219b3e44c167`。该窗口回归使用原生合成数据。
+
+`806589c` 另用 `attempt.iqWqH54h` 的真实 Firefox 159 x86_64 开发版日志做离线复验。只转移匹配 Web 内容 PID 341 的 667 字节原始文件，输入和读取后都核对 SHA-256 `9c1f11baf7685271e6b9ee10f7c93525599727308ef0e8dba11f5bd84304fc78`。ARM64 Electron 真实窗口通过主进程及 preload 显示相同 set/get/title 与 `createElement("div")` 成功三条；回执保存在 `deliverables/linux-console-iqWqH54h-replay`。重放时未启动写入器，单字节改动原大小文件时在打开窗口前失败。这个诊断不补足旧包的 SourceStamp，也未验证原生窗口启动产品 Firefox。新候选通过相应验收后可用同一工具转移并逐条待查 DOM/click 与可选 Storage 日志。
 
 ### Linux amd64 便携目录组装 `571d380`
 
