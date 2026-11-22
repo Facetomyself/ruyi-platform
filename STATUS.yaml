@@ -509,6 +509,39 @@ projects:
             arm64_evidence_sha256: 9d558e96d98f4aa7bc516bca58d599f9668a9ff7bb071d4ca519d281bb7ab65e
             evidence: deliverables/linux-ruyijs-crypto-r106/crypto-openssl-abi-validation.json
             evidence_sha256: 2c08c241ac3a49e9db1763bc55f51a29e65ac07b8cabc3381847eb29866676e8
+          native_canvas_portable:
+            input_commit: b2830b8b170308fbe341284001e6840dcafd97a7
+            terminal: native_canvas_portable_verified 0
+            units: 63
+            deferred_units: [skia_target, skia_subset_stubs]
+            prior_private_references: 13
+            resolved_prior: 13
+            introduced_private_references: 12
+            remaining_private_references: 12
+            remaining_groups: {skia_target: 8, font_geometry: 4}
+            relocatable_sha256: 7af720a4a6578e6d867cec4b84eaf2cb2bec7be707351f56f569e0c6dc0a4fba
+            runtime_scope: 'actual AMD64 software raster and PNG round trip (48 pixels); ARM64 sanitizer reproduces and verifies extreme-coordinate fix; no Skia target or browser'
+            arm64_evidence: deliverables/linux-ruyijs-canvas-raster-r107/raster-bounds-validation.json
+            arm64_evidence_sha256: 994dd813f3117f383683432a72a08205201fbf687425c791abd29a38ec8c0a40
+            evidence: deliverables/linux-ruyijs-canvas-r107/canvas-portable-validation.json
+            evidence_sha256: 37c3562a4379c5569cdc7eaaddae77f25be0c0f16a5f01aa114a1ad9af59d5c6
+          native_skia_cpu_probe:
+            input_commit: 804b6ef
+            terminal: skia_cpu_probe_draw 0
+            scope: 'one bounded AMD64 CPU Skia surface and drawRect with the pinned native Firefox Skia and real HarfBuzz objects; no product Canvas, text or browser'
+            firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
+            skia_objects: 76
+            skia_object_bytes: 76498176
+            required_symbol_definitions: {SkSurfaces::WrapPixels: 2, SkCanvas::drawRect: 1}
+            archive_sha256: 87dec1418eb0c338bc6d2b84a0d47a82efd5314895ce00b93f5d262538431e4e
+            executable_sha256: 96a56fc5c13089b2f253ba823eef40f55655c062e4067deeba0de21df73a95f0
+            probe_result: {width: 4, height: 4, opaque_red: 4, transparent: 12, bgra: true}
+            symbol_closure: '222 residual, 176 from real shared libraries, 46 kept out by section GC (FreeType, Mozilla FreeType glue, MOZ_Z, PrintfTarget)'
+            prior_failure: 'hb_face_destroy hidden symbol undefined when the probe omitted Firefox gfx/harfbuzz/src; the provider exists there as one unified object'
+            container: 'network none, read-only rootfs, 1 CPU, 2 GiB RAM+swap, no OOM, exit 0; /tmp needed an explicit exec mount to run the linked binary'
+            evidence: deliverables/linux-ruyijs-skia-cpu-r112/skia-cpu-probe-validation.json
+            evidence_sha256: 38948d6207404928bcf2dbf20e368f94252ce2ab462bf8fb73b1e94234412933
+            not_verified: [linux_canvas_text, private_canvas_skia_target, dist_js, browser_render]
           private_product: pending
     inner_repo_state:
       exists: true
