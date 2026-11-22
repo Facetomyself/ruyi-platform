@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T08:24:23+08:00'
+generated_at: '2026-11-22T08:42:57+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -170,6 +170,18 @@ projects:
             relocatable_sha256: 71e106976ac290d6c6d643e538dd46182d443f0939d11852bccd2714f7811edf
             evidence: deliverables/linux-ruyijs-native-sched-r76/scheduling-symbol-delta.json
             evidence_sha256: a877e28b407c82de819440eb71242b736985af880207c5b7ef972cfbd31a5af3
+          native_environment_batch:
+            input_commit: c7e6eaada2339f534eea0c3ce289fb2cd037a405
+            terminal: native_environment_verified 0
+            units: 64
+            prior_private_references: 254
+            resolved_prior: 26
+            introduced_private_references: 14
+            remaining_private_references: 242
+            remaining_browser_environment_references: 0
+            relocatable_sha256: 26591bd914028753f73dfc481a7e7d26112c49f1d9cfe5084cbcca729a71d572
+            evidence: deliverables/linux-ruyijs-native-env-r77/environment-symbol-delta.json
+            evidence_sha256: b51295c1aec4fbdb45d60053c783054b163c1e19d5ed90564dd9fea06f5ec2c8
           private_product: pending
     inner_repo_state:
       exists: true
@@ -605,6 +617,10 @@ projects:
               observed_following_phase: '2026-11-21T21:59:57Z: still building, uniffi_macros, oom=0 and oom_kill=0'
             controller: /home/ubuntu/ruyitrace-arm64-r53/compile-queue-r61
             delivery_observer: /home/ubuntu/ruyitrace-arm64-r53/delivery-queue-r61
+            domtrace_compiled_objects: 10
+            domtrace_compiled_elf: aarch64/ET_REL
+            domtrace_compile_evidence: deliverables/linux-arm64-cgroup-r61/domtrace-built-objects.json
+            domtrace_compile_evidence_sha256: b1f512b6206fc33f9061ecdd0f77bb1c8422cc77bd70b50fbe330a9c4378b3bf
             formal_audit_package_and_pages: pending
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:

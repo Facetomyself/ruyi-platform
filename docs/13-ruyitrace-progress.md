@@ -72,6 +72,8 @@
 
 `f9a348b` 加强 X11／Wayland 发行归档身份绑定：从 tar 只读核对内嵌包回执、Electron／Firefox／libxul ELF、Electron 和 libxul 摘要以及应用构建回执。原始启动脚本的摘要相同，已实际在两份不同 amd64 归档上观测；新版 X11／Wayland 原回执仍逐字节复读，错用旧真实归档会失败。116 项 Linux Python 回归通过。此轮未重跑显示服务器或 ARM64 发行窗体；ARM64 候选在 22:48 UTC 仍编译 `dom/base`，OOM 计数为零。
 
+`attempt.gIhdRoB6` 已在真实构建目录生成 `dom/domtrace` 下 10 个原生 AArch64 ET_REL，包括 `window-telemetry.o`、`linux-trace-gate.o` 和 `storage-record.o`。独立核对 ELF 头及摘要见 `deliverables/linux-arm64-cgroup-r61/domtrace-built-objects.json`，该阶段 OOM 计数为零。只是实际对象编译记录，最终 `libxul`、正式审计和页面验收仍待完成。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。

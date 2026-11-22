@@ -86,6 +86,8 @@ ruyijs-inner/
 
 `bca6c12` 在同一原生 x86_64 donor 旁使用 `scheduling-v1` 分批编译整个执行调度域。49 个已提交单元逐一通过，6 个模型单元启用异常处理；部分链接所得 x86_64 ET_REL 为 19,266,376 字节，SHA-256 `71e106976ac290d6c6d643e538dd46182d443f0939d11852bccd2714f7811edf`。上一轮 267 条引用解决 20 条（均属于调度域），新增 7 条，剩 254 条，其中 `execution_scheduling` 引用为 **0**。前版对象摘要保持原样；容器退出 0、无 OOM。实证 `deliverables/linux-ruyijs-native-sched-r76/scheduling-symbol-delta.json`；仅为部分链接，调度的产品运行验收与完整 `Context.eval` 仍待实跑。
 
+`c7e6eaa` 使用已提交的环境配置生成 `firefox_environment_profile.h`，然后原生断网编译全部 64 个 `browser_environment` 单元（3 个模型单元沿用异常策略）。新 x86_64 ET_REL 为 44,501,600 字节，SHA-256 `26591bd914028753f73dfc481a7e7d26112c49f1d9cfe5084cbcca729a71d572`；上一轮 254 条引用消除 26 条，新增 14 条，剩 242 条，其中 `browser_environment` 引用为 **0**。前版对象、配置来源和生成头均复核摘要一致，容器退出 0、无 OOM。宿主 locale 等平台语义仍需产品实跑；此处仅验收链接。证据 `deliverables/linux-ruyijs-native-env-r77/environment-symbol-delta.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
