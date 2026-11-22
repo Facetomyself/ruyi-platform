@@ -134,6 +134,8 @@ ruyijs-inner/
 
 `a915eef` 的独立运行探针直接用这两个真实对象，链接同一 donor 中实际提供 `moz_xmalloc` 与 `gMozCrashReason` 的对象（之前两次失败保留）。断网实跑 `en-US → serif`，`ja-JP`／`zh-CN → sans-serif`，DPR=1／2 的自动文本优化阈值 20／10。这只验证配置与决策，不选择已安装字体、不进行度量或绘制。见 `deliverables/linux-ruyijs-native-fontprofile-r93/font-profile-validation.json`。
 
+`69946ae` 为 Linux `SvgPathBounds` 接入 Cairo，Windows 保留 Direct2D。实现覆盖直线、二次／三次曲线、旋转 SVG 椭圆弧及平头斜接描边，并限制 Cairo 固定点坐标范围；越界返回失败且保留原输出。使用 Ubuntu `libcairo2-dev` 头、实际 AArch64 Cairo 1.16.0 库原生链接并运行 17 个用例，UBSan 检查与矩阵／SVG 解析回归通过。Linux 最终链接需要 Cairo 开发头及 `-lcairo`；本轮只实跑独立后端，x86_64 私有聚合链接、页面 `getBBox()` 及系统字体度量仍待验收。回执 `deliverables/linux-ruyijs-svg-path-r94/svg-native-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

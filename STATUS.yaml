@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T14:19:44+08:00'
+generated_at: '2026-11-22T14:32:04+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -360,6 +360,15 @@ projects:
             isolated_behavior: 'native font preferences probe: en-US serif, ja-JP and zh-CN sans-serif, automatic text thresholds 20 and 10 at DPR 1 and 2; no font rendering'
             evidence: deliverables/linux-ruyijs-native-fontprofile-r93/font-profile-validation.json
             evidence_sha256: a14b6a3e228bccdd0e05a4b82bcf280a3463a5e8f7e5e4695eb9cd0ae161235a
+          native_svg_path_backend:
+            commit: 69946ae1ad6065d342f6496237fb7a4db3a76f72
+            arch: aarch64
+            cairo: '1.16.0'
+            native_contract_checks: 17
+            ubsan: passed
+            private_aggregate_link: pending
+            evidence: deliverables/linux-ruyijs-svg-path-r94/svg-native-validation.json
+            evidence_sha256: 868eb691d52f030f189340438b666c5f1f5792ee36c5466a8ee0ed661e1ce6cb
           private_product: pending
     inner_repo_state:
       exists: true
