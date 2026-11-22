@@ -158,6 +158,8 @@ ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名
 
 原生 x86_64 `native_graphics_gpu_verified 0`：33 个 Web Graphics 和 17 个 WebGPU 单元全部通过 ET_REL，消除 10 条旧引用、未引入新私有引用，**46 → 36**，余 Canvas 13、Crypto 6、Media 17。用同批五个精确对象与 donor 分配器构建断网探针，顶点 `[0.5,-1,0,1]`、颜色 `[255,127,0,255]`、MSAA 覆盖 `[4,2,0]` 与 ARM64 结果一致，4 GiB 数值、非法限制拒绝和能力回滚均通过。无 OOM，15 项批次回归通过。见 `deliverables/linux-ruyijs-graphicsgpu-r102/graphics-gpu-abi-validation.json`；仍无真实网页、GPU 设备或完整私有程序验收。
 
+`99796e9` 将 Media 的 APNG／WebP 动画接口与 WIC 解耦，Linux 静态和帧补丁分别以 libpng／libwebp 真实解码，再做预乘 BGRA 合成和缩放。Windows 继续走 WIC。Linux 校验源、目标及累计帧像素预算，动画重建还检查累计编码字节；无效整图解码保留原结果。AArch64 独立 C++ 探针在仅 lo 的命名空间用系统 libpng 1.6.37／libwebp 1.2.2 通过 UBSan、静态图像、两帧 APNG／WebP、缩放像素、流中前缀和截断 EOF 区分。支持查询仅报 PNG／WebP；JPEG、GIF、AVIF、BMP、ICO、ICC 色彩转换、x86_64 私有聚合和浏览器 ImageDecoder 待验。本轮未重测 36 条 x86_64 私有余量。运行记录 `deliverables/linux-ruyijs-imagecodec-r103/image-codec-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

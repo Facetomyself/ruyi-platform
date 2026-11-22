@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T16:51:28+08:00'
+generated_at: '2026-11-22T17:07:36+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -469,6 +469,15 @@ projects:
             arm64_evidence_sha256: bba5ce36fb166306d2f0e557794469ae9460d32eb1cc37df91b10c576640bf3d
             evidence: deliverables/linux-ruyijs-graphicsgpu-r102/graphics-gpu-abi-validation.json
             evidence_sha256: 90bce601785fd6c7e490755383fdfc18577a831b8728409eb3fa855061f25b21
+          native_linux_png_webp:
+            input_commit: 99796e91626ab6658d6ee834685eaeeb1688e6ca
+            arch: aarch64
+            scope: 'real libpng and libwebp still and two-frame animation, premultiplied BGRA, resize, partial stream/EOF and malformed input; no browser or ICC transform'
+            ubsan: passed
+            network: loopback-only
+            x86_64_private_aggregate_link: pending
+            evidence: deliverables/linux-ruyijs-imagecodec-r103/image-codec-validation.json
+            evidence_sha256: 6f85d48d394564be822bbfccbfe99a88fd14ae1743aa84895ce2d3aea34c5ff4
           private_product: pending
     inner_repo_state:
       exists: true
