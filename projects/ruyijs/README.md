@@ -150,6 +150,10 @@ ruyijs-inner/
 
 真实 IndexedDB 模型复现了 `2^53+1` 被舍入的旧错误；修复后最后可用的自动键 `2^53` 仅生成一次，耗尽标记随写事务提交，回滚恢复生成器。原生 AArch64 UBSan 测试与 x86_64 同批精确对象的独立探针均验证提交、回滚、唯一索引、源隔离、版本升级回滚与生成器耗尽。ARM64 原始失败保留在 `deliverables/linux-ruyijs-indexeddb-r100/`；13 项批次回归通过、无远端 OOM。该模型运行不等同于 JS IndexedDB 页面或持久化验收。
 
+`f138943` 给 Linux `local()` 接入真实 Fontconfig 全名／PostScript 名查找：精确匹配忽略大小写，查询不走替代字体，按字体 profile 过滤，拒绝 NUL 和无效宽字符；Windows 路径保持原样。验证闭合该字体查询，以及 30 个 WebAudio、23 个 WebRTC 单元；54 个全部原生编译及部分链接，**65 → 46**，消除 19 条旧引用、零新增，余 Canvas 13、Crypto 6、GPU 4、Graphics 6、Media 17。71 个系统几何导入保持默认可见，未发生 OOM。
+
+ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名／PostScript、隐藏和替代名过滤，也实跑 48kHz 的 1kHz PCM，两个 128 帧量子与 256 帧连续运行逐样本一致，另过方波和参数限幅／实例隔离。x86_64 断网 UID 1000，使用真实 profile 对象。14 项批次回归通过。证据 `deliverables/linux-ruyijs-audiortc-r101/audio-rtc-font-validation.json` 与 `deliverables/linux-ruyijs-audio-font-r101/audio-font-validation.json`；WebRTC 当前只验证部分链接，JS 页面、音频设备、RTC 媒体传输及完整私有程序仍待验收。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

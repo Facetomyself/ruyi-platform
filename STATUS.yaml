@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T16:10:16+08:00'
+generated_at: '2026-11-22T16:31:10+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -438,6 +438,22 @@ projects:
             indexeddb_arm64_evidence_sha256: bd9b2f8bfe7e7b51dc7264d393571d1f0ba74a1e91dec8b215bbafc8c83538c0
             evidence: deliverables/linux-ruyijs-webservices-r100/web-services-validation.json
             evidence_sha256: 31c47b7e57779a5bbf61230310f41bf7c0c57f9bc5d5f40e668b9d438e2614b3
+          native_audio_rtc_local_font:
+            input_commit: f13894302d054fad1443280959f559075b60ef60
+            terminal: native_audio_rtc_font_verified 0
+            units: 54
+            prior_private_references: 65
+            resolved_prior: 19
+            introduced_private_references: 0
+            remaining_private_references: 46
+            remaining_groups: {web_canvas: 13, web_crypto: 6, web_gpu: 4, web_graphics: 6, web_media: 17}
+            public_geometry_imports: 71
+            relocatable_sha256: bad490933f3885af06dfeb43b84884bbf19e894c82c8e1f176d49c165972c1dc
+            runtime_scope: 'real native PCM and installed Fontconfig name probes on ARM64 and exact AMD64 objects; RTC compiled and ET_REL only'
+            arm64_evidence: deliverables/linux-ruyijs-audio-font-r101/audio-font-validation.json
+            arm64_evidence_sha256: fe50d622037d459ac1c060fab303d831b1a13cde52da47e8c7d9b101b1f6e88f
+            evidence: deliverables/linux-ruyijs-audiortc-r101/audio-rtc-font-validation.json
+            evidence_sha256: 1d9349e70de6809cceaede2222735bb1dd80cbb7e4b4de0274388f0b6317f667
           private_product: pending
     inner_repo_state:
       exists: true
