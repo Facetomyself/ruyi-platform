@@ -100,6 +100,10 @@ ruyijs-inner/
 
 `72b50b9` 的 Linux Worker POSIX 进程适配通过本机协议试件，真实测试覆盖 dedicated/shared/service 子进程、关闭继承描述符、提前退出、最后一帧及进程组清理；并未执行 JS Worker realm。另以该对象接入原生 x86_64 20 单元 `workers-v1`：`native_workers_verified 0`，消除全部 12 条 Worker 引用且未新增私有未解析引用，**197 → 185**。产物仍是 ET_REL（114,077,432 字节），前一批对象摘要不变，无 OOM。证据 `deliverables/linux-ruyijs-native-workers-r81/worker-symbol-delta.json`。私有可执行文件和 `Context.eval` 仍待实际验收。
 
+`76a6ea3` 启动完整 `document-v1`：248 个已提交文档单元，60 个模型文件沿用异常策略，使用固定 Mozilla Sanitizer 源和事件表生成头文件。本机 AArch64 的 C++ 数据检查通过，固定表为 121 个默认元素、58 个默认属性、147 个事件属性；`script`、`onclick` 排除在默认允许表，`onclick` 位于移除表。记录 `deliverables/linux-ruyijs-native-doc-r82/sanitizer-data-check.json`，仅覆盖生成表，无页面 Sanitizer 准入结论。
+
+09:55 +08:00，`native-doc-r82` 断网单作业已编译 38 个单元，`document_metadata.cpp` 因 Windows-only `localtime_s` 失败，OOM 为零，批次仍使用原提交继续。`bbca26b` 保留 Windows 接口并用 POSIX `localtime_r`，本机实跑校验固定日期、闰日及跨午夜时区，格式保持 `MM/DD/YYYY HH:MM:SS`。旧日志保留，完整文档域编译和产品行为仍待验收。早期采样 `deliverables/linux-ruyijs-native-doc-r82/compile-sample.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

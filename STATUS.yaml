@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T09:43:29+08:00'
+generated_at: '2026-11-22T10:03:17+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -234,6 +234,16 @@ projects:
             relocatable_sha256: f236fd443b792010d31d1ef29c7578775ae9f65ab704b2b22b1e8db0ccf74dd8
             evidence: deliverables/linux-ruyijs-native-workers-r81/worker-symbol-delta.json
             evidence_sha256: e2419a343a5000029134c359080404eb806f4f9055d3328162ece10045554dcf
+          native_document_batch:
+            input_commit: 76a6ea3089ce03d3233450fba367a2083686b134
+            scope: '248 committed document_model units with Sanitizer tables generated from pinned Mozilla inputs'
+            observed: '2026-11-22T10:01:31+08:00: 142 compiled; sole observed failure document_metadata on MSVC-only localtime_s; no OOM, batch still compiling'
+            evidence: deliverables/linux-ruyijs-native-doc-r82/compile-sample.json
+            evidence_sha256: e45a6a1c2559d749b61b8413433601727e6569d1aeb1e710b3cc41b8112e1d4b
+            sanitizer_data_check: deliverables/linux-ruyijs-native-doc-r82/sanitizer-data-check.json
+            sanitizer_data_check_sha256: 8f4601cbdf3358f6b4d86a2fd540f489017405eb8809fda62983d4983bbb15c2
+            posix_date_fix: 'bbca26b: portable localtime_s/r and native fixed time/TZ formatting pass; running batch retains original inputs'
+            terminal: pending
           private_product: pending
     inner_repo_state:
       exists: true
