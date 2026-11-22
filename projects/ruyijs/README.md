@@ -188,6 +188,14 @@ ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名
 
 结果：原生 AMD64 `compile_rc 0`，12 个接口方法（含两个构造、析构、`GetMetrics`、`GetGlyphIndices`、`GetDesignGlyphMetrics`、`GetGdiCompatibleGlyphMetrics`、`TryGetFontTable`、`ReleaseFontTable`、`AddRef`、`Release`、`CoreFont`）逐一在目标文件里确认为已定义，对象 SHA-256 `49252f2b…`。**这只是编译**：没有打开任何字体、没有查任何字形、没有比对任何度量。`GetGlyphRunOutline` 属于独立的描边接口、Linux 侧仍未实现，那 4 个 `SystemFonts` 方法也还没有函数体。回执 `deliverables/linux-ruyijs-font-face-r155/font-face-compile-validation.json`。
 
+平台拆分之后立刻得到两个真实结论，一个好消息、一个坏消息，都必须分开记。
+
+**好消息：`canvas_text` 与 `glyph_runs` 第一次在 Linux 上编译通过。** 原生 AMD64，对象 SHA-256 分别是 `53b3dbdc…`、`1dea82aa…`。而剩余 4 条私有引用——`MeasureCanvas`、`BuildCanvasGlyphMasks`、`CanvasGlyphRuns`、`ReleaseCanvasGlyphRuns`——**全部定义在这两个文件里**，不在别处。所以之前认为「还要另找实现」的判断是错的，实现一直都在，只是编译不了。过程中还纠正了第二个真缺陷：`IDWriteFontFace` 原先被我放进命名空间，而 `glyph_mask.h` 按 Windows 头的习惯在**全局**前向声明它，于是报“member access into incomplete type”——把它移回全局作用域后 `glyph_runs` 立即通过。
+
+**坏消息：能编译不等于能链接。** 逐个查这两个对象未定义的私有符号，得到的清单是：`canvas_text` 需要 `CanvasFontBaselines`、`FontCollection::Initialize`、`FontCollection::Select`、`MissingFontRun`、`ShapeFont`；`glyph_runs` 需要 `FontCollection::Initialize`、`FontCollection::Select`、`GlyphColorMask`、`GlyphMask`、`ShapeFont`。这些符号的**定义方本身仍然只在 Windows 上可编译**：`glyph_mask`／`glyph_color`／`glyph_palette`／`glyph_style` 分别要 `dwrite_2.h` 的 rendering params、COLR 接口和 palette 接口，`canvas_text_path` 要 `d2d1.h` 的 Direct2D 几何 sink，`GetGlyphRunOutline` 更是整个缺失。
+
+所以真实的剩余工作量不是「补 4 个函数」，而是「把 mask／colour／palette／style／outline 五个 owner 从 DirectWrite 专有接口上剥下来」。这一轮把这句话从推测变成了有清单的实测。回执 `deliverables/linux-ruyijs-canvastext-r156/canvas-text-compile-validation.json`。没有链接、没有打开字体、没有查字形、没有任何度量或像素比对。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

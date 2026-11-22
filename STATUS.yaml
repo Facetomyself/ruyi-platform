@@ -576,6 +576,17 @@ projects:
             container: 'network none, read-only rootfs, 1 CPU, 2 GiB RAM+swap, OOMKilled=false'
             evidence: deliverables/linux-ruyijs-font-face-r155/font-face-compile-validation.json
             evidence_sha256: eae60b262a844cf571cb202dc18b7ac78cb25ff13b4359d19f5f823b979b9ea5
+          native_linux_canvas_text_compile:
+            input_commit: 9d0ce2a
+            terminal: canvas_text_compile_partial 0
+            scope: 'native AMD64 compile of the Canvas text owners after the platform-split DirectWrite surface; compile only'
+            compiled: {canvas_text: 53b3dbdcabfa14f0a1e4a8ed2f101b822aa11975f75b268547e67dea6ecb90c8, glyph_runs: 1dea82aaedfda2ec0e708188a024e503d1741c8e91ff240b31ed4c9f2b9a1810, font_face_linux: 404e91547e0686f095412f730153217f7dd1852c0c53e05823aac7a4a803391f}
+            placement: 'all four remaining font-geometry references are defined in canvas_text.cpp and glyph_runs.cpp, which now compile'
+            still_windows_only: [canvas_text_path, glyph_mask, glyph_color, glyph_palette, glyph_style]
+            private_dependencies_unresolved: 'every private symbol the two units still need is itself Windows-only, so a link would fail'
+            not_done: [link, font_open, glyph_lookup, metric_compare, glyph_run_outline, system_fonts_canvas_methods]
+            evidence: deliverables/linux-ruyijs-canvastext-r156/canvas-text-compile-validation.json
+            evidence_sha256: 700644c3e9111276b80f807ffe9705dcaa81475adc76b0cbc444201a389446b2
           private_product: pending
     inner_repo_state:
       exists: true
