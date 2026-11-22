@@ -211,6 +211,25 @@ ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名
 
 真正还剩的是上层：`ShapeFont`、`CanvasFontBaselines`、`MissingFontRun` 在 `font_shaping.cpp`／`font_missing.cpp`，`GlyphMask`／`GlyphColorMask` 在 `glyph_mask.cpp`／`glyph_color.cpp`，它们仍然要 `dwrite_2.h`。这一轮如实把缺口缩小成这两组，而不是笼统说「Canvas 文字还没好」。回执 `deliverables/linux-ruyijs-lincollect-r158/lin-collection-validation.json`。仍然没有链接、没有打开字体、没有查字形、没有任何度量或像素比对。
 
+这一轮把缺口又缩小了一格，并且把一个「看起来只是路径问题」的坑判成了设计耦合。
+
+**打通：`font_shaping` 编译通过**（对象 SHA-256 `d99f83bb…`）。它正好定义 `ShapeFont` 与 `CanvasFontBaselines`——上一轮清单里五个 Windows 专有符号中的两个，现在有了能在 Linux 上编译的真实实现。
+
+**卡住：`font_missing`（`MissingFontRun`）。** 它从 Mozilla 只借了一个二元属性 `Default_Ignorable_Code_Point`，但那个头文件 `mozilla/intl/UnicodeProperties.h` 会连带拉进整棵树，且每修一处就露出更深一层：
+
+```
+UnicodeProperties.h  →  mfbt (需 XP_UNIX，否则 UniquePtrExtensions 报 "Unsupported OS?")
+                     →  nsError.h  →  ErrorList.h（objdir 生成文件）
+                     →  nsISupportsImpl.h  →  prthread.h（NSPR）
+                     →  prtypes.h  →  obsolete/protypes.h
+```
+
+我一开始把它当成挂载路径没配全，逐个补了 `XP_UNIX`、objdir 根、NSPR include——每补一个就前进一层，但这一层背后永远还有一层。到 `obsolete/protypes.h` 时判定：这已经不是路径问题，而是**为一个布尔值把 mfbt／XPCOM／NSPR 整条头文件链和运行时都绑进私有树**的权衡问题。
+
+**这是一个需要决策的分叉，不是继续试错能解决的**：要么把真实 Mozilla 头文件链及其运行时接进来，只为这一个判断；要么在私有树里自己实现 `Default_Ignorable_Code_Point`。注意 HarfBuzz 只暴露 general category，**没有**这个二元属性，而用 category 近似会把集合里的 `Lo` 与 `Mn` 成员判错，所以不能拿 category 糊弄过去。
+
+回执 `deliverables/linux-ruyijs-shaping-r160/shaping-compile-validation.json`。仍然没有链接、没有打开字体、没有查字形、没有任何度量或像素比对。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

@@ -598,6 +598,19 @@ projects:
             not_done: [link, font_open, glyph_lookup, metric_compare, glyph_run_outline]
             evidence: deliverables/linux-ruyijs-lincollect-r158/lin-collection-validation.json
             evidence_sha256: 6abd945d9d41c79f2b8d30a2ec875033fcec18a761c94e05e477e255ce5ab4d8
+          native_linux_shaping_compile:
+            input_commit: 2f7c9fc
+            terminal: linux_shaping_compile_partial 0
+            scope: 'native AMD64 compile of the shaping and missing-glyph owners; compile only'
+            passed:
+              font_shaping: 'd99f83bbea05573b1f511437ae93a100ead19cd3752db97e12f8ade8c4c04a15'
+            passed_resolves: [ShapeFont, CanvasFontBaselines]
+            blocked:
+              font_missing: 'MissingFontRun; Mozilla UnicodeProperties header drags in mfbt, XPCOM and NSPR'
+            decision_point: 'link the real Mozilla header chain and runtime for one boolean, or implement Default_Ignorable_Code_Point in the private tree'
+            not_done: [link, font_open, glyph_lookup, metric_compare, glyph_run_outline]
+            evidence: deliverables/linux-ruyijs-shaping-r160/shaping-compile-validation.json
+            evidence_sha256: 603f66a26c5fc8410dc335b7276c3ac9c9ce2c2e85dcb7b406428fa14b378550
           private_product: pending
     inner_repo_state:
       exists: true
