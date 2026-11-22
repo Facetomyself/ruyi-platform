@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T17:07:36+08:00'
+generated_at: '2026-11-22T19:00:08+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -475,9 +475,24 @@ projects:
             scope: 'real libpng and libwebp still and two-frame animation, premultiplied BGRA, resize, partial stream/EOF and malformed input; no browser or ICC transform'
             ubsan: passed
             network: loopback-only
-            x86_64_private_aggregate_link: pending
+            x86_64_private_aggregate_link: verified_separately_in_native_media_png_webp
             evidence: deliverables/linux-ruyijs-imagecodec-r103/image-codec-validation.json
             evidence_sha256: 6f85d48d394564be822bbfccbfe99a88fd14ae1743aa84895ce2d3aea34c5ff4
+          native_media_png_webp:
+            input_commit: b00a75894a5402cc1dcf99b60e9764c783c71eaf
+            terminal: native_media_png_webp_verified 0
+            units: 65
+            deferred_units: [image_avif, image_color, image_gif]
+            prior_private_references: 36
+            resolved_prior: 17
+            introduced_private_references: 0
+            remaining_private_references: 19
+            remaining_groups: {web_canvas: 13, web_crypto: 6}
+            default_visible_image_imports: 32
+            relocatable_sha256: 8ae1c0a44966ba56a538a4222790cdff663dbcdb4c369f83cd6680ffd463c7bd
+            runtime_scope: 'exact x86_64 PNG and WebP still / animation objects, isolated UID 1000, matching Noble runtime libraries; no browser ImageDecoder or other codecs'
+            evidence: deliverables/linux-ruyijs-media-r105/media-png-webp-validation.json
+            evidence_sha256: b1e435399aead6d6b022fe7c7f92d9dd5a69cebb2ef33e74250c32a36da9f861
           private_product: pending
     inner_repo_state:
       exists: true
