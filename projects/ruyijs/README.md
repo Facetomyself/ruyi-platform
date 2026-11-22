@@ -130,6 +130,10 @@ ruyijs-inner/
 
 `native-geometry-r92` 原生 x86_64 断网单作业 `native_geometry_portable_verified 0`：41 个单元编译与部分链接均通过，消除 20 条旧引用并新增 8 条，总数 **189 → 177**。目前仍有 12 条几何后端引用（主要是字体配置、度量和 SVG 描边），待使用合适的原生 Linux 后端，不代表完整几何域通过。ET_REL SHA-256 `a884d0cd88125485af75062a1b7ea0653d647eb387c2630672da7e56274e7ff7`，前序对象摘要不变、无 OOM。回执 `deliverables/linux-ruyijs-native-geometry-r92/geometry-symbol-delta.json`，产品可执行文件与 `Context.eval` 仍待验。
 
+`f0cf666` 将 `font_config` 与 `font_preferences` 的可移植逻辑从 DirectWrite 后端分开，Linux 共享严格 Unicode 标量转换。本机原生 C++ 验证非 BMP、错误／截断／过长序列原子拒绝。原生 x86_64 使用固定 HarfBuzz 头和已提交字体表，2 个单元 `native_font_profile_verified 0`，消除 6 条、不新增私有引用，**177 → 171**，剩 6 条几何符号主要是 `SystemFonts` 和 `SvgPathBounds`。新 ET_REL SHA-256 `c4b324cbbf9ae034d06bfcdc725c0d880e405001a746c20e126ab371b78240f9`、前序对象不变、无 OOM。
+
+`a915eef` 的独立运行探针直接用这两个真实对象，链接同一 donor 中实际提供 `moz_xmalloc` 与 `gMozCrashReason` 的对象（之前两次失败保留）。断网实跑 `en-US → serif`，`ja-JP`／`zh-CN → sans-serif`，DPR=1／2 的自动文本优化阈值 20／10。这只验证配置与决策，不选择已安装字体、不进行度量或绘制。见 `deliverables/linux-ruyijs-native-fontprofile-r93/font-profile-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

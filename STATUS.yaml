@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T13:50:57+08:00'
+generated_at: '2026-11-22T14:19:44+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -347,6 +347,19 @@ projects:
             local_behavior: 'native aarch64 pure C++ matrix and SvgPath parser pass; no browser, font or stroke'
             evidence: deliverables/linux-ruyijs-native-geometry-r92/geometry-symbol-delta.json
             evidence_sha256: d282178a8c6881257072ae2bdfb79c3adee400518acdafb92c00b255b59864c7
+          native_font_profile_batch:
+            input_commit: f0cf6668f31a5eed30a079f1ae1644f4440aaaf6
+            terminal: native_font_profile_verified 0
+            units: 2
+            prior_private_references: 177
+            resolved_prior: 6
+            introduced_private_references: 0
+            remaining_private_references: 171
+            remaining_geometry_backend_references: 6
+            relocatable_sha256: c4b324cbbf9ae034d06bfcdc725c0d880e405001a746c20e126ab371b78240f9
+            isolated_behavior: 'native font preferences probe: en-US serif, ja-JP and zh-CN sans-serif, automatic text thresholds 20 and 10 at DPR 1 and 2; no font rendering'
+            evidence: deliverables/linux-ruyijs-native-fontprofile-r93/font-profile-validation.json
+            evidence_sha256: a14b6a3e228bccdd0e05a4b82bcf280a3463a5e8f7e5e4695eb9cd0ae161235a
           private_product: pending
     inner_repo_state:
       exists: true
