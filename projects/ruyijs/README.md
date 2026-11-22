@@ -146,6 +146,10 @@ ruyijs-inner/
 
 `13954bf` 的独立 x86_64 重建从前字体阶段基线（177 条）重编六单元，闭合几何域全部 12 条，余 165 条私有引用；相对已公示的行高批次 **166 → 165**，唯一差异是 `SystemFonts::Measure`。第一版保留的实际 ET_REL 仍含两个 `HIDDEN` 的旧 HarfBuzz 导入；修复后全聚合中 69 个系统几何导入均为 `DEFAULT`，已验 `SvgPathBounds` 对象仍逐字节相同。用同一批次对象运行 137,440 字节独立探针，断网 UID 1000，真实 HarfBuzz 8.3.0／FriBidi 1.0.13：行高和 SVG 单位回归通过；`ffi=15.4667px`、阿拉伯样例 `32.8500px`、希伯来与拉丁混排 `75.6167px`，UTF-16 字簇和仿射变换通过。无 OOM，12 项批次回归通过。回执 `deliverables/linux-ruyijs-geometry-abi-r99/geometry-abi-validation.json`。Canvas 栅格、页面／完整产品和更广的 SVG 文字布局仍待验收。
 
+`a74bd1e` 将 18 个 Web API 域的 116 个翻译单元接到已经核验的几何基线；按域区分同名对象，异常开启仅限两个 IndexedDB 模型单元。原生 x86_64 `native_web_services_verified 0`，116 个均通过编译及 ET_REL，消除 102 条原引用、新增 2 条，**165 → 65**，新依赖为 `web_crypto::ComputeDigest` 与 `web_geometry::LocalFontFamilyInstalled`；其余未闭合来自 Audio、Canvas、Crypto、GPU、Graphics、Media 和 RTC。回执 `deliverables/linux-ruyijs-webservices-r100/web-services-validation.json`。编译与部分链接暂无完整 Web API 或页面验收结论。
+
+真实 IndexedDB 模型复现了 `2^53+1` 被舍入的旧错误；修复后最后可用的自动键 `2^53` 仅生成一次，耗尽标记随写事务提交，回滚恢复生成器。原生 AArch64 UBSan 测试与 x86_64 同批精确对象的独立探针均验证提交、回滚、唯一索引、源隔离、版本升级回滚与生成器耗尽。ARM64 原始失败保留在 `deliverables/linux-ruyijs-indexeddb-r100/`；13 项批次回归通过、无远端 OOM。该模型运行不等同于 JS IndexedDB 页面或持久化验收。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T15:48:43+08:00'
+generated_at: '2026-11-22T16:10:16+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -422,6 +422,22 @@ projects:
             probe: 'exact x86_64 SystemFonts objects with real HarfBuzz 8.3.0/FriBidi 1.0.13, line metrics and horizontal shaping; offline UID 1000'
             evidence: deliverables/linux-ruyijs-geometry-abi-r99/geometry-abi-validation.json
             evidence_sha256: 3a910b12ca05b928de33c168783779a2560e50e7aabcba70694222691e722e29
+          native_web_services:
+            input_commit: a74bd1e93ce02f37d416a818bc30517561562b4a
+            terminal: native_web_services_verified 0
+            units: 116
+            domains: 18
+            prior_private_references: 165
+            resolved_prior: 102
+            introduced_private_references: 2
+            remaining_private_references: 65
+            remaining_groups: {web_audio: 8, web_canvas: 13, web_crypto: 6, web_geometry: 1, web_gpu: 4, web_graphics: 6, web_media: 17, web_rtc: 10}
+            relocatable_sha256: 70579a3c815ee9065ba977be47d19884fff439e48694bed4851cb5b57edd10d0
+            indexeddb_native_probe: 'original generator repeats 2^53 on ARM64; fixed real model passes transaction, rollback, uniqueness, origin isolation and exhaustion on ARM64 and exact AMD64 objects'
+            indexeddb_arm64_evidence: deliverables/linux-ruyijs-indexeddb-r100/indexeddb-model-validation.json
+            indexeddb_arm64_evidence_sha256: bd9b2f8bfe7e7b51dc7264d393571d1f0ba74a1e91dec8b215bbafc8c83538c0
+            evidence: deliverables/linux-ruyijs-webservices-r100/web-services-validation.json
+            evidence_sha256: 31c47b7e57779a5bbf61230310f41bf7c0c57f9bc5d5f40e668b9d438e2614b3
           private_product: pending
     inner_repo_state:
       exists: true
