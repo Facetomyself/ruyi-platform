@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T13:29:17+08:00'
+generated_at: '2026-11-22T13:50:57+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -333,6 +333,20 @@ projects:
             original_failure: deliverables/linux-ruyijs-native-styling-r91/original-failure.json
             evidence: deliverables/linux-ruyijs-native-styling-r91/styling-symbol-delta.json
             evidence_sha256: 3e4d64e82d3f06dc5b70b1f9ad9cea48f8a2c6d9286ef3323ce9f24ed68dfd55
+          native_geometry_portable_batch:
+            input_commit: 057ce17cbef069bd0cf964f0c35116aadd9bc893
+            terminal: native_geometry_portable_verified 0
+            units: 41
+            deferred_platform_units: 18
+            prior_private_references: 189
+            resolved_prior: 20
+            introduced_private_references: 8
+            remaining_private_references: 177
+            remaining_geometry_backend_references: 12
+            relocatable_sha256: a884d0cd88125485af75062a1b7ea0653d647eb387c2630672da7e56274e7ff7
+            local_behavior: 'native aarch64 pure C++ matrix and SvgPath parser pass; no browser, font or stroke'
+            evidence: deliverables/linux-ruyijs-native-geometry-r92/geometry-symbol-delta.json
+            evidence_sha256: d282178a8c6881257072ae2bdfb79c3adee400518acdafb92c00b255b59864c7
           private_product: pending
     inner_repo_state:
       exists: true

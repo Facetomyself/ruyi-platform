@@ -126,6 +126,10 @@ ruyijs-inner/
 
 修正后的 `native-stylefix-r91` 在同一只读前序 native x86_64 ET_REL 上编译 56 个唯一拥有者，`native_styling_verified 0`、无 OOM。ET_REL SHA-256 `368563a2ccfa06073820a4220a25093512e0d3eef91be27c323456f3484e138f`。消除 26 条桥接和 15 条 CSS 实现引用，未引入私有未解析引用，**230 → 189**。前序摘要不变。回执 `deliverables/linux-ruyijs-native-styling-r91/styling-symbol-delta.json`；全部 10 项批次回归通过，完整产品与页面样式运行仍待验证。
 
+`057ce17` 将 59 个几何单元分成 41 个可移植单元与 18 个字体／字形／SVG 原生后端单元，后者保留待移植，不以空实现填充。原生 AArch64 的独立 C++ 试验通过矩阵平移与二维判定、SVG 相对控制点和无效输入检查；无浏览器 DOM 或原生描边验收。11 项批次回归通过。
+
+`native-geometry-r92` 原生 x86_64 断网单作业 `native_geometry_portable_verified 0`：41 个单元编译与部分链接均通过，消除 20 条旧引用并新增 8 条，总数 **189 → 177**。目前仍有 12 条几何后端引用（主要是字体配置、度量和 SVG 描边），待使用合适的原生 Linux 后端，不代表完整几何域通过。ET_REL SHA-256 `a884d0cd88125485af75062a1b7ea0653d647eb387c2630672da7e56274e7ff7`，前序对象摘要不变、无 OOM。回执 `deliverables/linux-ruyijs-native-geometry-r92/geometry-symbol-delta.json`，产品可执行文件与 `Context.eval` 仍待验。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
