@@ -80,7 +80,13 @@
 
 `attempt.gIhdRoB6` 的 `complete 0`、原版 Rust 归档审计和独立打包均通过。Firefox 159.0 BuildID `20261121211603`，固定源码戳 `9a2dc53c`，AArch64 `libxul.so` 262,675,328 字节；`libgkrust.a` 的正式审计摘要 `3d03fcd68c117175f959eb646a5a0bc2499a14f9c78a3c4565c5f9a976a4d5f4` 与早前中途复核一致。cgroup `oom=0`、`oom_kill=0`，`--version` 输出有该容器的 userns `EPERM` 诊断，不能把这条检查当作浏览器所有沙箱层的证明。正式回执 `deliverables/linux-arm64-cgroup-r61/formal-build-audit.json`。
 
-实际 ARM64 包 `74,811,148` 字节，SHA-256 `6db748f036e56f8550dd7f71be8ac35246bb602c7ff868b54bb22255549608cb`。同包的七文件身份与 ELF 校验通过，断网 UID 1000、仅 lo、seccomp=2、NoNewPrivs=1、零能力。`page_verified 0` 中 OFF 无输出；ON 父侧 writer PID 282 出 10 条核心、2 条点击、16 条脱敏未闸门 Storage 摘要。独立闸门 writer PID 437 的会话 1/2 出 12 条核心、2 条点击，关闭期间标记为零。`verified_transfer 0` 对实际原始页、截图和日志独立重放与导出；已流式本地核对 17 个文件及清单。浏览器与回执位于 `deliverables/linux-arm64-browser-gIhdRoB6/`。**这是 ARM64 浏览器级正例；ARM64 Electron 启动、桌面捕获与物理显示仍无验收回执。**
+实际 ARM64 包 `74,811,148` 字节，SHA-256 `6db748f036e56f8550dd7f71be8ac35246bb602c7ff868b54bb22255549608cb`。同包的七文件身份与 ELF 校验通过，断网 UID 1000、仅 lo、seccomp=2、NoNewPrivs=1、零能力。`page_verified 0` 中 OFF 无输出；ON 父侧 writer PID 282 出 10 条核心、2 条点击、16 条脱敏未闸门 Storage 摘要。独立闸门 writer PID 437 的会话 1/2 出 12 条核心、2 条点击，关闭期间标记为零。`verified_transfer 0` 对实际原始页、截图和日志独立重放与导出；已流式本地核对 17 个文件及清单。浏览器与回执位于 `deliverables/linux-arm64-browser-gIhdRoB6/`。这是 ARM64 浏览器级正例。
+
+### ARM64 原生 Electron：同包采集通过
+
+本机独立导入 17 件已校验的转运材料并重新重放浏览器证据，使用官方 ARM64 Electron 45.4.1 与干净控制台 `f9a348b` 组装同包。Firefox 实际 ELF 需要 `GLIBC_2.38`，宿主 2.35 保持原样；采用固定 `ruyitrace-arm64-smoke:r54` 镜像的 Ubuntu 24.04、glibc 2.39 用户态，私有 PID／网络／挂载 namespace `pivot_root` 后再映射 UID 1000，只有 lo。早期 chroot 后嵌套 userns 的 EPERM 保留为诊断，未降级 Chromium 沙箱。独立 QA 入口加载真正的主进程、preload 和 Vue；renderer `seccomp=2`、`NoNewPrivs=1`，未暴露 Node。OFF 零；ON writer PID 431 有 10 core、2 click、16 Storage；同包闸门 writer PID 218 会话 1/2 有 12 core、2 click、暂停期间零标记。截图以当前帧见证校验，原始记录、报告与截图摘要保留。
+
+便携归档 `257,284,068` 字节、214 项，SHA-256 `7e8604e7cadf6cf49758b2afd0bbbcf04fc6cd34daa397aab3b8e8fbe5726005`。归档单独核对内嵌包回执、Electron／Firefox／libxul ELF、核心摘要以及原始 launcher；QA 入口未注入归档。见 `deliverables/linux-arm64-desktop-gIhdRoB6/arm64-desktop-validation.json`。这份实证覆盖原生 headless Electron 采集；未以原始 launcher 在 ARM64 X11／Wayland 下验收，物理显示仍单列。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 

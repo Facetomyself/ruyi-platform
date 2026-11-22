@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T12:09:45+08:00'
+generated_at: '2026-11-22T12:37:40+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -771,8 +771,19 @@ projects:
               validation: deliverables/linux-arm64-browser-gIhdRoB6/arm64-browser-validation.json
               validation_sha256: e6c502e13fb6bd32dc2c87c9f4caef68167cd526ddaedfb5f5c65e89628fefe4
               runtime_scope: 'native offline browser: OFF zero, ON 10 core + 2 clicks + 16 Storage metadata; gate two sessions 12 core + 2 clicks and zero paused markers'
-              desktop_verified: false
-          risk: 'tested AMD64 releases and native ARM64 offline browser tiers verified; wider Linux producer coverage, native ARM64 Electron/portable windows and physical compositor remain separate'
+              desktop_verified: true
+            native_electron_desktop:
+              app_commit: f9a348bab18869f9f86127d8d2062107a73102d7
+              electron: 45.4.1
+              glibc: 'tested Ubuntu 24.04 userland 2.39; browser requires GLIBC_2.38, host 2.35 unchanged'
+              archive: deliverables/linux-arm64-desktop-gIhdRoB6/ruyitrace-linux-arm64-gIhdRoB6.tar.gz
+              archive_bytes: 257284068
+              archive_sha256: 7e8604e7cadf6cf49758b2afd0bbbcf04fc6cd34daa397aab3b8e8fbe5726005
+              validation: deliverables/linux-arm64-desktop-gIhdRoB6/arm64-desktop-validation.json
+              validation_sha256: 015dd5320df2a4ab7f9482c58509c2212cde723364e5d15f4dc38288304baa60
+              qa_capture: 'independent native QA entry loads actual app/preload/renderer and Firefox; Storage and gate both pass'
+              original_x11_and_wayland_launch_verified: false
+          risk: 'tested AMD64 releases and native ARM64 browser/Electron capture verified; wider Linux producer coverage, unmodified ARM64 X11/Wayland launch and physical displays remain separate'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
