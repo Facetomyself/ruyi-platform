@@ -110,6 +110,10 @@ ruyijs-inner/
 
 原生 `web-platform-v1`（53 个 Web 平台单元＋共用 `WebKit`）终态 `native_batch 1`，51/54 编译成功，无 OOM。Brotli 和 zlib 单元缺本次归档遗漏的**已跟踪 vendor 头**；URLPattern 正则单元是手写 SpiderMonkey 前置声明与 GCC hidden pragma 下的公开可见性不一致。部分 ET_REL 实测消除 30 条旧引用、引入 10 条、**190 → 170**，`WebKit` 的 15 条旧引用全部闭合，但 Web 平台仍有 9 条引用。回执 `deliverables/linux-ruyijs-native-webplat-r84/partial-web-platform.json` 保留原始编译错误。`1208a11` 改用 donor 的 `js/TypeDecls.h`；后续须带上固定 Brotli/zlib 头、重编三个失败单元及此头的旧依赖者，再确认完整批次。没有私有可执行文件或对象 URL 产品行为结论。
 
+`a1a98c2` 按真实依赖清单选出三个失败单元及依赖改动头的 `url_pattern.cpp`，核对剩余 50 个旧对象。带上 8 个固定 vendor 头后，第一轮复验的 Brotli 已通过，zlib 曝出旧断言 `112 == 88`；`d058a5e` 保留 Windows x64 `uLong=4/z_stream=88`，新增 Linux LP64 `8/112` 校验，原私有 zlib-rs 符号前缀保持原样。原生 AArch64 的实际适配器编译及头布局测试通过，未链接 Rust runtime。
+
+最终 `native_web_platform_repair_verified 0`：4 个重编单元与 50 个已核对复用对象重新部分链接，54/54 无错误，ET_REL 213,252,296 字节、SHA-256 `5d74f088a91a904b759492bf1a1b189dcc8a67bc3ab4e65a1db0a8fbdfc8e707`。相对修复前文档基线消除 30 条、引入 1 条，**190 → 161**，`web_platform` 归零；无 OOM，首次失败和旧聚合对象保持原样。回执 `deliverables/linux-ruyijs-native-webabi-r85/web-repair-symbol-delta.json`。此处未运行压缩、URLPattern 或私有 `Context.eval`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

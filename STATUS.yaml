@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T10:39:28+08:00'
+generated_at: '2026-11-22T11:04:04+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -268,9 +268,23 @@ projects:
             partial_remaining: 170
             partial_remaining_webkit: 0
             failed_units: [compression_brotli, compression_zlib, url_pattern_regexp]
-            fixes: 'stage tracked Brotli/zlib headers; 1208a11 uses canonical Firefox JS type declarations; native retry pending'
+            fixes: 'stage tracked Brotli/zlib headers; 1208a11 uses canonical Firefox JS type declarations; compiled in repaired batch'
             evidence: deliverables/linux-ruyijs-native-webplat-r84/partial-web-platform.json
             evidence_sha256: 282a359ac36614f62fd98243a70296d63cf3ec1ce6f58adacb72cac56278020e
+          native_web_platform_repair:
+            input_commit: d058a5e9b9cfca9244eb159db1885dc38eaecdb9
+            terminal: native_web_platform_repair_verified 0
+            reused_units: 50
+            compiled_units: 4
+            linux_zlib_abi: 'LP64 uLong=8 and z_stream=112; Windows ABI retained, Rust runtime untested'
+            prior_private_references: 190
+            resolved_prior: 30
+            introduced_private_references: 1
+            remaining_private_references: 161
+            remaining_web_platform_references: 0
+            relocatable_sha256: 5d74f088a91a904b759492bf1a1b189dcc8a67bc3ab4e65a1db0a8fbdfc8e707
+            evidence: deliverables/linux-ruyijs-native-webabi-r85/web-repair-symbol-delta.json
+            evidence_sha256: c493c6cebd93fa6fe7efc207d52014d547f041e0ccdf85c7bf71b6ef3628d568
           private_product: pending
     inner_repo_state:
       exists: true
