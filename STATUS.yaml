@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T09:13:57+08:00'
+generated_at: '2026-11-22T09:29:25+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -206,6 +206,14 @@ projects:
             local_transport: 'native aarch64: actual loopback HTTP with isolated Python fixture, binary 150000-byte round-trip and bounded subprocess lifecycle; not production Necko or QUIC'
             evidence: deliverables/linux-ruyijs-native-carrier-r79/carrier-symbol-delta.json
             evidence_sha256: 40905c9f0c9944066cc7b36e8e15dbb69e842bfce3fbc84b33590e1433768ad9
+          native_resource_network_batch:
+            input_commit: aa029f79e4131a20dccc99a17bbfe056420bbf06
+            scope: '168 remaining committed resource-network units; excludes two Windows-only sources and seven already compiled carrier units'
+            observed: '2026-11-22T09:25:56+08:00: 80 compiled, one job, no OOM or terminal link yet'
+            host_path: /home/ruyijs-donor-isolated-moz159/native-net-r80
+            evidence: deliverables/linux-ruyijs-native-net-r80/compile-sample.json
+            evidence_sha256: 662a18e5ecd6665452450505412bbd46642942e7e21208df89174da2bdcd7d8b
+            terminal: pending
           private_product: pending
     inner_repo_state:
       exists: true
@@ -645,6 +653,8 @@ projects:
             domtrace_compiled_elf: aarch64/ET_REL
             domtrace_compile_evidence: deliverables/linux-arm64-cgroup-r61/domtrace-built-objects.json
             domtrace_compile_evidence_sha256: b1f512b6206fc33f9061ecdd0f77bb1c8422cc77bd70b50fbe330a9c4378b3bf
+            parent_actor_elf_evidence: deliverables/linux-arm64-cgroup-r61/parent-actor-object.json
+            parent_actor_elf_evidence_sha256: f5ee486da7b2fbc32e973c4f37f0d6842e5c382cbe5e97830e1849bbc9f996d4
             formal_audit_package_and_pages: pending
           risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
           verified_alternative:

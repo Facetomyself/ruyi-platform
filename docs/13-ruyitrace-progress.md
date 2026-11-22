@@ -74,6 +74,8 @@
 
 `attempt.gIhdRoB6` 已在真实构建目录生成 `dom/domtrace` 下 10 个原生 AArch64 ET_REL，包括 `window-telemetry.o`、`linux-trace-gate.o` 和 `storage-record.o`。独立核对 ELF 头及摘要见 `deliverables/linux-arm64-cgroup-r61/domtrace-built-objects.json`，该阶段 OOM 计数为零。只是实际对象编译记录，最终 `libxul`、正式审计和页面验收仍待完成。
 
+同一候选真实的 `dom/ipc/Unified_cpp_dom_ipc3.o` 为 AArch64 ET_REL，并定义 `WindowGlobalParent::RecvSubscribeRuyiWindowGate`、`RecvRuyiWindowGateReady` 及接收 `WindowSample const&` 的 `RecvRuyiWindowSample`。生成的统一编译单元明确包含 `WindowGlobalParent.cpp`，并非名称相近的 `PWindowGlobalParent` 生成对象。阶段性 ELF 和摘要证据 `deliverables/linux-arm64-cgroup-r61/parent-actor-object.json`。已编译 IPC 声明和接收入口仍不等于产品采集。
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。
