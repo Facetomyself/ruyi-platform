@@ -76,6 +76,12 @@
 
 同一候选真实的 `dom/ipc/Unified_cpp_dom_ipc3.o` 为 AArch64 ET_REL，并定义 `WindowGlobalParent::RecvSubscribeRuyiWindowGate`、`RecvRuyiWindowGateReady` 及接收 `WindowSample const&` 的 `RecvRuyiWindowSample`。生成的统一编译单元明确包含 `WindowGlobalParent.cpp`，并非名称相近的 `PWindowGlobalParent` 生成对象。阶段性 ELF 和摘要证据 `deliverables/linux-arm64-cgroup-r61/parent-actor-object.json`。已编译 IPC 声明和接收入口仍不等于产品采集。
 
+### ARM64 原生浏览器：正式包与真实页面通过
+
+`attempt.gIhdRoB6` 的 `complete 0`、原版 Rust 归档审计和独立打包均通过。Firefox 159.0 BuildID `20261121211603`，固定源码戳 `9a2dc53c`，AArch64 `libxul.so` 262,675,328 字节；`libgkrust.a` 的正式审计摘要 `3d03fcd68c117175f959eb646a5a0bc2499a14f9c78a3c4565c5f9a976a4d5f4` 与早前中途复核一致。cgroup `oom=0`、`oom_kill=0`，`--version` 输出有该容器的 userns `EPERM` 诊断，不能把这条检查当作浏览器所有沙箱层的证明。正式回执 `deliverables/linux-arm64-cgroup-r61/formal-build-audit.json`。
+
+实际 ARM64 包 `74,811,148` 字节，SHA-256 `6db748f036e56f8550dd7f71be8ac35246bb602c7ff868b54bb22255549608cb`。同包的七文件身份与 ELF 校验通过，断网 UID 1000、仅 lo、seccomp=2、NoNewPrivs=1、零能力。`page_verified 0` 中 OFF 无输出；ON 父侧 writer PID 282 出 10 条核心、2 条点击、16 条脱敏未闸门 Storage 摘要。独立闸门 writer PID 437 的会话 1/2 出 12 条核心、2 条点击，关闭期间标记为零。`verified_transfer 0` 对实际原始页、截图和日志独立重放与导出；已流式本地核对 17 个文件及清单。浏览器与回执位于 `deliverables/linux-arm64-browser-gIhdRoB6/`。**这是 ARM64 浏览器级正例；ARM64 Electron 启动、桌面捕获与物理显示仍无验收回执。**
+
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
 `attempt.6D26B4Jt`（输入 `86d4352`）全量构建 `complete 0`，最终原版 Rust 审计 rc=0（SHA-256 `60598cdf7c5e801f98719323e2fbb4d174720f159e935795f0b4e43ad5119e39`）。发行 BuildID `20261121074300`、ELF Build ID `47bb9f26b95c2d4deb60214caff16c2293d9f5cc`，Firefox 159 源码戳完整；原始 tar 81,719,908 字节，SHA-256 `51342b78c2c83259d8756efd15276900234795b474ea8ee4f02374056b8cc94b`。真实离线页面 `parent_page_verified 0`：OFF 零文件，ON 在活跃内容 PID 279 写出 9 条 DOM 和 2 条点击；两轮均有回执、截图、进程退出 0。环境 UID 1000、仅 lo、默认 seccomp、NoNewPrivs=1、零 capabilities。

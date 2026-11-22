@@ -120,6 +120,8 @@ ruyijs-inner/
 
 `native-runtime-r87` 终态 `native_batch 1`，实际编译 62/63 个单元、无 OOM。唯一错误是 `worker_nested.cpp` 首先引入手写 `JSContext` 声明，与 donor API 的可见性冲突。`8cbeac3` 在该单元最前引入规范 `js/TypeDecls.h`，保留共享头，避免改变已经编译的依赖者；原生重编仍待完成。实际 62 单元部分 ET_REL（SHA-256 `e3a40ea6bdbaab90fd02f62663440cd732f612d9d9f711bf4aab7690e9c2f9d9`）消除 68 条旧引用，暴露 139 条新依赖，剩 232 条。回执 `deliverables/linux-ruyijs-native-runtime-r87/runtime-partial.json`。失败日志和前序对象保留；尚无私有可执行文件。
 
+`f7bb5f8` 复验已 `native_runtime_repair_verified 0`：核对完整私有源树、绑定表、62 个复用对象和依赖记录，只重编修正后的 `worker_nested.cpp` 再部分链接。相对前序基线消除 70 条，暴露 139 条，**余 230 条**；实证是原生 x86_64 ET_REL，SHA-256 `582aed88bedafcb67717252b4971cb4b715f6c39c8e2367f855fcfe94cbab112`。无 OOM，旧部分对象保持原样。证据 `deliverables/linux-ruyijs-native-runtimefix-r88/runtime-repair-symbol-delta.json`。私有可执行文件与真实 JS 行为仍待验收。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

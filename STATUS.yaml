@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T11:39:50+08:00'
+generated_at: '2026-11-22T12:09:45+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -299,7 +299,7 @@ projects:
             input_commit: 35e8197802391166f3097e9198f3a10b1bda0737
             terminal: 'native_batch 1: 62 compiled of 63, no OOM'
             sole_failure: 'worker_nested.cpp: SpiderMonkey visibility conflict on JSContext forward declaration'
-            fix: '8cbeac3: canonical type declarations first in the failing unit; native retry pending'
+            fix: '8cbeac3: canonical type declarations first in the failing unit; native retry passed separately'
             partial_prior_private_references: 161
             partial_resolved_prior: 68
             partial_introduced: 139
@@ -307,6 +307,18 @@ projects:
             partial_sha256: e3a40ea6bdbaab90fd02f62663440cd732f612d9d9f711bf4aab7690e9c2f9d9
             evidence: deliverables/linux-ruyijs-native-runtime-r87/runtime-partial.json
             evidence_sha256: f4c8ad35eb126010fe483c4d6f85931343443396659b4dd688f77299aa4c1257
+          native_runtime_repair:
+            input_commit: f7bb5f8652af7af533b9c2cf081c1e64e77e1ea3
+            terminal: native_runtime_repair_verified 0
+            reused_units: 62
+            compiled_units: 1
+            prior_private_references: 161
+            resolved_prior: 70
+            introduced_private_references: 139
+            remaining_private_references: 230
+            relocatable_sha256: 582aed88bedafcb67717252b4971cb4b715f6c39c8e2367f855fcfe94cbab112
+            evidence: deliverables/linux-ruyijs-native-runtimefix-r88/runtime-repair-symbol-delta.json
+            evidence_sha256: 448361de2ee607facc3e471c6f8aa32ab62fe42962fd2583afa463eb28a039cc
           private_product: pending
     inner_repo_state:
       exists: true
@@ -748,8 +760,19 @@ projects:
             domtrace_compile_evidence_sha256: b1f512b6206fc33f9061ecdd0f77bb1c8422cc77bd70b50fbe330a9c4378b3bf
             parent_actor_elf_evidence: deliverables/linux-arm64-cgroup-r61/parent-actor-object.json
             parent_actor_elf_evidence_sha256: f5ee486da7b2fbc32e973c4f37f0d6842e5c382cbe5e97830e1849bbc9f996d4
-            formal_audit_package_and_pages: pending
-          risk: 'tested AMD64 release tiers and virtual display backends verified; wider Linux producer coverage, native ARM64 capture and physical compositor remain separate'
+            formal_audit_package_and_pages: '2026-11-22: complete 0; package_identity_verified 0; page_verified 0; verified_transfer 0'
+            formal_build_evidence: deliverables/linux-arm64-cgroup-r61/formal-build-audit.json
+            formal_build_evidence_sha256: 88206415bb073c06d9c08b93bbd8c13a5d4c6bd0b8e838fa4239ea86d124f54b
+            native_browser:
+              build_id: '20261121211603'
+              archive_bytes: 74811148
+              archive_sha256: 6db748f036e56f8550dd7f71be8ac35246bb602c7ff868b54bb22255549608cb
+              archive: deliverables/linux-arm64-browser-gIhdRoB6/verified-transfer/candidate.tar.xz
+              validation: deliverables/linux-arm64-browser-gIhdRoB6/arm64-browser-validation.json
+              validation_sha256: e6c502e13fb6bd32dc2c87c9f4caef68167cd526ddaedfb5f5c65e89628fefe4
+              runtime_scope: 'native offline browser: OFF zero, ON 10 core + 2 clicks + 16 Storage metadata; gate two sessions 12 core + 2 clicks and zero paused markers'
+              desktop_verified: false
+          risk: 'tested AMD64 releases and native ARM64 offline browser tiers verified; wider Linux producer coverage, native ARM64 Electron/portable windows and physical compositor remain separate'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0
