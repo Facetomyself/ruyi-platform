@@ -92,6 +92,8 @@ ruyijs-inner/
 
 `host185` 已实跑 `native_interaction_verified 0`：82 个交互单元和 5 个消息单元全部编译通过，新 ET_REL 60,678,392 字节、SHA-256 `e2430213b921e9df8ab2bb83f89bb996460e76631df57f7a72f611cf15634c15`。交互 15 条和消息 10 条上一轮引用全部闭合，新增 2 条其他引用，未解析总数 **242 → 219**。容器退出 0、无 OOM，前一批摘要不变。本机 5 项批次与隔离回归通过；回执 `deliverables/linux-ruyijs-native-interact-r78/interaction-symbol-delta.json`。该部分链接没有运行交互或消息功能，完整私有版仍待构建和运行验收。
 
+`e477bf3` 将 Linux Necko helper 移植落入私有源码：使用 POSIX 进程、描述符和原有小端帧，保留旧 Windows 路径。原生 aarch64 本机通过实际回环 HTTP，150,000 字节二进制 POST 完整回返，计时字段、帧内错误后的 session 复用、子进程关闭／回收也通过。对端是 `http.client` 试件；非浏览器 Necko/NSS、非真实 QUIC 握手。x86_64 原生 7 个受限编译单元的部分链接另得 SHA-256 `feb197e098fda4d17449d4bb8712846ec18c47c2c775721fb4aea7bd67901b70`，消除 `AsyncHttp::Wait` 与 `PrewarmNeckoSessions` 两条旧引用，新增 9 条，**219 → 226**；前一批摘要不变、无 OOM。回执 `deliverables/linux-ruyijs-native-carrier-r79/carrier-symbol-delta.json`。其余 AsyncHttp／Abort／资源域实现仍需继续编译和实跑。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

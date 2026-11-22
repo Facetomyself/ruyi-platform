@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T09:00:32+08:00'
+generated_at: '2026-11-22T09:13:57+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -194,6 +194,18 @@ projects:
             relocatable_sha256: e2430213b921e9df8ab2bb83f89bb996460e76631df57f7a72f611cf15634c15
             evidence: deliverables/linux-ruyijs-native-interact-r78/interaction-symbol-delta.json
             evidence_sha256: 0458e016234625cd6ecc8cbb05eaf2881b6c5b2e108ebc623c635fecfae11c33
+          native_network_carrier_batch:
+            input_commit: e477bf33ab0ea9525a1fd9ab505afbbd07df6973
+            terminal: native_network_carrier_verified 0
+            units: 7
+            prior_private_references: 219
+            resolved_prior: 2
+            introduced_private_references: 9
+            remaining_private_references: 226
+            relocatable_sha256: feb197e098fda4d17449d4bb8712846ec18c47c2c775721fb4aea7bd67901b70
+            local_transport: 'native aarch64: actual loopback HTTP with isolated Python fixture, binary 150000-byte round-trip and bounded subprocess lifecycle; not production Necko or QUIC'
+            evidence: deliverables/linux-ruyijs-native-carrier-r79/carrier-symbol-delta.json
+            evidence_sha256: 40905c9f0c9944066cc7b36e8e15dbb69e842bfce3fbc84b33590e1433768ad9
           private_product: pending
     inner_repo_state:
       exists: true
