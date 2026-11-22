@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T07:55:46+08:00'
+generated_at: '2026-11-22T08:08:45+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -147,6 +147,17 @@ projects:
             relocatable_sha256: dda86055255d47912212dd17af9c14e9c8e611f228e3b6ba01533e82d60ed965
             evidence: deliverables/linux-ruyijs-native-hooks-r74/hook-link-evidence.json
             evidence_sha256: c4ebf1f4050ed445ce1cbfc14be4c39c2c5c08448248754b8719ca34d3d02ef3
+          native_symbol_batch:
+            input_commit: deae44bc52e645b2bbb73498b40b4d765c835a4f
+            terminal: native_symbol_batch_verified 0
+            units: 17
+            prior_private_references: 229
+            resolved_prior: 30
+            introduced_private_references: 68
+            remaining_private_references: 267
+            relocatable_sha256: 951edd890376963f5987dbe961441a91602eb3d650d1816f5a4a38a3255c4345
+            evidence: deliverables/linux-ruyijs-native-batch-r75/symbol-delta.json
+            evidence_sha256: ecf4587f1f9d009426140520c9e39632677dbfa6aae20642d04b91576eb466a5
           private_product: pending
     inner_repo_state:
       exists: true
