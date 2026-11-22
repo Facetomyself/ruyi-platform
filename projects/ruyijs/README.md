@@ -114,6 +114,8 @@ ruyijs-inner/
 
 最终 `native_web_platform_repair_verified 0`：4 个重编单元与 50 个已核对复用对象重新部分链接，54/54 无错误，ET_REL 213,252,296 字节、SHA-256 `5d74f088a91a904b759492bf1a1b189dcc8a67bc3ab4e65a1db0a8fbdfc8e707`。相对修复前文档基线消除 30 条、引入 1 条，**190 → 161**，`web_platform` 归零；无 OOM，首次失败和旧聚合对象保持原样。回执 `deliverables/linux-ruyijs-native-webabi-r85/web-repair-symbol-delta.json`。此处未运行压缩、URLPattern 或私有 `Context.eval`。
 
+`d57a927` 在断网原生 x86_64 容器实际构建并链接私有 codec：181 个固定文件按摘要检查，沿用 donor Rust 1.100.0，核对六个 `RUYIJS_CS_Z_*` 导出，并编译 35 个 Brotli C 单元。真实 C++ 适配器以小块往返 65,537 字节二进制数据，zlib／raw deflate／gzip／Brotli 压缩长度分别为 2,985／2,979／2,997／1,871，解压逐字节一致，`native_codecs_verified 0`、无 OOM。证据 `deliverables/linux-ruyijs-native-codecs-r86/native-roundtrip.json`。独立探针的 Rust staticlib 包含 std，不能混进最终 SpiderMonkey；产品的 JS CompressionStream、URLPattern 和 `Context.eval` 仍待运行验收。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

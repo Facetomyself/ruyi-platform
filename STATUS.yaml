@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T11:04:04+08:00'
+generated_at: '2026-11-22T11:18:28+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -285,6 +285,16 @@ projects:
             relocatable_sha256: 5d74f088a91a904b759492bf1a1b189dcc8a67bc3ab4e65a1db0a8fbdfc8e707
             evidence: deliverables/linux-ruyijs-native-webabi-r85/web-repair-symbol-delta.json
             evidence_sha256: c493c6cebd93fa6fe7efc207d52014d547f041e0ccdf85c7bf71b6ef3628d568
+          native_codec_runtime:
+            input_commit: d57a9276717c7ebf1354116ce6fab397d6dd21d4
+            terminal: native_codecs_verified 0
+            pinned_source_files: 181
+            brotli_c_units: 35
+            input_bytes: 65537
+            compressed_bytes: {zlib: 2985, raw_deflate: 2979, gzip: 2997, brotli: 1871}
+            scope: 'real native C++ codec runtime only; standalone Rust test staticlib is not for the final product'
+            evidence: deliverables/linux-ruyijs-native-codecs-r86/native-roundtrip.json
+            evidence_sha256: b51c91a6d2c011f8bb2105faf6e67e51482cc276c63ca430e7df4a49080c9d76
           private_product: pending
     inner_repo_state:
       exists: true
