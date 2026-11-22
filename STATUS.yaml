@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T11:18:28+08:00'
+generated_at: '2026-11-22T11:39:50+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -295,6 +295,18 @@ projects:
             scope: 'real native C++ codec runtime only; standalone Rust test staticlib is not for the final product'
             evidence: deliverables/linux-ruyijs-native-codecs-r86/native-roundtrip.json
             evidence_sha256: b51c91a6d2c011f8bb2105faf6e67e51482cc276c63ca430e7df4a49080c9d76
+          native_runtime_rest:
+            input_commit: 35e8197802391166f3097e9198f3a10b1bda0737
+            terminal: 'native_batch 1: 62 compiled of 63, no OOM'
+            sole_failure: 'worker_nested.cpp: SpiderMonkey visibility conflict on JSContext forward declaration'
+            fix: '8cbeac3: canonical type declarations first in the failing unit; native retry pending'
+            partial_prior_private_references: 161
+            partial_resolved_prior: 68
+            partial_introduced: 139
+            partial_remaining: 232
+            partial_sha256: e3a40ea6bdbaab90fd02f62663440cd732f612d9d9f711bf4aab7690e9c2f9d9
+            evidence: deliverables/linux-ruyijs-native-runtime-r87/runtime-partial.json
+            evidence_sha256: f4c8ad35eb126010fe483c4d6f85931343443396659b4dd688f77299aa4c1257
           private_product: pending
     inner_repo_state:
       exists: true

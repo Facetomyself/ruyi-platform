@@ -116,6 +116,10 @@ ruyijs-inner/
 
 `d57a927` 在断网原生 x86_64 容器实际构建并链接私有 codec：181 个固定文件按摘要检查，沿用 donor Rust 1.100.0，核对六个 `RUYIJS_CS_Z_*` 导出，并编译 35 个 Brotli C 单元。真实 C++ 适配器以小块往返 65,537 字节二进制数据，zlib／raw deflate／gzip／Brotli 压缩长度分别为 2,985／2,979／2,997／1,871，解压逐字节一致，`native_codecs_verified 0`、无 OOM。证据 `deliverables/linux-ruyijs-native-codecs-r86/native-roundtrip.json`。独立探针的 Rust staticlib 包含 std，不能混进最终 SpiderMonkey；产品的 JS CompressionStream、URLPattern 和 `Context.eval` 仍待运行验收。
 
+`35e8197` 为私有主程序配置 `runtime-rest-v1`：90 个已提交 runtime 单元中，精确排除前序已链接的实现和 Windows 专用管道，保留其余 63 个。断网编译使用已提交的 Firefox 绑定顺序头及前序 donor 配置；该批次检查链接依赖，不运行页面导航或消息行为。
+
+`native-runtime-r87` 终态 `native_batch 1`，实际编译 62/63 个单元、无 OOM。唯一错误是 `worker_nested.cpp` 首先引入手写 `JSContext` 声明，与 donor API 的可见性冲突。`8cbeac3` 在该单元最前引入规范 `js/TypeDecls.h`，保留共享头，避免改变已经编译的依赖者；原生重编仍待完成。实际 62 单元部分 ET_REL（SHA-256 `e3a40ea6bdbaab90fd02f62663440cd732f612d9d9f711bf4aab7690e9c2f9d9`）消除 68 条旧引用，暴露 139 条新依赖，剩 232 条。回执 `deliverables/linux-ruyijs-native-runtime-r87/runtime-partial.json`。失败日志和前序对象保留；尚无私有可执行文件。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
