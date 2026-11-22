@@ -196,6 +196,21 @@ ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名
 
 所以真实的剩余工作量不是「补 4 个函数」，而是「把 mask／colour／palette／style／outline 五个 owner 从 DirectWrite 专有接口上剥下来」。这一轮把这句话从推测变成了有清单的实测。回执 `deliverables/linux-ruyijs-canvastext-r156/canvas-text-compile-validation.json`。没有链接、没有打开字体、没有查字形、没有任何度量或像素比对。
 
+这一轮把「字体选择」这一层真正打通了。`FontCollection::Initialize` 与 `Select` 原本只有 DirectWrite 实现，现在有了 Linux 版：用 Fontconfig 解析同一个 `FontInput`（家族列表、引号、generic 替换、`-moz-default`），再用 FreeType 打开选中文件，交给上层的 `SelectedFont` 与 Windows 完全同形——所以四个 Canvas owner 这一层不需要任何平台分支。`LineMetrics`／`SvgLengthMetrics` 用的 Fontconfig/FreeType 度量集合也挂在同一个对象上，不再走第二条路径。
+
+四个单元连同真实依赖一起编译通过（原生 AMD64）：
+
+| 单元 | 对象 SHA-256 |
+|---|---|
+| `font_face_linux` | `404e9154…` |
+| `font_collection_linux` | `dbc87472…` |
+| `canvas_text` | `28a21287…` |
+| `glyph_runs` | `827872df…` |
+
+**关键进展在未定义符号清单上**：`font_collection_linux` 现在剩下的私有依赖全是**可移植代码**——`CssSplit`／`CssTrim`／`CssLower`、`DefaultGenericFamily`、`GenericFamilyOverride`、`FontFamilyVisible`、`LinuxResolveFonts`。这些在 Linux 上都已能编译，不再是 Windows 专有接口。也就是说字体选择这条链已经解决。
+
+真正还剩的是上层：`ShapeFont`、`CanvasFontBaselines`、`MissingFontRun` 在 `font_shaping.cpp`／`font_missing.cpp`，`GlyphMask`／`GlyphColorMask` 在 `glyph_mask.cpp`／`glyph_color.cpp`，它们仍然要 `dwrite_2.h`。这一轮如实把缺口缩小成这两组，而不是笼统说「Canvas 文字还没好」。回执 `deliverables/linux-ruyijs-lincollect-r158/lin-collection-validation.json`。仍然没有链接、没有打开字体、没有查字形、没有任何度量或像素比对。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

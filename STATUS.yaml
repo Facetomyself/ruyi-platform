@@ -587,6 +587,17 @@ projects:
             not_done: [link, font_open, glyph_lookup, metric_compare, glyph_run_outline, system_fonts_canvas_methods]
             evidence: deliverables/linux-ruyijs-canvastext-r156/canvas-text-compile-validation.json
             evidence_sha256: 700644c3e9111276b80f807ffe9705dcaa81475adc76b0cbc444201a389446b2
+          native_linux_font_selection:
+            input_commit: 3add320
+            terminal: linux_canvas_text_compile 0
+            scope: 'native AMD64 compile of the Linux Fontconfig/FreeType collection plus both Canvas text owners; compile only'
+            new_implementation: 'FontCollection::Initialize and Select for Linux, so font selection no longer needs DirectWrite'
+            compiled: {font_face_linux: 404e91547e0686f095412f730153217f7dd1852c0c53e05823aac7a4a803391f, font_collection_linux: dbc87472bd3015cb86d9448d2a506c3c68a5a9a99dfbedf87ae0bf0227e0005a, canvas_text: 28a21287ad2260c853349c09591d9a39b194f8faf6d0ed20bbac08a3c52495f9, glyph_runs: 827872df82190f7fb6758deb5e0073a9e09545773a77d6fe1d3612e37b38f29f}
+            collection_remaining_deps: 'only portable units: CssSplit/CssTrim/CssLower, DefaultGenericFamily, GenericFamilyOverride, FontFamilyVisible, LinuxResolveFonts'
+            still_windows_only: [glyph_mask, glyph_color, glyph_palette, glyph_style, canvas_text_path, font_shaping, font_missing]
+            not_done: [link, font_open, glyph_lookup, metric_compare, glyph_run_outline]
+            evidence: deliverables/linux-ruyijs-lincollect-r158/lin-collection-validation.json
+            evidence_sha256: 6abd945d9d41c79f2b8d30a2ec875033fcec18a761c94e05e477e255ce5ab4d8
           private_product: pending
     inner_repo_state:
       exists: true
