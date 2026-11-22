@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T12:58:34+08:00'
+generated_at: '2026-11-22T13:29:17+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -319,6 +319,20 @@ projects:
             relocatable_sha256: 582aed88bedafcb67717252b4971cb4b715f6c39c8e2367f855fcfe94cbab112
             evidence: deliverables/linux-ruyijs-native-runtimefix-r88/runtime-repair-symbol-delta.json
             evidence_sha256: 448361de2ee607facc3e471c6f8aa32ab62fe42962fd2583afa463eb28a039cc
+          native_styling_batch:
+            input_commit: b4040eced1de836a6394a41908fd2eed3db96eac
+            terminal: native_styling_verified 0
+            independent_units: 56
+            embedded_css_units: 52
+            prior_private_references: 230
+            resolved_prior: 41
+            introduced_private_references: 0
+            remaining_private_references: 189
+            relocatable_sha256: 368563a2ccfa06073820a4220a25093512e0d3eef91be27c323456f3484e138f
+            local_behavior: 'native aarch64 pure CSS declaration priority, margin shorthand and selector specificity passed; no SpiderMonkey'
+            original_failure: deliverables/linux-ruyijs-native-styling-r91/original-failure.json
+            evidence: deliverables/linux-ruyijs-native-styling-r91/styling-symbol-delta.json
+            evidence_sha256: 3e4d64e82d3f06dc5b70b1f9ad9cea48f8a2c6d9286ef3323ce9f24ed68dfd55
           private_product: pending
     inner_repo_state:
       exists: true

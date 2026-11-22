@@ -122,6 +122,10 @@ ruyijs-inner/
 
 `f7bb5f8` 复验已 `native_runtime_repair_verified 0`：核对完整私有源树、绑定表、62 个复用对象和依赖记录，只重编修正后的 `worker_nested.cpp` 再部分链接。相对前序基线消除 70 条，暴露 139 条，**余 230 条**；实证是原生 x86_64 ET_REL，SHA-256 `582aed88bedafcb67717252b4971cb4b715f6c39c8e2367f855fcfe94cbab112`。无 OOM，旧部分对象保持原样。证据 `deliverables/linux-ruyijs-native-runtimefix-r88/runtime-repair-symbol-delta.json`。私有可执行文件与真实 JS 行为仍待验收。
 
+样式域首批同时独立编译桥接和 CSS 实现，真实 native `ld.lld` 拦截重复定义；六个展开单元另报告 no-exceptions 失败。原日志独立保留在 `deliverables/linux-ruyijs-native-styling-r91/original-failure.json`。源清单复核发现 52 个 CSS 实现已由三个桥接单元唯一包含，独立编译仅需 `css_color_space.cpp` 加 55 个桥接单元。`b4040ec` 将所有权纳入校验，并以原生 AArch64 最新源码实跑纯 C++ 逻辑：CSS 声明重要性覆盖、margin 简写及选择器优先级通过；这不是 SpiderMonkey 页面行为验收。
+
+修正后的 `native-stylefix-r91` 在同一只读前序 native x86_64 ET_REL 上编译 56 个唯一拥有者，`native_styling_verified 0`、无 OOM。ET_REL SHA-256 `368563a2ccfa06073820a4220a25093512e0d3eef91be27c323456f3484e138f`。消除 26 条桥接和 15 条 CSS 实现引用，未引入私有未解析引用，**230 → 189**。前序摘要不变。回执 `deliverables/linux-ruyijs-native-styling-r91/styling-symbol-delta.json`；全部 10 项批次回归通过，完整产品与页面样式运行仍待验证。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
