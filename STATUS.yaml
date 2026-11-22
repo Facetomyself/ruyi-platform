@@ -635,6 +635,21 @@ projects:
             not_done: [measure_canvas, glyph_masks, colour_glyphs, product_link, browser]
             evidence: deliverables/linux-ruyijs-font-measure-r163/font-measure-validation.json
             evidence_sha256: 573bde58d3bd00912f1546cf72176a0e13a4c376f83d5f70f9a5df9c6306bbc0
+          native_linux_measure_canvas:
+            input_commit: 745e790
+            terminal: canvas_measure 1
+            scope: 'first link and execution of SystemFonts::MeasureCanvas on Linux'
+            executed: true
+            compiled_units: 13
+            checks_passed: 9
+            checks_failed: 1
+            observed: {width16: 8.0, width32: 16.0, ascent: 15.0, descent: 4.0}
+            failing_check: 'spaces report no ink'
+            finding: 'a space run reports ink; font_shaping.cpp adjusts the space advance and then falls through the shared ink accumulation, which is shared code so the behaviour is inherited rather than introduced by the port'
+            deliberately_not_changed: 'fixing it changes production behaviour on both platforms, so it is its own decision rather than part of a port probe'
+            not_done: [ink_free_spaces, glyph_masks, colour_glyphs, product_link, browser]
+            evidence: deliverables/linux-ruyijs-measure-canvas-r163/measure-canvas-validation.json
+            evidence_sha256: 4a242adf73fe8e9037b45ef53b59bdaf2b37e9df08717adfa7816065dce6cb96
           private_product: pending
     inner_repo_state:
       exists: true

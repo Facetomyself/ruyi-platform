@@ -268,6 +268,21 @@ UnicodeProperties.h  →  mfbt (需 XP_UNIX，否则 UniquePtrExtensions 报 "Un
 
 回执 `deliverables/linux-ruyijs-font-measure-r163/font-measure-validation.json`。
 
+这一轮把上一轮刻意没跑的 `MeasureCanvas` 真正链接并执行了：13 个单元编译、链接成功，**10 项检查通过 9 项**。为此先做了一次按职责的重构——`font_config.cpp` 原来把配置值、读访问器和 SpiderMonkey 写入入口塞在一个文件里，导致「只读配置」的单元也要 `jsapi` 才能编译。把配置状态与三个读访问器拆到 `font_config_state.cpp`（只依赖标准库），JS 写入侧留在原处；Windows 两个单元都链接，行为不变。
+
+按单元实测的边界现在是：`font_preferences`、`font_config_state`、`font_shaping`、`canvas_text`、`system_font`、`css_components`、`unicode_default_ignorable` 全部独立成立，只有 `font_config.cpp` 需要 SpiderMonkey——因为它是 JS 入口，这个划分是对的。
+
+链接过程中还补上了两处真实的平台缺口，而不是绕过：
+
+- `FrameMaxDescent` 整个落在 `_WIN32` 分支里，但它的算法只是对字体度量做算术，唯一平台耦合点是 `BadUnderlineFamily`。把函数移到平台块之外共用，并为 Linux 用 SFNT `name` 表实现同一张 CJK 家族名单的判定。
+- `BadUnderlineFamily` 因此在头文件里有了跨平台声明，Windows 定义也要离开匿名命名空间以匹配——**函数体一字未改**。
+
+**通过 9 项**：单字推进为正、单字有墨迹、墨迹在字体盒内、alphabetic baseline 为零、ascent/descent 为正、两字推进大于一字、两字等于一字的 2 倍、空格有推进、双倍尺寸双倍推进。实测 `width16=8.0000`、`width32=16.0000`、`ascent=15.0000`、`descent=4.0000`。
+
+**失败 1 项，是个真实语义问题**：`spaces report no ink`。三个空格报告的墨迹框是 `left=0.7969 top=-14.1094 right=27.9969 bottom=4.7188`——纵向与单字 `H` 完全一致。原因是 `font_shaping.cpp` 处理空格推进后**继续走通用墨迹累积**，把按推进算出的框并进了 run ink。这不是移植引入的：`font_shaping.cpp` 是共享单元，Windows 走同一条路径。而 r99 的探针从未测过空格，所以此前没有任何回执覆盖到它。
+
+修它会同时改变两个平台的生产行为，因此**这一轮不改**——那是一个应当单独决定的问题，不该夹在移植探针里顺手做掉。回执 `deliverables/linux-ruyijs-measure-canvas-r163/measure-canvas-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
