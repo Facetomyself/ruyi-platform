@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T14:49:28+08:00'
+generated_at: '2026-11-22T15:01:31+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -379,6 +379,15 @@ projects:
             probe: 'exact x86_64 batch object, default-visible Cairo ABI, offline Ubuntu 24.04 Cairo 1.18.0, 17 checks; no page getBBox'
             evidence: deliverables/linux-ruyijs-svg-abi-r95/svg-abi-validation.json
             evidence_sha256: 52f7a5b4eac28876c958c034d0419aab902acfc267f1d79b5ea3e52df7745493
+          native_linux_font_metrics:
+            input_commit: c500b3c81c9320c33d6e0565c29231892cd67549
+            arch: aarch64
+            scope: 'real Fontconfig selection and FreeType line/ex/ch/ic/cap metrics; production adapter syntax checked independently'
+            ubsan: passed
+            x86_64_private_aggregate_link: pending
+            svg_text_shaping: pending
+            evidence: deliverables/linux-ruyijs-font-metrics-r96/font-metrics-validation.json
+            evidence_sha256: cc36f2a4d16ce08e08617017b3a6e6c5f441266c9e1c4a12abecc1b6794bd74e
           private_product: pending
     inner_repo_state:
       exists: true

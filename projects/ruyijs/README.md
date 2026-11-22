@@ -136,7 +136,9 @@ ruyijs-inner/
 
 `69946ae` 为 Linux `SvgPathBounds` 接入 Cairo，Windows 保留 Direct2D。实现覆盖直线、二次／三次曲线、旋转 SVG 椭圆弧及平头斜接描边，并限制 Cairo 固定点坐标范围；越界返回失败且保留原输出。使用 Ubuntu `libcairo2-dev` 头、实际 AArch64 Cairo 1.16.0 库原生链接并运行 17 个用例，UBSan 检查与矩阵／SVG 解析回归通过。Linux 最终链接需要 Cairo 开发头及 `-lcairo`；这一阶段只实跑独立后端。回执 `deliverables/linux-ruyijs-svg-path-r94/svg-native-validation.json`。
 
-随后 `c95d91b` 在 x86_64 donor 配方下解决两层实际失败：Firefox 自带头要求生成的 `cairo-platform.h`，改用签名 Ubuntu Noble 索引核对的公开开发头；donor 默认隐藏符号会阻止链接真实 Cairo 动态库，故只把这些 C 声明恢复为默认可见。`native_svg_path_relocation_verified 0` 闭合 `SvgPathBounds`，私有引用 **171 → 170**（余 5 条几何引用均在 `SystemFonts`），前序 ET_REL 不变。精确复用该批次的 `svg_path.o`，单独链接并以 UID 1000 断网实跑 Ubuntu 24.04 Cairo 1.18.0 的全部 17 项用例，实查 17 个 Cairo 导入可见性和加载，未发生 OOM。回执 `deliverables/linux-ruyijs-svg-abi-r95/svg-abi-validation.json`。其余私有产品的完整链接、页面 `getBBox()` 和系统字体度量仍待验收。
+随后 `c95d91b` 在 x86_64 donor 配方下解决两层实际失败：Firefox 自带头要求生成的 `cairo-platform.h`，改用签名 Ubuntu Noble 索引核对的公开开发头；donor 默认隐藏符号会阻止链接真实 Cairo 动态库，故只把这些 C 声明恢复为默认可见。`native_svg_path_relocation_verified 0` 闭合 `SvgPathBounds`，私有引用 **171 → 170**（余 5 条几何引用均在 `SystemFonts`），前序 ET_REL 不变。精确复用该批次的 `svg_path.o`，单独链接并以 UID 1000 断网实跑 Ubuntu 24.04 Cairo 1.18.0 的全部 17 项用例，实查 17 个 Cairo 导入可见性和加载，未发生 OOM。回执 `deliverables/linux-ruyijs-svg-abi-r95/svg-abi-validation.json`。其余私有产品的完整链接和页面 `getBBox()` 仍待验收。
+
+`c500b3c` 给 Linux `SystemFonts` 接入 Fontconfig 选字与 FreeType 行高、SVG `ex/ch/ic/cap` 度量；Windows 继续使用原 DirectWrite 实现。Linux 使用系统配置排序，在打开字体前调用字体配置过滤器，按 CSS app unit 舍入；此批仅处理可缩放字体。原生 AArch64 在仅有 DejaVu Sans/Serif 的隔离字体目录实跑，验证 16px 行高 18.633333、`ex=8.75`、`ch=10.183333`、`ic=16`、`cap=11.666667`，覆盖尺寸缩放、候选过滤、无可选字体和无效输入。用系统真实 Fontconfig 2.13.1、FreeType 2.11.1 通过 UBSan；生产适配层通过独立编译检查。最终 Linux 链接需 Fontconfig/FreeType 的开发头与动态库。本轮未改变 x86_64 聚合符号计数；`SystemFonts::Measure` 的 SVG 文本塑形、Canvas 字形以及完整产品仍待验收。回执 `deliverables/linux-ruyijs-font-metrics-r96/font-metrics-validation.json`。
 
 ## Seed 关系（重要）
 
