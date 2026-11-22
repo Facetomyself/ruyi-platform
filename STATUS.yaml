@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T15:01:31+08:00'
+generated_at: '2026-11-22T15:14:27+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -384,10 +384,23 @@ projects:
             arch: aarch64
             scope: 'real Fontconfig selection and FreeType line/ex/ch/ic/cap metrics; production adapter syntax checked independently'
             ubsan: passed
-            x86_64_private_aggregate_link: pending
+            x86_64_private_aggregate_link: verified_separately_in_native_font_metrics_abi
             svg_text_shaping: pending
             evidence: deliverables/linux-ruyijs-font-metrics-r96/font-metrics-validation.json
             evidence_sha256: cc36f2a4d16ce08e08617017b3a6e6c5f441266c9e1c4a12abecc1b6794bd74e
+          native_font_metrics_abi:
+            input_commit: 1ae925d8d7f2134532333e47425ff0487ef04628
+            terminal: native_font_metrics_relocation_verified 0
+            prior_private_references: 170
+            resolved_prior: 4
+            introduced_private_references: 0
+            remaining_private_references: 166
+            remaining_geometry_backend: 'SystemFonts::Measure'
+            external_default_visible_font_imports: 23
+            relocatable_sha256: 75dc6e0ff83a3bb3de9b35f5b51f5ecfeec474aff662e0beff7a8dd90c4013d9
+            probe: 'real SystemFonts line and SVG font-unit methods, exact AMD64 objects, offline UID 1000, 16/32px and default family path'
+            evidence: deliverables/linux-ruyijs-native-fontmetrics-r97/font-metrics-abi-validation.json
+            evidence_sha256: 977185aba25d525988112dafd2719042e4a38b572fbbc2d97233e0f86cac597e
           private_product: pending
     inner_repo_state:
       exists: true

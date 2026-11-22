@@ -138,7 +138,9 @@ ruyijs-inner/
 
 随后 `c95d91b` 在 x86_64 donor 配方下解决两层实际失败：Firefox 自带头要求生成的 `cairo-platform.h`，改用签名 Ubuntu Noble 索引核对的公开开发头；donor 默认隐藏符号会阻止链接真实 Cairo 动态库，故只把这些 C 声明恢复为默认可见。`native_svg_path_relocation_verified 0` 闭合 `SvgPathBounds`，私有引用 **171 → 170**（余 5 条几何引用均在 `SystemFonts`），前序 ET_REL 不变。精确复用该批次的 `svg_path.o`，单独链接并以 UID 1000 断网实跑 Ubuntu 24.04 Cairo 1.18.0 的全部 17 项用例，实查 17 个 Cairo 导入可见性和加载，未发生 OOM。回执 `deliverables/linux-ruyijs-svg-abi-r95/svg-abi-validation.json`。其余私有产品的完整链接和页面 `getBBox()` 仍待验收。
 
-`c500b3c` 给 Linux `SystemFonts` 接入 Fontconfig 选字与 FreeType 行高、SVG `ex/ch/ic/cap` 度量；Windows 继续使用原 DirectWrite 实现。Linux 使用系统配置排序，在打开字体前调用字体配置过滤器，按 CSS app unit 舍入；此批仅处理可缩放字体。原生 AArch64 在仅有 DejaVu Sans/Serif 的隔离字体目录实跑，验证 16px 行高 18.633333、`ex=8.75`、`ch=10.183333`、`ic=16`、`cap=11.666667`，覆盖尺寸缩放、候选过滤、无可选字体和无效输入。用系统真实 Fontconfig 2.13.1、FreeType 2.11.1 通过 UBSan；生产适配层通过独立编译检查。最终 Linux 链接需 Fontconfig/FreeType 的开发头与动态库。本轮未改变 x86_64 聚合符号计数；`SystemFonts::Measure` 的 SVG 文本塑形、Canvas 字形以及完整产品仍待验收。回执 `deliverables/linux-ruyijs-font-metrics-r96/font-metrics-validation.json`。
+`c500b3c` 给 Linux `SystemFonts` 接入 Fontconfig 选字与 FreeType 行高、SVG `ex/ch/ic/cap` 度量；Windows 继续使用原 DirectWrite 实现。Linux 使用系统配置排序，在打开字体前调用字体配置过滤器，按 CSS app unit 舍入；此批仅处理可缩放字体。原生 AArch64 在仅有 DejaVu Sans/Serif 的隔离字体目录实跑，验证 16px 行高 18.633333、`ex=8.75`、`ch=10.183333`、`ic=16`、`cap=11.666667`，覆盖尺寸缩放、候选过滤、无可选字体和无效输入。用系统真实 Fontconfig 2.13.1、FreeType 2.11.1 通过 UBSan；生产适配层通过独立编译检查。最终 Linux 链接需 Fontconfig/FreeType 的开发头与动态库。这份 ARM64 回执未改变 x86_64 聚合符号计数。回执 `deliverables/linux-ruyijs-font-metrics-r96/font-metrics-validation.json`。
+
+`1ae925d` 用签名 Ubuntu Noble 开发包固定的 58 个头编译 `system_font` 与 `font_metrics_linux`，`native_font_metrics_relocation_verified 0` 闭合 4 条私有引用（构造、析构、行高、SVG 字体单位），**170 → 166**，未引入新的私有引用；实查 23 个默认可见的外部 Fontconfig/FreeType 导入。用这两个真实对象与已有 CSS、字体配置和 donor 分配器对象链接独立探针，原二进制 6,623,096 字节，首次仅超过输出回收上限，核对摘要后直接重放同一 ELF。UID 1000、断网、两种 DejaVu 独立字体；直接调用 `SystemFonts` 验证 16px 与 32px 度量、非法或零尺寸、默认字体路径，未发生 OOM。回执 `deliverables/linux-ruyijs-native-fontmetrics-r97/font-metrics-abi-validation.json`。几何域剩 `SystemFonts::Measure`；SVG 文本塑形、Canvas 字形及完整产品继续待验。
 
 ## Seed 关系（重要）
 
