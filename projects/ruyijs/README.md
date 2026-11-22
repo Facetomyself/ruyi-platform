@@ -134,7 +134,9 @@ ruyijs-inner/
 
 `a915eef` 的独立运行探针直接用这两个真实对象，链接同一 donor 中实际提供 `moz_xmalloc` 与 `gMozCrashReason` 的对象（之前两次失败保留）。断网实跑 `en-US → serif`，`ja-JP`／`zh-CN → sans-serif`，DPR=1／2 的自动文本优化阈值 20／10。这只验证配置与决策，不选择已安装字体、不进行度量或绘制。见 `deliverables/linux-ruyijs-native-fontprofile-r93/font-profile-validation.json`。
 
-`69946ae` 为 Linux `SvgPathBounds` 接入 Cairo，Windows 保留 Direct2D。实现覆盖直线、二次／三次曲线、旋转 SVG 椭圆弧及平头斜接描边，并限制 Cairo 固定点坐标范围；越界返回失败且保留原输出。使用 Ubuntu `libcairo2-dev` 头、实际 AArch64 Cairo 1.16.0 库原生链接并运行 17 个用例，UBSan 检查与矩阵／SVG 解析回归通过。Linux 最终链接需要 Cairo 开发头及 `-lcairo`；本轮只实跑独立后端，x86_64 私有聚合链接、页面 `getBBox()` 及系统字体度量仍待验收。回执 `deliverables/linux-ruyijs-svg-path-r94/svg-native-validation.json`。
+`69946ae` 为 Linux `SvgPathBounds` 接入 Cairo，Windows 保留 Direct2D。实现覆盖直线、二次／三次曲线、旋转 SVG 椭圆弧及平头斜接描边，并限制 Cairo 固定点坐标范围；越界返回失败且保留原输出。使用 Ubuntu `libcairo2-dev` 头、实际 AArch64 Cairo 1.16.0 库原生链接并运行 17 个用例，UBSan 检查与矩阵／SVG 解析回归通过。Linux 最终链接需要 Cairo 开发头及 `-lcairo`；这一阶段只实跑独立后端。回执 `deliverables/linux-ruyijs-svg-path-r94/svg-native-validation.json`。
+
+随后 `c95d91b` 在 x86_64 donor 配方下解决两层实际失败：Firefox 自带头要求生成的 `cairo-platform.h`，改用签名 Ubuntu Noble 索引核对的公开开发头；donor 默认隐藏符号会阻止链接真实 Cairo 动态库，故只把这些 C 声明恢复为默认可见。`native_svg_path_relocation_verified 0` 闭合 `SvgPathBounds`，私有引用 **171 → 170**（余 5 条几何引用均在 `SystemFonts`），前序 ET_REL 不变。精确复用该批次的 `svg_path.o`，单独链接并以 UID 1000 断网实跑 Ubuntu 24.04 Cairo 1.18.0 的全部 17 项用例，实查 17 个 Cairo 导入可见性和加载，未发生 OOM。回执 `deliverables/linux-ruyijs-svg-abi-r95/svg-abi-validation.json`。其余私有产品的完整链接、页面 `getBBox()` 和系统字体度量仍待验收。
 
 ## Seed 关系（重要）
 

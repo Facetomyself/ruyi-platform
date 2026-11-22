@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T14:32:04+08:00'
+generated_at: '2026-11-22T14:49:28+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -366,9 +366,19 @@ projects:
             cairo: '1.16.0'
             native_contract_checks: 17
             ubsan: passed
-            private_aggregate_link: pending
+            private_aggregate_link: verified_separately_in_native_svg_path_abi
             evidence: deliverables/linux-ruyijs-svg-path-r94/svg-native-validation.json
             evidence_sha256: 868eb691d52f030f189340438b666c5f1f5792ee36c5466a8ee0ed661e1ce6cb
+          native_svg_path_abi:
+            input_commit: c95d91b7b932d856895ca39c58fbc41283817ec6
+            terminal: native_svg_path_relocation_verified 0
+            remaining_private_references: 170
+            remaining_geometry_backend_references: 5
+            external_cairo_imports: 17
+            relocatable_sha256: a0ccb9ea2049f547907773dfef3ca01c848c123df2ca22ecdb47d5e78783f3db
+            probe: 'exact x86_64 batch object, default-visible Cairo ABI, offline Ubuntu 24.04 Cairo 1.18.0, 17 checks; no page getBBox'
+            evidence: deliverables/linux-ruyijs-svg-abi-r95/svg-abi-validation.json
+            evidence_sha256: 52f7a5b4eac28876c958c034d0419aab902acfc267f1d79b5ea3e52df7745493
           private_product: pending
     inner_repo_state:
       exists: true
