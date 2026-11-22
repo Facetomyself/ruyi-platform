@@ -174,6 +174,12 @@ ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名
 
 最终可执行文件 8,413,304 字节、链接成功（`link_rc=0`），运行以 `SIGSEGV` 退出，且 `stderr` 只有 `stage:ctor` 一行、`rip 0x0`、`advance anchor 0x0`——说明故障发生在本探针构造函数之后、`main` 写入任何阶段标记之前，是某个静态初始化通过空函数指针发起调用。这一轮没有画出任何字形、没有比较任何像素，所以**不构成 Canvas 文字验收**。回执 `deliverables/linux-ruyijs-skia-text-r138/skia-text-attempt-validation.json`。定位这个静态初始化需要初始器级别的追踪，而不是继续加阶段标记。
 
+这一轮的**方法本身**给出了可复用的结论，值得单独记下来：用一个什么都不做的 `main`（只写一行 `main reached`）逐级叠加真实 donor 对象，就能把「静态初始化是否干净」和「业务代码是否正确」彻底分开。阶梯十步全部打印 `main reached`：`mozalloc+mfbt` → 76 个 Skia → HarfBuzz 统一对象 → gfx/2d 与运行时 FreeType → XPCOM string → libpref → XPCOM base0 → base1 → threads0 → 真实 `libnspr4.so`。
+
+这同时**纠正了上一轮的错误判断**。上一轮把「加入 `xpcom/base2` 就崩」读成「base2 不安全」，实际是 base2 恰好是第一个需要 `mozilla::Mutex` 的步骤，而定义 `BlockingResourceBase` 的对象此时还没进链接，于是 mutex 在未构造状态下被使用。base0、base1、threads0 各自单独都能通过，它们才是 `BlockingResourceBase` 的真正定义者。回执 `deliverables/linux-ruyijs-ctor-bisect-r144/ctor-ladder-validation.json`。
+
+剩下的问题收敛得很具体：即使 base0/base1/threads0 和 `libnspr4` 都已链接、且 `libnspr4.so` 已实测是 `NEEDED` 项，文字探针仍在 `SharedFTFace` 构造内部以 `rip 0x0` 结束——mutex 构造函数里还有一处间接调用解析到地址 0。这条路径要真正打通，需要在探针里提供 XPCOM 的静态初始化入口，而不是继续逐个对象试链。此前所有文字相关结论保持为「未验收」。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

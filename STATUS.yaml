@@ -554,7 +554,14 @@ projects:
               - 'null face context replaced with a real SharedFTFace, removing the mozilla_LockSharedFTFace null dereference'
               - 'libgkrust.a wholesale was OOM-killed at 1.47 GB; only the 7.7 MB wr_glyph_rasterizer member is needed'
               - 'real XPCOM base/threads objects and libnspr4 added'
-            observed_failure: 'SIGSEGV with RIP 0x0 after the probe constructor and before main, so a static initialiser called a null function pointer without an XPCOM runtime'
+            observed_failure: 'SIGSEGV with RIP 0x0 inside SharedFTFace construction; one indirect call in the mutex constructor still resolves to address 0'
+            ctor_ladder:
+              input_commit: d3834c8
+              terminal: ctor_ladder_clean 0
+              scope: 'no-op main linked against cumulative donor object groups; every step printed main reached'
+              corrected_claim: 'the earlier xpcom/base2 fault was a missing BlockingResourceBase, not an unsafe object'
+              evidence: deliverables/linux-ruyijs-ctor-bisect-r144/ctor-ladder-validation.json
+              evidence_sha256: d185b95c09fc2e04a8a78651178744189fbb19f916a444c07460b6ebf0f8b610
             not_verified: [linux_canvas_text, private_canvas_skia_target, dist_js, browser_render]
             evidence: deliverables/linux-ruyijs-skia-text-r138/skia-text-attempt-validation.json
             evidence_sha256: 47e975abdd5f51dd08c983bd71571ded30f139515397f192b257adc3413479db
