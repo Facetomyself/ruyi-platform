@@ -611,6 +611,18 @@ projects:
             not_done: [link, font_open, glyph_lookup, metric_compare, glyph_run_outline]
             evidence: deliverables/linux-ruyijs-shaping-r160/shaping-compile-validation.json
             evidence_sha256: 603f66a26c5fc8410dc335b7276c3ac9c9ce2c2e85dcb7b406428fa14b378550
+          native_linux_unicode_property:
+            input_commit: 5ea60f9
+            terminal: unicode_ignorable_verified 0
+            scope: 'Default_Ignorable_Code_Point implemented in the private tree, replacing the Mozilla header that pulled in mfbt/XPCOM/NSPR'
+            target_unicode: '13.0.0'
+            implementation: {file: src/web_geometry/unicode_default_ignorable.cpp, runs: 23, code_points: 4204}
+            verification: 'whole-set comparison against an independent Unicode 13 reference: 4204 vs 4204, no missing and no extra code points'
+            real_defect_found: 'the first table was written from memory and omitted the Cf and White_Space members; the whole-set comparison caught it'
+            container_note: 'host185 image python reports Unicode 9.0, so it proves build and run only; the set comparison is valid against a Unicode 13 reference'
+            not_done: [font_missing_link, font_open, glyph_lookup]
+            evidence: deliverables/linux-ruyijs-unicode-r161/unicode-ignorable-validation.json
+            evidence_sha256: b7d93ea15717e0915cdd731a0ee5806d378e6e5acb3f3964c11e4ef3d7ef8966
           private_product: pending
     inner_repo_state:
       exists: true

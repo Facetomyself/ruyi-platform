@@ -230,6 +230,26 @@ UnicodeProperties.h  →  mfbt (需 XP_UNIX，否则 UniquePtrExtensions 报 "Un
 
 回执 `deliverables/linux-ruyijs-shaping-r160/shaping-compile-validation.json`。仍然没有链接、没有打开字体、没有查字形、没有任何度量或像素比对。
 
+上一轮那个「为一个布尔值拉进整条 Mozilla 头文件链」的分叉，这一轮选了第二条路：**在私有树里自己实现 `Default_Ignorable_Code_Point`**，不再依赖 `mozilla/intl`。
+
+关键是不能凭印象写。第一版我就是凭记忆列了一小张表，**整个 Cf 与 White_Space 部分全漏了**——如果只抽样测几个码点，这个错误完全测不出来。所以做法是从规范定义出发：`Other_Default_Ignorable_Code_Point + Cf + Variation_Selector + White_Space` 减去列明的例外，用 Unicode 数据算出完整集合，压缩成 **23 个连续区间、4204 个码点**。
+
+然后用**全集合比对**验证，而不是抽样：
+
+| 项 | 值 |
+|---|---|
+| 目标 Unicode 版本 | 13.0.0 |
+| 独立基准（Python `unicodedata`） | 4204 |
+| 私有实现输出 | 4204 |
+| 缺失 | 无 |
+| 多余 | 无 |
+
+比对过程还暴露了一个容易误判的地方：host185 镜像里的 Python 是 **Unicode 9.0**，拿它当基准会把 `0x13439–0x1343f`（Unicode 14 才分配的埃及象形文字格式控制符）报成“缺失”。在 13.0 与 9.0 之间做比对，差异来自版本而不是表。所以现在基准**锁定 13.0**，版本不符时明确报 `inconclusive`，而不是报 mismatch。
+
+这里要记清一条判断依据：**HarfBuzz 只暴露 general category，没有这个二元属性**；而这个属性既不是“Cf”也不是“White_Space”——它会加上变体选择符、又会减掉两者的成员，用近似集合会判错真实码点。
+
+回执 `deliverables/linux-ruyijs-unicode-r161/unicode-ignorable-validation.json`。`font_missing` 还没链接、没打开字体、没查字形。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
