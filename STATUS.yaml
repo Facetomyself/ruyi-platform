@@ -650,6 +650,20 @@ projects:
             not_done: [ink_free_spaces, glyph_masks, colour_glyphs, product_link, browser]
             evidence: deliverables/linux-ruyijs-measure-canvas-r163/measure-canvas-validation.json
             evidence_sha256: 4a242adf73fe8e9037b45ef53b59bdaf2b37e9df08717adfa7816065dce6cb96
+          native_linux_glyph_metrics:
+            input_commit: 5c75020
+            terminal: glyph_metrics_fixed 0
+            scope: 'design-metric semantics of the Linux face and their effect on MeasureCanvas'
+            defect_fixed: 'advanceHeight came from FreeType vertAdvance and topSideBearing from the horizontal bearing, so every glyph reported the em height and a zero-width space still produced ink'
+            before: {space_ink_height: 2048, H_ink_height: 2048}
+            after: {space_ink_height: 0, H_ink_height: 1493, digit_zero_ink_height: 1549}
+            correction: 'last round recorded the space-ink failure as inherited shared behaviour without measuring the input; the input was wrong'
+            measure_canvas: {checks_passed: 9, checks_failed: 1, H_ink: [0.7969, -11.2812, 8.7969, 2.8281]}
+            remaining_cause: 'font_shaping seeds the run box with height and then widens it to the advance, so an outline-free run still reports ink'
+            why_not_changed: 'shared with Windows and the r99 baseline; changing it moves production behaviour and the reference numbers together'
+            not_done: [ink_free_spaces, glyph_masks, colour_glyphs, product_link, browser]
+            evidence: deliverables/linux-ruyijs-glyphmetrics-r179/glyph-metrics-validation.json
+            evidence_sha256: 1bfca12ed5a2f85c33f46fee48fc799787422a19946a3279ae69b6358fe6de45
           private_product: pending
     inner_repo_state:
       exists: true

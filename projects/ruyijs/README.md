@@ -283,6 +283,30 @@ UnicodeProperties.h  →  mfbt (需 XP_UNIX，否则 UniquePtrExtensions 报 "Un
 
 修它会同时改变两个平台的生产行为，因此**这一轮不改**——那是一个应当单独决定的问题，不该夹在移植探针里顺手做掉。回执 `deliverables/linux-ruyijs-measure-canvas-r163/measure-canvas-validation.json`。
 
+上一轮我把 `spaces report no ink` 的失败判成「共享代码的既有行为」，理由是 `font_shaping.cpp` 是共享单元。**这个判断是错的**，错在我没有验证输入。这一轮直接测了每个码点的真实设计度量：
+
+```
+space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
+```
+
+问题一眼就出来了：**`ink_h=2048`**。所有者读这些字段时是把它们当一个墨迹矩形用的——高度 = `advanceHeight - tsb - bsb`、顶 = `tsb - voy`。而我写的 `GetDesignGlyphMetrics` 把 `advanceHeight` 取了 FreeType 的 `vertAdvance`（字体无 vmtx 时返回 em 高度），`topSideBearing` 又来自**水平**方位。于是每个字形都报成 em 高，宽度为零的空格也就有了盒子。
+
+按 Mac 实现的语义修正后：
+
+| 码点 | 修正前 `ink_h` | 修正后 `ink_h` |
+|---|---|---|
+| `H` | 2048 | 1493 |
+| `space` | 2048 | **0** |
+| `0` | 2048 | 1549（墨迹底 −29） |
+
+`0` 的 −29 是真实的：DejaVu Sans 的零确实下沉 29/2048 em 做视觉对齐。修正后的数值经得起核对，修正前只是把一切都抹成 em 高。
+
+对 `MeasureCanvas` 的效果：`H` 的墨迹盒从 `[-14.1094, 4.7188]` 变成 `[-11.2812, 2.8281]`——这才是真实的 ink 盒。
+
+**但空格仍然报墨迹**，而根因已经查到底：`font_shaping.cpp` 用 `InkBox ink{0, -ascent, 0, descent}` 起手，这个框本身就有高度，随后 `ink.right = max(ink.right, advance)` 又把它撑到整个推进。算术核对完全吻合（ascent 900、descent 240、推进 1440 app units）。这一段**这一轮没改**：它与 Windows 共享，而 r99 的基准数字又出自同一份代码，改它会同时移动生产行为和参照值——那是应当单独决定的事。
+
+回执 `deliverables/linux-ruyijs-glyphmetrics-r179/glyph-metrics-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
