@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T12:37:40+08:00'
+generated_at: '2026-11-22T12:58:34+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -375,7 +375,7 @@ projects:
     build:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '116 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
+    tests: '117 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
     phase: Linux scoped release verified; broader producer and architecture parity remain
     blocked_by: []
     remaining:
@@ -782,8 +782,15 @@ projects:
               validation: deliverables/linux-arm64-desktop-gIhdRoB6/arm64-desktop-validation.json
               validation_sha256: 015dd5320df2a4ab7f9482c58509c2212cde723364e5d15f4dc38288304baa60
               qa_capture: 'independent native QA entry loads actual app/preload/renderer and Firefox; Storage and gate both pass'
-              original_x11_and_wayland_launch_verified: false
-          risk: 'tested AMD64 releases and native ARM64 browser/Electron capture verified; wider Linux producer coverage, unmodified ARM64 X11/Wayland launch and physical displays remain separate'
+              original_x11_and_wayland_launch_verified: true
+              original_launch:
+                tool: 94bfed6a7cb22dcbdc9c930cc60b92bf2b8a05d1
+                validation: deliverables/linux-arm64-desktop-gIhdRoB6/original-launch/launch-validation.json
+                validation_sha256: 420eab5668877547830d386a095093c4311d2eb1835a95d859eea96b76b7ab71
+                x11: 'authenticated Xvfb 21.1.12, literal empty argv, 1280x860 main panel painted'
+                wayland: 'Weston 13.0.0, literal empty argv, no X11 socket, configure ack, two non-null commits, one frame callback'
+                physical_display_verified: false
+          risk: 'tested AMD64 releases and native ARM64 browser/Electron capture and original launcher on virtual X11/Wayland verified; wider Linux producer coverage and physical displays remain separate'
           verified_alternative:
             commit: 08c55a8
             producer_run: CJd0ctZnQzSu4Erw4ZByrA/0

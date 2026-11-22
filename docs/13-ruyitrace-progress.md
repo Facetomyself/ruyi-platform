@@ -86,7 +86,11 @@
 
 本机独立导入 17 件已校验的转运材料并重新重放浏览器证据，使用官方 ARM64 Electron 45.4.1 与干净控制台 `f9a348b` 组装同包。Firefox 实际 ELF 需要 `GLIBC_2.38`，宿主 2.35 保持原样；采用固定 `ruyitrace-arm64-smoke:r54` 镜像的 Ubuntu 24.04、glibc 2.39 用户态，私有 PID／网络／挂载 namespace `pivot_root` 后再映射 UID 1000，只有 lo。早期 chroot 后嵌套 userns 的 EPERM 保留为诊断，未降级 Chromium 沙箱。独立 QA 入口加载真正的主进程、preload 和 Vue；renderer `seccomp=2`、`NoNewPrivs=1`，未暴露 Node。OFF 零；ON writer PID 431 有 10 core、2 click、16 Storage；同包闸门 writer PID 218 会话 1/2 有 12 core、2 click、暂停期间零标记。截图以当前帧见证校验，原始记录、报告与截图摘要保留。
 
-便携归档 `257,284,068` 字节、214 项，SHA-256 `7e8604e7cadf6cf49758b2afd0bbbcf04fc6cd34daa397aab3b8e8fbe5726005`。归档单独核对内嵌包回执、Electron／Firefox／libxul ELF、核心摘要以及原始 launcher；QA 入口未注入归档。见 `deliverables/linux-arm64-desktop-gIhdRoB6/arm64-desktop-validation.json`。这份实证覆盖原生 headless Electron 采集；未以原始 launcher 在 ARM64 X11／Wayland 下验收，物理显示仍单列。
+便携归档 `257,284,068` 字节、214 项，SHA-256 `7e8604e7cadf6cf49758b2afd0bbbcf04fc6cd34daa397aab3b8e8fbe5726005`。归档单独核对内嵌包回执、Electron／Firefox／libxul ELF、核心摘要以及原始 launcher；QA 入口未注入归档。见 `deliverables/linux-arm64-desktop-gIhdRoB6/arm64-desktop-validation.json`。这份实证覆盖原生 headless Electron 采集，启动见下。
+
+### ARM64 原始入口：X11 与 Wayland 虚拟显示通过
+
+同一便携归档未重打包。独立 Ubuntu 24.04 ARM64 测试用户态预置 Xvfb 21.1.12、Weston 13.0.0；主机软件包保持原样。`94bfed6` 以 rootless `/proc/net/dev` 核对仅 lo，在隔离的 user/PID/mount/net namespace 中切换测试根，UID 1000，按归档原样以空 argv 启动。Xvfb 已认证且无 TCP，主面板像素证明为 1280×860；Wayland Weston 无 X11 socket，实际 XDG toplevel 21、ACK 1、两次非空缓冲提交、一次帧回调。两种 renderer 的 `seccomp=2`、`NoNewPrivs=1` 均实查，归档身份和原始 launcher 摘要再次校验。回执 `deliverables/linux-arm64-desktop-gIhdRoB6/original-launch/launch-validation.json` 保存原始协议日志与截图，117 项 Linux Python 回归通过。此档验证原始虚拟显示启动，与同包 QA 采集回执独立；仍缺物理显示验证。
 
 ### 上一版发行实证：x86_64 非闸门 DOM 与点击
 
