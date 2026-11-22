@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T19:00:08+08:00'
+generated_at: '2026-11-22T19:19:48+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -493,6 +493,22 @@ projects:
             runtime_scope: 'exact x86_64 PNG and WebP still / animation objects, isolated UID 1000, matching Noble runtime libraries; no browser ImageDecoder or other codecs'
             evidence: deliverables/linux-ruyijs-media-r105/media-png-webp-validation.json
             evidence_sha256: b1e435399aead6d6b022fe7c7f92d9dd5a69cebb2ef33e74250c32a36da9f861
+          native_crypto_openssl:
+            input_commit: 635638592c95dbfdbf504bf8b51c32ddbb49b29f
+            terminal: native_crypto_openssl_verified 0
+            units: 19
+            prior_private_references: 19
+            resolved_prior: 6
+            introduced_private_references: 0
+            remaining_private_references: 13
+            remaining_groups: {web_canvas: 13}
+            default_visible_libcrypto_imports: 58
+            relocatable_sha256: 9a53dbad1a3c60065df6738766535f0bfac0e7a028b709acf5b71eca00801b70
+            runtime_scope: 'original Windows inner PE Wine synthetic vectors, 29 matched on each native Linux architecture, 5 accepted / 16 rejected GCM combinations; no JS Promise or WebIDL'
+            arm64_evidence: deliverables/linux-ruyijs-crypto-arm64-r106/crypto-openssl-validation.json
+            arm64_evidence_sha256: 9d558e96d98f4aa7bc516bca58d599f9668a9ff7bb071d4ca519d281bb7ab65e
+            evidence: deliverables/linux-ruyijs-crypto-r106/crypto-openssl-abi-validation.json
+            evidence_sha256: 2c08c241ac3a49e9db1763bc55f51a29e65ac07b8cabc3381847eb29866676e8
           private_product: pending
     inner_repo_state:
       exists: true

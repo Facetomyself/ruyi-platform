@@ -162,6 +162,8 @@ ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名
 
 `b00a758` 从已核验 Graphics/GPU 基线构建 65 个 Media 单元，排除未移植的 `image_avif`、`image_color` 和 `image_gif`，并锁定签名 Ubuntu Noble 包的 9 个开发头。原生 x86_64 `native_media_png_webp_verified 0`，**36 → 19**，消除 Media 的全部 17 条旧私有引用，零新增；剩 Canvas 13、Crypto 6。聚合 ELF 实查 32 个 libpng／WebP 导入均为默认可见。使用同批六个精确对象和真实 Noble 动态库，在断网 UID 1000 原生重跑静态 PNG／WebP、两帧 APNG／WebP、预乘 BGRA、缩放、截断 EOF 与损坏输入，均复现 ARM64 结果。无 OOM，16 项批次回归通过。回执 `deliverables/linux-ruyijs-media-r105/media-png-webp-validation.json`。Media 私有符号闭合只覆盖该已编译范围；剩余格式、ICC 和浏览器页面仍待验证。
 
+`6356385` 纳入已审阅的 Linux OpenSSL 字节后端，系统 libcrypto 声明保持默认可见，Windows CNG 单元原样保留。新增固定原版 Windows PE 在 Wine 9 的 29 个合成向量：摘要、HMAC、CBC、GCM；在 21 组 GCM 中兼容原件的 5 组接受和 16 组拒绝。ARM64 UBSan 与 AMD64 同批精确对象实跑均逐项匹配，另验证三条 EC 曲线及失败解密保留调用者输出。原生 x86_64 `native_crypto_openssl_verified 0`：19 个 Crypto 单元（排除两份 Windows 后端），135 个签名 OpenSSL 公共开发头、58 个默认可见导入；闭合全部 6 条旧引用、零新增，**19 → 13**，均为 Canvas。AMD64 断网 UID 1000，libcrypto 3.0.13，未发生 OOM，17 项批次回归通过。[固定 PE 向量](../../submodules/ruyijs/ci/fixtures/openssl-windows-pe-contract.json)；运行回执 `deliverables/linux-ruyijs-crypto-r106/crypto-openssl-abi-validation.json`、`deliverables/linux-ruyijs-crypto-arm64-r106/crypto-openssl-validation.json`。第三方 Linux wheel 继续只作对照；WebCrypto Promise／WebIDL、产品构建接线和完整 `dist/js` 仍待验收。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
