@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T16:31:10+08:00'
+generated_at: '2026-11-22T16:51:28+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -454,6 +454,21 @@ projects:
             arm64_evidence_sha256: fe50d622037d459ac1c060fab303d831b1a13cde52da47e8c7d9b101b1f6e88f
             evidence: deliverables/linux-ruyijs-audiortc-r101/audio-rtc-font-validation.json
             evidence_sha256: 1d9349e70de6809cceaede2222735bb1dd80cbb7e4b4de0274388f0b6317f667
+          native_graphics_gpu:
+            input_commit: 75cf2bc5330aa32f1ea5c4dcfa7070df3844ce66
+            terminal: native_graphics_gpu_verified 0
+            units: 50
+            prior_private_references: 46
+            resolved_prior: 10
+            introduced_private_references: 0
+            remaining_private_references: 36
+            remaining_groups: {web_canvas: 13, web_crypto: 6, web_media: 17}
+            relocatable_sha256: e7abd977b7e01c01bb20f376f291a7acdcb2827bbde01c5aaeb2b3405398fe4d
+            runtime_scope: 'real software GLSL/MSAA and WebGPU capability model on ARM64 and exact AMD64 objects; no hardware or browser'
+            arm64_evidence: deliverables/linux-ruyijs-graphics-r102/graphics-software-validation.json
+            arm64_evidence_sha256: bba5ce36fb166306d2f0e557794469ae9460d32eb1cc37df91b10c576640bf3d
+            evidence: deliverables/linux-ruyijs-graphicsgpu-r102/graphics-gpu-abi-validation.json
+            evidence_sha256: 90bce601785fd6c7e490755383fdfc18577a831b8728409eb3fa855061f25b21
           private_product: pending
     inner_repo_state:
       exists: true

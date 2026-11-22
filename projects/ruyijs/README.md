@@ -154,6 +154,10 @@ ruyijs-inner/
 
 ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名／PostScript、隐藏和替代名过滤，也实跑 48kHz 的 1kHz PCM，两个 128 帧量子与 256 帧连续运行逐样本一致，另过方波和参数限幅／实例隔离。x86_64 断网 UID 1000，使用真实 profile 对象。14 项批次回归通过。证据 `deliverables/linux-ruyijs-audiortc-r101/audio-rtc-font-validation.json` 与 `deliverables/linux-ruyijs-audio-font-r101/audio-font-validation.json`；WebRTC 当前只验证部分链接，JS 页面、音频设备、RTC 媒体传输及完整私有程序仍待验收。
 
+在完全干净的 Git 源快照中，WebGPU 模型的旧实现允许负限制值。`75cf2bc` 修复非有限及负限制值，初始化改用 RAII，功能集直接使用底层聚合状态而不维护副本。ARM64 原生 UBSan 实际运行软件 GLSL 与 MSAA、能力子集回滚和 64 位限制值；实得 RGBA `[255,127,0,255]`、抽样覆盖 `[4,2,0]`。原始失败与修复验证位于 `deliverables/linux-ruyijs-graphics-r102/graphics-software-validation.json`。两处既有本地 WebGL 修改未纳入快照；此回执不覆盖页面、驱动或硬件 GPU。
+
+原生 x86_64 `native_graphics_gpu_verified 0`：33 个 Web Graphics 和 17 个 WebGPU 单元全部通过 ET_REL，消除 10 条旧引用、未引入新私有引用，**46 → 36**，余 Canvas 13、Crypto 6、Media 17。用同批五个精确对象与 donor 分配器构建断网探针，顶点 `[0.5,-1,0,1]`、颜色 `[255,127,0,255]`、MSAA 覆盖 `[4,2,0]` 与 ARM64 结果一致，4 GiB 数值、非法限制拒绝和能力回滚均通过。无 OOM，15 项批次回归通过。见 `deliverables/linux-ruyijs-graphicsgpu-r102/graphics-gpu-abi-validation.json`；仍无真实网页、GPU 设备或完整私有程序验收。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
