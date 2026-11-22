@@ -542,6 +542,22 @@ projects:
             evidence: deliverables/linux-ruyijs-skia-cpu-r112/skia-cpu-probe-validation.json
             evidence_sha256: 38948d6207404928bcf2dbf20e368f94252ce2ab462bf8fb73b1e94234412933
             not_verified: [linux_canvas_text, private_canvas_skia_target, dist_js, browser_render]
+          native_skia_text_attempt:
+            input_commit: 39607d9
+            terminal: skia_text_probe_draw 139
+            scope: 'bounded attempt to draw native Firefox Skia text on AMD64; link verified, runtime fault located before main'
+            link_verified: true
+            executable_bytes: 8413304
+            skia_objects: 76
+            cairo_port: 'the only make-from-face entry in the pinned Skia objects; needs a real SharedFTFace context'
+            fixed_this_round:
+              - 'null face context replaced with a real SharedFTFace, removing the mozilla_LockSharedFTFace null dereference'
+              - 'libgkrust.a wholesale was OOM-killed at 1.47 GB; only the 7.7 MB wr_glyph_rasterizer member is needed'
+              - 'real XPCOM base/threads objects and libnspr4 added'
+            observed_failure: 'SIGSEGV with RIP 0x0 after the probe constructor and before main, so a static initialiser called a null function pointer without an XPCOM runtime'
+            not_verified: [linux_canvas_text, private_canvas_skia_target, dist_js, browser_render]
+            evidence: deliverables/linux-ruyijs-skia-text-r138/skia-text-attempt-validation.json
+            evidence_sha256: 47e975abdd5f51dd08c983bd71571ded30f139515397f192b257adc3413479db
           private_product: pending
     inner_repo_state:
       exists: true

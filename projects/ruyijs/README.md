@@ -170,6 +170,10 @@ ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名
 
 这一轮还暴露一个与代码无关的真实运行条件：探针镜像给 `/tmp` 挂的是 `noexec`，所以二进制虽然成功生成（7,010,232 字节）却根本起不来，前两次运行据此写出空结果。第三次显式使用可执行 tmpfs 后，`skia_cpu_probe_draw 0`：4×4 `kBGRA_8888` 预乘 CPU surface，`SkSurfaces::WrapPixels` 后 `drawRect` 落在 (1,1)-(3,3)，得到 4 个不透明红、12 个透明，`bgra.json` 逐像素断言通过。容器为 network none、只读根、1 CPU、2 GiB RAM+swap，`OOMKilled=false`、退出码 0。回执 `deliverables/linux-ruyijs-skia-cpu-r112/skia-cpu-probe-validation.json`。这次通过只说明该 CPU 光栅与绘制路径可用；Canvas 文字字形、度量与掩码、私有 `CanvasSkiaTarget` 集成、`dist/js`、浏览器渲染与 PDF subset API 都还没验收。
 
+`39607d9` 把 Canvas 文字第一次真正接到固定 Firefox 的 Skia 上，结论是**链接通了、绘制没通**，而且失败点被精确定位到 `main` 之前。可复用的技术事实有四条。第一，固定 Skia 产物里**只有** `SkFontHost_cairo.o` 一个从 FT_Face 造 typeface 的入口，`SkFontHost_FreeType_common.o` 一个 `SkTypeface`/`SkFontMgr` 工厂都不定义。第二，这个 Cairo 端口把传入的 context 原样保存，并在每个字形上回调 `mozilla_*SharedFTFace`，所以传 `nullptr` 必然在 `mozilla_LockSharedFTFace` 解引用空指针——换成真实 `SharedFTFace` 后该崩溃消失。第三，用 WebRender 的真实 Rust 导出满足 `mozilla_glyphslot_embolden_less` 是对的：整个 `libgkrust.a` 里该符号所在 CGU 是 1.47 GB 单体，2 GiB 容器直接 OOMKilled；只取 `wr_glyph_rasterizer` 那个 7.7 MB 成员即可，因为该导出自带独立 text 段、只调用 `FT_MulFix`/`FT_Outline_Embolden`/`FT_GlyphSlot_Embolden`。第四，FreeType 的间接依赖（libpng/libbz2/libbrotlidec/libz）不在编译镜像里，`DT_RUNPATH` 只覆盖二进制自身的直接依赖，必须给运行期搜索路径。
+
+最终可执行文件 8,413,304 字节、链接成功（`link_rc=0`），运行以 `SIGSEGV` 退出，且 `stderr` 只有 `stage:ctor` 一行、`rip 0x0`、`advance anchor 0x0`——说明故障发生在本探针构造函数之后、`main` 写入任何阶段标记之前，是某个静态初始化通过空函数指针发起调用。这一轮没有画出任何字形、没有比较任何像素，所以**不构成 Canvas 文字验收**。回执 `deliverables/linux-ruyijs-skia-text-r138/skia-text-attempt-validation.json`。定位这个静态初始化需要初始器级别的追踪，而不是继续加阶段标记。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
