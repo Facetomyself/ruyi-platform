@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T15:29:04+08:00'
+generated_at: '2026-11-22T15:48:43+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -385,7 +385,7 @@ projects:
             scope: 'real Fontconfig selection and FreeType line/ex/ch/ic/cap metrics; production adapter syntax checked independently'
             ubsan: passed
             x86_64_private_aggregate_link: verified_separately_in_native_font_metrics_abi
-            svg_text_shaping: pending
+            svg_text_shaping: verified_separately_in_native_geometry_abi
             evidence: deliverables/linux-ruyijs-font-metrics-r96/font-metrics-validation.json
             evidence_sha256: cc36f2a4d16ce08e08617017b3a6e6c5f441266c9e1c4a12abecc1b6794bd74e
           native_font_metrics_abi:
@@ -407,9 +407,21 @@ projects:
             scope: 'real HarfBuzz and FriBidi horizontal SVG layout, native fallback, UTF-16 cluster geometry and affine bounds; production adapter syntax checked'
             harfbuzz: '2.7.4'
             ubsan: passed
-            x86_64_private_aggregate_link: pending
+            x86_64_private_aggregate_link: verified_separately_in_native_geometry_abi
             evidence: deliverables/linux-ruyijs-svg-text-r98/svg-text-validation.json
             evidence_sha256: 51f08b295d34417bedc5c08f241db750fe65aac2f3f42476b9e601e7256c5aa5
+          native_geometry_abi:
+            input_commit: 13954bf0d1cbaee32bfdb8874c200ba0b3dfc623
+            terminal: native_geometry_abi_verified 0
+            rebuilt_units: 6
+            previous_published_private_references: 166
+            remaining_private_references: 165
+            remaining_geometry_references: 0
+            default_visible_system_imports: 69
+            relocatable_sha256: 55c3bb3a184dac741aa9910756016e3244058e3b8d7f4e1fc07358830ec926ba
+            probe: 'exact x86_64 SystemFonts objects with real HarfBuzz 8.3.0/FriBidi 1.0.13, line metrics and horizontal shaping; offline UID 1000'
+            evidence: deliverables/linux-ruyijs-geometry-abi-r99/geometry-abi-validation.json
+            evidence_sha256: 3a910b12ca05b928de33c168783779a2560e50e7aabcba70694222691e722e29
           private_product: pending
     inner_repo_state:
       exists: true

@@ -142,7 +142,9 @@ ruyijs-inner/
 
 `1ae925d` 用签名 Ubuntu Noble 开发包固定的 58 个头编译 `system_font` 与 `font_metrics_linux`，`native_font_metrics_relocation_verified 0` 闭合 4 条私有引用（构造、析构、行高、SVG 字体单位），**170 → 166**，未引入新的私有引用；实查 23 个默认可见的外部 Fontconfig/FreeType 导入。用这两个真实对象与已有 CSS、字体配置和 donor 分配器对象链接独立探针，原二进制 6,623,096 字节，首次仅超过输出回收上限，核对摘要后直接重放同一 ELF。UID 1000、断网、两种 DejaVu 独立字体；直接调用 `SystemFonts` 验证 16px 与 32px 度量、非法或零尺寸、默认字体路径，未发生 OOM。回执 `deliverables/linux-ruyijs-native-fontmetrics-r97/font-metrics-abi-validation.json`。该 x86_64 聚合对象的几何域只剩 `SystemFonts::Measure`。
 
-`9a8ae1f` 实现 Linux `SystemFonts::Measure` 的水平 SVG 文本后端：沿用 Fontconfig 候选与字体可见性过滤，用 FreeType 打开可缩放 SFNT 字型，HarfBuzz 塑形、FriBidi 计算双向嵌入等级，按逻辑 UTF-16 索引回填字簇，并投影仿射边界。原生 AArch64 用隔离 DejaVu 字体和真实库通过 `ffi`、组合符、代理对、希伯来文混排、阿拉伯文 lam-alif、回退、输入校验及 UBSan，实测 16px `ffi=15.4667px`、阿拉伯样例 `32.8500px`。Fontconfig/FreeType 行高回归及 11 项批次回归通过，生产适配层通过编译检查。回执 `deliverables/linux-ruyijs-svg-text-r98/svg-text-validation.json`。x86_64 复验需从旧字体批次之前的 ET_REL 重建两个字体对象，避免重复定义；Canvas 栅格、页面／完整产品及更广的 SVG 文字布局仍待验收，本轮未改变 166 条 x86_64 实测余量。
+`9a8ae1f` 实现 Linux `SystemFonts::Measure` 的水平 SVG 文本后端：沿用 Fontconfig 候选与字体可见性过滤，用 FreeType 打开可缩放 SFNT 字型，HarfBuzz 塑形、FriBidi 计算双向嵌入等级，按逻辑 UTF-16 索引回填字簇，并投影仿射边界。原生 AArch64 用隔离 DejaVu 字体和真实库通过 `ffi`、组合符、代理对、希伯来文混排、阿拉伯文 lam-alif、回退、输入校验及 UBSan，实测 16px `ffi=15.4667px`、阿拉伯样例 `32.8500px`。Fontconfig/FreeType 行高回归及 11 项批次回归通过，生产适配层通过编译检查。回执 `deliverables/linux-ruyijs-svg-text-r98/svg-text-validation.json`。这份 ARM64 回执未改变 x86_64 聚合符号计数。
+
+`13954bf` 的独立 x86_64 重建从前字体阶段基线（177 条）重编六单元，闭合几何域全部 12 条，余 165 条私有引用；相对已公示的行高批次 **166 → 165**，唯一差异是 `SystemFonts::Measure`。第一版保留的实际 ET_REL 仍含两个 `HIDDEN` 的旧 HarfBuzz 导入；修复后全聚合中 69 个系统几何导入均为 `DEFAULT`，已验 `SvgPathBounds` 对象仍逐字节相同。用同一批次对象运行 137,440 字节独立探针，断网 UID 1000，真实 HarfBuzz 8.3.0／FriBidi 1.0.13：行高和 SVG 单位回归通过；`ffi=15.4667px`、阿拉伯样例 `32.8500px`、希伯来与拉丁混排 `75.6167px`，UTF-16 字簇和仿射变换通过。无 OOM，12 项批次回归通过。回执 `deliverables/linux-ruyijs-geometry-abi-r99/geometry-abi-validation.json`。Canvas 栅格、页面／完整产品和更广的 SVG 文字布局仍待验收。
 
 ## Seed 关系（重要）
 
