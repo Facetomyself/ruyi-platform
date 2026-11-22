@@ -180,6 +180,14 @@ ARM64 UBSan 与同对象 x86_64 探针实际通过 Fontconfig 两字体的全名
 
 剩下的问题收敛得很具体：即使 base0/base1/threads0 和 `libnspr4` 都已链接、且 `libnspr4.so` 已实测是 `NEEDED` 项，文字探针仍在 `SharedFTFace` 构造内部以 `rip 0x0` 结束——mutex 构造函数里还有一处间接调用解析到地址 0。这条路径要真正打通，需要在探针里提供 XPCOM 的静态初始化入口，而不是继续逐个对象试链。此前所有文字相关结论保持为「未验收」。
 
+这一轮找到了剩余 12 条私有引用里那 4 条字体几何引用的**真正根因**，并且是工程缺陷而不是缺依赖：私有 `src/web_geometry/font_backend.h` 无条件 `#include <windows.h>`、`<dwrite.h>`、`<wrl/client.h>`，所以四个 Canvas 文字 owner（`MeasureCanvas`、`BuildCanvasGlyphMasks`、`CanvasGlyphRuns`、`ReleaseCanvasGlyphRuns`）在非 Windows 上**根本无法编译**，Linux 分支自然一行实现都没有。
+
+按上游树早已采用的同一约定修好：Windows 路径保持逐字节不变，非 Windows 提供 owner 实际用到的 DirectWrite 值类型与接口面（`DWRITE_FONT_METRICS`、`DWRITE_GLYPH_METRICS`、`DWRITE_GLYPH_OFFSET`、`DWRITE_GLYPH_RUN`、`DWRITE_MAKE_OPENTYPE_TAG`、`SUCCEEDED`/`FAILED`、`ComPtr`、`IDWriteFontFace`），Darwin 继续走 `font_face_mac.cpp`。
+
+新增 `src/web_geometry/font_face_linux.cpp` 用真实 FreeType 实现这层接口，数值语义按 DirectWrite 而不是 FreeType 的默认：度量取 design unit、`advanceWidth` 无符号、侧边距有符号、`verticalOriginY` 取 y 向下墨迹顶、`TryGetFontTable` 返回带所有权释放上下文的缓冲、tag 字节序按 owner 既有假设。编译过程暴露三个真实错误：`const void*` 到 `FT_Face` 的 `static_cast` 掉限定符且无法用那种形式的 `const_cast` 恢复；`TT_OS2` **根本没有下划线字段**，下划线数据在 post 表里、FreeType 直接挂在 face 上。
+
+结果：原生 AMD64 `compile_rc 0`，12 个接口方法（含两个构造、析构、`GetMetrics`、`GetGlyphIndices`、`GetDesignGlyphMetrics`、`GetGdiCompatibleGlyphMetrics`、`TryGetFontTable`、`ReleaseFontTable`、`AddRef`、`Release`、`CoreFont`）逐一在目标文件里确认为已定义，对象 SHA-256 `49252f2b…`。**这只是编译**：没有打开任何字体、没有查任何字形、没有比对任何度量。`GetGlyphRunOutline` 属于独立的描边接口、Linux 侧仍未实现，那 4 个 `SystemFonts` 方法也还没有函数体。回执 `deliverables/linux-ruyijs-font-face-r155/font-face-compile-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
