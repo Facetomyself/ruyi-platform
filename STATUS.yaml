@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T09:29:25+08:00'
+generated_at: '2026-11-22T09:43:29+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -213,7 +213,27 @@ projects:
             host_path: /home/ruyijs-donor-isolated-moz159/native-net-r80
             evidence: deliverables/linux-ruyijs-native-net-r80/compile-sample.json
             evidence_sha256: 662a18e5ecd6665452450505412bbd46642942e7e21208df89174da2bdcd7d8b
-            terminal: pending
+            terminal: native_resource_network_verified 0
+            compiled_units: 168
+            prior_private_references: 226
+            resolved_prior: 39
+            introduced_private_references: 10
+            remaining_private_references: 197
+            remaining_resource_network_references: 0
+            terminal_evidence: deliverables/linux-ruyijs-native-net-r80/resource-symbol-delta.json
+            terminal_evidence_sha256: b719d37ff704293df5722cacdda2f52a879af9725727c80774fe23286ec4e2e9
+          native_workers_batch:
+            input_commit: 72b50b9a8ecb5d141d01d67720d8058dddb9fb0b
+            terminal: native_workers_verified 0
+            units: 20
+            prior_private_references: 197
+            resolved_prior: 12
+            introduced_private_references: 0
+            remaining_private_references: 185
+            remaining_worker_references: 0
+            relocatable_sha256: f236fd443b792010d31d1ef29c7578775ae9f65ab704b2b22b1e8db0ccf74dd8
+            evidence: deliverables/linux-ruyijs-native-workers-r81/worker-symbol-delta.json
+            evidence_sha256: e2419a343a5000029134c359080404eb806f4f9055d3328162ece10045554dcf
           private_product: pending
     inner_repo_state:
       exists: true

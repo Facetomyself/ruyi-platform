@@ -94,7 +94,11 @@ ruyijs-inner/
 
 `e477bf3` 将 Linux Necko helper 移植落入私有源码：使用 POSIX 进程、描述符和原有小端帧，保留旧 Windows 路径。原生 aarch64 本机通过实际回环 HTTP，150,000 字节二进制 POST 完整回返，计时字段、帧内错误后的 session 复用、子进程关闭／回收也通过。对端是 `http.client` 试件；非浏览器 Necko/NSS、非真实 QUIC 握手。x86_64 原生 7 个受限编译单元的部分链接另得 SHA-256 `feb197e098fda4d17449d4bb8712846ec18c47c2c775721fb4aea7bd67901b70`，消除 `AsyncHttp::Wait` 与 `PrewarmNeckoSessions` 两条旧引用，新增 9 条，**219 → 226**；前一批摘要不变、无 OOM。回执 `deliverables/linux-ruyijs-native-carrier-r79/carrier-symbol-delta.json`。其余 AsyncHttp／Abort／资源域实现仍需继续编译和实跑。
 
-`aa029f7` 启动单作业 `resource-network-v1`，包含 177 个已提交资源单元中剩余的 168 个（排除两个 Windows 专用和上批七个），17 个模型文件保持异常策略。`host185` 在 09:25 +08:00 的实际样本为 **80/168** 个已成功编译，断网、2 CPU／4 GiB，未发生 OOM，尚未完成部分链接。证据 `deliverables/linux-ruyijs-native-net-r80/compile-sample.json`；新的符号计数要等待该批次终态。
+`aa029f7` 启动单作业 `resource-network-v1`，包含 177 个已提交资源单元中剩余的 168 个（排除两个 Windows 专用和上批七个），17 个模型文件保持异常策略。`host185` 在 09:25 +08:00 的实际样本为 **80/168** 个已成功编译，断网、2 CPU／4 GiB，未发生 OOM，尚未完成部分链接。证据 `deliverables/linux-ruyijs-native-net-r80/compile-sample.json`；该样本只是阶段性进度。
+
+资源网络随后 `native_resource_network_verified 0`：168/168 单元成功，ET_REL 109,858,816 字节、SHA-256 `ca4f1e6ff50e950d902db1fb146c54d35a5b1e62c67872d26bd30d9d0752e378`；消除 39 条旧引用、引入 10 条新引用，**226 → 197**，`resource_network` 归零。证据在 `deliverables/linux-ruyijs-native-net-r80/resource-symbol-delta.json`。没有 OOM，真实 Necko/NSS 与 QUIC 行为仍未验收。
+
+`72b50b9` 的 Linux Worker POSIX 进程适配通过本机协议试件，真实测试覆盖 dedicated/shared/service 子进程、关闭继承描述符、提前退出、最后一帧及进程组清理；并未执行 JS Worker realm。另以该对象接入原生 x86_64 20 单元 `workers-v1`：`native_workers_verified 0`，消除全部 12 条 Worker 引用且未新增私有未解析引用，**197 → 185**。产物仍是 ET_REL（114,077,432 字节），前一批对象摘要不变，无 OOM。证据 `deliverables/linux-ruyijs-native-workers-r81/worker-symbol-delta.json`。私有可执行文件和 `Context.eval` 仍待实际验收。
 
 ## Seed 关系（重要）
 
