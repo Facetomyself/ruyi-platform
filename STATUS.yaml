@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T10:18:57+08:00'
+generated_at: '2026-11-22T10:39:28+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -259,6 +259,18 @@ projects:
             relocatable_sha256: efd8bb5bf88f4cf6b39cdc29b016c1ebe04395ad91abc5d9e9cbaca67cf86925
             evidence: deliverables/linux-ruyijs-native-docfix-r83/document-repair-symbol-delta.json
             evidence_sha256: a48c51e5b9d0c4e175d48b1c8757646e12f8b70bc210f1a3013e2a2d2542353f
+          native_web_platform_batch:
+            input_commit: 72d124d718bd57c6b420842977da5363cd1e8257
+            terminal: 'native_batch 1: 51 compiled of 54, no OOM'
+            partial_prior_private_references: 190
+            partial_resolved_prior: 30
+            partial_introduced: 10
+            partial_remaining: 170
+            partial_remaining_webkit: 0
+            failed_units: [compression_brotli, compression_zlib, url_pattern_regexp]
+            fixes: 'stage tracked Brotli/zlib headers; 1208a11 uses canonical Firefox JS type declarations; native retry pending'
+            evidence: deliverables/linux-ruyijs-native-webplat-r84/partial-web-platform.json
+            evidence_sha256: 282a359ac36614f62fd98243a70296d63cf3ec1ce6f58adacb72cac56278020e
           private_product: pending
     inner_repo_state:
       exists: true

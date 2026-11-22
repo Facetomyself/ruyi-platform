@@ -106,6 +106,10 @@ ruyijs-inner/
 
 首批终态 `native_batch 1`：247 个成功、仅 `document_metadata` 失败、未发生 OOM，保留实际部分对象与终态回执 `deliverables/linux-ruyijs-native-doc-r82/original-terminal.json`。`a9f237f` 逐项比较新旧整个私有源树，只准两个日期文件变动；核对 247 个旧对象与其依赖记录、Sanitizer 输入及旧聚合摘要后，仅重编 `document_metadata.cpp` 并重新部分链接。`native_document_repair_verified 0` 产物 202,261,184 字节，SHA-256 `efd8bb5bf88f4cf6b39cdc29b016c1ebe04395ad91abc5d9e9cbaca67cf86925`；相对 Worker 基线消除 10 条旧引用、新增 15 条，总数 **185 → 190**，`document_model` 引用为 0。无 OOM，首批旧对象保持原样。证据 `deliverables/linux-ruyijs-native-docfix-r83/document-repair-symbol-delta.json`。这里只验收文档域 ET_REL；产品链接、完整页面行为和 `Context.eval` 尚待实跑。
 
+`72d124d` 为对象 URL 的 UUID 保留 Windows BCrypt 路径，Linux 使用内核 `getrandom`，并保留原有前缀及版本／变体位。本机 AArch64 C++ helper 真运行通过；`host185` 的 3.10 内核及此次断网容器也实际返回了随机字节（未输出内容）。该小型测试未运行对象 URL 的完整 JS 创建或撤销语义。
+
+原生 `web-platform-v1`（53 个 Web 平台单元＋共用 `WebKit`）终态 `native_batch 1`，51/54 编译成功，无 OOM。Brotli 和 zlib 单元缺本次归档遗漏的**已跟踪 vendor 头**；URLPattern 正则单元是手写 SpiderMonkey 前置声明与 GCC hidden pragma 下的公开可见性不一致。部分 ET_REL 实测消除 30 条旧引用、引入 10 条、**190 → 170**，`WebKit` 的 15 条旧引用全部闭合，但 Web 平台仍有 9 条引用。回执 `deliverables/linux-ruyijs-native-webplat-r84/partial-web-platform.json` 保留原始编译错误。`1208a11` 改用 donor 的 `js/TypeDecls.h`；后续须带上固定 Brotli/zlib 头、重编三个失败单元及此头的旧依赖者，再确认完整批次。没有私有可执行文件或对象 URL 产品行为结论。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
