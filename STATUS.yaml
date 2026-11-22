@@ -623,6 +623,18 @@ projects:
             not_done: [font_missing_link, font_open, glyph_lookup]
             evidence: deliverables/linux-ruyijs-unicode-r161/unicode-ignorable-validation.json
             evidence_sha256: b7d93ea15717e0915cdd731a0ee5806d378e6e5acb3f3964c11e4ef3d7ef8966
+          native_linux_font_measure:
+            input_commit: c6ddc55
+            terminal: linux_font_measure_verified 0
+            scope: 'first execution of the self-contained Linux font path: Fontconfig selection, FreeType line and SVG font-unit metrics, HarfBuzz/FriBidi shaping'
+            checks_passed: 12
+            checks_failed: 0
+            observed: {content: 18.6333, normal: 18.6333, ex: 8.75, ch: 10.1833, ic: 16.0, cap: 11.6667, length: 138.0667}
+            cross_check: 'line, ex and ch match deliverables/linux-ruyijs-geometry-abi-r99 exactly, and the ARM64 font-metrics receipt reports the same values'
+            fontconfig_note: 'read-only run logs no writable cache directories; a cache warning, not a lookup failure'
+            not_done: [measure_canvas, glyph_masks, colour_glyphs, product_link, browser]
+            evidence: deliverables/linux-ruyijs-font-measure-r163/font-measure-validation.json
+            evidence_sha256: 573bde58d3bd00912f1546cf72176a0e13a4c376f83d5f70f9a5df9c6306bbc0
           private_product: pending
     inner_repo_state:
       exists: true

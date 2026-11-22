@@ -250,6 +250,24 @@ UnicodeProperties.h  →  mfbt (需 XP_UNIX，否则 UniquePtrExtensions 报 "Un
 
 回执 `deliverables/linux-ruyijs-unicode-r161/unicode-ignorable-validation.json`。`font_missing` 还没链接、没打开字体、没查字形。
 
+这一轮做了一件此前一直没有做过的事：**真正执行了 Linux 字体路径**，而不只是编译。用的单元是自足的 `font_metrics_linux` 与 `font_shape_linux`——`font_config` 把 fonts 配置组和 SpiderMonkey 绑定写在同一个文件里，属于完整产品链接，不该为探针拆开，所以 `MeasureCanvas` 这一轮没跑。
+
+真实运行 12 项全部通过，且数字与历史基准**逐项一致**：
+
+| 指标 | 本轮 x86_64 | r99 x86_64 exact-probe | 结论 |
+|---|---|---|---|
+| `line` | 18.6333 | 18.6333 | 一致 |
+| `ex` | 8.75 | 8.75 | 一致 |
+| `ch` | 10.1833 | 10.1833 | 一致 |
+
+`ic=16.0000`、`cap=11.6667`，32px 时各项**翻倍**，0.001px 的尺寸**向下取整为零且不报错**，HarfBuzz／FriBidi 塑形 `Hamburgefonstiv` 得到 `length=138.0667`、每个字符都有盒子、盒子有高度。
+
+过程中暴露了真实的依赖闭包，这是之前从未测到的：Fontconfig 需要配置文件与字体目录（否则**一个字体都选不到**），而完整运行时闭包是 `libfreetype`、`libfontconfig`、`libharfbuzz`、`libfribidi`、`libexpat`、`libglib-2.0`、`libpcre2-8`、`libgraphite2`、`libpng16`、`libbz2`、`libbrotlidec`、`libz`——每缺一个就在加载期失败，逐个才补齐。
+
+一个细节值得记：只读运行时下 Fontconfig 会打印 `No writable cache directories`，那是**缓存警告而不是查找失败**，所有度量都正常解析。
+
+回执 `deliverables/linux-ruyijs-font-measure-r163/font-measure-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
