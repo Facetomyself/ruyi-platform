@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T10:03:17+08:00'
+generated_at: '2026-11-22T10:18:57+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -243,7 +243,22 @@ projects:
             sanitizer_data_check: deliverables/linux-ruyijs-native-doc-r82/sanitizer-data-check.json
             sanitizer_data_check_sha256: 8f4601cbdf3358f6b4d86a2fd540f489017405eb8809fda62983d4983bbb15c2
             posix_date_fix: 'bbca26b: portable localtime_s/r and native fixed time/TZ formatting pass; running batch retains original inputs'
-            terminal: pending
+            terminal: 'native_batch 1: 247 successful, document_metadata only; no OOM'
+            terminal_evidence: deliverables/linux-ruyijs-native-doc-r82/original-terminal.json
+            terminal_evidence_sha256: adc1116edd3c9a16ed764d42c5799228ce4249432db4c230235740ccffd7c9f3
+          native_document_repair:
+            input_commit: a9f237f97865762d73da7146b33b084c0d3726ab
+            terminal: native_document_repair_verified 0
+            reused_units: 247
+            compiled_fixed_units: 1
+            prior_private_references: 185
+            resolved_prior: 10
+            introduced_private_references: 15
+            remaining_private_references: 190
+            remaining_document_model_references: 0
+            relocatable_sha256: efd8bb5bf88f4cf6b39cdc29b016c1ebe04395ad91abc5d9e9cbaca67cf86925
+            evidence: deliverables/linux-ruyijs-native-docfix-r83/document-repair-symbol-delta.json
+            evidence_sha256: a48c51e5b9d0c4e175d48b1c8757646e12f8b70bc210f1a3013e2a2d2542353f
           private_product: pending
     inner_repo_state:
       exists: true
