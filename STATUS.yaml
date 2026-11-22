@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T15:14:27+08:00'
+generated_at: '2026-11-22T15:29:04+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -401,6 +401,15 @@ projects:
             probe: 'real SystemFonts line and SVG font-unit methods, exact AMD64 objects, offline UID 1000, 16/32px and default family path'
             evidence: deliverables/linux-ruyijs-native-fontmetrics-r97/font-metrics-abi-validation.json
             evidence_sha256: 977185aba25d525988112dafd2719042e4a38b572fbbc2d97233e0f86cac597e
+          native_svg_text_shaping:
+            input_commit: 9a8ae1f211563920a4df3ff0fefb5890dc3ce248
+            arch: aarch64
+            scope: 'real HarfBuzz and FriBidi horizontal SVG layout, native fallback, UTF-16 cluster geometry and affine bounds; production adapter syntax checked'
+            harfbuzz: '2.7.4'
+            ubsan: passed
+            x86_64_private_aggregate_link: pending
+            evidence: deliverables/linux-ruyijs-svg-text-r98/svg-text-validation.json
+            evidence_sha256: 51f08b295d34417bedc5c08f241db750fe65aac2f3f42476b9e601e7256c5aa5
           private_product: pending
     inner_repo_state:
       exists: true

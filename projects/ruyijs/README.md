@@ -140,7 +140,9 @@ ruyijs-inner/
 
 `c500b3c` 给 Linux `SystemFonts` 接入 Fontconfig 选字与 FreeType 行高、SVG `ex/ch/ic/cap` 度量；Windows 继续使用原 DirectWrite 实现。Linux 使用系统配置排序，在打开字体前调用字体配置过滤器，按 CSS app unit 舍入；此批仅处理可缩放字体。原生 AArch64 在仅有 DejaVu Sans/Serif 的隔离字体目录实跑，验证 16px 行高 18.633333、`ex=8.75`、`ch=10.183333`、`ic=16`、`cap=11.666667`，覆盖尺寸缩放、候选过滤、无可选字体和无效输入。用系统真实 Fontconfig 2.13.1、FreeType 2.11.1 通过 UBSan；生产适配层通过独立编译检查。最终 Linux 链接需 Fontconfig/FreeType 的开发头与动态库。这份 ARM64 回执未改变 x86_64 聚合符号计数。回执 `deliverables/linux-ruyijs-font-metrics-r96/font-metrics-validation.json`。
 
-`1ae925d` 用签名 Ubuntu Noble 开发包固定的 58 个头编译 `system_font` 与 `font_metrics_linux`，`native_font_metrics_relocation_verified 0` 闭合 4 条私有引用（构造、析构、行高、SVG 字体单位），**170 → 166**，未引入新的私有引用；实查 23 个默认可见的外部 Fontconfig/FreeType 导入。用这两个真实对象与已有 CSS、字体配置和 donor 分配器对象链接独立探针，原二进制 6,623,096 字节，首次仅超过输出回收上限，核对摘要后直接重放同一 ELF。UID 1000、断网、两种 DejaVu 独立字体；直接调用 `SystemFonts` 验证 16px 与 32px 度量、非法或零尺寸、默认字体路径，未发生 OOM。回执 `deliverables/linux-ruyijs-native-fontmetrics-r97/font-metrics-abi-validation.json`。几何域剩 `SystemFonts::Measure`；SVG 文本塑形、Canvas 字形及完整产品继续待验。
+`1ae925d` 用签名 Ubuntu Noble 开发包固定的 58 个头编译 `system_font` 与 `font_metrics_linux`，`native_font_metrics_relocation_verified 0` 闭合 4 条私有引用（构造、析构、行高、SVG 字体单位），**170 → 166**，未引入新的私有引用；实查 23 个默认可见的外部 Fontconfig/FreeType 导入。用这两个真实对象与已有 CSS、字体配置和 donor 分配器对象链接独立探针，原二进制 6,623,096 字节，首次仅超过输出回收上限，核对摘要后直接重放同一 ELF。UID 1000、断网、两种 DejaVu 独立字体；直接调用 `SystemFonts` 验证 16px 与 32px 度量、非法或零尺寸、默认字体路径，未发生 OOM。回执 `deliverables/linux-ruyijs-native-fontmetrics-r97/font-metrics-abi-validation.json`。该 x86_64 聚合对象的几何域只剩 `SystemFonts::Measure`。
+
+`9a8ae1f` 实现 Linux `SystemFonts::Measure` 的水平 SVG 文本后端：沿用 Fontconfig 候选与字体可见性过滤，用 FreeType 打开可缩放 SFNT 字型，HarfBuzz 塑形、FriBidi 计算双向嵌入等级，按逻辑 UTF-16 索引回填字簇，并投影仿射边界。原生 AArch64 用隔离 DejaVu 字体和真实库通过 `ffi`、组合符、代理对、希伯来文混排、阿拉伯文 lam-alif、回退、输入校验及 UBSan，实测 16px `ffi=15.4667px`、阿拉伯样例 `32.8500px`。Fontconfig/FreeType 行高回归及 11 项批次回归通过，生产适配层通过编译检查。回执 `deliverables/linux-ruyijs-svg-text-r98/svg-text-validation.json`。x86_64 复验需从旧字体批次之前的 ET_REL 重建两个字体对象，避免重复定义；Canvas 栅格、页面／完整产品及更广的 SVG 文字布局仍待验收，本轮未改变 166 条 x86_64 实测余量。
 
 ## Seed 关系（重要）
 
