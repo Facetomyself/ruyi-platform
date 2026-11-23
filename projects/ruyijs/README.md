@@ -390,6 +390,26 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-colr-r195/colr-validation.json`。
 
+字形轮廓（`BuildCanvasTextPath`）也在 Linux 上打通了，**14 项全过**。原来那套走 Direct2D 几何 sink，非 Windows 没有对应物；Linux 版改用 FreeType 的 outline 分解，把同一批 `CanvasTextPath` verbs 发出去——合成斜体在设计空间里施加，每个字形从 run 的笔位落笔。
+
+实测 `H` 在 32px 下：`move=1 line=12 close=1`、26 个点、`extent x=[3.14, 20.92] y=[-23.33, 0]`。
+
+关键对账：**宽 17.78px 恰好等于 `1138/2048×32`**（设计度量表里的值），所以这不是“看起来合理”，而是数值正确。
+
+## 过程中修掉三个真实缺陷
+
+| # | 缺陷 | 症状 |
+|---|---|---|
+| 1 | 设计单位→CSS 的系数**又除了一次 60** | 32px 的 `H` 只有 0.30 宽，应为 17.78 |
+| 2 | FreeType 的 y 向上、canvas 的 y 向下，**没有翻转** | 字形跨 `0..23.33`，应跨 `-23.33..0` |
+| 3 | **轮廓从未闭合** | 缺 `close` verb，与 Windows 的 `EndFigure` 不一致 |
+
+外加一处**探针自己的错误**：我断言 `H` 的轮廓里有二次曲线，但 `H` 全是直线。曲线检查改到 `O` 上做——`O` 确实有 quad，而 `H` 断言为 0 条，两个方向都验证到了。
+
+这三个产品缺陷有一个共同点：**都是我写的映射/换算出错，不是 FreeType 的问题**。而且每一个都是靠“与独立算出的数值对账”发现的，不是靠“看着像不像”。
+
+回执 `deliverables/linux-ruyijs-textpath-r202/text-path-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

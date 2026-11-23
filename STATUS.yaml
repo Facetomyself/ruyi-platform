@@ -716,6 +716,18 @@ projects:
             not_done: [sampled_snapshot, glyph_outline, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-colr-r195/colr-validation.json
             evidence_sha256: 7e11f994bfcc284ed82ae51cb8075c592f262c70b01861301216860847d009b5
+          native_linux_text_path:
+            input_commit: 7f6f7f3
+            terminal: text_path_verified 0
+            scope: 'SystemFonts::BuildCanvasTextPath implemented with FreeType outline decomposition and executed'
+            checks_passed: 14
+            checks_failed: 0
+            observed: {H_verbs: 14, H_points: 26, H_extent: [[3.14, 20.92], [-23.33, 0.0]], closes: 1, H_quads: 0}
+            cross_check: 'the measured 17.78 px width equals 1138/2048*32 from the design advance table'
+            defects_fixed: 'a second divide by 60 in the scale, a missing y flip from FreeType up to canvas down, contours never closed, and a probe assertion that an H has curves'
+            not_done: [sampled_colour_snapshot, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-textpath-r202/text-path-validation.json
+            evidence_sha256: c7d984c619a41ebffbb20d0ba84f3f700cfffdfa08962ca49cdea98e4c1d8a8e
           private_product: pending
     inner_repo_state:
       exists: true
