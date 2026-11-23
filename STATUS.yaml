@@ -985,6 +985,20 @@ projects:
             not_done: [browser_environment_and_web_units, a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
             evidence: deliverables/linux-ruyijs-docmodel-r282/docmodel-validation.json
             evidence_sha256: 3f9997cd0699be8e2a1b9483439c1c51cc66934bab19893dcd6d32f41fee0779
+          native_units_bulk:
+            input_commit: 10d0404
+            terminal: units_compile_partial
+            scope: 'the remaining symbol-bearing directories compiled in one bounded pass'
+            pass: {total: 447, ok: 420, fail: 27, elapsed_seconds: 1553}
+            web_geometry_retry: {ok: 56, fail: 11, elapsed_seconds: 191}
+            cumulative_objects: 764
+            of_total_units: 1355
+            failure_taxonomy: 'expected Linux replacements (necko, web_workers process, font_face_mac), and missing third-party header roots (HarfBuzz, FreeType, Fontconfig, Cairo, brotli) which are now supplied'
+            throughput: '3.5 to 3.8 seconds per unit, so a full-tree pass is about 80 minutes across bounded containers'
+            what_this_proves: "420 of the 447 symbol-bearing units compile with the donor's own flags once their header roots are supplied"
+            not_done: [rerun_eleven_geometry_units, remaining_about_590_units, a_link_that_resolves, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-rest-r284/rest-validation.json
+            evidence_sha256: 101cf758458e208dbe828a6b33a7d969223b2b08ed2131ec03b73fa9b51dcccc
           private_product: pending
     inner_repo_state:
       exists: true

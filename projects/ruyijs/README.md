@@ -979,6 +979,41 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-docmodel-r282/docmodel-validation.json`。
 
+## 批量推进：一次 447 个单元
+
+有了 3.8 秒/单元的吞吐数据，这一轮一次性把**符号所在的全部 8 个目录**（447 个单元）跑完。
+
+| 项 | 值 |
+|---|---|
+| 单元总数 | 447 |
+| 编译成功 | **420** |
+| 失败 | 27 |
+| 耗时 | **1553 秒** |
+
+**累计已产出 764 个对象**，占全树 1355 个的 **56%**。
+
+## 失败的 27 个分两类，没有一类是真正的代码缺陷
+
+**一、预期替换项**：`necko_helper`、`necko_pipe`、`process`、`process_start`、`font_face_mac`、`canvas_text_path_linux`——`product_sources` 已声明 Linux 用别的单元替换它们。
+
+**二、缺第三方头文件根**：HarfBuzz、FreeType、Fontconfig、Cairo、vendored brotli。这些是**路径问题，不是代码问题**。
+
+补上 `-I` 后重跑 `web_geometry`：**24 个失败降到 11 个**，剩余 11 个的根因也已查明（FreeType/Cairo 头），路径已补。
+
+## 这一轮的教训
+
+我把「编译失败」和「代码有问题」在最初混在一起了。实际上 27 个失败里**没有一个需要改代码**，全是：
+- 该被替换的 Windows 单元
+- 没给对头文件路径
+
+**先分类再动手**，比看到失败就改代码更省时间。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。剩余约 590 个单元，另有 11 个几何单元待用新路径重跑。
+
+回执 `deliverables/linux-ruyijs-rest-r284/rest-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
