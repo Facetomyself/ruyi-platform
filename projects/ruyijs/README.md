@@ -1435,6 +1435,37 @@ donor 的 objdir 是 **JS-only standalone 构建，没有任何 gfx 目标文件
 
 回执 `deliverables/linux-ruyijs-skia-link-r316/skialink-validation.json`。
 
+## Skia 覆盖到 322 个对象，零编译失败
+
+| 目录 | 结果 |
+|---|---|
+| core / ports / opts（前一轮） | 239 |
+| effects / image | 已编译 |
+| **shaders / codec** | **零失败** |
+| **累计对象** | **322** |
+
+**这一轮清掉的符号**：`SkImage::*`、`SkImageFilters::Blur`、`SkDashPathEffect::Make`、`SkSurfaces::Raster/WrapPixels`——全部解决。
+
+## 剩 3 个 Skia 符号，和一个我没解开的矛盾
+
+```
+SkShaders::LinearGradient
+SkShaders::SweepGradient
+SkShaders::TwoPointConicalGradient
+```
+
+**矛盾点**：`nm` 显示 `sk_SkLinearGradient.o` **明确定义了** `SkShaders::LinearGradient`，链接也报了 `adding 300 skia`，但链接日志里**找不到这个对象路径**。
+
+我列了三种可能（日志截断、符号 visibility、对象在链接开始后才构建），但**都还没验证**。这一轮跑了很多次容器，不再靠猜继续试。
+
+**下一步应该读真实的链接 argv**，而不是日志片段——这是唯一能定论的做法。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-skia300-r320/skia300-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

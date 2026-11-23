@@ -1186,6 +1186,19 @@ projects:
             not_done: [compiling_effects_and_image, a_link_that_resolves]
             evidence: deliverables/linux-ruyijs-skia-link-r316/skialink-validation.json
             evidence_sha256: 2cce25a42435400322080d30b5a329f890cdb078f9afa1f4f59f79530ed492d5
+          native_skia_coverage:
+            input_commit: 608d289
+            terminal: product_link 1
+            scope: 'Skia coverage extended to effects, image, shaders and codec'
+            skia_objects: 322
+            skia_compile_failures: 0
+            resolved_this_round: 'effects, image, shaders and codec compile with no failures; SkImage, SkImageFilters, SkDashPathEffect and SkSurfaces all resolved'
+            remaining: [SkShaders::LinearGradient, SkShaders::SweepGradient, SkShaders::TwoPointConicalGradient, getentropy, hb_set_get_empty]
+            unresolved_puzzle: 'the three SkShaders symbols are reported undefined although sk_SkLinearGradient.o defines the symbol, the object set is named in the link, and the link log shows no such path'
+            how_to_settle_it: 'read the actual linker argv rather than the log excerpt, and check the symbol binding with readelf on the object'
+            not_done: [settling_the_sk_shaders_puzzle, a_link_that_resolves]
+            evidence: deliverables/linux-ruyijs-skia300-r320/skia300-validation.json
+            evidence_sha256: cf0d718880c4ef3e49c51a6507f1895eac7304a493f02a30224dd603374005b7
           private_product: pending
     inner_repo_state:
       exists: true
