@@ -1053,6 +1053,21 @@ projects:
             not_done: [verify_the_multiple_definition_approach, a_link_that_resolves, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-link-tradeoff-r292/tradeoff-validation.json
             evidence_sha256: 636e51a144fed57908c4657355674dccee369a9b3cb47476bfc41e82622ae26b
+          native_product_duplicates_settled:
+            input_commit: fe4e75d
+            terminal: product_link 1
+            scope: 'the product link after the duplicate handling was settled'
+            duplicate_symbols: 0
+            undefined_symbols: 20
+            all_previous_units_added: 87
+            achieved: 'the twenty duplicate definitions are gone and every previous unit is in the link, so the overlap question is settled'
+            grouped: {web_crypto: 9, 'web_canvas::skia': 8, external: 2, 'web_geometry': 1}
+            why_they_appear_now: 'while duplicates were unresolved the link stopped before naming these; clearing them exposed the units that never produced objects'
+            next_step: 'compile the canvas and font units whose third-party headers are now supplied, then relink'
+            errors_this_round: 'put the flag into relink_control instead of the product link, and left the name-based skip in place after adding it'
+            not_done: [compiling_the_canvas_and_font_units, a_link_that_resolves, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-dupfix-r295/dupfix-validation.json
+            evidence_sha256: 3bdf3cb75df3ff56259191b02c9d066b798d90a393d2feb97170cbe801cbf932
           private_product: pending
     inner_repo_state:
       exists: true

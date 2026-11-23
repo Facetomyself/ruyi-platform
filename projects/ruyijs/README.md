@@ -1142,6 +1142,38 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-link-tradeoff-r292/tradeoff-validation.json`。
 
+## 重复定义清零，暴露了真正的缺口
+
+| 项 | 上一轮 | 这一轮 |
+|---|---|---|
+| 重复定义 | 20 | **0** |
+| 未定义符号 | 0 | 20（**换了新的一批**） |
+| 旧批次对象 | 按名跳过 | **87 个全部加入** |
+
+重叠问题解决了。新的 20 个未定义**全部来自之前编译失败的单元**：
+
+| 来源 | 数量 |
+|---|---|
+| `web_crypto`（AesCbc、EcdsaSign 等） | 9 |
+| `web_canvas::skia`（ClearRect、DrawImage 等） | 8 |
+| `web_geometry::LocalFontFamilyInstalled` | 1 |
+| `getentropy`、`hb_set_get_empty` | 2 |
+
+**为什么现在才出现**：重复没解决时，链接器先报重复就停了，不会走到列举未定义那一步。
+
+## 我这一轮又错了两处
+
+1. **把标志加进了 `relink_control`**——那是 donor 控制链接，必须保持原样；产品链接根本没看到这个标志
+2. **加了标志却没撤掉按名跳过**——结果又丢了只有旧对象才有的符号
+
+第 1 个错误很典型：两个函数都在同一个文件、都构造链接命令，我没确认**哪个函数真的被调用**就改了。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。但这 20 个缺口的来源已经明确：**编译那些头文件根刚补好的单元**。
+
+回执 `deliverables/linux-ruyijs-dupfix-r295/dupfix-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
