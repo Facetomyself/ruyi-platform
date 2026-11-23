@@ -1273,6 +1273,42 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-svg-r305/svg-validation.json`。
 
+## HarfBuzz 解决了，只剩 6 个符号
+
+把 `libharfbuzz.so.0` 加进链接后：
+
+| 项 | 上一轮 | 这一轮 |
+|---|---|---|
+| 未定义符号 | 20 | **6** |
+| 重复定义 | 0 | 0 |
+
+**19 个 HarfBuzz 入口全部消失。**
+
+## 剩余 6 个的性质
+
+| 符号 | 来源 |
+|---|---|
+| `RUYIJS_CS_Z_deflateInit2_` / `deflateEnd` / `inflate` / `inflateEnd` / `inflateInit2_` | 产品**自己重命名的 zlib** |
+| `getentropy` | libc（glibc 2.39 有） |
+
+**没有一个 `ruyijs::` 项目符号缺失。**
+
+## 为什么有重命名
+
+`src/web_platform/compression_zlib.cpp` 用 `RUYIJS_CS_Z_` 前缀声明 zlib 入口，避免与系统 zlib 符号冲突。**定义必须来自同样带前缀的 zlib**。
+
+现有 `libz.so.1` 是标准符号名，对不上。需要：
+- 用该前缀构建的 zlib，或
+- 一个把标准名别名过去的小对象
+
+`getentropy` 在 glibc 2.39 里存在，链接时加 `-lc` 即可（当前显式列了库列表，可能漏了它）。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-hb-r306/hb-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

@@ -1118,6 +1118,20 @@ projects:
             not_done: [harfbuzz_in_the_link, a_link_that_resolves, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-svg-r305/svg-validation.json
             evidence_sha256: 402485dccf9e897ad1e93d4ecccb238edf459b4cb4af9a0c102c33bb4f5eb54e
+          native_link_harfbuzz:
+            input_commit: 86083da
+            terminal: product_link 1
+            scope: 'the product link with harfbuzz supplied as a shared library'
+            undefined_symbols: 6
+            duplicate_symbols: 0
+            achieved: 'the nineteen harfbuzz entry points are gone; linking libharfbuzz.so.0 supplied all of them'
+            remaining: [RUYIJS_CS_Z_deflateEnd, RUYIJS_CS_Z_deflateInit2_, RUYIJS_CS_Z_inflate, RUYIJS_CS_Z_inflateEnd, RUYIJS_CS_Z_inflateInit2_, getentropy]
+            remaining_nature: "five are the product's own renamed zlib entry points and one is getentropy from libc, so nothing project-authored is missing"
+            why_the_renames_exist: 'compression_zlib.cpp declares the zlib entry points under a RUYIJS_CS_Z_ prefix so the product zlib cannot collide with the system one; the definitions must come from a zlib built with that prefix'
+            what_is_needed: 'a zlib whose symbols carry the prefix, or a small object aliasing the standard names'
+            not_done: [the_renamed_zlib, a_link_that_resolves, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-hb-r306/hb-validation.json
+            evidence_sha256: 8658d0cf53a665da7ac616678adc0245adf5a0bd172ccccb50f673afbb0c19fa
           private_product: pending
     inner_repo_state:
       exists: true
