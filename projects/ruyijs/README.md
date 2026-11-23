@@ -1309,6 +1309,44 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-hb-r306/hb-validation.json`。
 
+## 卡在一个 Rust 工具链上
+
+剩 6 个符号：5 个 `RUYIJS_CS_Z_*` 加 `getentropy`。
+
+## 那些前缀是谁定义的
+
+`compression_zlib.cpp` 自己的注释写着：
+
+> Original zlib-rs C ABI; private prefix leaves existing MOZ_Z_ users unchanged
+
+也就是说这五个符号**本该由 zlib-rs 提供**。vendored 的 `libz-rs-sys 0.6.3` 用 `prefix!` 宏生成名字，开启 `custom-prefix` feature 后读 `LIBZ_RS_SYS_PREFIX` 环境变量。
+
+所以构建方式是：`LIBZ_RS_SYS_PREFIX=RUYIJS_CS_Z_ cargo build --features custom-prefix`。
+
+## 卡点：没有 Rust 工具链
+
+| 检查 | 结果 |
+|---|---|
+| `cargo` 存在 | `/root/.cargo/bin/cargo` |
+| 工具链目录 | **空** |
+| `rustup default` | **未配置** |
+| 带 Rust 的镜像 | **没有** |
+| 网络 | **离线** |
+
+**这是环境问题，不是代码问题。** 树里什么都不用改，工具链得先有。
+
+## 一个我测了但没采用的替代
+
+用 6 个转发函数把 `RUYIJS_CS_Z_*` 接到标准 zlib 符号上——**编译通过，6 个符号齐全**，链接能过。
+
+**但我没有采用它**：产品注释明确说这是「zlib-rs 的原始 C ABI」，换成另一个实现是**改行为**，不只是接线。为了让链接通过而悄悄替换实现，是错的。这该由项目负责人决定。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-zlibrs-r307/zlibrs-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
