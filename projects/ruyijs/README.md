@@ -1112,6 +1112,36 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-linkall-r289/linkall-validation.json`。
 
+## 一个二选一的困境，和一个我自己造成的错误
+
+上一轮未定义归零但剩 20 个重复。这一轮想去掉重复，结果发现了真实约束：
+
+| 状态 | 未定义 | 重复 |
+|---|---|---|
+| 全部旧对象都加入 | 0 | 20 |
+| 按单元名跳过旧对象 | **20** | 0 |
+
+**跳过是错的。** 因为同名的新编译对象**可能定义更少的符号**——跳过 `realm.o` 直接丢掉了整个 `interaction::Realm`。
+
+**根因**：这个重叠不是「同一份代码编译两次」，而是**批次的单元和树里的单元同名但内容不同**。
+
+## 决定：不猜哪份完整，两份都留
+
+改用 `-Wl,--allow-multiple-definition`：所有定义都可用，由链接器选一个。这比「猜哪份更完整」可靠。
+
+## 我这一轮错了两处
+
+1. **`Path(o).stem` 包了一层 `Path`**，导致集合里存的是 `PosixPath` 对象，永远不等于字符串，去重从未生效
+2. **改对后又跳过了必需的符号**，直接把未定义从 0 变成 20
+
+两次都是「以为逻辑对，没验证实际值」。第 1 个错误跑了三次链接才发现。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-link-tradeoff-r292/tradeoff-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

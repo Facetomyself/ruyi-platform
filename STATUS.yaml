@@ -1040,6 +1040,19 @@ projects:
             not_done: [a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
             evidence: deliverables/linux-ruyijs-linkall-r289/linkall-validation.json
             evidence_sha256: 2061cc3e155127852364cb934651598d34e233e982603ae34d4687a7c7c50a75
+          native_product_link_tradeoff:
+            input_commit: fb1276f
+            terminal: product_link 1
+            scope: 'the tradeoff between duplicate and undefined symbols in the product link'
+            observed_states:
+              - {state: 'all previous objects added', undefined: 0, duplicate: 20}
+              - {state: 'previous objects skipped by unit name', undefined: 20, duplicate: 0}
+            why_skipping_by_name_is_wrong: 'a freshly compiled object with the same stem can define fewer symbols than the batch object it replaces; skipping it lost interaction::Realm entirely'
+            root_cause: 'the overlap is not the same object compiled twice; a batch unit and a tree unit sharing a name can differ in which symbols they define'
+            decision: 'add every previous unit and pass -Wl,--allow-multiple-definition, keeping every definition available instead of guessing which copy is complete'
+            not_done: [verify_the_multiple_definition_approach, a_link_that_resolves, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-link-tradeoff-r292/tradeoff-validation.json
+            evidence_sha256: 636e51a144fed57908c4657355674dccee369a9b3cb47476bfc41e82622ae26b
           private_product: pending
     inner_repo_state:
       exists: true
