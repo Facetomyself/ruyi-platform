@@ -1551,6 +1551,43 @@ GLOBAL DEFAULT UND getentropy
 
 回执 `deliverables/linux-ruyijs-visibility-r324/visibility-validation.json`。
 
+## 从 5 个降到 4 个，两个都是新一类问题
+
+| 项 | 结果 |
+|---|---|
+| `hb_set_get_empty` | **已解决** |
+| 上一轮 5 个里的 4 个 | **已解决** |
+| 剩余 | **4 个**（`getrandom` + 3 个 styling） |
+
+## 两个修复的关键点
+
+**一、harfbuzz 自己的依赖**
+
+测试发现 libharfbuzz 需要 `libfreetype`、`libglib`、`libgraphite2`。缺 `-rpath-link` 时，链接器报的是**从 harfbuzz 内部冒出来的** `undefined reference to 'gr_face_destroy'`。
+
+加 `-Wl,-rpath-link,/harfbuzz -Wl,--allow-shlib-undefined` 解决。
+
+**二、`hb_set_get_empty` 本该是 stub 自己的对象**
+
+`skia_subset_stubs.cpp` 是产品为「无 subsetter 的 HarfBuzz」写的替代实现，但它**把 `hb_set_get_empty` 声明成外部符号**，等于去问一个不提供它的库要。
+
+改成 stub 自己拥有一个空集就对了。
+
+## 剩余的 4 个
+
+| 符号 | 性质 |
+|---|---|
+| `getrandom` | **仍 hidden**——保护头文件不够，后面有系统头重新声明了它 |
+| `CssColorSpaceToSrgb` 等 3 个 | **项目符号**，但所在单元被我「跳过被包含单元」的规则跳过了 |
+
+第 2 类是我自己规则造成的副作用，需要调整而不是新增编译。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-link2-r327/link2-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

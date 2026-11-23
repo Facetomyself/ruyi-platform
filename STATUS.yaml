@@ -1226,6 +1226,17 @@ projects:
             still_open: 'harfbuzz entries in the canvas and font units may need the same treatment'
             evidence: deliverables/linux-ruyijs-visibility-r324/visibility-validation.json
             evidence_sha256: 1479821179f03c84db7a8adb76a093b5894840ca277a099d18f7866f7d506dc6
+          native_link_progress:
+            input_commit: 0447a7b
+            terminal: product_link 1
+            scope: 'the link after the visibility fix, the harfbuzz rpath-link and the subset stub'
+            undefined: [getrandom, 'ruyijs::domain::styling::CssColorFunctionSpaceKnown', 'ruyijs::domain::styling::CssColorSpaceKnown', 'ruyijs::domain::styling::CssColorSpaceToSrgb']
+            cleared: 'hb_set_get_empty by defining the empty set inside the subset stub, and four of five earlier symbols once libharfbuzz own dependencies had an rpath-link with allow-shlib-undefined'
+            getrandom: 'still hidden because a later system header redeclares the entry point, so it is now pinned with an explicit default-visibility declaration'
+            styling_symbols: 'project symbols whose unit is skipped because web_styling includes it, so resolving them means compiling that unit alone or relaxing the skip'
+            not_done: [rerun_after_the_getrandom_pin, the_three_styling_symbols, a_link_that_resolves]
+            evidence: deliverables/linux-ruyijs-link2-r327/link2-validation.json
+            evidence_sha256: a625683d06b705513e470575884fdcf7db378d626dbbbef253f1b1995ba8f6c2
           private_product: pending
     inner_repo_state:
       exists: true
