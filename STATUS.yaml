@@ -1172,6 +1172,20 @@ projects:
             not_done: [rerun_with_the_added_roots, platform_files_that_cannot_build_on_linux, linking_the_skia_objects, a_link_that_resolves]
             evidence: deliverables/linux-ruyijs-skia-r313/skia-validation.json
             evidence_sha256: e7260a44b69aab0ed7de243f7bf3442997024fdbbb2476894f74384bc0d0a4d8
+          native_skia_link:
+            input_commit: ab451cd
+            terminal: product_link 1
+            scope: 'the product link with 239 compiled Skia objects'
+            skia_objects_linked: 239
+            undefined_before_skia: 18
+            undefined_after_skia: 16
+            meaning: 'linking the Skia objects replaced eighteen caller-side symbols with sixteen that live in directories not yet compiled, so the fix moved the gap rather than closing it'
+            where_they_live: 'src/effects with 40 files and src/image with 15, which the subset did not include'
+            linkage_only: [getentropy, hb_set_get_empty]
+            cleared_this_round: 'six of the seven header-blocked Skia units now compile, and SkMemory_mozalloc passed once the NSPR config root was added'
+            not_done: [compiling_effects_and_image, a_link_that_resolves]
+            evidence: deliverables/linux-ruyijs-skia-link-r316/skialink-validation.json
+            evidence_sha256: 2cce25a42435400322080d30b5a329f890cdb078f9afa1f4f59f79530ed492d5
           private_product: pending
     inner_repo_state:
       exists: true

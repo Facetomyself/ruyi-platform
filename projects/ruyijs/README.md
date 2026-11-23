@@ -1408,6 +1408,33 @@ donor 的 objdir 是 **JS-only standalone 构建，没有任何 gfx 目标文件
 
 回执 `deliverables/linux-ruyijs-skia-r313/skia-validation.json`。
 
+## 239 个 Skia 对象进链接，缺口从 18 变 16
+
+| 项 | 值 |
+|---|---|
+| 编译的 Skia 对象 | **239** |
+| 链接前未定义 | 18 |
+| 链接后未定义 | **16** |
+
+**缺口移动了，不是消失了。**这 16 个来自 `src/effects`（40 文件）和 `src/image`（15 文件），不在我编译的 core/ports/opts 里。
+
+## 这一轮清掉的
+
+- 7 个缺头文件的 Skia 单元里 **6 个通过**（`SkFontHost_FreeType`、`SkFontMgr_fontconfig`、`SkFontHost_cairo`、`SkFontConfigInterface_direct` 及 `_factory`）
+- `SkMemory_mozalloc` 在补了 `config/external/nspr` 后也通过
+
+## 一个反复出现的模式
+
+`prcpucfg.h` 这次是从 **`prtypes.h`** 引出来的——同一类修复我在 `svg_path` 上做过一次。
+
+**这说明缺的不是某个特殊头，而是一组标准 include 根**：NSPR、FreeType、Fontconfig、Skia、Cairo。它们应该一开始就都在。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。剩 16 个 Skia 符号 + 2 个接线符号。
+
+回执 `deliverables/linux-ruyijs-skia-link-r316/skialink-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
