@@ -1159,6 +1159,19 @@ projects:
             next_step: 'Skia has to be built or staged before eighteen symbols can bind, larger than the header work so far'
             evidence: deliverables/linux-ruyijs-zlink-r312/zlink-validation.json
             evidence_sha256: a870bf00f3acdc2c0ecf2611292bfcd90ab2e3c49dd3fbe9c1527208067d9dcd
+          native_skia_subset:
+            input_commit: ae53cd9
+            terminal: skia_partial
+            scope: 'compiling the Skia subset the product references'
+            pass: {ok: 232, fail: 17, elapsed_seconds: 312}
+            objects_bytes: 8.8M
+            feasibility: 'one file compiled on the first try with the donor Mozilla headers, which is what made the subset worth attempting'
+            scope_compiled: 'src/core, src/ports and src/opts'
+            failures_classified: {other_platform: 10, missing_headers: 5, other: 2}
+            key_failures: 'SkMemory_mozalloc wanted prenv.h, SkFontHost_FreeType wanted ft2build.h and SkFontMgr_fontconfig wanted fontconfig.h; all three roots are now supplied'
+            not_done: [rerun_with_the_added_roots, platform_files_that_cannot_build_on_linux, linking_the_skia_objects, a_link_that_resolves]
+            evidence: deliverables/linux-ruyijs-skia-r313/skia-validation.json
+            evidence_sha256: e7260a44b69aab0ed7de243f7bf3442997024fdbbb2476894f74384bc0d0a4d8
           private_product: pending
     inner_repo_state:
       exists: true

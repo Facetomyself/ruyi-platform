@@ -1374,6 +1374,40 @@ donor 的 objdir 是 **JS-only standalone 构建，没有任何 gfx 目标文件
 
 回执 `deliverables/linux-ruyijs-zlink-r312/zlink-validation.json`。
 
+## Skia 真能编译：232 个单元通过
+
+上一轮说 Skia 是大工程。这一轮先做**单文件验证**——一个 `SkGraphics.cpp` 加上 donor 的 Mozilla 头就编译通过了。这改变了判断：可以试全量。
+
+| 项 | 结果 |
+|---|---|
+| 编译范围 | `src/core` + `src/ports` + `src/opts`（249 文件） |
+| **通过** | **232** |
+| 失败 | 17 |
+| 耗时 | 312 秒 |
+| 产物 | 8.8 MB |
+
+## 17 个失败分三类
+
+| 类别 | 数量 | 说明 |
+|---|---|---|
+| 其他平台 | **10** | Android、Fuchsia、NDK、CG、WIC、fontations |
+| **缺头文件** | **5** | `SkMemory_mozalloc`、`SkFontHost_FreeType`、`SkFontMgr_fontconfig`、`SkFontHost_cairo` 等 |
+| 其他 | 2 | — |
+
+**关键的那 5 个只是缺头**：`prenv.h` 在 `nsprpub/pr/include`，`ft2build.h` 和 `fontconfig.h` 在 staged 的 font-include 树里。**三个根已补上**。
+
+## 方法上的收获
+
+上一轮我凭“249 个文件”就判断这是大工程、没敢试。这一轮**先编译一个文件**，15 秒就证明路径可行。
+
+**先做最小验证，再谈规模**——这比凭文件数估算可靠。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。Skia 对象还没接进链接。
+
+回执 `deliverables/linux-ruyijs-skia-r313/skia-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
