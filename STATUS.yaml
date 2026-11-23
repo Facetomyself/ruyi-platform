@@ -999,6 +999,19 @@ projects:
             not_done: [rerun_eleven_geometry_units, remaining_about_590_units, a_link_that_resolves, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-rest-r284/rest-validation.json
             evidence_sha256: 101cf758458e208dbe828a6b33a7d969223b2b08ed2131ec03b73fa9b51dcccc
+          native_units_bulk2:
+            input_commit: 2ce3dd3
+            terminal: units_compile_partial
+            scope: 'the second bulk pass over the remaining 488 units'
+            pass: {ok: 460, fail: 28, elapsed_seconds: 1436}
+            cumulative_objects: 891
+            of_total_units: 1355
+            percent: 66
+            failures_classified: {expected_linux_replacements: 15, missing_third_party_headers: 11, other: 2}
+            key_finding: 'styling units failed on a throwing header reached through an include chain, which the per-unit exceptions classifier cannot see; the build now retries once with -fexceptions when the compiler says so'
+            not_done: [rerun_styling_with_retry, openssl_libpng_skia_header_roots, a_link_that_resolves, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-bulk2-r285/bulk2-validation.json
+            evidence_sha256: 3df93efd5c302d9b99e67f7561e06ccfb137125d2d26eddf1ec23fd39241dcd2
           private_product: pending
     inner_repo_state:
       exists: true

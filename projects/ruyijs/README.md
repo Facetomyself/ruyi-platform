@@ -1014,6 +1014,38 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-rest-r284/rest-validation.json`。
 
+## 第二轮批量：累计 891 个对象，占全树 66%
+
+| 项 | 值 |
+|---|---|
+| 本轮单元 | 488 |
+| 编译成功 | **460** |
+| 失败 | 28 |
+| 耗时 | **1436 秒** |
+| **累计对象** | **891 / 1355（66%）** |
+
+## 28 个失败分类
+
+| 类别 | 数量 | 说明 |
+|---|---|---|
+| 预期 Linux 替换项 | **15** | `necko_*`、`worker_*`、`cng_backend`、`digest_backend` |
+| 缺第三方头 | **11** | OpenSSL、libpng、Skia、Cairo |
+| 其他 | **2** | 见下 |
+
+## 一个有价值的发现：异常分类器看不见 include 链
+
+`styling` 的 6 个单元报 `cannot use 'throw' with exceptions disabled`，但 `needs_exceptions` 判定它们不需要。
+
+原因：`entity.h` 里的 `throw` 是**经 `stylesheet.h` → `aggregate_root.h` 间接引入**的，而分类器只查源文件本身。
+
+**我的修法是让编译器当判据**：如果日志里出现这句，就加 `-fexceptions` 重试一次。这比再写一份清单可靠——编译器知道真实情况，清单不会。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。剩余 464 个单元 + 若干头文件根待补。
+
+回执 `deliverables/linux-ruyijs-bulk2-r285/bulk2-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
