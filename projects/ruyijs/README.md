@@ -1342,6 +1342,38 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-zlibrs-r311/zlibrs-build-validation.json`。
 
+## zlib 解决了，缺的是 Skia
+
+把 `libruyijs_cs_zlib.a` 加入链接后：
+
+| 项 | 结果 |
+|---|---|
+| `RUYIJS_CS_Z_*` | **全部解决** |
+| HarfBuzz | 保持解决 |
+| 重复定义 | 0 |
+| 未定义 | 20（**新的一批**） |
+
+## 新的 20 个分两类
+
+| 类别 | 数量 | 性质 |
+|---|---|---|
+| **Skia**（`SkCanvas`、`SkPaint`…） | **18** | **真实缺口** |
+| `getentropy` / `hb_set_get_empty` | 2 | **只是接线** |
+
+后两个我用 `nm -D` 验证过：`hb_set_get_empty` 在 staged 的 libharfbuzz 里，`getentropy` 在镜像的 glibc 2.39 里——**它们有提供者**。
+
+## Skia 为什么是真实缺口
+
+donor 的 objdir 是 **JS-only standalone 构建，没有任何 gfx 目标文件**。宿主机上不存在 Skia 归档。
+
+要过这一关，得**构建或暂存 Skia 本身**——这比前面补头文件路径的工作量大一个数量级。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。18 个 Skia 符号是当前唯一的真实阻塞。
+
+回执 `deliverables/linux-ruyijs-zlink-r312/zlink-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

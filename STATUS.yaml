@@ -1145,6 +1145,20 @@ projects:
             next_step: 'pass the archive to the product link'
             evidence: deliverables/linux-ruyijs-zlibrs-r311/zlibrs-build-validation.json
             evidence_sha256: ff5e4eec265e344de199b5f496186d08ba9d1077af71ba4511c48fc594740906
+          native_link_zlib:
+            input_commit: e560f1e
+            terminal: product_link 1
+            scope: 'the product link with both harfbuzz and the prefixed zlib supplied'
+            achieved: 'the five prefixed zlib symbols resolve against the zlib-rs archive, harfbuzz stays resolved, duplicates remain zero'
+            remaining: 20
+            skia_symbols: 18
+            other_symbols: [getentropy, hb_set_get_empty]
+            the_new_gap: 'eighteen Skia entry points: the calling objects compiled, but nothing supplies Skia itself'
+            why_skia_is_absent: 'the donor objdir is a JS-only standalone build with no gfx objects, so no Skia archive exists on the host'
+            other_two_are_linkage: 'hb_set_get_empty is exported by the staged libharfbuzz and getentropy by the image glibc 2.39, both verified with nm -D'
+            next_step: 'Skia has to be built or staged before eighteen symbols can bind, larger than the header work so far'
+            evidence: deliverables/linux-ruyijs-zlink-r312/zlink-validation.json
+            evidence_sha256: a870bf00f3acdc2c0ecf2611292bfcd90ab2e3c49dd3fbe9c1527208067d9dcd
           private_product: pending
     inner_repo_state:
       exists: true
