@@ -668,6 +668,45 @@ js --help | grep -c ruyijs   →   0
 
 回执 `deliverables/linux-ruyijs-runtime-r251/runtime-shell-validation.json`。
 
+## 产品 shell 生成器在 Linux 上跑通了
+
+**`shell_generate_verified 0`**：`tools/linux_donor.py --prepare` 产出 7 个文件，注入全部到位。
+
+| 项 | 值 |
+|---|---|
+| 状态 | `generated-only` |
+| 生成文件 | `js.cpp`、`Unified_cpp_js_src_shell0.cpp`、`runtime_assets.h` + 4 个配置头 |
+| 候选单元 | **1275** 个 |
+| `ruyijs-rpc` 选项 | 出现 3 次 |
+| `ruyijs::Run` 调用 | 1 次 |
+| codec 嵌入 | 3481 字节 |
+
+Firefox HEAD 与固定参照一致。
+
+## 清掉三个阻塞
+
+1. **`tools/donor.py` 直接拒绝 Linux**，所有调用停在 `donor OS_ARCH is not supported`
+2. **`tools/product_sources.py` 没有 `target_platform` 参数**，生成器在源清单调用处失败
+3. **`config.status.json` 记录的是 `/source` 和 `/work`**，必须在容器里挂到这些路径，而不是翻译路径
+
+## 第四次同样的坑
+
+前两个工具的改动**都是未提交的工作区修改**。这是这棵树上第四次 Linux 工作因为没提交而对导出的构建不可见。
+
+第 135 轮记过一次，第 137 轮又遇到，这一轮连撞两次。**这不是偶发，是这个工作流的系统性缺陷**。
+
+## 新增的链接入口
+
+`tools/linux_donor.py --link-product` 已实现：把 donor argv 里的 `shell0.o` 换成生成的单元，拒绝缺失单元、拒绝残留 donor shell、拒绝覆盖已有产物。三个测试覆盖替换、缺失和失败清理。
+
+**但还没对真实的 1275 个单元用过。**
+
+## 边界
+
+`generated-only` 意味着**只证明生成了源码**，不证明这些单元能编译能链接。1275 个单元是源码清单，不是编译通过的证明。
+
+回执 `deliverables/linux-ruyijs-generate-r258/shell-generate-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

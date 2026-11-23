@@ -871,6 +871,25 @@ projects:
             not_done: [dist_js_from_generated_hooks, runtime_serving_the_client_abi, browser, page_canvas]
             evidence: deliverables/linux-ruyijs-runtime-r251/runtime-shell-validation.json
             evidence_sha256: 5eb3c32d84b876ea4eb823be042cb6cbae886e93c90375415883ac5b4babb81d
+          native_shell_generate:
+            input_commit: 44fefd5
+            terminal: shell_generate_verified 0
+            scope: 'the product shell generator produces its sources for Linux'
+            status: generated-only
+            generated_count: 7
+            generated_files: [Unified_cpp_js_src_shell0.cpp, js.cpp, runtime_assets.h, firefox_binding_order.h, firefox_environment_profile.h, firefox_font_prefs.h, firefox_sanitizer_data.h]
+            candidate_units: 1275
+            injection_verified: {ruyijs_rpc_option_occurrences: 3, ruyijs_run_calls: 1, codec_bytes: 3481}
+            blockers_cleared:
+              - 'tools/donor.py rejected Linux outright'
+              - 'tools/product_sources.py had no target_platform argument'
+              - 'config.status.json records /source and /work, so those trees mount at those paths'
+            uncommitted_again: 'both tool changes had been sitting uncommitted, the fourth time Linux work was invisible to an exported build'
+            what_this_proves: 'the generator emits a shell unit with the product options and hooks for Linux and inventories 1275 candidate units'
+            what_this_does_not_prove: 'that those units compile or link'
+            not_done: [compiling_candidates, product_link_against_generated_units, runtime_serving_the_client_abi, browser]
+            evidence: deliverables/linux-ruyijs-generate-r258/shell-generate-validation.json
+            evidence_sha256: cff3ff538395bbd0678fb18c8e8a93b4dd866478e676b40026aa51b6ac0e2c8d
           private_product: pending
     inner_repo_state:
       exists: true
