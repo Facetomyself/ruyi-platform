@@ -810,6 +810,25 @@ projects:
             not_done: [last_private_reference, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-canvas-r241/canvas-residual-validation.json
             evidence_sha256: 2ddab9020e761ea85318068cf106831890dfc0ce57234626e8918b6902359dc1
+          native_canvas_closed:
+            input_commit: 7b0c9f5
+            terminal: native_canvas_portable_verified 0
+            scope: 'the canvas batch closes every private reference it tracks on Linux'
+            units: 74
+            units_failed: 0
+            previous_private_references: 13
+            resolved_previous: 13
+            introduced: 0
+            remaining: 0
+            relocatable_sha256: 75290f361a9e83de
+            relocatable_bytes: 370219344
+            last_one: 'FrameMaxDescent needed its platform implementations guarded so the unit contributes only the shared tail, and that tail then needed font_backend.h directly'
+            progression: '13 to 6 to 3 to 1 to 0 across five measured runs'
+            what_this_proves: 'every private symbol the canvas surface needs has a Linux body the batch compiles and links'
+            what_this_does_not_prove: 'that the product is linked or that a browser draws anything'
+            not_done: [product_link, dist_js, browser, page_canvas]
+            evidence: deliverables/linux-ruyijs-canvas-closed-r243/canvas-closure-validation.json
+            evidence_sha256: 39a3fe62bce883435019732c34eb6cf53ca8097903ec2634de8d9cdf85b1b52b
           private_product: pending
     inner_repo_state:
       exists: true

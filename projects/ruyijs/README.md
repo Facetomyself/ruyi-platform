@@ -542,6 +542,37 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-canvas-r241/canvas-residual-validation.json`。
 
+## Canvas 批次：13 → 0，私有引用全闭合
+
+| 步骤 | 单元数 | 剩余 |
+|---|---|---|
+| 起点 | 67 | 6 |
+| + shaping / missing / collection / color | 71 | 3 |
+| + unicode / palette | 73 | 1 |
+| + `system_font` 共享段 | **74** | **0** |
+
+`74 个单元全部编译、链接通过`，`resolved 13 / introduced 0 / remaining 0`，ET_REL 370,219,344 字节。
+
+`web_canvas` 这一层在 Linux 上**已无任何未解析的私有符号**，13 条全部闭合。
+
+## 最后一条怎么解开的
+
+`FrameMaxDescent` 卡了两轮，原因是 `system_font.cpp` 的 `SystemFonts` 成员已在前序对象里，整单元重编会重复定义。
+
+**解法**：给平台实现加守卫 `RUYIJS_SYSTEM_FONT_SHARED_ONLY`，让该单元**只贡献共享段**。
+
+然后又踩一个坑：共享段失去了平台分支提供的类型声明，报 `unknown type name 'IDWriteFontFace'`——补上 `font_backend.h` 才过。
+
+上一轮我试着把函数抽成独立文件，结果破坏了 `#if` / `#elif` 分支结构；这一轮的守卫法**不改文件结构**，只控制编译范围，才是对的。
+
+## 这证明了什么，不证明什么
+
+**证明**：canvas 表面需要的每个私有符号，都有 Linux 实现被批次编译并链接。
+
+**不证明**：产品已链接，或浏览器能画出东西。产品链接、`dist/js`、真实页面 canvas、浏览器仍是空的。
+
+回执 `deliverables/linux-ruyijs-canvas-closed-r243/canvas-closure-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
