@@ -786,6 +786,50 @@ ruyijs::domain::styling::CssSetInitialFontFamily
 
 回执 `deliverables/linux-ruyijs-product-link-r268/product-link-validation.json`。
 
+## 缺口移动了，但没消失：0 未定义，20 重复
+
+把 `interaction-v1` 批次的对象加进链接后：
+
+| 阶段 | 结果 |
+|---|---|
+| 上一轮 | 20 个**未定义**符号 |
+| 加入 `runtime-batch.o` | **0 未定义**，20 个**重复定义** |
+
+**这说明那个批次对象确实补齐了所有缺口**，但它同时**带着 donor 的 `js::shell`**，而生成单元已经定义了这些。
+
+## 组成是量出来的
+
+`runtime-batch.o`：60,678,392 字节、7298 个定义、**143 个 `js::shell`**、**2131 个 `ruyijs::`**。
+
+## 剥离行不通，而且是硬性失败
+
+我试了 `objcopy` 移除 114 个 `js::shell` section，失败：
+
+```
+symbol `_ZN2js5shell19AutoReportExceptionD2Ev' required but not present
+objcopy: no symbols
+```
+
+**原因是 donor shell 的符号互相调用，且被保留下来的 section 引用。**移除它们不是得到更小的对象，而是得到悬空引用。objcopy 直接拒绝写坏对象——这个行为是对的。
+
+## 我这一轮走过的弯路
+
+1. 先以为「批次对象能整体复用」→ 撞上 143 个重复定义
+2. 再想「剥掉 donor 部分」→ section 名漏了前导点，第一次剥离没生效
+3. 修正后仍有 143 个 → 发现剥离本身不可行
+
+第 1 步的思路是错的：**那个合并对象方便，但携带了产品链接绝不能包含的单元**。
+
+## 正确方向
+
+把那一层**按单元对象构建**，而不是合并成一个 relocatable。这样 shell 单元自然不存在，不需要剥离。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在，产品 shell 跑不起来。
+
+回执 `deliverables/linux-ruyijs-strip-r271/strip-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

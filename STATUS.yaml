@@ -917,6 +917,18 @@ projects:
             not_done: [compiling_the_layer_beneath, a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
             evidence: deliverables/linux-ruyijs-product-link-r268/product-link-validation.json
             evidence_sha256: f42020be68faf04c27a4202d15883521dc3b0fab0026112b962fc54a75a63d85
+          native_product_link_strip:
+            input_commit: 5bb85a2
+            terminal: strip_donor_shell 1
+            scope: 'attempts to make the previous batch object join the product link'
+            gap_moved: 'from 20 undefined symbols to 0 undefined and 20 duplicate definitions'
+            batch_object_composition: {bytes: 60678392, defined: 7298, js_shell: 143, ruyijs: 2131}
+            strip_attempt: 'objcopy with 114 js::shell sections removed failed: a removed section references AutoReportException::~AutoReportException, so objcopy refuses to write the broken object'
+            why_stripping_cannot_work: 'the donor shell symbols call each other and are referenced from sections that stay, so removing them leaves dangling references'
+            sound_option: 'build that layer as separate unit objects so the shell unit is simply absent, rather than merging everything into one relocatable'
+            not_done: [a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
+            evidence: deliverables/linux-ruyijs-strip-r271/strip-validation.json
+            evidence_sha256: 238bdb201296ab593d0f716b248afec1e760ddfd55ff908b29feb4ee800b0d50
           private_product: pending
     inner_repo_state:
       exists: true
