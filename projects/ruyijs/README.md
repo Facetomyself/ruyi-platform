@@ -631,6 +631,43 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-client-abi-r250/client-abi-validation.json`。
 
+## 真实 SpiderMonkey 运行时跑起来了，但它还不是 RuyiJS
+
+**`runtime_shell_verified 0`**：容器里 `JavaScript-C159.0` 正常启动，脚本算出 `{"sum":385,...}`。这是 RuyiJS 依赖的**同一个引擎**（`FIREFOX_159_0_RELEASE`）。
+
+它必须在容器里跑，因为它需要 **glibc 2.27/2.29 和 GLIBCXX 3.4.32**，宿主机 CentOS 7 都没有，而 Ubuntu 24.04 镜像有。
+
+## 但它不认识 RuyiJS
+
+```
+js --help | grep -c ruyijs   →   0
+```
+
+这是纯上游 shell，**没有任何 ruyijs 选项**。所以上一轮那个 ABI 测试只能用 echo 替身——真实的运行时现在接不上客户端。
+
+## `dist/js` 到底是什么
+
+`tools/generate.py` 把 RuyiJS 的选项和运行时调用**注入 donor 的 `js.cpp`**：
+
+- `--ruyijs-rpc` / `--ruyijs-mode` / `--ruyijs-runtime` / `--ruyijs-worker` 四个选项
+- `ruyijs::Run(cx, op, RunShellJobs)` 替换默认的 `ProcessArgs`
+- 异常捕获和 Promise 拒绝追踪挂钩
+- `runtime_assets.h` 嵌入 codec 源码
+
+生成后重新链接，才是真正的产品 shell。
+
+## 可行性判据
+
+已通过的 `donor_relink_control` 证明：**28 个对象 + 3 个归档能做到字节级一致的重链，且不含任何私有 shell 对象**。所以把生成的 shell 单元加进同一条链接命令是可行的。
+
+第 128 轮的 OOM 来自**单个 1.47 GB 编译单元**，不是这个形态。这两件事必须分开看。
+
+## 现状
+
+`linux_donor.py` 只有 `--prepare`（生成源码，状态 `generated-only`）和 `--relink-control`（重建 donor），**没有“链接私有 shell”的入口**。那一步还没实现。
+
+回执 `deliverables/linux-ruyijs-runtime-r251/runtime-shell-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

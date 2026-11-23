@@ -859,6 +859,18 @@ projects:
             not_done: [real_runtime_as_shell, dist_js, browser, page_canvas, whole_product_link]
             evidence: deliverables/linux-ruyijs-client-abi-r250/client-abi-validation.json
             evidence_sha256: fb7ef50507dc82868c47483d3ee1fddab7d8b9c9944bfba16e5fac90696a58bb
+          native_runtime_shell:
+            input_commit: fcdfeb0
+            terminal: runtime_shell_verified 0
+            scope: 'the donor SpiderMonkey shell runs in the bounded container and evaluates a script'
+            observed: {version: JavaScript-C159.0, script_result: {sum: 385, mode: object, hasJSON: function}}
+            why_the_container: 'the binary needs glibc 2.27/2.29 and GLIBCXX up to 3.4.32, absent on the CentOS 7 host and present in the Ubuntu 24.04 image'
+            finding: 'the donor shell exposes no ruyijs options: grep for ruyijs in --help returns zero'
+            consequence: 'the runtime cannot serve the client ABI until the product hooks are injected by tools/generate.py and the result is linked, which is what dist/js means'
+            path_assessment: 'the verified donor relink links 28 objects and 3 archives byte-identically with no private shell object, so the generated shell is feasible; the earlier OOM came from a single 1.47 GB unit, not this shape'
+            not_done: [dist_js_from_generated_hooks, runtime_serving_the_client_abi, browser, page_canvas]
+            evidence: deliverables/linux-ruyijs-runtime-r251/runtime-shell-validation.json
+            evidence_sha256: 5eb3c32d84b876ea4eb823be042cb6cbae886e93c90375415883ac5b4babb81d
           private_product: pending
     inner_repo_state:
       exists: true
