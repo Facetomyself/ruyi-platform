@@ -573,6 +573,34 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-canvas-closed-r243/canvas-closure-validation.json`。
 
+## 产品 transport 库在 Linux 上构建成功
+
+`src/client` 一直是产品 shell 的入口，有完整的 `CMakeLists.txt`，却**从未在隔离环境里构建过**。这一轮把它跑通：**`exported_abi_verified 0`**。
+
+| 项 | 结果 |
+|---|---|
+| 编译 | `api`、`transport`、`lifecycle_linux` 全过（`-Wall -Wextra -Werror`） |
+| 链接 | `--no-undefined` + version script |
+| 导出 ABI | **精确等于** script 的 7 个符号 |
+| 未定义符号 | 全部是带版本的运行时导入 |
+
+导出的七个 C 入口：`ruyijs_alloc`、`ruyijs_call`、`ruyijs_close`、`ruyijs_create`、`ruyijs_create_mode`、`ruyijs_free`、`ruyijs_set_callback`。
+
+## 查出四个真实缺陷
+
+1. **`SO_NOSIGPIPE` 是 BSD 专有**——`transport.cpp` 在 Linux 上根本编译不过。改用 `accept4` + `MSG_NOSIGNAL`
+2. **`ChildExited` 的声明和定义都没提交**——`transport.cpp` 引用了它，头文件里没有
+3. **`lifecycle_linux.cpp` 和 `CMakeLists.txt` 是未跟踪文件**——任何导出的树都构建不出这个库
+4. **我的未定义符号检查把 `_Unwind_Resume@GCC_3.0` 判成失败**——它是正常的 libgcc 导入
+
+前三个说明一件事：**Linux 移植工作在树里放了一堆未提交文件**，所以之前每一轮 `git archive` 导出的都是编译不过的旧版。
+
+## 一处流程漏洞
+
+我的密钥检查命中后只打印 `HIT`，**没有中止提交**。两次命中的都是变量名 `token`（`getentropy` 填充的 16 字节随机数），内容无害，但门禁应当阻断而不是提示。
+
+回执 `deliverables/linux-ruyijs-client-r249/client-build-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

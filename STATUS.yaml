@@ -63,12 +63,12 @@ projects:
     source:
       python_layer: complete
       necko_adapter: complete
-      native_shell: missing
+      native_shell: linux-transport-verified (7 C entry points, --no-undefined)
       necko_native: reference-ready
     build:
       win_amd64: ready
       darwin_arm64: unknown
-      linux_x86_64: unknown
+      linux_x86_64: build-verified (transport ABI + canvas symbols closed; product link open)
       linux_aarch64: unsupported
     tests: none
     phase: 阶段 0（契约提取 + js.exe 锚点定位）
@@ -829,6 +829,24 @@ projects:
             not_done: [product_link, dist_js, browser, page_canvas]
             evidence: deliverables/linux-ruyijs-canvas-closed-r243/canvas-closure-validation.json
             evidence_sha256: 39a3fe62bce883435019732c34eb6cf53ca8097903ec2634de8d9cdf85b1b52b
+          native_linux_client_library:
+            input_commit: b3d2c35
+            terminal: exported_abi_verified 0
+            scope: 'the product transport library src/client builds on Linux with its C ABI intact'
+            units: [api, transport, lifecycle_linux]
+            link: 'shared library with --no-undefined and the version script'
+            exported_abi: [ruyijs_alloc, ruyijs_call, ruyijs_close, ruyijs_create, ruyijs_create_mode, ruyijs_free, ruyijs_set_callback]
+            abi_cross_check: 'the exported symbol set equals the version script list exactly'
+            undefined: 'every undefined entry is a versioned import from GLIBC, GLIBCXX, CXXABI or GCC'
+            defects_fixed:
+              - 'SO_NOSIGPIPE is BSD-only; accept with accept4 and send with MSG_NOSIGNAL'
+              - 'ChildExited and the Linux lifetime adapter were uncommitted'
+              - 'lifecycle_linux.cpp and the CMake entry were untracked, so no exported tree could build'
+              - 'the undefined check treated versioned runtime imports as failures'
+            what_this_proves: 'the Linux transport library the product links against builds and exposes exactly the seven C entry points'
+            not_done: [whole_product_link, dist_js, browser, runtime_session_against_a_real_shell]
+            evidence: deliverables/linux-ruyijs-client-r249/client-build-validation.json
+            evidence_sha256: cf703875b2b2e69d0c985674c77b68ccd2b032d399cff0a27ff727fe98a9fc4c
           private_product: pending
     inner_repo_state:
       exists: true
