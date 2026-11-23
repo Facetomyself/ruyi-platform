@@ -692,6 +692,18 @@ projects:
             not_done: [colour_glyphs, glyph_outline, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-glyphmask-r191/glyph-mask-validation.json
             evidence_sha256: 62e42e510dd80f49f22b0c5d78a83ad658d61c87e871491ced929098e68335cd
+          native_linux_glyph_palette:
+            input_commit: 6727a1f
+            terminal: glyph_colour_verified 0
+            scope: 'CPAL palette parsing on Linux, checked against a real colour font'
+            checks_passed: 3
+            checks_failed: 0
+            observed: {TwemojiMozilla: {palette: true, entries: 1063, opaque: 8, first: '0x0e000000'}, DejaVuSans: {palette: false}}
+            cross_check: 'the first entry matches an independent Python parse of the same CPAL table'
+            finding: 'TwemojiMozilla stores its entry count where the first colour record index belongs; rejecting that shape would drop a font Firefox renders, so it is accepted only when the records fit from zero'
+            not_done: [colr_layer_masks_executed, glyph_outline, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-glyphcolour-r195/glyph-palette-validation.json
+            evidence_sha256: 66a1de34fc7791f1ca2ff2716b32c56c570dbd9c03e24fc1e98dabd75aa5b0af
           private_product: pending
     inner_repo_state:
       exists: true

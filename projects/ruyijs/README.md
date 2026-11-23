@@ -351,6 +351,23 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-glyphmask-r191/glyph-mask-validation.json`。
 
+彩色字形的第一层——**调色板解析**——在 Linux 上通了。`GlyphPalette` 原本走 `IDWriteFontFace2::GetPaletteEntries`，Linux 版直接解析 CPAL 表；`GlyphColorMask` 里 `sampled` 分支用的 `IDWriteFontFace1` head 盒也改成读 SFNT `head` 表（xMin/yMin/xMax/yMax 在 36/38/40/42，y 向上，所以盒顶是 yMax、盒底是 yMin）。
+
+验证用了两款**真实**字体，不是构造数据：
+
+| 字体 | 结果 |
+|---|---|
+| `TwemojiMozilla.ttf`（带 COLR+CPAL） | 1063 个 entry，首个为 `0x0e000000` |
+| `DejaVuSans.ttf`（纯文本） | 无调色板 |
+
+`0x0e000000` 与我用 Python 独立解析同一张 CPAL 表算出的值**完全一致**——这是交叉验证，不是自证。
+
+过程中查出一个真实字体怪癖，值得单记：**TwemojiMozilla 把 entry 数量写在了第一个 color record index 的位置**，于是那个索引指向数组末尾之外一个 entry。按规范应当拒绝，但 Firefox 的 table reader 是容错的、而且能正常渲染这个字体——拒绝它等于丢掉一个浏览器能显示的彩色字体。所以按真实行为容错：仅当从 0 起算记录能放下时才接受（`8 + 1063×4 = 4260 ≤ 4266`）。同时纠正了一处偏移错误：记录数组起点是「6 + 每调色板 2 字节」，不是 12。
+
+这也是为什么先用「malformed」预期跑出 `ok` 反而说明问题——那个 `ok` 掩盖了解析器根本没读到颜色。改成真正验证成功路径后才暴露。
+
+回执 `deliverables/linux-ruyijs-glyphcolour-r195/glyph-palette-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
