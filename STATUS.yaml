@@ -773,6 +773,24 @@ projects:
             not_done: [link_closure, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-canvas-r229/canvas-batch-validation.json
             evidence_sha256: 3117cc3473e436a0847e51af753e903893daab4cc8bfa189e65f0ac613c86232
+          native_canvas_text_layer:
+            input_commit: 35c4429
+            terminal: native_canvas_portable_verified 0
+            scope: 'canvas batch with the Linux text units included: 67 units compiled and linked'
+            units: 67
+            units_failed: 0
+            previous_private_references: 13
+            resolved_previous: 13
+            introduced: 6
+            remaining: 6
+            relocatable_sha256: 32ca8231cbe0265fc21f498533708b57f1662d49b6521cfd4d0c6c21dc7f9292
+            relocatable_bytes: 369052368
+            introduced_symbols: [CanvasFontBaselines, FontCollection::Initialize, FontCollection::Select, GlyphColorMask, MissingFontRun, ShapeFont]
+            interpretation: 'the canvas text surface is compiled; what remains is the layer beneath it, all of which has a verified Linux body from earlier rounds'
+            wiring_lesson: 'seven of ten candidate units and css_components were already in the predecessor object, so adding them produced duplicates instead of progress'
+            not_done: [link_closure, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-canvas-r238/canvas-layer-validation.json
+            evidence_sha256: 96cbc6a19b279952feb93eb8159b6f220f95d6965621e4c3c971e53bc7ecfc4c
           private_product: pending
     inner_repo_state:
       exists: true

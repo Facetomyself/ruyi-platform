@@ -491,6 +491,29 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-canvas-r229/canvas-batch-validation.json`。
 
+## Canvas 文字层接进批次：13 → 6，剩余是它的下一层
+
+把 `canvas_text`、`glyph_runs`、`glyph_mask_linux` 三个单元加进批次后：**67 个单元全部编译，链接通过**，`native_canvas_portable_verified 0`，ET_REL 369,052,368 字节。
+
+| 项 | 值 |
+|---|---|
+| 原有私有引用 | 13 |
+| 闭合 | **13** |
+| 新增 | 6 |
+| 剩余 | **6** |
+
+**这 6 条是文字层自己的下层依赖**：`ShapeFont`、`CanvasFontBaselines`、`FontCollection::Initialize`/`Select`、`MissingFontRun`、`GlyphColorMask`。它们每一个都有此前验证过的 Linux 实现，只是这批还没编译 `font_shaping`、`font_missing`、`font_collection_linux`、`glyph_color`。
+
+## 这一轮的教训：加单元不是越多越好
+
+我最初一次加了 10 个单元 + `css_components`，结果链接报**重复定义**——其中 **7 个单元和 `css_components` 早就在前序对象 `runtime-batch.o` 里**。
+
+于是改法：**只加真正定义那 6 个未解析符号的单元**（3 个），让下一轮的 delta 告诉我下面还有哪一层。先 75 个单元（重复），再 68 个（仍重复），最后 67 个（干净通过）——两次重复都是因为没有先查基线里已有什么。
+
+另外修了三处真实接线：延后清单、启动器硬写计数、以及 FreeType/Fontconfig 头文件的挂载路径（`/private` 本身只读，嵌套挂载点建不出来，改挂 `/font-include`）。
+
+回执 `deliverables/linux-ruyijs-canvas-r238/canvas-layer-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
