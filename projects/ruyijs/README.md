@@ -1080,6 +1080,38 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-bulk3-r286/bulk3-validation.json`。
 
+## 未定义符号归零了
+
+用宿主机上全部累积对象（1179 个参与链接）做了一次完整链接：
+
+| 项 | 值 |
+|---|---|
+| 链接的私有对象 | **1179** |
+| **未定义符号** | **0** |
+| 重复定义 | 20 |
+
+**这是第一次未定义符号归零。**产品 shell 需要的每一个私有符号，现在都由某个已编译对象提供。
+
+## 剩下的是记账问题，不是缺代码
+
+20 个重复来自两处，都已查明：
+
+**一、`web_styling` 用 `#include` 聚合了 52 个 `domain/styling` 实现**——那些单元单独编译就会把同一批符号定义两遍。已加规则：被别的单元 `#include` 的单元跳过。
+
+**二、跨批次重叠**——`web_messaging` 在旧批次和本轮都有，旧对象与新对象冲突。已加规则：新一轮已有同名单元则不加入旧对象。
+
+## 这个里程碑的性质
+
+**缺口性质变了**：不再是「缺代码」「缺头文件」，而是「哪个对象供应哪个单元」的记账问题。
+
+这类问题可以机械解决，不需要新的分析。
+
+## 边界
+
+链接仍未完成（20 个重复），`dist/js` 不存在，产品 shell 跑不起来。
+
+回执 `deliverables/linux-ruyijs-linkall-r289/linkall-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

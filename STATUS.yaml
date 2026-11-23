@@ -1025,6 +1025,21 @@ projects:
             not_done: [openssl_and_skia_header_paths, a_link_that_resolves, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-bulk3-r286/bulk3-validation.json
             evidence_sha256: cb5785d9bbb3c3ed377445459f5123efd275e6c766666dec7f5cb638b4d6b6b6
+          native_product_link_all:
+            input_commit: d0370a6
+            terminal: product_link 1
+            scope: 'a link attempt with every private object the host has produced'
+            private_objects_linked: 1179
+            undefined_symbols: 0
+            duplicate_symbols: 20
+            milestone: 'undefined symbols reached zero: every private symbol the shell needs is supplied by a compiled object'
+            duplicates_explained:
+              - "web_styling's model units include 52 domain/styling implementations directly, so compiling those separately defined their symbols twice; the build now skips a unit another unit includes"
+              - 'twenty duplicates remain from a previous-batch object overlapping a freshly compiled unit'
+            why_it_matters: 'the gap is no longer missing code or headers; it is bookkeeping about which object supplies a unit'
+            not_done: [a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
+            evidence: deliverables/linux-ruyijs-linkall-r289/linkall-validation.json
+            evidence_sha256: 2061cc3e155127852364cb934651598d34e233e982603ae34d4687a7c7c50a75
           private_product: pending
     inner_repo_state:
       exists: true
