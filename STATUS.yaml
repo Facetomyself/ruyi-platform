@@ -1085,6 +1085,24 @@ projects:
             not_done: [rerun_after_cairo_fix, font_shape_linux_cause, a_link_that_resolves]
             evidence: deliverables/linux-ruyijs-crypto-geo-r298/cryptogeo-validation.json
             evidence_sha256: 329cd1a1a6f5674bb964f9f86d97bb55879bc1291002c0b512abba9a3b31dfcc
+          native_geometry_retry:
+            input_commit: 3762f3d
+            terminal: units_compile_partial
+            scope: 'the web_geometry retry after the fribidi and cairo roots were supplied'
+            pass: {ok: 62, fail: 5, elapsed_seconds: 192}
+            achieved: 'font_shape_linux now compiles once fribidi.h is on the path, which was the unit whose cause was unknown'
+            remaining_five:
+              font_aliases: 'Windows unit using IDWriteFontCollection and HKEY'
+              font_collection: 'Windows collection replaced by font_collection_linux'
+              font_face_mac: 'macOS unit asking for CoreText'
+              glyph_mask: 'Windows glyph mask replaced by glyph_mask_linux'
+              svg_path: 'progressed past cairo and now needs prcpucfg.h, a forwarded NSPR header'
+            path_lessons:
+              - 'the metrics batch staged only fontconfig and freetype2, so fribidi had to come from the fontshape batch'
+              - 'a symlinked include directory does not survive a bind mount, so the headers were copied instead'
+            not_done: [prcpucfg_for_svg_path, a_link_that_resolves, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-geo-r302/geo-validation.json
+            evidence_sha256: 8d6063561b6911d0a5cc0dde49d003da75d5c2ee1f54d172226d698caf6ad5fa
           private_product: pending
     inner_repo_state:
       exists: true

@@ -1206,6 +1206,36 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-crypto-geo-r298/cryptogeo-validation.json`。
 
+## `font_shape_linux` 解决了，`svg_path` 推进一层
+
+| 项 | 上一轮 | 这一轮 |
+|---|---|---|
+| geometry 通过 | 61 | **62** |
+| 失败 | 6 | **5** |
+
+**上一轮「原因未知」的 `font_shape_linux` 现在通过了**：它缺 `fribidi.h`，而那个头在 **`fontshape-r99`** 的 staged 树里，不在 `fontmetrics-r97` 那份（只有 fontconfig 和 freetype2）。
+
+## 剩余 5 个
+
+| 单元 | 性质 |
+|---|---|
+| `font_aliases` / `font_collection` / `glyph_mask` | **Windows** 实现 |
+| `font_face_mac` | **macOS** 实现 |
+| `svg_path` | 越过了 Cairo，现在缺 `prcpucfg.h` |
+
+**4 个是别的平台**，Linux 上不该编译。真正待办只剩 `svg_path`。
+
+## 两个路径教训
+
+1. **staged 树的批次不同内容也不同**——`fontmetrics` 只暂了 fontconfig+freetype2，`fontshape` 才有 fribidi+harfbuzz
+2. **符号链接活不过 bind mount**——`/tmp/cairoinc/cairo` 指向宿主机绝对路径，容器内看不见。改成复制真实目录才行
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-geo-r302/geo-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
