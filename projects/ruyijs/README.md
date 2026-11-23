@@ -943,6 +943,42 @@ browser_environment 1 · resource_network 1 · web_platform 1 · web_security 1
 
 回执 `deliverables/linux-ruyijs-allruntime-r280/allruntime-validation.json`。
 
+## 整目录一次编译：document_model 248 个全过
+
+上一轮确认了「整目录一次编译」可行，这一轮拿最大的目录验证。
+
+| 项 | 值 |
+|---|---|
+| 单元数 | **248** |
+| 编译成功 | **248** |
+| 失败 | **0** |
+| 耗时 | **943 秒** |
+
+**吞吐量测出来了：每单元约 3.8 秒。**
+
+按这个速率，全树 1355 个单元约需 **86 分钟**编译。这是**分几次有界批次**的量，不是一次能跑完的。
+
+## document_model 的符号全部解析
+
+上一轮那 5 个 `document_model::Realm::*` 符号**全部解析成功**，说明整目录编译是对的。
+
+剩余 20 个现在集中在：
+
+```
+web_workers 6 · browser_environment 4 · resource_network 2
+web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_security 1
+```
+
+## 这一轮没有新踩坑
+
+编译一次通过，链接零重复。和第 140-143 轮反复撞墙相比，**说明前几轮把机制修对了**：异常分类器、生成头路径、对象前缀分离，现在都能稳定工作。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。剩余约 1100 个单元待编译。
+
+回执 `deliverables/linux-ruyijs-docmodel-r282/docmodel-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

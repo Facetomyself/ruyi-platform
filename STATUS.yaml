@@ -972,6 +972,19 @@ projects:
             not_done: [document_model_and_browser_environment_units, a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
             evidence: deliverables/linux-ruyijs-allruntime-r280/allruntime-validation.json
             evidence_sha256: f5873b5312e7fb0f1b6bd97170308ab6ed903cd3b398657f07b81eb33af3a210
+          native_document_model_closed:
+            input_commit: c19a766
+            terminal: product_link 1
+            scope: 'document_model compiled whole and linked into the product shell'
+            document_model: {total: 248, compiled: 248, failed: 0, elapsed_seconds: 943}
+            throughput: '3.8 seconds per unit, which puts the full 1355-unit tree at roughly 86 minutes of compile time'
+            duplicate_symbols: 0
+            undefined_symbols: 20
+            grouped: {web_workers: 6, browser_environment: 4, resource_network: 2, web_broadcast: 2, web_geometry: 2, web_styling: 2, web_platform: 1, web_security: 1}
+            progress: 'the five document_model symbols from the previous round all resolve; what remains is browser_environment and the web_ families'
+            not_done: [browser_environment_and_web_units, a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
+            evidence: deliverables/linux-ruyijs-docmodel-r282/docmodel-validation.json
+            evidence_sha256: 3f9997cd0699be8e2a1b9483439c1c51cc66934bab19893dcd6d32f41fee0779
           private_product: pending
     inner_repo_state:
       exists: true
