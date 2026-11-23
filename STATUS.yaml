@@ -1237,6 +1237,17 @@ projects:
             not_done: [rerun_after_the_getrandom_pin, the_three_styling_symbols, a_link_that_resolves]
             evidence: deliverables/linux-ruyijs-link2-r327/link2-validation.json
             evidence_sha256: a625683d06b705513e470575884fdcf7db378d626dbbbef253f1b1995ba8f6c2
+          native_styling_symbols:
+            input_commit: 0447a7b
+            terminal: styling_symbols_traced
+            scope: 'tracing the three styling symbols'
+            established: 'the symbols are declared in css_color_space.h and defined in css_color_space.cpp; css_color_resolve.cpp only calls them and is the one the skip rule excludes, while css_color_space.cpp is not included anywhere and should have compiled'
+            unresolved: 'two compile attempts produced no domain/styling objects at all while reporting no failures, so the loop produced nothing rather than failing; the container path check could not print its output'
+            ruled_out: 'project symbols rather than library entries, plain unconditional unit, nothing hidden or versioned'
+            next_step: 'confirm from inside the container that the mount resolves and find sees the file, then compile that single unit by name'
+            not_done: [the_three_styling_symbols, getrandom_after_its_pin, a_link_that_resolves]
+            evidence: deliverables/linux-ruyijs-styling-r329/styling-validation.json
+            evidence_sha256: a56f92fc52a575bf0a78ccc00993e40d5dcabddc256ecfc2b02b3141cd1479a7
           private_product: pending
     inner_repo_state:
       exists: true

@@ -1588,6 +1588,37 @@ GLOBAL DEFAULT UND getentropy
 
 回执 `deliverables/linux-ruyijs-link2-r327/link2-validation.json`。
 
+## 三个 styling 符号：查清了定义，但没解决编译
+
+## 已经确认的
+
+| 事实 | 结果 |
+|---|---|
+| 符号定义位置 | `css_color_space.cpp` 第 164 行起 |
+| `css_color_resolve.cpp` | 只是**调用**，定义不在那里 |
+| 它被包含吗 | 是，被 `model_css_rules.cpp` 包含，所以跳过规则**正确** |
+| `css_color_space.cpp` 被包含吗 | **没有**，跳过规则不该作用于它 |
+
+## 没解决的
+
+两次编译都没有产出任何 `domain/styling` 对象，**失败列表却是空的**；这说明循环什么都没做，而不是失败了。
+
+最后一次探针没能打印输出，容器内的路径**仍未确认**。
+
+## 排除掉的
+
+符号是**项目符号**，不是库入口；定义单元是普通的无条件编译的 `.cpp`；没有任何 hidden 或版本化因素。
+
+## 下一步
+
+从容器内部确认挂载解析正常、`find` 能看到该文件，然后**按名字单独编译那一个单元**；这比修循环更直接。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。剩余 4 个符号。
+
+回执 `deliverables/linux-ruyijs-styling-r329/styling-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
