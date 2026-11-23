@@ -1236,6 +1236,43 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-geo-r302/geo-validation.json`。
 
+## `svg_path` 编译出来了，`web_geometry` 移植完成
+
+| 项 | 上一轮 | 这一轮 |
+|---|---|---|
+| geometry 通过 | 62 | **63** |
+| 失败 | 5 | **4** |
+| `svg_path.o` | 无 | **89,976 字节** |
+
+剩余 4 个全是其他平台的单元：`font_aliases`、`font_collection`、`glyph_mask` 是 Windows，`font_face_mac` 是 macOS。
+
+**`web_geometry` 里没有待移植的单元了。**
+
+## `svg_path` 花了三轮头文件
+
+1. `cairo/cairo.h`：得让 include 根持有**真实的 `cairo/` 目录**
+2. `prcpucfg.h`：在 `config/external/nspr`
+3. `md/_linux.cfg`：在 `nsprpub/pr/include`
+
+每次修好一个就冒出下一个。这三个是**真实的依赖链**，不是我在原地打转——错误信息每次都变了。
+
+## 一个质变的信号
+
+链接的 20 个未定义符号**不再来自项目代码**：
+
+| 来源 | 数量 |
+|---|---|
+| `hb_*`（HarfBuzz 入口） | **19** |
+| `getentropy`（libc） | 1 |
+
+**没有一个 `ruyijs::` 符号缺失了。**这意味着下一步是**链接 `libharfbuzz.so.0`**，属于共享库输入问题，不再是编译问题。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-svg-r305/svg-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

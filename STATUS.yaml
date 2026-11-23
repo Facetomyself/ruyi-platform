@@ -1103,6 +1103,21 @@ projects:
             not_done: [prcpucfg_for_svg_path, a_link_that_resolves, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-geo-r302/geo-validation.json
             evidence_sha256: 8d6063561b6911d0a5cc0dde49d003da75d5c2ee1f54d172226d698caf6ad5fa
+          native_geometry_ported:
+            input_commit: c3029ff
+            terminal: product_link 1
+            scope: "geometry reaches four failures and the link's undefined set changes character"
+            geometry: {ok: 63, fail: 4, elapsed_seconds: 193}
+            svg_path: 'compiled at last: 89,976 bytes after three header fixes'
+            geometry_remaining: 'four units for other platforms; nothing in web_geometry is left to port'
+            link_undefined: 20
+            link_undefined_grouped: {harfbuzz: 19, getentropy: 1}
+            significance: 'the undefined symbols are no longer project code: they are HarfBuzz entry points the linked object refers to, plus getentropy from libc'
+            header_rounds: ['prcpucfg.h in config/external/nspr', 'md/_linux.cfg in nsprpub/pr/include', 'the cairo root had to hold a real cairo/ directory']
+            next_step: 'link libharfbuzz.so.0 from the staged runtime libraries, a shared-library input rather than a compilation issue'
+            not_done: [harfbuzz_in_the_link, a_link_that_resolves, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-svg-r305/svg-validation.json
+            evidence_sha256: 402485dccf9e897ad1e93d4ecccb238edf459b4cb4af9a0c102c33bb4f5eb54e
           private_product: pending
     inner_repo_state:
       exists: true
