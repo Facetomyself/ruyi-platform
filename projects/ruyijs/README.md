@@ -902,6 +902,47 @@ web_geometry · web_observers · web_security
 
 回执 `deliverables/linux-ruyijs-deeper-r276/deeper-validation.json`。
 
+## runtime 目录整层关闭了
+
+上一轮是「每解决一层还有一层」。这一轮换了做法：**不再猜哪些单元，直接把 `src/runtime` 全部 90 个单元一次编译**。
+
+| 项 | 结果 |
+|---|---|
+| 总单元 | 90 |
+| 编译成功 | **85** |
+| 失败 | 5 |
+| 重复定义 | **0** |
+| 未定义符号 | 20 |
+
+**那 5 个失败是预期行为**：它们是 Windows 的 pipe 单元，而 `product_sources` 早就声明 Linux 用 `pipe_linux.cpp` 替换它们——替换版编译成功了。
+
+## 一个必须用对规则的细节
+
+16 个单元用了 `try`/`throw`，而 donor 命令带 `-fno-exceptions`。产品里**已有** `needs_exceptions` 分类器，我直接调它，而不是另立一份清单。
+
+如果我自己列清单，就会漏掉 `api_monitor` 这种通过 `domain/shared/entity.h` 间接用 `throw` 的单元。
+
+## 缺口现在的分布
+
+```
+web_workers 6 · document_model 5 · web_broadcast 3 · web_styling 2
+browser_environment 1 · resource_network 1 · web_platform 1 · web_security 1
+```
+
+**`src/runtime` 里已经一个都不缺了。** 剩下的是别的目录。
+
+## 规模必须说清楚
+
+私有树共 **1355 个单元**，这一轮覆盖 90 个。最大的剩余目录：`document_model` **248** 个、`resource_network` **177** 个。
+
+按这个比例，把 1355 个全部编译并链接，是**几十轮的量级**，不是几步的事。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-allruntime-r280/allruntime-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

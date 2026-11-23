@@ -957,6 +957,21 @@ projects:
             not_done: [a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
             evidence: deliverables/linux-ruyijs-deeper-r276/deeper-validation.json
             evidence_sha256: 567a445d8cb34d8da52d929bd3b6edbd014177d8d5b60802aeb6e09a3dcf8919
+          native_runtime_directory_closed:
+            input_commit: 26aaa64
+            terminal: product_link 1
+            scope: 'the whole src/runtime directory compiled and linked into the product shell'
+            runtime_units: {total: 90, compiled: 85, failed: 5}
+            failures_expected: 'the five are the Windows pipe units that product_sources replaces with pipe_linux on Linux, and that replacement compiled'
+            exceptions: 'sixteen units use try or throw and needed -fexceptions, decided by the product classifier rather than a second list'
+            duplicate_symbols: 0
+            undefined_symbols: 20
+            grouped: {web_workers: 6, document_model: 5, web_broadcast: 3, web_styling: 2, browser_environment: 1, resource_network: 1, web_platform: 1, web_security: 1}
+            what_changed: 'the runtime layer is closed: no symbol from src/runtime is missing, and the remaining twenty come from document_model and the web_ families'
+            scale: 'the tree holds 1355 private units; this pass covered 90, and the largest remaining directories are document_model with 248 and resource_network with 177'
+            not_done: [document_model_and_browser_environment_units, a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
+            evidence: deliverables/linux-ruyijs-allruntime-r280/allruntime-validation.json
+            evidence_sha256: f5873b5312e7fb0f1b6bd97170308ab6ed903cd3b398657f07b81eb33af3a210
           private_product: pending
     inner_repo_state:
       exists: true
