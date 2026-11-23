@@ -307,6 +307,29 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-glyphmetrics-r179/glyph-metrics-validation.json`。
 
+`MeasureCanvas` 现在**十项全过**（`failures: 0`）。这个结果不是靠调整预期得来的——是修掉三个真缺陷之后自然成立的。
+
+**缺陷一：tag 被交换了两次（最关键）。** `TryGetFontTable` 的调用方传入的是 DirectWrite tag，也就是四字符 tag 的字节反转读法：HarfBuzz 要 `'cmap'`，共享的 `ReadTable` 先做一次 `_byteswap_ulong` 再交下来。我却又按数值高位重建了一遍，等于换回原样再翻转，于是每次查表实际问的是 `'pamc'`。后果是**所有表都取不到**，`ShapeFont` 对任何字符都返回 glyph 0——`H` 和空格都必须用 `.notdef` 的度量。
+
+这一点是靠直接调用 `ShapeFont` 打印 run 才看见的：修之前 `glyph ids: 0`，修之后 `43`（H）与 `3`（space）。
+
+**缺陷二：`Select` 每次调用都新建 face。** Canvas owner 用**指针比较**来切分 run，指针永不相等就意味着每个字符各自成一个 run。改为在 collection 内按文件与索引缓存。
+
+**缺陷三：缓存交给 `ComPtr` 时用了 `Attach`。** `Attach` 把裸指针交给一个新的 `shared_ptr`，于是同一对象有两个主人，探针直接以 SIGABRT 退出。新增 `Share` 复制所有权。
+
+修复后的实测值经得起对账：
+
+| 项 | 值 | 对账 |
+|---|---|---|
+| `width16` | 12.0333 | 与 HarfBuzz 设计推进 12.0312 一致 |
+| `width32` | 24.0667 | 正好翻倍 |
+| `ShapeFont("H")` | 722 app / glyph 43 | 正确字形 |
+| `ShapeFont(" ")` | 305 app / glyph 3 / **ink 为空** | 空格无墨迹 |
+
+同时纠正了前两轮的判断：把空格报墨迹说成「共享代码既有行为」是错的，根因在本移植的度量与 tag 处理。`font_shaping` 的 run ink 初值也改为空——`ProjectInk` 本身会合并字体盒，SVG 结果不受影响，这个等价关系先用算术验证过，再用十项全过的 canvas 结果确认。
+
+回执 `deliverables/linux-ruyijs-measure-pass-r190/measure-pass-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

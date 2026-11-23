@@ -664,6 +664,22 @@ projects:
             not_done: [ink_free_spaces, glyph_masks, colour_glyphs, product_link, browser]
             evidence: deliverables/linux-ruyijs-glyphmetrics-r179/glyph-metrics-validation.json
             evidence_sha256: 1bfca12ed5a2f85c33f46fee48fc799787422a19946a3279ae69b6358fe6de45
+          native_linux_measure_canvas:
+            input_commit: 7bf3768
+            terminal: canvas_measure_verified 0
+            scope: 'SystemFonts::MeasureCanvas executes on Linux and passes every check'
+            checks_passed: 10
+            checks_failed: 0
+            observed: {width16: 12.0333, width32: 24.0667, ascent: 15.0, descent: 4.0}
+            cross_check: 'width16 matches the HarfBuzz design advance for H (12.0312) and doubles exactly at 32 px'
+            defects_fixed:
+              - 'the OpenType tag was swapped twice, so every table lookup asked for pamc and ShapeFont saw glyph 0'
+              - 'Select opened a new face per call, so face-pointer run splitting never matched'
+              - 'the face cache hand-out used Attach on a cached pointer, double-freeing it'
+            corrections: 'the space-ink failure previously called inherited shared behaviour was this port; the run-ink seed also starts empty now, with ProjectInk unaffected'
+            not_done: [glyph_masks, colour_glyphs, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-measure-pass-r190/measure-pass-validation.json
+            evidence_sha256: b5c9b0193483e2386b230dda41042cdbdec3a5a3fe773cd0f435596979e38114
           private_product: pending
     inner_repo_state:
       exists: true
