@@ -904,6 +904,19 @@ projects:
             not_done: [linking_with_this_object, compiling_the_other_candidates, runtime_serving_the_client_abi, browser]
             evidence: deliverables/linux-ruyijs-shell0-r265/shell0-compile-validation.json
             evidence_sha256: f2d2c7bde355ccdc7f3c14db4eff9127e4da001922255092ddf5a6c035fbede2
+          native_product_link_attempt:
+            input_commit: 880566d
+            terminal: product_link 1
+            scope: 'the product link runs with the generated shell object and reports its remaining undefined symbols'
+            units_compiled: [shell0, arguments, exception_capture, runtime, worker_mode]
+            what_worked: 'link_product replaced the donor shell object and the donor argv ran to completion against libjs_static.a and libjsrust.a with the four runtime objects'
+            what_failed: 'the linker then named symbols the link does not define'
+            undefined_reported: 20
+            next_layer: ['interaction::Realm and execution_scheduling::Realm', 'Pipe and CreatePage', 'Frames, TopLevel and BrowsingContext', 'domain::styling::CssSetInitialFontFamily']
+            significance: 'the gap is now a concrete symbol list, and each group belongs to a layer an earlier batch already compiled and verified'
+            not_done: [compiling_the_layer_beneath, a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
+            evidence: deliverables/linux-ruyijs-product-link-r268/product-link-validation.json
+            evidence_sha256: f42020be68faf04c27a4202d15883521dc3b0fab0026112b962fc54a75a63d85
           private_product: pending
     inner_repo_state:
       exists: true

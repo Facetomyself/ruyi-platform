@@ -747,6 +747,45 @@ Firefox HEAD 与固定参照一致。
 
 回执 `deliverables/linux-ruyijs-shell0-r265/shell0-compile-validation.json`。
 
+## 产品链接跑起来了，缺口变成一份具体清单
+
+**`product_link 1`** —— 但这一轮的进展在过程里：
+
+| 项 | 结果 |
+|---|---|
+| 运行时单元编译 | **4/4 全过**，1,219,608 字节 |
+| 五个 `ruyijs::` 符号 | **全部有定义** |
+| `link_product` 替换 | 正常，donor argv 一路跑到链接器 |
+| 链接结果 | 20 个未定义符号 |
+
+**关键**：`libjs_static.a`、`libjsrust.a`、28 个 donor 对象全都参与了链接，没有 OOM，没有替换错误。
+
+## 缺口从「不知道」变成「知道」
+
+```
+ruyijs::interaction::Realm::Install / InstallWorkerDerived
+ruyijs::execution_scheduling::Realm::~Realm
+ruyijs::Pipe::ConnectAsync
+ruyijs::CreatePage
+ruyijs::Frames / TopLevel / BrowsingContext
+ruyijs::DescribeException / EncodeReply
+ruyijs::domain::styling::CssSetInitialFontFamily
+```
+
+这 20 个符号**分组后全部落在此前批次已验证过的层**：`interaction-v1`、`workers-v1`、`network-carrier-v1`、`styling-v1`。也就是说这一层已经有了，只是没接进产品链接。
+
+## 一个我自己造成的错
+
+编译出的 shell 对象原本躺在 `/tmp` 这个 tmpfs 里，容器退出就没了，导致第一次链接无对象可用。已改为保存到输出目录。
+
+## 边界
+
+**这不是一个能跑的产品 shell。** 20 个未定义符号意味着链接没有完成，`dist/js` 仍然不存在。
+
+但下一轮的工作不再是探索——是**按清单把已验证的层接进来**。
+
+回执 `deliverables/linux-ruyijs-product-link-r268/product-link-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
