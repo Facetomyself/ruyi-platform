@@ -680,6 +680,18 @@ projects:
             not_done: [glyph_masks, colour_glyphs, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-measure-pass-r190/measure-pass-validation.json
             evidence_sha256: b5c9b0193483e2386b230dda41042cdbdec3a5a3fe773cd0f435596979e38114
+          native_linux_glyph_mask:
+            input_commit: 697504d
+            terminal: glyph_mask_verified 0
+            scope: 'GlyphMask implemented over FreeType and executed with grayscale coverage masks'
+            checks_passed: 13
+            checks_failed: 0
+            observed: {glyph: 43, box: [3, -23, 18, 23], covered: 214, of_pixels: 414, darkest: 0}
+            implementation: 'face sized to the device em, linear part as the outline transform, subpixel offset folded in with the y axis flipped, FreeType grayscale bitmap corrected by the Skia mask table'
+            restructure: 'glyph_style.cpp is the DirectWrite mode chooser and is now Windows-only; the Linux mask unit supplies GlyphStyle, SystemTextGamma and SystemTextContrast'
+            not_done: [colour_glyphs, glyph_outline, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-glyphmask-r191/glyph-mask-validation.json
+            evidence_sha256: 62e42e510dd80f49f22b0c5d78a83ad658d61c87e871491ced929098e68335cd
           private_product: pending
     inner_repo_state:
       exists: true

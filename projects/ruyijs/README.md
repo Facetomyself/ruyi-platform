@@ -330,6 +330,27 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-measure-pass-r190/measure-pass-validation.json`。
 
+字形掩码（`GlyphMask`）现在也在 Linux 上真正跑通了：**13 项全过**。
+
+实现方式和 `MeasureCanvas` 那条链不同——掩码不需要绕 XPCOM，直接交给 FreeType：把 face 设成设备 em，把 `linear` 矩阵作为轮廓变换传进去，亚像素偏移折进 `FT_Set_Transform`（y 轴翻转），渲染普通灰阶位图，最后用**同一张 Skia mask 表**做校正。这样它的输出语义与 DirectWrite 那条路一致，而实现只依赖 FreeType。
+
+实测 `H` 在 32px 下：
+
+| 项 | 值 |
+|---|---|
+| glyph | 43 |
+| box | `[3, -23, 18×23]` |
+| 覆盖像素 | 214 / 414 |
+| 最暗值 | 0（纯黑） |
+
+这些数字互相自洽：18 像素宽对应约 0.56 em，23 像素高对应约 0.72 em，起点在笔位右 3px、基线之上 23px——正是一个 `H` 该有的位置。检查项还包括双倍尺寸把宽高都翻倍、亚像素偏移不改变位图尺寸、以及**空格产出空掩码而不是失败**（空格有推进、没有轮廓，空掩码就是正确答案）。
+
+过程中做了一次必要的职责重划：`glyph_style.cpp` 是 DirectWrite 的**渲染模式选择器**，它读渲染参数、比较 `DWRITE_RENDERING_MODE` 常量，Linux 上根本没有这个概念。于是整个单元归为 Windows-only，由 Linux 掩码单元自己回答 `GlyphStyle`、`SystemTextGamma`、`SystemTextContrast`——canvas 要的只有灰阶一种模式。
+
+上一轮那个 `LINK_FAIL` 的真实原因也记下来了：探针的编译单元列表漏了 `glyph_style`，而 `SystemTextGamma` 定义在那里。补上之后才暴露出更根本的问题——那个单元本身不该在 Linux 编译。
+
+回执 `deliverables/linux-ruyijs-glyphmask-r191/glyph-mask-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
