@@ -728,6 +728,18 @@ projects:
             not_done: [sampled_colour_snapshot, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-textpath-r202/text-path-validation.json
             evidence_sha256: c7d984c619a41ebffbb20d0ba84f3f700cfffdfa08962ca49cdea98e4c1d8a8e
+          native_linux_colr_sampled:
+            input_commit: 6c8cb48
+            terminal: colr_sampled_verified 0
+            scope: 'sampled 2x colour snapshot path executed on a real colour font'
+            checks_passed: 11
+            checks_failed: 0
+            observed: {snapshot: [-2, -30, 36, 36], layers: 2, sampled: true}
+            cross_check: 'the snapshot box equals an independent computation from the head bbox (-27,-91)-(541,477) at 512 upem and 32 px'
+            closes: 'every canvas text layer now has an executed Linux result'
+            not_done: [product_link, dist_js, browser, page_canvas]
+            evidence: deliverables/linux-ruyijs-sampled-r205/sampled-validation.json
+            evidence_sha256: 51f37343feb35b51716813460a59334de9d2f5f06138be25dccc51d28756984f
           private_product: pending
     inner_repo_state:
       exists: true

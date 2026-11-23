@@ -410,6 +410,29 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-textpath-r202/text-path-validation.json`。
 
+最后一层 `sampled` 颜色快照也通过了。这条路径按字体的 **head bbox** 决定 2× 快照画布，而不是按字形，所以验证必须对着表算：`TwemojiMozilla` 的 bbox 是 `(-27,-91)-(541,477)`、512 upem，32px 下取整得到 `[-2,-30,36×36]`——**与实测逐值一致**。
+
+## Canvas 文字在 Linux 上的完整状态
+
+五层全部有实际执行结果：
+
+| 层 | 结果 | 验证方式 |
+|---|---|---|
+| 度量 `MeasureCanvas` | 10/10 | `width16=12.0333` 对上 HarfBuzz 设计推进 |
+| 掩码 `GlyphMask` | 13/13 | `H` 的 18×23 盒、214 覆盖点尺寸自洽 |
+| 调色板 `GlyphPalette` | 3/3 | 首项与独立 Python 解析一致 |
+| COLR 图层 | 7/7 | 两层颜色对上 palette entry 658 |
+| 轮廓 `BuildCanvasTextPath` | 14/14 | 宽 17.78px 对上 `1138/2048×32` |
+| 快照 `sampled` | 11/11 | 盒 `[-2,-30,36×36]` 对上 head bbox |
+
+这些数字的价值在于**每一条都对得上一个独立算出的值**，而不是「跑通了就算过」。途中修掉的每一个缺陷——度量语义、tag 双重交换、face 身份、缩放系数、y 轴方向、轮廓闭合——也全部是靠这种对账发现的。
+
+## 仍然缺失的
+
+这里的边界必须说清楚：**以上都是单元级执行，没有一条经过产品链接**。缺的仍然是 `dist/js`、真实页面 canvas、浏览器渲染。这不等于 Canvas 在私有产品里可用，只等于它的每一层在 Linux 上各自算对了。
+
+回执 `deliverables/linux-ruyijs-sampled-r205/sampled-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
