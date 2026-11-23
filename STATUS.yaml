@@ -741,23 +741,21 @@ projects:
             evidence: deliverables/linux-ruyijs-sampled-r205/sampled-validation.json
             evidence_sha256: 51f37343feb35b51716813460a59334de9d2f5f06138be25dccc51d28756984f
           native_linux_skia_target:
-            input_commit: f9274ce
-            terminal: skia_face 139
-            scope: 'skia_target compiles and links on Linux; text drawing faults inside FillText at address zero'
-            compiled_units: 5
-            link: ok
-            achieved:
-              - 'skia_target.cpp compiles against the pinned Skia headers on Linux for the first time'
-              - 'TypefaceFor builds the Skia typeface from the FreeType face through the Cairo port'
-              - 'the probe links with the pinned Skia archive, HarfBuzz, gfx/2d glue, the WebRender export, mozalloc/mfbt, BlockingResourceBase and libnspr4 confirmed as NEEDED'
-            observed_failure: 'SIGSEGV with rip 0x0, located inside SkiaFaceContext rather than in Skia itself'
-            corrected_attribution: 'the earlier claim that PR_CallOnce was dropped is wrong: PR_CallOnce appears only in NSS objects, and libnspr4 is a NEEDED entry with no unresolved mozilla symbol'
-            actual_cause: 'BlockingResourceBase::BlockingResourceBase in xpcom/base0, base1, threads0 and threads1 is a 17-byte stub with a prologue and return only, so SharedFTFace carries a mutex with no state and its first lock jumps to address zero'
-            consequence: 'SharedFTFace is not usable in this donor build, so the Cairo typeface port cannot be driven from it as written'
-            next_step: 'either give the face a different context that the port accepts, or build the missing XPCOM initialisation into the probe'
-            not_done: [skia_text_drawn, product_link, dist_js, browser]
-            evidence: deliverables/linux-ruyijs-skia-target-r206/skia-target-validation.json
-            evidence_sha256: 199320eec7271820b78bd20aceb080761a1a7627fc807f78d95741985a7eab65
+            input_commit: 0f20a07
+            terminal: skia_text_draw_verified 0
+            scope: 'skia_target FillText draws text on Linux through a typeface built from the FreeType face'
+            checks_passed: 6
+            checks_failed: 0
+            observed: {inked: 222, box: [[11, 20], [28, 43]], glyph: H, size: 32, origin: [8, 44]}
+            root_cause: 'mozilla::Mutex inherits OffTheBooksMutex then detail::MutexImpl, whose implementation exists only in mozglue/misc/Mutex_posix.o; no link included it, so Mutex::Lock inlined a call to an unimplemented method and jumped to address zero'
+            fix: 'link Mutex_posix.o'
+            proof: 'an isolating probe with no Skia in the link went from faulting in the SharedFTFace constructor to reporting a context and lock=1'
+            corrections: 'an earlier round blamed a dropped PR_CallOnce, and the next named an empty BlockingResourceBase stub; both were wrong, and the stub is correct for a non-debug build'
+            probe_defect_fixed: 'Pattern defaults to a transparent colour, so the first successful run drew nothing until an opaque black was set'
+            draw_geometry: 'an H at 32 px from origin (8,44) lands at x 11..28 and y 20..43, 17 px wide and 23 px tall above the baseline'
+            not_done: [product_link, dist_js, browser, page_canvas]
+            evidence: deliverables/linux-ruyijs-skia-draw-r225/skia-draw-validation.json
+            evidence_sha256: 3aa88f846104d3a3f7e86d1be89b2fba9707484d9d470a48f3fe4f7ad0171908
           private_product: pending
     inner_repo_state:
       exists: true

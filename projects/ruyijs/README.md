@@ -433,31 +433,32 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-sampled-r205/sampled-validation.json`。
 
-## `skia_target` 的 Linux 进展：编译和链接通过，绘制未通（并纠正一处归因）
+## `skia_target` 打通了：Linux 上真正画出了文字
 
-**做到：**
-- `skia_target.cpp` 第一次在 Linux 上对着固定 Firefox 的 Skia 头编译通过
-- `TypefaceFor` 用 FreeType face 经 Cairo 端口造 Skia typeface
-- 探针链接成功，`libnspr4.so` 实测为 `NEEDED` 项，无任何 `mozilla_*` 未解析
+`FillText` 通过从 FreeType face 构造的 Skia typeface 在 CPU 面布上画出一个 32px 的 `H`：**6 项全过**，`inked=222`，墨迹盒 `x=11..28`、`y=20..43`。起点在 (8,44)、基线之上——17px 宽、23px 高，几何正确。
 
-**没做到：** 运行到 `FillText` 内 `rip 0x0`。
+## 根因：一个从未被链接的 mutex 实现
 
-## 上一轮的归因是错的，这一轮推翻了
+真正的修复只有一行——**链接 `mozglue/misc/Mutex_posix.o`**。
 
-上一轮我写「`BlockingResourceBase` 把 `InitStatics` 交给 `PR_CallOnce`，section GC 删掉了它」。这一轮逐条查证，**四条都不成立**：
+链条是：`SharedFTFace` 持有 `mozilla::Mutex` → 继承 `OffTheBooksMutex` → 继承 `detail::MutexImpl`（声明在 `mozglue/misc/PlatformMutex.h`）→ **实现只在 `Mutex_posix.o` 里**。之前所有链接都没带它，于是 `Mutex::Lock()` 内联的那个调用没有实现可解析，运行时跳到地址 0。
 
-1. `PR_CallOnce` **只出现在 NSS 的目标文件里**（`security/nss/lib/freebl/*`），与探针链接的任何 XPCOM 单元无关
-2. 最终二进制的 `NEEDED` 名列有 `libnspr4.so`
-3. 链接后的二进制**没有一个**名字含 `mozilla` 的未解析符号
-4. `BlockingResourceBase::BlockingResourceBase` 在 `base0`、`base1`、`threads0`、`threads1` 里都只有 **17 字节**——`push rbp / mov rsp,rbp /` 存参数 `/ pop rbp / ret`，**什么都没做**
+**验证方式是隔离实验**：一个不链接 Skia、只开字体并调 `SkiaFaceContext()` 的探针，加上 `Mutex_posix.o` 之前崩在构造函数里，加上之后立刻输出 `context=0x...`、`lock=1`，五个钩子全通过。这把故障与 Skia 彻底分开。
 
-**真正的根因**：`SharedFTFace` 持有 `mozilla::Mutex`，而这个 mutex 的基类在这个 donor 构建里是**空壳**，所以第一次加锁就跳到地址 0。
+## 前两轮的归因都不对，需要记下来
 
-定位方式是隔离实验：一个只开字体、调 `SkiaFaceContext()`、完全不链接 Skia 的探针，在 `stage:context` 之后、`stage:hooks` 之前崩溃——把故障锁死在 `SharedFTFace` 构造函数内部，与 Skia 无关。
+| 轮次 | 当时的结论 | 实际 |
+|---|---|---|
+| 第 128 轮 | `PR_CallOnce` 被 section GC 删除 | 错：`PR_CallOnce` 只在 NSS 目标文件里 |
+| 第 129 轮 | `BlockingResourceBase` 是空壳 | 也不算对：空壳对非 debug 构建是**正常的**，缺的是 `MutexImpl` |
 
-**结论**：`SharedFTFace` 在这套 donor 构建里不可用，Cairo 端口照现状无法被驱动。下一步要么给端口一个不需要 mutex 支撑的 context，要么补上缺失的 XPCOM 初始化。
+这两次都是**看起来很有解释力、但没验证到根**的结论。真正的定位靠的是把故障范围缩到一个不含 Skia 的最小探针，然后逐个补齐它调用的实现。
 
-回执 `deliverables/linux-ruyijs-skia-target-r206/skia-target-validation.json`。**不构成 Canvas 在 Linux 上的验收。**
+## 一处探针自身的缺陷
+
+修好 mutex 后第一次运行报 `FillText` 成功但 `inked=0`——因为 `Pattern` 默认颜色 alpha 为 0。canvas 永远会设颜色，是探针漏了。
+
+回执 `deliverables/linux-ruyijs-skia-draw-r225/skia-draw-validation.json`。
 
 ## Seed 关系（重要）
 
