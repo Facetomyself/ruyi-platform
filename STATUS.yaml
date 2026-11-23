@@ -1213,6 +1213,19 @@ projects:
             next_attempt_should: 'read what the linker says about these five names in full rather than the truncated summary, instead of a fifth guess'
             evidence: deliverables/linux-ruyijs-final4-r323/final4-validation.json
             evidence_sha256: 8ab43ef6424f8d165fb18fe13ab23a9f4d0e9575932d84c1ba244cf9a9493b5c
+          native_symbol_visibility:
+            input_commit: 682137b
+            terminal: visibility_fix_verified
+            scope: 'the visibility cause behind the five unbindable symbols, and the fix verified on one unit'
+            root_cause: 'the donor recipe force-includes config/gcc_hidden.h, a single visibility push(hidden) with no pop, so every declaration including system headers starts hidden'
+            evidence_before: 'readelf showed GLOBAL HIDDEN UND getentropy in the compiled unit'
+            evidence_after: 'readelf shows GLOBAL DEFAULT UND getentropy once the system header is included inside a push(default)/pop block'
+            why_the_previous_attempts_failed: 'a hidden undefined reference is never satisfied by a shared library, so naming libc, adding no-as-needed or linking the real harfbuzz file could not help'
+            why_the_donor_never_hit_it: 'donor objects carry no GLOBAL HIDDEN UND symbols because Mozilla reaches the C library through wrappers rather than calling it directly'
+            units_fixed: ['execution_scheduling/timer_precision.cpp', 'web_workers/process_linux.cpp']
+            still_open: 'harfbuzz entries in the canvas and font units may need the same treatment'
+            evidence: deliverables/linux-ruyijs-visibility-r324/visibility-validation.json
+            evidence_sha256: 1479821179f03c84db7a8adb76a093b5894840ca277a099d18f7866f7d506dc6
           private_product: pending
     inner_repo_state:
       exists: true

@@ -1502,6 +1502,55 @@ hb_set_get_empty · hb_unicode_combining_class · hb_unicode_funcs_get_default
 
 回执 `deliverables/linux-ruyijs-final4-r323/final4-validation.json`。
 
+## 找到根因了：符号可见性，不是库
+
+前几轮我试了加 `-lc`、`--no-as-needed`、换真实 harfbuzz 文件。都无效。
+
+这一轮完整读链接器输出的第一行，看到关键词：**`undefined hidden symbol`**。
+
+| 检查 | 结果 |
+|---|---|
+| 我编译的对象 | `GLOBAL HIDDEN UND getentropy` |
+| donor 的对象 | 无 `GLOBAL HIDDEN UND` |
+
+## 为什么是 hidden
+
+donor 的编译命令带 `-include config/gcc_hidden.h`，而那个头**只有一行**：
+
+```c
+#pragma GCC visibility push(hidden)
+```
+
+**没有 pop。**所以整个翻译单元里所有声明——**包括系统头里的**——都是 hidden。
+
+**hidden 的未定义引用永远不能被共享库解析**。这就是为什么库明明在、符号明明有，就是绑不上。
+
+## donor 为什么没踩到
+
+donor 的对象里**没有任何 `GLOBAL HIDDEN UND`**——Mozilla 通过 wrapper 访问 C 库，不直接调，所以那个配方从没产出这种形态。
+
+而 Linux 移植版**直接调用系统函数**，就必须说明这些入口点的可见性。
+
+## 修复后验证
+
+```
+GLOBAL DEFAULT UND getentropy
+```
+
+可见性变了，符号可以绑定了。
+
+## 这条教训
+
+我前几轮在**库层面**找原因（有没有链接、顺序对不对、要不要 as-needed），而问题在**符号层面**。
+
+**`undefined hidden symbol` 和 `undefined symbol` 是两回事**，我读日志时把后者当成了前者。
+
+## 边界
+
+链接仍未完成。canvas 和 font 单元里的 harfbuzz 引用可能需要同样处理。
+
+回执 `deliverables/linux-ruyijs-visibility-r324/visibility-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
