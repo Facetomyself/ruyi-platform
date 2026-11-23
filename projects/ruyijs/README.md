@@ -433,22 +433,31 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-sampled-r205/sampled-validation.json`。
 
-## `skia_target` 的 Linux 进展：编译和链接通过，绘制未通
-
-这是最后一个从未在非 Windows 上编译过的单元，也是剩下 8 条私有引用所在。本轮拿下两件事，第三件没拿下。
+## `skia_target` 的 Linux 进展：编译和链接通过，绘制未通（并纠正一处归因）
 
 **做到：**
 - `skia_target.cpp` 第一次在 Linux 上对着固定 Firefox 的 Skia 头编译通过
-- `TypefaceFor` 用 FreeType face 经 Cairo 端口造 Skia typeface；端口要求的 context 是 face 自己持有的真实 `SharedFTFace`（第 114 轮已证传 `nullptr` 必崩）
-- 探针链接成功：固定 Skia 归档、HarfBuzz、gfx/2d 胶水、WebRender 导出、mozalloc/mfbt、`BlockingResourceBase`、NSPR
+- `TypefaceFor` 用 FreeType face 经 Cairo 端口造 Skia typeface
+- 探针链接成功，`libnspr4.so` 实测为 `NEEDED` 项，无任何 `mozilla_*` 未解析
 
-**没做到：** 运行到 `FillText` 内部即以 `rip 0x0` 结束——**调用了空函数指针**。
+**没做到：** 运行到 `FillText` 内 `rip 0x0`。
 
-**卡点已查到底：** `BlockingResourceBase` 把 `InitStatics` 作为**函数指针**交给 `PR_CallOnce`，因此没有任何直接引用，`--gc-sections` 会把它删掉；而 `InitStatics` 是内部链接，`-u` 无法按名字锚定。这和第 120 轮同一症状。
+## 上一轮的归因是错的，这一轮推翻了
 
-**下一步不是继续试：** 要么为这个探针保留 XPCOM 对象的全部 section（此前试过会拖进无关引用），要么在调用前真正初始化 XPCOM 运行时。这一轮跑了 11 次有界容器（每次约 4 分钟），修掉了 include 根、`TextRun`/`Surface` 形状、空 context、gfx/2d 胶水、`BlockingResourceBase`、NSPR、rpath 语法、`--no-as-needed` 八处具体问题——但都是外围，核心那个空指针没有解开。继续加补丁是猜测，所以停在这里。
+上一轮我写「`BlockingResourceBase` 把 `InitStatics` 交给 `PR_CallOnce`，section GC 删掉了它」。这一轮逐条查证，**四条都不成立**：
 
-回执 `deliverables/linux-ruyijs-skia-target-r206/skia-target-validation.json`。**不构成 Canvas 在 Linux 上的验收**。
+1. `PR_CallOnce` **只出现在 NSS 的目标文件里**（`security/nss/lib/freebl/*`），与探针链接的任何 XPCOM 单元无关
+2. 最终二进制的 `NEEDED` 名列有 `libnspr4.so`
+3. 链接后的二进制**没有一个**名字含 `mozilla` 的未解析符号
+4. `BlockingResourceBase::BlockingResourceBase` 在 `base0`、`base1`、`threads0`、`threads1` 里都只有 **17 字节**——`push rbp / mov rsp,rbp /` 存参数 `/ pop rbp / ret`，**什么都没做**
+
+**真正的根因**：`SharedFTFace` 持有 `mozilla::Mutex`，而这个 mutex 的基类在这个 donor 构建里是**空壳**，所以第一次加锁就跳到地址 0。
+
+定位方式是隔离实验：一个只开字体、调 `SkiaFaceContext()`、完全不链接 Skia 的探针，在 `stage:context` 之后、`stage:hooks` 之前崩溃——把故障锁死在 `SharedFTFace` 构造函数内部，与 Skia 无关。
+
+**结论**：`SharedFTFace` 在这套 donor 构建里不可用，Cairo 端口照现状无法被驱动。下一步要么给端口一个不需要 mutex 支撑的 context，要么补上缺失的 XPCOM 初始化。
+
+回执 `deliverables/linux-ruyijs-skia-target-r206/skia-target-validation.json`。**不构成 Canvas 在 Linux 上的验收。**
 
 ## Seed 关系（重要）
 

@@ -741,7 +741,7 @@ projects:
             evidence: deliverables/linux-ruyijs-sampled-r205/sampled-validation.json
             evidence_sha256: 51f37343feb35b51716813460a59334de9d2f5f06138be25dccc51d28756984f
           native_linux_skia_target:
-            input_commit: e8cf0d0
+            input_commit: f9274ce
             terminal: skia_face 139
             scope: 'skia_target compiles and links on Linux; text drawing faults inside FillText at address zero'
             compiled_units: 5
@@ -749,13 +749,15 @@ projects:
             achieved:
               - 'skia_target.cpp compiles against the pinned Skia headers on Linux for the first time'
               - 'TypefaceFor builds the Skia typeface from the FreeType face through the Cairo port'
-              - 'the port context is a real SharedFTFace owned by the face'
-            observed_failure: 'SIGSEGV with rip 0x0 inside FillText, so a call through a null function pointer'
-            concrete_blocker: 'BlockingResourceBase passes InitStatics to PR_CallOnce as a function pointer, so section GC can drop it, and InitStatics has internal linkage so it cannot be anchored by name'
-            next_step: 'keep every section of the XPCOM objects for this probe, or initialise the XPCOM runtime before use'
+              - 'the probe links with the pinned Skia archive, HarfBuzz, gfx/2d glue, the WebRender export, mozalloc/mfbt, BlockingResourceBase and libnspr4 confirmed as NEEDED'
+            observed_failure: 'SIGSEGV with rip 0x0, located inside SkiaFaceContext rather than in Skia itself'
+            corrected_attribution: 'the earlier claim that PR_CallOnce was dropped is wrong: PR_CallOnce appears only in NSS objects, and libnspr4 is a NEEDED entry with no unresolved mozilla symbol'
+            actual_cause: 'BlockingResourceBase::BlockingResourceBase in xpcom/base0, base1, threads0 and threads1 is a 17-byte stub with a prologue and return only, so SharedFTFace carries a mutex with no state and its first lock jumps to address zero'
+            consequence: 'SharedFTFace is not usable in this donor build, so the Cairo typeface port cannot be driven from it as written'
+            next_step: 'either give the face a different context that the port accepts, or build the missing XPCOM initialisation into the probe'
             not_done: [skia_text_drawn, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-skia-target-r206/skia-target-validation.json
-            evidence_sha256: 8e04f5f9ee0a65e312c48ce97f0bd4dba5cfbaace54dc70ab2343811df7d4ff6
+            evidence_sha256: 199320eec7271820b78bd20aceb080761a1a7627fc807f78d95741985a7eab65
           private_product: pending
     inner_repo_state:
       exists: true
