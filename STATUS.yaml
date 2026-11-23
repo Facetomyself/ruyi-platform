@@ -1068,6 +1068,23 @@ projects:
             not_done: [compiling_the_canvas_and_font_units, a_link_that_resolves, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-dupfix-r295/dupfix-validation.json
             evidence_sha256: 3bdf3cb75df3ff56259191b02c9d066b798d90a393d2feb97170cbe801cbf932
+          native_crypto_canvas_units:
+            input_commit: 30814b8
+            terminal: units_compile_partial
+            scope: 'the crypto and canvas units compiled now their header roots are supplied'
+            crypto_pass: {ok: 140, fail: 13}
+            geometry_retry: {ok: 61, fail: 6, elapsed_seconds: 191}
+            achieved: ['openssl_backend compiled, supplying the nine web_crypto symbols', 'glyph_mask_linux compiled', 'sixty-one other geometry units compiled']
+            remaining_six:
+              font_face_mac: 'macOS unit asking for CoreText, out of scope on Linux'
+              font_aliases: 'Windows unit using IDWriteFontCollection and HKEY'
+              font_collection: 'Windows collection implementation, replaced by font_collection_linux'
+              font_shape_linux: 'cause not yet read'
+              glyph_mask: 'Windows glyph mask, replaced by glyph_mask_linux'
+              svg_path: 'needs cairo/cairo.h with the include root just corrected'
+            not_done: [rerun_after_cairo_fix, font_shape_linux_cause, a_link_that_resolves]
+            evidence: deliverables/linux-ruyijs-crypto-geo-r298/cryptogeo-validation.json
+            evidence_sha256: 329cd1a1a6f5674bb964f9f86d97bb55879bc1291002c0b512abba9a3b31dfcc
           private_product: pending
     inner_repo_state:
       exists: true

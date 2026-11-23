@@ -1174,6 +1174,38 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-dupfix-r295/dupfix-validation.json`。
 
+## 加密和画布单元编译出来了
+
+上一轮那 20 个未定义的来源，这一轮解决了主要部分：
+
+| 项 | 结果 |
+|---|---|
+| `web_crypto` 通过 | **140** |
+| `web_geometry` 重跑通过 | **61** |
+| **`openssl_backend.o`** | **360,480 字节** ← 供给了 9 个 crypto 符号 |
+| **`glyph_mask_linux.o`** | 已产出 |
+
+`geometry` 失败从 13 降到 6（挂上 FreeType 头之后）。
+
+## 剩余 6 个的性质
+
+| 单元 | 性质 |
+|---|---|
+| `font_face_mac` | **macOS**，要 CoreText |
+| `font_aliases` | **Windows**，用 IDWriteFontCollection 和 HKEY |
+| `font_collection` | **Windows** 实现，已被 `font_collection_linux` 替换 |
+| `glyph_mask` | **Windows** 实现，已被 `glyph_mask_linux` 替换 |
+| `svg_path` | 缺 `cairo/cairo.h`，**include 根已修正待重跑** |
+| `font_shape_linux` | 原因未查 |
+
+**四个是别的平台的单元**，Linux 上本就不该编译。真正待办的只有 `svg_path`（路径已修）和 `font_shape_linux`（原因未知）。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-crypto-geo-r298/cryptogeo-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
