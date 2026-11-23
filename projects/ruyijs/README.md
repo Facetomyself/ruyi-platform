@@ -1046,6 +1046,40 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-bulk2-r285/bulk2-validation.json`。
 
+## 异常重试生效了，剩余失败有了明确归属
+
+| 项 | 上一轮 | 这一轮 |
+|---|---|---|
+| 本轮通过 | 460 | **468** |
+| 失败 | 28 | **20** |
+| 全树对象 | 891 | **1242** |
+
+**`styling` 那 6 个单元解决了**：用编译器消息当判据、失败后加 `-fexceptions` 重试，是对的做法。
+
+## 剩余 20 个的归属
+
+| 类别 | 数量 | 性质 |
+|---|---|---|
+| `transport` 层 | **14** | Windows 专用，Linux 无对应实现 |
+| `web_crypto` 的 `cng`/`digest` | 2 | Windows 专用后端 |
+| 头文件路径还差一层 | 4 | OpenSSL、Skia、libpng |
+
+## `transport` 这个发现值得单独说
+
+`src/transport` 有 17 个单元，其中 5 个直接包含 `windows.h`，其余经头文件间接引入。
+
+而 `resource_network` 有 `necko_linux.cpp` 作为 Linux 对应实现，**`transport` 目录里没有**。
+
+**结论：`transport` 是 Windows 层，Linux 对应实现不在树里。** 那 14 个失败是**范围事实，不是缺陷**。
+
+这个区分很重要：如果我把它当成“要修的 bug”，就会去改那些 Windows 专有代码——那是错的。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。剩余是 4 个头文件路径细节 + 16 个不该在 Linux 编译的单元。
+
+回执 `deliverables/linux-ruyijs-bulk3-r286/bulk3-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

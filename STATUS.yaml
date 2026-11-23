@@ -1012,6 +1012,19 @@ projects:
             not_done: [rerun_styling_with_retry, openssl_libpng_skia_header_roots, a_link_that_resolves, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-bulk2-r285/bulk2-validation.json
             evidence_sha256: 3df93efd5c302d9b99e67f7561e06ccfb137125d2d26eddf1ec23fd39241dcd2
+          native_units_bulk3:
+            input_commit: 75241f1
+            terminal: units_compile_partial
+            scope: 'third bulk pass with the OpenSSL, libpng and Skia header roots plus the exceptions retry'
+            pass: {ok: 468, fail: 20, elapsed_seconds: 1469}
+            total_objects_on_host: 1242
+            exceptions_retry_worked: 'the six styling units that failed on a throwing header now compile'
+            remaining_grouped: {transport_windows_only: 14, crypto_windows_backends: 2, header_paths_short: 4}
+            transport_finding: 'src/transport holds 17 units, five including windows.h directly and the rest reaching it through headers, with no linux counterpart in that directory unlike resource_network which has necko_linux.cpp'
+            assessment: 'the transport directory is a Windows layer whose Linux equivalent is not in the tree, so those failures are a scope fact rather than a defect'
+            not_done: [openssl_and_skia_header_paths, a_link_that_resolves, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-bulk3-r286/bulk3-validation.json
+            evidence_sha256: cb5785d9bbb3c3ed377445459f5123efd275e6c766666dec7f5cb638b4d6b6b6
           private_product: pending
     inner_repo_state:
       exists: true
