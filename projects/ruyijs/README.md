@@ -601,6 +601,36 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-client-r249/client-build-validation.json`。
 
+## 客户端 C ABI 端到端跑通
+
+上一轮只证明库能构建，这一轮**真的跑起来了**：**`client_abi_verified 0`，9 项全过**。
+
+| 步骤 | 结果 |
+|---|---|
+| `ruyijs_create` | 启动 shell 并连上它的 listener |
+| `ruyijs_call` | 写帧、读帧，载荷原样回传 |
+| 第二次 `ruyijs_call` | 同一上下文仍可用 |
+| `ruyijs_close` | 正常返回 |
+| `ruyijs_alloc` / `ruyijs_free` | 分配释放配对 |
+
+实际回复：
+
+```
+{"mode":"default","echo":"{"op":"echo","value":42}"}
+```
+
+帧格式是**小端 u32 长度 + 载荷**，走真实 unix socket，`--ruyijs-rpc` 与 `--ruyijs-mode` 两个参数原样传到子进程。
+
+## 这一步证明什么，不证明什么
+
+**证明**：transport 层、进程生命周期适配器、C ABI 封装，在 Linux 上端到端可用。
+
+**不证明**：JavaScript 执行。因为 shell 是**为测试写的 echo 程序**，不是 RuyiJS 运行时。真实的运行时 shell 需要 `dist/js`，那还没做。
+
+这个区别很重要：ABI 通了不代表能跑脚本，中间还隔着整个运行时。
+
+回执 `deliverables/linux-ruyijs-client-abi-r250/client-abi-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
