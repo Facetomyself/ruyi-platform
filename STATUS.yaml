@@ -791,6 +791,25 @@ projects:
             not_done: [link_closure, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-canvas-r238/canvas-layer-validation.json
             evidence_sha256: 96cbc6a19b279952feb93eb8159b6f220f95d6965621e4c3c971e53bc7ecfc4c
+          native_canvas_residual:
+            input_commit: c3530f1
+            terminal: native_canvas_portable_verified 0
+            scope: 'canvas batch with the shaping, collection, colour and palette units: 73 units compiled and linked'
+            units: 73
+            units_failed: 0
+            previous_private_references: 13
+            resolved_previous: 13
+            introduced: 1
+            remaining: 1
+            relocatable_sha256: 81d783d574b68eaa
+            sole_remaining: ruyijs::web_geometry::FrameMaxDescent
+            why_it_remains: 'system_font.cpp defines it, but the whole unit is already in the predecessor object, so adding it duplicates every SystemFonts member'
+            attempted: 'extracting the function into its own unit broke the platforms branch structure and was reverted rather than forced'
+            next_step: 'compile only that function, or remove it from the predecessor unit set'
+            progression: '13 to 6 to 3 to 1 across four measured runs'
+            not_done: [last_private_reference, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-canvas-r241/canvas-residual-validation.json
+            evidence_sha256: 2ddab9020e761ea85318068cf106831890dfc0ce57234626e8918b6902359dc1
           private_product: pending
     inner_repo_state:
       exists: true

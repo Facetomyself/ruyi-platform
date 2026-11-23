@@ -514,6 +514,34 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-canvas-r238/canvas-layer-validation.json`。
 
+## Canvas 批次：13 → 1
+
+四次实测，每次只加「定义当前未解析符号」的单元：
+
+| 轮次 | 单元数 | 剩余 |
+|---|---|---|
+| 起点 | 67 | 6 |
+| 加 shaping/missing/collection/color | 71 | 3 |
+| 加 unicode/palette | 73 | **1** |
+
+`73 个单元全部编译、链接通过`，`native_canvas_portable_verified 0`，ET_REL 370,188,864 字节。
+
+## 最后一条：`FrameMaxDescent`，而且它是真的卡住
+
+它定义在 `system_font.cpp`，但**整个单元已经在基线对象里**，再加一次会把 `SystemFonts` 的所有成员定义两遍，链接器直接报重复。
+
+我试着把该函数抽成独立单元，结果破坏了 `system_font.cpp` 的平台分支结构（`#if _WIN32` / `#elif __linux__` 各自闭合命名空间），于是**回退**，没有硬塞。
+
+下一步只有两条路：只编译这一个函数，或把它从基线单元集里摘掉。
+
+## 又学了一次同样的教训
+
+这轮我又踩了同样的坑：加 `system_font` 前只查了 `FrameMaxDescent` 不在基线，**没查整个单元**——而基线里 `SystemFonts::MeasureCanvas`、`LineMetrics`、`CanvasGlyphRuns` 全都在。上一轮刚记过这个教训，这轮又犯了一次。
+
+正确的排查方式是：**按单元查，不是按符号查**。`nm | grep 'SystemFonts::'` 一条就能看出来。
+
+回执 `deliverables/linux-ruyijs-canvas-r241/canvas-residual-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
