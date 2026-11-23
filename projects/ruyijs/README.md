@@ -1466,6 +1466,42 @@ SkShaders::TwoPointConicalGradient
 
 回执 `deliverables/linux-ruyijs-skia300-r320/skia300-validation.json`。
 
+## 一个计数错误：不是 20 个，是 5 个
+
+前几轮我一直报「20 个未定义符号」。这轮读 argv 时发现：**那是 grep 计数的行数，不是唯一符号名**。
+
+真实缺口是 **5 个**：
+
+```
+getentropy · getrandom
+hb_set_get_empty · hb_unicode_combining_class · hb_unicode_funcs_get_default
+```
+
+这个错误让缺口看起来比实际大三倍，也影响了我对进度的判断。
+
+## SkShaders 的谜团解开了
+
+上一轮那个「对象定义了但链接说没有」的矛盾：**是快照时机问题**。`shaders` 目录编译完后这一轮就消失了。
+
+写下 argv（63KB）这件事本身有价值——它证明 322 个 Skia 对象**全部在链接命令里**，排除了「对象没进去」这个猜测。
+
+## 这一轮试了四种修法，都没成
+
+1. 记录 argv → 证明对象都在
+2. 加 `-lc` → 被文件存在检查拦下（`-lc` 不是路径）
+3. 修那个检查 → 通过了
+4. 加 `--no-as-needed` → 无效
+
+**5 个符号仍在。它们都是动态库导出过的符号**，所以问题在静态对象如何绑定带版本的共享符号——`getrandom` 是弱符号，这点尤其棘手。
+
+**我停在这里，不试第五种猜测。** 下一次应该完整读链接器对这 5 个名字的输出，而不是截断的摘要。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-final4-r323/final4-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

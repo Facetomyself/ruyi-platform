@@ -1199,6 +1199,20 @@ projects:
             not_done: [settling_the_sk_shaders_puzzle, a_link_that_resolves]
             evidence: deliverables/linux-ruyijs-skia300-r320/skia300-validation.json
             evidence_sha256: cf0d718880c4ef3e49c51a6507f1895eac7304a493f02a30224dd603374005b7
+          native_link_five:
+            input_commit: bf7573b
+            terminal: product_link 1
+            scope: 'the product link after zlib-rs, harfbuzz, libc and no-as-needed'
+            private_objects: 1188
+            previous_units: 87
+            skia_objects: 322
+            undefined_symbols: [getentropy, getrandom, hb_set_get_empty, hb_unicode_combining_class, hb_unicode_funcs_get_default]
+            count_correction: 'earlier rounds reported twenty undefined where the count was really five distinct symbols; the grep counted reference lines rather than unique names'
+            fixes_tried_this_round: 'record the linker argv and prove the skia objects are named; name libc; allow linker options through the path check; add --no-as-needed'
+            why_it_still_fails: 'all five are dynamic library entries the libraries do export, so the remaining question is how static objects bind to versioned shared symbols, with the weak getrandom the specific difficulty'
+            next_attempt_should: 'read what the linker says about these five names in full rather than the truncated summary, instead of a fifth guess'
+            evidence: deliverables/linux-ruyijs-final4-r323/final4-validation.json
+            evidence_sha256: 8ab43ef6424f8d165fb18fe13ab23a9f4d0e9575932d84c1ba244cf9a9493b5c
           private_product: pending
     inner_repo_state:
       exists: true
