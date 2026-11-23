@@ -1309,45 +1309,40 @@ web_broadcast 2 · web_geometry 2 · web_styling 2 · web_platform 1 · web_secu
 
 回执 `deliverables/linux-ruyijs-hb-r306/hb-validation.json`。
 
-## 卡在一个 Rust 工具链上
+## 上一轮判断错了：工具链一直在
 
-剩 6 个符号：5 个 `RUYIJS_CS_Z_*` 加 `getentropy`。
+上一轮我写下「没有 Rust 工具链」。**这是错的。**
 
-## 那些前缀是谁定义的
+`rustc` 和 `cargo` 就在**编译镜像里**：`/opt/ruyijs-rust/bin/`。它们不在宿主机 PATH 里，但不需要安装。
 
-`compression_zlib.cpp` 自己的注释写着：
+## zlib-rs 构建成功，前缀 56 个符号
 
-> Original zlib-rs C ABI; private prefix leaves existing MOZ_Z_ users unchanged
+照 `tools/compression_native.py` 的方式，用**两次 rustc 调用**（不用 cargo）：
 
-也就是说这五个符号**本该由 zlib-rs 提供**。vendored 的 `libz-rs-sys 0.6.3` 用 `prefix!` 宏生成名字，开启 `custom-prefix` feature 后读 `LIBZ_RS_SYS_PREFIX` 环境变量。
-
-所以构建方式是：`LIBZ_RS_SYS_PREFIX=RUYIJS_CS_Z_ cargo build --features custom-prefix`。
-
-## 卡点：没有 Rust 工具链
-
-| 检查 | 结果 |
+| 步骤 | 结果 |
 |---|---|
-| `cargo` 存在 | `/root/.cargo/bin/cargo` |
-| 工具链目录 | **空** |
-| `rustup default` | **未配置** |
-| 带 Rust 的镜像 | **没有** |
-| 网络 | **离线** |
+| `zlib-rs` → rlib | **OK** |
+| `libz-rs-sys` → rlib（`--extern` 接上一步） | **OK** |
+| 归档 `libruyijs_cs_zlib.a` | **3,766,804 字节** |
+| **`RUYIJS_CS_Z_` 定义** | **56 个** |
 
-**这是环境问题，不是代码问题。** 树里什么都不用改，工具链得先有。
+## 为什么 cargo 不行
 
-## 一个我测了但没采用的替代
+`cargo build --offline` 报 `no matching package named libc`——**依赖没有 vendored**。产品脚本因此直接用 `rustc` 加 `--extern`，绕开解析。
 
-用 6 个转发函数把 `RUYIJS_CS_Z_*` 接到标准 zlib 符号上——**编译通过，6 个符号齐全**，链接能过。
+## 一个差点误导我的现象
 
-**但我没有采用它**：产品注释明确说这是「zlib-rs 的原始 C ABI」，换成另一个实现是**改行为**，不只是接线。为了让链接通过而悄悄替换实现，是错的。这该由项目负责人决定。
+对外层归档运行 `llvm-nm`，前缀符号计数是 **0**。差点当成失败。
+
+**原因是 Rust 的 rlib 是嵌套归档**——外层只能看到 rlib 成员，看不到其中目标文件的符号。解包后 10 个目标文件里有 56 个前缀定义。
 
 ## 边界
 
-链接仍未完成，`dist/js` 不存在。
+链接仍未完成，`dist/js` 不存在。下一步把 `libruyijs_cs_zlib.a` 交给产品链接。
 
-回执 `deliverables/linux-ruyijs-zlibrs-r307/zlibrs-validation.json`。
+回执 `deliverables/linux-ruyijs-zlibrs-r311/zlibrs-build-validation.json`。
 
-## Seed 关系（重要）
+## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
 

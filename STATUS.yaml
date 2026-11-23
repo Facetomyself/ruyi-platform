@@ -1132,19 +1132,19 @@ projects:
             not_done: [the_renamed_zlib, a_link_that_resolves, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-hb-r306/hb-validation.json
             evidence_sha256: 8658d0cf53a665da7ac616678adc0245adf5a0bd172ccccb50f673afbb0c19fa
-          native_zlib_provider:
-            input_commit: c84a5d3
-            terminal: zlib_provider_blocked
-            scope: 'the five prefixed zlib symbols the product link still needs'
-            mechanism: 'the product declares RUYIJS_CS_Z_* because by its own comment those are the original zlib-rs C ABI behind a private prefix; libz-rs-sys 0.6.3 builds the names through prefix! with the custom-prefix feature reading LIBZ_RS_SYS_PREFIX'
-            blocker: 'building it needs a Rust toolchain: cargo exists at /root/.cargo/bin/cargo but the toolchain directory is empty, rustup reports no default, no host image carries one, and the host is offline'
-            classification: 'provisioning rather than code: nothing in the tree needs changing, the toolchain has to exist first'
-            alternative_measured: 'a six-function shim forwarding the prefixed names to the standard zlib entries compiles and defines all six'
-            why_not_taken: 'that substitutes a different implementation behind an ABI the product documents as zlib-rs, so it is the owner decision rather than a wiring fix'
-            state_of_the_link: 'six undefined: five zlib entries and getentropy from libc'
-            not_done: [a_rust_toolchain, zlib_rs_built_with_the_prefix, a_link_that_resolves, running_the_product_shell]
-            evidence: deliverables/linux-ruyijs-zlibrs-r307/zlibrs-validation.json
-            evidence_sha256: 0a39a174f2bb0ca4281badbdab955b7cbedc8217ddcb97057fe3d7c1554012b3
+          native_zlib_rs_build:
+            input_commit: 42c67c1
+            terminal: zlib_rs_built_verified
+            scope: 'building zlib-rs with the product prefix using the image toolchain'
+            correction: 'the previous round concluded a Rust toolchain was missing; it is not, because the compile image carries rustc and cargo at /opt/ruyijs-rust/bin'
+            how_it_builds: 'two rustc invocations mirroring tools/compression_native.py: zlib-rs as an rlib, then libz-rs-sys as an rlib taking the first through --extern'
+            environment_needed: [LIBZ_RS_SYS_PREFIX, CARGO_PKG_VERSION, CARGO_PKG_VERSION_MAJOR, CARGO_PKG_VERSION_MINOR]
+            cargo_unusable: 'cargo build --offline fails because the libc crate is not vendored, which is why the product recipe calls rustc directly'
+            result: {zlib_rs: ok, abi: ok, archive: ok, archive_bytes: 3766804}
+            confirmed: 'extracting the rlib members yields 10 objects carrying 56 prefixed definitions, so the prefix took effect; the earlier zero came from reading the outer archive instead of its members'
+            next_step: 'pass the archive to the product link'
+            evidence: deliverables/linux-ruyijs-zlibrs-r311/zlibrs-build-validation.json
+            evidence_sha256: ff5e4eec265e344de199b5f496186d08ba9d1077af71ba4511c48fc594740906
           private_product: pending
     inner_repo_state:
       exists: true
