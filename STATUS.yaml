@@ -740,6 +740,22 @@ projects:
             not_done: [product_link, dist_js, browser, page_canvas]
             evidence: deliverables/linux-ruyijs-sampled-r205/sampled-validation.json
             evidence_sha256: 51f37343feb35b51716813460a59334de9d2f5f06138be25dccc51d28756984f
+          native_linux_skia_target:
+            input_commit: e8cf0d0
+            terminal: skia_face 139
+            scope: 'skia_target compiles and links on Linux; text drawing faults inside FillText at address zero'
+            compiled_units: 5
+            link: ok
+            achieved:
+              - 'skia_target.cpp compiles against the pinned Skia headers on Linux for the first time'
+              - 'TypefaceFor builds the Skia typeface from the FreeType face through the Cairo port'
+              - 'the port context is a real SharedFTFace owned by the face'
+            observed_failure: 'SIGSEGV with rip 0x0 inside FillText, so a call through a null function pointer'
+            concrete_blocker: 'BlockingResourceBase passes InitStatics to PR_CallOnce as a function pointer, so section GC can drop it, and InitStatics has internal linkage so it cannot be anchored by name'
+            next_step: 'keep every section of the XPCOM objects for this probe, or initialise the XPCOM runtime before use'
+            not_done: [skia_text_drawn, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-skia-target-r206/skia-target-validation.json
+            evidence_sha256: 8e04f5f9ee0a65e312c48ce97f0bd4dba5cfbaace54dc70ab2343811df7d4ff6
           private_product: pending
     inner_repo_state:
       exists: true

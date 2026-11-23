@@ -433,6 +433,23 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-sampled-r205/sampled-validation.json`。
 
+## `skia_target` 的 Linux 进展：编译和链接通过，绘制未通
+
+这是最后一个从未在非 Windows 上编译过的单元，也是剩下 8 条私有引用所在。本轮拿下两件事，第三件没拿下。
+
+**做到：**
+- `skia_target.cpp` 第一次在 Linux 上对着固定 Firefox 的 Skia 头编译通过
+- `TypefaceFor` 用 FreeType face 经 Cairo 端口造 Skia typeface；端口要求的 context 是 face 自己持有的真实 `SharedFTFace`（第 114 轮已证传 `nullptr` 必崩）
+- 探针链接成功：固定 Skia 归档、HarfBuzz、gfx/2d 胶水、WebRender 导出、mozalloc/mfbt、`BlockingResourceBase`、NSPR
+
+**没做到：** 运行到 `FillText` 内部即以 `rip 0x0` 结束——**调用了空函数指针**。
+
+**卡点已查到底：** `BlockingResourceBase` 把 `InitStatics` 作为**函数指针**交给 `PR_CallOnce`，因此没有任何直接引用，`--gc-sections` 会把它删掉；而 `InitStatics` 是内部链接，`-u` 无法按名字锚定。这和第 120 轮同一症状。
+
+**下一步不是继续试：** 要么为这个探针保留 XPCOM 对象的全部 section（此前试过会拖进无关引用），要么在调用前真正初始化 XPCOM 运行时。这一轮跑了 11 次有界容器（每次约 4 分钟），修掉了 include 根、`TextRun`/`Surface` 形状、空 context、gfx/2d 胶水、`BlockingResourceBase`、NSPR、rpath 语法、`--no-as-needed` 八处具体问题——但都是外围，核心那个空指针没有解开。继续加补丁是猜测，所以停在这里。
+
+回执 `deliverables/linux-ruyijs-skia-target-r206/skia-target-validation.json`。**不构成 Canvas 在 Linux 上的验收**。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
