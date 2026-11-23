@@ -866,6 +866,42 @@ objcopy: no symbols
 
 回执 `deliverables/linux-ruyijs-units-r274/units-validation.json`。
 
+## 每解决一层，下面就还有一层
+
+| 项 | 上一轮 | 这一轮 |
+|---|---|---|
+| 运行时单元 | 4 | **9** |
+| 交互单元 | 87 | 87 |
+| 重复定义 | 0 | 0 |
+| 未定义符号 | 20 | **20（换了一批）** |
+
+**关键：上一轮那 20 个符号已经全部解析**，现在报的 20 个是**更深一层的新集合**：
+
+```
+resource_network 4 · browser_environment 3 · document_model 2
+CreatePage · DecodeTyped · DescribeException · Pipe::Read
+ToUTF8 · UnbindUserActivation · domain · execution_scheduling
+web_geometry · web_observers · web_security
+```
+
+## 这一轮能做到的
+
+**新增 5 个单元全部编译成功**（1,736,144 字节）：`browsing_context`、`host_reply`、`protocol`、`environment_control`、`top_level`。
+
+其中 `protocol.cpp` 依赖生成的 codec 头 `runtime_assets.h`，我为此加了 include 路径和空值保护，**编译路径现在适用于 `src/runtime` 下任意单元**。
+
+## 这一轮的判断
+
+这不是「还有 20 个」而是「又一层 20 个」。**每一层运行时代码会拉出下一层**，所以这不是一份固定清单，而是一条链。
+
+诚实地说：这一轮在推进，但离 `dist/js` 还有若干层的距离，而且每层都还有各自的下一层。我在做的是**逐层逼近**，不是即将收尾。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在，产品 shell 跑不起来。
+
+回执 `deliverables/linux-ruyijs-deeper-r276/deeper-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

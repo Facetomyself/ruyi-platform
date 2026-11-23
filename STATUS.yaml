@@ -943,6 +943,20 @@ projects:
             not_done: [a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
             evidence: deliverables/linux-ruyijs-units-r274/units-validation.json
             evidence_sha256: db57d8e8d2ac0ebf2107d678d0482563bef69af934a3b97d6ce05623fd27e340
+          native_product_link_deeper:
+            input_commit: c1e894c
+            terminal: product_link 1
+            scope: 'the product link with nine runtime units plus the interaction per-unit objects'
+            units_linked: {runtime: 9, interaction: 87}
+            duplicate_symbols: 0
+            undefined_symbols: 20
+            progress: 'the twenty symbols this step started with were resolved; the twenty reported now are a different, deeper set'
+            grouped: {resource_network: 4, browser_environment: 3, document_model: 2, CreatePage: 1, DecodeTyped: 1, DescribeException: 1, Pipe: 1, ToUTF8: 1, UnbindUserActivation: 1, domain: 1, execution_scheduling: 1, web_geometry: 1, web_observers: 1, web_security: 1}
+            observation: 'each runtime layer pulls in roughly another layer, so this is a chain rather than a fixed list'
+            what_this_proves: 'the runtime compile path scales to any unit in src/runtime, including protocol.cpp which needs the generated codec header'
+            not_done: [a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
+            evidence: deliverables/linux-ruyijs-deeper-r276/deeper-validation.json
+            evidence_sha256: 567a445d8cb34d8da52d929bd3b6edbd014177d8d5b60802aeb6e09a3dcf8919
           private_product: pending
     inner_repo_state:
       exists: true
