@@ -368,6 +368,28 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-glyphcolour-r195/glyph-palette-validation.json`。
 
+彩色字形的第二层——**COLR 图层路径**——也通了。用真实的 `TwemojiMozilla.ttf` 里第一个 base glyph（`0x0f`，两层）：
+
+| 项 | 值 |
+|---|---|
+| 图层数 | 2（表中就是 2） |
+| 图层盒 | `[0,-28,32×32]`、`[7,-23,16×22]` |
+| 图层颜色 | `rgba(225,255,0,170)` |
+
+颜色与独立 Python 解析的 palette entry 658（`BGRA 0,255,225,170` → `rgba 225,255,0,170`）**逐字节一致**。纯文本字体则干净地报告“无图层”，而不是空成功。
+
+## 两个探针自身的错误，都被数据纠正了
+
+**一是传了空变换。** 探针给 `GlyphColorMask` 传 `linear = nullptr`，而 `sampled=false` 路径会解引用它，于是 SIGSEGV。真实调用方永远会传矩阵，是探针错了。
+
+**二是断言写反了。** 我断言“两层颜色应当不同”，实测两层都是 `225,255,0,170`。查真实表才发现：**两层确实共用 palette index 658**，所以相同颜色才是正确答案。断言改成检查“是否为表中命名的那个 entry”，而不是“是否互不相同”。
+
+这两处都说明同一件事：**断言要跟着数据走，不能跟着直觉走**。如果第一次就把“颜色不同”当成 bug 去改代码，会把正确的实现改坏。
+
+顺带解除最后一处平台耦合：`glyph_color.cpp` 在非 Windows 下不再包含 `dwrite_2.h`——COLR 表读取和 head 盒都不需要它。
+
+回执 `deliverables/linux-ruyijs-colr-r195/colr-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

@@ -704,6 +704,18 @@ projects:
             not_done: [colr_layer_masks_executed, glyph_outline, product_link, dist_js, browser]
             evidence: deliverables/linux-ruyijs-glyphcolour-r195/glyph-palette-validation.json
             evidence_sha256: 66a1de34fc7791f1ca2ff2716b32c56c570dbd9c03e24fc1e98dabd75aa5b0af
+          native_linux_colr_layers:
+            input_commit: 3d3072e
+            terminal: colr_layer_verified 0
+            scope: 'COLR v0 layer path executed on a real colour font'
+            checks_passed: 7
+            checks_failed: 0
+            observed: {glyph: '0x0f', layers: 2, palette_entries: 1063, layer_boxes: [[0,-28,32,32],[7,-23,16,22]], layer_rgba: [225,255,0,170]}
+            cross_check: 'palette entry 658 parses independently as BGRA 0,255,225,170, matching the probe byte for byte'
+            probe_corrections: 'the probe passed a null transform and asserted the layers differ, though both name entry 658'
+            not_done: [sampled_snapshot, glyph_outline, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-colr-r195/colr-validation.json
+            evidence_sha256: 7e11f994bfcc284ed82ae51cb8075c592f262c70b01861301216860847d009b5
           private_product: pending
     inner_repo_state:
       exists: true
