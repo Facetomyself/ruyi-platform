@@ -1619,6 +1619,43 @@ GLOBAL DEFAULT UND getentropy
 
 回执 `deliverables/linux-ruyijs-styling-r329/styling-validation.json`。
 
+## 三个 styling 符号清掉了，`getrandom` 也清了
+
+| 项 | 结果 |
+|---|---|
+| `domain::styling` 三个符号 | **已解决** |
+| `getrandom` | **已解决** |
+| 剩余 | **11 个**（10 个 `_moz_cairo_*` + `hb_set_get_empty`） |
+
+## 上一轮"编译了但没产出"的真相
+
+不是被跳过，也不是失败——**产出的是空对象**。
+
+| 编译方式 | 对象大小 | 符号数 |
+|---|---|---|
+| 批次的完整 include 集 | 28,488 | **0** |
+| 最小 include 集 | 28,488 | **137** |
+
+**同样大小，符号数却是 0 对 137。**某个额外的 include 根改变了编译结果，但没有报错。
+
+这是最难查的一类：**成功退出、大小正常、内容为空**。
+
+## 本轮修复
+
+直接按最小 include 集单独编译 `css_color_space.cpp`，把它放进输出目录。
+
+## 新的缺口
+
+10 个 `_moz_cairo_*`——它们是 **Cairo 函数的重命名**（`cairo-rename.h`），不是缺失的第三方库。
+
+只需编译 vendored 的 155 个 Cairo 翻译单元，让重命名头生效。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-styling2-r330/styling2-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

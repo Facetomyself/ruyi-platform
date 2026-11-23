@@ -1248,6 +1248,20 @@ projects:
             not_done: [the_three_styling_symbols, getrandom_after_its_pin, a_link_that_resolves]
             evidence: deliverables/linux-ruyijs-styling-r329/styling-validation.json
             evidence_sha256: a56f92fc52a575bf0a78ccc00993e40d5dcabddc256ecfc2b02b3141cd1479a7
+          native_styling_cleared:
+            input_commit: 44f3ece
+            terminal: product_link 1
+            scope: 'the styling unit compiled directly and the link re-run'
+            cleared: ['the three domain::styling symbols', getrandom]
+            remaining_count: 11
+            remaining_grouped: {moz_cairo: 10, hb_set_get_empty: 1}
+            why_the_batch_produced_nothing: "compiling css_color_space.cpp with the batch's full include set yields a 28,488-byte object with zero symbols, while the same file with only the private root and the donor dist include yields the same size but 137 symbols; the unit never failed, the object was simply empty"
+            styling_fix: 'the unit is compiled directly with the minimal include set and its object placed in the output directory'
+            what_moz_cairo_is: "cairo-rename.h renames the Cairo symbols at compile time, so those ten names are ordinary Cairo functions under Mozilla's prefix"
+            next_step: 'compile the 155 Cairo translation units with the rename header in force, then relink'
+            not_done: [cairo, hb_set_get_empty_again, a_link_that_resolves]
+            evidence: deliverables/linux-ruyijs-styling2-r330/styling2-validation.json
+            evidence_sha256: 0c7af36e6486cf7d577b38c9a31b0d654a1780829c1fb582840270cbc8f20fce
           private_product: pending
     inner_repo_state:
       exists: true
