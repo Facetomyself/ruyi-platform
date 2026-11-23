@@ -756,6 +756,23 @@ projects:
             not_done: [product_link, dist_js, browser, page_canvas]
             evidence: deliverables/linux-ruyijs-skia-draw-r225/skia-draw-validation.json
             evidence_sha256: 3aa88f846104d3a3f7e86d1be89b2fba9707484d9d470a48f3fe4f7ad0171908
+          native_canvas_batch_with_skia:
+            input_commit: fef24c6ce7fb4dd7c955898aa571efa50d2f2129
+            terminal: native_canvas_portable_verified 0
+            scope: 'the canvas batch with skia_target included: 64 units compiled and partially linked'
+            units: 64
+            units_failed: 0
+            previous_private_references: 13
+            resolved_previous: 13
+            introduced: 6
+            remaining: 6
+            relocatable_sha256: c78979da4329d12c6133e9f857822718c7a7ea684cfd25b68dfb90e81bcf6385
+            significance: 'skia_target compiles inside the real batch for the first time, so the deferred list is down to the PDF subset stubs'
+            remaining_are_all_implemented: 'MeasureCanvas, BuildCanvasGlyphMasks, CanvasGlyphRuns, ReleaseCanvasGlyphRuns, SystemTextGamma and SystemTextContrast all have verified Linux bodies; the batch simply does not compile the units that define them yet'
+            next_step: 'add the Linux text units to the batch unit set'
+            not_done: [link_closure, product_link, dist_js, browser]
+            evidence: deliverables/linux-ruyijs-canvas-r229/canvas-batch-validation.json
+            evidence_sha256: 3117cc3473e436a0847e51af753e903893daab4cc8bfa189e65f0ac613c86232
           private_product: pending
     inner_repo_state:
       exists: true

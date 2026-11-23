@@ -460,6 +460,37 @@ space  gid=3  adv=651  lsb=0  rsb=651  advH=2048  voy=0  ink_w=0  ink_h=2048
 
 回执 `deliverables/linux-ruyijs-skia-draw-r225/skia-draw-validation.json`。
 
+## `skia_target` 接回批次：13 → 6，而且剩下的 6 条全都已实现
+
+把 `skia_target` 从延后清单里移出，在 host185 上真跑完整 Canvas 批次：**64 个单元全部编译，部分链接通过**，`native_canvas_portable_verified 0`。
+
+符号演进：
+
+| 项 | 值 |
+|---|---|
+| 原有私有引用 | 13 |
+| 闭合 | **13（全部）** |
+| 新增 | 6 |
+| 剩余 | **6** |
+
+**最有价值的是这 6 条是什么**——不是新缺口，而是这几轮已经逐一实现并验证过的函数：
+
+- `SystemFonts::MeasureCanvas`（10/10 通过）
+- `SystemFonts::BuildCanvasGlyphMasks` / `CanvasGlyphRuns` / `ReleaseCanvasGlyphRuns`（经 `GlyphMask` 13/13）
+- `SystemTextGamma` / `SystemTextContrast`（在 `glyph_mask_linux.cpp`，掩码与绘制两次验证）
+
+它们仍然显示为「未解析」，原因很简单：**批次编译了 `canvas_text` 和 `glyph_runs`，却没有编译定义这些函数体的那些 Linux 单元**。也就是说缺口已经从「没有实现」变成了「没有接进批次」。
+
+## 过程中修掉三处真实的接线错误
+
+1. **延后清单**：`skia_target` 已能编译绘制，不该继续延后；同时保留 ownership guard 要求它存在，防止文件被改名后悄悄离开批次
+2. **预期计数**：host 启动器里硬写的 63 要改成 64
+3. **头文件路径**：`skia_target` 包含 `font_backend.h` 需要 HarfBuzz 头，而 Canvas 批次不挂 `font-include`；改用 donor 源码树 `/source/gfx/harfbuzz/src`（那里本来就有）
+
+第 3 点我试错了两次：第一次用了不存在的 `/private/font-include`，第二次才发现 `include` 变量在这个批次里是 `null`。两次都是「以为环境里有，其实没有」。
+
+回执 `deliverables/linux-ruyijs-canvas-r229/canvas-batch-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
