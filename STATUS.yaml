@@ -929,6 +929,20 @@ projects:
             not_done: [a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
             evidence: deliverables/linux-ruyijs-strip-r271/strip-validation.json
             evidence_sha256: 238bdb201296ab593d0f716b248afec1e760ddfd55ff908b29feb4ee800b0d50
+          native_product_link_units:
+            input_commit: 930528c
+            terminal: product_link 1
+            scope: "the product link with the previous batch's per-unit objects"
+            units_linked: 87
+            duplicate_symbols: 0
+            undefined_symbols: 20
+            achieved: 'the duplicate definitions are gone because the per-unit objects contain no js::shell symbol; the merged relocatable was the wrong thing to reuse'
+            remaining_grouped: {BrowsingContext: 4, Frames: 2, TopLevel: 2, resource_network: 4, CreatePage: 1, DescribeException: 1, EncodeReply: 1, EnvironmentControl: 1, InitCodec: 1, domain: 1, execution_scheduling: 1, web_geometry: 1}
+            which_layer_is_missing: 'the document and network layers, whose batches kept only merged relocatables or a single object, so those units are not available separately'
+            next_step: 'produce the document and network layer units as individual objects the way the interaction batch did'
+            not_done: [a_link_that_resolves, running_the_product_shell, client_abi_against_the_real_runtime]
+            evidence: deliverables/linux-ruyijs-units-r274/units-validation.json
+            evidence_sha256: db57d8e8d2ac0ebf2107d678d0482563bef69af934a3b97d6ce05623fd27e340
           private_product: pending
     inner_repo_state:
       exists: true

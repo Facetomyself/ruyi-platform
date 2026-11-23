@@ -830,6 +830,42 @@ objcopy: no symbols
 
 回执 `deliverables/linux-ruyijs-strip-r271/strip-validation.json`。
 
+## 重复定义清了，剩下的是缺单元
+
+上一轮我说「按单元对象构建」。这一轮发现**批次目录里本来就保留了 87 个独立单元对象**，直接拿来用即可。
+
+| 项 | 上一轮 | 这一轮 |
+|---|---|---|
+| 重复定义 | 20 | **0** |
+| 未定义符号 | 0 | 20 |
+| 链接中的私有单元 | 1 个合并对象 | **87 个独立对象** |
+
+**关键验证**：这 87 个单元里，`js::shell` 定义数 = **0**。所以冲突不是靠剥离解决的，而是根本不该用那个合并对象。
+
+## 剩余的 20 个按层分组
+
+| 层 | 符号数 |
+|---|---|
+| `BrowsingContext` | 4 |
+| `resource_network` | 4 |
+| `Frames` / `TopLevel` | 2 + 2 |
+| `CreatePage` / `DescribeException` / `EncodeReply` | 各 1 |
+| 其余 5 个单例 | 5 |
+
+这些属于 **document 和 network 层**。它们的批次只保留了合并的可重定位对象（或仅 1 个对象），所以拿不到独立单元。
+
+## 又一次同样的错误
+
+`glob('*/*.o')` 匹配不到 `<domain>/<name>/<name>.o` 的三层结构，第一次跑报「no unit objects」。而且第一次的 glob 还把 `relocatable/` 里的合并对象一起捞了进来——**正是这次要避免的那个**。
+
+两处都是想当然：以为层级是两层、以为排除条件不需要显式写。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-units-r274/units-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
