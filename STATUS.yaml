@@ -890,6 +890,20 @@ projects:
             not_done: [compiling_candidates, product_link_against_generated_units, runtime_serving_the_client_abi, browser]
             evidence: deliverables/linux-ruyijs-generate-r258/shell-generate-validation.json
             evidence_sha256: cff3ff538395bbd0678fb18c8e8a93b4dd866478e676b40026aa51b6ac0e2c8d
+          native_shell_unit_compile:
+            input_commit: ec938d0
+            terminal: shell0_compile_verified 0
+            scope: "the generated shell unit compiles with the donor's own recorded command"
+            object_bytes: 6955912
+            hooks_referenced: 3
+            recipe: 'verbatim from the donor build log, so the flags are the ones that produced the object the verified relink used'
+            hooks_present: ['ruyijs::Arguments::Prepare(', 'ruyijs::Run(', 'ruyijs::RunWorker(']
+            what_this_proves: 'the injected source is valid C++ against the donor headers and the compiler kept the three product hook references, so the unit is a real product shell object rather than a stub'
+            what_this_does_not_prove: 'that it links; the 1275 candidate units and runtime objects are not compiled'
+            defects_fixed: 'extractor name, executable bit, embedded absolute output path, missing private include root, dependency file directory'
+            not_done: [linking_with_this_object, compiling_the_other_candidates, runtime_serving_the_client_abi, browser]
+            evidence: deliverables/linux-ruyijs-shell0-r265/shell0-compile-validation.json
+            evidence_sha256: f2d2c7bde355ccdc7f3c14db4eff9127e4da001922255092ddf5a6c035fbede2
           private_product: pending
     inner_repo_state:
       exists: true

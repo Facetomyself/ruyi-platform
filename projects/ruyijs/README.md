@@ -707,6 +707,46 @@ Firefox HEAD 与固定参照一致。
 
 回执 `deliverables/linux-ruyijs-generate-r258/shell-generate-validation.json`。
 
+## 生成后的 shell 单元编译成功
+
+**`shell0_compile_verified 0`**：6,955,912 字节的对象文件，**3 个产品钩子引用**全部在符号表里。
+
+| 钩子 | 状态 |
+|---|---|
+| `ruyijs::Arguments::Prepare(` | 引用 |
+| `ruyijs::Run(` | 引用 |
+| `ruyijs::RunWorker(` | 引用 |
+
+这说明**注入的源码对 donor 头文件是合法的 C++**，而且编译器保留了三个产品钩子——**这是个真实的产品 shell 对象，不是空壳**。
+
+## 编译命令是 donor 自己的
+
+没有自己拼 flags，而是从 donor 的 `build.log` 里**原样取出**当年编译 `shell0.o` 的那条命令。这样 flags、include、宏定义都与已被字节级验证的重链所用的对象一致。
+
+只改写五个操作数：
+
+1. 输出对象 → `/tmp`
+2. 依赖文件 → `/tmp`（原目录不存在）
+3. 源文件 → 生成的单元
+4. 加 `-I/private/src`（产品头文件在这里）
+5. 生成单元内嵌的绝对路径 → 按它声明的位置挂载
+
+## 这一轮踩的五个坑，全是环境而非代码
+
+1. 提取器文件名写错
+2. `git archive` 不保留可执行位，得用 `python3` 调用
+3. 生成单元内嵌了产出时的绝对路径 `/genparent/generated/js.cpp`
+4. donor 命令里没有私有 include 根
+5. donor 命令把 `.deps` 写到不存在的目录
+
+每一个都是“以为环境是这样，其实不是”。这已经是这个项目反复出现的模式。
+
+## 边界
+
+**只证明这一个单元能编译，不证明能链接。** 1275 个候选单元里的其余 1274 个、以及运行时对象都还没编译，`--link-product` 也还没对真实对象用过。
+
+回执 `deliverables/linux-ruyijs-shell0-r265/shell0-compile-validation.json`。
+
 ## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
