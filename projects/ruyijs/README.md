@@ -64,6 +64,15 @@ ruyijs-inner/
 
 ### Linux x86_64 私有 donor
 
+**当前结果（R352，2026-11-24，host185 原生 amd64）：私有壳链接退出 1，尚无可交付的 `dist/js`。** [验收回执](../../artifacts/receipts/ruyijs-linux-amd64-r352/validation.json)与[完整符号清单](../../artifacts/receipts/ruyijs-linux-amd64-r352/link-report.json)已随仓入库。
+
+- **纠正计数。** R351 达到 LLD 的 20 条报错上限。保持同一批对象和库，仅改变输出路径并启用 `--error-limit=0`，得到 347 个不同的未定义符号（68 个 hidden）。修复后的整链为 **129 个**：104 个普通引用，25 个 hidden。早期截断日志里某个名字消失，并非已解决的证据。早期“额外 include 根使样式对象为空”的断言也应撤回：两次 `nm` 在新容器读取前一容器的 `/tmp`，没有检验到同一个文件。
+- **图形与字体实跑。** Firefox 159 的 amd64 Pixman 0.46.4 清单是 34 个单元，排除其他架构的加速实现，同时保留运行时分派。4 线程分别在默认分派与禁用 MMX/SSE2/SSSE3 的条件下各比对 4,096 次像素；两次均通过。重编后的几何对象共 33 个 HarfBuzz 导入均为 `DEFAULT UND`，子集适配器返回的空集与实际共享库的单例同址，引用和销毁也经实跑。
+- **压缩与 Rust。** 原来的二层归档被 LLD 跳过；展开为 ELF 对象后，又实证未修改的 `libjsrust.a` 把分配器等符号内联／局部化，单加扁平库仍会失败。按 donor 记录的 Rust 根编译命令将 zlib-rs 在 LTO 前纳入同一归档，以它**替换**原归档。检查的 331 个原有外部非修饰函数名全部保留。私有 C++ 适配器的 zlib、raw deflate、gzip 和 Brotli 各完成 65,537 字节的逐字节往返；使用相同归档的原版 C++ shell 报 `JavaScript-C159.0`，求值、Promise 和 WebAssembly 分别返回 `42`、`[7]`、`35`。这是 donor 对照执行，不是私有 `Context.eval`。
+- **下一步。** 按 Firefox 的 Linux 配置和对象身份核对 Skia、字体胶合层和 Cairo 合成器；将 URLPattern 的 13 个入口接入同一个 Rust 归档，核对 8 个 AVIF 入口。保留每次链接的真实退出码、完整 argv 和按完整函数签名去重的诊断。私有 shell、真实 C ABI 和 wheel 须分别验收。
+
+以下为各阶段的历史记录。
+
 2026-11-22 在 `host185` 通过 Trace 让行和资源检查后，以 0.5 CPU、2 GiB 内存运行单独的离线快照。借用的 Firefox Git 对象库是 partial clone，实际 `checkout` 因缺少 blob 返回失败；其私有目录和日志保留，未启动 standalone 编译，容器 `OOMKilled=false`。
 
 主机已从 Mozilla 官方仓库核对 `FIREFOX_159_0_RELEASE` 对应 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`。同额度的独立源码容器在 `/home/ruyijs-donor-isolated-moz159/firefox` 浅取该 tag，没有 Trace 挂载，实际 `official_source_ready 0`。联网仅用于取官方源码。证据位于工作区 `deliverables/linux-ruyijs-donor-r66/source-stage.json`。

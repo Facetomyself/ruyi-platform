@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T10:55:57+08:00'
+generated_at: '2026-11-24T11:13:06+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -1341,6 +1341,20 @@ projects:
             not_done: [the_region_type_and_the_ssse3_flag, relink, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-pixman2-r347/pixman2-validation.json
             evidence_sha256: 2a0fe1a4db4e15be4c0b2ce999bca61db4b351cb9577146d42d8546297453994
+          native_uncapped_link_r352:
+            input_commit: 8806a4a12ebcc71c59edca3767361845ff4c9ea6
+            terminal: product_link_1
+            scope: host185_native_amd64_components_and_donor_control
+            r351_lld_error_limit_hit: true
+            uncapped_baseline: {distinct: 347, hidden: 68, ordinary: 279}
+            flat_archives_intermediate: {distinct: 162, newly_visible_rust_names: 33}
+            final_single_rust_carrier: {distinct: 129, hidden: 25, ordinary: 104, link_exit: 1, oom_killed: false}
+            runtime: {pixman_units: 34, pixel_checks_each_profile: 4096, profiles: 2, harfbuzz_abi: passed, codec_round_trips: 4, payload_bytes: 65537, donor_eval: 42, donor_wasm: 35}
+            remaining_hidden: {urlpattern: 13, avif: 8, cairo_compositor: 4}
+            not_verified: [private_product_elf, private_shell_runtime, real_runtime_client_abi, linux_product_wheel]
+            evidence: deliverables/linux-ruyijs-link-audit-r352/validation.json
+            evidence_sha256: c2672493d445e41db9d961f71f41c4a9684bcdafa0e307348c3c0f82afd8f4a2
+            repository_receipt: artifacts/receipts/ruyijs-linux-amd64-r352/validation.json
           private_product: pending
     inner_repo_state:
       exists: true
@@ -1981,7 +1995,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 555d67caecb7a156daf0b395bd08d38472e90dd7
+    commit: 4db44bc614ed07756eee9203ac246338932336ca
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

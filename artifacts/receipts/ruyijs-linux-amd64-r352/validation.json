@@ -1,0 +1,202 @@
+{
+  "schema": "ruyijs-linux-amd64-r352.v1",
+  "scope": "native component and donor-control verification; private full link is still failing",
+  "host": "host185",
+  "checked_at": "2026-11-24T11:07:41+0800",
+  "image_id": "sha256:a32898229c1715dff280efb9f9edc04543dea16ad79ff9acbe3ffe146a9fe3bd",
+  "source_pin": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "source_commits": {
+    "r351": "80fed02",
+    "uncapped_diagnostic": "5307e04",
+    "flat_codec_build": "5f24544",
+    "recompiled_private_units": "d510e1b",
+    "carrier_recipe": "fb5dc8c",
+    "final_product_link": "8806a4a",
+    "regression_test_pin": "4db44bc614ed07756eee9203ac246338932336ca"
+  },
+  "links": {
+    "r351": {
+      "exit": 1,
+      "reported_distinct": 20,
+      "default": 0,
+      "hidden": 20,
+      "lld_hit_limit": true,
+      "warnings": 2,
+      "other_lld_errors": 1,
+      "argv_sha256": "9ab7b552bbf5ea00e1efeb22632e153a4f51c7a92eacbb90ad89c187170d9e66",
+      "log_sha256": "13b15cd278c504ab34373b5a1822cd0f37742c657448c330ec0138aece4c4eeb",
+      "report_sha256": "0af970d5d6575b349a1e4c5297772563001f8a7b042e42c1ed3b08afcacd583a"
+    },
+    "baseline": {
+      "exit": 1,
+      "reported_distinct": 347,
+      "default": 279,
+      "hidden": 68,
+      "lld_hit_limit": false,
+      "warnings": 2,
+      "other_lld_errors": 0,
+      "argv_sha256": "211d88cec04b209b523cefc3921bc21dab0fc73203855d49202d25e7e0f42f8c",
+      "log_sha256": "9683ca2a666729ba8e3078bb6446d0b7ad368d7af95d0103cf62f2baf7fcd587",
+      "report_sha256": "801c41881645697b2d3501361035ddc3d7ea4de0fc14e10c088dc4b53037a53c"
+    },
+    "patched": {
+      "exit": 1,
+      "reported_distinct": 162,
+      "default": 137,
+      "hidden": 25,
+      "lld_hit_limit": false,
+      "warnings": 0,
+      "other_lld_errors": 0,
+      "argv_sha256": "b15df5b97da83e9049a7ded4f639f240d4430455f55d265c0c34043b92c1e35c",
+      "log_sha256": "701d0a6e4438647167229650b7fce4750c83bb1a808c0aea3a4f8f264a793259",
+      "report_sha256": "b993e8178c7b43f6af8407d696a09488fdaa193809bbcb89582f5d5decc4db6c"
+    },
+    "final": {
+      "exit": 1,
+      "reported_distinct": 129,
+      "default": 104,
+      "hidden": 25,
+      "lld_hit_limit": false,
+      "warnings": 0,
+      "other_lld_errors": 0,
+      "argv_sha256": "9d81e92b801ee32f8154c481d04e0b0d26acbd703169c1d4c2a0b2a5f765b95e",
+      "log_sha256": "0cea8e881e61af936a33af2fc0fb0beed79479fef20d85d66a58de287ab485a6",
+      "report_sha256": "03aee4d3d92d9343de4d38e701a39f06531112e9f42cb54a6039741be247a57d"
+    }
+  },
+  "uncapped_baseline_comparison": "Only the lld error limit and scratch output path changed versus R351. Old capped counts are not totals. In the final attempt the 129 distinct names are a strict subset of the original 347.",
+  "native_components": {
+    "pixman": {
+      "version": "0.46.4",
+      "amd64_units": 34,
+      "threads": 4,
+      "pixel_checks_per_run": 4096,
+      "profiles": [
+        "default",
+        "mmx,sse2,ssse3 disabled"
+      ],
+      "system_pixman_needed": false
+    },
+    "font_abi": {
+      "rebuilt_units": 9,
+      "hb_hidden_names_now_default": 33,
+      "singleton_identity_reference_destroy": "passed",
+      "libc_entropy_imports": "GLOBAL DEFAULT UND"
+    },
+    "compression": {
+      "flat_zlib_elf_members": 10,
+      "brotli_units": 35,
+      "original_jsrust_with_flat_zlib": "probe link failed; LTO internalized Rust runtime entries",
+      "combined_carrier_sha256": "856cf10befbce8db2a55c0954ab0bcca88fe976ddb09785f37d2e8aa9879ef0d",
+      "preserved_external_unmangled_function_names": 331,
+      "private_zlib_exports": [
+        "RUYIJS_CS_Z_deflate",
+        "RUYIJS_CS_Z_deflateEnd",
+        "RUYIJS_CS_Z_deflateInit2_",
+        "RUYIJS_CS_Z_inflate",
+        "RUYIJS_CS_Z_inflateEnd",
+        "RUYIJS_CS_Z_inflateInit2_"
+      ],
+      "peak_guarded_working_bytes": 1075855360,
+      "round_trips": {
+        "payload_bytes": 65537,
+        "round_trips": {
+          "zlib": 2985,
+          "raw_deflate": 2979,
+          "gzip": 2997,
+          "brotli": 1871
+        }
+      }
+    },
+    "donor_control": {
+      "scope": "original C++ donor shell with a combined Rust carrier, not private dist/js",
+      "version": "JavaScript-C159.0",
+      "eval_promise_wasm": [
+        42,
+        [
+          7
+        ],
+        35
+      ],
+      "elf_sha256": "39cd38ba31dfbf16d5f3d3c56d7c1bdccfbef7c90e36a646835af593a2877d33",
+      "carrier_sha256": "856cf10befbce8db2a55c0954ab0bcca88fe976ddb09785f37d2e8aa9879ef0d"
+    },
+    "tool_regressions": {
+      "native_donor": 11,
+      "diagnostics_and_substitution": 3
+    }
+  },
+  "remaining": {
+    "default": 104,
+    "hidden": {
+      "URLPattern": 13,
+      "AVIF": 8,
+      "Cairo compositors": 4
+    },
+    "full_report": "link-report.json",
+    "next": "Validate the Skia/Cairo Linux source inventory and the R225 retained archive by member/config identity before substituting it. Add the pinned URLPattern Rust crate to the one carrier and resolve the actual AVIF provider. Re-run without diagnostic truncation; then run the private shell and real C ABI."
+  },
+  "limits": [
+    "the link still tolerates multiple definitions and uses cached objects from earlier phases",
+    "no private product ELF, real private Context.eval, or distributable Linux wheel accepted"
+  ],
+  "host_stage": "/home/ruyijs-donor-isolated-moz159/native-link-audit-r352",
+  "raw_evidence_root": "deliverables/linux-ruyijs-link-audit-r352",
+  "evidence_sha256": {
+    "baseline/container.json": "c01596a839469dcd7fe08c09bda7d4a7227693bd1afa09eb3330ceb15f950b59",
+    "baseline/js-product.argv": "211d88cec04b209b523cefc3921bc21dab0fc73203855d49202d25e7e0f42f8c",
+    "baseline/link-report.json": "801c41881645697b2d3501361035ddc3d7ea4de0fc14e10c088dc4b53037a53c",
+    "baseline/link.log": "9683ca2a666729ba8e3078bb6446d0b7ad368d7af95d0103cf62f2baf7fcd587",
+    "baseline/result": "f20d15493322567c5e324e2fe95f7aa7ac0aefaf92cef84ca4f446e051b1ea94",
+    "carrier/guard.json": "3306c3e9269b2d22c6a84e518c7c8fdc6987edf99274b928a0a6039e9ed6b875",
+    "carrier/result.json": "228ecfec2b181bba90e4c81d4c0b98c6a62106f9a0475839e00a08a467bf89d9",
+    "carrier/rustc-argv.json": "2be839f2f9f530068aaaef746830672337cd24d3971b4a3f07e4479bf5d0ef45",
+    "carrier/rustc.log": "c7f87ca4f0648011dd9ad2ddb4771fe6a5fb7ad10664b5b8d9d10371839ea271",
+    "carrier-codec/codec-result.json": "915a1bf85eb43dada659c882ba42b66818a90f19b18260771ac47081713ae7cf",
+    "carrier-codec/probe.argv.json": "34fee093aff971fad751bf00149668bc8122dfb226f547faa0182c0515fdd730",
+    "carrier-control/link.argv.json": "5d3e9ed78e29b3e6ae517afc035058a0221f81600ec44ec0a7d9f563e8e600c9",
+    "carrier-control/result.json": "76c49d39270c2c601ff4cd83fc89775e07205a2512e99d407b130ca1b4847a6b",
+    "carrier-control/results.txt": "957d3b79e91393d5fc632108206e5f5c1d9cf704fdf085c34403c82bf0c0732d",
+    "codec-first/build.json": "eeab9e70b1f60b9173837e43bb57e6fd100887394b5ad224dea432a0624eefa5",
+    "codec-first/probe-link.log": "15e648ed44293d10b313ba68f40f470ebca6bbfc0c44e0dc2290a23ac39ae01f",
+    "codec-first/probe.argv.json": "4b43f47bf31fef6c2122cdd1726bb5ce3323f73e45be50f5b822306abb06b93c",
+    "donor/jsrust-Cargo.toml": "57d6a390efe389eb29a622122460d93a880696065dac4f1d4acfd561c88c65bf",
+    "donor/jsrust-argv.json": "acf8044a8378c1a51a75c2d73993c20682c2cae70fc77d503d3522e956a8123d",
+    "donor/jsrust-lib.rs": "30f6b339d367c02e7fe3e8f65458103616d5acc8cb91ff23a5d1124348725757",
+    "donor/jsrust-spec.json": "6c8c932bda4d2604b89afc9ada492959f4f06760c875e2f129661fefefce3f3c",
+    "donor/pixman-inner.moz.build": "9ed2cd1d52bbe6cb387a9c4132ddb00893aa2fa884e73a5cbbfaa0182a053397",
+    "donor/pixman-root.moz.build": "37cb9779acd88fbb4b347a5457c3b205adb91ec6162bfe60465a371a75592cab",
+    "donor/pixman-version.h": "eebbff4b66cbcc98b3ffa16c68a919d4a16dfcffb86cd1fb85faea4f07bcd76b",
+    "donor/shell-recipe.txt": "9a486dbfe716203e9943001f82132675363ad38fecb40002ef94c6d3bd3f67f8",
+    "final/container.json": "06f378693d8b3a384a827af9c560e78b1edd9efd4ef5513efc871534eb4c4a19",
+    "final/js-product.argv": "9d81e92b801ee32f8154c481d04e0b0d26acbd703169c1d4c2a0b2a5f765b95e",
+    "final/link-report.json": "03aee4d3d92d9343de4d38e701a39f06531112e9f42cb54a6039741be247a57d",
+    "final/link.log": "0cea8e881e61af936a33af2fc0fb0beed79479fef20d85d66a58de287ab485a6",
+    "final/result": "f20d15493322567c5e324e2fe95f7aa7ac0aefaf92cef84ca4f446e051b1ea94",
+    "host.json": "cdcc4e797d46a4dc5a8ff4d7f5d19e8af6ceaf5858870d0c22750ceb101407af",
+    "imports-before.txt": "47cf0ab7de57db53dc3be505884bd4b53b2d9bade103bd76cba68251d5e494eb",
+    "patched/container.json": "68430873f04eb2f26343758fd1295874bdda579788272fb1fb74966389cc2a6a",
+    "patched/js-product.argv": "b15df5b97da83e9049a7ded4f639f240d4430455f55d265c0c34043b92c1e35c",
+    "patched/link-report.json": "b993e8178c7b43f6af8407d696a09488fdaa193809bbcb89582f5d5decc4db6c",
+    "patched/link.log": "701d0a6e4438647167229650b7fce4750c83bb1a808c0aea3a4f8f264a793259",
+    "patched/rebuilt.json": "e960fd3d66ebc7e3345462ffde8c9a77e1a160610dd603c58d66eadddc51fbb7",
+    "patched/result": "f20d15493322567c5e324e2fe95f7aa7ac0aefaf92cef84ca4f446e051b1ea94",
+    "pixman/pixman-steps.txt": "55634a0c5b4b45f2da9673f197d92783dc831f1882ea5cfc3dc006a90ee7f19a",
+    "pixman/probe.dynamic.txt": "fb59338b0fdec8a755992fde9610cea38179d37636e62aed059869b329af663f",
+    "pixman/run-default.log": "80ef00e4e99a7d2aad522c19a49e31573421011035967e21dc169f82e125e72f",
+    "pixman/run-generic.log": "e673c7e274bc65b8bdf815dfc975816a23058a472993a0f66dfbb5d23f8670bd",
+    "pixman-r348.txt": "6fa7288ba3796e6a2384b3d0066b5c7c8f14b3628ef5db03f222065c4819137a",
+    "r351/js-product.argv": "9ab7b552bbf5ea00e1efeb22632e153a4f51c7a92eacbb90ad89c187170d9e66",
+    "r351/link-report.json": "0af970d5d6575b349a1e4c5297772563001f8a7b042e42c1ed3b08afcacd583a",
+    "r351/link.log": "13b15cd278c504ab34373b5a1822cd0f37742c657448c330ec0138aece4c4eeb",
+    "r351/result": "f20d15493322567c5e324e2fe95f7aa7ac0aefaf92cef84ca4f446e051b1ea94",
+    "runtime/codec-result.json": "b8fbe21cd8b09f95f624a3263b19436fb9958130adcb79ccc45caaa898575cf0",
+    "runtime/donor-local-symbols.txt": "4ce1b53af67c646328400c7e9269e6889500503bb056cabb7d5028c7aa6153a4",
+    "runtime/donor-tool-suite-final.log": "2f223a0b276f6e7556189d7273b116684205421979230dcfb9a0daa8ebb67655",
+    "runtime/donor-tool-suite.log": "18877896d02ba7df159cb6b445fa76aa45bc9c29212d18cb9bfd97265d524a0c",
+    "runtime/hb-test.log": "15f1a23b367d3577ad70ecd3177e96382818d9c27cb87e56c0110859d15948e8",
+    "runtime/imports-after.json": "9587438b015e73e2a4ed70426e4d65ccd06ae3b33b64029fa3f3bdf02b3e4f2e",
+    "runtime/units-result": "0b1d41a6fbbb5287b39c4d201ed38f1d3ab3184baa5b3700265afd570e485bd9",
+    "runtime/units-steps.txt": "14aadece26ed4d0fcaa69fd5dc9dffa6c3bd38cab70cfcbf80e0b04ad3039166"
+  }
+}

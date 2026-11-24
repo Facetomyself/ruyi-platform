@@ -11,7 +11,7 @@
 | 桌面配置和日志预览 | Trace 的可选 Electron + **对应架构**的合格内核 | 较早的 x86_64 和 ARM64 各有独立实包及虚拟 X11/Wayland 验收，[详情](13-ruyitrace-progress.md)。物理显示、更广 producer 和所有 Win64 行为的等价性另验。 |
 | 校验旧版 Win64 产物 / 读取离线统计 | Trace **Win64 离线交接分支**，见下表 | 静态原件证据与合成测试，不是 Win64 私有 Firefox 的完整源树，也不是 Linux 实采证明。业务项目宜依赖有版本的输出 schema，避免把推断地址当成稳定 ABI。 |
 | HTTP 客户端 | [RuyiHttp](../projects/ruyihttp/README.md)：Python API、wheel 构建与已入库原生库 | 三平台既有库可重打包；Linux amd64 在 glibc 2.39 上通过 HTTPS/TLS 1.3/h2。Linux ARM64、macOS x86_64 新原生库及 H3/代理联验独立；重打 wheel 不等于从 C++/Rust 重建底层库。 |
-| JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | Linux 客户端、donor 与若干部件已有验收。以本交接基线 `ab060a5` 所对应 R344 回执为准，产品链接仍失败，未形成合格的内部 Linux `dist/js`/wheel。pixman 仍在编译阶段受阻于 include 形状，且该修复不等于下一次整链已过。 |
+| JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | [R352 原生 amd64 回执](../artifacts/receipts/ruyijs-linux-amd64-r352/validation.json)：Pixman、字体 ABI、四种压缩往返及替换 Rust 归档的 donor 对照均已实跑。私有产品整链仍有 129 个未定义符号，尚无合格的内部 Linux `dist/js`/wheel。 |
 | 程序化管理浏览器 | [MCP / owner 交接及验收表](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | [AMD64 R5 生产 M2](../projects/ruyi-mcp/PRODUCTION-OWNER.md)通过排他借用、真断点、归还与重借、暂停中停止及原生关闸读回；使用从干净 GitHub 检出构建并搬到另一台主机的独立 CLI。 |
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
