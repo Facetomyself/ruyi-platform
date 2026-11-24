@@ -52,6 +52,7 @@ python3 scripts/verify-coverage.py || fail=1
 echo
 echo "== 3.6 证据等级总账 =="
 python3 scripts/verify-ledger.py || fail=1
+python3 scripts/verify-claims.py || fail=1
 
 echo
 echo "== 3.7 构建 runbook 一致性 =="
