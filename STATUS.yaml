@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T13:28:07+08:00'
+generated_at: '2026-11-24T14:35:08+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -51,7 +51,7 @@ projects:
       darwin_arm64: ready (rebuilt, hash verified)
       linux_x86_64: ready (rebuilt; native x86_64 CPU, Ubuntu 24.04 container, glibc 2.39; live HTTPS 200, TLS 1.3, h2)
       darwin_x86_64: build-required
-      linux_aarch64: build-required
+      linux_aarch64: ready (14 source-built ELF; manylinux_2_39_aarch64; native H1/H2/H3 and Oracle ARM transport verified)
     tests: 26/26
     latest_local_contract: '2026-11-22: aarch64 Python 3.10.12, 26/26 including native ELF and bounded wheel inspection fixtures; no native ARM64 release or live transport test'
     native_wheel_inspection:
@@ -62,10 +62,18 @@ projects:
       tool: fd3d4f34edda32b06d3128a6858ec56184ce2230
       scope: 'static ELF, dynamic exports, dependency names, runpath and glibc; no runtime qualification'
       amd64_historical: '14 libs, 31 core + 2 QUIC exports, highest required GLIBC_2.38; loader-path exceptions only in reference mode'
-      aarch64: 'synthetic native ELF and negative controls verified; actual Necko/NSS set remains build-required'
+      aarch64: 'Historical synthetic preflight superseded by native source build and installed-wheel qualification; see transport_acceptance'
       evidence: deliverables/linux-ruyihttp-preflight-r70/historical-amd64-abi.json
       evidence_sha256: bcd399525e74cea58e86af766bd9f75d4574e5895664db849fd725a24ebcbbb6
-    phase: Linux x86_64 wheel 已通过 HTTPS live smoke；其余平台见 build 矩阵
+    transport_acceptance:
+      checked: '2026-11-24'
+      linux_h3: 'independent UDP peer; IPv4/IPv6 Alt-Svc, TLS 1.3, body+stream gates, strict certificate negatives'
+      two_hop_proxy: '10/10; HTTP CONNECT, HTTPS CONNECT, SOCKS5h ingress to second CONNECT proxy'
+      h2_eof: '12 complete streams retained; 3 truncated streams rejected'
+      arm_source: https://github.com/Facetomyself/ruyihttp/actions/runs/45335744015
+      arm_oracle_receipt: artifacts/receipts/ruyihttp-native-20261124/linux-aarch64.json
+      scope: 'No CONNECT-UDP or arbitrary client proxy-list support implied.'
+    phase: 原生 wheel 与实际协议分项验收，见 build 与 transport_acceptance
     blocked_by: []
     verified:
       native_hashes: pass
@@ -2047,7 +2055,7 @@ submodules:
     state: added
   ruyihttp:
     url: https://github.com/Facetomyself/ruyihttp
-    commit: 2903c12608bbf1ffce9f6ee95406ef2aaaa38a7b
+    commit: 4800a6c7056181fea7e32accbf40f4eab5f5a2ab
     visibility: public
     state: added
   ruyijs:

@@ -1,0 +1,37 @@
+{
+  "platform": "linux_aarch64",
+  "source_check": "https://github.com/Facetomyself/ruyihttp/actions/runs/45335744015",
+  "checked_in_revision": "adc8d8df64137c5710a16ad2fb18b490d4d96521",
+  "repack_check": "https://github.com/Facetomyself/ruyihttp/actions/runs/45336869695",
+  "wheel_sha256": "b0f5bafeb326e24ef80797dbd240562dbf7334d8bc068d354715dba70f4b4a2b",
+  "arch": "aarch64",
+  "libc": "glibc 2.39",
+  "sha256_native_count": 14,
+  "native_smoke": [
+    "linux_aarch64 3.12.16 /home/runner/work/_temp/installed-test/lib/python3.12/site-packages/ruyihttp manylinux_2_39_aarch64 native hashes 14 NSS 3.132 NSPR 4.40",
+    "h2 200 20 {'backend': 'NSS', 'nss': '3.132', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+    "h3 200 30 {'backend': 'NSS', 'nss': '3.132', 'profile': 'firefox-159', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False}",
+    "loaded sibling libraries: libfreeblpriv3.so, libnecko_core.so, libnecko_quic.so, libnspr4.so, libnss3.so, libnssutil3.so, libplc4.so, libplds4.so, libsoftokn3.so, libsqlite3.so, libssl3.so"
+  ],
+  "oracle_arm64": {
+    "host": "oracle-reverse-dev",
+    "results": [
+      "loopback HTTP/1.1",
+      "native H3: 5/5 on UDP, IPv4 and IPv6",
+      "two-hop TCP proxy: 10/10",
+      "H2 complete before EOF: 12/12",
+      "truncated H2 rejected: 3/3"
+    ],
+    "raw_protocol_log_sha256": "8c68814f08c90df065ea3bf3b9ecba356f1acbfc0e0608a446bbeabdf18a3541"
+  },
+  "final_oracle_retest": {
+    "wheel_source": "3df80a3898cda255b52bb1a806e1c22027a44269",
+    "workflow": "https://github.com/Facetomyself/ruyihttp/actions/runs/45339943378",
+    "wheel_sha256": "0e316e82818f0d6a0e6ba0c3aeace923842e3b3fa2532e160ae4a0c5b9c86800",
+    "openssl_control": "IPv6-first resolver; curl -4 to example.com and pypi.org 200, curl -6 timeout",
+    "ruyihttp_before": "TCP connect timeout before TLS on both external origins",
+    "ruyihttp_after": "example.com 200, PyPI six==1.17.0 JSON 200, both NSS 3.132 / TLS 1.3 / h2",
+    "additional_controls": "6 native H3 cases including Firefox 158, 10 two-hop proxy cases, H2 peer EOF 12 complete + 3 truncated",
+    "raw_log_sha256": "896fd17755888bfcb9920c87ef205cc87c64f6ed6c7c3bbc78034dec5991eecb"
+  }
+}

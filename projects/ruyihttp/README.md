@@ -25,10 +25,10 @@ submodules/ruyihttp/
 │   ├── darwin_arm64/    6 文件，8.2 MB（NSS 3.132 / Neqo 0.33.0）
 │   ├── linux_x86_64/   14 文件，8.4 MB（NSS 3.132 / Neqo 0.33.0）
 │   ├── darwin_x86_64/   空（build-required，仅 README）
-│   └── linux_aarch64/   空（build-required，仅 README）
+│   └── linux_aarch64/   14 个 AArch64 ELF 和固定源码构建来源
 ├── tools/               build_native.py / verify_runtime.py / check_linux_candidate.py
-├── tests/               26 项契约及原生预检测试
-├── ci/smoke_local.py
+├── tests/               契约、原生预检和 opt-in HTTP/3 集成测试
+├── ci/                  安装后 HTTP、H2 EOF、H3 和双跳代理验收
 ├── docs/                build-native / licensing / platform-support
 ├── dist-v0.9.0-legacy/  脱钩旧 wheel 归档 + VERIFICATION.md
 └── setup.py             平台选择与原生库打包
@@ -44,19 +44,13 @@ submodules/ruyihttp/
 | `darwin_arm64` | ready | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_26_0_arm64` |
 | `linux_x86_64` | ready（Ubuntu 24.04 容器已通过 HTTPS 验收） | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_x86_64` |
 | `darwin_x86_64` | build-required | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_11_0_x86_64` |
-| `linux_aarch64` | build-required | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_aarch64` |
+| `linux_aarch64` | ready（原生 ARM64 编译、安装及 H1/H2/H3） | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_aarch64` |
 
-两个 `build-required` 平台已有代码路径与 manifest 槽位，没有二进制。构建时 `setup.py` 明确抛
-`native runtime missing`，不会静默打包其他平台的二进制：
-
-```bash
-cd submodules/ruyihttp
-RUYIHTTP_PLATFORM=linux_aarch64 python -m pip wheel --no-build-isolation --no-deps -w /tmp/x .
-```
+打包器要求状态为 `ready`，且平台目录的文件集合及 SHA-256 与清单完全一致；单独放入一个同名库不会生成目标 wheel。Linux 槽位的最低 glibc 标签为 2.39，即使跨打包宿主更旧也不能把标签降到 2.31。
 
 ### Linux 原生候选静态预检
 
-`fd3d4f3` 增加只读 `check_linux_candidate.py DIR --arch aarch64`，核对完整 14 库的 ELF 架构、31 个核心和 2 个 QUIC 函数的**已定义动态导出**、依赖库名称、同级 loader 路径及至多 `GLIBC_2.39` 的符号需求。它既不加载库，也不写运行时清单。真实 ARM64 Necko/NSS 原生集仍为 `build-required`；还需实际目标机加载、NSS 版本和回环 HTTP/2／QUIC。
+`fd3d4f3` 增加只读 `check_linux_candidate.py DIR --arch aarch64`，核对完整 14 库的 ELF 架构、31 个核心和 2 个 QUIC 函数的**已定义动态导出**、依赖库名称、同级 loader 路径及至多 `GLIBC_2.39` 的符号需求。它既不加载库，也不写运行时清单。这是 2026-11-22 的静态检查范围。实际 ARM64 运行时和协议验收已于 2026-11-24 单独完成，见下文。
 
 走 `--reference` 实测历史 amd64 14 库和全部导出匹配，最高动态版本需求 `GLIBC_2.38`（发行 wheel 仍声明 2.39）。旧库的继承搜索路径超出同级，默认候选检查会拦截；未复制或改写这些库。实际证据 `deliverables/linux-ruyihttp-preflight-r70/historical-amd64-abi.json`。ARM64 测试在本机编译非产品 ELF，覆盖错误架构、漏导出和引用未定义，21 项回归通过；非 ARM64 runtime 发行证据。
 
@@ -64,9 +58,9 @@ RUYIHTTP_PLATFORM=linux_aarch64 python -m pip wheel --no-build-isolation --no-de
 
 ## 为什么原生库入库
 
-24 MB 三平台合计，换 wheel 可离线构建。规则见 `conventions.md` §5：每平台只留一份，换代整目录替换并更新 `PINS.md`。
+平台目录存放已验证的整套原生库，使 wheel 可以离线封装。规则见 `conventions.md` §5：每平台只留一份，换代整目录替换并更新 `PINS.md`。
 
-## 当前状态（2026-11-20 实测）
+## 历史基线（2026-11-20 实测）
 
 | 项 | 状态 | 验证命令 |
 | --- | --- | --- |
@@ -106,12 +100,24 @@ env/bin/python -m pip check
 RUYIHTTP_LIVE=1 env/bin/python smoke_local.py
 ```
 
+### 2026-11-24：HTTP/3 与代理链端到端验收
+
+在 x86_64 Linux 上从已安装 wheel 建立真正的 QUIC 连接。独立 UDP 服务端记录 TLS 1.3、ALPN `h3`、流 0 与 4；关闭所有 TCP 监听后，IPv4 和 IPv6 都经 `Session` 完成端口型 Alt-Svc 升级。256 KiB GET/POST、流重置/超时后复用以及三种证书反例均有专门断言。修复前 IPv6 地址丢失方括号导致升级失败。见[已安装 wheel 回归](https://github.com/Facetomyself/ruyihttp/actions/runs/45334742501)。
+
+HTTP CONNECT、HTTPS CONNECT、SOCKS5h 三种入口经第二跳 CONNECT 到达受控 TLS 源站；三端分别记录请求，校验临时响应值和代理认证头隔离。第二跳断开时零源站请求；错误域名证书分别在 HTTPS 入口或源站阻止请求。共 [10 项通过](https://github.com/Facetomyself/ruyihttp/actions/runs/45333462315)。结论限于服务端联链的 TCP 代理路径，未验收 CONNECT-UDP/MASQUE。
+
+### 2026-11-24：Linux ARM64 原生构建与目标机网络验证
+
+[固定源码原生构建](https://github.com/Facetomyself/ruyihttp/actions/runs/45335744015)产出完整的 14 个 AArch64 ELF（NSS 3.132、NSPR 4.40、Neqo 0.33.0）。[从入库字节重新打包](https://github.com/Facetomyself/ruyihttp/actions/runs/45336869695)并在干净 ARM64 venv 校验 wheel 哈希、加载路径、HTTP/1、H2、H3 和 peer EOF。标签 `manylinux_2_39_aarch64` 经 auditwheel 核实。[原生回执](../../artifacts/receipts/ruyihttp-native-20261124/linux-aarch64.json)。
+
+独立 Oracle ARM64 主机的回环证据包括真实 IPv4/IPv6 UDP H3、TLS 正反例和双跳代理。[H3 客户端/服务端回执](../../artifacts/receipts/ruyihttp-native-20261124/h3.txt)及[代理逐跳记录](../../artifacts/receipts/ruyihttp-native-20261124/proxy.json)给出了 x86_64 侧的独立对照。公网双栈单独验收：在 IPv6 优先而 IPv6 出口超时的同一主机，旧库对 example.com、PyPI 均在 TLS 前超时。`3df80a3` 在总连接时限内错开两种地址族尝试，保留原始 SNI、证书校验及代理侧 DNS。安装[主分支 wheel](https://github.com/Facetomyself/ruyihttp/actions/runs/45339943378)后两个原 URL 均返回 200/NSS TLS 1.3/h2；受控错误域名仍在发送 HTTP 前失败。
+
 ## 剩余缺口
 
 | 项 | 卡在哪 |
 | --- | --- |
-| Linux HTTP/3 | QUIC 库已加载，尚无端到端 HTTP/3 请求证据 |
-| `darwin_x86_64` / `linux_aarch64` 二进制 | 对应平台构建，评估见 `docs/11-aarch64-assessment.md`（决策：不做） |
+| HTTP/3 经代理 | 普通 TCP 代理和直连 H3 已分别验收；这两种能力并不构成 CONNECT-UDP/MASQUE 验收 |
+| Intel macOS 候选 | 独立目标机验证并核对动态库声明的最低系统版本后，才可提升平台状态 |
 | 原生库 C/C++/Rust 源码 | 不在树内，来源为 `ff-ruyijs` 0.4.1 wheel，见 `docs/02-source-recovery.md` |
 
 ## 构建

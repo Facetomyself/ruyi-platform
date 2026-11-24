@@ -1,0 +1,23 @@
+x86_64
+glibc 2.41
+Python 3.12.16
+988366fe164e7600863080ab5596e45fb68610f1104ea8450f016f85d5a79840  ruyihttp/_transport.py
+0a2ce2921db96ff9079429da86005beb1d02c3dd54ad14f6d14769e1233e1c56  ruyihttp/_http3.py
+96f8ef54e1180b8999cc0d36887bac5898402e7e421b9af3b47c342536ae1fd5  tests/test_http3_native.py
+test_public_session_alt_svc_ipv4_upgrade_and_reuse (test_http3_native.NativeHTTP3Tests.test_public_session_alt_svc_ipv4_upgrade_and_reuse) ... public Session 127.0.0.1: HTTP/1.1 Alt-Svc → TCP listeners closed → HTTP/3 versions=30,30; origin observed one h3 connection with streams 0,4
+ok
+test_public_session_alt_svc_ipv6_upgrade_and_reuse (test_http3_native.NativeHTTP3Tests.test_public_session_alt_svc_ipv6_upgrade_and_reuse) ... public Session [::1]: HTTP/1.1 Alt-Svc → TCP listeners closed → HTTP/3 versions=30,30; origin observed one h3 connection with streams 0,4
+ok
+test_stream_reset_and_timeout_leave_connection_usable (test_http3_native.NativeHTTP3Tests.test_stream_reset_and_timeout_leave_connection_usable) ... h3 stream reset=0x10c, header timeout=0.3s, then empty 200 on stream 8
+ok
+test_strict_certificate_rejections (test_http3_native.NativeHTTP3Tests.test_strict_certificate_rejections) ... strict h3 hostname: ('validation failed: leaf certificate has no matching subjectAltName (encountered processing <Certificate(subject=<Name(CN=h3.test)>, ...)>)',); origin HTTP requests=0
+strict h3 untrusted: ('validation failed: candidates exhausted: all candidates exhausted with no interior errors',); origin HTTP requests=0
+strict h3 expired: ('validation failed: cert is not valid at validation time (encountered processing <Certificate(subject=<Name(CN=h3.test)>, ...)>)',); origin HTTP requests=0
+ok
+test_udp_only_handshake_get_and_post (test_http3_native.NativeHTTP3Tests.test_udp_only_handshake_get_and_post) ... native=/work/native/linux_x86_64/libnecko_quic.so TLS={'backend': 'NSS', 'nss': '3.132', 'profile': 'firefox-159', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False} streams=0,4 GET/POST=262144 bytes sha256=2312394bd99545d9de131c24efb781e765ac1aec243f2ed9347597a793a415e9
+ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.868s
+
+OK

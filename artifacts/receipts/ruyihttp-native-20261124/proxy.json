@@ -1,0 +1,217 @@
+{
+  "run": "https://github.com/Facetomyself/ruyihttp/actions/runs/45333462315",
+  "commit": "00a2ccced9c06610b5267e9fecb2642c5c78971b",
+  "cases": [
+    {
+      "scheme": "http",
+      "mode": "ok",
+      "events": [
+        [
+          "entry",
+          "http",
+          "origin.invalid:57405"
+        ],
+        [
+          "exit",
+          "origin.invalid:57405",
+          "ok"
+        ],
+        [
+          "origin",
+          "GET /proof/dfeb609f9ba7187b33622dc7f518379a HTTP/1.1",
+          false
+        ]
+      ],
+      "tls": {
+        "backend": "NSS",
+        "nss": "3.132",
+        "nspr": "4.40",
+        "profile": "firefox-159",
+        "version": 772,
+        "alpn": "http/1.1",
+        "cipher_suite": 4866,
+        "resumed": false
+      },
+      "error": null
+    },
+    {
+      "scheme": "http",
+      "mode": "cut",
+      "events": [
+        [
+          "entry",
+          "http",
+          "origin.invalid:52887"
+        ],
+        [
+          "exit",
+          "origin.invalid:52887",
+          "cut"
+        ]
+      ],
+      "tls": null,
+      "error": "ProxyError: Proxy CONNECT returned 502"
+    },
+    {
+      "scheme": "http",
+      "mode": "bad-origin",
+      "events": [
+        [
+          "entry",
+          "http",
+          "origin.invalid:58263"
+        ],
+        [
+          "exit",
+          "origin.invalid:58263",
+          "bad-origin"
+        ]
+      ],
+      "tls": null,
+      "error": "SSLError: ('validation failed: leaf certificate has no matching subjectAltName (encountered processing <Certificate(subject=<Name(CN=wrong)>, ...)>)',)"
+    },
+    {
+      "scheme": "https",
+      "mode": "ok",
+      "events": [
+        [
+          "entry",
+          "https",
+          "origin.invalid:37219"
+        ],
+        [
+          "exit",
+          "origin.invalid:37219",
+          "ok"
+        ],
+        [
+          "origin",
+          "GET /proof/a082b4ffda91bf7abf8ba5ec2e2d98e9 HTTP/1.1",
+          false
+        ]
+      ],
+      "tls": {
+        "backend": "NSS",
+        "nss": "3.132",
+        "nspr": "4.40",
+        "profile": "firefox-159",
+        "version": 772,
+        "alpn": "http/1.1",
+        "cipher_suite": 4866,
+        "resumed": false
+      },
+      "error": null
+    },
+    {
+      "scheme": "https",
+      "mode": "cut",
+      "events": [
+        [
+          "entry",
+          "https",
+          "origin.invalid:57627"
+        ],
+        [
+          "exit",
+          "origin.invalid:57627",
+          "cut"
+        ]
+      ],
+      "tls": null,
+      "error": "ProxyError: Proxy CONNECT returned 502"
+    },
+    {
+      "scheme": "https",
+      "mode": "bad-origin",
+      "events": [
+        [
+          "entry",
+          "https",
+          "origin.invalid:46909"
+        ],
+        [
+          "exit",
+          "origin.invalid:46909",
+          "bad-origin"
+        ]
+      ],
+      "tls": null,
+      "error": "SSLError: ('validation failed: leaf certificate has no matching subjectAltName (encountered processing <Certificate(subject=<Name(CN=wrong)>, ...)>)',)"
+    },
+    {
+      "scheme": "https",
+      "mode": "bad-proxy",
+      "events": [],
+      "tls": null,
+      "error": "SSLError: ('validation failed: leaf certificate has no matching subjectAltName (encountered processing <Certificate(subject=<Name(CN=wrong)>, ...)>)',)"
+    },
+    {
+      "scheme": "socks5h",
+      "mode": "ok",
+      "events": [
+        [
+          "entry",
+          "socks5h",
+          "origin.invalid:45915"
+        ],
+        [
+          "exit",
+          "origin.invalid:45915",
+          "ok"
+        ],
+        [
+          "origin",
+          "GET /proof/5c5465dbea58abd61776e12da9814fc1 HTTP/1.1",
+          false
+        ]
+      ],
+      "tls": {
+        "backend": "NSS",
+        "nss": "3.132",
+        "nspr": "4.40",
+        "profile": "firefox-159",
+        "version": 772,
+        "alpn": "http/1.1",
+        "cipher_suite": 4866,
+        "resumed": false
+      },
+      "error": null
+    },
+    {
+      "scheme": "socks5h",
+      "mode": "cut",
+      "events": [
+        [
+          "entry",
+          "socks5h",
+          "origin.invalid:43771"
+        ],
+        [
+          "exit",
+          "origin.invalid:43771",
+          "cut"
+        ]
+      ],
+      "tls": null,
+      "error": "ProxyError: 0x05: Connection refused"
+    },
+    {
+      "scheme": "socks5h",
+      "mode": "bad-origin",
+      "events": [
+        [
+          "entry",
+          "socks5h",
+          "origin.invalid:46343"
+        ],
+        [
+          "exit",
+          "origin.invalid:46343",
+          "bad-origin"
+        ]
+      ],
+      "tls": null,
+      "error": "SSLError: ('validation failed: leaf certificate has no matching subjectAltName (encountered processing <Certificate(subject=<Name(CN=wrong)>, ...)>)',)"
+    }
+  ]
+}
