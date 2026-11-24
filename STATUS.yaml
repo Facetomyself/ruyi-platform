@@ -1,4 +1,4 @@
-generated_at: '2026-11-25T03:25:00+08:00'
+generated_at: '2026-11-25T03:30:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -1479,6 +1479,17 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_handoff_r422:
+            terminal: a_single_page_handoff_summarises_what_ships_what_is_proven_and_what_is_missing
+            document: docs/15-linux-handoff.md
+            document_sha256: c2f883dd790f88fbbc16cb32b5a3526e36c0fec3ab5150cd1328ce573f092600
+            every_number_checked: true
+            ledger_blocks: 155
+            receipts: 71
+            offline_tests: 33
+            handshake_tests: 4
+            companion_version: 0.2.30+inner.r421
+            excluded: [ocsp_enforcement, crl_enforcement, default_mozilla_roots, http2_framing, quic_http3, arm64_product]
           private_chain_scope_r421:
             terminal: the_ocsp_failure_mode_is_confined_to_the_ocsp_path_and_the_plain_check_still_refuses
             plain_chain: 0

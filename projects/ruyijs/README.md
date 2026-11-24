@@ -84,6 +84,8 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**交接摘要（R422）：** [docs/15-linux-handoff.md](../../docs/15-linux-handoff.md) —— 一页纸说明交付了什么、凭什么相信、还差什么，以及三个高重复率的坑。给接手者，不必重读数百条台账。
+
 **OCSP 尝试的收尾（R421）：确认没有伤到既有路径。** [回执](../../artifacts/receipts/ruyijs-linux-chain-scope-r421/validation.json)
 
 - **风险**：`CERT_SetOCSPFailureMode` 是**进程全局**的。R419 无条件设置它，可能改变进程内所有后续校验，包括真正在用的普通链校验。
