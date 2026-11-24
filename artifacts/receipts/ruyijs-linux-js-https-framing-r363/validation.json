@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-11-24T17:08:06+0800",
+  "framing": {
+    "chunked": {
+      "n": 5120,
+      "status": 200,
+      "sum": 652800
+    },
+    "deflate": {
+      "n": 5120,
+      "status": 200,
+      "sum": 652800
+    },
+    "expected_bytes": 5120,
+    "expected_checksum": 652800,
+    "gzip": {
+      "n": 5120,
+      "status": 200,
+      "sum": 652800
+    },
+    "peer_errors": [],
+    "peer_served": [
+      {
+        "bytes": 5120,
+        "kind": "chunked",
+        "path": "/chunked"
+      },
+      {
+        "bytes": 5120,
+        "kind": "gzip",
+        "path": "/gzip"
+      },
+      {
+        "bytes": 5120,
+        "kind": "deflate",
+        "path": "/deflate"
+      }
+    ]
+  },
+  "host": {
+    "containers": 55,
+    "name": "host185",
+    "oom": 0
+  },
+  "outcome": "installed_js_https_decodes_chunked_gzip_and_deflate",
+  "schema": "ruyijs-linux-installed-js-https-framing-r363.v1",
+  "scope": {
+    "fixes": [
+      "resumed TLS sessions skipped the certificate verify hook; each exchange now uses a unique peer id so the adapter always performs and verifies a full handshake",
+      "chunked and compressed responses were rejected outright before this round",
+      "the companion version is bumped per content change so a version never maps to two different wheel hashes"
+    ],
+    "positive": [
+      "pip-installed R356 base plus ruyijs-http1 0.2.2+inner.r363",
+      "JS fetch() over https: with Transfer-Encoding chunked, Content-Encoding gzip and deflate",
+      "each response decoded to the same 5120 bytes, byte checksum 652800, matching the deterministic server payload"
+    ]
+  },
+  "source_commit": "f6a92d584b95062e85c64015e845caa5510e7ef8",
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5256131,
+      "name": "ruyijs_http1-0.2.2+inner.r363-py3-none-linux_x86_64.whl",
+      "sha256": "c8f6adf974fe27d4ea26240dd4222ee3362db76ca73478ec4557e4cc0400dd4d"
+    }
+  }
+}

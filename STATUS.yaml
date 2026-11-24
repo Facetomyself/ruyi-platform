@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T17:01:44+08:00'
+generated_at: '2026-11-24T17:08:06+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R361_installed_js_https_pass__R358_nss_adapter_handshakes__R356_base_pass
+    tests: R363_js_https_chunked_gzip_deflate__R361_installed_js_https__R358_alpn_handshakes
     phase: R356 离线运行时、R357 明文 HTTP/1 组件及 R358 固定 NSS 的 TLS 适配层已分别验收；JS 层 HTTPS/h2/QUIC 端到端与 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1396,7 +1396,7 @@ projects:
             installation: {zero_argument_context_eval: 42, gates: 13, passed: 13, assertions: 95, native_hashes_match: 20, wheel_record: 218, installed_record: 221, uninstall_verified: true}
             artifact: deliverables/linux-ruyijs-wheel-r354/ruyijs-0.2.2+inner.20261101191032-py3-none-linux_x86_64.whl
             artifact_bytes: 29378755
-            artifact_sha256: 9135568cd48ec931d094853763e37ae576e581e3c5f4fb1c810fc9f12ee575db
+            artifact_sha256: c8f6adf974fe27d4ea26240dd4222ee3362db76ca73478ec4557e4cc0400dd4d
             excluded: [clean_full_native_rebuild, live_necko_networking, arm64_product, manylinux_or_musl_claim, public_index_publication]
             evidence: deliverables/linux-ruyijs-wheel-r354/validation.json
             evidence_sha256: be54810e07363df42119acb8fe3a0f5b2281182cd52f1fc2f82d6df98f62db3d
@@ -1437,19 +1437,19 @@ projects:
             terminal: cleartext_http1_and_pinned_https_in_one_installable_companion
             native_http_source: 2345a6089ad837e923b4e83904bf1d7d42e31b32
             build_source: 7669ab893d8766e4d7598aa96e32da582a39e5c9
-            published_source: 4ced856cbffcd3effa1ee601c31182b826871204
-            version: 0.2.0+inner.r361
+            published_source: 732a0cfe2ee3c68ba8173b1458b255d418ad94ea
+            version: 0.2.2+inner.r363
             base_version: 0.2.2+inner.20261101191032.r356
             base_wheel_sha256: cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6
             reproducible: {pep517_direct_and_sdist: true, byte_identical: true}
             executed: {js_real_peer_challenges: true, post_and_query: true, head_404: true, chunked_gzip_deflate: true, navigation_and_external_script: true, independent_c_consumer: true, ipv6_loopback: true}
             ownership: {separate_distributions: true, companion_uninstall_restored_base: true, exact_files_before_after: true}
-            artifact: deliverables/linux-ruyijs-tls-r358/release-r361/ruyijs_http1-0.2.0+inner.r361-py3-none-linux_x86_64.whl
-            artifact_bytes: 5255218
-            artifact_sha256: bcadfcace6714d043e6a454702e2a9f65364b4ac507a987455da7366f148196a
-            evidence: deliverables/linux-ruyijs-tls-r358/validation-installed-js-https.json
-            evidence_sha256: cfcec4b81ca5c9072cf2e24f8ff3047de9a9994239c3cdf3f9b32126afbb7735
-            repository_receipt: artifacts/receipts/ruyijs-linux-installed-js-https-r361/validation.json
+            artifact: deliverables/linux-ruyijs-tls-r358/release-r363/ruyijs_http1-0.2.2+inner.r363-py3-none-linux_x86_64.whl
+            artifact_bytes: 5256131
+            artifact_sha256: c8f6adf974fe27d4ea26240dd4222ee3362db76ca73478ec4557e4cc0400dd4d
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-framing.json
+            evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
+            repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
           private_nss_tls_adapter_r358:
             terminal: pinned_firefox_nss_tls_adapter_and_pinned_https_client_verified
@@ -2129,7 +2129,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 732a0cfe2ee3c68ba8173b1458b255d418ad94ea
+    commit: f6a92d584b95062e85c64015e845caa5510e7ef8
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

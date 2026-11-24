@@ -71,10 +71,11 @@ ruyijs-inner/
 - `gzip`、`deflate`、分块传输均解码正确，截断的定长响应成为 `TypeError`，畸形/断开后可重试；显式代理和 HTTPS 都没有产生越界连接。独立 C 程序和 IPv6 回环也取得新响应。卸载组件后，R356 的文件树、13 组离线测试与 Worker/WebCrypto 全部恢复通过。
 - 边界：**这不是 Mozilla Necko/NSS**，无 TLS、h2、h3/QUIC、代理或外网验收。匹配真实 Necko/NSS 的 helper 与协议族、Linux ARM64 产品仍分别待办。
 
-**可安装的 HTTPS 组件（R361）：`ruyijs-http1 0.2.0+inner.r361` 让纯 pip 安装的 JS `fetch()` 走 HTTPS。** [回执](../../artifacts/receipts/ruyijs-linux-installed-js-https-r361/validation.json)
+**可安装的 HTTPS 组件（R363）：`ruyijs-http1 0.2.2+inner.r363` 让纯 pip 安装的 JS `fetch()` 走 HTTPS，并支持分块、gzip 与 deflate 响应。** [R361 安装回执](../../artifacts/receipts/ruyijs-linux-installed-js-https-r361/validation.json) · [R363 编码回执](../../artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json)
 
 - 组件 wheel 5,255,218 字节，SHA-256 `bcadfcace6714d043e6a454702e2a9f65364b4ac507a987455da7366f148196a`。内含固定 NSS 适配库 `libruyijs_tls.so`、完整 10 个 NSS 库闭包、`tls.py` 与启动器；基础 R356 wheel 不变。
 - 在一个新建 venv 里只装这两个 wheel（无手工拷贝），JS `fetch("https://…")` 得到服务端新生成的 body 且逐字节一致，`net_log` 记录 200。私有 DER 证书固定模型，未配置或错误固定值仍拒绝。
+- **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
 **TLS 适配层（R358）：固定 Firefox 159 的 NSS 3.131 已原生编译并通过真实握手。** [回执](../../artifacts/receipts/ruyijs-linux-tls-r358/validation.json)
