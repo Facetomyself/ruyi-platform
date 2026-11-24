@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R413_ledger_backfill__R412_ledger_audit__R411_regression
+    tests: R414_bomb_bounds__R413_ledger_backfill__R412_ledger_audit
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1479,6 +1479,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_bomb_bounds_r414:
+            terminal: both_new_codings_refuse_a_bomb_and_report_why_accurately
+            brotli_bomb_ratio: 50MiB_from_9520B
+            zstd_bomb_ratio: 50MiB_from_1619B
+            both_reasons: decoded_TLS_response_exceeds_the_limit
+            defect_found: brotli_reported_an_oversized_body_as_invalid
+            fix: detect_oversize_by_buffer_saturation
+            offline_tests: 30
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-bomb.json
+            evidence_sha256: f625bcd713c5a828af2afcebc5e66e61ba6aea17a8fca0628b15ccde859a1d61
+            repository_receipt: artifacts/receipts/ruyijs-linux-bomb-bounds-r414/validation.json
+            excluded: [bomb_over_a_live_tls_connection, ocsp_crl_revocation, http2_framing, quic_http3, arm64_product]
           private_ledger_audit_r413:
             terminal: four_orphan_receipts_that_had_no_ledger_block_are_now_recorded
             backfilled_blocks: 4
@@ -2741,7 +2753,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 1c297d8e9c9c0af95300b8b18fc27fd80f13a764
+    commit: 819ca59959e2afe94b63141a7a08ad437105b9b2
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

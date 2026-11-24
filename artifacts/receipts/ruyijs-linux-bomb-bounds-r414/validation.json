@@ -1,0 +1,32 @@
+{
+  "bombs": {
+    "brotli": "50 MiB of zeros compressed to 9520 bytes",
+    "zstd": "50 MiB of zeros compressed to 1619 bytes"
+  },
+  "checked_at": "2026-11-25T02:20:00+08:00",
+  "defect_found_and_fixed": {
+    "fix": "when the call does not succeed and the size field reached the buffer length, report the body as exceeding the limit",
+    "measurement": "BrotliDecoderDecompress returned 0 (ERROR) with the size field pinned at BODY_LIMIT+1, not 3 (NEEDS_MORE_OUTPUT) as assumed",
+    "symptom": "brotli reported \"invalid brotli TLS response\" for an oversized body",
+    "why_it_mattered": "the refusal was correct but the reason pointed an operator at a corrupt body instead of a body that was simply too large"
+  },
+  "evidence": {
+    "log": "ffc7c9c46cc1f1edcb831c7a8041c9c0dd3cae438b9ac0ba41e5c26d8ebf8480"
+  },
+  "not_proven": [
+    "that a bomb arriving over a live TLS connection reaches the same bound (the decode function is the same code path, but the wire path was not exercised)",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "outcome": "both_new_codings_refuse_a_bomb_and_report_why_accurately",
+  "result": {
+    "brotli": "decoded TLS response exceeds the limit",
+    "zstd": "decoded TLS response exceeds the limit"
+  },
+  "schema": "ruyijs-linux-bomb-bounds-r414.v1",
+  "test_coverage": "a bomb test now runs against both new codings in ci/test_linux_tls.py, not just gzip"
+}

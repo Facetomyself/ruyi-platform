@@ -84,6 +84,15 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**解压炸弹防护（R414）：两种新编码都能拦住，且理由准确。** [回执](../../artifacts/receipts/ruyijs-linux-bomb-bounds-r414/validation.json)
+
+- 炸弹：50 MiB 零字节 → zstd 压成 **1,619 字节**、brotli 压成 **9,520 字节**。
+- 实测两者都被拒绝，理由均为 `decoded TLS response exceeds the limit`，**没有展开**。
+- **发现的缺陷**：brotli 原本报 `invalid brotli TLS response`。实测 `BrotliDecoderDecompress` 返回 **0（ERROR）** 且 size 字段停在 `BODY_LIMIT+1`，**不是**我原先假设的 3（NEEDS_MORE_OUTPUT）。拒绝是对的，但理由会把排障引向"数据损坏"。
+- 修法：调用失败且 size 字段已达缓冲长度时，判定为超限。
+- 测试补齐：`ci/test_linux_tls.py` 的炸弹用例现在覆盖 **zstd 与 br**，此前只有 gzip。
+- **未证明**：炸弹经真实 TLS 连接到达时的行为（走同一解码函数，但未在链路上验）。
+
 **台账补录（R413）：4 份回执从未有条目。** [回执](../../artifacts/receipts/ruyijs-linux-ledger-audit-r413/validation.json)
 
 - 发现：R357、R359、R360、R361 的四份回执**在磁盘上存在、缺口文档也引用了**，但台账里没有任何对应块。只看台账的读者不会知道这些交付发生过。
