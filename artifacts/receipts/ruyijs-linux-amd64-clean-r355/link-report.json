@@ -1,0 +1,10 @@
+{
+  "distinct_reported": 0,
+  "error_limit_hit": false,
+  "exit": 0,
+  "log_sha256": "81ff45c0940f627ab9a7654113aa2fae510b41d5a824a32dc70777c35b72df89",
+  "other_lld_errors": [],
+  "schema": 1,
+  "undefined": {},
+  "warnings": []
+}

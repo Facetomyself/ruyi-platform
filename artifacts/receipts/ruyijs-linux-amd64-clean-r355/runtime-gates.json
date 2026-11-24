@@ -1,0 +1,257 @@
+{
+  "delivered_archive_reinstalled": {
+    "assertions": 83,
+    "checks": {
+      "avif_decode": [
+        "avif_fixture_sha256",
+        "promise_fulfilled",
+        "avif_frame_bgra_and_layout",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "avif_support": [
+        "promise_fulfilled",
+        "avif_type_support",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "cabi_debug": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "cabi_default": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "canvas_glyphs": [
+        "canvas_glyph_pixels_and_metrics",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "canvas_rect": [
+        "canvas_rect_pixels",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "compression_brotli": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "compression_deflate": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "compression_deflate-raw": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "compression_gzip": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "page_dom": [
+        "in_memory_page_load",
+        "dom_and_inline_script",
+        "no_page_network_requests",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "python_bridge": [
+        "numeric_eval",
+        "typed_eval",
+        "set_and_expose_result",
+        "host_callback_arguments",
+        "python_js_error",
+        "eval_after_error",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "urlpattern": [
+        "urlpattern_exec_and_negative",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ]
+    },
+    "count": 13,
+    "passed": 13
+  },
+  "extra_offline_worker_crypto": {
+    "closed": true,
+    "passed": true,
+    "schema": 1,
+    "scope": "private native JS realm; local crypto and same-runtime OS worker only",
+    "sha256_abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "shell_sha256": "10bdc0ea25181405aff2e9cd92b2297ca0a6e9b3977060d3acaa7c839b5749c9",
+    "worker_child_executable_matches": true,
+    "worker_reaped": true,
+    "worker_reply": {
+      "isolated": true,
+      "text": "β",
+      "value": 42
+    }
+  },
+  "installed_wheel_test": false,
+  "plain_ubuntu_c_consumer": [
+    "42",
+    "ruyi40"
+  ],
+  "plain_ubuntu_image": "sha256:7da97f743f397971f35dd21cd2d19a7da070a150e0cfa3eda559e71891ec7533",
+  "relocated_binary_sha256": "10bdc0ea25181405aff2e9cd92b2297ca0a6e9b3977060d3acaa7c839b5749c9",
+  "schema": 1,
+  "staged_runtime": {
+    "assertions": 83,
+    "checks": {
+      "avif_decode": [
+        "avif_fixture_sha256",
+        "promise_fulfilled",
+        "avif_frame_bgra_and_layout",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "avif_support": [
+        "promise_fulfilled",
+        "avif_type_support",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "cabi_debug": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "cabi_default": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "canvas_glyphs": [
+        "canvas_glyph_pixels_and_metrics",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "canvas_rect": [
+        "canvas_rect_pixels",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "compression_brotli": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "compression_deflate": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "compression_deflate-raw": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "compression_gzip": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "page_dom": [
+        "in_memory_page_load",
+        "dom_and_inline_script",
+        "no_page_network_requests",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "python_bridge": [
+        "numeric_eval",
+        "typed_eval",
+        "set_and_expose_result",
+        "host_callback_arguments",
+        "python_js_error",
+        "eval_after_error",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "urlpattern": [
+        "urlpattern_exec_and_negative",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ]
+    },
+    "count": 13,
+    "passed": 13
+  }
+}

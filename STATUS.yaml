@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T14:35:08+08:00'
+generated_at: '2026-11-24T14:39:09+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -102,8 +102,8 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39)
       linux_aarch64: unsupported
-    tests: native_amd64_installed_wheel_13_of_13_gates_95_assertions
-    phase: Linux amd64 私有 wheel 已离线安装并用真实 Python/C 客户端验收；全树干净重建与真实网络联验另行推进
+    tests: R355_clean_native_archive_13_of_13_and_worker_crypto__R354_installed_wheel_13_of_13
+    phase: 私有 amd64 全部选定原生单元已从固定提交干净重建并解包实跑；R354 的离线 wheel 保持既有版本，真实网络与 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
     - C3
@@ -1398,7 +1398,22 @@ projects:
             evidence: deliverables/linux-ruyijs-wheel-r354/validation.json
             evidence_sha256: be54810e07363df42119acb8fe3a0f5b2281182cd52f1fc2f82d6df98f62db3d
             repository_receipt: artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json
-          private_product: linux_amd64_private_offline_wheel_verified
+          native_private_clean_r355:
+            terminal: complete_clean_private_amd64_offline_archive_verified
+            product_source: ab68b3c8346428cac14d604be7ad26926df0d342
+            final_controls_and_docs: a6efd70a51204985a7bbfeabfb5336a09079c096
+            private_source_archive_sha256: ff53323f1e6f78300a321ce769a3e8de5a06289c1aa95e53a17136f42fbc5f53
+            native_compilation: {source_files: 2949, shards: 20, selected_units: 1268, fresh_compiler_calls: 1268, retries: 0, cached_private_objects: 0, peak_sampled_working_bytes: 807776256}
+            strict_link: {exit: 0, lld_warnings: 0, unresolved: 0, loader_exit: 0, systems_rebuilt: false}
+            returned_archive: {groups: 13, passed: 13, assertions: 83, c_abi_on_ubuntu_base: true, same_executable_worker_reaped: true, webcrypto_sha256: pass}
+            artifact: deliverables/linux-ruyijs-clean-r355/ruyijs-linux-amd64-clean-r355.tar.gz
+            artifact_sha256: 764e295727518b2927de7fca901cd60b4390cea8e58762c8437c7236f03b03a9
+            artifact_bytes: 29855046
+            excluded: [from_scratch_upstream_firefox_bootstrap, repack_of_new_native_binary_as_wheel, live_necko_nss_quic, arm64_product, complete_windows_parity]
+            evidence: deliverables/linux-ruyijs-clean-r355/validation.json
+            evidence_sha256: b6e341eaa2e01f61730ae586a249801faea81c9f49df0148f062842e9a2d7f68
+            repository_receipt: artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json
+          private_product: linux_amd64_clean_private_offline_archive_plus_separate_r354_wheel
     inner_repo_state:
       exists: true
       created: '2026-11-04'
@@ -2039,7 +2054,7 @@ blockers:
     state: offline_amd64_verified_parity_and_distribution_open
     title: ruyijs 内部版原生壳需还原（js.exe 49.5MB）——已在进行
     severity: B
-    decision: R354 的私有 amd64 离线 wheel 已通过安装态验收；优先推进全树干净原生重建和真实网络联验，历史 Windows identity 差异另验
+    decision: R354 的 wheel 安装、R355 的完整私有原生源码重建和归档实跑已分别验收；下一项为匹配新运行时的版本化 wheel、真实网络与 ARM64，历史 Windows identity 差异另验
     progress: 56/237 hash_diff 命中 + 9/9 inner_only 语义化
   L4:
     state: original_win64_source_unavailable_scoped_linux_runtime_verified
@@ -2060,7 +2075,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: ab68b3c8346428cac14d604be7ad26926df0d342
+    commit: a6efd70a51204985a7bbfeabfb5336a09079c096
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

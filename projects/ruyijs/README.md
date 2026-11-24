@@ -64,11 +64,17 @@ ruyijs-inner/
 
 ### Linux x86_64 私有 donor
 
-**当前交付（R354，2026-11-24）：私有 Linux amd64 wheel 已在干净 venv 安装并实跑。** [wheel 验收](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json) · [安装态运行检查](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/runtime-gates.json) · [安装与复建说明](../../submodules/ruyijs/docs/linux-amd64-wheel.md)。
+**当前原生交付（R355，2026-11-24）：固定私有提交从空对象目录重建的 amd64 运行时，已解包实跑。** [交付回执](../../artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json) · [编译覆盖](../../artifacts/receipts/ruyijs-linux-amd64-clean-r355/coverage-summary.json) · [产品测试](../../artifacts/receipts/ruyijs-linux-amd64-clean-r355/runtime-gates.json) · [构建与运行方式](../../submodules/ruyijs/docs/linux-amd64-clean.md)。
+
+- `ab68b3c` 的 Git 归档有 2,949 个文件。20 个分片共 1,268 次原生编译，得到 1,268 个不同私有单元；链接前逐个重读 ELF、DWARF 源路径和散列。严格链接退出 0、0 项未定义和 0 条 LLD 警告；错误源码、替换对象以及只给 63 个对象的反例均在对应环节失败。
+- 交付归档 `ruyijs-linux-amd64-clean-r355.tar.gz`，29,855,046 字节，SHA-256 `764e295727518b2927de7fca901cd60b4390cea8e58762c8437c7236f03b03a9`。下载后校验 218 个文件，再送回 amd64 断网环境解包，13/13 组、83 项断言通过。单独的 Worker 实测读到了运行同一壳的子进程并验证终止回收；WebCrypto 对 `abc` 的 SHA-256 与独立实现相同。无 Python、无编译器的 Ubuntu 24.04 也从这份归档通过 C ABI 得到 `42`、`ruyi40`。
+- 这里的“干净”指私有代码从固定提交重建；仍使用事先配置的 Firefox 159 对象和已校验的上游图形依赖。R355 是独立 tar 包；现有 pip 交付仍为 R354。真实 Necko/NSS/QUIC、ARM64 产品和全量 Windows 行为对齐各自单验。
+
+**当前 pip 交付（R354）：私有 Linux amd64 wheel 已在干净 venv 安装并实跑。** [wheel 验收](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json) · [安装态运行检查](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/runtime-gates.json) · [安装与复建说明](../../submodules/ruyijs/docs/linux-amd64-wheel.md)。
 
 - 文件：`ruyijs-0.2.2+inner.20261101191032-py3-none-linux_x86_64.whl`，29,378,755 字节；SHA-256 `9135568cd48ec931d094853763e37ae576e581e3c5f4fb1c810fc9f12ee575db`。本地交付目录 `deliverables/linux-ruyijs-wheel-r354/`。原生壳、C 客户端及 18 个库的内容与 R353 完全相同；三次 `pip wheel` 输出同一散列。
 - 安装后无需源码目录、`RUYIJS_SHELL` 或 `LD_LIBRARY_PATH`。在 Ubuntu 24.04/glibc 2.39、CPython 3.12.3、UID 1000、断网环境，零参数 `Context()` 使用包内 `dist/js` 返回 `42`。13/13 组、95 项断言通过；再次普通 `pip install` 后卸载，虚拟环境包清单恢复原样。包内非 glibc 依赖通过 `ldd -r`；从只读安装目录单独挂载到原生基础镜像的 C 客户端两次取得 `42`、`ruyi40`。
-- 范围：这是私有 `linux_x86_64` 离线 wheel，未上传公共索引，不作 manylinux 声明。干净全树原生重建、真实网络辅助进程及 ARM64 产品仍需独立验收。
+- 范围：这是私有 `linux_x86_64` 离线 wheel，未上传公共索引，不作 manylinux 声明。R354 之上另有 R355 私有源码干净重建的归档，未替换该 wheel；真实网络辅助进程及 ARM64 产品仍需独立验收。
 
 **R353 原生基线：私有 Linux amd64 离线运行时已严格链接、打包、解压并实跑。** [交付回执](../../artifacts/receipts/ruyijs-linux-amd64-r353/validation.json) · [运行检查](../../artifacts/receipts/ruyijs-linux-amd64-r353/runtime-gates.json) · [链接回执](../../artifacts/receipts/ruyijs-linux-amd64-r353/link-report.json) · [使用说明](../../submodules/ruyijs/docs/linux-amd64-candidate.md)。
 
