@@ -1,0 +1,41 @@
+{
+  "artifact": {
+    "bytes": 5268157,
+    "name": "wheel.whl",
+    "sha256": "dc66485118dd395f467e2f37a7acca1dfa49bee1d77f6ed2e1ec446f951a76ce"
+  },
+  "checked_at": "2026-11-24T20:28:53+08:00",
+  "container_evidence": "the host link could not sustain a container inventory query after the acceptance run; the acceptance container itself exited 0 with no OOM as recorded by the runner",
+  "defect_found": {
+    "description": "fetch() forwarded the caller Accept-Encoding verbatim, so a page that asked for br, zstd, gzip could receive a br body which this path cannot decode; a working URL would then fail with \"unsupported TLS response content encoding\"",
+    "why_it_matters": "the parser refusing br is correct, but advertising a coding one cannot decode turns a decodable response into a hard failure"
+  },
+  "end_to_end": {
+    "advertised": [
+      "gzip, deflate"
+    ],
+    "decoded_body": "hello-encoding",
+    "no_br_or_zstd_advertised": true,
+    "page_requested": "br, zstd, gzip",
+    "server_served": "gzip",
+    "status": 200
+  },
+  "fix": "Accept-Encoding is replaced with exactly gzip, deflate; duplicates collapse to one field; the header is added when the caller sent none",
+  "outcome": "the_tls_path_advertises_only_codings_it_can_decode",
+  "schema": "ruyijs-linux-content-negotiation-r391.v1",
+  "source_commit": "94c4ef6d7b7172d493404e4bfcac73f442bdb2da",
+  "still_open": [
+    "brotli/zstd decoding (not implemented; now avoided rather than hit)",
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "unit_cases": {
+    "caller_sends_br": "replaced",
+    "caller_sends_duplicates": "collapsed to one",
+    "caller_sends_none": "added"
+  }
+}

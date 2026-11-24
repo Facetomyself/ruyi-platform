@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T20:05:00+08:00'
+generated_at: '2026-11-24T20:28:53+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R390_ledger_audit__R389_cutoff_recheck__R388_live_cutoffs
+    tests: R391_content_negotiation__R390_ledger_audit__R389_cutoff_recheck
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,17 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_content_negotiation_r391:
+            terminal: the_tls_path_advertises_only_codings_it_can_decode
+            defect_found: caller_accept_encoding_forwarded_verbatim
+            advertised: gzip, deflate
+            e2e: {requested: br_zstd_gzip, served: gzip, status: 200, decoded: true}
+            companion_version: 0.2.19+inner.r391
+            artifact_sha256: dc66485118dd395f467e2f37a7acca1dfa49bee1d77f6ed2e1ec446f951a76ce
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-content-negotiation.json
+            evidence_sha256: fdea29ab928b8379fc68c1c824d0918620685de5a0f8020b3c751e2a7e915800
+            repository_receipt: artifacts/receipts/ruyijs-linux-content-negotiation-r391/validation.json
+            excluded: [brotli_zstd_decoding, ocsp_crl_revocation, default_mozilla_roots, pkix_name_constraints, http2_framing, quic_http3]
           private_ledger_audit_r390:
             terminal: ledger_evidence_consistent_and_one_stale_exclusion_corrected
             entries_with_evidence: 121
@@ -2431,7 +2442,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 99180677954b78b178166f99cfc81233c5bf9e70
+    commit: 94c4ef6d7b7172d493404e4bfcac73f442bdb2da
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

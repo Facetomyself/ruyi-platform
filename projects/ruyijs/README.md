@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**内容协商（R391）：不再向服务端索取无法解码的编码。** [回执](../../artifacts/receipts/ruyijs-linux-content-negotiation-r391/validation.json)
+
+- 缺陷：`fetch()` 把调用方的 `Accept-Encoding` 原样转发。页面若声明 `br, zstd, gzip`，服务端可能回 `br`，而本路径解不了——一个本来可用的 URL 就变成硬失败。
+- 修法：把该头替换为**恰好** `gzip, deflate`；重复头折叠为一条；调用方未给时主动补上。
+- 端到端：页面声明 `br, zstd, gzip`，实际发出 `gzip, deflate`，服务端据此返回 gzip，客户端解出完整 `hello-encoding`。
+- 说明：这不是"支持 brotli"，而是**避免撞上 brotli**。brotli 解码仍未实现。
+
 **台账审计与缺口补充（R390）。** [回执](../../artifacts/receipts/ruyijs-linux-ledger-audit-r390/validation.json)
 
 - 121 条回执全部与证据文件哈希一致，仓库内副本与源文件逐字节相同，0 处不符。
