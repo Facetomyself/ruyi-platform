@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T18:13:18+08:00'
+generated_at: '2026-11-24T18:46:59+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R385_commit_guard__R384_profile_bounds__R383_decompression_safety
+    tests: R386_pem_anchors__R385_commit_guard__R384_profile_bounds
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,20 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_pem_anchors_r386:
+            terminal: a_multi_certificate_pem_bundle_is_accepted_as_a_trust_anchor_source
+            pem_bundle_supported: true
+            anchor_limit: 4096
+            mozilla_bundle_certificates: 121
+            unit_matrix_cases: 6
+            end_to_end: {unrelated_leaf_refused: true, nss_code: -8079, peer_http_requests: 0}
+            trust_model_changed: false
+            companion_version: 0.2.16+inner.r386
+            artifact_sha256: 63de03102812ff919580ac2bc6a17fab0839bce473505230f6bc031315a40ea2
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-pem-anchors.json
+            evidence_sha256: 20afb038762078cdcd49745b7b8fa3dbb1e3f7136151d1b02f194b910e853b14
+            repository_receipt: artifacts/receipts/ruyijs-linux-pem-anchors-r386/validation.json
+            excluded: [default_mozilla_roots, distrust_after_cutoffs, pkix_name_constraints, ocsp_crl_revocation, http2_framing, quic_http3]
           private_commit_guard_r385:
             terminal: building_from_a_tree_whose_sources_are_not_committed_is_now_refused
             mechanism: compare each locked source against git show HEAD
@@ -2376,7 +2390,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: d801ad543a0706f3f237336683d475d60a425770
+    commit: af922384891b26c94f53b68879ae7a5f65cb1e63
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

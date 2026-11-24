@@ -1,0 +1,54 @@
+{
+  "artifact": {
+    "bytes": 5267211,
+    "name": "wheel.whl",
+    "sha256": "63de03102812ff919580ac2bc6a17fab0839bce473505230f6bc031315a40ea2"
+  },
+  "capability": {
+    "der_single": "a bare DER certificate still works",
+    "limit": "ANCHOR_LIMIT of 4096 certificates per bundle",
+    "pem_bundle": "a single anchor entry may point at a PEM file holding many certificates"
+  },
+  "checked_at": "2026-11-24T18:46:59+0800",
+  "context": "the upstream Windows implementation already ships this bundle plus a distrust-cutoff table and validates with Python cryptography; this round only makes the Linux helper able to consume the same file shape, it does not adopt that trust model",
+  "end_to_end": {
+    "anchors_supplied": "the 121-certificate Mozilla bundle",
+    "leaf_pinned": true,
+    "outcome": "refused with chain verification failed (-8079), because no Mozilla root signed this test leaf",
+    "peer_http_requests": []
+  },
+  "host": {
+    "containers": 148,
+    "name": "host185",
+    "oom": 0
+  },
+  "mozillla_bundle": {
+    "all_der_sequences": true,
+    "bytes": 129143,
+    "certificates_parsed": 121,
+    "path": "acceptance/r354-ruyijs/native/necko_tls/necko_win/firefox-roots.pem",
+    "sha256": "b5e44e6cf3ec2cda6131fec4e60a358ed022af5d5a8584da589b1851a56d0bb5"
+  },
+  "outcome": "a_multi_certificate_pem_bundle_is_accepted_as_a_trust_anchor_source",
+  "schema": "ruyijs-linux-pem-anchors-r386.v1",
+  "still_open": [
+    "deciding whether to default to the Mozilla roots (a product decision, not made here)",
+    "distrust-after cutoff semantics",
+    "PKIX name constraints and policy",
+    "OCSP/CRL",
+    "h2",
+    "QUIC",
+    "ARM64"
+  ],
+  "unit_matrix": {
+    "cases": [
+      "der single",
+      "pem single",
+      "pem bundle of five",
+      "not pem",
+      "unterminated block",
+      "invalid base64"
+    ],
+    "mismatches": 0
+  }
+}

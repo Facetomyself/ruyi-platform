@@ -78,6 +78,14 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**PEM 锚点包（R386）：单个锚点条目可以指向含多张证书的 PEM 文件。** [回执](../../artifacts/receipts/ruyijs-linux-pem-anchors-r386/validation.json)
+
+- 原始 Windows 实现自带 `firefox-roots.pem`（121 张根）。此前 Linux 侧只接受单张 DER，无法消费同一个文件。
+- 现在：DER 单张与 PEM 多张都支持，单包上限 4096；非 PEM、未闭合块、非法 base64 均拒绝。单元 6 项 0 不符。
+- 真实 Mozilla 包解析出 **121 张**证书、全部为 DER SEQUENCE，共 129,143 字节。
+- 端到端：以该包作锚点，测试叶子因无 Mozilla 根签发而被拒（`-8079`），对端 0 个 HTTP 请求。
+- **信任模型未改变**：仍需显式配置锚点，不默认信任 Mozilla 根库。是否默认启用是产品决策，本轮未做。
+
 **构建期提交校验（R385）：改了没提交，现在会让构建直接失败。** [回执](../../artifacts/receipts/ruyijs-linux-commit-guard-r385/validation.json)
 
 - 起因：我上一轮改了 `necko_tls.c` 却忘了提交，只刷新了锁。锁与工作树一致、与 `HEAD` 不一致，每次构建都归档旧文件，连续三次失败且报错指向"锁不匹配"，与真实原因无关。
