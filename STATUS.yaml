@@ -1483,12 +1483,12 @@ projects:
             terminal: a_single_page_handoff_summarises_what_ships_what_is_proven_and_what_is_missing
             document: docs/15-linux-handoff.md
             evidence: acceptance/r354-platform/docs/15-linux-handoff.md
-            evidence_sha256: f4a9fc5ed04d340e96e06fdb69556da964a37f2e457e5d21f4ff4b20b69a03aa
+            evidence_sha256: 547c9dba1af92ddc9aaa0eb496df4c9c04c8ff2eafd4df23f6f2e93c23148900
             repository_receipt: artifacts/receipts/ruyijs-linux-handoff-r422/validation.json
             every_number_checked: true
-            ledger_blocks: 155
             ledger_blocks_at_publication: 155
-            receipts: 71
+            ledger_blocks_now: 156
+            receipts_now: 66
             offline_tests: 33
             handshake_tests: 4
             companion_version: 0.2.30+inner.r421

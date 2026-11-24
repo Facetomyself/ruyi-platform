@@ -83,6 +83,27 @@ ci/test_linux_tls_handshake.py   4 个端到端测试（需 x86-64 NSS 工具链
    单次 SSH 里的长命令会因链路中断失败，且报错会伪装成别的原因。
 3. **头文件声明不等于可链接符号**。`CERT_CheckCRL` 就是例子：头文件写得很清楚，`nm -D` 找不到定义。
 
+## 4.5 收尾状态（2026-11-25 04:10 +08:00）
+
+三个克隆均已推送、工作树干净：
+
+| 仓库 | HEAD |
+| --- | --- |
+| `ruyijs-inner`（私有源） | `7038dd5` |
+| `ruyi-platform`（台账+回执） | `1b368fb` |
+| `openclaw-infra`（主机记录） | `e18d1ee` |
+
+收尾时的四项实测：
+
+- `scripts/verify-ledger.py` — 156 块，0 处不符
+- `scripts/verify-claims.py` — 13 项能力检查通过
+- `scripts/verify-pins.sh` — 18 个脚本，退出码 0
+- `ci/test_linux_tls.py` — 33 个离线测试通过（1 个因缺解码库跳过）
+
+**目标未完成。** 压缩编码这条线（gzip/deflate/br/zstd）已完整闭环，但"完整 Linux 适配"仍缺默认根库、OCSP/CRL、PKIX、h2 帧、QUIC、ARM64。按台账实测：`quic_http3` 仍有 51 块排除、`ocsp_crl_revocation` 42 块、`http2_framing` 26 块、`arm64_product` 25 块。
+
+这个结论不会因为轮次用尽而改变。
+
 ## 5. 如果要继续
 
 优先级建议：
