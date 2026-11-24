@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T17:27:44+08:00'
+generated_at: '2026-11-24T17:31:09+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R369_alpn_guard__R368_https_redirect__R367_hostname_verification
+    tests: R370_resource_bounds__R369_alpn_guard__R368_https_redirect
     phase: R356 离线运行时、R357 明文 HTTP/1 组件及 R358 固定 NSS 的 TLS 适配层已分别验收；JS 层 HTTPS/h2/QUIC 端到端与 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,19 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_resource_bounds_r370:
+            terminal: tls_header_and_body_bounds_enforced_with_diagnosable_errors
+            defect_found: header_block_had_no_aggregate_limit
+            header_block_limit_bytes: 65536
+            body_limit_bytes: 8388608
+            rejected: [oversized_headers, oversized_declared_body, oversized_chunked_stream]
+            normal_response: 200
+            companion_version: 0.2.7+inner.r370
+            artifact_sha256: 96302086e1620a41a04081fda4864d6a0907b14d3d9f9e456769c1e2f5542629
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-bounds.json
+            evidence_sha256: 175cde5c141f32f5ae3cb4c74b3ec53e6f1810520e923ac21beaeb6de0557afa
+            repository_receipt: artifacts/receipts/ruyijs-linux-bounds-r370/validation.json
+            excluded: [http2_framing_and_multiplexing, rfc5280_path_validation, ocsp_crl_revocation, external_ca_trust, quic_http3]
           private_alpn_r369:
             terminal: selected_h2_refused__no_alpn_falls_back_to_http11
             defect_found: missing_alpn_guard_around_an_http11_request_writer
@@ -2200,7 +2213,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 7086b94991295326704be5e7a6ed84f8b3217e48
+    commit: 1b9ae2528c03882a765e5da149635df7dc26f809
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

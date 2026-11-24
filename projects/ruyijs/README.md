@@ -78,6 +78,12 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**资源边界（R370）：修掉一个可被利用的无界解析——响应头块原来没有总量上限。** [回执](../../artifacts/receipts/ruyijs-linux-bounds-r370/validation.json)
+
+- 缺陷：`FIELD_LIMIT` 只限制单个头字段长度，整块响应头无上限。实测 **80 KB** 的响应头被正常解析并接受为 200。同时该路径的非 TLS 异常被压成 `Internal Linux HTTP/1 helper failure`，真实原因丢失。
+- 修复：新增 `HEADER_BLOCK_LIMIT = 65536`，同时约束**响应头块**与**请求头块**；TLS 路径的异常现在带类型与消息上报。
+- 实测四项：超大响应头、声明超大 body、超大分块流均被明确拒绝（各自给出具体原因），正常 5 字节响应仍为 200。
+
 **ALPN 守卫（R369）：补上缺失的 ALPN 检查，关闭一条潜在的 h2 降级路径。** [回执](../../artifacts/receipts/ruyijs-linux-alpn-r369/validation.json)
 
 - 缺陷性质要说准：`exchange()` 接受 `http2` 参数，但握手后**无条件**写 HTTP/1.1 请求行。**这不是已发生的降级**——出厂路径固定 `http2=False`，客户端从不提供 h2，该分支在支持路径上不可达。这是一条被 ALPN 检查缺失所敞开的潜在路径。

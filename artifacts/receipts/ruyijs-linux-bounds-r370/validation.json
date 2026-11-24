@@ -1,0 +1,67 @@
+{
+  "after_fix": {
+    "normal_response": {
+      "error": "",
+      "value": {
+        "n": 5,
+        "s": 200
+      }
+    },
+    "oversized_chunked_stream": {
+      "error": "chunked TLS response exceeds the limit",
+      "value": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    },
+    "oversized_declared_body": {
+      "error": "TLS response body exceeds the limit",
+      "value": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    },
+    "oversized_headers": {
+      "error": "TLS response header block exceeds the limit",
+      "value": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    }
+  },
+  "checked_at": "2026-11-24T17:31:09+0800",
+  "defects": [
+    {
+      "description": "FIELD_LIMIT bounded a single header line but nothing bounded the header block, so an 80 KB response header section was parsed and accepted",
+      "evidence_before_fix": {
+        "oversized_headers_error": "Internal Linux HTTP/1 helper failure"
+      }
+    },
+    {
+      "description": "a non-TLSError inside the TLS path collapsed into \"Internal Linux HTTP/1 helper failure\", discarding the cause"
+    }
+  ],
+  "fixes": [
+    "HEADER_BLOCK_LIMIT of 65536 bytes applies to the whole response header block and to the request header block",
+    "TLS failures now surface their exception type and message through the helper frame"
+  ],
+  "host": {
+    "containers": 79,
+    "name": "host185",
+    "oom": 0
+  },
+  "outcome": "tls_header_and_body_bounds_enforced_with_diagnosable_errors",
+  "schema": "ruyijs-linux-resource-bounds-r370.v1",
+  "still_open": [
+    "h2 framing",
+    "RFC 5280 path validation",
+    "OCSP/CRL",
+    "external CA",
+    "QUIC"
+  ],
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5259266,
+      "name": "wheel.whl",
+      "sha256": "96302086e1620a41a04081fda4864d6a0907b14d3d9f9e456769c1e2f5542629"
+    }
+  }
+}
