@@ -1,0 +1,59 @@
+{
+  "artifact": {
+    "bytes": 5267914,
+    "name": "wheel.whl",
+    "sha256": "72d67cd1cc0d8d0a89bb95198950ba90e9bc53492ad3b907d87d7a5023b08a82"
+  },
+  "cases": {
+    "future_cutoff_allows": {
+      "error": "",
+      "pass": true,
+      "status": 200
+    },
+    "no_cutoff": {
+      "error": "",
+      "pass": true,
+      "status": 200
+    },
+    "past_cutoff_refuses": {
+      "error": "certificate was issued after its root's distrust cutoff",
+      "pass": true,
+      "status": null
+    }
+  },
+  "checked_at": "2026-11-24T19:39:55+0800",
+  "fix": [
+    "bind cutoffs from the pins object in exchange",
+    "an exception inside the callback that is not a TLSError is now recorded and re-raised instead of being reported as a certificate refusal"
+  ],
+  "host": {
+    "containers": 156,
+    "name": "host185",
+    "oom": 0
+  },
+  "notes": [
+    "a future cutoff leaves the handshake alone; a past cutoff refuses after the chain verifies, which is the intended ordering",
+    "the refusal names the cutoff so an operator can tell it apart from a bad chain"
+  ],
+  "offline_evidence_still_valid": {
+    "config_parsing": "root_distrust_after accepts YYMMDDHHMMSSZ and YYYYMMDDHHMMSSZ; rejects bad format, non-SHA256 keys and an empty table",
+    "cutoff_time_utc": "2026-04-15T23:59:59Z",
+    "enforcement": "a leaf starting after the cutoff is refused; one starting before is allowed; a cutoff for a root the caller does not trust is ignored",
+    "table_binding": "1 cutoff entry resolves to an anchor actually present in the 121-certificate bundle"
+  },
+  "outcome": "per_root_distrust_cutoffs_enforced_on_the_live_https_path",
+  "root_cause_of_the_r387_failure": {
+    "deciding_evidence": "r386 (signed off) returned 200 for the identical no-cutoff case in the same environment; r387 failed",
+    "description": "exchange() never bound a cutoffs name, so the hook raised NameError on every anchored exchange; the error was swallowed and surfaced as a handshake failure",
+    "how_it_was_missed_before": "the R387 round concluded the new code was innocent because the no-cutoff control also failed \u2014 but that round had no r386 control to compare with, so \"same error twice\" was mistaken for \"unrelated\""
+  },
+  "schema": "ruyijs-linux-cutoff-r388.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints and policy",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}

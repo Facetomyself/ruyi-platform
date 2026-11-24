@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**distrust 截止（R388）：实机路径已签收。** [回执](../../artifacts/receipts/ruyijs-linux-cutoff-r388/validation.json)
+
+- R387 的实现有真实缺陷：`exchange()` 从未绑定 `cutoffs`，钩子每次都在 `NameError` 上失败，又被吞成"握手失败"。**我当时误判它无辜**，理由是"不带 cutoff 的对照也失败"——但那轮没有 r386 对照，把"同一错误出现两次"当成了"两件事无关"。
+- 决定性证据：同一环境同一用例，已签收的 r386 返回 **200**，r387 **失败**。补上对照立即推翻原结论。
+- 修复后三用例：无 cutoff → 200；未来 cutoff → 200；过去 cutoff → 拒绝，原因为 `certificate was issued after its root's distrust cutoff`。
+- 附带修复：钩子内非 `TLSError` 异常不再伪装成证书拒绝，改为记录并抛出。
+
 **distrust 截止（R387）：逻辑已验证，但实机路径**未**签收。** [回执](../../artifacts/receipts/ruyijs-linux-cutoff-offline-r387/validation.json)
 
 - 已验证（离线）：`root_distrust_after` 解析两种时间格式，拒绝坏格式、非 SHA256 键与空表；表中 1 条记录确实对应包内某张根证书（Izenpe，截止 `2026-04-15T23:59:59Z`）；晚于截止的叶子被拒、早于的放行、非受信根的截止项被忽略。
