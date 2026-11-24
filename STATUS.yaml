@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T11:13:06+08:00'
+generated_at: '2026-11-24T12:06:45+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -13,9 +13,9 @@ projects:
     submodule: submodules/ruyi-mcp
     source: complete
     build: linux
-    tests: 84/84
-    phase: 原生 AMD64 Docker 已通过生产 Trace CLI 活会话：排他租约、真断点、归还重借和暂停中主动停止
-    docker_ci: https://github.com/Facetomyself/ruyi-mcp/actions/runs/45313415350
+    tests: 129/129
+    phase: 生产借用态已锁定租约控制权、错误范围零页面操作与真实归还结果
+    docker_ci: https://github.com/Facetomyself/ruyi-mcp/actions/runs/45323705438
     container:
       core: [linux/amd64, linux/arm64]
       amd64_stock_firefox: headless local navigation, status and quit verified
@@ -32,7 +32,13 @@ projects:
         owner_stop_while_paused: pass
         firefox_build_id: '20261123161729'
         evidence: artifacts/receipts/trace-amd64-r5/m2-delivery.json
-        pending: [production_arm64, electron_owner, native_lease_expiry_and_process_loss]
+        borrowed_behavior_gate:
+          mcp_source: b5e204a76dc3974abadf1fe355392815ddddd6b7
+          execution: pinned MCP build from git archive in tmpfs with the unchanged 8f3839b AMD64 dependencies, Trace CLI and read-only R5 kernel
+          status: pass
+          evidence: artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json
+          sha256: 6a97df2ff9ce88a5697f2d44c5ab402738193fa59e9792f08c16d07fe91b3f21
+        pending: [production_arm64, electron_owner, native_browser_process_loss]
     blocked_by: []
   ruyihttp:
     repo: Facetomyself/ruyihttp
@@ -1939,7 +1945,7 @@ blockers:
   D-MCP:
     title: Linux 生产 Trace owner 同会话验收
     severity: D
-    decision: AMD64 Linux CLI 已完成真实暂停、归还及关闸；ARM64 生产、Electron 与独立到期和进程丢失的原生用例另行验收
+    decision: AMD64 Linux CLI 已确认真实暂停、借用归还、自然到期和关闸；ARM64 生产、Electron 以及独立浏览器进程丢失用例另行验收
   A2:
     title: Linux 原生库要求 glibc 2.38
     severity: A
@@ -1985,7 +1991,7 @@ submodules:
   ruyi-mcp:
     url: https://github.com/Facetomyself/ruyi-mcp.git
     branch: linux
-    commit: 8f3839b6bd3c52688a8a0d7d94d81e6820e8ca0b
+    commit: b5e204a76dc3974abadf1fe355392815ddddd6b7
     visibility: public
     state: added
   ruyihttp:

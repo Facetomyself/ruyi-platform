@@ -1,5 +1,11 @@
 # ruyi-mcp 变更日志
 
+## 2026-11-24 — 锁定三个生产借用态行为
+
+- 源码 `b5e204a` 新增 45 项 stdio 契约检查，全量 129 项通过；借用态保留 `alive`/`quit`，新增明确的控制权和归还结果字段。
+- 原生 AMD64 容器把本次提交的构建从 Git 归档载入 tmpfs，沿用 `8f3839b` 固定依赖镜像、Trace `f8eeb0e` 的移动 CLI 和 R5 内核。两条工具入口的 8 次错范围请求均被拒，页面点击数只有合法操作才从 0 变成 1。首个租约归还后核对同一 Firefox 进程代次，第二个租约真实到期后调用失去控制，页面保持 1 次点击。
+- 两次借用共用单一 BiDi 会话；最终 1 次主动归还、1 次真实到期，owner 关闸与会话收尾均确认。[原始回执](../../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json) · [GitHub CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45323705438)。
+
 ## 2026-11-24 — 生产 Trace 活会话在 AMD64 R5 通过
 
 - 锁定 Trace `f8eeb0e` 与 MCP `8f3839b`。用两个真实 stdio 客户端验证排他租约、同页 query/click、RDP 真断点、正常归还与重借；另做暂停中由 owner 主动停止，见 [M2 身份及回执](../../artifacts/receipts/trace-amd64-r5/m2-delivery.json)。

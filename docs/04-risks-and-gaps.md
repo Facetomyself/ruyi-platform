@@ -233,7 +233,7 @@ cd RuyiHttp/repo && /tmp/ruyivenv/bin/python -m unittest discover -s tests
 
 ### D-MCP · Linux 生产 Trace owner 同会话验收
 
-AMD64 R5 的 Linux CLI [生产门禁](../projects/ruyi-mcp/PRODUCTION-OWNER.md)已通过。Electron owner、ARM64 生产、部署中的跨机器 SSH stdio，以及真实浏览器上的独立租约到期和进程丢失仍为 `To be confirmed`；独立 ARM64 fixture 的回执仍只覆盖其有界范围。
+AMD64 R5 的 Linux CLI [生产门禁](../projects/ruyi-mcp/PRODUCTION-OWNER.md)已通过。AMD64 真机租约自然到期与失效后控制权已[单独验收](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)；Electron owner、ARM64 生产、部署中的跨机器 SSH stdio，以及真实浏览器进程丢失仍为 `To be confirmed`；独立 ARM64 fixture 的回执仍只覆盖其有界范围。
 
 ## 待决策清单
 

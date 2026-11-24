@@ -20,6 +20,10 @@ npm run check
 
 `check` 验证 MCP 与实际 Python bridge、构建及协议测试，无需浏览器。部署依赖和真机验收见组件 [Linux 说明](../../submodules/ruyi-mcp/docs/linux-port.md)，容器阶段见 [Docker 设计](../../submodules/ruyi-mcp/docs/docker-design.md)。
 
+## 借用行为门禁
+
+在 MCP 根目录用 `npm run build && npm run check:borrowed-behaviors` 验证三个公开契约：租约状态与 owner 存活分开、错页或错 frame 在任何 owner IPC 前返回 `UNSUPPORTED_SCOPE`、借用退出只按实际回执说明归还结果。该协议门禁已纳入 `npm run check`。真机复现另见 [MCP 运行说明](../../submodules/ruyi-mcp/README.md#借用-trace-活会话) 中的 `check:borrowed-native`；对照[原生 R5 回执](../../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。
+
 ## AMD64 容器与 Trace 制品
 
 [原生容器 CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45308474899) 通过双架构 `core` 和 AMD64 ESR 对照。2026-11-24 在原生 AMD64 Docker 使用 `d7DBYN4g` 的实际 Firefox 159.0 / BuildID `20261121110134`：MCP stdio 自启、BiDi 导航、查询状态、正常退出、下载字节校验与 **19/19 项 RDP 门禁**全部通过。容器及产物身份、退出码与原始日志哈希见 [真机回执](../../artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json)。

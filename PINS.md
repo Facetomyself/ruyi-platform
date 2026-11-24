@@ -243,7 +243,7 @@ CXXABI_1.3.9
 
 | 组件 | 源码仓 | 维护分支 | 平台固定提交 |
 | --- | --- | --- | --- |
-| ruyi-mcp | [Facetomyself/ruyi-mcp](https://github.com/Facetomyself/ruyi-mcp) | `linux` | `8f3839b6bd3c52688a8a0d7d94d81e6820e8ca0b` |
+| ruyi-mcp | [Facetomyself/ruyi-mcp](https://github.com/Facetomyself/ruyi-mcp) | `linux` | `b5e204a76dc3974abadf1fe355392815ddddd6b7` |
 
 ```bash
 cd /var/lib/dsh/Ruyi/ruyi-platform
@@ -255,6 +255,8 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 浏览器制品身份独立于该源码 pin，按 [Linux 验收](docs/03-linux-port.md#6-ruyi-mcp-分阶段验收)记录。
 
 ### 历史 pin
+
+- `8f3839b6bd3c52688a8a0d7d94d81e6820e8ca0b`：生产 M2 初版借用与停机证据，仍按原提交复核。本版细化租约、错目标与归还契约。
 
 - `2797d3cd494ffeab0f0839109a2243b5b3024964`：`d7DBYN4g` MCP 自启基线，保留回执；后续生产借用版本绑定描述符身份和 RDP 租约回执。
 

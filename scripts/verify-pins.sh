@@ -193,6 +193,18 @@ for mode, file in [('standard', 'm2-standard.json'), ('paused', 'm2-owner-stop-p
         assert stop['leasesReleased'] == 2 and stop['leasesRevoked'] == 0
 assert read('m2-owner-stop-paused-initial.json')['passed'] is False
 print('PASS  native R5 production owner receipts, clean relocated CLI inventory and source bindings')
+gate = status['projects']['ruyi-mcp']['container']['trace_owner_production']['borrowed_behavior_gate']
+subprocess.run(['git','-C','submodules/ruyi-mcp','merge-base','--is-ancestor',gate['mcp_source'],'HEAD'], check=True)
+raw = Path(gate['evidence']).read_bytes()
+assert hashlib.sha256(raw).hexdigest() == gate['sha256']
+case = json.loads(raw)
+assert case['schema'] == 'ruyi-mcp-native-borrowed-behaviors.v1' and case['passed'] is True
+assert case['expiryVerified'] and case['browserRetained'] and case['wrongScopeRejected'] == 8
+assert case['canaryClicks'] == {'beforeLegitimate': 0, 'afterLegitimate': 1, 'beforeExpired': 1, 'afterExpired': 1}
+stop = case['nativeCleanup']
+assert (stop['leasesAcquired'], stop['leasesReleased'], stop['leasesExpired'], stop['leasesRevoked']) == (2, 1, 1, 0)
+assert stop['drainVerified'] and stop['sessionEndAcknowledged'] and stop['sessionNew'] == stop['sessionEnd'] == 1
+print('PASS  borrowed lease expiry, scoped page effects and acknowledged release')
 PY
 
 echo
