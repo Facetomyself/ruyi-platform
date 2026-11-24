@@ -1,0 +1,29 @@
+{
+  "audit_after": {
+    "blocks_with_later_delivered": 22,
+    "coding_exclusions_remaining": 0,
+    "dangling_references": 0,
+    "distinct_exclusions": 37,
+    "evidence_mismatches": 0
+  },
+  "checked_at": "2026-11-25T02:10:00+08:00",
+  "first_problem": "39 exclusions across 19 blocks still claimed brotli and zstd were undelivered, although both now negotiate, decode, ship and pass end to end",
+  "fixes": [
+    "removed every stale coding exclusion and added later_delivered markers naming the closing block",
+    "restored R380 evidence from its repository copy and verified the hash matches again",
+    "relocated the R411 receipt to its own directory so the name cannot collide again"
+  ],
+  "lesson": "a versioned receipt file must not share a name with an earlier round; the collision was silent because the ledger only stores a hash, and a hash mismatch was the only symptom",
+  "not_a_product_change": true,
+  "outcome": "thirty_nine_stale_coding_exclusions_removed_and_one_overwritten_evidence_file_recovered",
+  "schema": "ruyijs-linux-ledger-audit-r412.v1",
+  "second_problem_found_while_auditing": "R411 wrote its receipt to validation-regression.json, the same name R380 had used, overwriting R380 evidence; the recorded hash no longer matched and only the repository copy still held the original",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}
