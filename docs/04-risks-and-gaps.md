@@ -8,6 +8,7 @@
 |---|---|---|
 | **已验 · RuyiJS amd64 离线发行** | [R356 wheel](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) 使用 R355 干净原生构建的确切字节。新装及从 R354 升级均通过 13 组安装态测试及真实 Worker/WebCrypto，显式回退后的文件清单完全恢复。 | 依照[固定版本的安装命令](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)使用；公共索引、跨发行版认证、联网与 ARM64 不继承本项证明。 |
 | **P1 · Trace / MCP 发布与管理面** | [M2 标准与暂停中停止](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)用 Trace `f8eeb0e` + MCP `8f3839b` + R5；MCP 当前 pin `b5e204a` 又验过[自然到期、错范围无页面动作及实际归还](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | **挡扩大支持矩阵，不挡已验的原生 AMD64 CLI 组合。** 发布新 CLI/MCP 组合时固定双方 SHA 与同一浏览器摘要，重跑正常归还及暂停中停止两档；另测 Firefox 进程意外丢失，核对租约、descriptor、profile 及输出。生产 ARM64、Electron 充当 owner、跨执行机 SSH stdio 分开签收。[执行入口](../projects/ruyi-mcp/PRODUCTION-OWNER.md) |
+| **已验 · 解压安全** | [R383](../artifacts/receipts/ruyijs-linux-decode-r383/validation.json)：压缩流后多余字节、双成员、deflate+垃圾均拒绝；100 MiB 压缩炸弹被 8 MiB 上限拦住。 | 只覆盖 gzip/deflate；brotli、zstd 未实现。 |
 | **已验 · 证书链元素校验** | [R382](../artifacts/receipts/ruyijs-linux-chain-elements-r382/validation.json)：每个元素都验 DER 标签与长度，11 项畸形矩阵 0 不符；名字解析与摘要解析对畸形数据结论一致。 | 只覆盖结构合法性，不涉及 RFC 5280 路径语义（该引擎在本构建缺失）。 |
 | **已验 · 主机名匹配加固** | [R381](../artifacts/receipts/ruyijs-linux-hostname-hardening-r381/validation.json)：修复星号字面量匹配、通配符空标签、畸形分隔符三个缺陷；18 项单元矩阵 0 不符。 | 覆盖 DNS/IP 名称匹配；未涉及 IDNA 国际化域名的完整 UTS-46 处理。 |
 | **已验 · 累积回归** | [R380](../artifacts/receipts/ruyijs-linux-regression-r380/validation.json)：六项正向与四项负向在同一 wheel 上同时通过，明文路径未被 TLS 相关改动破坏。 | 回归集覆盖 HTTP/1.1 与证书路径；h2、QUIC、ARM64 无对应实现可回归。 |

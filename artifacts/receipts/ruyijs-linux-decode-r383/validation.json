@@ -1,0 +1,47 @@
+{
+  "artifact": {
+    "bytes": 5266809,
+    "name": "wheel.whl",
+    "sha256": "d697dbf2fa21e5fdca587379a3ca4bea129741a45f2fdc7eeacc90795f97e3ce"
+  },
+  "cases": {
+    "good_gzip": {
+      "bytes": 5,
+      "status": 200
+    },
+    "gzip_bomb_100MiB": {
+      "note": "1028:1 ratio, bounded by the 8 MiB decoded limit rather than by memory exhaustion",
+      "reason": "decoded TLS response exceeds the limit",
+      "refused": true
+    },
+    "trailing_junk": {
+      "reason": "trailing bytes after the compressed TLS response",
+      "refused": true
+    },
+    "two_members": {
+      "reason": "trailing bytes after the compressed TLS response",
+      "refused": true
+    }
+  },
+  "checked_at": "2026-11-24T18:05:35+0800",
+  "defect_found": {
+    "consequence": "a peer could append arbitrary data after a member, including a second member, and the client would return a body that did not describe the whole response",
+    "description": "the gzip/deflate decoder checked decoder.eof but ignored decoder.unused_data, so a body whose compressed stream ended early still decoded and any remaining bytes were silently dropped"
+  },
+  "fix": "unused_data must be empty after the single member this path decodes; otherwise the response is refused",
+  "host": {
+    "containers": 133,
+    "name": "host185",
+    "oom": 0
+  },
+  "notable": "the bomb is refused by the existing decoded-size bound, which is why no new limit was needed",
+  "outcome": "compressed_bodies_with_trailing_bytes_or_oversized_output_are_refused",
+  "schema": "ruyijs-linux-decompression-safety-r383.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "public CA root bundles",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}
