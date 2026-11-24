@@ -78,6 +78,14 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**到根证书链校验（R374）：尝试了，但固定 NSS 构建不提供 PKIX 引擎——如实记录为未完成。** [回执](../../artifacts/receipts/ruyijs-linux-chain-r374/validation.json)
+
+- 目标：补上一直缺的 RFC 5280 路径校验，用 NSS 自己的引擎而非手写 ASN.1。
+- 写了独立 PKIX 助手（`cert_pi_trustAnchors` + `useOnlyTrustAnchors=TRUE` + 关闭 AIA 抓取），并造了真实 CA/叶子夹具（`openssl verify` 通过）。
+- 实测结论：`CERT_PKIXVerifyCert` 在 NSS 3.131 这次构建中返回 `PR_NOT_IMPLEMENTED`（错误文本 "function not implemented"）。用 `NSS_NoDB_Init` 与 `NSS_InitReadWrite` 两种初始化都试过，证书库句柄能拿到，但 PKIX 实现体缺失。
+- **因此信任模型没有变化**：叶子固定值 + DER 有效期 + SAN 主机名，**没有到根的路径校验**。这一项仍是真实缺口，不是"已修"。
+- 后续三条路：重编 NSS 启用 PKIX 验证器；自行实现 RFC 5280 路径构建与签名验证；或把"显式叶子固定"确立为产品决策而不再宣称要做链校验。
+
 **代理环境失败关闭（R373）：配置代理时两条路径都拒绝，且不直连泄漏。** [回执](../../artifacts/receipts/ruyijs-linux-proxy-r373/validation.json)
 
 - 无代理：明文与 HTTPS 各自 200，对端各收到 1 次请求。

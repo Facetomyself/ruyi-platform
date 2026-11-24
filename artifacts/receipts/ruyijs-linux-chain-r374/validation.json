@@ -1,0 +1,65 @@
+{
+  "artifacts": {
+    "chain_verify_c": {
+      "path": "deliverables/linux-ruyijs-tls-r358/chain/chain_verify.c",
+      "sha256": "06bdc45c232efef0a2a91db23f6a68c15e18acea57c555fb52b8b94438ac343f"
+    },
+    "helper_so": {
+      "path": "not-kept"
+    }
+  },
+  "checked_at": "2026-11-24T17:44:10+0800",
+  "current_trust_model_unchanged": "leaf SHA-256 pinning plus DER validity window plus SAN host name matching. There is still no path building to a trusted root, because the library cannot perform it",
+  "finding": {
+    "db_handle_obtained": true,
+    "description": "CERT_PKIXVerifyCert returns SECFailure with PR_NOT_IMPLEMENTED in the pinned Firefox 159 NSS 3.131 build, with a real read-write cert database initialised",
+    "evidence": {
+      "chain_calls": {
+        "good_chain_ip": {
+          "err": "function not implemented",
+          "rc": -5892
+        },
+        "good_chain_localhost": {
+          "err": "function not implemented",
+          "rc": -5892
+        },
+        "leaf_as_anchor": {
+          "err": "function not implemented",
+          "rc": -5892
+        },
+        "unrelated_anchor": {
+          "err": "function not implemented",
+          "rc": -5892
+        },
+        "wrong_host": {
+          "err": "function not implemented",
+          "rc": -5892
+        }
+      },
+      "direct_probe": [
+        "--- pkix symbol origin",
+        "4"
+      ]
+    },
+    "pkix_symbols_in_libnss3": 4
+  },
+  "host": {
+    "containers": 107,
+    "name": "host185",
+    "oom": 0
+  },
+  "options_for_a_future_round": [
+    "build NSS with the PKIX verifier enabled and re-verify the same fixture",
+    "implement RFC 5280 path building and signature verification outside NSS, which means writing certificate path validation by hand",
+    "switch the trust model to explicit leaf pinning as a documented product decision rather than an unimplemented aspiration"
+  ],
+  "outcome": "pkix_chain_verification_unavailable_in_the_pinned_nss_build__gap_recorded_not_worked_around",
+  "schema": "ruyijs-linux-chain-verification-r374.v1",
+  "what_was_attempted": [
+    "wrote a standalone NSS PKIX helper using cert_pi_trustAnchors with useOnlyTrustAnchors=TRUE and AIA fetch disabled",
+    "initialised NSS with NSS_InitReadWrite on a throwaway database because NSS_NoDB_Init left the handle unusable",
+    "built a real CA and leaf fixture (CA:TRUE with keyCertSign, leaf with SAN DNS:localhost,IP:127.0.0.1) and confirmed openssl accepts it",
+    "surfaced the NSS error text rather than a numeric code so the failure is diagnosable"
+  ],
+  "why_it_fails": "the PKIX engine is not compiled into this NSS build; the exported symbol exists but its implementation returns PR_NOT_IMPLEMENTED, so no anchor, chain or host name can change the result"
+}
