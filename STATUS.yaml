@@ -1459,7 +1459,7 @@ projects:
             trust_model_unchanged: leaf_pin_plus_validity_plus_san_hostname
             path_to_root: absent
             evidence: deliverables/linux-ruyijs-tls-r358/validation-chain.json
-            evidence_sha256: f596079f49397d7a884379d67cedff14f5b335bd6fa1f73d09ac82184697ea8c
+            evidence_sha256: 5aa97c0b1eaca0158e95dd34657afa48c696bb1cd8892d474c27a1d2698ea6a3
             repository_receipt: artifacts/receipts/ruyijs-linux-chain-r374/validation.json
             excluded: [rfc5280_path_validation, ocsp_crl_revocation, external_ca_trust, http2, quic_http3]
           private_proxy_failclosed_r373:

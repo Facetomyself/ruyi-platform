@@ -37,8 +37,8 @@
         }
       },
       "direct_probe": [
-        "--- pkix symbol origin",
-        "4"
+        "db_handle=0x562a47b91780",
+        "pkix=-1 err=function not implemented"
       ]
     },
     "pkix_symbols_in_libnss3": 4
