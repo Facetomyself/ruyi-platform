@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**台账审计与缺口补充（R390）。** [回执](../../artifacts/receipts/ruyijs-linux-ledger-audit-r390/validation.json)
+
+- 121 条回执全部与证据文件哈希一致，仓库内副本与源文件逐字节相同，0 处不符。
+- 修正一处过时声明：`private_pem_anchors_r386` 的排除项仍列着 `distrust_after_cutoffs`，而该能力已在 R388 交付；已从未做项移出并标注 `later_delivered`。
+- 补上一处从未明确写出的缺口：**压缩编码只覆盖 gzip 与 deflate**。`Content-Encoding: br` 与 `zstd` 会被明确拒绝（`unsupported TLS response content encoding`），不会返回错误内容。真实服务端常返回 `br`，所以部分站点在此路径上不可用。
+- 本轮**未实现 brotli 解码**：构建目录内虽有 brotli 头文件，但无可用 Python 绑定，且主机链路当时基本不可用，未在那种条件下强行尝试。
+
 **独立复核（R389）：R388 的两项声明用新脚本重跑，结论一致。** [回执](../../artifacts/receipts/ruyijs-linux-cutoff-recheck-r389/validation.json)
 
 - 重新写了一份探针（不是复用原脚本），用同一 wheel 复验：过去 cutoff → 拒绝，理由 `certificate was issued after its root's distrust cutoff`，对端 0 请求；未来 cutoff → 200 并取回 body。

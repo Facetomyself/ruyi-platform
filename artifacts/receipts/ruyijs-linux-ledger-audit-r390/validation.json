@@ -1,0 +1,32 @@
+{
+  "audit": {
+    "entries_with_evidence": 121,
+    "entries_without_evidence": 0,
+    "hash_mismatches": 0,
+    "repository_receipts_identical_to_evidence": true
+  },
+  "checked_at": "2026-11-24T20:05:00+08:00",
+  "corrections": [
+    {
+      "fix": "removed from excluded and recorded as later_delivered",
+      "problem": "excluded still listed distrust_after_cutoffs although R388 delivered it",
+      "where": "private_pem_anchors_r386"
+    }
+  ],
+  "documents": {
+    "new_gap_stated": "compression coverage: only gzip and deflate are decoded; br and zstd are refused with \"unsupported TLS response content encoding\" rather than decoded wrongly",
+    "verified_by": "direct call to the parser with Content-Encoding: br"
+  },
+  "not_done": "brotli decoding was not implemented this round; the build tree has brotli headers but no Python binding and the host link was largely unusable, so it was not attempted under those conditions",
+  "outcome": "ledger_evidence_consistent_and_one_stale_exclusion_corrected",
+  "schema": "ruyijs-linux-ledger-audit-r390.v1",
+  "still_open": [
+    "brotli/zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}
