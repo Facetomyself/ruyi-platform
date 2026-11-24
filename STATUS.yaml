@@ -105,8 +105,8 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R357_http1_addon_js_navigation_cabi_pass__R356_installed_13_of_13_and_rollback_pass
-    phase: R356 离线运行时与独立 R357 明文 HTTP/1 组件均已安装态实跑；R357 不包含 TLS、HTTP/2、QUIC 或 Mozilla Necko，联网其余部分与 Linux ARM64 产品待验收
+    tests: R358_nss_tls_adapter_handshakes_pass__R357_http1_addon_pass__R356_installed_pass
+    phase: R356 离线运行时、R357 明文 HTTP/1 组件及 R358 固定 NSS 的 TLS 适配层已分别验收；JS 层 HTTPS/h2/QUIC 端到端与 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
     - C3
@@ -1451,6 +1451,20 @@ projects:
             evidence_sha256: 189746dd15e5e47a453e22ee386e44b0f9a4064ec01ad625c98110defbc63f73
             repository_receipt: artifacts/receipts/ruyijs-linux-http1-r357/validation.json
             excluded: [mozilla_necko_nss, https_tls, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_nss_tls_adapter_r358:
+            terminal: pinned_firefox_nss_tls_adapter_native_handshakes_passed
+            scope: native adapter and NSS handshakes only; not JS HTTPS or live Necko
+            nss: '3.131'
+            nspr: '4.40'
+            handshakes: [TLS1.3-http1.1-ALPN, TLS1.3-h2-ALPN, TLS1.3-no-ALPN]
+            rejected: {untrusted_certificate: SSL_ERROR_BAD_CERTIFICATE}
+            artifact: deliverables/linux-ruyijs-tls-r358/release/libruyijs_tls.so
+            artifact_bytes: 35800
+            artifact_sha256: d5238c84002c8adcc7e402bf2b94e23b82cd97bdf7d67da1ae248f3b4f3c1a9e
+            evidence: deliverables/linux-ruyijs-tls-r358/validation.json
+            evidence_sha256: e50f6b619588ecb497d258625b6512aa7c9296b77d95f386edf192a9753a5811
+            repository_receipt: artifacts/receipts/ruyijs-linux-tls-r358/validation.json
+            excluded: [js_https_fetch, external_ca_trust, live_necko, h2_stream_semantics, quic_http3, arm64_product, wheel_release]
           private_product: linux_amd64_offline_base_plus_optional_cleartext_http1_companion
     inner_repo_state:
       exists: true

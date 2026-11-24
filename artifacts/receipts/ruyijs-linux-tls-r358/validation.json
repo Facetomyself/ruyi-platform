@@ -1,0 +1,158 @@
+{
+  "artifact": {
+    "bytes": 35800,
+    "exports": 15,
+    "format": "private Linux x86-64 shared library, not a wheel",
+    "path": "deliverables/linux-ruyijs-tls-r358/release/libruyijs_tls.so",
+    "sha256": "d5238c84002c8adcc7e402bf2b94e23b82cd97bdf7d67da1ae248f3b4f3c1a9e"
+  },
+  "checked_at": "2026-11-24T16:37:18+0800",
+  "controls": {
+    "application_data_round_trip": true,
+    "h2_alpn_negotiated": true,
+    "http11_alpn_negotiated": true,
+    "tls13_all_positive_cases": true,
+    "untrusted_certificate_rejected": true
+  },
+  "engineering_notes": [
+    "The dist header directory contains symlinks whose targets are /build/ff159/...; bind-mounting the directory alone leaves dangling links. The adapter was compiled against a sealed, hash-manifested copy of every header resolved from the real source tree.",
+    "A generated prcpucfg.h plus nsprpub/pr/include/md platform configuration headers were required.",
+    "The NSS libraries are the pinned Firefox build outputs; the shared-library set is recorded by SHA-256 and is not rebuilt here."
+  ],
+  "handshakes": [
+    {
+      "alpn": "http/1.1",
+      "body_ok": true,
+      "case": "http1-alpn",
+      "cipher": 4866,
+      "error": "nss",
+      "open_rc": 0,
+      "response_prefix": "HTTP/1.1 200 OK\r\nContent",
+      "response_sha256": "8a74d955f92bdfd538d0fc2cf9ca346659244b29e123fe3728fb62e188eceeb7",
+      "resumed": false,
+      "server": {
+        "alpn": "http/1.1",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "request": "GET /probe HTTP/1.1",
+        "version": "TLSv1.3"
+      },
+      "tls_version": 772,
+      "verify_chain_bytes": 771,
+      "write_rc": 0
+    },
+    {
+      "alpn": "h2",
+      "body_ok": true,
+      "case": "h2-alpn",
+      "cipher": 4866,
+      "error": "nss",
+      "open_rc": 0,
+      "response_prefix": "HTTP/1.1 200 OK\r\nContent",
+      "response_sha256": "8a74d955f92bdfd538d0fc2cf9ca346659244b29e123fe3728fb62e188eceeb7",
+      "resumed": false,
+      "server": {
+        "alpn": "h2",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "request": "GET /probe HTTP/1.1",
+        "version": "TLSv1.3"
+      },
+      "tls_version": 772,
+      "verify_chain_bytes": 771,
+      "write_rc": 0
+    },
+    {
+      "alpn": "",
+      "body_ok": true,
+      "case": "no-alpn-negotiated",
+      "cipher": 4866,
+      "error": "nss",
+      "open_rc": 0,
+      "response_prefix": "HTTP/1.1 200 OK\r\nContent",
+      "response_sha256": "8a74d955f92bdfd538d0fc2cf9ca346659244b29e123fe3728fb62e188eceeb7",
+      "resumed": false,
+      "server": {
+        "alpn": null,
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "request": "GET /probe HTTP/1.1",
+        "version": "TLSv1.3"
+      },
+      "tls_version": 772,
+      "verify_chain_bytes": 771,
+      "write_rc": 0
+    },
+    {
+      "case": "reject-certificate",
+      "error": "handshake (SSL_ERROR_BAD_CERTIFICATE)",
+      "open_rc": -1,
+      "server": {
+        "error": "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad certificate (_ssl.c:1000)"
+      },
+      "verify_chain_bytes": 771
+    }
+  ],
+  "host": {
+    "containers": 13,
+    "name": "host185",
+    "nonzero_exits": [
+      "ruyijs-r358-compile",
+      "ruyijs-r358-compile2",
+      "ruyijs-r358-compile3",
+      "ruyijs-r358-export",
+      "ruyijs-r358-tlsbuild",
+      "ruyijs-r358-tlsbuild2",
+      "ruyijs-r358-tlsprobe"
+    ],
+    "oom": 0
+  },
+  "inputs": {
+    "needed": [
+      "libnss3.so",
+      "libnssutil3.so",
+      "libssl3.so",
+      "libnspr4.so",
+      "libplc4.so",
+      "libplds4.so",
+      "libc.so.6",
+      "ld-linux-x86-64.so.2"
+    ],
+    "nss_headers": "pinned Firefox 159 obj-x86_64-pc-linux-gnu dist headers resolved to security/nss and nsprpub sources",
+    "nss_library_sha256": {
+      "libfreebl3.so": "6ce86d852bbd22dc50065b44ce0828a66e37a29e5a6b10fada6ccb20e2f225af",
+      "libfreeblpriv3.so": "bdc4874c5c2965e6b93b818a41a3f2682dd14add4b22f35c779f81b112baa0a0",
+      "libnspr4.so": "8553151f1ebfdde081295b567068ac581fa40d40de3b7014323a1433f7f6a684",
+      "libnss3.so": "3535df70c96919957e9bd81d5f7e079c2e155c2399e82b078c3f10ba1188b608",
+      "libnssutil3.so": "e84d473051d778e5b3c793654481e8ec542d7853c534270e6f7143600ca665a0",
+      "libplc4.so": "9805d62a9d876b393a6f9f05c35eba1df2962ded8ee188d670b3c22dcb87a5ad",
+      "libplds4.so": "36e48d9bf6ff1275f53d256e324c53e9000ce2bf34fdb9ffabb70aad0e9e9050",
+      "libsoftokn3.so": "11d9e0313554f86330762ee846e9a8b0b5cc0ada0133a7e062bbd63cfec48db4",
+      "libssl3.so": "d077aaeb1b59e85f809ffbc7e102b2467c36e0a19e7371c429f79e7e47563643"
+    },
+    "sealed_header_files": 195,
+    "sealed_header_manifest_sha256": "89245079e63063eb5a0ce44a3184bc52e7dda7384faf8e83c65ebe4be79aad05",
+    "tls_source": "acceptance/r354-ruyijs/native/necko_tls/necko_tls.c",
+    "tls_source_sha256": "0323f06b21bc1b6d17c3a5b6816a15b572ebf60e6aa292891ae2bf816a9b3b3f",
+    "versions": {
+      "nspr": "4.40",
+      "nss": "3.131"
+    }
+  },
+  "outcome": "pinned_firefox_nss_tls_adapter_native_handshakes_passed",
+  "schema": "ruyijs-linux-nss-tls-adapter-r358.v1",
+  "scope": {
+    "explicitly_not_verified": [
+      "RuyiJS JS fetch()/navigate() over HTTPS end to end",
+      "external network or public CA trust store",
+      "live Necko socket-process transport",
+      "HTTP/2 multiplexing semantics",
+      "QUIC/HTTP3",
+      "Linux ARM64",
+      "installable wheel publication"
+    ],
+    "positive": [
+      "necko_tls_* adapter compiled from native/necko_tls/necko_tls.c against the pinned Firefox 159 NSS 3.131 / NSPR 4.40 headers and shared libraries",
+      "real loopback TLS 1.3 handshakes with NSS client and an independent Python/OpenSSL server",
+      "explicit ALPN h2 and http/1.1 negotiation, application data round trip",
+      "untrusted certificate rejected with SSL_ERROR_BAD_CERTIFICATE"
+    ]
+  }
+}
