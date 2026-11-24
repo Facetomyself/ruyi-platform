@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **659 个 commit**（platform 213 / ruyitrace 88 / ruyihttp 8 / ruyijs 297 / ruyi-mcp 53）。
+五个仓库共 **664 个 commit**（platform 215 / ruyitrace 88 / ruyihttp 8 / ruyijs 300 / ruyi-mcp 53）。
 
 ---
 
@@ -209,8 +209,6 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 Mozilla 的构建系统强制完整依赖图，无法只编 `dom/bindings`。
 
-## 当前状态一句话
+## 当前交付
 
-**RuyiHttp 可用（19/19）；RuyiJS 内部版需重建；RuyiTrace 的 domtrace 技术路径已通但未编译。**
-
-剩下的每一项都卡在：x86_64 构建机、Windows 机器、或真机样本。
+以上为分阶段历史。当前已验收的包、可检出的源码、管理面联验与 JS 产品链接缺口见[源码与构建交接](docs/14-source-handoff.md)。

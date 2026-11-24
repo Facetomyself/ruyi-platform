@@ -1,4 +1,4 @@
-generated_at: '2026-11-22T19:19:48+08:00'
+generated_at: '2026-11-24T09:18:29+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -71,7 +71,7 @@ projects:
       linux_x86_64: build-verified (transport ABI + canvas symbols closed; product link open)
       linux_aarch64: unsupported
     tests: none
-    phase: 阶段 0（契约提取 + js.exe 锚点定位）
+    phase: Linux 产品壳链接推进中；donor 与接口验收独立，尚无正式 Linux 产品 wheel
     blocked_by:
     - A2
     - C3
@@ -1289,6 +1289,23 @@ projects:
             not_done: [rerun_the_pixman_compile, relink, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-ossl-r337/ossl-validation.json
             evidence_sha256: 51c4e4388363bbfb602fec5b36d75c1101ce848dc45d786376ef40b514bf53ea
+          native_pixman_build:
+            input_commit: ab060a5
+            terminal: pixman_blocked_on_include_shape
+            scope: "compiling pixman, the dependency cairo's image backend composites through"
+            attempts: 6
+            layers_cleared:
+              - 'the container had no /work mount, so the Mozilla include root did not exist'
+              - 'pixman-private.h requires MOZILLA_VERSION and the JS-only objdir carries no mozilla-config.h'
+              - 'it then requires PACKAGE, since config.h would have been included first and only supplies PACKAGE'
+              - 'pixman.h wants cairo/pixman-rename.h'
+            why_the_last_fix_did_not_take: 'the file is at gfx/cairo/cairo/src/pixman-rename.h while the include asks for cairo/pixman-rename.h, so the root must contain a cairo/ entry, which -I/source/gfx/cairo does not provide'
+            prepared: 'a staging directory with the header copied under cairo/, the same shape that made the cairo root work'
+            why_pixman_matters: "cairo's image backend composites through pixman, so the ten pixman_ symbols have no other provider"
+            assessment: 'a configure-shaped sequence of macros and include roots that a JS-only donor never had to produce, not a defect in the port'
+            not_done: [one_more_attempt_with_the_staged_root, relink, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-pixman-r344/pixman-validation.json
+            evidence_sha256: c828b82f45ab497370de58c2678781b3e8b6d1f7f78395787c09782c94414d98
           private_product: pending
     inner_repo_state:
       exists: true
@@ -1346,11 +1363,12 @@ projects:
       win_amd64: released
       linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
     tests: '117 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
-    phase: Linux scoped release verified; broader producer and architecture parity remain
+    phase: Linux scoped runtime handoff; amd64 headless R5 and earlier ARM64 desktop qualified separately; management integration pending
+    release_source_lock: artifacts/receipts/trace-amd64-r5/source-lock.json
     blocked_by: []
     remaining:
     - Linux browser producer coverage beyond verified DOM, click and explicit Web Storage summaries
-    - ARM64 instrumented Firefox and physical X11 or Wayland validation have separate evidence targets
+    - ARM64 instrumented Firefox and virtual X11/Wayland baseline verified; physical display, wider producers, and production management integration remain distinct
     verified:
       kernel_hashes: pass
       domtrace_hashes: pass
@@ -1919,16 +1937,16 @@ submodules:
     state: added
   ruyihttp:
     url: https://github.com/Facetomyself/ruyihttp
-    commit: b4cc7b2
+    commit: 2903c12608bbf1ffce9f6ee95406ef2aaaa38a7b
     visibility: public
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 8c87251
+    commit: 39cfb13bf8b0aed3e0cc7bd0a63b591f0a5362d3
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: 27438fc
+    commit: 94bfed6a7cb22dcbdc9c930cc60b92bf2b8a05d1
     state: added
 docs_health:
   total_markdown: 43
