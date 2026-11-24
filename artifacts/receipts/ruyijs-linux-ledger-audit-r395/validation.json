@@ -1,0 +1,46 @@
+{
+  "audit": {
+    "dangling_references": 0,
+    "entries": 126,
+    "hash_mismatches": 0,
+    "later_delivered_markers": 5
+  },
+  "checked_at": "2026-11-24T22:30:00+08:00",
+  "deliberately_kept": "wheel_release stays excluded: R393 published a private wheel, not a public release",
+  "documentation": "a reader-visible note that R394 did not rebuild the wheel is now annotated as later satisfied by R393, instead of reading as a standing gap",
+  "fixed": [
+    {
+      "block": "private_chain_legacy_r375",
+      "delivered_by": "private_anchor_integration_r376 / private_js_anchor_r378",
+      "dropped": "adapter_integration"
+    },
+    {
+      "block": "private_nss_tls_adapter_r358",
+      "delivered_by": "private_navigate_https_r365 and R360 installed JS HTTPS",
+      "dropped": "js_https_fetch"
+    },
+    {
+      "block": "private_cutoff_offline_r387",
+      "delivered_by": "private_cutoff_r388",
+      "dropped": "live_cutoff_enforcement"
+    },
+    {
+      "block": "private_e2e_tests_r394",
+      "delivered_by": "private_wheel_r393",
+      "dropped": "wheel_with_abi_fix"
+    }
+  ],
+  "not_done": "no product code changed this round",
+  "outcome": "four_stale_exclusions_removed_and_every_reference_validated",
+  "problem": "the ledger accumulates blocks over time, so a block written in an earlier round keeps excluding capabilities that a later round delivered; a reader scanning excluded lists would conclude less was delivered than actually was",
+  "schema": "ruyijs-linux-ledger-audit-r395.v1",
+  "still_open": [
+    "brotli/zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}

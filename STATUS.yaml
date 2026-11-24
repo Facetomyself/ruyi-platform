@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T22:20:00+08:00'
+generated_at: '2026-11-24T22:30:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R393_wheel_with_abi_fix__R394_e2e_handshake_tests__R392_offline_tls_tests
+    tests: R395_ledger_audit__R393_wheel_with_abi_fix__R394_e2e_handshake_tests
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,17 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_ledger_audit_r395:
+            terminal: four_stale_exclusions_removed_and_every_reference_validated
+            entries_audited: 126
+            hash_mismatches: 0
+            stale_exclusions_removed: [adapter_integration, js_https_fetch, live_cutoff_enforcement, wheel_with_abi_fix]
+            later_delivered_markers: 5
+            dangling_references: 0
+            kept_excluded: wheel_release
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-ledger-audit-2.json
+            evidence_sha256: 240ad9b3068e324a22958aba48ee69c35db97a2a9e069241c04b92a6b650a448
+            repository_receipt: artifacts/receipts/ruyijs-linux-ledger-audit-r395/validation.json
           private_wheel_r393:
             terminal: wheel_with_the_adapter_abi_fix_built_installed_and_tested
             version: 0.2.20+inner.r393
@@ -1474,7 +1485,8 @@ projects:
             evidence: deliverables/linux-ruyijs-tls-r358/validation-e2e-tests.json
             evidence_sha256: 914c3c8940222c641cb9cccc532d4cc6c29ab937f5110babc435ef9c76953526
             repository_receipt: artifacts/receipts/ruyijs-linux-e2e-tests-r394/validation.json
-            excluded: [wheel_with_abi_fix, brotli_zstd_decoding, ocsp_crl_revocation, http2_framing, quic_http3]
+            excluded: [ brotli_zstd_decoding, ocsp_crl_revocation, http2_framing, quic_http3]
+            later_delivered: wheel_with_abi_fix (private_wheel_r393)
           private_tls_tests_r392:
             terminal: tls_module_behaviours_are_now_re_runnable_inside_the_repository
             defect_found: all_prior_tls_evidence_lived_outside_the_tree
@@ -1536,7 +1548,8 @@ projects:
             evidence: deliverables/linux-ruyijs-tls-r358/validation-cutoff-offline.json
             evidence_sha256: 8a1867d3b6e3207b9bbbf910abcba8db708d352035e9dd885839a49ab1e98477
             repository_receipt: artifacts/receipts/ruyijs-linux-cutoff-offline-r387/validation.json
-            excluded: [live_cutoff_enforcement, ocsp_crl_revocation, default_mozilla_roots, http2_framing, quic_http3]
+            excluded: [ ocsp_crl_revocation, default_mozilla_roots, http2_framing, quic_http3]
+            later_delivered: live_cutoff_enforcement (private_cutoff_r388)
           private_pem_anchors_r386:
             terminal: a_multi_certificate_pem_bundle_is_accepted_as_a_trust_anchor_source
             pem_bundle_supported: true
@@ -1551,7 +1564,7 @@ projects:
             evidence_sha256: 20afb038762078cdcd49745b7b8fa3dbb1e3f7136151d1b02f194b910e853b14
             repository_receipt: artifacts/receipts/ruyijs-linux-pem-anchors-r386/validation.json
             excluded: [default_mozilla_roots, pkix_name_constraints, ocsp_crl_revocation, http2_framing, quic_http3]
-            later_delivered: distrust_after_cutoffs (R388)
+            later_delivered: distrust_after_cutoffs (private_cutoff_r388)
           private_commit_guard_r385:
             terminal: building_from_a_tree_whose_sources_are_not_committed_is_now_refused
             mechanism: compare each locked source against git show HEAD
@@ -1666,7 +1679,8 @@ projects:
             evidence: deliverables/linux-ruyijs-tls-r358/validation-chain-legacy.json
             evidence_sha256: daf216bd5ef5e4bf4523d11e54d0e41c9f52ee4bde54cf7ca2fe422c3bd32162
             repository_receipt: artifacts/receipts/ruyijs-linux-chain-legacy-r375/validation.json
-            excluded: [adapter_integration, ocsp_crl_revocation, external_ca_trust, http2, quic_http3]
+            excluded: [ ocsp_crl_revocation, external_ca_trust, http2, quic_http3]
+            later_delivered: adapter_integration (private_anchor_integration_r376 / private_js_anchor_r378)
           private_chain_verification_r374:
             terminal: pkix_unavailable_in_pinned_nss__chain_validation_still_open
             finding: CERT_PKIXVerifyCert_returns_PR_NOT_IMPLEMENTED
@@ -1813,7 +1827,8 @@ projects:
             evidence_sha256: 4c6c180e3d6d57d19c1ba0255239714eb977416e687b28c1181cf93e5cc81999
             https_client: {module_sha256: 8944de5ef60ca50344828b5badf9a0ee6a3cff40ada36b6c986f40b1672dfb6e, trust: caller_pins_over_DER, unpinned_refused: true, wrong_pin_refused_before_http: true, round_trip: pass}
             repository_receipt: artifacts/receipts/ruyijs-linux-tls-r358/validation.json
-            excluded: [js_https_fetch, external_ca_trust, live_necko, h2_stream_semantics, quic_http3, arm64_product, wheel_release]
+            excluded: [ external_ca_trust, live_necko, h2_stream_semantics, quic_http3, arm64_product, wheel_release]
+            later_delivered: js_https_fetch (private_navigate_https_r365 and R360 installed JS HTTPS)
           private_product: linux_amd64_offline_base_plus_optional_tls_companion_with_pinned_https
     inner_repo_state:
       exists: true
