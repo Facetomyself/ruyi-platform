@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-11-24T23:15:00+08:00",
+  "conclusion": "the correct description of this gap is \"not compiled and not wired\", not \"sources missing\"; the remaining work is a build and integration task",
+  "corrects": "R398 concluded decoding was a large addition because no decoder object existed; that measured the build products, not the available sources",
+  "measured": {
+    "build_flags": "-std=gnu99 -O2 -fPIC -shared",
+    "built": "libbrotlidec.so",
+    "built_bytes": 187456,
+    "common_sources": 6,
+    "decoder_sources": 6,
+    "toolchain": "/usr/bin/clang-21 in the pinned image",
+    "total_translation_units": 12
+  },
+  "not_yet_done": [
+    "the library was not exercised: the container path for a python interpreter could not be located before the host link degraded",
+    "no decode round trip, no wiring into tls.py, no packaging, no tests"
+  ],
+  "outcome": "the_decoder_can_be_built_from_sources_that_ship_in_the_pinned_tree",
+  "schema": "ruyijs-linux-brotli-build-r399.v1",
+  "still_open": [
+    "exercise libbrotlidec and prove a br round trip",
+    "wire brotli into the decoder selection and packaging",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "what_it_took": [
+    "copy common/ and dec/ with their original directory layout, because the sources include each other as \"../common/platform.h\"",
+    "put the public headers under a brotli/ directory so <brotli/port.h> resolves",
+    "compile all twelve units into one shared object"
+  ]
+}

@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T22:52:00+08:00'
+generated_at: '2026-11-24T23:15:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R398_brotli_investigation__R397_h2_refusal_live__R396_alpn_coverage
+    tests: R399_brotli_build__R398_brotli_investigation__R397_h2_refusal_live
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,19 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_brotli_build_r399:
+            terminal: the_decoder_can_be_built_from_sources_that_ship_in_the_pinned_tree
+            corrects: r398_said_it_needed_full_sources_but_they_are_in_the_tree
+            decoder_sources: 6
+            common_sources: 6
+            built: libbrotlidec.so
+            built_bytes: 187456
+            exercised: false
+            wired_into_product: false
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-brotli-build.json
+            evidence_sha256: a91ac99b4eb33ef5eb0568ad863a6e93e48be72137a1e5573b24d4a4caaba9bf
+            repository_receipt: artifacts/receipts/ruyijs-linux-brotli-build-r399/validation.json
+            excluded: [brotli_round_trip_unproven, brotli_packaging, zstd_decoding, ocsp_crl_revocation, quic_http3]
           private_brotli_investigation_r398:
             terminal: the_pinned_build_ships_a_brotli_encoder_only_so_decoding_is_not_an_easy_wire_up
             encoder_objects: 5

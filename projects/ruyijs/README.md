@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 解码器可编出（R399）：上一轮的结论也不准确。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-build-r399/validation.json)
+
+- R398 说"需引入完整解压源码"。**实测反驳**：源码就在树内——`dec/` 6 个 `.c`、`common/` 6 个 `.c`，共 12 个编译单元。
+- 用固定构建自带的 `/usr/bin/clang-21`，`-std=gnu99 -O2 -fPIC -shared`，成功编出 **`libbrotlidec.so`（187,456 字节）**。
+- 关键在目录结构：源码之间用 `"../common/platform.h"` 相对引用，把文件摊平会失败；公共头需放在 `brotli/` 下才能解析 `<brotli/port.h>`。
+- **未做**：该库尚未实测解码往返、未接入 `tls.py`、未改打包、无测试。所以正确的缺口描述是**"未编译、未接入"**，不是"源码缺失"。
+
 **brotli 调查（R398）：不是"接入即可"，固定构建里没有解码器。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-investigation-r398/validation.json)
 
 - 实测：`obj-x86_64-pc-linux-gnu/modules/brotli/` 下只有 **5 个 `.o`**，全部是编码器（`compress_fragment`、`compress_fragment_two_pass`、`entropy_encode`、`Unified_c_modules_brotli1`）。
