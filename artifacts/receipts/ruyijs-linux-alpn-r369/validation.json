@@ -1,8 +1,9 @@
 {
   "after_fix": {
-    "h2_selected": {
+    "h2_offered_and_selected": {
       "closed_without_request": true,
       "error": "peer selected h2; this helper implements HTTP/1.1 only",
+      "note": "exercised by calling exchange(http2=True) directly, which is the only way to reach this branch",
       "peer_http_requests": []
     },
     "http11_offered": {
@@ -15,23 +16,28 @@
       "status": 200
     }
   },
+  "before_fix_evidence": {
+    "interpretation": "no ALPN selection; HTTP/1.1 fallback per RFC 7301 is legitimate",
+    "js_status": 200,
+    "peer_handled": [
+      "GET /alpn HTTP/1.1"
+    ],
+    "server_selected_alpn": null
+  },
   "checked_at": "2026-11-24T17:27:44+0800",
   "defect": {
-    "description": "when the peer selected h2 the helper still wrote an HTTP/1.1 request line into the h2 channel; the server read that as a broken HTTP/1.1 request and answered anyway, so the failure was invisible in the client result",
-    "evidence_before_fix": {
-      "js_status": 200,
-      "peer_handled": [
-        "GET /alpn HTTP/1.1"
-      ],
-      "server_selected_alpn": null
-    }
+    "description": "exchange() accepted an http2 flag but wrote an HTTP/1.1 request line unconditionally after the handshake. No ALPN check existed. Had the adapter ever been opened with that flag against a peer selecting h2, an HTTP/1.1 request would have been fed into an h2 channel.",
+    "observed_through_shipped_path": false,
+    "severity": "latent: the shipped runtime calls fetch() with http2=False, so the client never offers h2 and the h2 branch was unreachable through the supported path",
+    "why_not_observed_before_fix": "with http2=False the adapter offers http/1.1 only; a peer offering only h2 yields no selection, which is the RFC 7301 fallback case, not a downgrade"
   },
+  "guard": "HTTP/1.1 is written only when ALPN is empty or http/1.1; h2 or any other selection raises before any byte is sent",
   "host": {
     "containers": 76,
     "name": "host185",
     "oom": 0
   },
-  "outcome": "selected_h2_now_refused__no_selection_falls_back_to_http11",
+  "outcome": "alpn_guard_added__latent_h2_downgrade_path_closed",
   "schema": "ruyijs-linux-alpn-r369.v1",
   "still_open": [
     "real HTTP/2 framing and multiplexing",

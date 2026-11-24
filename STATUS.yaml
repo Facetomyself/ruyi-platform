@@ -1453,14 +1453,15 @@ projects:
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
           private_alpn_r369:
             terminal: selected_h2_refused__no_alpn_falls_back_to_http11
-            defect_found: http11_request_line_written_into_an_h2_channel
-            h2_selected: {refused: true, peer_http_requests: 0, closed_without_request: true}
+            defect_found: missing_alpn_guard_around_an_http11_request_writer
+            defect_severity: latent_unreachable_through_the_shipped_http2_false_path
+            h2_selected: {refused: true, peer_http_requests: 0, closed_without_request: true, reached_only_via_http2_true}
             http11_offered: {alpn: http/1.1, status: 200}
             no_alpn: {fallback: http/1.1, status: 200}
             companion_version: 0.2.6+inner.r369
             artifact_sha256: 5474c5eabf0c44c178eb236fa72b97feeb0898ca28c49ff1e1428c2cd0785109
             evidence: deliverables/linux-ruyijs-tls-r358/validation-alpn.json
-            evidence_sha256: 024773299c7a67b3a594a41b4f94db9f0f7cb23297791694001278a5e3f34104
+            evidence_sha256: 21dfa3db1e7bbd128540c350271eb80659810f0456f684ec7cb1f200bfb4785b
             repository_receipt: artifacts/receipts/ruyijs-linux-alpn-r369/validation.json
             excluded: [http2_framing_and_multiplexing, rfc5280_path_validation, ocsp_crl_revocation, external_ca_trust, quic_http3]
           private_redirect_r368:
