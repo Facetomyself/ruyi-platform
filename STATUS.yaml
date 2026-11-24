@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T13:02:19+08:00'
+generated_at: '2026-11-24T13:28:07+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -92,10 +92,10 @@ projects:
     build:
       win_amd64: ready
       darwin_arm64: unknown
-      linux_x86_64: native-private-offline-candidate-verified (Ubuntu 24.04, glibc 2.39)
+      linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39)
       linux_aarch64: unsupported
-    tests: native_amd64_archive_13_of_13_real_runtime_gates
-    phase: Linux amd64 私有壳已严格链接并从离线候选归档实跑；正式 wheel、全树干净重建与真实网络联验待完成
+    tests: native_amd64_installed_wheel_13_of_13_gates_95_assertions
+    phase: Linux amd64 私有 wheel 已离线安装并用真实 Python/C 客户端验收；全树干净重建与真实网络联验另行推进
     blocked_by:
     - A2
     - C3
@@ -1376,7 +1376,21 @@ projects:
             evidence: deliverables/linux-ruyijs-integration-r353/validation.json
             evidence_sha256: 1f8636b283356737cdc135bf46bcde42736391a6a8d6804fb61351eb70ef633c
             repository_receipt: artifacts/receipts/ruyijs-linux-amd64-r353/validation.json
-          private_product: linux_amd64_offline_candidate_verified
+          native_installed_wheel_r354:
+            packaging_commit: ab68b3c8346428cac14d604be7ad26926df0d342
+            terminal: private_amd64_offline_wheel_installed_and_executed
+            target: py3-none-linux_x86_64
+            build: {pep517_runs: 3, byte_identical: true, source_archive: R353, index_upload: false}
+            native: {python: '3.12.3', pip: '24.0', distro: 'Ubuntu 24.04', glibc: '2.39', uid: 1000, network: none}
+            installation: {zero_argument_context_eval: 42, gates: 13, passed: 13, assertions: 95, native_hashes_match: 20, wheel_record: 218, installed_record: 221, uninstall_verified: true}
+            artifact: deliverables/linux-ruyijs-wheel-r354/ruyijs-0.2.2+inner.20261101191032-py3-none-linux_x86_64.whl
+            artifact_bytes: 29378755
+            artifact_sha256: 9135568cd48ec931d094853763e37ae576e581e3c5f4fb1c810fc9f12ee575db
+            excluded: [clean_full_native_rebuild, live_necko_networking, arm64_product, manylinux_or_musl_claim, public_index_publication]
+            evidence: deliverables/linux-ruyijs-wheel-r354/validation.json
+            evidence_sha256: be54810e07363df42119acb8fe3a0f5b2281182cd52f1fc2f82d6df98f62db3d
+            repository_receipt: artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json
+          private_product: linux_amd64_private_offline_wheel_verified
     inner_repo_state:
       exists: true
       created: '2026-11-04'
@@ -2017,7 +2031,7 @@ blockers:
     state: offline_amd64_verified_parity_and_distribution_open
     title: ruyijs 内部版原生壳需还原（js.exe 49.5MB）——已在进行
     severity: B
-    decision: 历史 Windows identity 差异另验；R353 的优先缺口为全洁净重建、wheel 和真实联网
+    decision: R354 的私有 amd64 离线 wheel 已通过安装态验收；优先推进全树干净原生重建和真实网络联验，历史 Windows identity 差异另验
     progress: 56/237 hash_diff 命中 + 9/9 inner_only 语义化
   L4:
     state: original_win64_source_unavailable_scoped_linux_runtime_verified
@@ -2038,7 +2052,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 2898fd27004d7107077e751e2b5fd9bf876f3469
+    commit: ab68b3c8346428cac14d604be7ad26926df0d342
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

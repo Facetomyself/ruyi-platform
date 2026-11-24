@@ -1,0 +1,191 @@
+{
+  "assertions": 95,
+  "default_context": {
+    "eval": 42,
+    "shell": "/out/installed env/lib/python3.12/site-packages/ruyijs/_runtime/dist/js"
+  },
+  "gates": {
+    "avif_decode": {
+      "checks": [
+        "avif_fixture_sha256",
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "avif_frame_bgra_and_layout",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "0b7ff6f90f6970417d180744850554f964990c0a3e1de6b8070742a8748efddd"
+    },
+    "avif_support": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "avif_type_support",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "25b21becf6ad553825ecd5ab6c143091408f52e9c211d6b6a7b9e70b6350f0e5"
+    },
+    "cabi_debug": {
+      "checks": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "095d4bc50ee0062b64a6b0f8983ad28869d3d64aa812c91c7dda9b075855c3ee"
+    },
+    "cabi_default": {
+      "checks": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "f44229ea2524a83c8cedaae37989d435ea3f8bd4438602efa27f2e7aad63f70b"
+    },
+    "canvas_glyphs": {
+      "checks": [
+        "discovered_installed_shell",
+        "canvas_glyph_pixels_and_metrics",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "36e677777b414850ac5b1979a740d05c1f8a39b1ccdbbc74d9cf42fb78b8f61b"
+    },
+    "canvas_rect": {
+      "checks": [
+        "discovered_installed_shell",
+        "canvas_rect_pixels",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "570768ec0c91853ed5d00cecfd20bef784bea3bf4f143cae11d9ab61eaf7b7e9"
+    },
+    "compression_brotli": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "8fcb040aeea9cf989a96d1f7e74a53642591c95ea14028637843a3a2a6a9b823"
+    },
+    "compression_deflate": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "fbbbbf00e971cdc7b6ddddd039a70f0a52bb0b2fbe736ca6d891674d452e9c35"
+    },
+    "compression_deflate-raw": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "dcc21b43d0fdca447c18b715fcb68ef97c2283578da82b9161a63c9e218a7e12"
+    },
+    "compression_gzip": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "af8b99f8e2452c46e0c2c9e8590ecc84cbcab7e601c54cc38a9830131822dc8d"
+    },
+    "page_dom": {
+      "checks": [
+        "discovered_installed_shell",
+        "in_memory_page_load",
+        "dom_and_inline_script",
+        "no_page_network_requests",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "5768fd2b187319ae3bc593774d797f32108f266370f8098923e022088669016f"
+    },
+    "python_bridge": {
+      "checks": [
+        "package_version_matches_metadata",
+        "discovered_installed_shell",
+        "numeric_eval",
+        "typed_eval",
+        "set_and_expose_result",
+        "host_callback_arguments",
+        "python_js_error",
+        "eval_after_error",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "fb1b43f695020321c3d7e82b1d9387ec729cfb24af29b185869b4f47ead4a3a9"
+    },
+    "urlpattern": {
+      "checks": [
+        "discovered_installed_shell",
+        "urlpattern_exec_and_negative",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "exit": 0,
+      "raw_sha256": "86ba23da643b13b2cf56367e1bb1f85b6f56bfaeab16eb62c732b04bce009389"
+    }
+  },
+  "native_loaded_on_ubuntu_base": [
+    "42",
+    "ruyi40"
+  ],
+  "python": "3.12.3",
+  "schema": 1,
+  "scope": "installed wheel only; clean CPython venv with no source checkout or previous runtime mount",
+  "uid": 1000,
+  "venv": "/out/installed env/bin/python"
+}

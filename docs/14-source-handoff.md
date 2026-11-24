@@ -11,7 +11,7 @@
 | 桌面配置和日志预览 | Trace 的可选 Electron + **对应架构**的合格内核 | 较早的 x86_64 和 ARM64 各有独立实包及虚拟 X11/Wayland 验收，[详情](13-ruyitrace-progress.md)。物理显示、更广 producer 和所有 Win64 行为的等价性另验。 |
 | 校验旧版 Win64 产物 / 读取离线统计 | Trace **Win64 离线交接分支**，见下表 | 静态原件证据与合成测试，不是 Win64 私有 Firefox 的完整源树，也不是 Linux 实采证明。业务项目宜依赖有版本的输出 schema，避免把推断地址当成稳定 ABI。 |
 | HTTP 客户端 | [RuyiHttp](../projects/ruyihttp/README.md)：Python API、wheel 构建与已入库原生库 | 三平台既有库可重打包；Linux amd64 在 glibc 2.39 上通过 HTTPS/TLS 1.3/h2。Linux ARM64、macOS x86_64 新原生库及 H3/代理联验独立；重打 wheel 不等于从 C++/Rust 重建底层库。 |
-| JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | [R353 原生 amd64 离线候选](../artifacts/receipts/ruyijs-linux-amd64-r353/validation.json)：私有 `dist/js` 和 C 客户端严格链接，解包后无构建挂载，Python 与 C 实测 13/13。Ubuntu 24.04/glibc 2.39；[使用说明](../submodules/ruyijs/docs/linux-amd64-candidate.md)。正式 wheel、真实外网 Necko 和 ARM64 产品另验。 |
+| JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | [R354 私有 amd64 wheel](../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json)可离线安装。内置 R353 原生壳与 C 客户端；Ubuntu 24.04/glibc 2.39 上无路径覆盖的 `Context()` 与 C 接口实测 13/13。[安装命令与适用范围](../submodules/ruyijs/docs/linux-amd64-wheel.md)。全树干净重建、真实网络与 ARM64 产品另验。 |
 | 程序化管理浏览器 | [MCP / owner 交接及验收表](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | [AMD64 R5 生产 M2](../projects/ruyi-mcp/PRODUCTION-OWNER.md)通过排他借用、真断点、归还与重借、暂停中停止及原生关闸读回；使用从干净 GitHub 检出构建并搬到另一台主机的独立 CLI。 |
 | 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM 独立源码交接](#ruyidom-独立源码交接) | 维护源码与供应商运行输入分开；历史 AMD64 Docker 候选另有验收和归档回执。 |
 

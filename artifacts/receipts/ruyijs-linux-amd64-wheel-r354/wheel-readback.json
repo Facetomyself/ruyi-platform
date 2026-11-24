@@ -1,0 +1,18 @@
+{
+  "wheel_sha256": "9135568cd48ec931d094853763e37ae576e581e3c5f4fb1c810fc9f12ee575db",
+  "wheel_entries": 218,
+  "hashed_entries": 217,
+  "native_files_same_as_r353": 20,
+  "packaging_checkout_python_files": 18,
+  "license_files": 172,
+  "version": "0.2.2+inner.20261101191032",
+  "tag": "py3-none-linux_x86_64",
+  "requires_python": ">=3.10",
+  "requires_dist": [
+    "requests; sys_platform == \"darwin\"",
+    "brotli; sys_platform == \"darwin\"",
+    "zstandard; sys_platform == \"darwin\""
+  ],
+  "contains_reference_runtime": false,
+  "offline_examples_excluded": true
+}

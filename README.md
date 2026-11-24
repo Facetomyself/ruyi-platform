@@ -206,7 +206,7 @@ cat STATUS.yaml
 | --- | --- |
 | **RuyiTrace** | Linux 有范围明确的浏览器、桌面与无头实采验收。amd64 R5 提供独立源码标签和同包核验入口；管理面另行迭代。 |
 | **RuyiHttp** | Python 客户端及三平台既有原生运行库可复用；[Linux amd64 HTTPS 验收](projects/ruyihttp/README.md)。新平台原生库是另一项交付。 |
-| **RuyiJS 内部版** | [Linux amd64 离线候选](artifacts/receipts/ruyijs-linux-amd64-r353/validation.json)已通过严格链接和解包实跑：13/13 组 Python/C 检查，另有 Ubuntu 基础镜像 C 客户端回读。[使用说明](submodules/ruyijs/docs/linux-amd64-candidate.md)；正式 wheel 与真实网络联验独立。 |
+| **RuyiJS 内部版** | [私有 Linux amd64 wheel](artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json)已从本地文件安装。默认 `Context()` 和 C 客户端的 13 组安装态检查均通过；[离线安装与复建](submodules/ruyijs/docs/linux-amd64-wheel.md)。真实网络和 ARM64 产品另验。 |
 | **ruyi-mcp** | 可自启 Firefox，也可在原生 amd64 上借用 Trace CLI 持有的 R5 会话；生产同会话已验，ARM64 与 Electron owner 另验。[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) |
 | **RuyiDOM（独立仓）** | Firefox 136 的离线 DOM 和显式浏览器导航；维护源码、供应商输入及历史 P3 镜像分开管理。见 [v0.1.0 源码交接](docs/14-source-handoff.md#ruyidom-独立源码交接)，它不占用平台 gitlink。 |
 

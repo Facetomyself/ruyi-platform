@@ -64,12 +64,18 @@ ruyijs-inner/
 
 ### Linux x86_64 私有 donor
 
-**当前结果（R353，2026-11-24）：私有 Linux amd64 离线运行时已严格链接、打包、解压并实跑。** [交付回执](../../artifacts/receipts/ruyijs-linux-amd64-r353/validation.json) · [运行检查](../../artifacts/receipts/ruyijs-linux-amd64-r353/runtime-gates.json) · [链接回执](../../artifacts/receipts/ruyijs-linux-amd64-r353/link-report.json) · [使用说明](../../submodules/ruyijs/docs/linux-amd64-candidate.md)。
+**当前交付（R354，2026-11-24）：私有 Linux amd64 wheel 已在干净 venv 安装并实跑。** [wheel 验收](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json) · [安装态运行检查](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/runtime-gates.json) · [安装与复建说明](../../submodules/ruyijs/docs/linux-amd64-wheel.md)。
+
+- 文件：`ruyijs-0.2.2+inner.20261101191032-py3-none-linux_x86_64.whl`，29,378,755 字节；SHA-256 `9135568cd48ec931d094853763e37ae576e581e3c5f4fb1c810fc9f12ee575db`。本地交付目录 `deliverables/linux-ruyijs-wheel-r354/`。原生壳、C 客户端及 18 个库的内容与 R353 完全相同；三次 `pip wheel` 输出同一散列。
+- 安装后无需源码目录、`RUYIJS_SHELL` 或 `LD_LIBRARY_PATH`。在 Ubuntu 24.04/glibc 2.39、CPython 3.12.3、UID 1000、断网环境，零参数 `Context()` 使用包内 `dist/js` 返回 `42`。13/13 组、95 项断言通过；再次普通 `pip install` 后卸载，虚拟环境包清单恢复原样。包内非 glibc 依赖通过 `ldd -r`；从只读安装目录单独挂载到原生基础镜像的 C 客户端两次取得 `42`、`ruyi40`。
+- 范围：这是私有 `linux_x86_64` 离线 wheel，未上传公共索引，不作 manylinux 声明。干净全树原生重建、真实网络辅助进程及 ARM64 产品仍需独立验收。
+
+**R353 原生基线：私有 Linux amd64 离线运行时已严格链接、打包、解压并实跑。** [交付回执](../../artifacts/receipts/ruyijs-linux-amd64-r353/validation.json) · [运行检查](../../artifacts/receipts/ruyijs-linux-amd64-r353/runtime-gates.json) · [链接回执](../../artifacts/receipts/ruyijs-linux-amd64-r353/link-report.json) · [使用说明](../../submodules/ruyijs/docs/linux-amd64-candidate.md)。
 
 - **产品而非 donor：** 1,268 个 Linux 私有翻译单元逐一定位；31 组同源缓存由源文件身份消歧。严格链接保留重复定义与未解析库的报错，退出 0，未定义符号及警告均为 0。图形使用同一固定 Firefox 159 的对象族，Skia 的 76 个成员均先通过旧清单校验，其中 1 个按实际 HarfBuzz 共享库头重编。URLPattern 与 zlib-rs 在同一个 Rust 根归档内；AVIF 的 109 个对象提供真正的 dav1d 解码和缩放。
 - **交付件：** 工作区 `deliverables/linux-ruyijs-integration-r353/ruyijs-linux-amd64-r353.tar.gz`，29,488,216 字节，SHA-256 `c3dfd2bed28b6119c7258e09b13ff0f8176393be5475541ed8b9c7b3438c936f`。含 `dist/js`、7 个导出的 C 客户端、18 个版本化运行库、Python 绑定、头文件及校验清单。使用归档内 `README.md` 的 `PYTHONPATH` 和 `RUYIJS_SHELL` 示例即可执行本地页面。
 - **执行门槛：** 包从零解压到带空格的新路径，UID 1000、断网、无 `LD_LIBRARY_PATH`。Python 和真实 C 客户端 13/13 组、83 项断言通过；另用无构建工具的 Ubuntu 24.04 基础镜像复跑 CLI 和 C 接口，分别读回 `42` 和持久上下文中的 `ruyi40`。初次实跑揭示的 WebP 间接依赖及 debug 模式查询日志缺项已经修复，初始失败回执保留。
-- **尚待验收：** 全部源文件在同一提交的干净重建、正式 wheel、真实 Necko 网络联验、Linux ARM64 产品及全量 Windows 行为对齐。本次是 glibc 2.39 原生离线候选，不把这些范围计为通过。
+- **R353 当时的边界：** tar 包本身未证明 wheel 安装；该项随后由 R354 单独验收。全树干净重建、真实 Necko 网络联验、Linux ARM64 产品及全量 Windows 行为对齐仍需单列。
 
 **历史基线（R352）：私有壳链接退出 1。** [验收回执](../../artifacts/receipts/ruyijs-linux-amd64-r352/validation.json)与[完整符号清单](../../artifacts/receipts/ruyijs-linux-amd64-r352/link-report.json)已随仓入库。
 
