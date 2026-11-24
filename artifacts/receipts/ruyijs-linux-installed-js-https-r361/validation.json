@@ -1,0 +1,70 @@
+{
+  "bundled_nss": [
+    "libfreebl3.so",
+    "libfreeblpriv3.so",
+    "libmozsqlite3.so",
+    "libnspr4.so",
+    "libnss3.so",
+    "libnssutil3.so",
+    "libplc4.so",
+    "libplds4.so",
+    "libsoftokn3.so",
+    "libssl3.so"
+  ],
+  "checked_at": "2026-11-24T17:01:44+0800",
+  "defects_found_and_fixed": [
+    "the SDK header directory contains build-path symlinks that dangle in a bind mount; a dereferenced header snapshot is required",
+    "the first closure omitted libmozsqlite3.so, which libsoftokn3 needs at load time; the build now rejects an incomplete captured closure",
+    "standard glibc libraries must be treated as system, not bundled",
+    "the source lock had to be refreshed after each source edit; it is validated before compilation"
+  ],
+  "host": {
+    "containers": 47,
+    "name": "host185",
+    "oom": 0
+  },
+  "js_https": {
+    "body_matches_peer": true,
+    "net_log_error": "",
+    "net_log_status": 200,
+    "peer_request": "GET /installed HTTP/1.1",
+    "status": 200
+  },
+  "native_files": [
+    "build.json",
+    "libruyijs_http1.so",
+    "libruyijs_tls.so",
+    "nss",
+    "tls-build.json"
+  ],
+  "outcome": "pip_installed_base_plus_companion_deliver_pinned_https_in_javascript",
+  "schema": "ruyijs-linux-installed-js-https-r361.v1",
+  "scope": {
+    "not_covered": [
+      "external CA trust",
+      "public HTTPS origins",
+      "h2 multiplexing semantics",
+      "QUIC/HTTP3",
+      "navigate() over HTTPS",
+      "Linux ARM64",
+      "public index or manylinux/musl claims"
+    ],
+    "positive": [
+      "two wheels installed by pip into one fresh venv, no manual file placement",
+      "JavaScript fetch() over https: returned a peer-generated body, byte-identical, with net_log status 200",
+      "the companion wheel carries the NSS adapter and a complete 10-library NSS closure"
+    ]
+  },
+  "source_commit": "732a0cfe2ee3c68ba8173b1458b255d418ad94ea",
+  "wheels": {
+    "base": {
+      "name": "ruyijs-0.2.2+inner.20261101191032.r356-py3-none-linux_x86_64.whl",
+      "sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6"
+    },
+    "companion": {
+      "bytes": 5255218,
+      "name": "ruyijs_http1-0.2.0+inner.r361-py3-none-linux_x86_64.whl",
+      "sha256": "bcadfcace6714d043e6a454702e2a9f65364b4ac507a987455da7366f148196a"
+    }
+  }
+}
