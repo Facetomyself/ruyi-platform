@@ -1,0 +1,39 @@
+{
+  "audit_after": {
+    "entries": 148,
+    "evidence_mismatches": 0,
+    "orphan_receipts": 0
+  },
+  "backfilled": [
+    {
+      "outcome": "optional_cleartext_http1_transport_installed_and_executed_on_R356",
+      "receipt": "ruyijs-linux-http1-r357"
+    },
+    {
+      "outcome": "framed_helper_https_passed__js_layer_https_still_blocked",
+      "receipt": "ruyijs-linux-https-helper-r359"
+    },
+    {
+      "outcome": "js_layer_pinned_https_verified_on_installed_linux_runtime",
+      "receipt": "ruyijs-linux-js-https-r360"
+    },
+    {
+      "outcome": "pip_installed_base_plus_companion_deliver_pinned_https_in_javascript",
+      "receipt": "ruyijs-linux-installed-js-https-r361"
+    }
+  ],
+  "checked_at": "2026-11-25T02:20:00+08:00",
+  "each_block_marked": "backfilled: true with a reason, so nobody mistakes them for work done this round",
+  "finding": "four receipts from R357 to R361 existed on disk and were cited in the risk document, but the ledger carried no block for any of them; a reader following the ledger alone would not have known those deliveries happened",
+  "not_a_product_change": true,
+  "outcome": "four_orphan_receipts_that_had_no_ledger_block_are_now_recorded",
+  "schema": "ruyijs-linux-ledger-audit-r413.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}

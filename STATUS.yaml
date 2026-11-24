@@ -1,4 +1,4 @@
-generated_at: '2026-11-25T02:10:00+08:00'
+generated_at: '2026-11-25T02:20:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R412_ledger_audit__R411_regression__R410_zstd_end_to_end
+    tests: R413_ledger_backfill__R412_ledger_audit__R411_regression
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1433,6 +1433,34 @@ projects:
             evidence_sha256: 26fde2cd14862a740ce7530b9d5c40e67b85e39ae786855d80097dd2fb41f0f0
             repository_receipt: artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json
             separate: [live_necko_nss_quic, arm64_product, public_release, manylinux_or_musl]
+          private_http1_companion_alt_r357:
+            terminal: optional_cleartext_http1_transport_installed_and_executed_on_R356
+            backfilled: true
+            reason_for_backfill: the receipt existed and was cited in the docs but the ledger carried no block for it
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-ruyijs-linux-http1-r357.json
+            evidence_sha256: 189746dd15e5e47a453e22ee386e44b0f9a4064ec01ad625c98110defbc63f73
+            repository_receipt: artifacts/receipts/ruyijs-linux-http1-r357/validation.json
+          private_https_helper_r359:
+            terminal: framed_helper_https_passed__js_layer_https_still_blocked
+            backfilled: true
+            reason_for_backfill: the receipt existed and was cited in the docs but the ledger carried no block for it
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-ruyijs-linux-https-helper-r359.json
+            evidence_sha256: 7e4dfb79b7ed69b80ae8d2fd2786b5a286a183c9b5da1717bc6d97bacd32d473
+            repository_receipt: artifacts/receipts/ruyijs-linux-https-helper-r359/validation.json
+          private_js_https_r360:
+            terminal: js_layer_pinned_https_verified_on_installed_linux_runtime
+            backfilled: true
+            reason_for_backfill: the receipt existed and was cited in the docs but the ledger carried no block for it
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-ruyijs-linux-js-https-r360.json
+            evidence_sha256: ec98895a768b18717dc9a1f0d6562713350f92b6f386763e4a2990dcc6affcab
+            repository_receipt: artifacts/receipts/ruyijs-linux-js-https-r360/validation.json
+          private_installed_js_https_r361:
+            terminal: pip_installed_base_plus_companion_deliver_pinned_https_in_javascript
+            backfilled: true
+            reason_for_backfill: the receipt existed and was cited in the docs but the ledger carried no block for it
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-ruyijs-linux-installed-js-https-r361.json
+            evidence_sha256: cfcec4b81ca5c9072cf2e24f8ff3047de9a9994239c3cdf3f9b32126afbb7735
+            repository_receipt: artifacts/receipts/ruyijs-linux-installed-js-https-r361/validation.json
           private_http1_companion_r357:
             terminal: cleartext_http1_and_pinned_https_in_one_installable_companion
             native_http_source: 2345a6089ad837e923b4e83904bf1d7d42e31b32
@@ -1451,6 +1479,14 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_ledger_audit_r413:
+            terminal: four_orphan_receipts_that_had_no_ledger_block_are_now_recorded
+            backfilled_blocks: 4
+            entries_after: 148
+            orphan_receipts_after: 0
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-ledger-audit-4.json
+            evidence_sha256: 4f879587b5dabc5cf6d70a99e924e5a7a27d887a2e09b49879accb2d76fd9215
+            repository_receipt: artifacts/receipts/ruyijs-linux-ledger-audit-r413/validation.json
           private_ledger_audit_r412:
             terminal: thirty_nine_stale_coding_exclusions_removed_and_one_overwritten_evidence_file_recovered
             stale_exclusions_removed: 39
