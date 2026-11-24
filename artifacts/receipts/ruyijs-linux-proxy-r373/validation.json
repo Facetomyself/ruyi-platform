@@ -1,0 +1,78 @@
+{
+  "cases": {
+    "http_baseline": {
+      "connections": 1,
+      "log": null,
+      "requests": [
+        "GET /x HTTP/1.1"
+      ],
+      "value": {
+        "s": 200,
+        "t": "leaked"
+      }
+    },
+    "http_with_proxy": {
+      "connections": 0,
+      "log": [
+        {
+          "error": "HTTP proxies are unsupported by the Linux HTTP/1 helper",
+          "status": 0
+        }
+      ],
+      "requests": [],
+      "value": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    },
+    "https_baseline": {
+      "connections": 1,
+      "log": null,
+      "requests": [
+        "GET /x HTTP/1.1"
+      ],
+      "value": {
+        "s": 200,
+        "t": "leaked"
+      }
+    },
+    "https_with_proxy": {
+      "connections": 0,
+      "log": [
+        {
+          "error": "HTTP proxies are unsupported by the Linux HTTP/1 helper",
+          "status": 0
+        }
+      ],
+      "requests": [],
+      "value": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    }
+  },
+  "checked_at": "2026-11-24T17:39:22+0800",
+  "host": {
+    "containers": 89,
+    "name": "host185",
+    "oom": 0
+  },
+  "notes": [
+    "a configured proxy is a hard error on this private transport; there is no direct fallback and no tunnel attempt",
+    "this is fail-closed behaviour, not proxy support: no CONNECT, no SOCKS, no PAC"
+  ],
+  "outcome": "proxy_configuration_refused_by_both_transports_with_no_direct_leak",
+  "probe_correction": {
+    "conclusion": "the product behaviour was already correct; the first run measured the direct path",
+    "first_run": "set RUYIJS_HTTP_PROXY only in the parent environment and concluded HTTPS was bypassing the proxy",
+    "why_wrong": "Context.__init__ writes child_environment[\"RUYIJS_HTTP_PROXY\"] = proxy or \"\", so an inherited value is overwritten with an empty string; the proxy branch is reachable only through the proxy= argument"
+  },
+  "result": "both the cleartext and TLS paths refuse when a proxy is configured; the target peers observed zero connections",
+  "schema": "ruyijs-linux-proxy-failclosed-r373.v1",
+  "still_open": [
+    "actual proxy support (CONNECT, SOCKS5, PAC)",
+    "h2 framing",
+    "RFC 5280 path validation",
+    "OCSP/CRL",
+    "external CA",
+    "QUIC"
+  ]
+}

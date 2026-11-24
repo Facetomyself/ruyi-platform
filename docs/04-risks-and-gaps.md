@@ -8,6 +8,7 @@
 |---|---|---|
 | **已验 · RuyiJS amd64 离线发行** | [R356 wheel](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) 使用 R355 干净原生构建的确切字节。新装及从 R354 升级均通过 13 组安装态测试及真实 Worker/WebCrypto，显式回退后的文件清单完全恢复。 | 依照[固定版本的安装命令](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)使用；公共索引、跨发行版认证、联网与 ARM64 不继承本项证明。 |
 | **P1 · Trace / MCP 发布与管理面** | [M2 标准与暂停中停止](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)用 Trace `f8eeb0e` + MCP `8f3839b` + R5；MCP 当前 pin `b5e204a` 又验过[自然到期、错范围无页面动作及实际归还](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | **挡扩大支持矩阵，不挡已验的原生 AMD64 CLI 组合。** 发布新 CLI/MCP 组合时固定双方 SHA 与同一浏览器摘要，重跑正常归还及暂停中停止两档；另测 Firefox 进程意外丢失，核对租约、descriptor、profile 及输出。生产 ARM64、Electron 充当 owner、跨执行机 SSH stdio 分开签收。[执行入口](../projects/ruyi-mcp/PRODUCTION-OWNER.md) |
+| **已验 · 代理失败关闭** | [R373](../artifacts/receipts/ruyijs-linux-proxy-r373/validation.json)：配置代理时明文与 HTTPS 均拒绝、对端 0 连接、无直连泄漏。 | 这是拒绝而非支持：CONNECT、SOCKS5、PAC 均未实现，代理场景不可用。 |
 | **已验 · 传输一致性** | [R372](../artifacts/receipts/ruyijs-linux-parity-r372/validation.json)：明文与 TLS 在九个 framing 用例上结果一致；修复前无长度响应只在明文侧被接受。 | 一致性只覆盖 HTTP/1.1 framing；h2 与 QUIC 无对应实现可对照。 |
 | **已验 · 并发隔离** | [R371](../artifacts/receipts/ruyijs-linux-concurrency-r371/validation.json)：12 并发全部正确，混合失败场景其余 8 个不受影响，峰值 RSS 约 11 MB。 | 无连接复用与稳态负载压测；h2 多路复用未实现。 |
 | **已验 · 资源边界** | [R370](../artifacts/receipts/ruyijs-linux-bounds-r370/validation.json)：响应/请求头块上限 64 KiB，body 上限 8 MiB，超限均给具体原因；修复前 80 KB 响应头会被接受。 | 未做并发连接数上限与整体内存预算的压测。 |

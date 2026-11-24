@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**代理环境失败关闭（R373）：配置代理时两条路径都拒绝，且不直连泄漏。** [回执](../../artifacts/receipts/ruyijs-linux-proxy-r373/validation.json)
+
+- 无代理：明文与 HTTPS 各自 200，对端各收到 1 次请求。
+- 配置代理：两条路径均报 `HTTP proxies are unsupported by the Linux HTTP/1 helper`，目标对端 **0 次连接**——没有直连兜底，也没有尝试隧道。
+- 这是 fail-closed，不是代理支持：没有 CONNECT、没有 SOCKS、没有 PAC。
+- 用法提示：`Context.__init__` 会以 `proxy or ""` **覆盖**继承的环境变量，所以只设 `RUYIJS_HTTP_PROXY` 不生效，必须通过 `Context(proxy=...)` 传入。我第一次探针就栽在这点上，把直连误判成了代理绕过。
+
 **传输一致性（R372）：明文与 TLS 两条路径在同一响应上给出一致结果。** [回执](../../artifacts/receipts/ruyijs-linux-parity-r372/validation.json)
 
 - 发现不一致：既无 `Transfer-Encoding` 也无 `Content-Length` 的响应，明文路径按“读到关闭”取正文并返回 200，TLS 路径直接拒绝。同一份响应两种结果，属于真实缺陷。
