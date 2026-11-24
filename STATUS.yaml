@@ -836,7 +836,7 @@ projects:
             resolved_previous: 13
             introduced: 1
             remaining: 1
-            relocatable_sha256: 81d783d574b68eaa
+            relocatable_sha256: 81d783d574b68eaaca870547c8d51eb0b68b26a0fed5306247e4491f5e9b9e9a
             sole_remaining: ruyijs::web_geometry::FrameMaxDescent
             why_it_remains: 'system_font.cpp defines it, but the whole unit is already in the predecessor object, so adding it duplicates every SystemFonts member'
             attempted: 'extracting the function into its own unit broke the platforms branch structure and was reverted rather than forced'
@@ -855,7 +855,7 @@ projects:
             resolved_previous: 13
             introduced: 0
             remaining: 0
-            relocatable_sha256: 75290f361a9e83de
+            relocatable_sha256: 75290f361a9e83de40370c0228efa5a062200ff0868def2ab5f935d96b26e74f
             relocatable_bytes: 370219344
             last_one: 'FrameMaxDescent needed its platform implementations guarded so the unit contributes only the shared tail, and that tail then needed font_backend.h directly'
             progression: '13 to 6 to 3 to 1 to 0 across five measured runs'
@@ -1541,7 +1541,7 @@ projects:
             excluded: [ocsp_enforcement, crl_enforcement, default_mozilla_roots, http2_framing, quic_http3, arm64_product]
           private_bomb_e2e_r415:
             terminal: a_live_tls_peer_delivered_a_bomb_and_both_codings_refused_it_on_the_wire
-            artifact_sha256_note: 0.2.25+inner.r414 with the brotli bound fix
+            artifact_note: 0.2.25+inner.r414 with the brotli bound fix
             br: {served: true, refused_with_exceeds_the_limit: true}
             zstd: {served: true, refused_with_exceeds_the_limit: true}
             closes: r414_bomb_bounds_direct_only

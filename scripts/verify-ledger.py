@@ -54,6 +54,46 @@ def main():
                 failures.append(f"{name}: receipt missing at {receipt}")
             elif copy.read_bytes() != path.read_bytes():
                 failures.append(f"{name}: receipt is not a copy of the evidence")
+    # Secondary hashes: a block may record extra digests beside its evidence.
+    # Each must be traceable, either to a wheel on disk or to a file named in the
+    # block, otherwise the record cannot be checked by anyone later.
+    wheels = {digest(p) for p in ROOT.glob("deliverables/**/*.whl")}
+    traceable = 0
+    for name, block in blocks().items():
+        evidence = block.get("evidence")
+        blob = ""
+        if evidence and (ROOT / evidence).is_file():
+            blob = (ROOT / evidence).read_text(errors="replace")
+        for key, value in block.items():
+            if "sha256" not in key or key == "evidence_sha256":
+                continue
+            if not isinstance(value, str):
+                failures.append(f"{name}: {key} is not a string")
+                continue
+            if len(value) != 64 or any(c not in "0123456789abcdef" for c in value):
+                # A malformed digest must be reported. Skipping it silently is
+                # how a wrong value hides: the first mutation attempt produced a
+                # 127-character value and the script said nothing.
+                failures.append(f"{name}: {key} is not a SHA-256 digest")
+                continue
+            # A hash named after a file in the block must match that file's
+            # real digest. Checking only that the string appears somewhere would
+            # accept a stale or wrong value, which two mutation attempts showed.
+            sibling = block.get(key.replace("_sha256", ""))
+            if isinstance(sibling, str) and (ROOT / sibling).is_file():
+                if digest(ROOT / sibling) == value:
+                    traceable += 1
+                    continue
+            if value in wheels:
+                traceable += 1
+                continue
+            if value in blob:
+                traceable += 1
+                continue
+            # It may name its own file, as sanitizer_data_check does.
+
+            failures.append(f"{name}: {key} cannot be traced to any file")
+    print(f"secondary hashes traced: {traceable}")
     print(f"blocks checked: {total}")
     if failures:
         for item in failures:
