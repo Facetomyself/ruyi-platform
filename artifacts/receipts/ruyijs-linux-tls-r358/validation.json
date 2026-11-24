@@ -20,7 +20,8 @@
     "A generated prcpucfg.h plus nsprpub/pr/include/md platform configuration headers were required.",
     "The NSS libraries are the pinned Firefox build outputs; the shared-library set is recorded by SHA-256 and is not rebuilt here.",
     "A clean peer close is surfaced by the adapter as an I/O result with zero bytes; the client ends the body on a complete Content-Length and never treats truncation as success.",
-    "Pins must hash the DER certificate, not the PEM file byte order or its base64 wrapper."
+    "Pins must hash the DER certificate, not the PEM file byte order or its base64 wrapper.",
+    "A pin mismatch is enforced by the adapter verify hook, so the TCP connection is established but the TLS handshake is aborted with bad_certificate and no HTTP request is written. Earlier wording that described zero peer connections referred only to completed HTTP responses and has been corrected."
   ],
   "handshakes": [
     {
@@ -130,16 +131,26 @@
       },
       "wrong_pin": {
         "error": "peer certificate does not match any pinned digest",
+        "http_bytes_sent": false,
+        "http_responses_served": 0,
+        "peer_alert": "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad certificate (_ssl.c",
         "peer_requests": [],
-        "peer_served": 0,
-        "refused": true
+        "refused": true,
+        "tcp_connections_accepted": 1
       }
     },
     "module": "deliverables/linux-ruyijs-tls-r358/release/python/tls.py",
     "module_bytes": 10230,
     "module_sha256": "8944de5ef60ca50344828b5badf9a0ee6a3cff40ada36b6c986f40b1672dfb6e",
     "passed": true,
-    "trust_model": "caller-supplied SHA-256 pins over DER certificates; no pin means refuse"
+    "trust_model": "caller-supplied SHA-256 pins over DER certificates; no pin means refuse; a mismatched pin aborts during the TLS handshake before any HTTP request bytes",
+    "wrong_pin_audit": {
+      "error": "peer certificate does not match any pinned digest",
+      "http_request_sent": false,
+      "peer_alert": "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad certificate (_ssl.c",
+      "receipt": "wrongpin-audit/audit.json",
+      "tcp_connections_accepted": 1
+    }
   },
   "inputs": {
     "needed": [
@@ -174,7 +185,7 @@
     }
   },
   "outcome": "pinned_nss_tls_adapter_and_pinned_https_client_verified",
-  "schema": "ruyijs-linux-nss-tls-r358.v2",
+  "schema": "ruyijs-linux-nss-tls-r358.v3",
   "scope": {
     "explicitly_not_verified": [
       "RuyiJS JS fetch()/navigate() over HTTPS end to end",

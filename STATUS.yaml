@@ -1462,7 +1462,7 @@ projects:
             artifact_bytes: 35800
             artifact_sha256: d5238c84002c8adcc7e402bf2b94e23b82cd97bdf7d67da1ae248f3b4f3c1a9e
             evidence: deliverables/linux-ruyijs-tls-r358/validation.json
-            evidence_sha256: 9ac868be362c8b557ad7d47e54b6e52cfde7fade2d69cf3ddb83e70cbb53ad90
+            evidence_sha256: 4c6c180e3d6d57d19c1ba0255239714eb977416e687b28c1181cf93e5cc81999
             https_client: {module_sha256: 8944de5ef60ca50344828b5badf9a0ee6a3cff40ada36b6c986f40b1672dfb6e, trust: caller_pins_over_DER, unpinned_refused: true, wrong_pin_refused_before_http: true, round_trip: pass}
             repository_receipt: artifacts/receipts/ruyijs-linux-tls-r358/validation.json
             excluded: [js_https_fetch, external_ca_trust, live_necko, h2_stream_semantics, quic_http3, arm64_product, wheel_release]
