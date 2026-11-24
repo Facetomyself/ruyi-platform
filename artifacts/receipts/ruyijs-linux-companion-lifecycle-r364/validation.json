@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-11-24T17:12:12+0800",
+  "cleartext": {
+    "after_removal": {
+      "error": "TypeError: NetworkError when attempting to fetch resource.",
+      "peer_requests": []
+    },
+    "installed": {
+      "body_matches_peer": true,
+      "peer_requests": [
+        "/x"
+      ],
+      "status": 200
+    }
+  },
+  "counts": {
+    "base_files": 252,
+    "companion_added": 33,
+    "paired_files": 285
+  },
+  "host": {
+    "containers": 58,
+    "name": "host185",
+    "oom": 0
+  },
+  "outcome": "installed_pair_serves_cleartext_and_uninstall_restores_exact_base",
+  "ownership": {
+    "base_unchanged": true,
+    "helper_module_removed": true,
+    "restored_exactly": true,
+    "vendor_tree_removed": true
+  },
+  "schema": "ruyijs-linux-companion-lifecycle-r364.v1",
+  "scope": {
+    "positive": [
+      "pip install of the unchanged R356 base yields a 252-file tree",
+      "installing ruyijs-http1 0.2.2+inner.r363 adds 33 files and never mutates an existing base file",
+      "with the pair installed, JavaScript fetch over http: returned a peer-generated body and the peer saw exactly one GET",
+      "pip uninstall removed the helper, the launcher and the vendor subtree, restoring the exact 252-file base tree",
+      "after removal the base returns to its documented offline behaviour with zero peer connections"
+    ]
+  },
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5256131,
+      "name": "ruyijs_http1-0.2.2+inner.r363-py3-none-linux_x86_64.whl",
+      "sha256": "c8f6adf974fe27d4ea26240dd4222ee3362db76ca73478ec4557e4cc0400dd4d"
+    }
+  }
+}

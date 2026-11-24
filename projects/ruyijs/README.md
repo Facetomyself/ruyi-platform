@@ -78,6 +78,12 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**组件生命周期（R364）：安装与卸载都经过实测，卸载后精确还原基础树。** [回执](../../artifacts/receipts/ruyijs-linux-companion-lifecycle-r364/validation.json)
+
+- 基础 R356 单独安装为 **252** 个文件；再装 `ruyijs-http1 0.2.2+inner.r363` 后为 **285** 个，新增 33 个，且没有任何基础文件被改写。
+- 组件在位时，JS `fetch("http://…")` 得到服务端新生成的 body，服务端只看到 **1 次** GET。
+- `pip uninstall ruyijs-http1` 后 helper、启动器与 vendor 子树全部移除，文件树与安装前逐字节一致（252 个文件全等）；此后基础运行时回到其文档所述离线行为，服务端 **0 次**连接。
+
 **TLS 适配层（R358）：固定 Firefox 159 的 NSS 3.131 已原生编译并通过真实握手。** [回执](../../artifacts/receipts/ruyijs-linux-tls-r358/validation.json)
 
 - `native/necko_tls/necko_tls.c` 用封存的 195 个头文件和固定 Firefox 构建的 NSS/NSPR 共享库编译为 `libruyijs_tls.so`（35,800 字节，SHA-256 `d5238c84…3c1a9e`），15 个导出符号与源码一致；依赖仅 `libnss3/ssl3/nssutil3/nspr4/plc4/plds4/libc`。
