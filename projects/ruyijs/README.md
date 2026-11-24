@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**主机名校验（R367）：修掉一个真实缺陷——证书属于别的主机名时曾会被接受。** [回执](../../artifacts/receipts/ruyijs-linux-hostname-r367/validation.json)
+
+- 修复前：自定义校验钩子只比对固定值与有效期，完全不看主机名。实测 `wrong.example` 去连一张 `CN=localhost` 的证书，握手成功并写出了 HTTP 请求——这是可被利用的身份冒充缺口。
+- 修复后：从 DER 解析 `subjectAltName` 的 `dNSName` 与 `iPAddress`；只有在证书完全没有 SAN 时才回退到 `commonName`；通配符仅匹配一个左侧标签。
+- 实测隔离性：同一张叶子证书同时被 `localhost` 与 `other.example` 固定，`localhost` 成功取回 body，`other.example` 以 `name mismatch` 在握手阶段被拒，HTTP 请求 0 次。
+- **仍未做**：到可信根的 RFC 5280 路径构建、OCSP/CRL 吊销、外部 CA 信任。
+
 **证书固定收紧（R366）：只认叶子证书，并校验有效期。** [回执](../../artifacts/receipts/ruyijs-linux-pin-scope-r366/validation.json)
 
 - 之前固定值只要匹配**链中任意一张**证书即通过——一个无关的中间证书就能满足另一张服务器证书的固定值。现在只比对**叶子证书**。

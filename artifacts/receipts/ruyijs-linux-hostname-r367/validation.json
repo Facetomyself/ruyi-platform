@@ -1,0 +1,63 @@
+{
+  "after_fix": {
+    "matching_host": {
+      "body_ok": true,
+      "http": [
+        "/probe"
+      ],
+      "names": [
+        "localhost"
+      ]
+    },
+    "same_leaf_wrong_name": {
+      "http": [],
+      "names": [
+        "localhost"
+      ],
+      "open_rc": -1,
+      "peer_alert": "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad certifica",
+      "reason": "name mismatch"
+    }
+  },
+  "checked_at": "2026-11-24T17:20:37+0800",
+  "defect": {
+    "description": "the pinned verify hook compared digests and validity only; a certificate for another host name was accepted and HTTP was written over that connection",
+    "evidence_before_fix": {
+      "hostname_enforced": false,
+      "wrong_host_http": [
+        "/probe"
+      ],
+      "wrong_host_open_rc": 0
+    }
+  },
+  "fix": "subjectAltName dNSName and iPAddress entries are parsed from DER; a Common Name is used only when the certificate has no SAN; wildcards match exactly one left label",
+  "host": {
+    "containers": 67,
+    "name": "host185",
+    "oom": 0
+  },
+  "outcome": "host_name_mismatch_now_refused_after_fix",
+  "schema": "ruyijs-linux-hostname-verification-r367.v1",
+  "still_open": [
+    "RFC 5280 path building to a trusted root",
+    "OCSP and CRL revocation",
+    "external CA trust",
+    "h2 and QUIC"
+  ],
+  "unit_checks": {
+    "cn_fallback_only_without_san": true,
+    "cn_ignored_when_san_present": true,
+    "ip_san_exact_match": true,
+    "malformed_der_rejected": true,
+    "subdomain_not_matched_by_exact_name": true,
+    "wildcard_single_label_only": true
+  },
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5258697,
+      "name": "wheel.whl",
+      "sha256": "f0e443e8862059f5226222e420d71bc2eb14f37941b8bfac3d4094e0e7250850"
+    }
+  }
+}
