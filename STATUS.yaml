@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T09:31:00+08:00'
+generated_at: '2026-11-24T09:59:39+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -13,14 +13,20 @@ projects:
     submodule: submodules/ruyi-mcp
     source: complete
     build: linux
-    tests: 80/80
-    phase: AMD64 与 ARM64 Docker core 通过；AMD64 Firefox ESR 容器基础 BiDi 通过；Trace 制品及生产活会话待联验
-    docker_ci: https://github.com/Facetomyself/ruyi-mcp/actions/runs/45303990325
+    tests: 81/81
+    phase: AMD64 Docker 已通过真实 Trace Firefox 的 MCP 自启、BiDi 下载与 19 项 RDP；生产活会话待集成
+    docker_ci: https://github.com/Facetomyself/ruyi-mcp/actions/runs/45308474899
     container:
       core: [linux/amd64, linux/arm64]
       amd64_stock_firefox: headless local navigation, status and quit verified
-      amd64_trace_firefox: artifact hash, x86-64 ELF and BuildID checked; MCP runtime not run
-      trace_owner_production: pending
+      amd64_trace_firefox:
+        package: d7DBYN4g
+        build_id: '20261121110134'
+        smoke: pass
+        bidi_download: pass
+        native_rdp: 19/19
+        evidence: artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json
+      trace_owner_production: blocked on production descriptor, page transport, RDP lease and flush integration
     blocked_by: [D-MCP]
   ruyihttp:
     repo: Facetomyself/ruyihttp
@@ -1907,9 +1913,9 @@ artifacts:
     in_git: false
 blockers:
   D-MCP:
-    title: Linux 原生 Firefox 与 Trace owner 共同验收
+    title: Linux 生产 Trace owner 同会话验收
     severity: D
-    decision: 控制面、浏览器、Trace 同会话分开验收
+    decision: MCP 自启 AMD64 Firefox 已实测；等待生产 owner 发布 descriptor、提供页面转发和 RDP 租约并完成 flush
   A2:
     title: Linux 原生库要求 glibc 2.38
     severity: A
@@ -1955,7 +1961,7 @@ submodules:
   ruyi-mcp:
     url: https://github.com/Facetomyself/ruyi-mcp.git
     branch: linux
-    commit: d4f93cc81ec9d12e2c1ba7877be7d3eb35427713
+    commit: 2797d3cd494ffeab0f0839109a2243b5b3024964
     visibility: public
     state: added
   ruyihttp:

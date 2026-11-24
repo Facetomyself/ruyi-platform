@@ -1,0 +1,55 @@
+{
+  "schema": "ruyi-mcp-native-container-receipt.v1",
+  "checked_at": "2026-11-24T09:59:39+08:00",
+  "scope": "MCP-owned Firefox on native linux/amd64; synthetic loopback fixtures; production Trace owner excluded",
+  "mcp_commit": "2797d3cd494ffeab0f0839109a2243b5b3024964",
+  "ci_run": "https://github.com/Facetomyself/ruyi-mcp/actions/runs/45308474899",
+  "image_export_run": "https://github.com/Facetomyself/ruyi-mcp/actions/runs/45308474912",
+  "image_config_id": "sha256:f2bbaabf4023eadfa27045db6665212733f99ef58bca0e8dd02d8f9b80870c28",
+  "docker_save_gzip_sha256": "0c91c72f5a9c73b3c687bf2a5133f98b66544da1a323f541a3b3795607f43704",
+  "trace": {
+    "package": "d7DBYN4g",
+    "architecture": "x86_64",
+    "firefox_version": "159.0",
+    "build_id": "20261121110134",
+    "source_stamp": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+    "archive_sha256": "797cf3ce15b72b3059e7ab519e29298d12672aa4db8bc4f2d5f1746ec71d07e2",
+    "firefox_sha256": "8c5225f8b76a5167ed4a010cdaa4e680a3fe2d39fa675a5b3f23b4a3198d04bf",
+    "libxul_sha256": "28126c574da1d346b6490eaf245a33d5b8a2d54fd1936325c9e64ce4671fa704"
+  },
+  "container": {
+    "docker": "28.1.1",
+    "host_kernel": "3.10.0-1160.119.1.el7.x86_64",
+    "uid": 10001,
+    "network_interfaces": ["lo"],
+    "readonly_root_and_firefox": true,
+    "effective_capabilities": "0000000000000000",
+    "no_new_privileges": 1,
+    "seccomp": 2,
+    "firefox_user_namespace_probe": "warned EPERM; sandbox settings remained unchanged"
+  },
+  "result": {
+    "mcp_smoke_exit": 0,
+    "mcp_smoke": "initialize, tool list, Python bridge, owned headless BiDi navigation/status/quit and stdin EOF",
+    "download_exit": 0,
+    "download_bytes": 39,
+    "download_content_verified": true,
+    "rdp_exit": 0,
+    "rdp_passed": 19,
+    "rdp_total": 19,
+    "first_statement_pause": true,
+    "replaced_target": true,
+    "reconnected_exact_context": true,
+    "watchdog_resumed": true,
+    "stale_pause_rejected": true,
+    "production_trace_owner": "not run: release lacks the production descriptor / page commands / RDP lease and flush integration"
+  },
+  "evidence_directory": "deliverables/ruyi-mcp-amd64-d7DBYN4g-20261124",
+  "evidence_sha256": {
+    "mcp-smoke-2797d3c.log": "39cc620e8d3d2f172533e8ad6bd3f1f5067d8d3f397fb2a7f85f293b2c89a4a6",
+    "native-gates-2797d3c.log": "d573be33b6552a0c0f014893266f19fc162bf545b6e3d1c3ab8b3806d789e0d8",
+    "rdp-2797d3c.json": "80fa2b55df7d6512325aed65b7b1bccf2fce2d1ca8c81193921964e65170a474",
+    "rdp-run1.json": "9a7f4847a513ad02eafff8bd71551becb4948e151187edfc354ccb4f950f06f7",
+    "rdp-diagnostic-ready.json": "04159d4ef439126e022840cf1cf9e607abcdb7ce22a4b4bb591db4f1a7664457"
+  }
+}

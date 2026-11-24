@@ -243,7 +243,7 @@ CXXABI_1.3.9
 
 | 组件 | 源码仓 | 维护分支 | 平台固定提交 |
 | --- | --- | --- | --- |
-| ruyi-mcp | [Facetomyself/ruyi-mcp](https://github.com/Facetomyself/ruyi-mcp) | `linux` | `d4f93cc81ec9d12e2c1ba7877be7d3eb35427713` |
+| ruyi-mcp | [Facetomyself/ruyi-mcp](https://github.com/Facetomyself/ruyi-mcp) | `linux` | `2797d3cd494ffeab0f0839109a2243b5b3024964` |
 
 ```bash
 cd /var/lib/dsh/Ruyi/ruyi-platform
@@ -256,7 +256,8 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 
 ### 历史 pin
 
-- `1c80d8889b47185f4b6f20be4b97cd9db99532f1`：首个 Docker 设计稿，被上述通过原生容器 CI 的实现取代。
+- `d4f93cc81ec9d12e2c1ba7877be7d3eb35427713`：首个原生容器 CI 基线，由真实 Trace 内核验收后的 RDP 修订取代。
+- `1c80d8889b47185f4b6f20be4b97cd9db99532f1`：首个 Docker 设计稿。
 
 ## 10. 2026-11-24 交接：开发基线与发行源码分开
 

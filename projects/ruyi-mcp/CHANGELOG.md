@@ -1,5 +1,11 @@
 # ruyi-mcp 变更日志
 
+## 2026-11-24 — 通过原生 AMD64 Trace Firefox 容器门禁
+
+- 固定 `2797d3c` 及对应的 [原生 CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45308474899)。修复 Firefox 换进程时异步通知占用 `getTab` 应答的问题，坚持用已确认上下文重连。
+- 在原生 AMD64 Docker 以只读方式挂载 `d7DBYN4g`；MCP 自启和退出、下载内容校验、19 项 RDP 均通过。[真机回执](../../artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json)保留修复前失败和修复后通过的日志摘要。
+- 生产 Trace owner 活会话仍待集成，独立 ARM64 租约 fixture 只作前置证据。
+
 ## 2026-11-24 — 锁定通过原生 CI 的 Docker 版本
 
 - 引入非 root `core` 和可挂载 Firefox 的 `browser` 镜像目标，运行镜像内保留源码修订号用于证据溯源。

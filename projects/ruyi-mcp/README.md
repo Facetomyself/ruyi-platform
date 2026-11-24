@@ -22,7 +22,9 @@ npm run check
 
 ## AMD64 容器与 Trace 制品
 
-[原生容器 CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45303990325) 验证 AMD64、ARM64 的 `core` 和 AMD64 + Firefox ESR 的无头导航、状态与退出。Trace 项目已有 Firefox 159 AMD64 包 `d7DBYN4g` 的 DOM/click、双采集会话及 ungated Storage 证据；这与 MCP 实测分开。[平台状态](../../STATUS.yaml) 记录原始包身份与回执。
+[原生容器 CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45308474899) 通过双架构 `core` 和 AMD64 ESR 对照。2026-11-24 在原生 AMD64 Docker 使用 `d7DBYN4g` 的实际 Firefox 159.0 / BuildID `20261121110134`：MCP stdio 自启、BiDi 导航、查询状态、正常退出、下载字节校验与 **19/19 项 RDP 门禁**全部通过。容器及产物身份、退出码与原始日志哈希见 [真机回执](../../artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json)。
+
+首次 RDP 验收在首条语句断点处失败：Firefox 的异步 `forwardingCancelled` 被误当作 root 的 `getTab` 应答。修订将其单独分流，保留浏览器身份校验；重连测试复用原上下文，避免碰到额外标签页时猜选。复跑确认首语句暂停、按原上下文重连和看门狗恢复均通过。
 
 在有 Docker 的原生 AMD64 主机上，令 `TRACE_ARCHIVE` 指向平台审核的发布包。校验并只解出内核目录，然后按 [组件容器说明](../../submodules/ruyi-mcp/docs/docker-design.md) 执行下载与 RDP 门禁：
 
