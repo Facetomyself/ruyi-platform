@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T17:50:06+08:00'
+generated_at: '2026-11-24T17:52:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -106,7 +106,7 @@ projects:
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
     tests: R376_anchor_integration__R375_legacy_chain__R374_pkix_gap
-    phase: R356 离线运行时、R357 明文 HTTP/1 组件及 R358 固定 NSS 的 TLS 适配层已分别验收；JS 层 HTTPS/h2/QUIC 端到端与 Linux ARM64 产品仍待验收
+    phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
     - C3
@@ -1621,7 +1621,7 @@ projects:
             https_client: {module_sha256: 8944de5ef60ca50344828b5badf9a0ee6a3cff40ada36b6c986f40b1672dfb6e, trust: caller_pins_over_DER, unpinned_refused: true, wrong_pin_refused_before_http: true, round_trip: pass}
             repository_receipt: artifacts/receipts/ruyijs-linux-tls-r358/validation.json
             excluded: [js_https_fetch, external_ca_trust, live_necko, h2_stream_semantics, quic_http3, arm64_product, wheel_release]
-          private_product: linux_amd64_offline_base_plus_optional_cleartext_http1_companion
+          private_product: linux_amd64_offline_base_plus_optional_tls_companion_with_pinned_https
     inner_repo_state:
       exists: true
       created: '2026-11-04'

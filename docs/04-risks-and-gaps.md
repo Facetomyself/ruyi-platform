@@ -2,7 +2,7 @@
 
 ## 当前交付缺口
 
-**2026-11-24，RuyiJS 条目已更新至 R357；各项目保持各自的交付回执。** 已经通过的两道门先从待办移走：AMD64 R5 的 Trace CLI 与 MCP 生产同会话有真实回执；RuyiJS 私有 Linux amd64 壳已链接并从离线归档实跑。剩余工作按**会阻塞哪种下游交付**排列，不用单一“完成百分比”。依赖类型见[架构关系表](01-architecture.md#下游先选依赖再选证据)，版本检出见[交接手册](14-source-handoff.md)。
+**2026-11-24，RuyiJS 条目已更新至 R376；各项目保持各自的交付回执。** 已经通过的两道门先从待办移走：AMD64 R5 的 Trace CLI 与 MCP 生产同会话有真实回执；RuyiJS 私有 Linux amd64 壳已链接并从离线归档实跑。剩余工作按**会阻塞哪种下游交付**排列，不用单一“完成百分比”。依赖类型见[架构关系表](01-architecture.md#下游先选依赖再选证据)，版本检出见[交接手册](14-source-handoff.md)。
 
 | 优先级 / 责任组件 | 目前可以依赖 | 还挡住什么；怎样才算通过 |
 |---|---|---|
@@ -24,7 +24,7 @@
 | **已验 · 可安装的 RuyiJS HTTPS** | [R361](../artifacts/receipts/ruyijs-linux-installed-js-https-r361/validation.json)：两个 wheel 纯 pip 安装后，JS `fetch("https://…")` 拿到服务端生成的 body，`net_log` 200；组件自带完整 10 库 NSS 闭包。 | 外部 CA 信任、公网来源、h2 语义、QUIC/h3、`navigate()` 的 HTTPS 与 ARM64 仍单列。 |
 | **已验 · RuyiJS JS 层固定证书 HTTPS（手工布局）** | [R360](../artifacts/receipts/ruyijs-linux-js-https-r360/validation.json)：安装态 R356 壳的 `fetch()` 走 `https:` 后，独立 TLS 服务端记录到 `GET /direct`，返回体与 JS 读回逐字节一致。错误固定值时 JS 得 `TypeError`，服务端接受 1 次 TCP 但收到 0 字节 HTTP。根因是缺少 bundled-interpreter 启动器，补上即通。 | 外部 CA 信任链、公网 HTTPS、h2 语义、QUIC/h3、`navigate()` 的 HTTPS 与 ARM64 均未签收。 |
 | **部分已验 · RuyiJS TLS 原生层** | [R358](../artifacts/receipts/ruyijs-linux-tls-r358/validation.json)：固定 NSS 3.131 的 TLS 1.3 握手、ALPN 协商、不受信任证书拒绝，以及基于 DER 证书固定值的 HTTPS 客户端往返均已实测；未配置固定值直接拒连；固定值不匹配在 TLS 握手中止，不发送 HTTP 请求字节。 | 仍需 JS `fetch()`/`navigate()` 的 HTTPS 端到端与外部 CA 信任；h2 语义、QUIC 与 ARM64 另验。 |
-| **部分已验 · RuyiJS 明文 HTTP/1** | [R357 组件](../artifacts/receipts/ruyijs-linux-http1-r357/validation.json)在 R356 安装态上真实收发：JS 读到回环服务新生成的挑战，GET/POST/HEAD/404、二进制体、参数、gzip/deflate/chunked、导航及外部脚本均经服务端核对；独立 C 程序也取得新响应。卸载该组件恢复 R356 原文件树。 | 这只覆盖 libc 上的私有明文 HTTP/1。**仍需**匹配的 Mozilla Necko/NSS helper 与 HTTPS 证书/握手、h2、QUIC/h3 和代理链各自实测；未列出者不得据本项推断。 |
+| **部分已验 · RuyiJS 明文 HTTP/1** | [R357 组件](../artifacts/receipts/ruyijs-linux-http1-r357/validation.json)在 R356 安装态上真实收发：JS 读到回环服务新生成的挑战，GET/POST/HEAD/404、二进制体、参数、gzip/deflate/chunked、导航及外部脚本均经服务端核对；独立 C 程序也取得新响应。卸载该组件恢复 R356 原文件树。 | 该项只覆盖 libc 上的私有明文 HTTP/1。HTTPS 另有条目（R358 适配层、R360/R361 安装态、R376 锚点链校验）。**仍需** h2、QUIC/h3、OCSP/CRL、公共 CA 根库与代理支持各自实测；未列出者不得据本项推断。 |
 | **P2 · 架构与宿主** | Trace 有独立 ARM64 浏览器及虚拟桌面证据；MCP 有双架构 core；Http 已核验 Linux ARM64 和 Intel macOS 原生库。 | RuyiJS ARM64、Trace 生产 ARM64 共会话、物理显示分别建包验收；仅在要承诺更低 glibc 时做相应目标发行版测试。Trace 托管检查曾因计费未获 runner，应在 runner 可用后重跑；已有本地源码通过记录与 hosted CI 分开。 |
 | **使用 RuyiDOM 时 · 独立仓与制品维护者** | [v0.1.0 源码交接回执](../artifacts/receipts/ruyidom-source-v0.1.0.json)有干净 ARM64 原生和 amd64 源码构建的便携 Docker 验收；amd64 浏览器后端 12 组通过。 | Git clone 只带维护源码。新机器先按[输入清单](https://github.com/Facetomyself/ruyidom/blob/4009bae850f9b64d413bd41a94dd7b3c56f86b40/docs/INPUTS.md)恢复供应商包与 Firefox 136，核验摘要，再按所选后端实跑。ARM64 发行镜像仍需原生 Docker 验证。`native` 的 HTTP 导航受限是既定边界，真实导航选 `browser`；历史 P3 镜像不是从 v0.1.0 构建。 |
 
