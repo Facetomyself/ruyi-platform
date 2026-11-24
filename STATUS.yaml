@@ -1262,6 +1262,20 @@ projects:
             not_done: [cairo, hb_set_get_empty_again, a_link_that_resolves]
             evidence: deliverables/linux-ruyijs-styling2-r330/styling2-validation.json
             evidence_sha256: 0c7af36e6486cf7d577b38c9a31b0d654a1780829c1fb582840270cbc8f20fce
+          native_cairo_linked:
+            input_commit: b2c2083
+            terminal: product_link 1
+            scope: 'cairo compiled and linked; the last undefined traced to a stale object'
+            cairo: {total: 155, compiled: 120, failed: 35, elapsed_seconds: 25, prefixed_definitions: 284}
+            cairo_failures: 'xlib, xcb, quartz, pdf, svg, png and the test compositors, none of which a Linux canvas needs'
+            cairo_rename: 'cairo-rename.h is a list of defines that must be force-included, otherwise the objects carry unprefixed names'
+            link_state: 'ten _moz_cairo symbols covered; one undefined symbol left'
+            last_symbol: hb_set_get_empty
+            last_cause: 'the stub source was fixed two rounds ago but its object predated the fix, so it still declared the entry point instead of defining it; recompiling yields one definition'
+            lesson: 'a fix is not in effect until the object is rebuilt, because the link reads objects rather than sources'
+            not_done: [relink_with_the_rebuilt_stub, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-cairolink-r335/cairolink-validation.json
+            evidence_sha256: a4d80ded71ec93306528a1a5f90965a951e8f53894be213a0153843710df31cd
           private_product: pending
     inner_repo_state:
       exists: true

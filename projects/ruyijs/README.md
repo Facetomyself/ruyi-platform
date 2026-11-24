@@ -1656,6 +1656,38 @@ GLOBAL DEFAULT UND getentropy
 
 回执 `deliverables/linux-ruyijs-styling2-r330/styling2-validation.json`。
 
+## Cairo 编进来了，只剩 1 个符号
+
+| 项 | 结果 |
+|---|---|
+| Cairo 单元 | 155 个，**120 个通过** |
+| 耗时 | **25 秒** |
+| `_moz_cairo_*` 定义 | **284 个** |
+| 之前缺的 10 个 | **全部覆盖** |
+| 剩余未定义 | **1 个** |
+
+失败的 35 个是 xlib、xcb、quartz、pdf、svg、png 和测试合成器——**Linux 上的 canvas 一个都不需要**。
+
+## 一个关键细节
+
+`cairo-rename.h` 是一组 `#define`，**必须强制包含**。不包含的话，编译出的对象只带无前缀的原始名，链接器就找不到 `_moz_cairo_*`。
+
+## 最后那个符号：修复没生效是因为对象是旧的
+
+`hb_set_get_empty` 我在两轮前就修好了源码——让 stub 自己拥有空集。
+
+但**输出目录里的对象是修复前编译的**。链接器读的是对象，不是源码。
+
+重新编译后，`hb_set_get_empty` 有了 1 个定义。
+
+**教训：改完源码不等于修复生效，得重新编译。**
+
+## 边界
+
+链接仍未完成（需要重链接），`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-cairolink-r335/cairolink-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
