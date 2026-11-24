@@ -18,6 +18,29 @@ npm run check
 
 `check` 验证 MCP 与实际 Python bridge、构建及协议测试，无需浏览器。部署依赖和真机验收见组件 [Linux 说明](../../submodules/ruyi-mcp/docs/linux-port.md)，容器阶段见 [Docker 设计](../../submodules/ruyi-mcp/docs/docker-design.md)。
 
+## AMD64 容器与 Trace 制品
+
+[原生容器 CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45303990325) 验证 AMD64、ARM64 的 `core` 和 AMD64 + Firefox ESR 的无头导航、状态与退出。Trace 项目已有 Firefox 159 AMD64 包 `d7DBYN4g` 的 DOM/click、双采集会话及 ungated Storage 证据；这与 MCP 实测分开。[平台状态](../../STATUS.yaml) 记录原始包身份与回执。
+
+在有 Docker 的原生 AMD64 主机上，令 `TRACE_ARCHIVE` 指向平台审核的发布包。校验并只解出内核目录，然后按 [组件容器说明](../../submodules/ruyi-mcp/docs/docker-design.md) 执行下载与 RDP 门禁：
+
+```bash
+set -euo pipefail
+: "${TRACE_ARCHIVE:?请指定 d7DBYN4g 发布包的绝对路径}"
+[ "$(uname -m)" = x86_64 ]
+printf '%s  %s\n' 797cf3ce15b72b3059e7ab519e29298d12672aa4db8bc4f2d5f1746ec71d07e2 "$TRACE_ARCHIVE" | sha256sum -c -
+qa_root=$(mktemp -d)
+tar -xzf "$TRACE_ARCHIVE" -C "$qa_root" --no-same-owner ruyitrace-linux-amd64/resources/kernel
+export FIREFOX_DIR="$qa_root/ruyitrace-linux-amd64/resources/kernel"
+printf '%s  %s\n' 8c5225f8b76a5167ed4a010cdaa4e680a3fe2d39fa675a5b3f23b4a3198d04bf "$FIREFOX_DIR/firefox" | sha256sum -c -
+grep -Fx 'BuildID=20261121110134' "$FIREFOX_DIR/application.ini"
+cd /var/lib/dsh/Ruyi/ruyi-platform/submodules/ruyi-mcp
+docker build --platform linux/amd64 --target browser --build-arg "RUYI_MCP_REVISION=$(git rev-parse HEAD)" -t ruyi-mcp:browser .
+node scripts/container-smoke.mjs ruyi-mcp:browser browser "$FIREFOX_DIR"
+```
+
+这是 **MCP 自启该 Firefox** 的验收。生产活会话需要 Trace owner 实际发布 descriptor，并提供页面操作、租约、回环 RDP 与正常 flush。Trace 的采集门禁和独立 owner fixture 各自有证据，二者均与生产同会话验收分开。
+
 ## 跨仓更新顺序
 
 1. 在组件仓 `linux` 分支提交、推送，并核对 CI 对应提交。
