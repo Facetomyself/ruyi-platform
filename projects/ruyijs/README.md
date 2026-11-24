@@ -78,6 +78,12 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**传输一致性（R372）：明文与 TLS 两条路径在同一响应上给出一致结果。** [回执](../../artifacts/receipts/ruyijs-linux-parity-r372/validation.json)
+
+- 发现不一致：既无 `Transfer-Encoding` 也无 `Content-Length` 的响应，明文路径按“读到关闭”取正文并返回 200，TLS 路径直接拒绝。同一份响应两种结果，属于真实缺陷。
+- 修复：TLS 路径按 RFC 9112 §6.3 接受 close-delimited 正文，仍受 8 MiB 上限约束；声明长度与实际字节不符、`TE` 与 `CL` 并存仍拒绝。
+- 九个用例逐一对照（定长、分块、gzip、204、404、超大头、坏状态行、无长度、TE+CL），两条路径 **9/9 一致**。
+
 **并发隔离（R371）：并发 HTTPS 互不污染，出错的一个不影响其他。** [回执](../../artifacts/receipts/ruyijs-linux-concurrency-r371/validation.json)
 
 - 12 个并发 `fetch()` 全部返回各自对端生成的 body，`net_log` 12 条全 200 且路径互不相同。

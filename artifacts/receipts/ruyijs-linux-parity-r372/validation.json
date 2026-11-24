@@ -1,0 +1,136 @@
+{
+  "cases_agreeing": 9,
+  "cases_total": 9,
+  "checked_at": "2026-11-24T17:37:13+0800",
+  "defect": {
+    "description": "a response with neither Transfer-Encoding nor Content-Length was accepted by the cleartext path (body read to connection close) but refused by the TLS path",
+    "evidence_before_fix": {
+      "case": "no_length",
+      "plain": {
+        "n": 5,
+        "s": 200
+      },
+      "tls": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    }
+  },
+  "fix": "the TLS path now treats such a response as close-delimited per RFC 9112 6.3, bounded by the 8 MiB body limit, while a declared Content-Length that disagrees with the bytes received is still rejected",
+  "host": {
+    "containers": 87,
+    "name": "host185",
+    "oom": 0
+  },
+  "outcome": "cleartext_and_tls_agree_on_all_nine_framing_cases",
+  "parity": {
+    "bad_status": {
+      "agree": true,
+      "plain": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      },
+      "tls": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    },
+    "chunked": {
+      "agree": true,
+      "plain": {
+        "n": 5,
+        "s": 200
+      },
+      "tls": {
+        "n": 5,
+        "s": 200
+      }
+    },
+    "fixed": {
+      "agree": true,
+      "plain": {
+        "n": 5,
+        "s": 200
+      },
+      "tls": {
+        "n": 5,
+        "s": 200
+      }
+    },
+    "gzip": {
+      "agree": true,
+      "plain": {
+        "n": 112,
+        "s": 200
+      },
+      "tls": {
+        "n": 112,
+        "s": 200
+      }
+    },
+    "huge_headers": {
+      "agree": true,
+      "plain": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      },
+      "tls": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    },
+    "no_length": {
+      "agree": true,
+      "plain": {
+        "n": 5,
+        "s": 200
+      },
+      "tls": {
+        "n": 5,
+        "s": 200
+      }
+    },
+    "status204": {
+      "agree": true,
+      "plain": {
+        "n": 0,
+        "s": 204
+      },
+      "tls": {
+        "n": 0,
+        "s": 204
+      }
+    },
+    "status404": {
+      "agree": true,
+      "plain": {
+        "n": 3,
+        "s": 404
+      },
+      "tls": {
+        "n": 3,
+        "s": 404
+      }
+    },
+    "te_and_cl": {
+      "agree": true,
+      "plain": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      },
+      "tls": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    }
+  },
+  "schema": "ruyijs-linux-transport-parity-r372.v1",
+  "still_open": [
+    "h2 framing",
+    "RFC 5280 path validation",
+    "OCSP/CRL",
+    "external CA",
+    "QUIC"
+  ],
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5259399,
+      "name": "wheel.whl",
+      "sha256": "023518ad746dcd64e88c7e24861f47e4cc59763f727797657817f5b53eaf0a9e"
+    }
+  }
+}
