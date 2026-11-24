@@ -13,6 +13,7 @@
 | HTTP 客户端 | [RuyiHttp](../projects/ruyihttp/README.md)：Python API、wheel 构建与已入库原生库 | 三平台既有库可重打包；Linux amd64 在 glibc 2.39 上通过 HTTPS/TLS 1.3/h2。Linux ARM64、macOS x86_64 新原生库及 H3/代理联验独立；重打 wheel 不等于从 C++/Rust 重建底层库。 |
 | JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | [R352 原生 amd64 回执](../artifacts/receipts/ruyijs-linux-amd64-r352/validation.json)：Pixman、字体 ABI、四种压缩往返及替换 Rust 归档的 donor 对照均已实跑。私有产品整链仍有 129 个未定义符号，尚无合格的内部 Linux `dist/js`/wheel。 |
 | 程序化管理浏览器 | [MCP / owner 交接及验收表](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | [AMD64 R5 生产 M2](../projects/ruyi-mcp/PRODUCTION-OWNER.md)通过排他借用、真断点、归还与重借、暂停中停止及原生关闸读回；使用从干净 GitHub 检出构建并搬到另一台主机的独立 CLI。 |
+| 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM 独立源码交接](#ruyidom-独立源码交接) | 维护源码与供应商运行输入分开；历史 AMD64 Docker 候选另有验收和归档回执。 |
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
 
@@ -58,6 +59,22 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 - **Firefox 内核**：按[跨机器构建手册](../submodules/ruyitrace/docs/linux-build-from-source.md)准备官方 Firefox `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、Clang 19.1.1、Rust 1.100.0、cbindgen 0.29.4、固定 WASI sysroot 与独立 objdir。主线包含可执行的洁净构建、原版 Rust 归档审计、打包及两档页面验收流程；R5 标签仅用于重现历史输入。重新编译会生成新的 BuildID，并须进行新包验收。
 - **镜像**：取同一审计包和 runtime receipt，按[主线离线 Docker 流程](../submodules/ruyitrace/tests/linux/headless-oci.md)组装、跑两档 QA。已验收镜像可以 `docker load`，无需源码编译；同一检查脚本需要其固定 Ubuntu 24.04 本地基底 config ID。
 
+## RuyiDOM 独立源码交接
+
+[RuyiDOM 私有源码仓](https://github.com/Facetomyself/ruyidom)维护 Linux 启动器、适配层、测试与构建工具；`main` 用于日常维护。RuyiDOM 单独检出，现有四个 gitlink 与各自的版本固定方式维持原样。
+
+新机器用有读取权限的 Git 账号检出附注标签 `v0.1.0` 并核对完整提交：
+
+```bash
+set -eu
+sha=4009bae850f9b64d413bd41a94dd7b3c56f86b40
+repo=https://github.com/Facetomyself/ruyidom.git
+git clone --branch v0.1.0 --single-branch "$repo" ruyidom
+test "$(git -C ruyidom rev-parse HEAD)" = "$sha"
+```
+
+[v0.1.0 发布页](https://github.com/Facetomyself/ruyidom/releases/tag/v0.1.0)也提供离线源码 Git bundle 和 `SHA256SUMS`。Git 只交付维护源码；供应商框架字节 `not-in-git`。依赖按[固定版本的输入恢复说明](https://github.com/Facetomyself/ruyidom/blob/4009bae850f9b64d413bd41a94dd7b3c56f86b40/docs/INPUTS.md)另外准备。[host185 工件取用与校验](https://github.com/Facetomyself/openclaw-infra/blob/main/hosts/self-server/projects/ruyidom-browser-candidate.md#10-common-tasks)提供私有框架最小包和历史 AMD64 P3 Docker 归档的取用方法。P3 在源码导入 Git 之前已验收，并非从 `v0.1.0` 构建。
+
 ## 以后如何维护
 
-组件改动先在所属仓提交并推送，记录测试范围；再在平台更新对应 gitlink 和 `STATUS.yaml` 的完整提交，跑 `scripts/verify-pins.sh`。已有发布标签保留原位；新发行另打标签、生成新的锁和回执。将包、镜像、工具链缓存和浏览器 profile 与源码分开保管。`git status` 中其他开发者的工作或某台机器的缓存不构成可构建版本。
+组件改动先在所属仓提交并推送，记录测试范围。已由 gitlink 接入的平台组件再更新相应 gitlink 和 `STATUS.yaml`，跑 `scripts/verify-pins.sh`；RuyiDOM 在独立仓发布，在这里更新交接引用。已有发布标签保留原位；新发行另打标签、生成新的锁和回执。将包、镜像、工具链缓存和浏览器 profile 与源码分开保管。`git status` 中其他开发者的工作或某台机器的缓存不构成可构建版本。
