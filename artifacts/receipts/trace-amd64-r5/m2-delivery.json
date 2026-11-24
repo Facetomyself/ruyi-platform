@@ -1,0 +1,27 @@
+{
+  "schema": "ruyitrace-production-mcp-delivery.v1",
+  "checked_at": "2026-11-24T10:55:57+08:00",
+  "platform": "linux/amd64",
+  "docker": "28.1.1",
+  "scope": "Production Linux CLI owner, relocated standalone build, synthetic same-origin loopback page in a read-only non-root container for each scenario",
+  "trace_source": "f8eeb0ee909436fbe038a9e0bff67b5f96326022",
+  "mcp_source": "8f3839b6bd3c52688a8a0d7d94d81e6820e8ca0b",
+  "mcp_ci": "https://github.com/Facetomyself/ruyi-mcp/actions/runs/45313415350",
+  "mcp_image_export": "https://github.com/Facetomyself/ruyi-mcp/actions/runs/45313415291",
+  "mcp_image_config": "sha256:f424468919b4fa95960380ac2f92d830e1976f693315a9dc939af54618cbfab7",
+  "mcp_image_archive_sha256": "7718bda05c23d22067376966414f3e84dcdbe2ee750e22e9dd1b689d48996ea9",
+  "firefox_build_id": "20261123161729",
+  "firefox_source": "ccc0ffa1e65c291aa6cbdd68648f587eed6c0de9",
+  "firefox_archive_sha256": "f5871d014e4c0fcb9c336f89fad80445ad1a04a540befa87cf07c8fe26b86083",
+  "evidence_sha256": {
+    "runtime-identity.json": "65addb67ba399702cbcafae3ada56c563979d56f138f7ff6d683148edc6809cf",
+    "oci-image-acceptance.json": "b604af96fa6ef694dbcb27e8f0addb457c9a0610c944139c8eb70d415adc1ff0",
+    "m2-standard.json": "ab79fe1b3f1629f175efa9650e6e7bd51eca441d659ccbb6c08ba6a80addff32",
+    "m2-owner-stop-paused.json": "c1e6eea18166d41fef9824924d90212f72838cc855a7372d1d7786dbb58e3718",
+    "m2-owner-stop-paused-initial.json": "693a501e72bbf306fe1a4de7e1fd57ce49468f18bb799bfe4b9797b05d474972",
+    "m2-cli-build.json": "5d6ef22b8d88dd0b6e18b1dbc0dea0fdd0f096754325c513a464385e489779b8"
+  },
+  "initial_stop_case_trace_source": "e8f2a4035301eb2a3a5f6fefc7398471680f7994",
+  "result": "Standard release/reacquire and owner stop during a real RDP pause passed. Both reused one BiDi session and confirmed native gate close and cleanup.",
+  "excluded": ["Electron owner integration", "production ARM64", "separate native lease-expiry and browser-loss cases", "new Gecko compilation"]
+}

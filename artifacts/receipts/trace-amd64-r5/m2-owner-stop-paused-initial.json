@@ -1,0 +1,37 @@
+{
+  "schema": "ruyitrace-production-mcp-linux-qa.v1",
+  "passed": false,
+  "checks": [
+    {
+      "name": "start",
+      "browserPid": 44
+    },
+    {
+      "name": "attach"
+    },
+    {
+      "name": "exclusive-lease"
+    },
+    {
+      "name": "query-and-click"
+    },
+    {
+      "name": "native-rdp",
+      "breakpointLine": 4
+    },
+    {
+      "name": "quit-keeps-owner-live"
+    }
+  ],
+  "scenario": "owner-stop-while-paused",
+  "failure": {
+    "stage": "reacquire-and-pause",
+    "reason": "Trace CLI status exited 3"
+  },
+  "cleanup": {
+    "transportsClosed": true,
+    "fixtureClosed": true,
+    "traceExited": true,
+    "scratchRemoved": true
+  }
+}

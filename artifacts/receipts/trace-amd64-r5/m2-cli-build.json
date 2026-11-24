@@ -1,0 +1,180 @@
+{
+  "format": 2,
+  "linux_cli_directory": true,
+  "mcp_live_cli": true,
+  "source_revision": "f8eeb0ee909436fbe038a9e0bff67b5f96326022",
+  "cli_inputs_dirty": false,
+  "dependency_lock_sha256": "be0acced25ab1c2b16d5a61a18a0571c29ee56167f729a6d9b961de051c13e5e",
+  "electron_bundled": false,
+  "kernel_bundled": false,
+  "files": {
+    "bin/ruyitrace": {
+      "size": 55,
+      "sha256": "96b634b168f32177b2b8bf2ad3089e673c3dd6354aa97f5b8f20470765235442"
+    },
+    "node_modules/smol-toml/dist/date.d.ts": {
+      "size": 2098,
+      "sha256": "c7ad3531c131f2b5b246b2d208b75c5403475ad155b7661fa2d673104b806791"
+    },
+    "node_modules/smol-toml/dist/date.js": {
+      "size": 4942,
+      "sha256": "fcc8fcce1a3e8660ac572fb827c20e49d269ad50686c085bb72c3c50771323d5"
+    },
+    "node_modules/smol-toml/dist/error.d.ts": {
+      "size": 1878,
+      "sha256": "c5ada15420e52bcc8a451a7c4f2daff318e6d0bf5f8c691b25158555a4508f0e"
+    },
+    "node_modules/smol-toml/dist/error.js": {
+      "size": 2787,
+      "sha256": "28dbfc2871c0707f97cebb5a8be7e343a9cee58250b5814813d748b90d9e0d3b"
+    },
+    "node_modules/smol-toml/dist/extract.d.ts": {
+      "size": 1878,
+      "sha256": "00c1a5d214514abf62695a8b92ca78b839e64b921f083bf58e1d6faff010df33"
+    },
+    "node_modules/smol-toml/dist/extract.js": {
+      "size": 4243,
+      "sha256": "74845a2bd9d0c585f7eb14d35ea234c3eb8fb86fd1efb3fb0bebd5c434ceb46e"
+    },
+    "node_modules/smol-toml/dist/index.cjs": {
+      "size": 25953,
+      "sha256": "690b76d0fac1eec8066b877e7345a4a127691007a363a045d0fea900d48186cb"
+    },
+    "node_modules/smol-toml/dist/index.d.ts": {
+      "size": 2207,
+      "sha256": "4ef8ce05fffa05c691083bc96f9e65bac35f79e0b4517c426a30d1123b09ba1e"
+    },
+    "node_modules/smol-toml/dist/index.js": {
+      "size": 1883,
+      "sha256": "ded3ee91f3ce1ef746f6b57459b0c68475658eacb8e88fd18336a5408de009a1"
+    },
+    "node_modules/smol-toml/dist/parse.d.ts": {
+      "size": 2091,
+      "sha256": "92f6be0d7e2937e9c13fec8bb38b0e1186db1cd654af86a8bbb2f78d40ba8b9d"
+    },
+    "node_modules/smol-toml/dist/parse.js": {
+      "size": 5694,
+      "sha256": "1c82702f0b4244a4d10ef43806a581a80277ff239d27bfd98ae5662c47c706d5"
+    },
+    "node_modules/smol-toml/dist/primitive.d.ts": {
+      "size": 1961,
+      "sha256": "e280a713f408497aacba06c0b058e5ceef3418819ff901fa145d065ef5fcc669"
+    },
+    "node_modules/smol-toml/dist/primitive.js": {
+      "size": 6576,
+      "sha256": "c979c3a950cc1757acf7e5359655cfe4192ae98711e7391bc9c86c8562946bd5"
+    },
+    "node_modules/smol-toml/dist/stringify.d.ts": {
+      "size": 1759,
+      "sha256": "c9a75924aa75b4e60542ff06437b3abd9679ee9f740245080fbe528f05fb8763"
+    },
+    "node_modules/smol-toml/dist/stringify.js": {
+      "size": 6453,
+      "sha256": "de9dafe2c331dc0b43da17de75a4f1337ddf262a5b21f7936c35c860917ca581"
+    },
+    "node_modules/smol-toml/dist/struct.d.ts": {
+      "size": 2103,
+      "sha256": "a7c3aa15e05ec77962b7ac9e93546a3ad616adb862a3e787aa9a78edc5ac278f"
+    },
+    "node_modules/smol-toml/dist/struct.js": {
+      "size": 7308,
+      "sha256": "690c2ec5c8efba9376d096196df93a387a3fa2e356e2dc9ba0564cf75564ea78"
+    },
+    "node_modules/smol-toml/dist/util.d.ts": {
+      "size": 2533,
+      "sha256": "8f3f902140fe673679da77cbfbb44dd113d1e4217fd05c4f6e5d9bee8b395b4c"
+    },
+    "node_modules/smol-toml/dist/util.js": {
+      "size": 4209,
+      "sha256": "31ff99295cb2c69fdd6a0fcf8ff3b002a59c68f6e48c0b22265a5a09eee03ac7"
+    },
+    "node_modules/smol-toml/LICENSE": {
+      "size": 1499,
+      "sha256": "fa5659948374d4f555594f47f6da073b40dc503e921aeeece30df4362b3051a5"
+    },
+    "node_modules/smol-toml/package.json": {
+      "size": 1514,
+      "sha256": "16005fbf426692da35d5ddf81725a6a26d77b0ddac6dc44fb00eaf203d363fae"
+    },
+    "node_modules/smol-toml/README.md": {
+      "size": 11863,
+      "sha256": "ed92f933ed41b95dcd949799c156a142973e296b183683e52a468a76df9f5f63"
+    },
+    "src/cli/config.mjs": {
+      "size": 3451,
+      "sha256": "c67ca2a1b33d3a477dbc582a973e0c6cf2f5e452394095b5906779106a079b1e"
+    },
+    "src/cli/errors.mjs": {
+      "size": 1271,
+      "sha256": "241c99c74a63ff4908c8049362c8b5813e932c4e70781c0422874f4cbc7719e2"
+    },
+    "src/cli/gate.mjs": {
+      "size": 10367,
+      "sha256": "3cf57ae13d5813087c1b5b4754bcbec52768dbeee0b570e3f9ed3fc7f3b31db6"
+    },
+    "src/cli/launch.mjs": {
+      "size": 6070,
+      "sha256": "ff331f4b96ccd65314d8e164b8c7f1b12e7fc57dd1237a0dec2d9cabea37ef0f"
+    },
+    "src/cli/mcp-bidi.mjs": {
+      "size": 26058,
+      "sha256": "3e534bb44430674075d3b5de4e1555d349f5244e254d782b2793e1c7ed561295"
+    },
+    "src/cli/mcp-live.mjs": {
+      "size": 10099,
+      "sha256": "effcff3b2888a88a1e4a004b60d91202acf24fa1011f5d27567fda0460d3a1bd"
+    },
+    "src/cli/mcp-rdp.mjs": {
+      "size": 10974,
+      "sha256": "9d15460eb4127f3622874f15ae82ff4d330943467a85323ccc4ef9bd684d7b0a"
+    },
+    "src/cli/mcp-runtime.mjs": {
+      "size": 3779,
+      "sha256": "3d12e238ca2658e8dfa5c2a6fa7dd6039771837dab27c6ec95c06ce9ce0331be"
+    },
+    "src/cli/owner.mjs": {
+      "size": 10376,
+      "sha256": "d3cb31306379881811b4603d07902dcf009b88bb2e7585a8dd89a6e2504e44dc"
+    },
+    "src/cli/paths.mjs": {
+      "size": 4555,
+      "sha256": "4e07272b1e4cada26a6071ded2c9c11248f39449181713a105016972da3fc3e9"
+    },
+    "src/cli/qualification.mjs": {
+      "size": 6407,
+      "sha256": "10c4a3e336d257600a5fb7fcf6ed4c2f2948f0de98b7022d2e1f09876409f336"
+    },
+    "src/cli/README.md": {
+      "size": 10051,
+      "sha256": "3704cfb08ec73cdbf8991ee0c547ef3b6df04bb32a4b1478b4c817b3112397a7"
+    },
+    "src/cli/ruyitrace.mjs": {
+      "size": 8834,
+      "sha256": "1db3364e8d1bd8ddfc7f5917d411b49a5005f0b3e27273c5aba5b308a8081472"
+    },
+    "src/cli/state.mjs": {
+      "size": 3693,
+      "sha256": "c052b52e63783cecebc0227446cc0b99e2a2df1ae73e8d2f941bfe26862eb947"
+    },
+    "src/cli/status.mjs": {
+      "size": 686,
+      "sha256": "44af8bf3296be73e285990b00423f5b68e69fa6c6edd32f1041989632e3af999"
+    },
+    "src/main/gate-qualification.cjs": {
+      "size": 6904,
+      "sha256": "5c4635d69c9bcfc86d5cd86886577e3931a4f6e14d778d16c9523cdf76573608"
+    },
+    "src/main/kernel-layout.cjs": {
+      "size": 2466,
+      "sha256": "57c20c58008caff805c0e5fc1fac9a795ce0d31911384ab36e83dc7fcc9ab5da"
+    },
+    "src/main/linux-gate.cjs": {
+      "size": 3836,
+      "sha256": "0691252b02f1d615ed7d6263fa5905ba38aebb0bed7a57913d875a9391f35528"
+    },
+    "src/shared/firefox-environment.cjs": {
+      "size": 2515,
+      "sha256": "cfad644195750e013d694e644a188ccfc65ee980ab6309487e9d34690df1892a"
+    }
+  }
+}

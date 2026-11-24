@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T09:59:39+08:00'
+generated_at: '2026-11-24T10:55:57+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -13,9 +13,9 @@ projects:
     submodule: submodules/ruyi-mcp
     source: complete
     build: linux
-    tests: 81/81
-    phase: AMD64 Docker 已通过真实 Trace Firefox 的 MCP 自启、BiDi 下载与 19 项 RDP；生产活会话待集成
-    docker_ci: https://github.com/Facetomyself/ruyi-mcp/actions/runs/45308474899
+    tests: 84/84
+    phase: 原生 AMD64 Docker 已通过生产 Trace CLI 活会话：排他租约、真断点、归还重借和暂停中主动停止
+    docker_ci: https://github.com/Facetomyself/ruyi-mcp/actions/runs/45313415350
     container:
       core: [linux/amd64, linux/arm64]
       amd64_stock_firefox: headless local navigation, status and quit verified
@@ -26,8 +26,14 @@ projects:
         bidi_download: pass
         native_rdp: 19/19
         evidence: artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json
-      trace_owner_production: blocked on production descriptor, page transport, RDP lease and flush integration
-    blocked_by: [D-MCP]
+      trace_owner_production:
+        linux_cli_amd64_r5: pass
+        standard_release_and_reacquire: pass
+        owner_stop_while_paused: pass
+        firefox_build_id: '20261123161729'
+        evidence: artifacts/receipts/trace-amd64-r5/m2-delivery.json
+        pending: [production_arm64, electron_owner, native_lease_expiry_and_process_loss]
+    blocked_by: []
   ruyihttp:
     repo: Facetomyself/ruyihttp
     visibility: public
@@ -1392,15 +1398,16 @@ projects:
     build:
       win_amd64: released
       linux: 'audited Linux headless amd64 R5 plus earlier separate amd64/ARM64 desktop qualifications'
-    tests: 'clean GitHub checkout: 176 Python passed; Node 37 passed/3 skipped; native C++/Node contract stage 22 Node passed'
-    phase: standalone CLI validated against native amd64 R5; production MCP and RDP integration remain separate
+    tests: 'clean source: 176 Python passed; Node 66 passed/3 skipped; native C++/Node contract stage 22 Node passed'
+    phase: relocated standalone CLI verified with production MCP on native amd64 R5, including owner stop during a real RDP pause
     release_source_lock: artifacts/receipts/trace-amd64-r5/source-lock.json
     cli_native_receipt: artifacts/receipts/trace-amd64-r5/cli-native-amd64.json
+    mcp_production_receipt: artifacts/receipts/trace-amd64-r5/m2-delivery.json
     cross_machine_build: submodules/ruyitrace/docs/linux-build-from-source.md
     blocked_by: []
     remaining:
     - Linux browser producer coverage beyond verified DOM, click, explicit Web Storage and amd64 window-script-error summaries
-    - ARM64 instrumented Firefox and virtual X11/Wayland baseline verified; physical display, wider producers, and production management integration remain distinct
+    - ARM64 and Electron production owner integration remain distinct from AMD64 Linux CLI; physical displays and wider producers are separate gates
     verified:
       kernel_hashes: pass
       domtrace_hashes: pass
@@ -1918,7 +1925,7 @@ blockers:
   D-MCP:
     title: Linux 生产 Trace owner 同会话验收
     severity: D
-    decision: MCP 自启 AMD64 Firefox 已实测；等待生产 owner 发布 descriptor、提供页面转发和 RDP 租约并完成 flush
+    decision: AMD64 Linux CLI 已完成真实暂停、归还及关闸；ARM64 生产、Electron 与独立到期和进程丢失的原生用例另行验收
   A2:
     title: Linux 原生库要求 glibc 2.38
     severity: A
@@ -1964,7 +1971,7 @@ submodules:
   ruyi-mcp:
     url: https://github.com/Facetomyself/ruyi-mcp.git
     branch: linux
-    commit: 2797d3cd494ffeab0f0839109a2243b5b3024964
+    commit: 8f3839b6bd3c52688a8a0d7d94d81e6820e8ca0b
     visibility: public
     state: added
   ruyihttp:
@@ -1978,10 +1985,10 @@ submodules:
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: 13fd24bf77f1a81cc12af3939049e72f04138d53
+    commit: f8eeb0ee909436fbe038a9e0bff67b5f96326022
     state: added
 docs_health:
-  total_markdown: 45
+  total_markdown: 46
   total_cpp_files: 62
   total_scripts: 17
   reproduce_manual: REPRODUCE.md

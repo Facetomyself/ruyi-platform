@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "scope": "native-amd64-headless-image-acceptance",
+  "base_image_id": "sha256:0551c9cb566f95bd85b4aa00ec7f8170887d41dd39edbe0abdb799a36849e416",
+  "runtime_receipt_sha256": "65addb67ba399702cbcafae3ada56c563979d56f138f7ff6d683148edc6809cf",
+  "archive_sha256": "f5871d014e4c0fcb9c336f89fad80445ad1a04a540befa87cf07c8fe26b86083",
+  "attempt": "attempt.8jy9TYpn",
+  "rust_sha256": "b8f7aaada22e061c5c69553091d16566a10de461a0ae3cb7d9a34ad8ed374911",
+  "elf_build_id": "756758ebb9043f873eb1a494968f2dd09846d642",
+  "runtime": {
+    "kind": "audited-candidate",
+    "arch": "x86_64",
+    "build_id": "20261123161729",
+    "archive_sha256": "f5871d014e4c0fcb9c336f89fad80445ad1a04a540befa87cf07c8fe26b86083",
+    "libxul_sha256": "ac25767f89d2fa0099e665a630d2a499ad3e94f3ecac12ad71929476046e40ad"
+  },
+  "image_inputs_sha256": "13b6168c480cd3894672247104c2563573fe98c925207a897079ec76bd133084",
+  "filesystem_entries": 72,
+  "passed": true,
+  "local_image_id": "sha256:4703f111fffe49a9c3f851fad023b07febdfdb0cebc58776751ebd44d4d9a88d",
+  "isolation": {
+    "machine": "x86_64",
+    "uid": 1000,
+    "gid": 1000,
+    "kernel": "3.10.0-1160.119.1.el7.x86_64",
+    "seccomp": 2,
+    "no_new_privs": 1,
+    "capabilities": {
+      "CapInh": 0,
+      "CapPrm": 0,
+      "CapEff": 0,
+      "CapBnd": 0
+    },
+    "interfaces": [
+      "lo"
+    ],
+    "read_only_root": true
+  },
+  "acceptance_sha256": "ef0b76ef6a21ca500c7aeda06b62bd05b84123c3e59d2f2bcd547c5332f2bc1c"
+}

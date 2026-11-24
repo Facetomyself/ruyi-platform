@@ -233,7 +233,7 @@ cd RuyiHttp/repo && /tmp/ruyivenv/bin/python -m unittest discover -s tests
 
 ### D-MCP · Linux 生产 Trace owner 同会话验收
 
-AMD64 Docker 已通过 [MCP 自启真实 Trace Firefox](../projects/ruyi-mcp/README.md#amd64-容器与-trace-制品)。生产 Trace owner 仍需在同一 Firefox/BiDi 会话发布实时 descriptor，提供页面转发、RDP 租约及采集 flush。独立 ARM64 owner fixture 只覆盖状态与租约，生产组合门禁为 `To be confirmed`，见 [M2 验收](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md#下一阶段验收表)。
+AMD64 R5 的 Linux CLI [生产门禁](../projects/ruyi-mcp/PRODUCTION-OWNER.md)已通过。Electron owner、ARM64 生产、部署中的跨机器 SSH stdio，以及真实浏览器上的独立租约到期和进程丢失仍为 `To be confirmed`；独立 ARM64 fixture 的回执仍只覆盖其有界范围。
 
 ## 待决策清单
 

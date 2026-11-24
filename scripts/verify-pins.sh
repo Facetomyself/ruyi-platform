@@ -140,9 +140,59 @@ subprocess.run(['git', '-C', root, 'merge-base', '--is-ancestor', receipt['sourc
 for name, expected in files.items():
     rel = PurePosixPath(name)
     assert rel.parts[0] == 'console' and '..' not in rel.parts and rel.suffix in ('.cjs', '.mjs'), name
-    file = root / name
-    assert file.resolve(strict=True) == file and hashlib.sha256(file.read_bytes()).hexdigest() == expected, name
-print(f"PASS  Trace native CLI witness matches {len(files)} runtime modules and the R5 image")
+    body = subprocess.check_output(['git', '-C', root, 'show', f"{receipt['source_commit']}:{rel}"])
+    assert hashlib.sha256(body).hexdigest() == expected, name
+print(f"PASS  historical Trace CLI witness matches {len(files)} exact source modules and the R5 image")
+PY
+
+echo
+echo "== 8. Trace 生产 MCP 同会话 =="
+python3 -B - <<'PY' || fail=1
+import hashlib, json, subprocess
+from pathlib import Path
+import yaml
+
+status = yaml.safe_load(Path('STATUS.yaml').read_text())
+receipt_path = Path(status['projects']['ruyitrace']['mcp_production_receipt'])
+receipt = json.loads(receipt_path.read_bytes())
+assert receipt['schema'] == 'ruyitrace-production-mcp-delivery.v1'
+for name, digest in receipt['evidence_sha256'].items():
+    assert Path(name).name == name and hashlib.sha256((receipt_path.parent / name).read_bytes()).hexdigest() == digest, name
+
+def read(name):
+    return json.loads((receipt_path.parent / name).read_bytes())
+
+def git(cwd, *args):
+    return subprocess.check_output(['git', '-C', cwd, *args])
+
+runtime = read('runtime-identity.json')
+assert runtime['installed']['build_id'] == receipt['firefox_build_id'] and runtime['archive_sha256'] == receipt['firefox_archive_sha256']
+for name, key in [('ruyitrace', 'trace_source'), ('ruyi-mcp', 'mcp_source')]:
+    root = f'submodules/{name}'
+    subprocess.run(['git','-C',root,'merge-base','--is-ancestor',receipt[key],'HEAD'],check=True)
+
+build = read('m2-cli-build.json')
+assert build['source_revision'] == receipt['trace_source'] and build['cli_inputs_dirty'] is False and build['mcp_live_cli'] is True
+root = 'submodules/ruyitrace'
+lock = git(root, 'show', f"{receipt['trace_source']}:console/tooling/package-lock.json")
+assert hashlib.sha256(lock).hexdigest() == build['dependency_lock_sha256']
+for name, signature in build['files'].items():
+    if name.startswith('src/'):
+        body = git(root, 'show', f"{receipt['trace_source']}:console/{name[4:]}")
+        assert signature == {'size': len(body), 'sha256': hashlib.sha256(body).hexdigest()}, name
+for mode, file in [('standard', 'm2-standard.json'), ('paused', 'm2-owner-stop-paused.json')]:
+    case = read(file)
+    assert case['passed'] and len(case['checks']) == 8 and all(case['cleanup'].values()), mode
+    stop = case['checks'][-1]
+    assert stop['name'] == 'stop-and-readback' and stop['coreRows'] > 0 and stop['confirmedWriters'] > 0
+    assert stop['sessionNew'] == stop['sessionEnd'] == 1 and stop['sessionEndAcknowledged']
+    assert stop['leasesAcquired'] == 2 and stop['leasesExpired'] == 0 and stop['drainVerified'] and stop['descriptorRemoved']
+    if mode == 'paused':
+        assert stop['leasesReleased'] == stop['leasesRevoked'] == 1 and stop['resumedInSameWindowBeforeGateClose'] and stop['stoppedBeforeBorrowerWatchdog']
+    else:
+        assert stop['leasesReleased'] == 2 and stop['leasesRevoked'] == 0
+assert read('m2-owner-stop-paused-initial.json')['passed'] is False
+print('PASS  native R5 production owner receipts, clean relocated CLI inventory and source bindings')
 PY
 
 echo

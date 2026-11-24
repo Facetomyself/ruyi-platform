@@ -1,5 +1,11 @@
 # ruyi-mcp 变更日志
 
+## 2026-11-24 — 生产 Trace 活会话在 AMD64 R5 通过
+
+- 锁定 Trace `f8eeb0e` 与 MCP `8f3839b`。用两个真实 stdio 客户端验证排他租约、同页 query/click、RDP 真断点、正常归还与重借；另做暂停中由 owner 主动停止，见 [M2 身份及回执](../../artifacts/receipts/trace-amd64-r5/m2-delivery.json)。
+- 保留暂停中停止的初次状态读取失败；修订对原子替换导致的短暂读冲突有限重试，测试确认仍拒绝硬链接。复跑确认同页在关闸前恢复并读回原生记录。
+- 从干净 GitHub 检出重建独立 CLI 和 MCP，检查 42 项 CLI 清单并迁移到另一台机器跑门禁；[异机手册](PRODUCTION-OWNER.md)区分应用重编、R5 制品复验及 Firefox 源码构建。
+
 ## 2026-11-24 — 通过原生 AMD64 Trace Firefox 容器门禁
 
 - 固定 `2797d3c` 及对应的 [原生 CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45308474899)。修复 Firefox 换进程时异步通知占用 `getTab` 应答的问题，坚持用已确认上下文重连。
