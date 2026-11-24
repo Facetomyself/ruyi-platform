@@ -1,0 +1,37 @@
+{
+  "build_blocked_by": {
+    "error": "ValueError: brotli sources are missing from the pinned tree",
+    "reason": "brotli_tree() looks under the sealed SDK, but the SDK holds only the NSS headers and libraries; the brotli sources live in the Firefox build tree, which is not part of the SDK mount",
+    "what_it_needs": "either add modules/brotli to the sealed SDK layout or pass the source tree as a second mount and teach brotli_tree to look there"
+  },
+  "checked_at": "2026-11-25T00:55:00+08:00",
+  "delivered_in_code": {
+    "build_backend": [
+      "compile_brotli() builds the decoder from the tree sources with the layout the sources require",
+      "the wheel map now carries libbrotlidec.so and brotli-build.json"
+    ],
+    "tests": "27 offline tests pass, four of them new: br accepted only with the library, gzip always offered, zstd still refused, loader idempotent",
+    "tls_py": [
+      "br added to the accepted codings",
+      "brotli_decoder() loads _native/libbrotlidec.so lazily and returns None when absent",
+      "_decode dispatches br to _decode_brotli which is bounded by BODY_LIMIT",
+      "_offerable_encodings advertises br only when the library is present, so a peer cannot return a body this install cannot read"
+    ]
+  },
+  "not_claimed": "no wheel was produced this round; brotli is not yet in any packaged artifact",
+  "outcome": "brotli_decoding_is_wired_into_tls_py_and_the_wheel_map_but_the_wheel_build_needs_the_sources_in_the_sdk",
+  "schema": "ruyijs-linux-brotli-wiring-r406.v1",
+  "still_open": [
+    "put brotli sources where the build can see them",
+    "build and test the wheel with brotli inside",
+    "prove Content-Encoding br end to end over TLS",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "why_this_matters": "the decode proof from R405 used a hand-assembled directory; packaging needs a repeatable source of those files, which is exactly what is missing"
+}

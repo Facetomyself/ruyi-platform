@@ -84,6 +84,14 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 接入（R406）：代码已接进 `tls.py` 与打包映射，wheel 构建卡在源码位置。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-wiring-r406/validation.json)
+
+- `tls.py`：`br` 加入可接受编码；`brotli_decoder()` 惰性加载 `_native/libbrotlidec.so`，不存在时返回 `None`；`_decode` 分派到受 `BODY_LIMIT` 约束的 `_decode_brotli`；**`Accept-Encoding` 只在库存在时才声明 `br`**——否则对端返回的 br 本机解不了。
+- `build_backend.py`：新增 `compile_brotli()`，按源码要求的目录布局编译；wheel 映射加入 `libbrotlidec.so` 与 `brotli-build.json`。
+- 27 个离线测试通过，其中 4 个新增：仅在有库时接受 br、gzip 始终声明、zstd 仍拒绝、加载器幂等。
+- **构建失败**：`ValueError: brotli sources are missing from the pinned tree`。`brotli_tree()` 在密封 SDK 里查找，而 SDK 只含 NSS 头与库，brotli 源码在 Firefox 构建树里，**不在 SDK 挂载中**。
+- **本轮没有产出 wheel**，brotli 尚未进入任何打包产物。
+
 **brotli 解码往返通过（R405）。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-decode-r405/validation.json)
 
 - **证明**：用本机 `brotli 1.2.1`（与固定构建不同实现、不同版本）压缩 44 字节；用固定构建源码编出的 `libbrotlidec.so` 解码，得 `decoded 40 bytes: hello brotli from an independent encoder`，程序内 `strcmp` 断言通过，`RC=0`。
