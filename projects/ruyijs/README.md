@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**仓库内测试（R392）：为 TLS 模块补上可复跑的测试。** [回执](../../artifacts/receipts/ruyijs-linux-tls-tests-r392/validation.json)
+
+- 缺陷：R358–R391 的每一项 TLS 结论都只由仓库外的临时探针验证过，树内**没有任何东西能重跑它们**。后续改动若破坏 framing、主机名匹配、锚点或 cutoff，台账仍会显示"已验证"。
+- 交付：`ci/test_linux_tls.py`，**18 个测试**，分五组——解析（定长/分块/压缩/close-delimited/拒绝项/头块上限/解压安全）、链元素校验、主机名匹配（15 个用例 + 直接断言 `_usable_host` 与 `_LABEL`）、锚点（DER/PEM/多证书/摘要不符/cutoff）、固定值最低要求。
+- **变异验证**：关掉 `_decode` 的尾部字节检查 → 测试失败；把 `_LABEL` 放宽到允许空标签与星号 → 测试失败。确认测试真的能挡回归，而不只是陪跑。
+- 说明：本轮**未使用主机**（链路 6 次尝试仅 2 次可用），属纯本地交付。
+
 **内容协商（R391）：不再向服务端索取无法解码的编码。** [回执](../../artifacts/receipts/ruyijs-linux-content-negotiation-r391/validation.json)
 
 - 缺陷：`fetch()` 把调用方的 `Accept-Encoding` 原样转发。页面若声明 `br, zstd, gzip`，服务端可能回 `br`，而本路径解不了——一个本来可用的 URL 就变成硬失败。

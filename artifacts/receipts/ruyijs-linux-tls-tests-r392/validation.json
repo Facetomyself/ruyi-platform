@@ -1,0 +1,63 @@
+{
+  "checked_at": "2026-11-24T20:40:00+08:00",
+  "defect_found": {
+    "consequence": "a future change could silently break framing, host name matching, anchor loading or cutoffs while the ledger still recorded them as verified",
+    "description": "every TLS behaviour proven in R358-R391 was verified only by ad-hoc probes outside the repository; nothing in the tree could re-run those claims"
+  },
+  "delivered": {
+    "file": "ci/test_linux_tls.py",
+    "groups": {
+      "Anchors": [
+        "DER, PEM single, PEM bundle of five",
+        "rejections",
+        "pin digest mismatch",
+        "cutoff parsing and enforcement"
+      ],
+      "Chain": [
+        "every element validated",
+        "names and validity from real DER"
+      ],
+      "Hosts": [
+        "15 matching cases plus direct guard assertions on _usable_host and _LABEL"
+      ],
+      "Parsing": [
+        "fixed length and HEAD",
+        "chunked with extension and trailer",
+        "gzip and deflate",
+        "close-delimited accepted",
+        "rejections: TE+CL, br, length mismatch, bad status, unterminated headers",
+        "header block bound",
+        "unchunk truncation",
+        "trailing bytes after a compressed stream",
+        "decompression bomb bound"
+      ],
+      "Pins": [
+        "a pin file must name a host",
+        "lookup by host"
+      ]
+    },
+    "tests": 18
+  },
+  "mutation_checks": {
+    "confirmed_detecting": [
+      "disabling the trailing-bytes check in _decode fails test_decode_rejects_trailing_bytes",
+      "weakening _LABEL to allow empty labels and asterisks fails test_matching_rules"
+    ],
+    "method": "break a property, confirm a test fails, restore",
+    "not_detecting_at_first": "three attempted injections changed no observable behaviour (empty-label guard was redundant with the LDH regex, and the asterisk host never reached the branch under test) \u2014 the tests were right and the injections were ineffective, which is why direct guard assertions were added"
+  },
+  "not_done": "no host was used this round; the link was available only 2 of 6 attempts, so this is a local-only delivery",
+  "outcome": "tls_module_behaviours_are_now_re_runnable_inside_the_repository",
+  "schema": "ruyijs-linux-tls-tests-r392.v1",
+  "source_commit": "edee60991417bed800bd1a9c72952f7d1b2186db",
+  "still_open": [
+    "brotli/zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "test_file_sha256": "349383be7bf03582c972d79daf5274027c6cde7b091af63ccce53e2bbec35ed1"
+}
