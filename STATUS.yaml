@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T22:42:00+08:00'
+generated_at: '2026-11-24T22:52:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R397_h2_refusal_live__R396_alpn_coverage__R395_ledger_audit
+    tests: R398_brotli_investigation__R397_h2_refusal_live__R396_alpn_coverage
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_brotli_investigation_r398:
+            terminal: the_pinned_build_ships_a_brotli_encoder_only_so_decoding_is_not_an_easy_wire_up
+            encoder_objects: 5
+            decoder_objects: 0
+            brotli_files_under_dist: 0
+            header_without_implementation: dist/include/brotli/decode.h
+            sources_shipped: unconfirmed
+            product_change: none
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-brotli-investigation.json
+            evidence_sha256: 0ba256b49d8757d75d80f5f628bf49719bcefb6458b8d85691ae204f034e8491
+            repository_receipt: artifacts/receipts/ruyijs-linux-brotli-investigation-r398/validation.json
+            excluded: [brotli_zstd_decoding, ocsp_crl_revocation, http2_framing, quic_http3, arm64_product]
           private_h2_refusal_r397:
             terminal: the_h2_refusal_is_confirmed_on_a_live_peer
             closes: r396_h2_handshake_test_unexecuted

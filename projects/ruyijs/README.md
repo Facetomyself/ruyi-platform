@@ -84,6 +84,14 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 调查（R398）：不是"接入即可"，固定构建里没有解码器。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-investigation-r398/validation.json)
+
+- 实测：`obj-x86_64-pc-linux-gnu/modules/brotli/` 下只有 **5 个 `.o`**，全部是编码器（`compress_fragment`、`compress_fragment_two_pass`、`entropy_encode`、`Unified_c_modules_brotli1`）。
+- `dist/` 内 brotli 文件计数为 **0**——没有可链接的解码器库。`dist/include/brotli/decode.h` 头文件在，但没有对应实现。
+- 结论：先前"有头文件，接入即可"的判断**不成立**。要实现解码，得引入完整解码源码、编入闭包、改打包并补测试。
+- **证据边界**：解码器 `.c` 源码是否随树存在，本轮主机链路多次超时未能确认，不据此推断。
+- 产品行为未变：请求只声明 `gzip, deflate`，合规服务端不会回 `br`；无视协商仍返回的会被明确拒绝。
+
 **h2 拒绝实机确认（R397）：R396 欠下的那个用例跑通了。** [回执](../../artifacts/receipts/ruyijs-linux-h2-refusal-r397/validation.json)
 
 - 结果：23 个离线测试 **OK**，4 个端到端测试 **OK**，`test_h2_selection_is_refused` 通过。

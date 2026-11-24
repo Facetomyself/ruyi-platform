@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-11-24T22:52:00+08:00",
+  "conclusion": "the build compiles brotli for compression only; there is no decoder object or linkable library to bind, and the presence of decode.h alone does not provide an implementation",
+  "evidence_boundary": "whether the decoder .c sources ship in the tree was not confirmed; the host link timed out repeatedly before that check could complete, so no claim is made either way",
+  "measured": {
+    "all_encoder_side": true,
+    "brotli_files_under_dist": 0,
+    "header_present": "dist/include/brotli/decode.h exists",
+    "object_files_in_modules_brotli": 5,
+    "object_names": [
+      "compress_fragment.o",
+      "compress_fragment_two_pass.o",
+      "entropy_encode.o",
+      "Unified_c_modules_brotli1.o"
+    ]
+  },
+  "not_done": "no product code changed this round",
+  "outcome": "the_pinned_build_ships_a_brotli_encoder_only_so_decoding_is_not_an_easy_wire_up",
+  "product_impact": "unchanged from R391: the request advertises gzip, deflate only, so a conforming server will not answer with br; a server that ignores negotiation is refused rather than decoded wrongly",
+  "question": "why does this path refuse Content-Encoding br instead of decoding it, and what would it take",
+  "schema": "ruyijs-linux-brotli-investigation-r398.v1",
+  "still_open": [
+    "brotli/zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "what_it_would_take": "bring in the full brotli decoder sources, build them into the closure, extend the wheel packaging and add decode tests; that is a larger change than the earlier note implied"
+}
