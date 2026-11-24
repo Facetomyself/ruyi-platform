@@ -1,0 +1,31 @@
+{
+  "artifact": {
+    "bytes": 5266780,
+    "name": "wheel.whl",
+    "sha256": "86bf65f0ae1779ab3d80ca40da552d3b0338f76f36f02e51113d056afe4ea8de"
+  },
+  "checked_at": "2026-11-24T18:13:18+0800",
+  "first_attempt_was_insufficient": "the initial guard silently returned when ROOT.parent held no .git, so the very archive layout that caused the bug skipped the check; an explicit opt-out was required to make the gate meaningful",
+  "host": {
+    "containers": 145,
+    "name": "host185",
+    "oom": 0
+  },
+  "measurements": {
+    "checkout_with_clean_tree": "validated",
+    "checkout_with_uncommitted_edit_and_refreshed_lock": "refused (previous round reproduced and now blocked)",
+    "unpacked_tree_with_optout": "built and produced a wheel",
+    "unpacked_tree_without_optout": "refused with the not-a-git-checkout message"
+  },
+  "mechanism": "check_committed compares each locked source against git show HEAD:<path>; a non-checkout tree is refused unless RUYIJS_ALLOW_UNCOMMITTED=1 is set explicitly",
+  "motivation": "an earlier round edited native/necko_tls/necko_tls.c, refreshed the lock and never committed the file; every build then archived the old file and failed with a confusing lock mismatch three times in a row",
+  "outcome": "building_from_a_tree_whose_sources_are_not_committed_is_now_refused",
+  "schema": "ruyijs-linux-commit-guard-r385.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "public CA root bundles",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}

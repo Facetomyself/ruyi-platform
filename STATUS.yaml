@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T18:10:10+08:00'
+generated_at: '2026-11-24T18:13:18+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R384_profile_bounds__R383_decompression_safety__R382_chain_elements
+    tests: R385_commit_guard__R384_profile_bounds__R383_decompression_safety
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_commit_guard_r385:
+            terminal: building_from_a_tree_whose_sources_are_not_committed_is_now_refused
+            mechanism: compare each locked source against git show HEAD
+            uncommitted_edit_refused: true
+            unpacked_without_optout_refused: true
+            unpacked_with_optout_builds: true
+            companion_version: 0.2.15+inner.r385
+            artifact_sha256: 86bf65f0ae1779ab3d80ca40da552d3b0338f76f36f02e51113d056afe4ea8de
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-commit-guard.json
+            evidence_sha256: bdc8829cf82c86a5d7cb3354b9b57cb5f2aaab6e2b737058842fb4e076dc74f4
+            repository_receipt: artifacts/receipts/ruyijs-linux-commit-guard-r385/validation.json
+            excluded: [ocsp_crl_revocation, public_ca_root_bundles, http2_framing, quic_http3, arm64_product]
           private_profile_bounds_r384:
             terminal: every_tls_profile_array_count_is_bounded_before_it_reaches_nss
             defect_found: three_profile_counts_had_no_limit
@@ -2364,7 +2376,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: b6b23b12caf1f4576dbdc6aaea62959cfb7325df
+    commit: d801ad543a0706f3f237336683d475d60a425770
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

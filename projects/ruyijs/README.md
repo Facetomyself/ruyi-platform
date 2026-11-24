@@ -78,6 +78,12 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**构建期提交校验（R385）：改了没提交，现在会让构建直接失败。** [回执](../../artifacts/receipts/ruyijs-linux-commit-guard-r385/validation.json)
+
+- 起因：我上一轮改了 `necko_tls.c` 却忘了提交，只刷新了锁。锁与工作树一致、与 `HEAD` 不一致，每次构建都归档旧文件，连续三次失败且报错指向"锁不匹配"，与真实原因无关。
+- 机制：`check_committed` 对每个锁定源比对 `git show HEAD:<path>`。**非 git 检出必须显式设 `RUYIJS_ALLOW_UNCOMMITTED=1`**，否则拒绝——这一条是我第一版做错的地方：初版在无 `.git` 时静默返回，而恰好就是归档目录这种布局漏掉了检查，等于门禁没用。
+- 实测四种：干净检出通过；未提交改动（复现上一轮）被拒；无 opt-out 的归档目录被拒并给出明确提示；带 opt-out 的归档目录正常出包。
+
 **TLS profile 计数边界（R384）：四个数组计数全部设上限。** [回执](../../artifacts/receipts/ruyijs-linux-profile-bounds-r384/validation.json)
 
 - 缺陷：`compression_count` 有显式上限 8，但 `cipher_count`、`group_count`、`signature_count` 完全没约束，直接进 `calloc` 与 NSS 循环。调用方给 100000 就会巨额分配或越界走数组。
