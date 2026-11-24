@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T15:03:23+08:00'
+generated_at: '2026-11-24T15:13:20+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,8 +105,8 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39)
       linux_aarch64: unsupported
-    tests: R355_clean_native_archive_13_of_13_and_worker_crypto__R354_installed_wheel_13_of_13
-    phase: 私有 amd64 全部选定原生单元已从固定提交干净重建并解包实跑；R354 的离线 wheel 保持既有版本，真实网络与 Linux ARM64 产品仍待验收
+    tests: R356_installed_13_of_13_95_assertions_worker_crypto__real_upgrade_rollback_uninstall
+    phase: R355 干净原生运行时已作为独立版本 R356 离线 wheel 安装、升级和回退，R354 原包保留；真实 Necko/NSS/QUIC 与 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
     - C3
@@ -1416,7 +1416,24 @@ projects:
             evidence: deliverables/linux-ruyijs-clean-r355/validation.json
             evidence_sha256: b6e341eaa2e01f61730ae586a249801faea81c9f49df0148f062842e9a2d7f68
             repository_receipt: artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json
-          private_product: linux_amd64_clean_private_offline_archive_plus_separate_r354_wheel
+          private_installed_clean_wheel_r356:
+            terminal: r355_clean_native_payload_qualified_in_distinct_r356_linux_wheel
+            native_source: ab68b3c8346428cac14d604be7ad26926df0d342
+            published_source: 8283ef8ed0fd7512b0b808e16b5452990540f4b5
+            version: 0.2.2+inner.20261101191032.r356
+            source_archive_sha256: 764e295727518b2927de7fca901cd60b4390cea8e58762c8437c7236f03b03a9
+            reproducible: {pep517_runs: 4, byte_identical: true, historical_wheel_rebuilt: true}
+            verified_install: {record_rows: 225, unchanged_elf: 20, archive_proofs: 4, licenses: 172, gates: 13, passed: 13, assertions: 95, worker_and_webcrypto: true, bundled_mappings_per_process: 18}
+            lifecycle: {upgrade: pass, wrong_digest_kept_old_bytes: true, rollback_restored_221_files: true, uninstall_restored_venv: true, stock_ubuntu_c_consumer: pass}
+            transport: {stored_status: 203, unmatched_status: 0, loopback_peer_saw_js_http: false, observed_error: 'Necko worker startup failed'}
+            artifact: deliverables/linux-ruyijs-wheel-r356/ruyijs-0.2.2+inner.20261101191032.r356-py3-none-linux_x86_64.whl
+            artifact_bytes: 29749981
+            artifact_sha256: cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6
+            evidence: deliverables/linux-ruyijs-wheel-r356/validation.json
+            evidence_sha256: 26fde2cd14862a740ce7530b9d5c40e67b85e39ae786855d80097dd2fb41f0f0
+            repository_receipt: artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json
+            separate: [live_necko_nss_quic, arm64_product, public_release, manylinux_or_musl]
+          private_product: linux_amd64_clean_private_offline_wheel_and_archive_verified
     inner_repo_state:
       exists: true
       created: '2026-11-04'
@@ -2057,7 +2074,7 @@ blockers:
     state: offline_amd64_verified_parity_and_distribution_open
     title: ruyijs 内部版原生壳需还原（js.exe 49.5MB）——已在进行
     severity: B
-    decision: R354 的 wheel 安装、R355 的完整私有原生源码重建和归档实跑已分别验收；下一项为匹配新运行时的版本化 wheel、真实网络与 ARM64，历史 Windows identity 差异另验
+    decision: R356 新版 wheel 已封装 R355 干净运行时并验收升级和回退；优先推进 JS 侧真实 Necko/NSS/QUIC 联验与 Linux ARM64 产品，历史 Windows identity 差异另验
     progress: 56/237 hash_diff 命中 + 9/9 inner_only 语义化
   L4:
     state: original_win64_source_unavailable_scoped_linux_runtime_verified
@@ -2078,7 +2095,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: a6efd70a51204985a7bbfeabfb5336a09079c096
+    commit: 8283ef8ed0fd7512b0b808e16b5452990540f4b5
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

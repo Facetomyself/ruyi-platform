@@ -1,0 +1,26 @@
+{
+  "actual_HTTP_qualification": {
+    "detail": "JS did not complete an actual HTTP exchange with the peer",
+    "exit": 1,
+    "passed": false
+  },
+  "context_remained_usable": true,
+  "native_error": "Necko worker startup failed",
+  "native_status": 0,
+  "nss_tls_and_quic_qualified": false,
+  "offline_expectation_passed": true,
+  "peer_saw_js_request": false,
+  "real_peer_control": "Python HTTP client received status 200 from loopback peer",
+  "release": "0.2.2+inner.20261101191032.r356",
+  "scope": "synthetic loopback only, network-none container, no proxy or helper override",
+  "stored_resource": {
+    "body": "body supplied by host",
+    "kind": "response",
+    "status": 203
+  },
+  "unmatched_js_fetch": {
+    "kind": "error",
+    "message": "NetworkError when attempting to fetch resource.",
+    "name": "TypeError"
+  }
+}

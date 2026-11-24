@@ -64,13 +64,19 @@ ruyijs-inner/
 
 ### Linux x86_64 私有 donor
 
+**当前 pip 交付（R356）：R355 干净重建的原生文件已封装为独立版本 `0.2.2+inner.20261101191032.r356`。** [安装、升级与回退命令](../../submodules/ruyijs/docs/linux-amd64-clean-wheel.md) · [R356 回执](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) · [同一虚拟环境的迁移记录](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/lifecycle.json)。
+
+- 新 wheel 为 `py3-none-linux_x86_64`，29,749,981 字节，SHA-256 `cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6`。20 个原生文件、4 份构建证据与 R355 归档逐字节一致；18 个 Python 模块仅变更版本常量。未上传公共索引，也未改写 R354。
+- 真实下载件在 Ubuntu 24.04/glibc 2.39/CPython 3.12.3 断网安装。13/13 组、95 项断言通过；主进程和真实 Worker 各自加载包内的 18 个库，WebCrypto 结果及进程回收均核对。由安装后的头文件编译的 C 调用程序，在无编译器、无 Python 的 Ubuntu 镜像中取得 `42` 和 `ruyi40`。
+- 同一 venv 完成 R354 → R356 → R354。错误哈希的升级请求保留原 221 个已安装文件；显式回退后连同安装元数据在内的整体哈希与升级前一致，卸载后恢复初始清单。R356 仍是离线版本：回环服务可用，页面读取预置资源返回 203；未命中资源时记录 `Necko worker startup failed`，服务端没有收到该请求。真实网络、Linux ARM64 产品另验。
+
 **当前原生交付（R355，2026-11-24）：固定私有提交从空对象目录重建的 amd64 运行时，已解包实跑。** [交付回执](../../artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json) · [编译覆盖](../../artifacts/receipts/ruyijs-linux-amd64-clean-r355/coverage-summary.json) · [产品测试](../../artifacts/receipts/ruyijs-linux-amd64-clean-r355/runtime-gates.json) · [构建与运行方式](../../submodules/ruyijs/docs/linux-amd64-clean.md)。
 
 - `ab68b3c` 的 Git 归档有 2,949 个文件。20 个分片共 1,268 次原生编译，得到 1,268 个不同私有单元；链接前逐个重读 ELF、DWARF 源路径和散列。严格链接退出 0、0 项未定义和 0 条 LLD 警告；错误源码、替换对象以及只给 63 个对象的反例均在对应环节失败。
 - 交付归档 `ruyijs-linux-amd64-clean-r355.tar.gz`，29,855,046 字节，SHA-256 `764e295727518b2927de7fca901cd60b4390cea8e58762c8437c7236f03b03a9`。下载后校验 218 个文件，再送回 amd64 断网环境解包，13/13 组、83 项断言通过。单独的 Worker 实测读到了运行同一壳的子进程并验证终止回收；WebCrypto 对 `abc` 的 SHA-256 与独立实现相同。无 Python、无编译器的 Ubuntu 24.04 也从这份归档通过 C ABI 得到 `42`、`ruyi40`。
-- 这里的“干净”指私有代码从固定提交重建；仍使用事先配置的 Firefox 159 对象和已校验的上游图形依赖。R355 是独立 tar 包；现有 pip 交付仍为 R354。真实 Necko/NSS/QUIC、ARM64 产品和全量 Windows 行为对齐各自单验。
+- 这里的“干净”指私有代码从固定提交重建；仍使用事先配置的 Firefox 159 对象和已校验的上游图形依赖。R355 是独立 tar 包；当前 R356 wheel 封装这套原生文件，历史 R354 保留用于回退。真实 Necko/NSS/QUIC、ARM64 产品和全量 Windows 行为对齐各自单验。
 
-**当前 pip 交付（R354）：私有 Linux amd64 wheel 已在干净 venv 安装并实跑。** [wheel 验收](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json) · [安装态运行检查](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/runtime-gates.json) · [安装与复建说明](../../submodules/ruyijs/docs/linux-amd64-wheel.md)。
+**历史回退版本（R354）：旧私有 Linux amd64 wheel 已在干净 venv 安装并实跑。** [wheel 验收](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/validation.json) · [安装态运行检查](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r354/runtime-gates.json) · [安装与复建说明](../../submodules/ruyijs/docs/linux-amd64-wheel.md)。
 
 - 文件：`ruyijs-0.2.2+inner.20261101191032-py3-none-linux_x86_64.whl`，29,378,755 字节；SHA-256 `9135568cd48ec931d094853763e37ae576e581e3c5f4fb1c810fc9f12ee575db`。本地交付目录 `deliverables/linux-ruyijs-wheel-r354/`。原生壳、C 客户端及 18 个库的内容与 R353 完全相同；三次 `pip wheel` 输出同一散列。
 - 安装后无需源码目录、`RUYIJS_SHELL` 或 `LD_LIBRARY_PATH`。在 Ubuntu 24.04/glibc 2.39、CPython 3.12.3、UID 1000、断网环境，零参数 `Context()` 使用包内 `dist/js` 返回 `42`。13/13 组、95 项断言通过；再次普通 `pip install` 后卸载，虚拟环境包清单恢复原样。包内非 glibc 依赖通过 `ldd -r`；从只读安装目录单独挂载到原生基础镜像的 C 客户端两次取得 `42`、`ruyi40`。

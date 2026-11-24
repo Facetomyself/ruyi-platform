@@ -1,0 +1,214 @@
+{
+  "assertions": 95,
+  "groups": {
+    "avif_decode": {
+      "checks": [
+        "avif_fixture_sha256",
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "avif_frame_bgra_and_layout",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "731ff0c7015fd6dcf134c058393d83f748022bda3f7e2f64bc6043141a6d15b2"
+    },
+    "avif_support": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "avif_type_support",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "a746746f808a5c434c44ad1fbcd5a325f63acb149ea0f81ff4cc228dc2d961bc"
+    },
+    "cabi_debug": {
+      "checks": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "978235716aa41afb9247293454c49e8fc074986604386bc272d8f35987a567a0"
+    },
+    "cabi_default": {
+      "checks": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "186705e6769ef568f2c71dafb551d46a5a0f413c8183fbed7555b6e8d9284776"
+    },
+    "canvas_glyphs": {
+      "checks": [
+        "discovered_installed_shell",
+        "canvas_glyph_pixels_and_metrics",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "a72cc7dec7cf50208b47138101017e3fc29229c9cfa29adfe23bf3fadd216e98"
+    },
+    "canvas_rect": {
+      "checks": [
+        "discovered_installed_shell",
+        "canvas_rect_pixels",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "0f756507ef3681cd83232b2c484944dc6e187341d70b7c4ef7d3dee474144850"
+    },
+    "compression_brotli": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "6de01eaf52ed6cd729ab63c4cdaae9a7d758b1040566b85d9804402ff55776ef"
+    },
+    "compression_deflate": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "eb24c4bd293c913f24c68c0b454a9bcfbfe40a6164e2c73def80219fa078917f"
+    },
+    "compression_deflate-raw": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "784d4c9772725c163d54eeff3a90a869b736e71f57bad84cafbd8bfa494bb17c"
+    },
+    "compression_gzip": {
+      "checks": [
+        "discovered_installed_shell",
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "42d7baa73008c815af5c11903ab49aaa2785bf6194811c014b4249a5aa395fb5"
+    },
+    "page_dom": {
+      "checks": [
+        "discovered_installed_shell",
+        "in_memory_page_load",
+        "dom_and_inline_script",
+        "no_page_network_requests",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "313624051ed1793eded7ace6747c74c9e21b980d430bc9173298448430004037"
+    },
+    "python_bridge": {
+      "checks": [
+        "package_version_matches_metadata",
+        "discovered_installed_shell",
+        "numeric_eval",
+        "typed_eval",
+        "set_and_expose_result",
+        "host_callback_arguments",
+        "python_js_error",
+        "eval_after_error",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "46483e6e2cc253cd59f78c0c069fb069f417a9a26b1abaf1758b648b9bf2d4b2"
+    },
+    "urlpattern": {
+      "checks": [
+        "discovered_installed_shell",
+        "urlpattern_exec_and_negative",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "sha256": "5ccff3f298dfe6def5607bd2eb05e3cd933b348aba0627d6c3a27c65d186d6c6"
+    }
+  },
+  "kind": "real installed R356 Linux x86-64 execution, not archived-stage tests",
+  "network": "none",
+  "python": "3.12.3",
+  "sdk_c_inputs_and_binary_sha256": [
+    "cab6ef80b60dcaced3d635bed90c17f3d8583c5cb80612a34b4eb97b250b713f  /fixture/consumer.c",
+    "924b20cc4ee739e28a515a7c6e41f94045ad23131ce962d5b5b9ad1d2a1f777d  /installed/_runtime/include/ruyijs.h",
+    "1c22545eac1ed862c9218966af04051904ca048f8ff7f42c75c9415c367df62b  /out/consumer"
+  ],
+  "stock_ubuntu_qualified_c_results": [
+    42,
+    "ruyi40"
+  ],
+  "uid": 1000,
+  "worker_crypto": {
+    "bundled_sonames_in_both_process_maps": [
+      "libbrotlicommon.so.1",
+      "libbrotlidec.so.1",
+      "libbz2.so.1.0",
+      "libcrypto.so.3",
+      "libexpat.so.1",
+      "libfontconfig.so.1",
+      "libfreetype.so.6",
+      "libfribidi.so.0",
+      "libgcc_s.so.1",
+      "libglib-2.0.so.0",
+      "libgraphite2.so.3",
+      "libharfbuzz.so.0",
+      "libpcre2-8.so.0",
+      "libpng16.so.16",
+      "libsharpyuv.so.0",
+      "libstdc++.so.6",
+      "libwebp.so.7",
+      "libz.so.1"
+    ],
+    "distinct_pids": [
+      211,
+      223
+    ],
+    "mode": "installed",
+    "same_executable": true,
+    "sha256_abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "worker_and_parent_reaped": true,
+    "worker_reply": {
+      "isolated": true,
+      "text": "β",
+      "value": 42
+    }
+  },
+  "zero_arg_context_eval": 42
+}

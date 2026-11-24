@@ -1,0 +1,90 @@
+{
+  "bad_hash_upgrade_unchanged": true,
+  "dependencies_check": "No broken requirements found.",
+  "explicit_rollback_unchanged": true,
+  "historical_build_reproduces_R354": true,
+  "initial_and_uninstalled_tree_match": true,
+  "install_then_upgrade_then_rollback": [
+    [
+      "0.2.2+inner.20261101191032",
+      "13/13"
+    ],
+    [
+      "0.2.2+inner.20261101191032.r356",
+      "13/13 + Worker/WebCrypto"
+    ],
+    [
+      "0.2.2+inner.20261101191032",
+      "13/13"
+    ]
+  ],
+  "new_version": "0.2.2+inner.20261101191032.r356",
+  "new_wheel_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+  "old_version": "0.2.2+inner.20261101191032",
+  "old_wheel_sha256": "9135568cd48ec931d094853763e37ae576e581e3c5f4fb1c810fc9f12ee575db",
+  "ordinary_install_with_bytecode": true,
+  "pip_events": {
+    "base-packages": 0,
+    "create": 0,
+    "downgrade": 0,
+    "final-packages": 0,
+    "initial": 0,
+    "install-old": 0,
+    "new-after-upgrade": 0,
+    "new-dependencies": 0,
+    "new-qa": 0,
+    "old-after-bad-hash": 0,
+    "old-before": 0,
+    "old-qa": 0,
+    "old-restored": 0,
+    "rollback-qa": 0,
+    "uninstall": 0,
+    "uninstalled": 0,
+    "upgrade": 0,
+    "wrong-hash-upgrade": 1
+  },
+  "scope": "one fresh venv with both immutable local wheels; every recorded state was checked in a new isolated Python process",
+  "states": {
+    "new-after-upgrade": {
+      "answer": 42,
+      "closed": true,
+      "dist_info": "ruyijs-0.2.2+inner.20261101191032.r356.dist-info",
+      "installed_files": 225,
+      "installed_sha256": "787eb769fe30b5952f7737b9978131b78bb9f87effbc381d4f8244815194271e",
+      "proof_present": true,
+      "shell_sha256": "10bdc0ea25181405aff2e9cd92b2297ca0a6e9b3977060d3acaa7c839b5749c9",
+      "version": "0.2.2+inner.20261101191032.r356"
+    },
+    "old-after-bad-hash": {
+      "answer": 42,
+      "closed": true,
+      "dist_info": "ruyijs-0.2.2+inner.20261101191032.dist-info",
+      "installed_files": 221,
+      "installed_sha256": "bea24100968b058f8bb9fa148e4b65f8931414e7b8c6f32527a4f3cae6f34a9d",
+      "proof_present": false,
+      "shell_sha256": "5e291701305c7b75ebf67224ea1b9188ea453c3838dcb1981d773ce217668c4d",
+      "version": "0.2.2+inner.20261101191032"
+    },
+    "old-before": {
+      "answer": 42,
+      "closed": true,
+      "dist_info": "ruyijs-0.2.2+inner.20261101191032.dist-info",
+      "installed_files": 221,
+      "installed_sha256": "bea24100968b058f8bb9fa148e4b65f8931414e7b8c6f32527a4f3cae6f34a9d",
+      "proof_present": false,
+      "shell_sha256": "5e291701305c7b75ebf67224ea1b9188ea453c3838dcb1981d773ce217668c4d",
+      "version": "0.2.2+inner.20261101191032"
+    },
+    "old-restored": {
+      "answer": 42,
+      "closed": true,
+      "dist_info": "ruyijs-0.2.2+inner.20261101191032.dist-info",
+      "installed_files": 221,
+      "installed_sha256": "bea24100968b058f8bb9fa148e4b65f8931414e7b8c6f32527a4f3cae6f34a9d",
+      "proof_present": false,
+      "shell_sha256": "5e291701305c7b75ebf67224ea1b9188ea453c3838dcb1981d773ce217668c4d",
+      "version": "0.2.2+inner.20261101191032"
+    }
+  },
+  "wheelhouse_latest_verified_by_pip": true
+}
