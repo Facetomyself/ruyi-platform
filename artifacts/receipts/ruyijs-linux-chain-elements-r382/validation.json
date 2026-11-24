@@ -1,0 +1,66 @@
+{
+  "artifact": {
+    "bytes": 5266682,
+    "name": "wheel.whl",
+    "sha256": "741c91ad109e5bf92ebc96ff382317df0f82e3e42033241770f3ca078d1a547c"
+  },
+  "checked_at": "2026-11-24T18:03:22+0800",
+  "defect_found": {
+    "consequence": "two parsers disagreed about the same wire data; the name check could run on a chain the digest step refused",
+    "description": "_names read only the first length-prefixed element, so a leaf followed by a truncated or non-DER element still produced enforced names while _chain_digests rejected the same bundle",
+    "fix": "_chain_blobs walks every element, requires the DER SEQUENCE tag and checks that each declared element length matches its header exactly"
+  },
+  "host": {
+    "containers": 131,
+    "name": "host185",
+    "oom": 0
+  },
+  "malformed_matrix": {
+    "cases": 11,
+    "inputs": [
+      "empty",
+      "short prefix",
+      "zero length",
+      "length exceeds buffer",
+      "truncated DER",
+      "huge length",
+      "junk tail",
+      "truncated tail",
+      "non-sequence",
+      "two valid certificates",
+      "valid single"
+    ],
+    "mismatches": 0
+  },
+  "notes": [
+    "a real CA-issued certificate still parses: 728-byte DER yields the same two names",
+    "the digest path and the name path now reject the same malformed bundles"
+  ],
+  "outcome": "every_chain_element_is_validated_before_leaf_names_are_trusted",
+  "peer_requests": [
+    "/fixed",
+    "/chunked",
+    "/gzip",
+    "/nolen",
+    "/redirect",
+    "/fixed",
+    "/bighead"
+  ],
+  "regression_on_r382": {
+    "R363_chunked": true,
+    "R363_gzip": true,
+    "R368_redirect": true,
+    "R370_header_bound": true,
+    "R372_close_delimited": true,
+    "R376_anchor_ok": true
+  },
+  "schema": "ruyijs-linux-chain-element-validation-r382.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "public CA root bundles",
+    "h2 framing",
+    "QUIC",
+    "ARM64",
+    "IDNA/UTS-46"
+  ]
+}

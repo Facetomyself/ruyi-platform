@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**证书链元素校验（R382）：两个解析器对同一份数据的判断统一了。** [回执](../../artifacts/receipts/ruyijs-linux-chain-elements-r382/validation.json)
+
+- 缺陷：`_names` 只读第一个长度前缀元素就返回，尾部即使是被截断或非 DER 的垃圾也照常产出名字；而 `_chain_digests` 会拒绝同一份数据。两个解析器对同一份 wire 数据给出相反结论。
+- 修法：`_chain_blobs` 遍历每个元素，要求 `0x30` SEQUENCE 标签，并核对声明长度与 DER 头是否精确匹配。
+- 畸形矩阵 **11 项 0 不符**：空、短前缀、零长度、长度越界、截断 DER、超大长度、垃圾尾、截断尾、非序列、两张合法、单张合法。
+- 回归：R363 分块/gzip、R368 重定向、R370 头块上限、R372 close-delimited、R376 锚点在这份 wheel 上仍全部通过。
+
 **主机名匹配加固（R381）：修掉三个可被利用的匹配缺陷。** [回执](../../artifacts/receipts/ruyijs-linux-hostname-hardening-r381/validation.json)
 
 | 缺陷 | 后果 | 修法 |
