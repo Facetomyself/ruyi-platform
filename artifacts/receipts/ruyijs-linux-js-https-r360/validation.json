@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-11-24T16:52:18+0800",
+  "helper_module_sha256": "9c1ea0d71da7271a09a8fe8adc1912ce2e89235ace5f750e95b4b0753d30b2c7",
+  "host": {
+    "containers": 34,
+    "name": "host185",
+    "nonzero_exits": 21,
+    "oom": 0
+  },
+  "js_https_positive": {
+    "body_matches_peer": true,
+    "body_sha256": "2586482249b6a76bfc9d8647d16318daaf22751be12041929e06c84fdc5c6ac2",
+    "net_log_error": "",
+    "net_log_status": 200,
+    "peer_request": "GET /direct HTTP/1.1",
+    "returncode": 0,
+    "status": 200,
+    "url": "https://127.0.0.1:37274"
+  },
+  "js_https_wrong_pin": {
+    "http_bytes_served": 0,
+    "js_error": "TypeError: NetworkError when attempting to fetch resource.",
+    "net_log_error": "peer certificate does not match any pinned digest",
+    "peer_alert": "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad",
+    "tcp_connections_accepted": 1
+  },
+  "launcher": {
+    "sha256": "fb14ba548a09fa3ab9709fd8f1bfa4cdf74e47305d23912dc581a731ce537edd",
+    "source": "acceptance/r354-ruyijs/linux_http1/venv-python"
+  },
+  "outcome": "js_layer_pinned_https_verified_on_installed_linux_runtime",
+  "root_cause_fixed": "necko_linux.cpp resolves <site>/ruyijs/_runtime/vendor/necko-derived/python/bin/python3; the companion wheel owns that path, and the reconstructed install omitted it. Installing the launcher made helper startup succeed with no other change.",
+  "schema": "ruyijs-linux-js-https-r360.v1",
+  "scope": {
+    "not_covered": [
+      "external CA trust chain",
+      "public network HTTPS",
+      "h2 multiplexing semantics",
+      "QUIC/HTTP3",
+      "navigate() over HTTPS in this run",
+      "Linux ARM64",
+      "installable wheel publication of the launcher fix"
+    ],
+    "positive": [
+      "JavaScript fetch() over https: from the installed R356 shell, through the R357 helper layout and the R358 pinned-NSS TLS adapter, returned a peer-generated body",
+      "helper startup succeeds once the bundled-interpreter launcher exists at the exact path the shell resolves"
+    ]
+  }
+}
