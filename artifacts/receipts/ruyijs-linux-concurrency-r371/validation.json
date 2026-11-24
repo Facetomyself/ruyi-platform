@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-11-24T17:33:33+0800",
+  "host": {
+    "containers": 82,
+    "name": "host185",
+    "oom": 0
+  },
+  "memory": {
+    "container_limit_bytes": 1258291200,
+    "oom": false,
+    "peak_vmhwm_kb": 11224
+  },
+  "mixed": {
+    "failed": 1,
+    "failure_cause": "oversized response header block refused by the client bound",
+    "failure_keys": [
+      "ERR8"
+    ],
+    "requests": 9,
+    "succeeded": 8,
+    "successes_unaffected": true
+  },
+  "notes": [
+    "the helper runs each exchange under its own deadline; concurrent JavaScript fetches did not share or corrupt connection state",
+    "a rejected response did not disturb sibling requests, each of which returned its own peer-generated body"
+  ],
+  "outcome": "concurrent_https_requests_isolated_with_bounded_memory",
+  "pure_concurrency": {
+    "all_bodies_match": true,
+    "distinct_paths": 12,
+    "net_log_all_200": true,
+    "peer_errors": [],
+    "requests": 12,
+    "served": 12
+  },
+  "schema": "ruyijs-linux-concurrency-r371.v1",
+  "still_open": [
+    "h2 framing",
+    "RFC 5280 path validation",
+    "OCSP/CRL",
+    "external CA",
+    "QUIC",
+    "sustained load with connection reuse, which this path does not implement"
+  ],
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5259266,
+      "name": "wheel.whl",
+      "sha256": "96302086e1620a41a04081fda4864d6a0907b14d3d9f9e456769c1e2f5542629"
+    }
+  }
+}

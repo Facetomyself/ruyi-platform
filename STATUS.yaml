@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T17:31:09+08:00'
+generated_at: '2026-11-24T17:33:33+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R370_resource_bounds__R369_alpn_guard__R368_https_redirect
+    tests: R371_concurrency_isolation__R370_resource_bounds__R369_alpn_guard
     phase: R356 离线运行时、R357 明文 HTTP/1 组件及 R358 固定 NSS 的 TLS 适配层已分别验收；JS 层 HTTPS/h2/QUIC 端到端与 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,22 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_concurrency_r371:
+            terminal: concurrent_https_requests_isolated_with_bounded_memory
+            requests: 12
+            succeeded: 12
+            distinct_paths: 12
+            all_bodies_match: true
+            mixed_requests: 9
+            mixed_succeeded: 8
+            mixed_failed: 1
+            successes_unaffected: true
+            peak_vmhwm_kb: 11224
+            oom: false
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-concurrency.json
+            evidence_sha256: a8cd8e249f0d97333cd87db4003c867c2507b5d389be731a5aa6714e9b8d34b7
+            repository_receipt: artifacts/receipts/ruyijs-linux-concurrency-r371/validation.json
+            excluded: [http2_framing_and_multiplexing, connection_reuse_under_load, rfc5280_path_validation, ocsp_crl_revocation, external_ca_trust, quic_http3]
           private_resource_bounds_r370:
             terminal: tls_header_and_body_bounds_enforced_with_diagnosable_errors
             defect_found: header_block_had_no_aggregate_limit

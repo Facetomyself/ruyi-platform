@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**并发隔离（R371）：并发 HTTPS 互不污染，出错的一个不影响其他。** [回执](../../artifacts/receipts/ruyijs-linux-concurrency-r371/validation.json)
+
+- 12 个并发 `fetch()` 全部返回各自对端生成的 body，`net_log` 12 条全 200 且路径互不相同。
+- 混合场景 9 个请求：8 个成功、1 个因响应头超限被拒，其余 8 个结果不受影响。
+- 采样进程峰值 RSS 约 **11 MB**（`VmHWM`），容器内存上限 1.2 GB，无 OOM。
+- 边界说明：本路径**不做连接复用**，所以这不是长连接压测；h2 多路复用也未实现。
+
 **资源边界（R370）：修掉一个可被利用的无界解析——响应头块原来没有总量上限。** [回执](../../artifacts/receipts/ruyijs-linux-bounds-r370/validation.json)
 
 - 缺陷：`FIELD_LIMIT` 只限制单个头字段长度，整块响应头无上限。实测 **80 KB** 的响应头被正常解析并接受为 200。同时该路径的非 TLS 异常被压成 `Internal Linux HTTP/1 helper failure`，真实原因丢失。
