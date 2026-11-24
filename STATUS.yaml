@@ -1312,6 +1312,23 @@ projects:
             not_done: [one_more_attempt_with_the_staged_root, relink, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-pixman-r344/pixman-validation.json
             evidence_sha256: c828b82f45ab497370de58c2678781b3e8b6d1f7f78395787c09782c94414d98
+          native_pixman_build2:
+            input_commit: 555d67c
+            terminal: pixman_partial
+            scope: 'pixman compiles once the configuration layers are supplied'
+            pass: {ok: 37, fail: 4, elapsed_seconds: 18}
+            breakthrough: 'thirty-seven of forty-one units compile; the earlier one of forty-one was the configuration chain rather than the code'
+            config_layers_needed:
+              - 'MOZILLA_VERSION, since pixman-private.h errors without it and the JS-only objdir has no mozilla-config.h'
+              - 'PACKAGE, because config.h would have been included first and only supplies that'
+              - 'an include root containing a cairo/ entry for cairo/pixman-rename.h'
+              - 'the NSPR roots for prcpucfg.h'
+              - 'HAVE_PTHREADS, which selects the thread-local path instead of requiring PIXMAN_NO_TLS'
+            remaining_four: {pixman-region: 'box_type_t not visible', pixman-ssse3: 'x86 SIMD needing -mssse3', pixman-rvv: 'RISC-V vector code', pixman-vmx: 'PowerPC AltiVec'}
+            assessment: 'three of the four are architecture specific and two are for other architectures entirely; only pixman-region is a real gap'
+            not_done: [the_region_type_and_the_ssse3_flag, relink, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-pixman2-r347/pixman2-validation.json
+            evidence_sha256: 2a0fe1a4db4e15be4c0b2ce999bca61db4b351cb9577146d42d8546297453994
           private_product: pending
     inner_repo_state:
       exists: true
@@ -1948,7 +1965,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: ab060a5f80989dbf0c1c06e54c1924cb24d30a5e
+    commit: 555d67caecb7a156daf0b395bd08d38472e90dd7
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
