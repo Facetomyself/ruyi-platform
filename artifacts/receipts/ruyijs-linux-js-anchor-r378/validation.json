@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-11-24T17:53:15+0800",
+  "host": {
+    "containers": 121,
+    "name": "host185",
+    "oom": 0
+  },
+  "js_path": {
+    "correct_anchor": {
+      "peer_requests": [
+        "GET /x HTTP/1.1"
+      ],
+      "status": 200
+    },
+    "unrelated_anchor": {
+      "error": "certificate chain verification failed (-8079)",
+      "peer_alert": "SSLError:[SSL: TLSV1_ALERT_UNKNOWN_CA] tlsv1 alert unknown ca (_ssl.c",
+      "peer_requests": [],
+      "refused": true
+    }
+  },
+  "outcome": "chain_check_gates_the_javascript_path_and_tampered_anchors_are_refused",
+  "schema": "ruyijs-linux-js-anchor-enforcement-r378.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "public CA root bundles",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "tamper": {
+    "anchor_swapped_after_config": true,
+    "error": "trust anchor digest mismatch: /tmp/tam/lib/python3.12/site-packages/ruyijs_necko/_native/anchor.der",
+    "peer_requests": [],
+    "refused": true
+  },
+  "wheels": {
+    "companion": {
+      "name": "wheel.whl",
+      "sha256": "e065420697bd742c1a944ab48b29e1fbe6acc0318b75b0123ddb2cbe25d8ab9c"
+    }
+  },
+  "why_it_matters": [
+    "the chain check is reached from the packaged fetch() path, so JavaScript gets the same enforcement as the Python API",
+    "the anchor digest is re-read and re-checked on every load, so replacing the file on disk cannot silently widen trust"
+  ]
+}

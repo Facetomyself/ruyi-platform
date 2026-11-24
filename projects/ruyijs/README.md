@@ -78,6 +78,11 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**JS 路径同样受链校验约束（R378）：不是只有 Python API 生效。** [回执](../../artifacts/receipts/ruyijs-linux-js-anchor-r378/validation.json)
+
+- `fetch("https://…")` 经打包后的 `fetch()` 入口进入同一校验钩子：正确 CA 锚点 200 并取回 body；未签发该叶子的 CA 被拒（`-8079`），对端 **0 个** HTTP 请求。
+- 锚点文件在配置后被替换：每次加载都重新校验摘要，替换即触发 `trust anchor digest mismatch` 并拒绝，对端 0 个请求——磁盘上的锚点不能悄悄改变信任范围。
+
 **锚点接入 HTTPS 路径（R376）：链校验真正生效，不再只是独立工具。** [回执](../../artifacts/receipts/ruyijs-linux-anchor-r376/validation.json)
 
 - 固定值文件可额外声明 `trust_anchors`（`path` + `sha256`）；加载时校验摘要，摘要不符即失败关闭。缺锚点校验器或摘要不符都不会静默放行。
