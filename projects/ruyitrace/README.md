@@ -15,24 +15,24 @@
 | 层 | 体积 | 源码状态 |
 | --- | --- | --- |
 | Electron 控制台 | 1.4 MB / 74 文件 / 3644 行 | ✅ 完整（从 app.asar 抽出） |
-| 定制 Firefox 内核 | `firefox.exe` 188 MB + `xul.dll` 178 MB | ❌ **domtrace 插桩需反编译** |
+| 定制 Firefox 内核 | `firefox.exe` 188 MB + `xul.dll` 178 MB | Win64 私有源未发布；Linux 重建子集见下方正式包验收 |
 | 内部 ruyijs wheel | 46.6 MB | 归档物，不参与运行时 |
 
-## 期望目录
+## 源码入口
 
 ```
 ruyitrace/
 ├── console/                     Electron 源码 74 文件
-│   ├── src/main/                main.js 605 / codex-ipc.js 913 / fingerprint-file.js 240
-│   ├── src/renderer/            10 个 Vue 视图
-│   ├── src/shared/              switches.js 175（74 开关单一真相源）
-│   └── dist/renderer/           Vite 产物
+│   ├── main/                main.js 605 / codex-ipc.js 913 / fingerprint-file.js 240
+│   ├── renderer/            10 个 Vue 视图
+│   ├── shared/              switches.js 175（74 开关单一真相源）
+│   └── tooling/                 Node 锁文件与控制台构建、组装入口
 ├── domtrace/                    反编译还原的内核插桩源码
 │   ├── binding/                 DOM 绑定层接入点
 │   ├── trace/                   记录写出器
 │   └── config/                  74 个开关的读取与校验
-├── kernel/                      内核构建脚本与 patch
-└── docs/                        domtrace-analysis.md
+├── tests/linux/                 审计构建、打包与隔离验收入口
+└── docs/                        组件手册；Win64 专项另见交接分支
 ```
 
 ## domtrace 关键事实
@@ -47,7 +47,7 @@ ruyitrace/
 
 ## 复现一条 trace（不需要 Electron）
 
-照 `console/src/shared/firefox-environment.cjs` 的三步逻辑即可：
+照 `console/shared/firefox-environment.cjs` 的三步逻辑即可：
 
 1. 剔除父进程所有 `MOZ_DOM_*`
 2. 写入开关
@@ -55,7 +55,7 @@ ruyitrace/
 
 ## 当前状态
 
-控制台 100%，domtrace 0%。反编译方案见 [`../../docs/05-reverse-analysis.md`](../../docs/05-reverse-analysis.md)。
+以[平台源码与构建交接](../../docs/14-source-handoff.md)区分正式包、候选管理面和离线证据。Linux domtrace 子集已经编译、打包并在真实 Firefox 上采集，详见[运行验收历史](../../docs/13-ruyitrace-progress.md)；原 Win64 私有内核源树并未随包发布。下表是历史输出格式还原清单，不是 Linux 全量 producer 的运行验收清单。
 
 ## 输出格式进度
 

@@ -198,15 +198,16 @@ cat STATUS.yaml
 
 ---
 
-## 八、当前状态（截至 2026-11-20）
+## 八、交付与复用状态（2026-11-24）
 
-机器可读版本见 `STATUS.yaml`。一句话：
+**其他项目从[源码与构建交接](docs/14-source-handoff.md)开始**：含组件选择、固定源码的检出命令、历史验收与本次复核的区别，以及管理面下一步。机器可读账本见 [STATUS.yaml](STATUS.yaml)。
 
-| 项目 | 状态 |
+| 项目 | 当前交付 |
 | --- | --- |
-| **RuyiHttp** | 源码完整，三平台原生库齐全，**测试 19/19 全绿**，26 个原生文件 hash 全匹配。Linux x86_64 wheel 已在 glibc 2.39 环境完成[实时 HTTPS 验收](projects/ruyihttp/README.md#linux-x86_64-验收记录)。仓库已转 public。 |
-| **RuyiJS 内部版** | Python 层明文可读；原生壳 `js.exe`（49.5 MB）语义重建进行中。`ff-ruyijs` 只作对照，不作基线。 |
-| **RuyiTrace** | 控制台源码完整；domtrace 行为还原与实现基本完成，**运行验证层完全没开始**。 |
+| **RuyiTrace** | Linux 有范围明确的浏览器、桌面与无头实采验收。amd64 R5 提供独立源码标签和同包核验入口；管理面另行迭代。 |
+| **RuyiHttp** | Python 客户端及三平台既有原生运行库可复用；[Linux amd64 HTTPS 验收](projects/ruyihttp/README.md)。新平台原生库是另一项交付。 |
+| **RuyiJS 内部版** | 私有仓维护 Python、C ABI 和 Linux 壳重建源码。以[项目最新链接记录](projects/ruyijs/README.md)为准，不能把 donor 或参考 wheel 当作正式 Linux 产品。 |
+| **ruyi-mcp** | 已纳管的独立控制面；Electron 桌面、无头 CLI 与 MCP 借用会话验收分列，见[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md)。 |
 
 **反编译是本仓两条主线**：`ruyijs-inner` 与 `ruyitrace/domtrace`。方法论相同（见 `docs/05-reverse-analysis.md`），对象与难度不同：
 

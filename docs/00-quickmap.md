@@ -42,52 +42,9 @@
 
 ---
 
-## 三条主线的当前位置
+## 选定复用边界
 
-```
-RuyiHttp ────────●──────────────────── 源码 100%，测试 19/19 全绿
-                 │                     剩 glibc 2.38（需 24.04 主机）
-
-RuyiJS 内部版 ───●────○────────────── Python 层明文；js.exe 反编译进行中
-                 │                    2038 identity 中 56 命中
-
-RuyiTrace ───────●────●●●○─────────── 控制台 100%
-                       │               domtrace: 开关 74/74, 输出 1/12
-```
-
-`●` = 完成　`○` = 待做
-
-### domtrace 细分
-
-| 层 | 进度 |
-| --- | --- |
-| 开关读取点定位 | **74/74** |
-| 开关读取语义 | **74/74**（10 种解析模式） |
-| jscall bin 写入器 | **1/1**（端到端被发布方解码器验证） |
-| 其余 11 类输出 | 0/11 |
-
-## 一分钟版本
-
-| 项目 | 一句话 |
-| --- | --- |
-| **RuyiHttp** | Firefox Necko/NSS 的 Requests 风格客户端。源码完整，三平台原生库齐全（24 MB）。挡路的是 glibc 2.38 和 6 个 Windows 断言测试。 |
-| **RuyiJS** | 内部 wheel ≠ 公开 ff-ruyijs。Python 层 19 文件是明文，`js.exe`（49.5 MB）需反编译。有 2038 条源文件 hash 作 ground truth。 |
-| **RuyiTrace** | Electron 控制台源码完整（74 文件）。内核 domtrace 插桩无源码，需反编译 178 MB 的 `xul.dll`。这是最重的一块。 |
-
----
-
-## 关键数字
-
-| 项 | 值 |
-| --- | --- |
-| 唯一 Firefox 基线 | `39bfd14cb45c` / BuildID `20261101193257` |
-| necko ABI | 31 个 C 符号 |
-| 原生库体积 | win 7.2 MB + darwin 8.2 MB + linux 8.4 MB = 24 MB（入库） |
-| domtrace 开关 | **74**（`switches.js` 与 `xul.dll` 一致；文档写 69 是旧的） |
-| ruyijs RPC operation | 待枚举（19 个 `.py` 里全有） |
-| glibc 底线 | 2.38 |
-
----
+先看[四个组件的当前交付和源码获取方式](14-source-handoff.md)。取平台开发基线用当前平台提交的 gitlinks；复建已验收的 Trace amd64 无头 R5 用其专用源码标签。Win64 私有内核 `39bfd14c` 是产品来源标识，Linux 重建使用独立的[官方 Firefox pin](../PINS.md)。
 
 ## 目录速查
 
@@ -101,6 +58,6 @@ ruyi-platform/
 ├── projects/              单项目文档
 ├── artifacts/manifests/   发布物 hash 记录
 ├── scripts/               校验脚本
-├── submodules/            ruyihttp / ruyijs / ruyitrace
+├── submodules/            ruyihttp / ruyijs / ruyitrace / ruyi-mcp
 └── upstream/              只读参考（gitignore）
 ```

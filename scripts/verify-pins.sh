@@ -93,16 +93,31 @@ valid = (len(indexed) == 4 and indexed[0] == '160000' and indexed[2] == '0' and 
 print(f'  ruyi-mcp gitlink / HEAD / PINS / STATUS / .gitmodules: {"PASS" if valid else "FAIL"}')
 sys.exit(0 if valid else 1)
 PY
-if [ -f .gitmodules ]; then
-  git submodule status 2>/dev/null | while read -r line; do
-    case "$line" in
-      -*) say "  ${line#-}" "NOT INIT" ;;
-      *)  say "  ${line# }" "OK" ;;
-    esac
-  done
-else
-  say "  .gitmodules" "SKIP（尚未添加 submodule）"
-fi
+python3 - <<'PY' || fail=1
+import subprocess, sys
+from pathlib import Path
+import yaml
+
+def git(*args):
+    return subprocess.check_output(['git', *args], text=True).strip()
+
+ok = True
+pins = yaml.safe_load(Path('STATUS.yaml').read_text())['submodules']
+for name, item in pins.items():
+    path = 'submodules/' + name
+    # A subdirectory without its own .git can resolve HEAD from its parent.
+    raw = git('ls-files', '--stage', '--', path).split()
+    pin = raw[1] if len(raw) == 4 and raw[0] == '160000' and raw[2] == '0' else None
+    head = git('-C', path, 'rev-parse', 'HEAD') if (Path(path) / '.git').exists() else None
+    good = pin is not None and pin == head == item.get('commit')
+    print(f'  {name}: {"PASS" if good else "FAIL"} gitlink={pin} checkout={head} ledger={item.get("commit")}')
+    ok &= good
+sys.exit(0 if ok else 1)
+PY
+
+echo
+echo "== 6. Trace amd64 R5 发行身份 =="
+python3 -B scripts/verify-trace-release.py || fail=1
 
 echo
 if [ "$fail" -eq 0 ]; then echo "全部通过"; else echo "有失败项"; fi
