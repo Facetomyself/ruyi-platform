@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**TLS profile 计数边界（R384）：四个数组计数全部设上限。** [回执](../../artifacts/receipts/ruyijs-linux-profile-bounds-r384/validation.json)
+
+- 缺陷：`compression_count` 有显式上限 8，但 `cipher_count`、`group_count`、`signature_count` 完全没约束，直接进 `calloc` 与 NSS 循环。调用方给 100000 就会巨额分配或越界走数组。
+- 修法：`NECKO_TLS_MAX_ITEMS`（512）约束前三个，`NECKO_TLS_MAX_COMPRESSION`（8）保留原限；计数非零但数组为空同样拒绝。
+- 实测：真实 profile（三个本构建实现的套件）握手成功并完成 HTTP；四类超界计数全部报 `profile count out of range`，且在调用 NSS 前就返回，对端只看到 EOF、没有任何请求。
+- 说明：`necko_tls_open_profile` 未被 JS 路径使用，属适配层对外接口，此轮按接口契约加固。
+
 **解压安全（R383）：压缩流后的多余字节不再被静默丢弃。** [回执](../../artifacts/receipts/ruyijs-linux-decode-r383/validation.json)
 
 - 缺陷：解码器检查了 `decoder.eof` 却忽略 `decoder.unused_data`，于是压缩流提前结束、后面还有数据时仍照常返回，多余字节被悄悄丢掉。对端可以在一个成员后追加任意内容（包括第二个成员），而客户端返回的正文并不描述整个响应。

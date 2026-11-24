@@ -1,0 +1,60 @@
+{
+  "artifact": {
+    "bytes": 5266777,
+    "name": "wheel.whl",
+    "sha256": "a79c0b1299f8eedf4b4b0d66ff44c6e2b2bbab696df84187f4ddc34a06d7b892"
+  },
+  "cases": {
+    "oversized_cipher": {
+      "error": "profile count out of range",
+      "open_rc": -1,
+      "peer_http": []
+    },
+    "oversized_compression": {
+      "error": "profile count out of range",
+      "open_rc": -1,
+      "peer_http": []
+    },
+    "oversized_group": {
+      "error": "profile count out of range",
+      "open_rc": -1,
+      "peer_http": []
+    },
+    "oversized_signature": {
+      "error": "profile count out of range",
+      "open_rc": -1,
+      "peer_http": []
+    },
+    "real_profile": {
+      "error": "nss",
+      "open_rc": 0,
+      "peer_http": [
+        1
+      ]
+    }
+  },
+  "checked_at": "2026-11-24T18:10:10+0800",
+  "defect_found": {
+    "consequence": "a caller-supplied count of 100000 would either allocate absurdly or walk past the provided array",
+    "description": "compression_count had an explicit limit of 8 but cipher_count, group_count and signature_count were passed straight to calloc and to NSS loops with no bound at all"
+  },
+  "fix": "NECKO_TLS_MAX_ITEMS (512) gates cipher, group and signature counts; NECKO_TLS_MAX_COMPRESSION (8) keeps the previous limit; a non-zero count with a null array is also refused",
+  "host": {
+    "containers": 140,
+    "name": "host185",
+    "oom": 0
+  },
+  "notes": [
+    "the real profile uses the three suites this NSS build implements and completes a handshake plus HTTP exchange",
+    "the oversized cases are refused before any NSS call, so the peer sees only an EOF, never a request"
+  ],
+  "outcome": "every_tls_profile_array_count_is_bounded_before_it_reaches_nss",
+  "schema": "ruyijs-linux-profile-bounds-r384.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "public CA root bundles",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}
