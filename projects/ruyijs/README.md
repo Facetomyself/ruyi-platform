@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 往返第五次尝试（R404）：找到编译一直失败的真正原因。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r404/validation.json)
+
+- **方法突破**：改用主机上的 `nohup` 后台作业，短 SSH 只负责启动和读日志。**R403 的长命令限制因此消失**——这是前几轮都该用的做法。
+- **根因**：`dist/include/brotli` 下的头文件是**指向构建树的符号链接**，`cp -r` 复制的是链接本身。目录里能看到 `decode.h`，但对它 `md5sum` 报 `No such file or directory`。这与 R358 的 NSS 头文件悬空问题是同一类。
+- **修复已备好**：用 `cp -L` 解引用后重建 `brotli/` 目录，再跑同一作业。
+- 修复作业已启动，但链路在读到日志前退化，**本轮仍不声称通过**。
+
 **brotli 往返第四次尝试（R403）：拆成最短步骤仍未完成，本轮无通过。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r403/validation.json)
 
 - **可行的短步骤（4 项）**：极短命令可达主机；单挂载容器仅 `ls` 后退出（返回 `LIVED`）；把库复制进测试目录；把头文件复制进测试目录。

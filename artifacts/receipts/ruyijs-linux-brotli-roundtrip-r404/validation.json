@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-11-25T00:32:00+08:00",
+  "fix_prepared": "recreate brtest/brotli with cp -L so the real header files are present, then rerun the same job",
+  "method_that_worked": "a detached nohup job on the host, launched by a short ssh call; this removed the long-command limit that blocked R403 entirely",
+  "no_pass_this_round": true,
+  "not_yet_confirmed": "the fix ran as a job but the link degraded before its log could be read",
+  "outcome": "the_header_directory_held_dangling_symlinks_which_is_why_the_compile_kept_failing",
+  "root_cause_found": {
+    "evidence": "listing the directory showed decode.h, encode.h, port.h, shared_dictionary.h and types.h, but md5sum on the same path reported \"No such file or directory\"",
+    "explanation": "dist/include/brotli holds symlinks into the build tree; cp -r copied the links rather than their contents, so the mounted directory contained dangling links",
+    "same_class_as": "the R358 NSS header problem, where dist headers pointed at /build/... and were dangling inside a bind mount",
+    "symptom": "clang reported \"brotli/decode.h file not found\" even with -I/t pointing at the directory"
+  },
+  "schema": "ruyijs-linux-brotli-roundtrip-r404.v1",
+  "still_open": [
+    "brotli decode round trip",
+    "brotli wiring and packaging",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}
