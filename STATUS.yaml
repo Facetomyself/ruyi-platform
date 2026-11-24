@@ -1482,9 +1482,9 @@ projects:
           private_handoff_r422:
             terminal: a_single_page_handoff_summarises_what_ships_what_is_proven_and_what_is_missing
             document: docs/15-linux-handoff.md
-            evidence: ruyi-platform/docs/15-linux-handoff.md
-            evidence_sha256: c2f883dd790f88fbbc16cb32b5a3526e36c0fec3ab5150cd1328ce573f092600
-            repository_receipt: docs/15-linux-handoff.md
+            evidence: acceptance/r354-platform/docs/15-linux-handoff.md
+            evidence_sha256: f4a9fc5ed04d340e96e06fdb69556da964a37f2e457e5d21f4ff4b20b69a03aa
+            repository_receipt: artifacts/receipts/ruyijs-linux-handoff-r422/validation.json
             every_number_checked: true
             ledger_blocks: 155
             ledger_blocks_at_publication: 155
