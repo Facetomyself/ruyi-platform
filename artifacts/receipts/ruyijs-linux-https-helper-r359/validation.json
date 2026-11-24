@@ -1,0 +1,41 @@
+{
+  "fixes_this_round": [
+    "https: URLs now delegate to the TLS module; a missing module or adapter raises instead of falling back to cleartext",
+    "exchange() requires explicit pins; the previous call omitted them and every attempt failed with a TypeError",
+    "the TLS adapter and staged package needed world-readable modes before a UID-1000 container could load them",
+    "-I ignores PYTHONPATH, so the helper package must be imported from a real venv site-packages"
+  ],
+  "helper_https": {
+    "frames": [
+      {
+        "body": "tls-d46b3ba27870d8ff",
+        "error": null,
+        "protocol": "http/1.1",
+        "status": 200
+      }
+    ],
+    "http1_module_sha256": "046a4152d5ba171a9a648247347eefe2065adf28efbf03c420b0edef81aebcfa",
+    "match": true,
+    "module_sha256": "9c1ea0d71da7271a09a8fe8adc1912ce2e89235ace5f750e95b4b0753d30b2c7",
+    "peer_body": "tls-d46b3ba27870d8ff",
+    "peer_request": "GET /pinned HTTP/1.1"
+  },
+  "js_layer": {
+    "diagnosis": "NeckoPythonPath resolves <site>/ruyijs/_runtime/vendor/necko-derived/python/bin/python3; the reconstructed install did not place the launcher there, so helper startup fails before connect",
+    "js_error": "TypeError: NetworkError when attempting to fetch resource.",
+    "net_log_error": "Necko worker startup failed",
+    "passed": false,
+    "peer_requests": []
+  },
+  "outcome": "framed_helper_https_passed__js_layer_https_still_blocked",
+  "schema": "ruyijs-linux-https-helper-r359.v1",
+  "scope": {
+    "blocked": [
+      "RuyiJS JS-layer fetch() over HTTPS: the installed layout still has no bundled-interpreter launcher, so the shell reports Necko worker startup failed before any socket is opened"
+    ],
+    "positive": [
+      "the helper package now dispatches https: through the pinned-NSS TLS module instead of the cleartext path",
+      "a real framed session request/response (RRT3) returned 200 with a peer-generated body over TLS 1.3"
+    ]
+  }
+}
