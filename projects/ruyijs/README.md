@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**传统链校验可用（R375）：PKIX 不可用，但 NSS 的旧校验器能完成到 CA 的链校验，并发现一个真实缺陷。** [回执](../../artifacts/receipts/ruyijs-linux-chain-legacy-r375/validation.json)
+
+- 换用 `CERT_VerifyCertNow`（本构建导出）+ `CERT_ImportCerts` 将锚点导入临时库并标记可信，成功完成叶子→CA 的路径与签名校验。
+- **发现并修复的缺陷：** 锚点导入时未检查 `basicConstraints`，一张自签名**终端证书**会被当成可信根，并因此接受一张与之无关的叶子。修复后每个锚点过 `CERT_IsCADERCert`，非 CA 锚点返回 912。
+- 四个用例：正确链（localhost / 127.0.0.1）通过；主机名不符返回 6；非 CA 锚点返回 912；叶子不带 CA 时仍能靠库内锚点验证通过。
+- **仍未接线**：这是独立工具，尚未接进适配层或 JS 路径；OCSP/CRL 吊销仍不可用。所以"链校验可用"不等于产品已具备到根信任。
+
 **到根证书链校验（R374）：尝试了，但固定 NSS 构建不提供 PKIX 引擎——如实记录为未完成。** [回执](../../artifacts/receipts/ruyijs-linux-chain-r374/validation.json)
 
 - 目标：补上一直缺的 RFC 5280 路径校验，用 NSS 自己的引擎而非手写 ASN.1。

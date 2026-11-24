@@ -1,0 +1,51 @@
+{
+  "anchor_lookup_without_peer_ca": {
+    "err": "",
+    "rc": 0
+  },
+  "background": "the pinned NSS build has no PKIX implementation, so CERT_PKIXVerifyCert returns PR_NOT_IMPLEMENTED. The legacy verifier CERT_VerifyCertNow is exported and was used instead.",
+  "cases": {
+    "good_chain_ip": {
+      "err": "",
+      "rc": 0
+    },
+    "good_chain_localhost": {
+      "err": "",
+      "rc": 0
+    },
+    "non_ca_anchor": {
+      "err": "Unknown code ___P 12",
+      "rc": 912
+    },
+    "wrong_host": {
+      "err": "Unknown code ___P 12",
+      "rc": 6
+    }
+  },
+  "checked_at": "2026-11-24T17:47:02+0800",
+  "defect_found_and_fixed": {
+    "description": "anchors were imported and trusted without checking basicConstraints, so a self-signed end-entity certificate acted as a trust root and accepted an unrelated leaf",
+    "evidence_before_fix": {
+      "unrelated_anchor_rc": 0
+    },
+    "fix": "CERT_IsCADERCert gates every anchor; a non-CA anchor is refused with code 912"
+  },
+  "host": {
+    "containers": 116,
+    "name": "host185",
+    "oom": 0
+  },
+  "limits": [
+    "standalone verification tool, not yet wired into the adapter or the JS path",
+    "revocation (OCSP/CRL) is not checked because that engine is also absent",
+    "the temporary NSS database lives in the container tmpfs and is discarded"
+  ],
+  "outcome": "chain_to_ca_verified_via_the_legacy_nss_verifier__pkix_remains_unavailable",
+  "schema": "ruyijs-linux-chain-legacy-r375.v1",
+  "tool": {
+    "sha256": "b611f664fdf157eefd9b9e8fb663482f4233ebd218972326e604c81e57cef5f9",
+    "so_bytes": 16528,
+    "so_sha256": "6a5fdf9b75702ac19ed11a45385e957453170279669ef82161e4cf7be8de6a84",
+    "source": "deliverables/linux-ruyijs-tls-r358/chain/chain_verify.c"
+  }
+}
