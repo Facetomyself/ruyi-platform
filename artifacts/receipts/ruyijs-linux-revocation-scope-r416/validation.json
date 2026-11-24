@@ -1,0 +1,33 @@
+{
+  "a_trap_avoided": "the first attempt to read these headers returned nothing because dist/include/nss holds symlinks into /build/... that dangle; the survey was redone against security/nss/lib, the same resolution used for brotli and for R358",
+  "checked_at": "2026-11-25T02:45:00+08:00",
+  "consequence": "OCSP is the only revocation mechanism reachable from this adapter without rebuilding NSS with changed visibility",
+  "not_done": "nothing was wired; no OCSP responder was contacted; no revocation state was enforced; the online responder requirement makes this a larger piece of work than a decode path",
+  "outcome": "ocsp_is_exported_and_crl_is_not_which_sets_the_shape_of_any_revocation_work",
+  "schema": "ruyijs-linux-revocation-scope-r416.v1",
+  "still_open": [
+    "OCSP enforcement",
+    "CRL enforcement (not linkable)",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "what_the_pinned_nss_offers": {
+    "crl_symbols_in_the_library": 30,
+    "declared_but_not_exported": [
+      "CERT_CheckCRL"
+    ],
+    "exported_and_usable": [
+      "CERT_CheckOCSPStatus",
+      "CERT_VerifyCertNow"
+    ],
+    "headers_present": [
+      "ocsp.h",
+      "ocspt.h"
+    ],
+    "ocsp_symbols_in_the_library": 36
+  },
+  "why_the_last_row_matters": "a symbol can appear in the headers and still be absent from the dynamic export table; CERT_CheckCRL is declared in cert.h but nm finds no definition in libnss3.so, so a CRL check cannot be linked against this build"
+}

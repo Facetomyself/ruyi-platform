@@ -84,6 +84,14 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**吊销机制可行性（R416）：OCSP 可用，CRL 不可链接。** [回执](../../artifacts/receipts/ruyijs-linux-revocation-scope-r416/validation.json)
+
+- 固定 NSS 里有 36 个 OCSP 符号、30 个 CRL 符号，`ocsp.h`/`ocspt.h` 都在。
+- **但导出表里只有 `CERT_CheckOCSPStatus` 与 `CERT_VerifyCertNow`；`CERT_CheckCRL` 在 `cert.h` 中声明却未导出**——头文件有声明不等于能链接。
+- 结论：任何吊销工作只能走 OCSP；CRL 需要改 NSS 可见性重编，不在本适配范围内。
+- **一处弯路**：首次查这些头文件返回空，因为 `dist/include/nss` 全是悬空符号链接；改查 `security/nss/lib` 才拿到结果（与 brotli 及 R358 同一解法）。
+- **本轮未接入**：没有联系任何 OCSP 响应器，没有实施吊销判定。
+
 **链路层炸弹测试（R415）：真实 TLS 连接下同样被拒。** [回执](../../artifacts/receipts/ruyijs-linux-bomb-e2e-r415/validation.json)
 
 - R414 只直接调了解码函数；本轮让**真实 TLS 服务端发送炸弹**，且只在客户端声明对应编码时才发。
