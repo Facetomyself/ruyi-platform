@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 往返第三次尝试（R402）：阻塞归因于链路，不是测试或库。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r402/validation.json)
+
+- **再次修正 R401**：我说"宿主机缺 `/usr/bin/sh`"，**这是错的**。实测宿主机 `/bin/bash`、`/bin/sh`、`/usr/bin/bash` 都在；镜像内 `/bin/bash` 0755、`/bin/sh -> dash`。两侧都不缺 shell。
+- 真实阻塞：短命令 12/20 可达，但容器编译运行需要持续数十秒以上，**每次都中途断开**。这是链路时长限制，不是测试缺陷，也不是库的问题。
+- `libbrotlidec.so` 仍只被证明能链接，**未证明能解码**。
+- 待链路可用时，存的 runner 命令可直接执行，无需重建。
+
 **brotli 往返第二次尝试（R401）：仍未跑通，但错误来源已重新定位。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r401/validation.json)
 
 - **已排除（实测）**：镜像有 `/bin/sh -> dash`、`/bin/bash`、`/bin/dash`（均 0755）；容器内 `which clang-21` 返回 `/usr/bin/clang-21`；单独 bind mount、`--user 1000:1000`、`--cap-drop ALL` 配合 `sh -c` 均正常。

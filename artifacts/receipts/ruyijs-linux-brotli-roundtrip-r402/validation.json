@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-25T00:18:00+08:00",
+  "corrects_r401": "R401 said the exec error came from a missing host /usr/bin/sh. That was wrong: the host has /bin/bash, /bin/sh and /usr/bin/bash, and the image has /bin/bash plus /bin/sh -> dash. Neither side is missing a shell.",
+  "measured": {
+    "host_shells": "/bin/bash, /bin/sh, /usr/bin/bash all present",
+    "image_shells": "/bin/bash 0755 and /bin/sh -> dash",
+    "long_command_reachability": "every docker invocation either timed out or lost the connection before returning output",
+    "short_command_reachability": "12 of 20 attempts"
+  },
+  "next_step": "run the kept inline command when the link can sustain it; no reconstruction is needed",
+  "not_established": "the brotli decode round trip; libbrotlidec.so remains proven to link only",
+  "outcome": "the_host_has_a_usable_shell_and_the_decode_test_could_not_be_run_because_the_link_cannot_hold_a_long_command",
+  "prepared_state": {
+    "library": "libbrotlidec.so 187456 bytes on the host at br-out/",
+    "runner": "one inline docker command kept in the receipt directory",
+    "test": "br_roundtrip.c with an independently produced 44-byte brotli payload embedded"
+  },
+  "real_blocker": "the link to host185 holds for trivial commands but not for the minutes a container build and run needs, so the decode test cannot complete; this is an infrastructure limit, not a defect in the test or the library",
+  "schema": "ruyijs-linux-brotli-roundtrip-r402.v1",
+  "still_open": [
+    "brotli decode round trip",
+    "brotli wiring and packaging",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}

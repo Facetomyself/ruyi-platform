@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T23:58:00+08:00'
+generated_at: '2026-11-25T00:18:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R401_brotli_roundtrip_still_open__R400_brotli_roundtrip_blocked__R399_brotli_build
+    tests: R402_brotli_blocker_classified__R401_brotli_roundtrip_still_open__R399_brotli_build
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,16 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_brotli_roundtrip_r402:
+            terminal: the_host_has_a_usable_shell_and_the_decode_test_could_not_be_run_because_the_link_cannot_hold_a_long_command
+            corrects_r401: host_shell_was_never_missing
+            short_command_reachability: 12/20
+            decode_proven: false
+            blocker_class: infrastructure_link_duration_not_product
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-brotli-roundtrip-3.json
+            evidence_sha256: 47283583de284d31d2b83be6fdafeb6b586dcc60553b58c6ea4ed23cd2b4698a
+            repository_receipt: artifacts/receipts/ruyijs-linux-brotli-roundtrip-r402/validation.json
+            excluded: [brotli_decode_proven, brotli_wiring, zstd_decoding, ocsp_crl_revocation, quic_http3]
           private_brotli_roundtrip_r401:
             terminal: still_not_established_but_the_error_source_was_relocated
             decode_proven: false
