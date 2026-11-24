@@ -11,9 +11,9 @@
 | **Trace owner + 借用客户端** | owner 创建并持有唯一 BiDi session，发布权限受限的描述文件和回环 IPC；MCP 取租约并通过 owner 转发页面操作，可单独连接回环 RDP。恢复/断开调试和释放租约后，由 owner 执行生产采集的 flush 与封存。借用态的 `ruyi_browser_quit` 走释放分支，保留 owner 的 Firefox。[借用工具](../../submodules/ruyi-mcp/src/tools/borrowed-session.ts) · [关闭路径](../../submodules/ruyi-mcp/src/ruyi-context.ts) | Trace 独立分支 `handoff/owner-arm64-fixture-20261124` 的 `b4ba3a8` 已有审计后的 ARM64 Firefox fixture：用配套 MCP stage-1 借用客户端验过状态、租约排他和释放重取、进程丢失；租约活跃时由固定测试页触发的基础 DOM ON/OFF 有记录。此分支与平台默认 Trace pin 分开；fixture 只实现状态/获取/释放，`rdp: null`，未验证 Electron 发布 descriptor、MCP 转发页面动作、RDP 暂停恢复或生产 flush。独立分支说明见 `docs/trace-arm64-fixture-owner.md`。 |
 | **RuyiHttp / RuyiJS** | 用同一合成输入分别做 HTTP 和 JS/DOM 对照，各自运行、各自记录版本和结果。 | 两者均为并行参考，MCP 启动和借用的验收无需引入其原生库或 JS 壳。[平台状态](../../STATUS.yaml) |
 
-### 待集成的无头 CLI
+### 已验收的无头 CLI，MCP 集成仍单列
 
-Trace 私有仓的[管理 CLI 候选](https://github.com/Facetomyself/ruyitrace/tree/1452154c64437b00494c005cbd54a5003c77def3)与 Electron 并列；它不是另一个 MCP 服务，也未加入 R5 内核。2026-11-24 从 GitHub 的干净副本依锁构建出 77 个应用文件、6 个 renderer 路由和可执行的 `bin/ruyitrace`。CLI 与组装各有 8 项通过；有真实页面动作的生产生命周期尚待签收。先验证 `run --gate auto` 是否在同一 marker 上重复开闸，再接生产 owner/租约并跑 M2。构建复现见[源码交接](../../docs/14-source-handoff.md)。
+Trace 主线的[独立 Linux CLI](../../submodules/ruyitrace/console/cli/README.md) 与 Electron 并列，使用同一 R5 amd64 浏览器进行过真实两轮开关、活进程停止与异常摘要采集。`run --gate auto` 的重复开闸已修复并纳入回归；MCP 正式跨进程租约、RDP 与生产 flush 仍是独立的 M2 门禁。CLI 单独交付，R5 浏览器冻结输入不变。构建复现见[源码交接](../../docs/14-source-handoff.md)。
 
 ## 各项目的本地构建与测试入口
 

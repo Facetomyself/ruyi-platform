@@ -6,7 +6,7 @@
 
 ## 是什么
 
-定制 Firefox 159（domtrace 插桩）+ Electron 控制台。用于跑 domtrace 探针、分析抓取结果。
+定制 Firefox 159（domtrace 插桩）+ Linux CLI，可选 Electron 控制台。用于采集和分析 DOM、点击与脱敏摘要。Linux 命令行开发从 [CLI 手册](../../submodules/ruyitrace/console/cli/README.md) 开始；重建内核看[跨机器构建](../../submodules/ruyitrace/docs/linux-build-from-source.md)。
 
 同一 Firefox 会话的 MCP 接入见 [ruyi-mcp 与组件边界](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。
 

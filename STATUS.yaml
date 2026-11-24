@@ -1386,17 +1386,20 @@ projects:
     repo: Facetomyself/ruyitrace
     submodule: submodules/ruyitrace
     source:
-      console: maintained and built
+      cli: standalone Linux build from the locked Node dependencies
+      console: optional maintained Electron application
       domtrace: reconstructed Linux subset; original Win64 sources unavailable
     build:
       win_amd64: released
-      linux: 'audited x86_64 Firefox 159 and amd64 portable console verified for DOM/click, two gate sessions and ungated Storage; native Ozone headless capture plus unmodified Xvfb and Weston launch'
-    tests: '117 Linux Python tests; 23 console integration tests plus window first-paint and compositor witness coverage'
-    phase: Linux scoped runtime handoff; amd64 headless R5 and earlier ARM64 desktop qualified separately; management integration pending
+      linux: 'audited Linux headless amd64 R5 plus earlier separate amd64/ARM64 desktop qualifications'
+    tests: 'clean GitHub checkout: 176 Python passed; Node 37 passed/3 skipped; native C++/Node contract stage 22 Node passed'
+    phase: standalone CLI validated against native amd64 R5; production MCP and RDP integration remain separate
     release_source_lock: artifacts/receipts/trace-amd64-r5/source-lock.json
+    cli_native_receipt: artifacts/receipts/trace-amd64-r5/cli-native-amd64.json
+    cross_machine_build: submodules/ruyitrace/docs/linux-build-from-source.md
     blocked_by: []
     remaining:
-    - Linux browser producer coverage beyond verified DOM, click and explicit Web Storage summaries
+    - Linux browser producer coverage beyond verified DOM, click, explicit Web Storage and amd64 window-script-error summaries
     - ARM64 instrumented Firefox and virtual X11/Wayland baseline verified; physical display, wider producers, and production management integration remain distinct
     verified:
       kernel_hashes: pass
@@ -1975,14 +1978,14 @@ submodules:
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: 94bfed6a7cb22dcbdc9c930cc60b92bf2b8a05d1
+    commit: 13fd24bf77f1a81cc12af3939049e72f04138d53
     state: added
 docs_health:
-  total_markdown: 43
-  total_cpp_files: 51
-  total_scripts: 15
-  reproduce_manual: REPRODUCE.md (逐条实测)
-  last_full_verification: verify-pins 八节 + 19 项 domtrace 测试 + 19 项 ruyihttp 测试 全绿（2026-11-20 复测）
+  total_markdown: 45
+  total_cpp_files: 62
+  total_scripts: 17
+  reproduce_manual: REPRODUCE.md
+  last_full_verification: '2026-11-24: verify-pins passed; Trace clean GitHub checkout and standalone CLI inventory verified separately'
 tooling:
   scripts:
     domtrace-anchors.py: xul.dll 74 开关锚点提取

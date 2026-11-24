@@ -120,5 +120,31 @@ echo "== 6. Trace amd64 R5 发行身份 =="
 python3 -B scripts/verify-trace-release.py || fail=1
 
 echo
+echo "== 7. Trace CLI 实机证据对应源码 =="
+python3 -B - <<'PY' || fail=1
+from pathlib import Path, PurePosixPath
+import hashlib, json, subprocess
+import yaml
+
+root = Path('submodules/ruyitrace').resolve(strict=True)
+paths = yaml.safe_load(Path('STATUS.yaml').read_text())['projects']['ruyitrace']
+receipt = json.loads(Path(paths['cli_native_receipt']).read_bytes())
+r5 = json.loads(Path('artifacts/receipts/trace-amd64-r5/docker-save-readback.json').read_bytes())
+assert receipt['passed'] is True and receipt['scope'] == 'linux-amd64-cli-native-smoke'
+assert receipt['runtime_image_id'] == r5['local_image_id']
+assert receipt['gate'] == {'sessions': [1, 2], 'paused_markers': 0, 'live_stop_verified': True}
+assert receipt['exception'] == {'rows': 1, 'metadata_only': True}
+files = receipt['runtime_modules_sha256']
+assert len(files) == 14
+subprocess.run(['git', '-C', root, 'merge-base', '--is-ancestor', receipt['source_commit'], 'HEAD'], check=True)
+for name, expected in files.items():
+    rel = PurePosixPath(name)
+    assert rel.parts[0] == 'console' and '..' not in rel.parts and rel.suffix in ('.cjs', '.mjs'), name
+    file = root / name
+    assert file.resolve(strict=True) == file and hashlib.sha256(file.read_bytes()).hexdigest() == expected, name
+print(f"PASS  Trace native CLI witness matches {len(files)} runtime modules and the R5 image")
+PY
+
+echo
 if [ "$fail" -eq 0 ]; then echo "全部通过"; else echo "有失败项"; fi
 exit "$fail"

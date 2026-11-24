@@ -261,4 +261,4 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 
 ## 10. 2026-11-24 交接：开发基线与发行源码分开
 
-四个组件的开发 pin 以 `git ls-tree HEAD:submodules` 为准；[状态账本](STATUS.yaml) 的 `submodules.*.commit` 是同一组完整 SHA。旧账本中的 HTTP `b4cc7b2`、JS `8c87251`、Trace `27438fc` 是历史短引用，不是此次交接的 gitlink。amd64 R5 使用独立的 [Trace 源码锁和输入文件清单](artifacts/receipts/trace-amd64-r5/source-lock.json)，并不修改开发 gitlink 来追发布标签。发行、管理候选、Win64 离线工具的完整提交与检出方式见[使用指南](docs/14-source-handoff.md)。
+四个组件的开发 pin 以 `git ls-tree HEAD:submodules` 为准；[状态账本](STATUS.yaml) 的 `submodules.*.commit` 是同一组完整 SHA。Trace 开发 pin 包含已验收的独立 CLI；历史 amd64 R5 仍使用独立的 [源码锁](artifacts/receipts/trace-amd64-r5/source-lock.json) 与原标签。发行、CLI、Win64 离线工具的完整提交与检出方式见[使用指南](docs/14-source-handoff.md)。

@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **684 个 commit**（platform 226 / ruyitrace 88 / ruyihttp 8 / ruyijs 303 / ruyi-mcp 59）。
+五个仓库共 **710 个 commit**（platform 227 / ruyitrace 113 / ruyihttp 8 / ruyijs 303 / ruyi-mcp 59）。
 
 ---
 
@@ -153,7 +153,7 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 | --- | ---: |
 | 五个仓库 commit | 672 |
 | 文档 | 45 篇（含本文）|
-| C++ 文件 | 61 |
+| C++ 文件 | 62 |
 | 校验脚本 | 17 |
 | domtrace 测试 | 20 项 |
 | ruyihttp 测试 | 19 项 |

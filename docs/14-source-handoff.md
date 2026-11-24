@@ -1,13 +1,14 @@
 # 其他项目如何使用 Ruyi Platform（2026-11-24 交接）
 
-**Trace 的 Linux 运行时按已验收范围收尾，常规工作转向管理面。** 对于新项目，“拉取平台”“复建发行浏览器”“开发控制台”是三种不同操作；平台默认 Trace gitlink 并非最新 amd64 无头包的构建输入。
+**Trace 的独立 Linux CLI 已纳入主线。** 平台固定的是可继续开发的 Trace 源码；复现已发布的 amd64 无头 R5 原始内核输入仍使用独立标签。先选择目标：构建 CLI、重建 Firefox，或组装可选的 Electron 桌面。
 
 ## 选择交付物
 
 | 需求 | 使用什么 | 已有证据与边界 |
 | --- | --- | --- |
 | 自有页面的浏览器采集 | Trace amd64 **R5 无头运行时** | 原生完整构建、Rust 归档审计、打包、镜像保存后本机重新加载并运行两档 QA；覆盖 DOM、click、脱敏 Storage、双会话及显式 script-error 档。它不是 Electron、MCP 服务或任意 producer 的保证。 |
-| 桌面配置和日志预览 | Trace 默认源码中的 Electron + **对应架构**的合格内核 | 较早的 x86_64 和 ARM64 各有独立实包及虚拟 X11/Wayland 验收，[详情](13-ruyitrace-progress.md)。物理显示、更广 producer 和所有 Win64 行为的等价性另验。 |
+| Linux 命令行采集 | [独立 CLI](../submodules/ruyitrace/console/cli/README.md) + 合格内核 | 与 R5 同一 amd64 实包验过双会话开关、活进程停止、异常摘要一条；[实机回执](../artifacts/receipts/trace-amd64-r5/cli-native-amd64.json)。 |
+| 桌面配置和日志预览 | Trace 的可选 Electron + **对应架构**的合格内核 | 较早的 x86_64 和 ARM64 各有独立实包及虚拟 X11/Wayland 验收，[详情](13-ruyitrace-progress.md)。物理显示、更广 producer 和所有 Win64 行为的等价性另验。 |
 | 校验旧版 Win64 产物 / 读取离线统计 | Trace **Win64 离线交接分支**，见下表 | 静态原件证据与合成测试，不是 Win64 私有 Firefox 的完整源树，也不是 Linux 实采证明。业务项目宜依赖有版本的输出 schema，避免把推断地址当成稳定 ABI。 |
 | HTTP 客户端 | [RuyiHttp](../projects/ruyihttp/README.md)：Python API、wheel 构建与已入库原生库 | 三平台既有库可重打包；Linux amd64 在 glibc 2.39 上通过 HTTPS/TLS 1.3/h2。Linux ARM64、macOS x86_64 新原生库及 H3/代理联验独立；重打 wheel 不等于从 C++/Rust 重建底层库。 |
 | JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | Linux 客户端、donor 与若干部件已有验收。以本交接基线 `ab060a5` 所对应 R344 回执为准，产品链接仍失败，未形成合格的内部 Linux `dist/js`/wheel。pixman 仍在编译阶段受阻于 include 形状，且该修复不等于下一次整链已过。 |
@@ -18,20 +19,20 @@
 平台（private）负责四个 gitlink，代码在各组件仓。[.gitmodules](../.gitmodules) 定义来源，[STATUS.yaml](../STATUS.yaml) 记录状态。下游可将平台交接标签解析为提交，写入自己的依赖锁；已有子模块的仓库勿用 `git submodule update --remote` 替代固定提交。需要私有仓读取权限，凭据由使用方的 Git 客户端管理。
 
 ```bash
-git clone --branch handoff/platform-source-20261124 --recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
+git clone --branch main --recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
 git rev-parse HEAD
 git ls-tree HEAD:submodules
 bash scripts/verify-pins.sh  # Python 3 + PyYAML；使用已入库的开关清单或本地重新生成的清单
 ```
 
-Trace 特定交付位于同一个[私有源码仓](https://github.com/Facetomyself/ruyitrace)。保留原始提交身份：正式源码用标签，候选用独立分支，均与产品默认主线分开。构建请用新的工作目录。
+Trace 特定交付位于同一个[私有源码仓](https://github.com/Facetomyself/ruyitrace)。`main` 是 CLI 与构建工具的维护入口；R5 复现标签、早期 CLI 候选及独立证据分支保留原样。构建请用新的工作目录。
 
 | 用途 | GitHub 引用 | 固定提交 / 用法 |
 | --- | --- | --- |
 | amd64 无头 R5 的冻结源码 | `source/amd64-headless-r5-20261124`（tag） | [ccc0ffa](https://github.com/Facetomyself/ruyitrace/tree/ccc0ffa1e65c291aa6cbdd68648f587eed6c0de9)，可重新导出验收时的原始输入 tar |
 | R5 导出工具 | `handoff/oci-export-20261124` | [2cfa904](https://github.com/Facetomyself/ruyitrace/tree/2cfa904741da1ba07d0d31175c8124b5b2afd6f6)，用于传输验证，独立于内核输入 |
-| 管理 CLI 及应用组装候选 | `handoff/management-cli-20261124` | [1452154](https://github.com/Facetomyself/ruyitrace/tree/1452154c64437b00494c005cbd54a5003c77def3)，CLI/组装各 8 项合成测试；干净构建 6 个 renderer 路由、77 个应用文件，含可执行 `bin/ruyitrace`，不含 Electron/Firefox |
+| 日常开发、独立 Linux CLI 和当前构建工具 | `main`；平台 gitlink 固定开发版本 | [13fd24b](https://github.com/Facetomyself/ruyitrace/tree/13fd24bf77f1a81cc12af3939049e72f04138d53)，从 GitHub 拉取后依锁重建了 38 个 CLI 文件，执行 Linux 契约回归；旧 `handoff/management-cli-20261124` 仅为历史候选 |
 | ARM64 owner 受控 fixture | `handoff/owner-arm64-fixture-20261124` | [b4ba3a8](https://github.com/Facetomyself/ruyitrace/tree/b4ba3a876479f4fcfc68428051f2a1d9c5f78d31)，生命周期与基础 DOM 对照；不是生产管理面 |
 | Win64 离线分析和测试 | `handoff/win64-offline-20261124` | [c3e0937 交接说明](https://github.com/Facetomyself/ruyitrace/blob/c3e0937cc455fac6b45f2725185dc5735e927785/docs/win64-offline-handoff.md)；115 份静态回执。检出后运行 `python3 -B tools/win64_offline_verify.py --tests`；原 DLL、随包 JS 和真实采集不随交接增量提交 |
 
@@ -53,9 +54,9 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 ## 真正重建时还需要什么
 
-- **内核**：R5 标签提供 `domtrace/`、补丁与 `tests/linux/run_audited_build.sh`，不是整棵 Firefox 源树。另备官方 Firefox `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、原生 amd64 Linux、足够空间、Clang 19、Rust 1.100.0、cbindgen 0.29.4、已校验的 WASI sysroot 与独立 objdir。以标签内[构建脚本](https://github.com/Facetomyself/ruyitrace/blob/ccc0ffa1e65c291aa6cbdd68648f587eed6c0de9/tests/linux/run_audited_build.sh)为准；R5 使用 `RUYITRACE_AMD64_WINDOW_ERROR_RELEASE=1` 并保留原版 Rust 网络归档审计，再打包验收。脚本会采样构建时间，本交接证明**输入可还原**，不承诺下一次 Firefox 二进制逐字节一致。
-- **镜像**：取同一包和 runtime receipt，按标签中的[离线 OCI 流程](https://github.com/Facetomyself/ruyitrace/blob/ccc0ffa1e65c291aa6cbdd68648f587eed6c0de9/tests/linux/headless-oci.md)组装、跑两档 QA；基底是已预装的 Ubuntu 24.04 本地镜像/config ID，不是可直接从注册表拉取的 manifest digest。
-- **管理应用**：在上述 CLI 候选的独立副本，Node ≥22.12；`npm --prefix console/tooling ci --ignore-scripts --no-audit --no-fund`，再 `node console/tooling/build-linux.mjs /absolute/new/app`。完整桌面发行还需匹配架构的 Electron 45.4.1 ZIP、审计内核与资格回执。`run --gate auto` 的重复开闸嫌疑及真实 CLI 会话验收是待办；已有应用构建和 stub 测试不代替这一步。
+- **CLI**：在 Trace 根目录运行 `bash tests/linux/check_developer_checkout.sh`（Node ≥22.12、npm、Python ≥3.10、C++17）。独立交付用 `node console/tooling/build-cli.mjs /absolute/new/cli`；运行时需要目标机器的 Linux Node 和独立 Trace Firefox。Electron 应用仍可用 `node console/tooling/build-linux.mjs /absolute/new/app` 构建。本轮从 GitHub 干净检出跑通检查；新增的 [GitHub Actions 运行](https://github.com/Facetomyself/ruyitrace/actions/runs/45310452143) 因账户计费限制未启动 runner，不能视为 CI 通过。
+- **Firefox 内核**：按[跨机器构建手册](../submodules/ruyitrace/docs/linux-build-from-source.md)准备官方 Firefox `9a2dc53c369c7ae5172018b35988e1d2ffeff402`、Clang 19.1.1、Rust 1.100.0、cbindgen 0.29.4、固定 WASI sysroot 与独立 objdir。主线包含可执行的洁净构建、原版 Rust 归档审计、打包及两档页面验收流程；R5 标签仅用于重现历史输入。重新编译会生成新的 BuildID，并须进行新包验收。
+- **镜像**：取同一审计包和 runtime receipt，按[主线离线 Docker 流程](../submodules/ruyitrace/tests/linux/headless-oci.md)组装、跑两档 QA。已验收镜像可以 `docker load`，无需源码编译；同一检查脚本需要其固定 Ubuntu 24.04 本地基底 config ID。
 
 ## 以后如何维护
 

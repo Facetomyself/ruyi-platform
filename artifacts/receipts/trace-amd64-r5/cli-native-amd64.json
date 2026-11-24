@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "scope": "linux-amd64-cli-native-smoke",
+  "source_commit": "13fd24bf77f1a81cc12af3939049e72f04138d53",
+  "runtime_modules_sha256": {
+    "console/cli/config.mjs": "c67ca2a1b33d3a477dbc582a973e0c6cf2f5e452394095b5906779106a079b1e",
+    "console/cli/errors.mjs": "241c99c74a63ff4908c8049362c8b5813e932c4e70781c0422874f4cbc7719e2",
+    "console/cli/gate.mjs": "3cf57ae13d5813087c1b5b4754bcbec52768dbeee0b570e3f9ed3fc7f3b31db6",
+    "console/cli/launch.mjs": "02e25112c1d88d7eea6ded66af0ef4f180b97cc4fb7545662f5c4a012578f93e",
+    "console/cli/owner.mjs": "3413df05863d58cf0d178e90b85c48107505bb2e6afb75054d0c3304eccd4c60",
+    "console/cli/paths.mjs": "6eaafdb8d60e66a89a7709295bcfa8d613f8103e7f00c64f93432fba9e1310c9",
+    "console/cli/qualification.mjs": "2b29ac27f89f7173d4b2df881cef1e7b8fc3775c3a2cc9fd7d8b5697733eb5c9",
+    "console/cli/ruyitrace.mjs": "ff4bebf00f59c3728d15364052b25951567c9cf04f8132ed1d2a362fe2790439",
+    "console/cli/state.mjs": "c052b52e63783cecebc0227446cc0b99e2a2df1ae73e8d2f941bfe26862eb947",
+    "console/cli/status.mjs": "2299cbac6d306cfec63a2d5c4fbb3146e5479898289cae80c583bbbe92e7485c",
+    "console/main/gate-qualification.cjs": "5c4635d69c9bcfc86d5cd86886577e3931a4f6e14d778d16c9523cdf76573608",
+    "console/main/kernel-layout.cjs": "57c20c58008caff805c0e5fc1fac9a795ce0d31911384ab36e83dc7fcc9ab5da",
+    "console/main/linux-gate.cjs": "0691252b02f1d615ed7d6263fa5905ba38aebb0bed7a57913d875a9391f35528",
+    "console/shared/firefox-environment.cjs": "cfad644195750e013d694e644a188ccfc65ee980ab6309487e9d34690df1892a"
+  },
+  "original_runtime_evidence_sha256": "a9d83869ae7a51fa1c3ba31d548a0deb792042b74d0520a9fc64d13a3193e887",
+  "runtime_image_id": "sha256:4703f111fffe49a9c3f851fad023b07febdfdb0cebc58776751ebd44d4d9a88d",
+  "node": "v22.14.0",
+  "isolation": {
+    "machine": "x86_64",
+    "uid": 1000,
+    "gid": 1000,
+    "interfaces": [
+      "lo"
+    ],
+    "seccomp": 2,
+    "no_new_privs": 1,
+    "capabilities": {
+      "CapEff": 0,
+      "CapBnd": 0,
+      "CapPrm": 0,
+      "CapInh": 0
+    },
+    "read_only_root": true
+  },
+  "gate": {
+    "sessions": [
+      1,
+      2
+    ],
+    "paused_markers": 0,
+    "live_stop_verified": true
+  },
+  "exception": {
+    "rows": 1,
+    "metadata_only": true
+  },
+  "passed": true
+}
