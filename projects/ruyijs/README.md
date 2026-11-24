@@ -84,6 +84,15 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**ALPN 守卫覆盖（R396）：h2 拒绝逻辑原本没有任何测试。** [回执](../../artifacts/receipts/ruyijs-linux-alpn-coverage-r396/validation.json)
+
+- 缺口：`exchange()` 里"对端选了 h2 就拒绝"的分支代码存在，但**没有任何测试碰到它**。改动可接受协议列表不会有任何信号。
+- 改法：把判定抽成纯函数 `_accepted_alpn()`，`exchange()` 在构造请求行**之前**调用它，拒绝时不写入任何字节。
+- 单元测试 4 个：空 ALPN 与 `http/1.1` 接受；`h2` 拒绝且措辞含 "HTTP/1.1 only"；`spdy/3.1`/`h3`/`acme-tls/1` 拒绝。另加顺序断言：守卫索引必须早于请求行构造。
+- 端到端测试 1 个：对端选 h2 时被拒，且对端记录 **0 个 HTTP 请求**。
+- **变异验证**：把 `h2` 加入可接受列表 → 单元测试立即失败。
+- **未执行**：该端到端用例需要 x86-64 NSS 工具链，本轮主机链路不可用，只做了跳过验证。
+
 **端到端握手测试（R394）：`ci/test_linux_tls_handshake.py` 三个用例在主机上全部通过，并抓到一个真实产品缺陷。** [回执](../../artifacts/receipts/ruyijs-linux-e2e-tests-r394/validation.json)
 
 - **缺陷**：`exchange()` 接受调用方传入的 `adapter`，但 ABI 声明只写在 `load_adapter()` 里。外部传入的库没被声明，ctypes 把 `necko_tls_alpn` 的返回值当 `int`，`.decode()` 直接失败。

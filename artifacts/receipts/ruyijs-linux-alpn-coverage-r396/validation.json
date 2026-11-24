@@ -1,0 +1,42 @@
+{
+  "change": {
+    "extracted": "_accepted_alpn(alpn) is now a pure function that decides which protocol this helper will speak",
+    "wired": "exchange() calls it before building the request line, so nothing is written on refusal"
+  },
+  "checked_at": "2026-11-24T22:45:00+08:00",
+  "coverage": {
+    "handshake_case": "a peer selecting h2 is refused and the peer records zero HTTP requests",
+    "handshake_tests": 1,
+    "ordering_assertion": "the guard index must precede the request-line construction",
+    "unit_cases": [
+      "empty ALPN accepted",
+      "http/1.1 accepted",
+      "h2 refused with HTTP/1.1-only wording",
+      "spdy/3.1, h3 and acme-tls/1 refused"
+    ],
+    "unit_tests": 4
+  },
+  "gap_found": "the h2 refusal existed in exchange() but no test touched it, so a change to the accepted ALPN list would have gone unnoticed",
+  "mutation_check": {
+    "injection": "adding h2 to the accepted list",
+    "result": "one unit test fails, confirming the coverage bites"
+  },
+  "not_done": "the h2 handshake test needs the x86-64 NSS toolkit, so it skips here; it was not executed against a live peer this round because the host link was unavailable",
+  "outcome": "the_alpn_guard_is_now_extracted_and_covered_by_unit_and_handshake_tests",
+  "schema": "ruyijs-linux-alpn-coverage-r396.v1",
+  "source_commit": "70747a117de401f9111453ff2f970c46fe772e1b",
+  "still_open": [
+    "running the new h2 handshake test on a host",
+    "brotli/zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "totals": {
+    "handshake_tests": 4,
+    "offline_tests": 23
+  }
+}

@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T22:30:00+08:00'
+generated_at: '2026-11-24T22:45:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R395_ledger_audit__R393_wheel_with_abi_fix__R394_e2e_handshake_tests
+    tests: R396_alpn_coverage__R395_ledger_audit__R393_wheel_with_abi_fix
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,17 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_alpn_coverage_r396:
+            terminal: the_alpn_guard_is_now_extracted_and_covered_by_unit_and_handshake_tests
+            gap_found: h2_refusal_had_no_test
+            offline_tests: 23
+            handshake_tests: 4
+            mutation_check: adding_h2_to_accepted_list_fails_a_test
+            h2_handshake_test_executed: false
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-alpn-coverage.json
+            evidence_sha256: 7f669bb3887305524b3423878866ad2a86d5edf02817b731448e0f30a1d00715
+            repository_receipt: artifacts/receipts/ruyijs-linux-alpn-coverage-r396/validation.json
+            excluded: [h2_framing, brotli_zstd_decoding, ocsp_crl_revocation, quic_http3, arm64_product]
           private_ledger_audit_r395:
             terminal: four_stale_exclusions_removed_and_every_reference_validated
             entries_audited: 126
@@ -2492,7 +2503,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 4dc7121e6cefc6190997bd2730a84279d540c23f
+    commit: 70747a117de401f9111453ff2f970c46fe772e1b
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
