@@ -40,6 +40,8 @@ npm run check
 git diff --exit-code -- build
 ```
 
+本轮从 GitHub 干净检出构建了 [42 个独立 CLI 文件](../../artifacts/receipts/trace-amd64-r5/m2-cli-build.json)及 83 个 Electron 应用文件、6 条 renderer 路由。MCP [双架构 CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45313415350)全绿；Trace [托管检查](https://github.com/Facetomyself/ruyitrace/actions/runs/45315913318)因账户计费限制未启动 runner，Trace 源码门禁已在干净检出本机执行。
+
 独立 Trace CLI 可整体搬到新宿主，构建回执记录源码提交、输入洁净程度、依赖锁及逐文件 SHA-256。目标机器仍需 Linux Node 和**本机架构**的审计版 Firefox。要从 Firefox 源码重编，在新 objdir 中走 [Trace 内核构建手册](../../submodules/ruyitrace/docs/linux-build-from-source.md)；它与上面的 CLI/MCP 编译独立。R5 复现标签和归档校验命令见 [源码交接](../../docs/14-source-handoff.md#无需编译先验证-r5-源码确实可取)。
 
 ## 3. 执行真实同会话门禁
