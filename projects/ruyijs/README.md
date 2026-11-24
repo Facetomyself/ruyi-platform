@@ -78,6 +78,12 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**ALPN 守卫（R369）：修掉一个静默降级——对端选中 h2 时曾把 HTTP/1.1 请求行写进 h2 通道。** [回执](../../artifacts/receipts/ruyijs-linux-alpn-r369/validation.json)
+
+- 修复前：服务端 ALPN 选中 `h2`，客户端仍写出 `GET /alpn HTTP/1.1`，服务端按 HTTP/1.1 解析并回了 200，JS 看到"成功"——错误被完全掩盖。
+- 修复后：只在 ALPN 为空或 `http/1.1` 时发送 HTTP/1.1 请求；对端选中 `h2` 直接报 `peer selected h2; this helper implements HTTP/1.1 only`，服务端读到的是连接关闭、**0 个**请求。
+- 明确一点：ALPN 未协商时回退 HTTP/1.1 是 RFC 7301 的既定行为，不算降级；只有"已选中 h2 却退回去"才是问题。
+
 **重定向与 IP SAN（R368）：同源 HTTPS 重定向正常跟随，未固定的异地主机被拒。** [回执](../../artifacts/receipts/ruyijs-linux-redirect-r368/validation.json)
 
 - 正向：`302 → /final` 被跟随，`response.url` 更新为最终地址，body 与最终响应一致；服务端记录 `/start`、`/final` 两次请求，均经 TLS。

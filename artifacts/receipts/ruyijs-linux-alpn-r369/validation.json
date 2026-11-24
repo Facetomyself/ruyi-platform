@@ -1,0 +1,51 @@
+{
+  "after_fix": {
+    "h2_selected": {
+      "closed_without_request": true,
+      "error": "peer selected h2; this helper implements HTTP/1.1 only",
+      "peer_http_requests": []
+    },
+    "http11_offered": {
+      "alpn": "http/1.1",
+      "status": 200
+    },
+    "no_alpn": {
+      "alpn": null,
+      "note": "no ALPN selection is treated as HTTP/1.1 per RFC 7301 fallback; this is not a downgrade from a selected protocol",
+      "status": 200
+    }
+  },
+  "checked_at": "2026-11-24T17:27:44+0800",
+  "defect": {
+    "description": "when the peer selected h2 the helper still wrote an HTTP/1.1 request line into the h2 channel; the server read that as a broken HTTP/1.1 request and answered anyway, so the failure was invisible in the client result",
+    "evidence_before_fix": {
+      "js_status": 200,
+      "peer_handled": [
+        "GET /alpn HTTP/1.1"
+      ],
+      "server_selected_alpn": null
+    }
+  },
+  "host": {
+    "containers": 76,
+    "name": "host185",
+    "oom": 0
+  },
+  "outcome": "selected_h2_now_refused__no_selection_falls_back_to_http11",
+  "schema": "ruyijs-linux-alpn-r369.v1",
+  "still_open": [
+    "real HTTP/2 framing and multiplexing",
+    "RFC 5280 path validation",
+    "OCSP/CRL",
+    "external CA",
+    "QUIC"
+  ],
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5259001,
+      "name": "wheel.whl",
+      "sha256": "5474c5eabf0c44c178eb236fa72b97feeb0898ca28c49ff1e1428c2cd0785109"
+    }
+  }
+}
