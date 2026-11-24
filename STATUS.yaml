@@ -1,4 +1,4 @@
-generated_at: '2026-11-25T03:15:00+08:00'
+generated_at: '2026-11-25T03:25:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R420_ocsp_conclusion__R418_ocsp_attempt__R416_revocation_scope
+    tests: R421_chain_scope__R420_ocsp_conclusion__R418_ocsp_attempt
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1479,6 +1479,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_chain_scope_r421:
+            terminal: the_ocsp_failure_mode_is_confined_to_the_ocsp_path_and_the_plain_check_still_refuses
+            plain_chain: 0
+            wrong_host: 6
+            unrelated_anchor: 912
+            diagnostic_removed: true
+            guard_tests: 3
+            offline_tests: 33
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-chain-scope.json
+            evidence_sha256: 2103da781cb5e30fa2a247c43f0b010d12e83aaa936270564b8dcdb05b98c7f5
+            repository_receipt: artifacts/receipts/ruyijs-linux-chain-scope-r421/validation.json
+            excluded: [ocsp_enforcement, crl_enforcement, default_mozilla_roots, http2_framing, quic_http3, arm64_product]
           private_ocsp_conclusion_r420:
             terminal: ocsp_responses_are_accepted_and_cached_but_nss_still_judges_the_leaf_good
             stage_traced: 21
@@ -2797,7 +2809,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 249b7ce9b9790acfd5a01b5c5aefd4548ac6a877
+    commit: 7038dd5db376b3711e68c033e3f7565aec854a97
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

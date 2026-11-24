@@ -84,6 +84,15 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**OCSP 尝试的收尾（R421）：确认没有伤到既有路径。** [回执](../../artifacts/receipts/ruyijs-linux-chain-scope-r421/validation.json)
+
+- **风险**：`CERT_SetOCSPFailureMode` 是**进程全局**的。R419 无条件设置它，可能改变进程内所有后续校验，包括真正在用的普通链校验。
+- **实测**：普通链 `0`、错误主机名 `6`、非 CA 锚点 `912`——既有拒绝语义全部保持。
+- **清理**：R420 的 stage 诊断已完成使命，连同导出与 Python 绑定一并移除。
+- **三个守卫测试**：OCSP 入口与普通入口分离；全局模式不在普通路径设置；`CERT_CheckCRL` 从不被调用。
+- 其中一个测试我一开始**写错了**：断言该字符串“完全不出现”，但它在注释里（说明本构建未导出）。改为只断言调用。
+- **这不改变 OCSP 未交付的事实**，只确保这次尝试不会损害已交付的行为。
+
 **OCSP 结论（R420）：响应被接受并缓存，但 NSS 仍判叶子为 good。** [回执](../../artifacts/receipts/ruyijs-linux-ocsp-conclusion-r420/validation.json)
 
 - 加了一个 stage 计数器并导出，把"三个都返回 0"定位到具体步骤，而不是靠猜。

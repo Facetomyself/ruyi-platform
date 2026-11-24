@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-25T03:25:00+08:00",
+  "cleanup": [
+    "the stage diagnostic added in R420 answered its question and was removed",
+    "its export and the Python binding were removed with it",
+    "three tests now guard the arrangement: the OCSP entry point is separate, the global mode is not set from the plain path, and CERT_CheckCRL is never called"
+  ],
+  "evidence": {
+    "log": "968a1e1cf7179e2e5ee2202017074b030ef735e356c6ecbb74cd2113f2e845a4"
+  },
+  "measured": {
+    "plain_chain_valid": "rc 0",
+    "unrelated_anchor": "rc 912",
+    "wheel": "0.2.30+inner.r421",
+    "wrong_host": "rc 6"
+  },
+  "one_test_written_wrong_first": "the first version of the CRL test asserted the string appears nowhere; it appears in a comment explaining that this build does not export it, so the assertion was narrowed to calls only",
+  "outcome": "the_ocsp_failure_mode_is_confined_to_the_ocsp_path_and_the_plain_check_still_refuses",
+  "risk_that_prompted_this": "CERT_SetOCSPFailureMode is process global; R419 set it unconditionally, which could have changed every later verification in the process, including the plain chain check that delivers the shipped behaviour",
+  "schema": "ruyijs-linux-chain-scope-r421.v1",
+  "still_open": [
+    "OCSP enforcement with a recognised responder",
+    "CRL (not linkable)",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "what_this_does_not_change": "OCSP enforcement still does not work; this round only makes sure the attempt cannot harm the behaviour that does ship"
+}
