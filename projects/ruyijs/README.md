@@ -84,6 +84,14 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 往返第四次尝试（R403）：拆成最短步骤仍未完成，本轮无通过。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r403/validation.json)
+
+- **可行的短步骤（4 项）**：极短命令可达主机；单挂载容器仅 `ls` 后退出（返回 `LIVED`）；把库复制进测试目录；把头文件复制进测试目录。
+- **不可行（3 项）**：一次 `docker run` 用两个 bind mount 超时；一次挂载 + 编译 `br_roundtrip.c` 每次都超时；链路进一步退化后连 `ls` 也超时。
+- **排除本机替代方案**：本机是 aarch64，其 brotli 扩展也是 aarch64，**不能代验 x86-64 目标**。
+- 状态已就绪：库、头文件、测试源码、压缩数据都在主机同一目录；一旦链路能撑住一次编译即可完成，无需重建。
+- **本轮不声称任何通过。**
+
 **brotli 往返第三次尝试（R402）：阻塞归因于链路，不是测试或库。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r402/validation.json)
 
 - **再次修正 R401**：我说"宿主机缺 `/usr/bin/sh`"，**这是错的**。实测宿主机 `/bin/bash`、`/bin/sh`、`/usr/bin/bash` 都在；镜像内 `/bin/bash` 0755、`/bin/sh -> dash`。两侧都不缺 shell。

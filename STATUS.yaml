@@ -1,4 +1,4 @@
-generated_at: '2026-11-25T00:18:00+08:00'
+generated_at: '2026-11-25T00:30:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R402_brotli_blocker_classified__R401_brotli_roundtrip_still_open__R399_brotli_build
+    tests: R403_brotli_no_pass__R402_brotli_blocker_classified__R399_brotli_build
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,17 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_brotli_roundtrip_r403:
+            terminal: the_compile_cannot_fit_inside_the_link_window_and_this_round_produced_no_pass
+            strategy: shortest_possible_remote_steps
+            steps_that_worked: 4
+            steps_that_failed: 3
+            local_substitute_rejected: aarch64_brotli_cannot_stand_in_for_x86_64
+            no_pass_this_round: true
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-brotli-roundtrip-4.json
+            evidence_sha256: 7f196e2a8f577a23299b976017cd5b4467895e5d777cfa951c4059779fa00c2e
+            repository_receipt: artifacts/receipts/ruyijs-linux-brotli-roundtrip-r403/validation.json
+            excluded: [brotli_decode_proven, brotli_wiring, zstd_decoding, ocsp_crl_revocation, quic_http3]
           private_brotli_roundtrip_r402:
             terminal: the_host_has_a_usable_shell_and_the_decode_test_could_not_be_run_because_the_link_cannot_hold_a_long_command
             corrects_r401: host_shell_was_never_missing

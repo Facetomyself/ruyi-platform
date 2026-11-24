@@ -1,0 +1,38 @@
+{
+  "checked_at": "2026-11-25T00:30:00+08:00",
+  "diagnosis": "container startup plus a compile exceeds what the current link sustains; the earlier successful brotli library build happened inside a window that has not recurred",
+  "no_pass_this_round": true,
+  "outcome": "the_compile_cannot_fit_inside_the_link_window_and_this_round_produced_no_pass",
+  "rejected_alternative": "proving the decode locally was impossible: this box is aarch64 and its brotli extension is aarch64, so it cannot stand in for the x86-64 target",
+  "schema": "ruyijs-linux-brotli-roundtrip-r403.v1",
+  "state_ready": {
+    "headers_on_host": "brtest/brotli/",
+    "library_on_host": "br-out/libbrotlidec.so and a copy in brtest/",
+    "payload": "brtest/payload.inc",
+    "test_source": "brtest/br_roundtrip.c"
+  },
+  "still_open": [
+    "brotli decode round trip",
+    "brotli wiring and packaging",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "strategy_this_round": "split the work into the shortest possible remote steps instead of one long one",
+  "what_did_not_work": [
+    "two bind mounts in one docker run timed out",
+    "one bind mount plus a compile of br_roundtrip.c timed out on every attempt",
+    "further ls attempts on the consolidated directory also timed out as the link degraded"
+  ],
+  "what_worked": [
+    "a trivial command reached the host",
+    "a single-mount container that only listed a directory and exited returned LIVED",
+    "copying the library into the test directory completed",
+    "copying the brotli headers into the test directory completed"
+  ],
+  "why_this_is_not_the_product": "nothing here indicates a defect in the decoder or the test; the failure is entirely about how long a remote command can stay alive"
+}
