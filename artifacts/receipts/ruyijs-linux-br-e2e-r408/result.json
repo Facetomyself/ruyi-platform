@@ -1,0 +1,14 @@
+{
+  "error": "",
+  "passed": true,
+  "peer": {
+    "advertised": [
+      "gzip, deflate, br"
+    ],
+    "sent_br": true
+  },
+  "value": {
+    "s": 200,
+    "t": "hello brotli from an independent encoder"
+  }
+}

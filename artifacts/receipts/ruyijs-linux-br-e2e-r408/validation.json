@@ -1,0 +1,32 @@
+{
+  "chain_proven": {
+    "body": "hello brotli from an independent encoder",
+    "client_advertised": [
+      "gzip, deflate, br"
+    ],
+    "error": "none",
+    "js_layer": "fetch() inside the installed runtime",
+    "peer_returned_brotli": true,
+    "status": 200
+  },
+  "checked_at": "2026-11-25T01:15:00+08:00",
+  "evidence": {
+    "result": "0af757e348d19a2e022aaa4da7f558d02f784ddb345e733fdaf3262cd46a9dd9",
+    "run_log": "91041e6ee632332fa73c1b72ad526e64b9813b9ee7f1b2b12dfc751485a3882a"
+  },
+  "not_proven": [
+    "zstd"
+  ],
+  "outcome": "a_real_tls_peer_answered_with_brotli_and_the_client_decoded_it_end_to_end",
+  "schema": "ruyijs-linux-br-e2e-r408.v1",
+  "still_open": [
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "why_the_peer_could_be_trusted_to_return_br": "the server only sends brotli when the client actually advertises br, so a wrong negotiation would have produced a plain body and failed the equality assertion"
+}

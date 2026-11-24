@@ -84,6 +84,12 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 端到端通过（R408）。** [回执](../../artifacts/receipts/ruyijs-linux-br-e2e-r408/validation.json)
+
+- 真实 TLS 服务端**只在客户端声明 `br` 时才**返回 brotli 压缩体；实测声明为 `gzip, deflate, br`，服务端确认 `sent_br: true`。
+- JS `fetch()` 在安装态运行时里拿到 `200` + `hello brotli from an independent encoder`，与原文逐字节一致，`error` 为空。
+- 这个设计让测试有判别力：若协商错了，服务端会回明文，断言必然失败。
+
 **brotli 已进入打包产物（R407）。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-packaged-r407/validation.json)
 
 - wheel `0.2.22+inner.r406`，5,356,996 字节，SHA-256 `cdb0f2b4…1e2668`；30 个条目，其中 `_native/libbrotlidec.so` 187,288 字节。
