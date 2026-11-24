@@ -7,7 +7,7 @@
 | 层 | 接口与职责 | 已具备 / 待验收 |
 | --- | --- | --- |
 | **RuyiTrace Electron** | 主进程与 preload 管理桌面配置、选定内核、启停采集和分页预览；renderer 显示 DOM、点击与脱敏 Storage 记录。[主进程](../../submodules/ruyitrace/console/main/main.js) | x86_64 `d7DBYN4g` 和 ARM64 `gIhdRoB6` 均有真实 Firefox 采集及同包 Electron 回执；各有虚拟 X11/Wayland 启动证据，物理显示另验。证据来自 Trace 自身，MCP 未参与。[Trace 进度](../../docs/13-ruyitrace-progress.md) |
-| **ruyi-mcp** | [Node/TypeScript stdio 入口](../../submodules/ruyi-mcp/src/index.ts) 提供工具与生命周期；[Python bridge](../../submodules/ruyi-mcp/bridge/ruyi_bridge.py) 接 ruyiPage；[RDP](../../submodules/ruyi-mcp/src/rdp/)与 BiDi 自动化各自留证。MCP 自启时管理自己的 Firefox 和临时 profile。 | 前一 pin `1c80d88` 的 Linux 无浏览器记录：64 项 Python、16 项 Node 加 MCP smoke 通过，覆盖真实 bridge 冷启动、协议、工具发现、退出与 RDP 协议单测。当前固定 `d4f93cc` 的原生 CI 已验 ARM64/AMD64 Docker core、AMD64 Firefox ESR 的无头导航/状态/退出；固定 Trace 159 的下载、RDP 和全链回收待联验。[Linux 验收](../../submodules/ruyi-mcp/docs/linux-port.md) |
+| **ruyi-mcp** | [Node/TypeScript stdio 入口](../../submodules/ruyi-mcp/src/index.ts) 提供工具与生命周期；[Python bridge](../../submodules/ruyi-mcp/bridge/ruyi_bridge.py) 接 ruyiPage；[RDP](../../submodules/ruyi-mcp/src/rdp/)与 BiDi 自动化各自留证。MCP 自启时管理自己的 Firefox 和临时 profile。 | 平台固定 `1c80d88` 的 Linux 无浏览器记录：64 项 Python、16 项 Node 加 MCP smoke 通过，覆盖真实 bridge 冷启动、协议、工具发现、退出与 RDP 协议单测。真实 Linux Firefox 的 BiDi/下载/RDP 和全链回收仍待验收。[Linux 验收](../../submodules/ruyi-mcp/docs/linux-port.md) |
 | **Trace owner + 借用客户端** | owner 创建并持有唯一 BiDi session，发布权限受限的描述文件和回环 IPC；MCP 取租约并通过 owner 转发页面操作，可单独连接回环 RDP。恢复/断开调试和释放租约后，由 owner 执行生产采集的 flush 与封存。借用态的 `ruyi_browser_quit` 走释放分支，保留 owner 的 Firefox。[借用工具](../../submodules/ruyi-mcp/src/tools/borrowed-session.ts) · [关闭路径](../../submodules/ruyi-mcp/src/ruyi-context.ts) | Trace 独立分支 `handoff/owner-arm64-fixture-20261124` 的 `b4ba3a8` 已有审计后的 ARM64 Firefox fixture：用配套 MCP stage-1 借用客户端验过状态、租约排他和释放重取、进程丢失；租约活跃时由固定测试页触发的基础 DOM ON/OFF 有记录。此分支与平台默认 Trace pin 分开；fixture 只实现状态/获取/释放，`rdp: null`，未验证 Electron 发布 descriptor、MCP 转发页面动作、RDP 暂停恢复或生产 flush。独立分支说明见 `docs/trace-arm64-fixture-owner.md`。 |
 | **RuyiHttp / RuyiJS** | 用同一合成输入分别做 HTTP 和 JS/DOM 对照，各自运行、各自记录版本和结果。 | 两者均为并行参考，MCP 启动和借用的验收无需引入其原生库或 JS 壳。[平台状态](../../STATUS.yaml) |
 
@@ -34,9 +34,9 @@ Trace 私有仓的[管理 CLI 候选](https://github.com/Facetomyself/ruyitrace/
 | 门禁 / 当前状态 | 操作 | 通过证据 |
 | --- | --- | --- |
 | **M0 无浏览器 / 已通过** | 在准备好的 Linux 工作副本执行 `npm run check`。用 stdio 客户端依次发 `initialize`、`tools/list`、`ruyi_browser_status {}`，再关闭 stdin；另一次走 SIGTERM。 | MCP stdout 只有协议消息；实际 Python bridge 就绪、`alive: false`、进程退出且 bridge 子进程回收。 |
-| **M1 MCP 自启原生 Firefox / ESR 基础通过，Trace 159 深度联验待做** | 固定本机架构的 Firefox 路径、版本、BuildID 和制品 SHA-256。运行下方已有脚本；另经 stdio 在本地 fixture 执行建页、读取或点击、下载、退出。 | 回环页面结果、五项 automation 报告、RDP 报告及断点暂停/恢复证据；对照文件内容校验下载，确认本次 PID 与临时 profile 回收。系统 Firefox 的结果只证明对应构建。 |
+| **M1 MCP 自启原生 Firefox / 待验收** | 固定本机架构的 Firefox 路径、版本、BuildID 和制品 SHA-256。运行下方已有脚本；另经 stdio 在本地 fixture 执行建页、读取或点击、下载、退出。 | 回环页面结果、五项 automation 报告、RDP 报告及断点暂停/恢复证据；对照文件内容校验下载，确认本次 PID 与临时 profile 回收。系统 Firefox 的结果只证明对应构建。 |
 | **M2 生产 Trace owner 同会话 / 待验收** | 使用能发布真实 descriptor、支持页面命令和 RDP 的生产 owner。以 `ruyi_attach_trace_session` 获取租约；第二个客户端尝试借用，应被挡住。运行回环页的 query/click，单独验 RDP 断点暂停/恢复；调用 `ruyi_browser_quit` 后由 owner 停止并 flush；再做过期或进程丢失的独立负例。 | attach/detach 前后为同一 Firefox PID 与启动代次、同一 BiDi context，未创建第二条 BiDi session；退出后角色归还、owner Firefox 仍存活。owner 停止后登记完整 DOMTrace 的行数及哈希，并实际读回结果。独立 ARM64 fixture 的基础 DOM ON/OFF 可作前置对照，不能替代此项。 |
-| **M3 容器 / core 双架构与 amd64 ESR 基础已验** | 当前 pin 的 [GitHub Actions](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45303990325) 已通过原生 ARM64/AMD64 core 与 AMD64 ESR 基础门禁。下一步只读挂载固定 Trace 159 运行时，跑 M1 下载/RDP、M2 owner 租约及 flush；新架构另验。 | 留存对应组件 SHA、架构、内核 BuildID/摘要及回执。已有 CI 不代表发布过公共镜像或完成 Trace 生产同会话。[容器运行说明](../../submodules/ruyi-mcp/docs/docker-design.md#5-分阶段验收) |
+| **M3 容器 / 设计阶段** | 先实现 `core` 镜像，在原生 arm64/amd64 重跑 M0（包括 EOF 与 SIGTERM）；再用匹配架构、可核对制品身份的 `browser` 镜像重跑 M1。容器内借用会话另跑 M2。 | 每架构独立镜像 digest、stdio/回收结果和原生浏览器证据；profile、下载与证据目录隔离。当前平台 pin 尚无 Dockerfile 或验收镜像。[Docker 阶段](../../submodules/ruyi-mcp/docs/docker-design.md#5-分阶段验收) |
 
 M1 的现成脚本（从 MCP 组件根目录运行，`RUYI_FIREFOX_PATH` 指向匹配架构的已验证 Firefox 绝对路径，`QA_ROOT` 指向本次空的可写绝对目录）：
 

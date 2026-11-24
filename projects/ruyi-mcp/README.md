@@ -2,7 +2,7 @@
 
 平台在 `submodules/ruyi-mcp` 固定经过验收的源码版本；组件在独立仓库的 `linux` 分支提交与发布。版本看 [PINS](../../PINS.md#9-ruyi-mcp)，进度看 [STATUS](../../STATUS.yaml)，跨项目接口看 [架构](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。独立开发工作副本与平台锁定检出可以同时存在。
 
-管理面交付矩阵与下一阶段门禁见[本地 QA 与会话交接](MANAGEMENT-HANDOFF.md)。
+本地 QA 的 Electron、MCP 与 Trace owner 分工及阶段门禁见 [管理面验收与交接](MANAGEMENT-HANDOFF.md)。
 
 ## 检出并验证
 
