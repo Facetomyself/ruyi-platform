@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-11-24T21:16:00+08:00",
+  "defect_found_by_this_work": {
+    "description": "exchange() accepted a caller-supplied adapter but never declared its ctypes ABI, so necko_tls_alpn returned an int and .decode() failed",
+    "fix": "declare_adapter() is now reusable and is applied to caller-supplied libraries; a regression test asserts the call sites exist",
+    "why_it_was_invisible": "every earlier probe went through load_adapter(), which declares the ABI; passing a library in directly is the only path that exposed it"
+  },
+  "delivered": {
+    "cases": [
+      "pinned round trip returns the peer body",
+      "an unpinned peer is refused before any request",
+      "a certificate whose names do not cover the host is refused"
+    ],
+    "file": "ci/test_linux_tls_handshake.py",
+    "gate": "skips unless an x86-64 NSS toolkit is present (RUYIJS_NSS_SDK)",
+    "tests": 3
+  },
+  "not_done": "no wheel rebuild this round; the ABI fix is committed in fb48165 but the packaged artifact predates it",
+  "offline_suite": "ci/test_linux_tls.py (19 tests) still passes",
+  "outcome": "end_to_end_handshake_tests_pass_and_found_a_real_abi_defect",
+  "run_evidence": {
+    "log": "deliverables/linux-ruyijs-tls-r358/hstest/run.log",
+    "sha256": "79a3f3989717ed249baba5596a85fe5710f66565565b109e9e70a81cec2b96b6",
+    "tail": [
+      "Ran 3 tests in 0.929s",
+      "",
+      "OK"
+    ]
+  },
+  "schema": "ruyijs-linux-e2e-tests-r394.v1",
+  "source_commit": "4dc7121e6cefc6190997bd2730a84279d540c23f",
+  "still_open": [
+    "rebuild and publish a wheel containing the ABI fix",
+    "brotli/zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2",
+    "QUIC",
+    "ARM64"
+  ],
+  "test_defects_fixed_while_getting_it_green": [
+    "the fixture certificate now carries subjectAltName for both DNS:localhost and IP:127.0.0.1",
+    "the name-mismatch case issues its own certificate for wrong.invalid instead of relying on ::1, which merely changed which loopback was dialled",
+    "bytecode writing is disabled so a read-only mounted tree can still be imported",
+    "the NSS closure must include libmozsqlite3.so or libsoftokn3 fails to load"
+  ],
+  "test_file_sha256": "1c5e736b737fc47d3d3171706407831d3da947f3c26e031239c9292edef74ccf"
+}

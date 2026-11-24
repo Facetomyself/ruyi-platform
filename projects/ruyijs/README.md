@@ -78,6 +78,14 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**端到端握手测试（R394）：`ci/test_linux_tls_handshake.py` 三个用例在主机上全部通过，并抓到一个真实产品缺陷。** [回执](../../artifacts/receipts/ruyijs-linux-e2e-tests-r394/validation.json)
+
+- **缺陷**：`exchange()` 接受调用方传入的 `adapter`，但 ABI 声明只写在 `load_adapter()` 里。外部传入的库没被声明，ctypes 把 `necko_tls_alpn` 的返回值当 `int`，`.decode()` 直接失败。
+- **为什么以前没发现**：之前所有探针都走 `load_adapter()`，恰好声明齐全；只有从外部传库才触发。这正是补测试的价值。
+- 修复：抽出 `declare_adapter()`，对外部库同样应用；加回归测试断言两处调用点存在（`fb48165`）。
+- 三个用例：固定值往返取回对端 body、未固定值在发出请求前拒绝、证书名字不覆盖主机时拒绝。
+- **未做**：本轮**没有重建 wheel**，打包产物早于该修复。
+
 **仓库内测试（R392）：为 TLS 模块补上可复跑的测试。** [回执](../../artifacts/receipts/ruyijs-linux-tls-tests-r392/validation.json)
 
 - 缺陷：R358–R391 的每一项 TLS 结论都只由仓库外的临时探针验证过，树内**没有任何东西能重跑它们**。后续改动若破坏 framing、主机名匹配、锚点或 cutoff，台账仍会显示"已验证"。

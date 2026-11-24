@@ -14,6 +14,7 @@
 | **已验 · PEM 锚点包** | [R386](../artifacts/receipts/ruyijs-linux-pem-anchors-r386/validation.json)：可消费 121 张证书的 Mozilla 包，端到端拒绝未签发叶子。 | 未默认启用 Mozilla 根、未实现 distrust-after 截止与 PKIX 名称约束——与原始 Windows 实现仍有差距。 |
 | **已验 · 构建期提交校验** | [R385](../artifacts/receipts/ruyijs-linux-commit-guard-r385/validation.json)：锁定源必须与 `HEAD` 一致；非检出目录需显式 opt-out，否则拒绝构建。 | 依赖 git 可用；归档分发场景必须显式声明 opt-out。 |
 | **已验 · TLS profile 计数边界** | [R384](../artifacts/receipts/ruyijs-linux-profile-bounds-r384/validation.json)：四类计数均设上限，超界在调用 NSS 前拒绝；真实 profile 仍可握手。 | profile 接口尚未被 JS 路径使用；客户端证书未接通。 |
+| **已补 · 端到端握手测试** | [R394](../artifacts/receipts/ruyijs-linux-e2e-tests-r394/validation.json)：3 个用例通过，并暴露 `exchange()` 对调用方传入库未声明 ABI 的缺陷（已修）。 | wheel 尚未包含该修复；brotli/OCSP/h2/QUIC/ARM64 仍未做。 |
 | **已补 · TLS 模块仓库内测试** | [R392](../artifacts/receipts/ruyijs-linux-tls-tests-r392/validation.json)：18 个测试覆盖解析、链、主机名、锚点、cutoff；两处变异均被检出。 | 测试是离线的，不含真实握手；端到端仍需主机。 |
 | **已缓解 · 压缩编码覆盖** | [R391](../artifacts/receipts/ruyijs-linux-content-negotiation-r391/validation.json)：请求只声明 `gzip, deflate`，服务端不会再回 `br`/`zstd`。 | brotli/zstd **解码**仍未实现；若服务端无视协商仍返回 br，会明确拒绝而非误解码。 |
 | **未做 · 压缩编码覆盖（已被 R391 缓解）** | 当前只解 gzip 与 deflate；`Content-Encoding: br` 与 `zstd` 会被明确拒绝而不是静默返回错误内容（测试见 R383 之外的编码分支）。 | 真实服务端常返回 `br`；缺失意味着部分站点在此路径上不可用。构建目录内有 brotli 头文件，但未接入打包。 |
