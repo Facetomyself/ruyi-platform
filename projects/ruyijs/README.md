@@ -78,6 +78,12 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**distrust 截止（R387）：逻辑已验证，但实机路径**未**签收。** [回执](../../artifacts/receipts/ruyijs-linux-cutoff-offline-r387/validation.json)
+
+- 已验证（离线）：`root_distrust_after` 解析两种时间格式，拒绝坏格式、非 SHA256 键与空表；表中 1 条记录确实对应包内某张根证书（Izenpe，截止 `2026-04-15T23:59:59Z`）；晚于截止的叶子被拒、早于的放行、非受信根的截止项被忽略。
+- **未验证（实机）**：构建主机在本轮中途不可达，直接链路与原有跳板路径均超时。同时该轮所有握手都报 `SEC_ERROR_EXTENSION_NOT_FOUND`，**连不带截止表的对照用例也失败**——可排除本轮改动，但根因未定位。
+- 因此本轮**不声称**实机路径已执行截止检查。台账 `end_to_end` 记为 `blocked_host_unreachable`。
+
 **PEM 锚点包（R386）：单个锚点条目可以指向含多张证书的 PEM 文件。** [回执](../../artifacts/receipts/ruyijs-linux-pem-anchors-r386/validation.json)
 
 - 原始 Windows 实现自带 `firefox-roots.pem`（121 张根）。此前 Linux 侧只接受单张 DER，无法消费同一个文件。

@@ -8,6 +8,7 @@
 |---|---|---|
 | **已验 · RuyiJS amd64 离线发行** | [R356 wheel](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) 使用 R355 干净原生构建的确切字节。新装及从 R354 升级均通过 13 组安装态测试及真实 Worker/WebCrypto，显式回退后的文件清单完全恢复。 | 依照[固定版本的安装命令](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)使用；公共索引、跨发行版认证、联网与 ARM64 不继承本项证明。 |
 | **P1 · Trace / MCP 发布与管理面** | [M2 标准与暂停中停止](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)用 Trace `f8eeb0e` + MCP `8f3839b` + R5；MCP 当前 pin `b5e204a` 又验过[自然到期、错范围无页面动作及实际归还](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | **挡扩大支持矩阵，不挡已验的原生 AMD64 CLI 组合。** 发布新 CLI/MCP 组合时固定双方 SHA 与同一浏览器摘要，重跑正常归还及暂停中停止两档；另测 Firefox 进程意外丢失，核对租约、descriptor、profile 及输出。生产 ARM64、Electron 充当 owner、跨执行机 SSH stdio 分开签收。[执行入口](../projects/ruyi-mcp/PRODUCTION-OWNER.md) |
+| **部分已验 · distrust 截止** | [R387](../artifacts/receipts/ruyijs-linux-cutoff-offline-r387/validation.json)：解析、绑定与执行逻辑离线全通过；实机未验，且当时存在未定位的 `SEC_ERROR_EXTENSION_NOT_FOUND`。 | 实机截止执行未签收；该 NSS 报错待查。这一行不能当作"已在线上生效"。 |
 | **已验 · PEM 锚点包** | [R386](../artifacts/receipts/ruyijs-linux-pem-anchors-r386/validation.json)：可消费 121 张证书的 Mozilla 包，端到端拒绝未签发叶子。 | 未默认启用 Mozilla 根、未实现 distrust-after 截止与 PKIX 名称约束——与原始 Windows 实现仍有差距。 |
 | **已验 · 构建期提交校验** | [R385](../artifacts/receipts/ruyijs-linux-commit-guard-r385/validation.json)：锁定源必须与 `HEAD` 一致；非检出目录需显式 opt-out，否则拒绝构建。 | 依赖 git 可用；归档分发场景必须显式声明 opt-out。 |
 | **已验 · TLS profile 计数边界** | [R384](../artifacts/receipts/ruyijs-linux-profile-bounds-r384/validation.json)：四类计数均设上限，超界在调用 NSS 前拒绝；真实 profile 仍可握手。 | profile 接口尚未被 JS 路径使用；客户端证书未接通。 |

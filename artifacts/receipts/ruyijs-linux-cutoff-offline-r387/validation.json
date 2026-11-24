@@ -1,0 +1,31 @@
+{
+  "artifact": {
+    "commit": "440d4790a0ea24efcd5012215355bc3316375703",
+    "result_sha256": "a32fddf946696d26d345e4461b1a8572278630362ad3f2e72e9acf6c9a9dc6bb",
+    "source_sha256": "ddcc6ca96dc3c2cde71eff001c32576cebb1b97f686a1488e337107d698df2a6"
+  },
+  "blocked": {
+    "not_the_cause": [
+      "the R387 diff touches only pin-file parsing and the verify hook; it does not modify the handshake sequence",
+      "a control run with no cutoff table at all failed identically with SEC_ERROR_EXTENSION_NOT_FOUND, which rules the new code out"
+    ],
+    "reason": "the build host self-server-host185 became unreachable during this round; both the direct path (211.144.221.229:44005) and the previously working route timed out",
+    "unresolved": "SEC_ERROR_EXTENSION_NOT_FOUND appeared on every handshake in that round, including the no-cutoff control; the cause was not established before the host went away",
+    "what": "end-to-end handshake acceptance for the cutoff path"
+  },
+  "measured_at": "2026-11-24T18:56:00+08:00",
+  "next_steps": [
+    "restore host reachability",
+    "re-run the cutoff probe together with a no-cutoff control to isolate SEC_ERROR_EXTENSION_NOT_FOUND",
+    "only then publish a receipt claiming the live path enforces cutoffs"
+  ],
+  "not_claimed": "the cutoff feature is not signed off end to end and is not announced as working on the live path",
+  "outcome": "cutoff_logic_verified_offline__end_to_end_blocked_by_unreachable_host",
+  "schema": "ruyijs-linux-cutoff-offline-r387.v1",
+  "verified": {
+    "config_parsing": "root_distrust_after accepts YYMMDDHHMMSSZ and YYYYMMDDHHMMSSZ; rejects bad format, non-SHA256 keys and an empty table",
+    "cutoff_time_utc": "2026-04-15T23:59:59Z",
+    "enforcement": "a leaf starting after the cutoff is refused; one starting before is allowed; a cutoff for a root the caller does not trust is ignored",
+    "table_binding": "1 cutoff entry resolves to an anchor actually present in the 121-certificate bundle"
+  }
+}
