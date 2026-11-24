@@ -206,7 +206,7 @@ cat STATUS.yaml
 | --- | --- |
 | **RuyiTrace** | Linux 有范围明确的浏览器、桌面与无头实采验收。amd64 R5 提供独立源码标签和同包核验入口；管理面另行迭代。 |
 | **RuyiHttp** | Python 客户端及三平台既有原生运行库可复用；[Linux amd64 HTTPS 验收](projects/ruyihttp/README.md)。新平台原生库是另一项交付。 |
-| **RuyiJS 内部版** | 私有仓维护 Python、C ABI 和 Linux 壳重建源码。以[项目最新链接记录](projects/ruyijs/README.md)为准，不能把 donor 或参考 wheel 当作正式 Linux 产品。 |
+| **RuyiJS 内部版** | [Linux amd64 离线候选](artifacts/receipts/ruyijs-linux-amd64-r353/validation.json)已通过严格链接和解包实跑：13/13 组 Python/C 检查，另有 Ubuntu 基础镜像 C 客户端回读。[使用说明](submodules/ruyijs/docs/linux-amd64-candidate.md)；正式 wheel 与真实网络联验独立。 |
 | **ruyi-mcp** | 已纳管的独立控制面；Electron 桌面、无头 CLI 与 MCP 借用会话验收分列，见[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md)。 |
 
 **反编译是本仓两条主线**：`ruyijs-inner` 与 `ruyitrace/domtrace`。方法论相同（见 `docs/05-reverse-analysis.md`），对象与难度不同：

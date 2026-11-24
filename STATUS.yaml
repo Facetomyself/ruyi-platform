@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T12:06:45+08:00'
+generated_at: '2026-11-24T12:39:53+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -87,15 +87,15 @@ projects:
     source:
       python_layer: complete
       necko_adapter: complete
-      native_shell: linux-transport-verified (7 C entry points, --no-undefined)
+      native_shell: linux-amd64-private-elf-and-real-c-client-verified-offline
       necko_native: reference-ready
     build:
       win_amd64: ready
       darwin_arm64: unknown
-      linux_x86_64: build-verified (transport ABI + canvas symbols closed; product link open)
+      linux_x86_64: native-private-offline-candidate-verified (Ubuntu 24.04, glibc 2.39)
       linux_aarch64: unsupported
-    tests: none
-    phase: Linux 产品壳链接推进中；donor 与接口验收独立，尚无正式 Linux 产品 wheel
+    tests: native_amd64_archive_13_of_13_real_runtime_gates
+    phase: Linux amd64 私有壳已严格链接并从离线候选归档实跑；正式 wheel、全树干净重建与真实网络联验待完成
     blocked_by:
     - A2
     - C3
@@ -1361,7 +1361,22 @@ projects:
             evidence: deliverables/linux-ruyijs-link-audit-r352/validation.json
             evidence_sha256: c2672493d445e41db9d961f71f41c4a9684bcdafa0e307348c3c0f82afd8f4a2
             repository_receipt: artifacts/receipts/ruyijs-linux-amd64-r352/validation.json
-          private_product: pending
+          native_private_runtime_r353:
+            input_commit: da3e741404830ab4f33cb6d735d05284a9604179
+            archive_source_commit: 2898fd27004d7107077e751e2b5fd9bf876f3469
+            terminal: private_amd64_offline_archive_verified
+            target: x86_64-unknown-linux-gnu
+            strict_link: {expected_private_tus: 1268, selected: 1268, duplicate_source_groups_resolved: 31, accepts_multiple_definitions: false, unresolved: 0, warnings: 0, exit: 0}
+            real_runtime: {archive_gates: 13, passed: 13, assertions: 83, uid: 1000, network: none, glibc: '2.39', c_client_exports: 7, bundled_sonames: 18}
+            archive: deliverables/linux-ruyijs-integration-r353/ruyijs-linux-amd64-r353.tar.gz
+            archive_bytes: 29488216
+            archive_sha256: c3dfd2bed28b6119c7258e09b13ff0f8176393be5475541ed8b9c7b3438c936f
+            shell_sha256: 5e291701305c7b75ebf67224ea1b9188ea453c3838dcb1981d773ce217668c4d
+            not_verified: [clean_full_rebuild_at_one_commit, private_product_wheel, live_necko_networking, arm64_product, full_windows_behavior_parity]
+            evidence: deliverables/linux-ruyijs-integration-r353/validation.json
+            evidence_sha256: 1f8636b283356737cdc135bf46bcde42736391a6a8d6804fb61351eb70ef633c
+            repository_receipt: artifacts/receipts/ruyijs-linux-amd64-r353/validation.json
+          private_product: linux_amd64_offline_candidate_verified
     inner_repo_state:
       exists: true
       created: '2026-11-04'
@@ -2001,7 +2016,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 4db44bc614ed07756eee9203ac246338932336ca
+    commit: 2898fd27004d7107077e751e2b5fd9bf876f3469
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

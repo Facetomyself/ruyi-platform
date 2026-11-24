@@ -1,0 +1,249 @@
+{
+  "LD_LIBRARY_PATH": "unset",
+  "checked_assertions": 83,
+  "gates": {
+    "avif_decode": {
+      "checks": [
+        "avif_fixture_sha256",
+        "promise_fulfilled",
+        "avif_frame_bgra_and_layout",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [
+        {
+          "actual": 0,
+          "observation": "logical_advances"
+        }
+      ],
+      "raw_sha256": "fddee02f439c9694f8011c49fb6d121750eea778004096437c45a5e6abde6b87",
+      "status": "passed"
+    },
+    "avif_support": {
+      "checks": [
+        "promise_fulfilled",
+        "avif_type_support",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [
+        {
+          "actual": 0,
+          "observation": "logical_advances"
+        }
+      ],
+      "raw_sha256": "378ce3baef4f7178bbc5a41f63579e7df15a822612d53f472b491cfdad341224",
+      "status": "passed"
+    },
+    "cabi_debug": {
+      "checks": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [],
+      "raw_sha256": "5937982063b14ad9dc941962f73a0e0ce4e11d54e46d94f47cdcd7b068de2d12",
+      "status": "passed"
+    },
+    "cabi_default": {
+      "checks": [
+        "create",
+        "numeric_eval_envelope",
+        "typed_eval_envelope",
+        "exception_envelope",
+        "eval_after_error",
+        "api_monitor_mode",
+        "close_envelope",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [],
+      "raw_sha256": "0e8dccc7a1a230d401a9f443035f5bbc7a797f7526167f82d386b5418421fe0b",
+      "status": "passed"
+    },
+    "canvas_glyphs": {
+      "checks": [
+        "canvas_glyph_pixels_and_metrics",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [
+        {
+          "actual": {
+            "after": 419,
+            "before": 0,
+            "width": 51.68333435058594
+          },
+          "observation": "glyph_pixels"
+        }
+      ],
+      "raw_sha256": "cf39fecc95a0f5cc020add757a2ffceccabfa86b12ae5ef847522cde4c033c96",
+      "status": "passed"
+    },
+    "canvas_rect": {
+      "checks": [
+        "canvas_rect_pixels",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [],
+      "raw_sha256": "5df311d92c8f9d14b14e0260548961217f5fa840aa5aaaab5475d68d1bb3f1ab",
+      "status": "passed"
+    },
+    "compression_brotli": {
+      "checks": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [
+        {
+          "actual": 0,
+          "observation": "logical_advances"
+        },
+        {
+          "bytes": 33,
+          "observation": "encoded_stream",
+          "sha256": "53d224033a95f5689106b3a45b357bb764246e93b2aa580951d2ab8375023473"
+        }
+      ],
+      "raw_sha256": "1d1cfef324c2492cd9b69511b8b9f535591c4ad73e5f91c21d3a41219af6c1ab",
+      "status": "passed"
+    },
+    "compression_deflate": {
+      "checks": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [
+        {
+          "actual": 0,
+          "observation": "logical_advances"
+        },
+        {
+          "bytes": 58,
+          "observation": "encoded_stream",
+          "sha256": "aaf2e553aa6e08c2ece200ffe54fc1a713cf33b23651403f358b3e5ed1b48d9f"
+        }
+      ],
+      "raw_sha256": "6b5269acd609776840be430f382c2effceafb8e1f22f124828f25e0de32c9e06",
+      "status": "passed"
+    },
+    "compression_deflate-raw": {
+      "checks": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [
+        {
+          "actual": 0,
+          "observation": "logical_advances"
+        },
+        {
+          "bytes": 52,
+          "observation": "encoded_stream",
+          "sha256": "64e469563147ca8381d7c49d4402258a6b6da61bac3bdba30ede18637a908927"
+        }
+      ],
+      "raw_sha256": "8fe26d325ed2ec3bf259fa0d3a3f204e556eac8cf21575722fbdf6bdc05cfd59",
+      "status": "passed"
+    },
+    "compression_gzip": {
+      "checks": [
+        "promise_fulfilled",
+        "stream_round_trip",
+        "stream_made_compact_output",
+        "independent_python_zlib_decode",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [
+        {
+          "actual": 0,
+          "observation": "logical_advances"
+        },
+        {
+          "bytes": 70,
+          "observation": "encoded_stream",
+          "sha256": "6cddfcc5ee3b215e6f1631230c83ac641ee0a214c6d9959e3d406ba087e088ac"
+        }
+      ],
+      "raw_sha256": "edd0de63a5ceaf5b98fff248c42073a249e22ca46ed9d277a207cc5409c710ce",
+      "status": "passed"
+    },
+    "page_dom": {
+      "checks": [
+        "in_memory_page_load",
+        "dom_and_inline_script",
+        "no_page_network_requests",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [],
+      "raw_sha256": "36e896083ae3e654c9c7dd345ea35672e1ccb623a14027c0a73aeab5c5e881ac",
+      "status": "passed"
+    },
+    "python_bridge": {
+      "checks": [
+        "numeric_eval",
+        "typed_eval",
+        "set_and_expose_result",
+        "host_callback_arguments",
+        "python_js_error",
+        "eval_after_error",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [],
+      "raw_sha256": "4e59830213562b307d2503978fe5cc057c3b9f7c0e258a3cfdb35c9228f1b029",
+      "status": "passed"
+    },
+    "urlpattern": {
+      "checks": [
+        "urlpattern_exec_and_negative",
+        "context_closed",
+        "children_reaped",
+        "socket_directory_empty"
+      ],
+      "observations": [],
+      "raw_sha256": "f21eabf3382cbb4a6d5845d18d36bc1f4e89d8c93ba543a8a74af3153be59364",
+      "status": "passed"
+    }
+  },
+  "native": true,
+  "network": "none",
+  "passed": 13,
+  "platform": "Linux x86_64 Ubuntu Noble glibc 2.39",
+  "separate_plain_ubuntu_c_client": [
+    "42",
+    "ruyi40"
+  ],
+  "total": 13,
+  "uid": 1000
+}

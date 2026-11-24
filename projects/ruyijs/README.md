@@ -64,7 +64,14 @@ ruyijs-inner/
 
 ### Linux x86_64 私有 donor
 
-**当前结果（R352，2026-11-24，host185 原生 amd64）：私有壳链接退出 1，尚无可交付的 `dist/js`。** [验收回执](../../artifacts/receipts/ruyijs-linux-amd64-r352/validation.json)与[完整符号清单](../../artifacts/receipts/ruyijs-linux-amd64-r352/link-report.json)已随仓入库。
+**当前结果（R353，2026-11-24）：私有 Linux amd64 离线运行时已严格链接、打包、解压并实跑。** [交付回执](../../artifacts/receipts/ruyijs-linux-amd64-r353/validation.json) · [运行检查](../../artifacts/receipts/ruyijs-linux-amd64-r353/runtime-gates.json) · [链接回执](../../artifacts/receipts/ruyijs-linux-amd64-r353/link-report.json) · [使用说明](../../submodules/ruyijs/docs/linux-amd64-candidate.md)。
+
+- **产品而非 donor：** 1,268 个 Linux 私有翻译单元逐一定位；31 组同源缓存由源文件身份消歧。严格链接保留重复定义与未解析库的报错，退出 0，未定义符号及警告均为 0。图形使用同一固定 Firefox 159 的对象族，Skia 的 76 个成员均先通过旧清单校验，其中 1 个按实际 HarfBuzz 共享库头重编。URLPattern 与 zlib-rs 在同一个 Rust 根归档内；AVIF 的 109 个对象提供真正的 dav1d 解码和缩放。
+- **交付件：** 工作区 `deliverables/linux-ruyijs-integration-r353/ruyijs-linux-amd64-r353.tar.gz`，29,488,216 字节，SHA-256 `c3dfd2bed28b6119c7258e09b13ff0f8176393be5475541ed8b9c7b3438c936f`。含 `dist/js`、7 个导出的 C 客户端、18 个版本化运行库、Python 绑定、头文件及校验清单。使用归档内 `README.md` 的 `PYTHONPATH` 和 `RUYIJS_SHELL` 示例即可执行本地页面。
+- **执行门槛：** 包从零解压到带空格的新路径，UID 1000、断网、无 `LD_LIBRARY_PATH`。Python 和真实 C 客户端 13/13 组、83 项断言通过；另用无构建工具的 Ubuntu 24.04 基础镜像复跑 CLI 和 C 接口，分别读回 `42` 和持久上下文中的 `ruyi40`。初次实跑揭示的 WebP 间接依赖及 debug 模式查询日志缺项已经修复，初始失败回执保留。
+- **尚待验收：** 全部源文件在同一提交的干净重建、正式 wheel、真实 Necko 网络联验、Linux ARM64 产品及全量 Windows 行为对齐。本次是 glibc 2.39 原生离线候选，不把这些范围计为通过。
+
+**历史基线（R352）：私有壳链接退出 1。** [验收回执](../../artifacts/receipts/ruyijs-linux-amd64-r352/validation.json)与[完整符号清单](../../artifacts/receipts/ruyijs-linux-amd64-r352/link-report.json)已随仓入库。
 
 - **纠正计数。** R351 达到 LLD 的 20 条报错上限。保持同一批对象和库，仅改变输出路径并启用 `--error-limit=0`，得到 347 个不同的未定义符号（68 个 hidden）。修复后的整链为 **129 个**：104 个普通引用，25 个 hidden。早期截断日志里某个名字消失，并非已解决的证据。早期“额外 include 根使样式对象为空”的断言也应撤回：两次 `nm` 在新容器读取前一容器的 `/tmp`，没有检验到同一个文件。
 - **图形与字体实跑。** Firefox 159 的 amd64 Pixman 0.46.4 清单是 34 个单元，排除其他架构的加速实现，同时保留运行时分派。4 线程分别在默认分派与禁用 MMX/SSE2/SSSE3 的条件下各比对 4,096 次像素；两次均通过。重编后的几何对象共 33 个 HarfBuzz 导入均为 `DEFAULT UND`，子集适配器返回的空集与实际共享库的单例同址，引用和销毁也经实跑。
