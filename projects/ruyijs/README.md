@@ -1688,6 +1688,37 @@ GLOBAL DEFAULT UND getentropy
 
 回执 `deliverables/linux-ruyijs-cairolink-r335/cairolink-validation.json`。
 
+## 未定义的**性质**变了
+
+这一轮最重要的不是数量，是**符号类型**：
+
+| 之前 | 现在 |
+|---|---|
+| `undefined **hidden** symbol` | `undefined symbol` |
+
+**可见性问题结束了。**现在的未定义是普通符号，意味着缺的是**对象本身**，不是绑定方式。
+
+## 清掉的
+
+**OpenSSL 的 20 个符号**——加 `libcrypto.so.3` 后全部解决。
+
+## 剩余的 14 个分两组
+
+| 组 | 数量 | 原因 |
+|---|---|---|
+| Skia `src/base` | 4 | `SkArenaAlloc`、`SkDebugf`、`SkBezierCubic/Quad` 在这个目录，之前没编译过 |
+| pixman | 10 | **Cairo 的图像后端靠 pixman 合成**，而 pixman 从没编译过 |
+
+`src/base` 已编译，**零失败**。
+
+pixman 第一次编译 40 个失败，因为它要求 Mozilla 头文件（`pixman-private.h` 直接 `#error`）。头文件已补。
+
+## 边界
+
+链接仍未完成，`dist/js` 不存在。
+
+回执 `deliverables/linux-ruyijs-ossl-r337/ossl-validation.json`。
+
 ## Seed 关系（重要）## Seed 关系（重要）
 
 `ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。

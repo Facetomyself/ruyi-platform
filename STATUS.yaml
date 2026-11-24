@@ -1276,6 +1276,19 @@ projects:
             not_done: [relink_with_the_rebuilt_stub, running_the_product_shell]
             evidence: deliverables/linux-ruyijs-cairolink-r335/cairolink-validation.json
             evidence_sha256: a4d80ded71ec93306528a1a5f90965a951e8f53894be213a0153843710df31cd
+          native_openssl_linked:
+            input_commit: 39cfb13
+            terminal: product_link 1
+            scope: 'the link after cairo, skia base and openssl'
+            milestone: 'the undefined set changed character: ordinary symbols rather than hidden ones, so the visibility problem is behind us and what remains is missing objects'
+            cleared: 'all twenty OpenSSL entries by naming libcrypto.so.3'
+            remaining_count: 14
+            remaining_grouped: {skia_base: 4, pixman: 10}
+            why_skia_base: 'SkArenaAlloc, SkDebugf and the Bezier helpers live in src/base, a directory the earlier subset never included; it compiles with no failures'
+            why_pixman: "Cairo's image backend composites through pixman, vendored under gfx/pixman and not built; pixman-private.h refuses to compile without the Mozilla headers, now supplied"
+            not_done: [rerun_the_pixman_compile, relink, running_the_product_shell]
+            evidence: deliverables/linux-ruyijs-ossl-r337/ossl-validation.json
+            evidence_sha256: 51c4e4388363bbfb602fec5b36d75c1101ce848dc45d786376ef40b514bf53ea
           private_product: pending
     inner_repo_state:
       exists: true
