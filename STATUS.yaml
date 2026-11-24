@@ -1528,6 +1528,7 @@ projects:
     cli_native_receipt: artifacts/receipts/trace-amd64-r5/cli-native-amd64.json
     mcp_production_receipt: artifacts/receipts/trace-amd64-r5/m2-delivery.json
     cross_machine_build: submodules/ruyitrace/docs/linux-build-from-source.md
+    interactive_image: artifacts/receipts/trace-interactive-r5/interactive-image.json
     blocked_by: []
     remaining:
     - Linux browser producer coverage beyond verified DOM, click, explicit Web Storage and amd64 window-script-error summaries
@@ -2131,7 +2132,7 @@ submodules:
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: f8eeb0ee909436fbe038a9e0bff67b5f96326022
+    commit: 9f8dbb9bbbd322c2e6a17b05b89fd23690067f2c
     state: added
 docs_health:
   total_markdown: 46

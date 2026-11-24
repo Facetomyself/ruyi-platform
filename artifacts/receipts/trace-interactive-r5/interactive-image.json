@@ -1,0 +1,140 @@
+{
+  "acceptance": {
+    "cli_gate": {
+      "marker": "withdrawn",
+      "off": "closed",
+      "on": "open"
+    },
+    "closed_window_markers": 0,
+    "exclusive_single_viewer": "after-valid-vncauth-submission",
+    "native": true,
+    "native_clicks": 1,
+    "no_published_ports": true,
+    "non_click_events": 0,
+    "page_receipt": {
+      "clicks": 3,
+      "drops": 1,
+      "sliderOK": true,
+      "submits": 1,
+      "textOK": true,
+      "titleOK": true
+    },
+    "page_receipt_after_reconnect": true,
+    "reconnect_same_owner": true,
+    "session": 1,
+    "window_id": 10737418242,
+    "writer_pid": 271
+  },
+  "added_image_bytes": 10425373,
+  "archive": {
+    "bytes": 348670847,
+    "name": "ruyitrace-interactive-r5-cli2-v1-linux-amd64.docker.tar.gz",
+    "sha256": "33265d0e7ac8fd713b6943a7a2837f9a5459b22f72a67c0e87f7a4fc0e025def"
+  },
+  "empty_engine_load": {
+    "additional_parent_config": false,
+    "extra_binary_or_qa_mounts": 0,
+    "initial_images": 0,
+    "passed": true,
+    "viewer_uds_http": 200
+  },
+  "evidence_sha256": {
+    "acceptance.json": "bc041d606a0aba725175b6ec1915416551dccba4e167ae6c902f82966791eb6e",
+    "empty-engine-final.json": "47ed156d6c8c8507653450c8c3d4df7c29ecba304a9f4720a39de32c9bec391d",
+    "local-view.json": "257ed97c660b63340789c932445712d7269167e7c905c9b646a86c1fcc71f0a5",
+    "operator-release.json": "a5c2e758c151c43b2fca949517c1229971fa827cac88d8607b02b2ca9116cc46",
+    "release-export.json": "3c4e245c71880758d6f593f7251aa54b1c41fb317990c81fe25bb397bbaab069",
+    "resource-measurements.json": "cdcef69ad85781c2aeb50ab3f28a7e90f878d24734c855bb0078d1000d87201c",
+    "transport-release.json": "ccce4e291f26b1e8c04deb2d5ce4bcb1e4f38b4ccbdf06e8cd2b600834692d59"
+  },
+  "firefox_build_id": "20261123161729",
+  "image_id": "sha256:9d3201e2689a974f431f090c31e08a3d2c2794da03e483cd31eada8badf0918a",
+  "limits": {
+    "arm": false,
+    "keystroke_or_trajectory_persistence": false,
+    "os_ime_candidate_flow": false,
+    "physical_keyboard_or_trackpad": false,
+    "recording": false,
+    "second_physical_host": false
+  },
+  "name": "ruyitrace/interactive:r5-cli2-v1-amd64",
+  "operator": {
+    "arm": true,
+    "non_tty_code_refused": true,
+    "off": true,
+    "on": true,
+    "profile_outside_output_mount": true,
+    "python": "3.6.8",
+    "start": true,
+    "status": true,
+    "stop": true
+  },
+  "parent_image_id": "sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6",
+  "platform": "linux/amd64",
+  "resource": {
+    "configurations": {
+      "headless": {
+        "active_cpu_percent_one_core": 28.9935,
+        "active_memory_working_set_peak_bytes": 382611456,
+        "active_viewer_bytes_delta": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "static_cpu_percent_one_core": 20.4639,
+        "viewport": [
+          1280,
+          720
+        ]
+      },
+      "interactive-novnc": {
+        "active_cpu_percent_one_core": 53.0123,
+        "active_memory_working_set_peak_bytes": 470319104,
+        "active_viewer_bytes_delta": {
+          "from_uds": 18943918,
+          "to_uds": 33984
+        },
+        "static_cpu_percent_one_core": 8.3573,
+        "viewport": [
+          1152,
+          648
+        ]
+      },
+      "interactive-unviewed": {
+        "active_cpu_percent_one_core": 29.0016,
+        "active_memory_working_set_peak_bytes": 461651968,
+        "active_viewer_bytes_delta": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "static_cpu_percent_one_core": 24.4005,
+        "viewport": [
+          1152,
+          648
+        ]
+      }
+    },
+    "cpu_metric": "cgroup total_usage delta / local monotonic midpoint wall delta * 100 (one core)",
+    "headless_viewport_differs": true,
+    "memory_metric": "sampled cgroup max(0, usage - total_inactive_file [v1] or inactive_file [v2]) bytes",
+    "viewer_bytes_metric": "QA relay successful writes to and reads from /viewer/view.sock, HTTP+WebSocket bytes"
+  },
+  "schema": "ruyitrace-interactive-image.v1",
+  "source": {
+    "branch": "main",
+    "commit": "9f8dbb9bbbd322c2e6a17b05b89fd23690067f2c",
+    "repository": "Facetomyself/ruyitrace",
+    "tag": "product/interactive-r5-cli2-v1-amd64"
+  },
+  "transport": {
+    "direct_streamlocal": "administratively-prohibited",
+    "foreign_host_refused": true,
+    "foreign_or_missing_origin_refused": true,
+    "host_local_viewer": true,
+    "http_ui": 200,
+    "raw_viewer_published": false,
+    "rfb_banner": "003.008",
+    "ssh_loopback_tcp_forward": true,
+    "sshd_modified": false,
+    "websocket_upgrade": 101
+  }
+}

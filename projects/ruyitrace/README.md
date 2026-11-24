@@ -8,6 +8,8 @@
 
 定制 Firefox 159（domtrace 插桩）+ Linux CLI，可选 Electron 控制台。用于采集和分析 DOM、点击与脱敏摘要。Linux 命令行开发从 [CLI 手册](../../submodules/ruyitrace/console/cli/README.md) 开始；重建内核看[跨机器构建](../../submodules/ruyitrace/docs/linux-build-from-source.md)。
 
+需要人工操作时用独立的[交互镜像](../../submodules/ruyitrace/product/interactive/README.md)：私有 noVNC 操作同一个 Firefox，断线重连保持同一进程与 run，采集仍走 `capture on/off`；默认不录屏、不记键值、不落轨迹。验收回执见 [`artifacts/receipts/trace-interactive-r5/interactive-image.json`](../../artifacts/receipts/trace-interactive-r5/interactive-image.json)。
+
 同一 Firefox 会话的 MCP 接入见 [ruyi-mcp 与组件边界](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。
 
 ## 三层
