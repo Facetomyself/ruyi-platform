@@ -1,0 +1,74 @@
+{
+  "checked_at": "2026-11-24T17:24:53+0800",
+  "followed": {
+    "body_matches": true,
+    "final_status": 200,
+    "final_url": "https://127.0.0.1:35560/final",
+    "net_log": [
+      {
+        "status": 302,
+        "url": "https://127.0.0.1:35560/start"
+      },
+      {
+        "status": 200,
+        "url": "https://127.0.0.1:35560/final"
+      }
+    ],
+    "peer_requests": [
+      "/start",
+      "/final"
+    ]
+  },
+  "host": {
+    "containers": 72,
+    "name": "host185",
+    "oom": 0
+  },
+  "outcome": "same_origin_https_redirect_followed__unpinned_cross_host_refused",
+  "parser_fix": {
+    "defect": "the DER walk placed the subject one field too early, so the extension block was never scanned and IP SANs were invisible",
+    "effect": "a certificate carrying IP:127.0.0.1 was treated as name-only localhost, refusing legitimate loopback HTTPS",
+    "unit_checks": [
+      "CN fallback only when no SAN",
+      "exact name match",
+      "wildcard single label",
+      "iPAddress SAN exact match",
+      "multiple SAN entries"
+    ]
+  },
+  "refused": {
+    "js_error": "TypeError: NetworkError when attempting to fetch resource.",
+    "net_log": [
+      {
+        "error": "",
+        "status": 302,
+        "url": "https://127.0.0.1:45586/start"
+      },
+      {
+        "error": "no pinned certificate for localhost:45586; refusing HTTPS without a pin",
+        "status": 0,
+        "url": "https://localhost:45586/final"
+      }
+    ],
+    "peer_requests": [
+      "/start"
+    ],
+    "redirect_target": "https://localhost:<port>/final"
+  },
+  "schema": "ruyijs-linux-redirect-r368.v1",
+  "still_open": [
+    "RFC 5280 path validation",
+    "OCSP/CRL revocation",
+    "external CA trust",
+    "http2",
+    "quic"
+  ],
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5258810,
+      "name": "wheel.whl",
+      "sha256": "4c29aa7e548d55a173c58d8b789eb41f544602703a70fd2afbfe73fdd2e548fa"
+    }
+  }
+}

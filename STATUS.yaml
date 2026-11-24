@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T17:20:37+08:00'
+generated_at: '2026-11-24T17:24:53+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R367_hostname_verification__R366_leaf_pin_and_validity__R365_navigate_https
+    tests: R368_https_redirect__R367_hostname_verification__R366_leaf_pin
     phase: R356 离线运行时、R357 明文 HTTP/1 组件及 R358 固定 NSS 的 TLS 适配层已分别验收；JS 层 HTTPS/h2/QUIC 端到端与 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,17 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_redirect_r368:
+            terminal: same_origin_https_redirect_followed__unpinned_cross_host_refused
+            followed: {final_status: 200, final_url_updated: true, peer_requests: 2}
+            unpinned_cross_host: {refused: true, peer_requests_before_refusal: 1, http_from_target: 0}
+            ip_san_parsed: true
+            companion_version: 0.2.5+inner.r368
+            artifact_sha256: 4c29aa7e548d55a173c58d8b789eb41f544602703a70fd2afbfe73fdd2e548fa
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-redirect.json
+            evidence_sha256: 2de2dce89e154825af1a170a065ee7b713c46affd9003e3780b94b24587b1b4c
+            repository_receipt: artifacts/receipts/ruyijs-linux-redirect-r368/validation.json
+            excluded: [rfc5280_path_validation, ocsp_crl_revocation, external_ca_trust, cross_scheme_redirects, http2, quic_http3]
           private_hostname_verification_r367:
             terminal: host_name_mismatch_refused_by_the_pinned_verify_hook
             defect_found: certificate_for_another_host_was_accepted
@@ -2176,7 +2187,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 572f9ff5f5171b032b23c6181cce2f654178e2b1
+    commit: b95aac311ec50ed1c28c1755599f89a5b4375b76
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

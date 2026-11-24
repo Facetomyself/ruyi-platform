@@ -78,6 +78,12 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**重定向与 IP SAN（R368）：同源 HTTPS 重定向正常跟随，未固定的异地主机被拒。** [回执](../../artifacts/receipts/ruyijs-linux-redirect-r368/validation.json)
+
+- 正向：`302 → /final` 被跟随，`response.url` 更新为最终地址，body 与最终响应一致；服务端记录 `/start`、`/final` 两次请求，均经 TLS。
+- 负向：302 指向 `https://localhost:<port>/final`（该主机未配置固定值），JS 得到 `TypeError`，`net_log` 明确记录 `no pinned certificate for localhost:…`，目标主机 **0 次** HTTP。
+- 同时修掉 DER 解析缺陷：subject 偏移算错一位，导致扩展块从未被扫描、`iPAddress` 类型的 SAN 完全不可见——带 `IP:127.0.0.1` 的合法证书会被误判为主机名不符。
+
 **主机名校验（R367）：修掉一个真实缺陷——证书属于别的主机名时曾会被接受。** [回执](../../artifacts/receipts/ruyijs-linux-hostname-r367/validation.json)
 
 - 修复前：自定义校验钩子只比对固定值与有效期，完全不看主机名。实测 `wrong.example` 去连一张 `CN=localhost` 的证书，握手成功并写出了 HTTP 请求——这是可被利用的身份冒充缺口。
