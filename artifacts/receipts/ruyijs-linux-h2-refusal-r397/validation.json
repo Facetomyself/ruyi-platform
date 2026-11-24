@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-11-24T22:42:00+08:00",
+  "closes": "R396 left the h2 handshake test unexecuted because the host was unreachable",
+  "correction": "the test now asserts that no HTTP bytes were written, which is the property that matters",
+  "evidence": {
+    "lines": 42,
+    "log": "deliverables/linux-ruyijs-tls-r358/r396-accept/run.log",
+    "sha256": "7e556d31626d6dc18178b2fc07526b902e4f9130174fd67ef891a7a8e61e158a"
+  },
+  "first_run_failed_and_why": "the test asserted the peer recorded zero requests, but the peer legitimately records an empty entry when TLS closes before a request line; the assertion was too coarse, not the product wrong",
+  "not_done": "h2 framing and multiplexing are still absent; this only guarantees a clean refusal",
+  "outcome": "the_h2_refusal_is_confirmed_on_a_live_peer",
+  "result": {
+    "h2_case": "test_h2_selection_is_refused passed",
+    "handshake_tests": "Ran 4 tests, OK",
+    "offline_tests": "Ran 23 tests, OK"
+  },
+  "schema": "ruyijs-linux-h2-refusal-r397.v1",
+  "source_commit": "8e06b32392854b70f8779be8b745cf397f64a2cd",
+  "still_open": [
+    "h2 framing and multiplexing",
+    "brotli/zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "QUIC",
+    "ARM64"
+  ],
+  "what_it_proves": "a peer that selects h2 through ALPN is refused before any HTTP/1.1 request line is written, so it cannot misparse this helper as an HTTP/1.1 client"
+}

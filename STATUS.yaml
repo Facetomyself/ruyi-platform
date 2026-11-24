@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T22:45:00+08:00'
+generated_at: '2026-11-24T22:42:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R396_alpn_coverage__R395_ledger_audit__R393_wheel_with_abi_fix
+    tests: R397_h2_refusal_live__R396_alpn_coverage__R395_ledger_audit
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_h2_refusal_r397:
+            terminal: the_h2_refusal_is_confirmed_on_a_live_peer
+            closes: r396_h2_handshake_test_unexecuted
+            offline_tests: 23
+            handshake_tests: 4
+            h2_case: passed
+            first_run: failed_on_an_over_coarse_assertion_not_on_product_behaviour
+            proves: no_http_bytes_written_after_an_h2_selection
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-h2-refusal.json
+            evidence_sha256: 1aabe71292a38065b413e5c8293cecb8bba72ec447266e0a678241661e943b26
+            repository_receipt: artifacts/receipts/ruyijs-linux-h2-refusal-r397/validation.json
+            excluded: [h2_framing, h2_multiplexing, brotli_zstd_decoding, ocsp_crl_revocation, quic_http3]
           private_alpn_coverage_r396:
             terminal: the_alpn_guard_is_now_extracted_and_covered_by_unit_and_handshake_tests
             gap_found: h2_refusal_had_no_test
@@ -2503,7 +2515,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 70747a117de401f9111453ff2f970c46fe772e1b
+    commit: 8e06b32392854b70f8779be8b745cf397f64a2cd
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
