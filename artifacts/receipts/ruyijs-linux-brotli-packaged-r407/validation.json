@@ -1,0 +1,40 @@
+{
+  "artifact": {
+    "bytes": 5356996,
+    "name": "ruyijs_http1-0.2.22+inner.r406-py3-none-linux_x86_64.whl",
+    "sha256": "cdb0f2b4c103a34e1379e9d9b85be28ba9e945bac73d765ed11b4f75151e2668"
+  },
+  "checked_at": "2026-11-25T01:08:00+08:00",
+  "how_the_build_blocker_was_cleared": "brotli sources were copied into the sealed SDK under modules/brotli with dec/, common/ and include/brotli/, dereferenced so regular() accepts them; that is the layout compile_brotli expects",
+  "installed_behaviour": {
+    "decode_via_package": "hello brotli from an independent encoder",
+    "decoder_loads": true,
+    "library_present": true,
+    "offered_encodings": "gzip, deflate, br",
+    "path_used": "tls._decode(raw, \"br\") inside the installed package, not a hand-built library"
+  },
+  "not_proven": [
+    "a real server response with Content-Encoding: br over the TLS path",
+    "zstd"
+  ],
+  "outcome": "the_packaged_wheel_contains_the_brotli_decoder_and_decodes_br_through_its_own_api",
+  "schema": "ruyijs-linux-brotli-packaged-r407.v1",
+  "size_delta": "the wheel grew by about 88 KB over R393, consistent with one decoder object",
+  "still_open": [
+    "br end to end over TLS",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "wheel_contents": {
+    "brotli_files": [
+      "ruyijs_necko/_native/libbrotlidec.so (187288 bytes)",
+      "ruyijs_necko/_native/brotli-build.json (753 bytes)"
+    ],
+    "entries": 30
+  }
+}

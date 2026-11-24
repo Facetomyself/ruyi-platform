@@ -84,6 +84,14 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 已进入打包产物（R407）。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-packaged-r407/validation.json)
+
+- wheel `0.2.22+inner.r406`，5,356,996 字节，SHA-256 `cdb0f2b4…1e2668`；30 个条目，其中 `_native/libbrotlidec.so` 187,288 字节。
+- 安装后实测：库在、`decoder_loads: True`、`offered: gzip, deflate, br`。
+- **通过包自身 API 解码**：`tls._decode(raw, "br")` 返回 `hello brotli from an independent encoder`，**不是**用手工拼的库验证的。
+- 阻塞清除方式：把 brotli 源码按 `modules/brotli/{dec,common,include/brotli}` 复制进密封 SDK 并解引用，这正是 `compile_brotli()` 需要的布局。
+- **仍未证明**：真实 `Content-Encoding: br` 响应经 TLS 路径的端到端；zstd。
+
 **brotli 接入（R406）：代码已接进 `tls.py` 与打包映射，wheel 构建卡在源码位置。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-wiring-r406/validation.json)
 
 - `tls.py`：`br` 加入可接受编码；`brotli_decoder()` 惰性加载 `_native/libbrotlidec.so`，不存在时返回 `None`；`_decode` 分派到受 `BODY_LIMIT` 约束的 `_decode_brotli`；**`Accept-Encoding` 只在库存在时才声明 `br`**——否则对端返回的 br 本机解不了。

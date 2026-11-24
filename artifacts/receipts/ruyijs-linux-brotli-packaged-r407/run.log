@@ -1,0 +1,5 @@
+offered: gzip, deflate, br
+decoded: hello brotli from an independent encoder
+DECODE_VIA_PACKAGE_OK
+RC=0
+END
