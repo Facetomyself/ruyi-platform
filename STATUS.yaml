@@ -1482,9 +1482,12 @@ projects:
           private_handoff_r422:
             terminal: a_single_page_handoff_summarises_what_ships_what_is_proven_and_what_is_missing
             document: docs/15-linux-handoff.md
-            document_sha256: c2f883dd790f88fbbc16cb32b5a3526e36c0fec3ab5150cd1328ce573f092600
+            evidence: ruyi-platform/docs/15-linux-handoff.md
+            evidence_sha256: c2f883dd790f88fbbc16cb32b5a3526e36c0fec3ab5150cd1328ce573f092600
+            repository_receipt: docs/15-linux-handoff.md
             every_number_checked: true
             ledger_blocks: 155
+            ledger_blocks_at_publication: 155
             receipts: 71
             offline_tests: 33
             handshake_tests: 4
