@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-25T03:05:00+08:00",
+  "fixture": "a local PKI was made with OpenSSL: a CA, a 127.0.0.1 leaf, and two OCSP responses whose text was checked by hand \u2014 good.der says \"Cert Status: good\" and rev.der says \"Cert Status: revoked\" with matching serial 399C13C8...",
+  "measured_result": "good, revoked and no-response all return 0, so revocation is not being enforced",
+  "most_likely_cause": "NSS does not accept the response from this signer \u2014 the CA is not marked as an OCSP signing authority \u2014 so CERT_CheckOCSPStatus falls back to success instead of judging the leaf",
+  "not_claimed": "OCSP enforcement is NOT delivered; the ledger records this as an attempt with a negative result",
+  "outcome": "ocsp_checking_is_wired_but_does_not_yet_reject_a_revoked_leaf",
+  "schema": "ruyijs-linux-ocsp-attempt-r418.v1",
+  "still_open": [
+    "make NSS accept the responder (signer trust or failure mode)",
+    "OCSP enforcement",
+    "CRL (not linkable in this build)",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "what_that_rules_out": [
+    "the response encoding: openssl prints the revoked status and the serial matches the leaf",
+    "the symbol: chain_verify_ocsp is present in the installed library",
+    "the plumbing: the none case returning 0 shows the old path still works"
+  ],
+  "what_was_built": {
+    "chain_verifier": "chain_verify_ocsp(packed, anchors, host, response) added and exported",
+    "packaging": "CHAIN_EXPORTS extended so the ABI check covers the new symbol",
+    "python": "tls._chain_verify(..., response=...) routes to it",
+    "wheel": "0.2.27+inner.r418 built and installed"
+  },
+  "why_it_was_not_finished": "the failure-mode and signer-trust questions needed more host round trips than the link would sustain this round"
+}

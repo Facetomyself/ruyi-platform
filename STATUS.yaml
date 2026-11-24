@@ -1,4 +1,4 @@
-generated_at: '2026-11-25T02:45:00+08:00'
+generated_at: '2026-11-25T03:05:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R416_revocation_scope__R415_bomb_over_tls__R414_bomb_bounds
+    tests: R418_ocsp_attempt__R416_revocation_scope__R415_bomb_over_tls
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1479,6 +1479,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_ocsp_attempt_r418:
+            terminal: ocsp_checking_is_wired_but_does_not_yet_reject_a_revoked_leaf
+            wired: true
+            enforcement_working: false
+            measured: good_revoked_and_no_response_all_return_zero
+            fixture_verified_by_hand: true
+            suspected_cause: nss_does_not_accept_the_responder_signer
+            delivered_as_feature: false
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-ocsp-attempt.json
+            evidence_sha256: 764801383bb7a8b28f4d052d69ae3653af653729076f0679897e0051f764d1ca
+            repository_receipt: artifacts/receipts/ruyijs-linux-ocsp-attempt-r418/validation.json
+            excluded: [ocsp_enforcement, crl_enforcement, default_mozilla_roots, http2_framing, quic_http3, arm64_product]
           private_revocation_scope_r416:
             terminal: ocsp_is_exported_and_crl_is_not_which_sets_the_shape_of_any_revocation_work
             ocsp_exported: true
@@ -2774,7 +2786,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 819ca59959e2afe94b63141a7a08ad437105b9b2
+    commit: e8d94759e25e165993f77e2646a80dfcd31cb587
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

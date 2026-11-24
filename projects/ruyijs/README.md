@@ -84,6 +84,15 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**OCSP 接入尝试（R418）：已接线，但吊销判定未生效。** [回执](../../artifacts/receipts/ruyijs-linux-ocsp-attempt-r418/validation.json)
+
+- 已做：`chain_verify_ocsp()` 编译并导出、Python 侧路由、ABI 校验覆盖新符号、wheel `0.2.27+inner.r418` 构建安装。
+- 夹具：用 OpenSSL 造了本地 PKI 与两份 OCSP 响应，`openssl -resp_text` 逐字确认 `good.der` 为 good、`rev.der` 为 **revoked**，序列号与叶证书一致。
+- **实测失败**：good、revoked、无响应**三者都返回 0**，吊销没有被执行。
+- 已排除：响应编码（人工核对无误）、符号缺失（`chain_verify_ocsp` 在库中）、接线错误（无响应走旧路径正常）。
+- **最可能原因**：NSS 不接受该签名者的响应（CA 未被标记为 OCSP 签名授权），于是 `CERT_CheckOCSPStatus` 退回成功而非判定。
+- **本条不声称 OCSP 可用。**
+
 **吊销机制可行性（R416）：OCSP 可用，CRL 不可链接。** [回执](../../artifacts/receipts/ruyijs-linux-revocation-scope-r416/validation.json)
 
 - 固定 NSS 里有 36 个 OCSP 符号、30 个 CRL 符号，`ocsp.h`/`ocspt.h` 都在。

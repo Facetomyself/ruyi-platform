@@ -20,6 +20,7 @@
 | **已补 · 端到端握手测试** | [R394](../artifacts/receipts/ruyijs-linux-e2e-tests-r394/validation.json)：3 个用例通过，并暴露 `exchange()` 对调用方传入库未声明 ABI 的缺陷（已修）。 | wheel 尚未包含该修复；brotli/OCSP/h2/QUIC/ARM64 仍未做。 |
 | **已补 · TLS 模块仓库内测试** | [R392](../artifacts/receipts/ruyijs-linux-tls-tests-r392/validation.json)：18 个测试覆盖解析、链、主机名、锚点、cutoff；两处变异均被检出。 | 测试是离线的，不含真实握手；端到端仍需主机。 |
 | **已缓解 · 压缩编码覆盖** | [R391](../artifacts/receipts/ruyijs-linux-content-negotiation-r391/validation.json)：请求只声明 `gzip, deflate`，服务端不会再回 `br`/`zstd`。 | brotli/zstd **解码**仍未实现；若服务端无视协商仍返回 br，会明确拒绝而非误解码。 |
+| **有阻碍 · OCSP（R418）** | [R418](../artifacts/receipts/ruyijs-linux-ocsp-attempt-r418/validation.json)：已接线并构建，但 revoked 响应未被采信，三者都返回 0。疑似签名者信任未建立。 | **未交付**。需先解决 NSS 对响应签名者的接受条件。 |
 | **已探明 · 吊销机制范围（R416）** | [R416](../artifacts/receipts/ruyijs-linux-revocation-scope-r416/validation.json)：OCSP 可链接（`CERT_CheckOCSPStatus`），CRL 声明在头文件但未导出。 | **未实施吊销判定**；OCSP 需在线响应器，工作量大于解码路径。CRL 需重编 NSS。 |
 | **已验 · 炸弹经 TLS 链路（R415）** | [R415](../artifacts/receipts/ruyijs-linux-bomb-e2e-r415/validation.json)：真实服务端发炸弹，br 与 zstd 都在链路上以准确理由拒绝。 | 剩余缺口是 CA 信任、吊销、PKIX、h2、QUIC、ARM64。 |
 | **已验 · 炸弹边界（R414）** | [R414](../artifacts/receipts/ruyijs-linux-bomb-bounds-r414/validation.json)：br 与 zstd 均拒绝 50 MiB 炸弹且理由准确；修掉 brotli 误报"无效"的问题。 | 链路层炸弹未验；OCSP/CRL、默认根库、PKIX、h2、QUIC、ARM64 仍未签收。 |
