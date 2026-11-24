@@ -1,0 +1,29 @@
+{
+  "target": "darwin_x86_64",
+  "runner": "native x86_64 macOS 15.7.9",
+  "source_run": "https://github.com/Facetomyself/ruyihttp/actions/runs/45341302623",
+  "source_commit": "c5138c5ef3554dbba29f5a850d63017904878e50",
+  "wheel_sha256": "444e8fb65d60e9af8e9889cff93e5cd71a13a3982fa9c4c822a5ebe9b87fa820",
+  "package_tag": "macosx_15_0_x86_64",
+  "native_files": 6,
+  "actual_wire_output": [
+    "darwin_x86_64 3.12.10 /Users/runner/work/_temp/installed-test/lib/python3.12/site-packages/ruyihttp macosx_15_0_x86_64 native hashes 6 NSS 3.132 NSPR 4.40",
+    "h2 200 20 {'backend': 'NSS', 'nss': '3.132', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+    "h3 200 30 {'backend': 'NSS', 'nss': '3.132', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False, 'profile': 'firefox-159'}",
+    "loaded sibling libraries: libfreebl3.dylib, libmozglue.dylib, libnecko_core.dylib, libnecko_quic.dylib, libnss3.dylib, libsoftokn3.dylib"
+  ],
+  "native_h3": "6/6, including Firefox 158 metadata, strict certificate negatives and port-only IPv4/IPv6 Alt-Svc",
+  "two_hop_proxy": "10/10",
+  "h2_eof": "PASS: END_STREAM then TLS close 12/12; truncated stream rejected 3/3",
+  "source_patch_sha256": "9bfd07f9132938f3709d2142d3facc286908838333c74cd6628c9a04824efa1e",
+  "original_candidate": "H3 wire requests returned 200, info.tls was null; replaced by native Neqo measurements",
+  "evidence_sha256": {
+    "native-test.txt": "d5ffa06b2c78e97b055d99f77a06148cbee738b548ee9a4aa7775e5a12f3c70f",
+    "full-h3.txt": "fb8ee8dd330075ba4b24f39839e6b0e96853d43028c70d6a9e72b2f5fc1ad907",
+    "proxy.txt": "ac9f55c987114e2144859c02fb07996ef7b6af5abdcc8feaf1c2d4773ce026e9",
+    "h2-eof.txt": "37ce970c92552c46de65863ec3386537f20473d1b0a8c53e702aed3dadb248a5",
+    "provenance.json": "22411e76996aeed20041bce85cd7cab26865cef92380a670497a4f03ba4407e4"
+  },
+  "checked_in_bytes": "23710c363d1ddfb58fdad00b25e88e04dc278feb",
+  "repack_check": "https://github.com/Facetomyself/ruyihttp/actions/runs/45344483731"
+}

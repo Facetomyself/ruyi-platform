@@ -24,7 +24,7 @@ submodules/ruyihttp/
 │   ├── win_amd64/       6 文件，7.2 MB（NSS 3.131 / Neqo 0.32.0）
 │   ├── darwin_arm64/    6 文件，8.2 MB（NSS 3.132 / Neqo 0.33.0）
 │   ├── linux_x86_64/   14 文件，8.4 MB（NSS 3.132 / Neqo 0.33.0）
-│   ├── darwin_x86_64/   空（build-required，仅 README）
+│   ├── darwin_x86_64/   6 个 x86_64 dylib 和固定源码构建来源
 │   └── linux_aarch64/   14 个 AArch64 ELF 和固定源码构建来源
 ├── tools/               build_native.py / verify_runtime.py / check_linux_candidate.py
 ├── tests/               契约、原生预检和 opt-in HTTP/3 集成测试
@@ -43,7 +43,7 @@ submodules/ruyihttp/
 | `win_amd64` | ready | 159.0 / 3.131 / 0.32.0 | `py3-none-win_amd64` |
 | `darwin_arm64` | ready | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_26_0_arm64` |
 | `linux_x86_64` | ready（Ubuntu 24.04 容器已通过 HTTPS 验收） | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_x86_64` |
-| `darwin_x86_64` | build-required | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_11_0_x86_64` |
+| `darwin_x86_64` | ready（Intel macOS 15.7.9 安装及 H1/H2/H3） | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_15_0_x86_64` |
 | `linux_aarch64` | ready（原生 ARM64 编译、安装及 H1/H2/H3） | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_aarch64` |
 
 打包器要求状态为 `ready`，且平台目录的文件集合及 SHA-256 与清单完全一致；单独放入一个同名库不会生成目标 wheel。Linux 槽位的最低 glibc 标签为 2.39，即使跨打包宿主更旧也不能把标签降到 2.31。
@@ -112,12 +112,16 @@ HTTP CONNECT、HTTPS CONNECT、SOCKS5h 三种入口经第二跳 CONNECT 到达�
 
 独立 Oracle ARM64 主机的回环证据包括真实 IPv4/IPv6 UDP H3、TLS 正反例和双跳代理。[H3 客户端/服务端回执](../../artifacts/receipts/ruyihttp-native-20261124/h3.txt)及[代理逐跳记录](../../artifacts/receipts/ruyihttp-native-20261124/proxy.json)给出了 x86_64 侧的独立对照。公网双栈单独验收：在 IPv6 优先而 IPv6 出口超时的同一主机，旧库对 example.com、PyPI 均在 TLS 前超时。`3df80a3` 在总连接时限内错开两种地址族尝试，保留原始 SNI、证书校验及代理侧 DNS。安装[主分支 wheel](https://github.com/Facetomyself/ruyihttp/actions/runs/45339943378)后两个原 URL 均返回 200/NSS TLS 1.3/h2；受控错误域名仍在发送 HTTP 前失败。
 
+### 2026-11-24：Intel macOS 原生运行时
+
+在原生 Intel runner 上编译 6 个 x86_64 dylib。最低部署版本从 Mach-O load commands 读取为 15.0，实际安装机为 macOS 15.7.9。第一版 H3 已经传输成功但 `tls=null`，未提升为正式运行时。修复 donor QUIC 桥后，从 Neqo 会话取回 TLS 版本、ALPN、cipher、恢复状态；实际选择的 Firefox 版本随请求传入。新的[严格验收](https://github.com/Facetomyself/ruyihttp/actions/runs/45341302623)通过 6 项 H3、10 项两跳代理与 H2 EOF 正反对照。[目标机回执及工件身份](../../artifacts/receipts/ruyihttp-native-20261124/darwin-x86_64.json)。
+
 ## 剩余缺口
 
 | 项 | 卡在哪 |
 | --- | --- |
 | HTTP/3 经代理 | 普通 TCP 代理和直连 H3 已分别验收；这两种能力并不构成 CONNECT-UDP/MASQUE 验收 |
-| Intel macOS 候选 | 独立目标机验证并核对动态库声明的最低系统版本后，才可提升平台状态 |
+| 旧系统兼容性 | Intel Mac 15.0 是二进制部署下限，目标机验收版本为 15.7.9；未宣称在 macOS 11–14 或 Linux glibc < 2.39 上可用 |
 | 原生库 C/C++/Rust 源码 | 不在树内，来源为 `ff-ruyijs` 0.4.1 wheel，见 `docs/02-source-recovery.md` |
 
 ## 构建

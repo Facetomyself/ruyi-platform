@@ -4,7 +4,7 @@
 
 - 用独立 UDP 对端和两跳 TCP 代理替换仅加载动态库的判据；加入证书错误、断链和完整响应/截断的对照。
 - 修复 IPv6 Alt-Svc 端口引用、H2 关连接时遗失已完成响应，以及 IPv6 首地址耗尽公网连接预算的问题。
-- Linux ARM64 由占位转为真实原生运行时；固定源码、目标 wheel、runner 及 Oracle 主机复验见[项目记录](README.md)。
+- Linux ARM64 与 Intel macOS 均由占位转为原生运行时。Intel QUIC 取回实际握手元数据（早期候选为 null）；两平台的固定源码、wheel、目标机和 Oracle 复验见[项目记录](README.md)。
 
 ## 2026-11-20 — Linux x86_64 wheel 真机 HTTPS 验收通过
 

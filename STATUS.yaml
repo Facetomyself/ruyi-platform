@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T14:39:09+08:00'
+generated_at: '2026-11-24T15:03:23+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -50,9 +50,9 @@ projects:
       win_amd64: ready (rebuilt, hash verified)
       darwin_arm64: ready (rebuilt, hash verified)
       linux_x86_64: ready (rebuilt; native x86_64 CPU, Ubuntu 24.04 container, glibc 2.39; live HTTPS 200, TLS 1.3, h2)
-      darwin_x86_64: build-required
+      darwin_x86_64: ready (6 source-built x86_64 dylibs; macosx_15_0_x86_64; H1/H2/H3 on Intel macOS 15.7.9)
       linux_aarch64: ready (14 source-built ELF; manylinux_2_39_aarch64; native H1/H2/H3 and Oracle ARM transport verified)
-    tests: 26/26
+    tests: 39 contract checks locally plus 6 opt-in native H3 gates (45 tests discovered)
     latest_local_contract: '2026-11-22: aarch64 Python 3.10.12, 26/26 including native ELF and bounded wheel inspection fixtures; no native ARM64 release or live transport test'
     native_wheel_inspection:
       tool: 2903c12608bbf1ffce9f6ee95406ef2aaaa38a7b
@@ -71,6 +71,9 @@ projects:
       two_hop_proxy: '10/10; HTTP CONNECT, HTTPS CONNECT, SOCKS5h ingress to second CONNECT proxy'
       h2_eof: '12 complete streams retained; 3 truncated streams rejected'
       arm_source: https://github.com/Facetomyself/ruyihttp/actions/runs/45335744015
+      intel_repack: https://github.com/Facetomyself/ruyihttp/actions/runs/45344483731
+      intel_source: https://github.com/Facetomyself/ruyihttp/actions/runs/45341302623
+      intel_receipt: artifacts/receipts/ruyihttp-native-20261124/darwin-x86_64.json
       arm_oracle_receipt: artifacts/receipts/ruyihttp-native-20261124/linux-aarch64.json
       scope: 'No CONNECT-UDP or arbitrary client proxy-list support implied.'
     phase: 原生 wheel 与实际协议分项验收，见 build 与 transport_acceptance
@@ -80,8 +83,8 @@ projects:
       verify_runtime: pass
       asar_integrity: n/a
       deps_fixed: zstd 三级 fallback
-      build_required_guard: pass (两平台按预期抛 native runtime missing)
-      wheel_rebuild: 3 平台成功，26 个原生文件 hash 全匹配
+      build_required_guard: pass (合成缺库、部分库和错哈希均阻止打包；实库另行验证)
+      wheel_rebuild: 原始三平台 26 个文件；ARM64 Linux 新增 14 个 ELF，Intel macOS 新增 6 个 dylib
     closed_todos:
     - backports 导入（已改三级 fallback）
     - 6 项 Windows 断言（已参数化）
@@ -2070,7 +2073,7 @@ submodules:
     state: added
   ruyihttp:
     url: https://github.com/Facetomyself/ruyihttp
-    commit: 4800a6c7056181fea7e32accbf40f4eab5f5a2ab
+    commit: 846f8ff770a2559ba879799b1f5626178ca99015
     visibility: public
     state: added
   ruyijs:

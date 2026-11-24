@@ -20,7 +20,7 @@ submodules/ruyihttp/
 │   ├── linux_x86_64/   14 文件  8.4 MB
 │   ├── darwin_arm64/    6 文件  8.2 MB
 │   ├── win_amd64/       6 文件  7.2 MB
-│   ├── darwin_x86_64/   仅 README（build-required）
+│   ├── darwin_x86_64/   6 个 Intel Mach-O dylib、哈希及固定源码构建来源
 │   └── linux_aarch64/   14 个 AArch64 ELF、哈希与构建来源
 ├── tools/             build_native.py / verify_runtime.py
 ├── tests/             契约、原生清单、H3 集成测试
