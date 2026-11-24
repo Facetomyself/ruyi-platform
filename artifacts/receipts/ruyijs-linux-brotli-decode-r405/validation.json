@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-11-25T00:42:00+08:00",
+  "method_note": "a detached nohup job launched by a short ssh call is what made this possible; the same command could not complete inside a single ssh invocation",
+  "outcome": "the_brotli_decoder_built_from_in_tree_sources_decodes_a_stream_from_an_independent_encoder",
+  "proof": {
+    "compressed_bytes": 44,
+    "decoder": "libbrotlidec.so built from modules/brotli of the pinned tree (12 units)",
+    "encoder": "brotli 1.2.1 on oracle-dsh, a different implementation and version from the pinned Firefox build",
+    "exit": "RC=0",
+    "payload": "hello brotli from an independent encoder",
+    "result": "decoded 40 bytes, exact match asserted by strcmp inside the test"
+  },
+  "schema": "ruyijs-linux-brotli-decode-r405.v1",
+  "still_open": [
+    "brotli wiring into the decoder selection",
+    "brotli packaging",
+    "br end to end over TLS",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "two_defects_that_had_to_be_fixed_first": [
+    {
+      "fix": "copy the real headers from modules/brotli/include/brotli, the same resolution used for the NSS headers in R358",
+      "problem": "dist/include/brotli holds symlinks to /build/ff159/..., dangling inside a bind mount"
+    },
+    {
+      "fix": "link into tmpfs and set LD_LIBRARY_PATH to the mounted library directory",
+      "problem": "the mounted source tree is read-only, so the linker could not write the binary next to it"
+    }
+  ],
+  "what_this_does_not_prove": [
+    "that tls.py selects brotli",
+    "that the decoder is packaged in the wheel",
+    "that a real server response with Content-Encoding: br decodes end to end",
+    "zstd at all"
+  ]
+}

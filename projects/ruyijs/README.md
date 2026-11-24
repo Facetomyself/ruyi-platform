@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 解码往返通过（R405）。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-decode-r405/validation.json)
+
+- **证明**：用本机 `brotli 1.2.1`（与固定构建不同实现、不同版本）压缩 44 字节；用固定构建源码编出的 `libbrotlidec.so` 解码，得 `decoded 40 bytes: hello brotli from an independent encoder`，程序内 `strcmp` 断言通过，`RC=0`。
+- **必须先修的两个缺陷**：① `dist/include/brotli` 是指向 `/build/...` 的悬空链接 → 改从 `modules/brotli/include/brotli` 取真实头文件（与 R358 的 NSS 同一解法）；② 挂载树只读，链接器写不了输出 → 链接进 tmpfs 并用 `LD_LIBRARY_PATH`。
+- **方法**：`nohup` 后台作业 + 短 SSH 读日志。同一条命令在单次 SSH 里跑不完，这是关键。
+- **尚未证明**：`tls.py` 是否选择 brotli、是否打进 wheel、真实 `Content-Encoding: br` 响应的端到端、zstd。**这条只覆盖解码库本身。**
+
 **brotli 往返第五次尝试（R404）：找到编译一直失败的真正原因。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r404/validation.json)
 
 - **方法突破**：改用主机上的 `nohup` 后台作业，短 SSH 只负责启动和读日志。**R403 的长命令限制因此消失**——这是前几轮都该用的做法。
