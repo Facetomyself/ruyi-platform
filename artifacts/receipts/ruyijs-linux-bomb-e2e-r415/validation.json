@@ -1,0 +1,34 @@
+{
+  "artifact": {
+    "bytes": 5440438,
+    "name": "ruyijs_http1-0.2.25+inner.r414-py3-none-linux_x86_64.whl"
+  },
+  "checked_at": "2026-11-25T02:30:00+08:00",
+  "evidence": {
+    "log": "8e5585ac5ee487ea5e268f8bb1279c536424b4e14f9905df95a7b8fceb5fffc3",
+    "result": "093af6833d7b5b3783e931f15d46a26ac22bd27e3d4f8f6caefa43684899b30f"
+  },
+  "live_chain": {
+    "br": {
+      "error": "decoded TLS response exceeds the limit",
+      "js_saw_a_failure": true,
+      "peer_actually_sent_the_bomb": true
+    },
+    "zstd": {
+      "error": "decoded TLS response exceeds the limit",
+      "js_saw_a_failure": true,
+      "peer_actually_sent_the_bomb": true
+    }
+  },
+  "outcome": "a_live_tls_peer_delivered_a_bomb_and_both_codings_refused_it_on_the_wire",
+  "schema": "ruyijs-linux-bomb-e2e-r415.v1",
+  "still_not_covered": [
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing and multiplexing",
+    "QUIC",
+    "ARM64"
+  ],
+  "why_this_closes_the_gap": "R414 bounded the decode function directly; this exercised the same path through a real TLS connection with a peer that only sends when the coding is advertised, so neither the negotiation nor the wire framing could hide a regression"
+}

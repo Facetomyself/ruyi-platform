@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**链路层炸弹测试（R415）：真实 TLS 连接下同样被拒。** [回执](../../artifacts/receipts/ruyijs-linux-bomb-e2e-r415/validation.json)
+
+- R414 只直接调了解码函数；本轮让**真实 TLS 服务端发送炸弹**，且只在客户端声明对应编码时才发。
+- 结果：br 与 zstd 的 `served` 均为 **true**（确实发了），客户端两侧都以 `decoded TLS response exceeds the limit` 拒绝，JS 层看到失败而非撑爆。
+- 这排除了“协商或链路分帧掩盖了回归”的可能。
+- wheel：`0.2.25+inner.r414`，5,440,438 字节，含 brotli 超限判据修复。
+
 **解压炸弹防护（R414）：两种新编码都能拦住，且理由准确。** [回执](../../artifacts/receipts/ruyijs-linux-bomb-bounds-r414/validation.json)
 
 - 炸弹：50 MiB 零字节 → zstd 压成 **1,619 字节**、brotli 压成 **9,520 字节**。

@@ -1,0 +1,3 @@
+{"passed": true, "detail": {"zstd": {"err": "decoded TLS response exceeds the limit", "served": true}, "br": {"err": "decoded TLS response exceeds the limit", "served": true}}}
+RC=0
+END

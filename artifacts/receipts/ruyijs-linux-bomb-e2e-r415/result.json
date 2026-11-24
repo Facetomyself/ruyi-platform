@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "results": {
+    "br": {
+      "error": "decoded TLS response exceeds the limit",
+      "served": true,
+      "value": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    },
+    "zstd": {
+      "error": "decoded TLS response exceeds the limit",
+      "served": true,
+      "value": {
+        "e": "TypeError: NetworkError when attempting to fetch resource."
+      }
+    }
+  }
+}
