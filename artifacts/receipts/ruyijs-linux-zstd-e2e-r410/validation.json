@@ -1,0 +1,36 @@
+{
+  "artifact": {
+    "bytes": 5440285,
+    "name": "ruyijs_http1-0.2.23+inner.r410-py3-none-linux_x86_64.whl",
+    "sha256": "a05b4cfd1cfcb5cc134f917626a31995b8a400f095adff7e16ee537d1d6c3f14"
+  },
+  "chain_proven": {
+    "body": "hello zstd from an independent encoder",
+    "client_advertised": "gzip, deflate, br, zstd",
+    "error": "none",
+    "peer_sent_zstd": true,
+    "status": 200
+  },
+  "checked_at": "2026-11-25T01:48:00+08:00",
+  "coverage_both_codings": "brotli (R408) and zstd (this round) now both negotiate, decode and ship inside the wheel",
+  "encoder_independence": "the payload came from zstandard 0.25.0 on oracle-dsh; the tree ships decompress only, so this is the strongest available check",
+  "not_proven": [
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "offline_tests": 29,
+  "outcome": "zstd_decoding_works_end_to_end_and_ships_in_the_wheel",
+  "schema": "ruyijs-linux-zstd-e2e-r410.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing and multiplexing",
+    "QUIC",
+    "ARM64"
+  ]
+}

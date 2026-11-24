@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**zstd 端到端通过（R410）：两种压缩编码现在都完整可用。** [回执](../../artifacts/receipts/ruyijs-linux-zstd-e2e-r410/validation.json)
+
+- wheel `0.2.23+inner.r410`，5,440,285 字节，SHA-256 `a05b4cfd…6c3f14`。
+- 声明 `gzip, deflate, br, zstd`，服务端确认返回 zstd，JS `fetch()` 得 `200` + `hello zstd from an independent encoder`，无错误。
+- 29 个离线测试通过，含 zstd 条件协商与加载器幂等。
+- **brotli 与 zstd 现在都已：协商 → 解码 → 打包 → 端到端验证。**
+
 **zstd 解码器可编出并解码（R409）。** [回执](../../artifacts/receipts/ruyijs-linux-zstd-decode-r409/validation.json)
 
 - **证明**：本机 `zstandard 0.25.0` 压缩 47 字节；固定构建 `third_party/zstd` 的 `common/`+`decompress/` 编出的解码器解出 `hello zstd from an independent encoder`，`strcmp` 断言通过，`RC=0`。
