@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 往返第二次尝试（R401）：仍未跑通，但错误来源已重新定位。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r401/validation.json)
+
+- **已排除（实测）**：镜像有 `/bin/sh -> dash`、`/bin/bash`、`/bin/dash`（均 0755）；容器内 `which clang-21` 返回 `/usr/bin/clang-21`；单独 bind mount、`--user 1000:1000`、`--cap-drop ALL` 配合 `sh -c` 均正常。
+- **新发现**：反复出现的 `exec /usr/bin/sh: no such file or directory` **发生在容器启动之前**，`/usr/bin/sh` 是**宿主机**路径。此前我把它一律当成镜像问题，判断错了方向。
+- 本轮试了 11 种运行器写法，均未成功。有价值的产出是上面这份**否定证据**，不是通过。
+- `libbrotlidec.so` 仍只被证明能链接，**未证明能解码**。
+
 **brotli 解码往返未建立（R400）：库编出来了，但没证明它能解码。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r400/validation.json)
 
 - 已准备：用本机 `brotli 1.2.1`（与固定构建不同版本）压缩 `hello brotli from an independent encoder` 得 44 字节，嵌入 C 程序并断言解码结果。

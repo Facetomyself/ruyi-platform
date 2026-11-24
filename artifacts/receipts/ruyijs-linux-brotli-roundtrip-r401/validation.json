@@ -1,0 +1,31 @@
+{
+  "carried_forward": {
+    "dir": "deliverables/linux-ruyijs-tls-r358/brtest/ contains the C test, the embedded payload and eight runner variants tried"
+  },
+  "checked_at": "2026-11-24T23:58:00+08:00",
+  "honest_note": "eleven runner variants were tried this round without success; the useful outcome is the negative evidence above, not a pass",
+  "new_finding": "the recurring \"exec /usr/bin/sh: no such file or directory\" is raised before the container starts, and /usr/bin/sh is a host path; the host shell layout differs from the image, so several failures previously attributed to the image were host side",
+  "next_step": "confirm the host shell layout with one listing, then run the compile+run command through the same form that already worked when the brotli library was built",
+  "outcome": "still_not_established_but_the_error_source_was_relocated",
+  "schema": "ruyijs-linux-brotli-roundtrip-r401.v1",
+  "still_blocking": "the round trip has not run; libbrotlidec.so remains proven to link only",
+  "still_open": [
+    "brotli decode round trip",
+    "brotli wiring and packaging",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "what_was_ruled_out_by_measurement": {
+    "bind_mount_alone": "a bind mount with sh -c works",
+    "cap_drop": "--cap-drop ALL with sh -c works",
+    "clang_exists": "inside the image, sh -c \"which clang-21\" returns /usr/bin/clang-21",
+    "image_has_shell": "/bin/sh -> dash, /bin/bash and /bin/dash all present with 0755",
+    "network_none_and_memory": "combined runs reached the compile stage before",
+    "user_flag": "--user 1000:1000 with sh -c works"
+  }
+}
