@@ -76,7 +76,8 @@ ruyijs-inner/
 - `native/necko_tls/necko_tls.c` 用封存的 195 个头文件和固定 Firefox 构建的 NSS/NSPR 共享库编译为 `libruyijs_tls.so`（35,800 字节，SHA-256 `d5238c84…3c1a9e`），15 个导出符号与源码一致；依赖仅 `libnss3/ssl3/nssutil3/nspr4/plc4/plds4/libc`。
 - 在仅回环网络的原生容器中完成三次 TLS 1.3 握手：显式 `http/1.1` ALPN、显式 `h2` ALPN、不协商 ALPN；均由独立 Python/OpenSSL 服务端核对版本、密码套件 `TLS_AES_256_GCM_SHA384` 和应用数据往返。
 - 不受信任证书以 `SSL_ERROR_BAD_CERTIFICATE` 终止，服务端收到 `bad certificate` 告警。构建中发现的真实问题已记录：dist 头目录的符号链接指向 `/build/ff159/...`，单独绑定目录会全部悬空。
-- **边界：** 这是适配层验收，不是 JS 层 HTTPS。`fetch()`/`navigate()` 走 HTTPS、外部 CA 信任库、真实 Necko socket 进程、h2 多路复用语义、QUIC/h3、ARM64 与 wheel 发行均未在本次签收。
+- **固定证书的 HTTPS 客户端（同批）：** `deliverables/linux-ruyijs-tls-r358/release/python/tls.py`（SHA-256 `8944de5e…2dfb6e`）通过该适配层完成一次真实请求/响应往返。信任模型是调用方提供 DER 证书的 SHA-256 固定值：未配置固定值的域名直接拒连，配置错误的固定值在发出任何 HTTP 字节前拒绝，空固定值集合视为配置错误。这不是公共 CA 信任库。
+- **边界：** 上述仍是原生层与独立客户端验收，不是 RuyiJS JS 层 HTTPS。`Context.fetch()`/`navigate()` 走 HTTPS、外部 CA 信任、真实 Necko socket 进程、h2 多路复用语义、QUIC/h3、ARM64 与 wheel 发行均未在本次签收。
 
 **基础 pip 交付（R356）：R355 干净重建的原生文件已封装为独立版本 `0.2.2+inner.20261101191032.r356`。** [安装、升级与回退命令](../../submodules/ruyijs/docs/linux-amd64-clean-wheel.md) · [R356 回执](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) · [同一虚拟环境的迁移记录](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/lifecycle.json)。
 

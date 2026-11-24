@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T16:25:39+08:00'
+generated_at: '2026-11-24T16:41:06+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -1452,7 +1452,7 @@ projects:
             repository_receipt: artifacts/receipts/ruyijs-linux-http1-r357/validation.json
             excluded: [mozilla_necko_nss, https_tls, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
           private_nss_tls_adapter_r358:
-            terminal: pinned_firefox_nss_tls_adapter_native_handshakes_passed
+            terminal: pinned_firefox_nss_tls_adapter_and_pinned_https_client_verified
             scope: native adapter and NSS handshakes only; not JS HTTPS or live Necko
             nss: '3.131'
             nspr: '4.40'
@@ -1462,7 +1462,8 @@ projects:
             artifact_bytes: 35800
             artifact_sha256: d5238c84002c8adcc7e402bf2b94e23b82cd97bdf7d67da1ae248f3b4f3c1a9e
             evidence: deliverables/linux-ruyijs-tls-r358/validation.json
-            evidence_sha256: e50f6b619588ecb497d258625b6512aa7c9296b77d95f386edf192a9753a5811
+            evidence_sha256: 9ac868be362c8b557ad7d47e54b6e52cfde7fade2d69cf3ddb83e70cbb53ad90
+            https_client: {module_sha256: 8944de5ef60ca50344828b5badf9a0ee6a3cff40ada36b6c986f40b1672dfb6e, trust: caller_pins_over_DER, unpinned_refused: true, wrong_pin_refused_before_http: true, round_trip: pass}
             repository_receipt: artifacts/receipts/ruyijs-linux-tls-r358/validation.json
             excluded: [js_https_fetch, external_ca_trust, live_necko, h2_stream_semantics, quic_http3, arm64_product, wheel_release]
           private_product: linux_amd64_offline_base_plus_optional_cleartext_http1_companion

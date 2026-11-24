@@ -3,10 +3,11 @@
     "bytes": 35800,
     "exports": 15,
     "format": "private Linux x86-64 shared library, not a wheel",
+    "https_module_sha256": "8944de5ef60ca50344828b5badf9a0ee6a3cff40ada36b6c986f40b1672dfb6e",
     "path": "deliverables/linux-ruyijs-tls-r358/release/libruyijs_tls.so",
     "sha256": "d5238c84002c8adcc7e402bf2b94e23b82cd97bdf7d67da1ae248f3b4f3c1a9e"
   },
-  "checked_at": "2026-11-24T16:37:18+0800",
+  "checked_at": "2026-11-24T16:41:06+0800",
   "controls": {
     "application_data_round_trip": true,
     "h2_alpn_negotiated": true,
@@ -17,7 +18,9 @@
   "engineering_notes": [
     "The dist header directory contains symlinks whose targets are /build/ff159/...; bind-mounting the directory alone leaves dangling links. The adapter was compiled against a sealed, hash-manifested copy of every header resolved from the real source tree.",
     "A generated prcpucfg.h plus nsprpub/pr/include/md platform configuration headers were required.",
-    "The NSS libraries are the pinned Firefox build outputs; the shared-library set is recorded by SHA-256 and is not rebuilt here."
+    "The NSS libraries are the pinned Firefox build outputs; the shared-library set is recorded by SHA-256 and is not rebuilt here.",
+    "A clean peer close is surfaced by the adapter as an I/O result with zero bytes; the client ends the body on a complete Content-Length and never treats truncation as success.",
+    "Pins must hash the DER certificate, not the PEM file byte order or its base64 wrapper."
   ],
   "handshakes": [
     {
@@ -91,18 +94,52 @@
     }
   ],
   "host": {
-    "containers": 13,
+    "containers": 17,
     "name": "host185",
     "nonzero_exits": [
       "ruyijs-r358-compile",
       "ruyijs-r358-compile2",
       "ruyijs-r358-compile3",
       "ruyijs-r358-export",
+      "ruyijs-r358-httpsprobe",
+      "ruyijs-r358-httpsprobe2",
+      "ruyijs-r358-httpsprobe3",
       "ruyijs-r358-tlsbuild",
       "ruyijs-r358-tlsbuild2",
       "ruyijs-r358-tlsprobe"
     ],
     "oom": 0
+  },
+  "https_client": {
+    "cases": {
+      "empty_pin_set": {
+        "error": "invalid certificate pin entry: '127.0.0.1'",
+        "refused": true
+      },
+      "pinned_accept": {
+        "body": "reply-3dee8978f996",
+        "cert_sha256": "1f83b9769cc7524bd54bbc4cc5b14f2839896bd0d2455e5a6e00820deb5836d4",
+        "matches_peer": true,
+        "peer_request": "GET /pinned HTTP/1.1",
+        "protocol": "http/1.1",
+        "status": 200
+      },
+      "unpinned_host": {
+        "error": "no pinned certificate for 127.0.0.1:443; refusing HTTPS without a pin",
+        "refused": true
+      },
+      "wrong_pin": {
+        "error": "peer certificate does not match any pinned digest",
+        "peer_requests": [],
+        "peer_served": 0,
+        "refused": true
+      }
+    },
+    "module": "deliverables/linux-ruyijs-tls-r358/release/python/tls.py",
+    "module_bytes": 10230,
+    "module_sha256": "8944de5ef60ca50344828b5badf9a0ee6a3cff40ada36b6c986f40b1672dfb6e",
+    "passed": true,
+    "trust_model": "caller-supplied SHA-256 pins over DER certificates; no pin means refuse"
   },
   "inputs": {
     "needed": [
@@ -136,8 +173,8 @@
       "nss": "3.131"
     }
   },
-  "outcome": "pinned_firefox_nss_tls_adapter_native_handshakes_passed",
-  "schema": "ruyijs-linux-nss-tls-adapter-r358.v1",
+  "outcome": "pinned_nss_tls_adapter_and_pinned_https_client_verified",
+  "schema": "ruyijs-linux-nss-tls-r358.v2",
   "scope": {
     "explicitly_not_verified": [
       "RuyiJS JS fetch()/navigate() over HTTPS end to end",
@@ -145,14 +182,14 @@
       "live Necko socket-process transport",
       "HTTP/2 multiplexing semantics",
       "QUIC/HTTP3",
-      "Linux ARM64",
-      "installable wheel publication"
+      "Linux ARM64"
     ],
     "positive": [
       "necko_tls_* adapter compiled from native/necko_tls/necko_tls.c against the pinned Firefox 159 NSS 3.131 / NSPR 4.40 headers and shared libraries",
       "real loopback TLS 1.3 handshakes with NSS client and an independent Python/OpenSSL server",
       "explicit ALPN h2 and http/1.1 negotiation, application data round trip",
-      "untrusted certificate rejected with SSL_ERROR_BAD_CERTIFICATE"
+      "untrusted certificate rejected with SSL_ERROR_BAD_CERTIFICATE",
+      "pinned-certificate HTTPS client over the adapter: one real request/response round trip on loopback"
     ]
   }
 }
