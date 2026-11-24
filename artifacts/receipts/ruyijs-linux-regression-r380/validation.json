@@ -1,0 +1,57 @@
+{
+  "checked_at": "2026-11-24T17:58:08+0800",
+  "host": {
+    "containers": 126,
+    "name": "host185",
+    "oom": 0
+  },
+  "negative": {
+    "cleartext_peer_saw": true,
+    "cleartext_still_ok": true,
+    "wrong_anchor_no_http": true,
+    "wrong_anchor_refused": true
+  },
+  "outcome": "six_prior_fixes_and_the_negative_paths_all_hold_on_one_wheel",
+  "peer_http_requests": {
+    "cleartext": [
+      "/p"
+    ],
+    "tls": [
+      "/fixed",
+      "/chunked",
+      "/gzip",
+      "/nolen",
+      "/redirect",
+      "/fixed",
+      "/bighead"
+    ],
+    "tls_alerts": [],
+    "wrong_anchor_tls_requests": []
+  },
+  "positive": {
+    "R363_chunked": true,
+    "R363_gzip": true,
+    "R368_redirect": true,
+    "R370_header_bound": true,
+    "R372_close_delimited": true,
+    "R376_anchor_ok": true
+  },
+  "schema": "ruyijs-linux-cumulative-regression-r380.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "public CA root bundles",
+    "h2 framing and multiplexing",
+    "QUIC/HTTP3",
+    "Linux ARM64",
+    "long-lived helper per-host anchor isolation"
+  ],
+  "wheel": {
+    "bytes": 5265888,
+    "name": "wheel.whl",
+    "sha256": "114d2e12cf080b37fee35f6d803cadf78ca9a7d32b0b90a56f5d242df2ecc231"
+  },
+  "why_this_round": [
+    "earlier rounds each proved one property on the wheel of the day; this run re-checks them together on the current wheel so a later change cannot silently break an earlier fix",
+    "the negative half matters as much: an unrelated anchor must still be refused and the cleartext path must still work, otherwise a TLS-only fix could have broken plain HTTP"
+  ]
+}
