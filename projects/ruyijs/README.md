@@ -84,6 +84,15 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**OCSP 结论（R420）：响应被接受并缓存，但 NSS 仍判叶子为 good。** [回执](../../artifacts/receipts/ruyijs-linux-ocsp-conclusion-r420/validation.json)
+
+- 加了一个 stage 计数器并导出，把"三个都返回 0"定位到具体步骤，而不是靠猜。
+- 结果：good / revoked / 无响应**全部停在 stage 21**（11=设失败模式，12=响应已缓存，21=状态检查返回成功）。
+- 由此确定：响应写入缓存成功、判定也执行了，但 revoked 结论被 NSS 判为 good。
+- **三轮排除掉的**：响应编码（人工核对）、符号缺失、失败模式未设（已显式设 `ocspMode_FailureIsVerificationFailure`）、接线错误、缓存被拒（从未出现 stage 13）。
+- 结论：这需要 **NSS 认可的响应签名者**（专用签名证书带 `id-kp-OCSPSigning`），属于夹具与信任工程，不是适配层缺陷。
+- **决定停止**：剩余轮次不投入夹具工程。**OCSP 未交付**。
+
 **OCSP 接入尝试（R418）：已接线，但吊销判定未生效。** [回执](../../artifacts/receipts/ruyijs-linux-ocsp-attempt-r418/validation.json)
 
 - 已做：`chain_verify_ocsp()` 编译并导出、Python 侧路由、ABI 校验覆盖新符号、wheel `0.2.27+inner.r418` 构建安装。

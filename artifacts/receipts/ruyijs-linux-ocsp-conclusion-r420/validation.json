@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "stage_export": "chain_last_stage",
+    "wheel": "0.2.29+inner.r420"
+  },
+  "checked_at": "2026-11-25T03:15:00+08:00",
+  "conclusion": "with a locally generated CA as responder, NSS accepts the response into its cache but does not treat the revoked status as authoritative for this leaf; making it do so needs a responder whose signing authority NSS recognises (id-kp-OCSPSigning on a dedicated signer), which is a fixture-and-trust problem rather than a defect in this adapter",
+  "decision": "stopping here rather than spending the remaining rounds on fixture engineering; OCSP enforcement is not delivered and is recorded as such",
+  "how_the_answer_was_obtained": "a stage counter was added to the C verifier and exported, so an all-zero result could be traced to the exact step instead of guessed at",
+  "measured": {
+    "good": "rc 0 at stage 21",
+    "no_response": "rc 0 at stage 21",
+    "revoked": "rc 0 at stage 21",
+    "stage_meaning": "11 set fail-closed mode, 12 the response was cached, 21 the status check returned success"
+  },
+  "not_claimed": "OCSP enforcement",
+  "outcome": "ocsp_responses_are_accepted_and_cached_but_nss_still_judges_the_leaf_good",
+  "schema": "ruyijs-linux-ocsp-conclusion-r420.v1",
+  "still_open": [
+    "OCSP enforcement with a recognised responder",
+    "CRL (not linkable in this build)",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "what_that_establishes": [
+    "the response is accepted by CERT_CacheOCSPResponseFromSideChannel",
+    "CERT_CheckOCSPStatus runs and returns SECSuccess",
+    "for the revoked response that success is wrong, and it does not come from a skipped step"
+  ],
+  "what_was_ruled_out_across_three_rounds": [
+    "response encoding (verified by hand with openssl -resp_text)",
+    "missing symbols (chain_verify_ocsp and CERT_SetOCSPFailureMode are exported)",
+    "an unset failure mode (ocspMode_FailureIsVerificationFailure is now set explicitly)",
+    "plumbing (the no-response case behaves the same, proving the path is exercised)",
+    "a rejected cache write (stage 13 never appears)"
+  ]
+}
