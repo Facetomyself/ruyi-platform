@@ -1,5 +1,7 @@
 # 阶段总结与交接
 
+**当前交付入口（2026-11-24）：[平台状态、源码与构建交接](docs/14-source-handoff.md)。** 下列记录保留为历史；其中“ARM64 插桩待验证”已由后续 ARM64 正式包和虚拟桌面回执更新。
+
 **Linux 最新交接（2026-11-21）：**已审计的 x86_64 Firefox 159 `attempt.6D26B4Jt` 通过发行身份、真实页面 OFF/ON 及同包来源边界。OFF 零文件，ON 同一活跃窗口 9 条 DOM 与 2 条点击；父进程持有实际日志的可写 FD，异源 iframe 零输出。原始记录已在 ARM64 Electron 沙箱窗口复验，并组装了 amd64 便携目录。同包已在隔离 amd64 来宾的原生 Electron 窗口通过启动、采集和日志表验收；`attempt.d7DBYN4g` 已通过同包双会话闸门、独立 Storage 摘要实采及两条 amd64 原生窗口链路。`d7DBYN4g` 的原样 `launch-ruyitrace` 还通过了认证 Xvfb 下的 X11 主面板和 renderer 沙箱验证。`7d76dc1` 修正版的同一便携包已同时通过原生 Weston Wayland 与认证 Xvfb 的空参数启动；扩展 producer、ARM64 插桩内核与物理显示仍需独立验证。旧包 `attempt.H5K1EqGg` 的失败回执保留。见[实时进度](docs/13-ruyitrace-progress.md)及[机器状态](STATUS.yaml)。以下为历史交接。
 
 本文是 17 轮工作的总账。目标：让一个新接手的人 10 分钟内知道

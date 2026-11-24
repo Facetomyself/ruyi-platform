@@ -32,7 +32,12 @@ def from_header(path):
 
 
 def main():
-    missing = [p for p in (JS, ANCHORS, HEADER) if not os.path.isfile(p)]
+    # A fresh recursive clone already carries the reviewed PE inventory at the
+    # Trace gitlink. Prefer a locally regenerated one when explicitly available.
+    anchors_path = ANCHORS if os.path.isfile(ANCHORS) else os.path.join(
+        ROOT, 'submodules/ruyitrace/docs/domtrace-switches.json')
+    print('开关证据来源:', os.path.relpath(anchors_path, ROOT), '（读取清单，未运行 PE 提取）')
+    missing = [p for p in (JS, anchors_path, HEADER) if not os.path.isfile(p)]
     if missing:
         print('缺文件:')
         for p in missing:
@@ -40,7 +45,7 @@ def main():
         return 1
 
     js = from_js(JS)
-    anchors = from_anchors(ANCHORS)
+    anchors = from_anchors(anchors_path)
     header = from_header(HEADER)
 
     print(f'switches.js : {len(js):3d}')

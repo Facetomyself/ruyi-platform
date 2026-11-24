@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "kind": "audited-candidate",
+  "arch": "x86_64",
+  "archive_sha256": "f5871d014e4c0fcb9c336f89fad80445ad1a04a540befa87cf07c8fe26b86083",
+  "installed": {
+    "files": {
+      "firefox": {
+        "size": 574792,
+        "sha256": "49642c7be1ffa190e6b6f545b3394b44d01b04659836bc00eec2fdc23f661312"
+      },
+      "firefox-bin": {
+        "size": 574792,
+        "sha256": "49642c7be1ffa190e6b6f545b3394b44d01b04659836bc00eec2fdc23f661312"
+      },
+      "libxul.so": {
+        "size": 193871384,
+        "sha256": "ac25767f89d2fa0099e665a630d2a499ad3e94f3ecac12ad71929476046e40ad"
+      },
+      "omni.ja": {
+        "size": 48049483,
+        "sha256": "1167a101f5e50332a767a3dcdcec4f7acbb7242c25d3613a760fd0f3caab61c7"
+      },
+      "browser/omni.ja": {
+        "size": 54941815,
+        "sha256": "2ea827771138189128c0f9f0b5d9bc2100c9a112ac3601b7c5f14edb99ba93e5"
+      },
+      "application.ini": {
+        "size": 851,
+        "sha256": "df675f1c5f1a20caa6b193f275c3731970c376f5e70b5af1cefc66e40ee6811c"
+      },
+      "platform.ini": {
+        "size": 100,
+        "sha256": "ecca43c9ed76e43465bd3e5fb9a833c7f7e159a62a73b890968fb6d6821f67e3"
+      }
+    },
+    "version": "159.0",
+    "build_id": "20261123161729",
+    "source_stamp": "9a2dc53c369c7ae5172018b35988e1d2ffeff402"
+  },
+  "attempt": "attempt.8jy9TYpn",
+  "rust_sha256": "b8f7aaada22e061c5c69553091d16566a10de461a0ae3cb7d9a34ad8ed374911",
+  "audit_exit": 0,
+  "elf_build_id": "756758ebb9043f873eb1a494968f2dd09846d642",
+  "window_script_error_build": {
+    "profile": "amd64-window-script-error-audited-v1",
+    "attempt": "attempt.8jy9TYpn",
+    "source_stamp": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+    "build_id": "20261123161729",
+    "rust_sha256": "b8f7aaada22e061c5c69553091d16566a10de461a0ae3cb7d9a34ad8ed374911",
+    "build_libxul_sha256": "dc394fafcd498939a7db1f82be42ab83c95157e280e4c08b0128785999e63725",
+    "elf_build_id": "756758ebb9043f873eb1a494968f2dd09846d642",
+    "trace_input_sha256": "6086912b4fa649afb77be7dae15c21fbc58946aba6675d82090cc895c8003558",
+    "gecko_diff_sha256": "58bef440831a743f5504a984504f171397cb409da4b56340a962283e244546e0",
+    "arch": "x86_64",
+    "rust_target": "x86_64-unknown-linux-gnu"
+  }
+}
