@@ -78,6 +78,11 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**导航走 HTTPS（R365）：`Context.navigate()` 与外部脚本均经 TLS 加载，错误固定值不加载任何内容。** [回执](../../artifacts/receipts/ruyijs-linux-navigate-https-r365/validation.json)
+
+- 正向：`navigate("https://…")` 提交文档后，`document.title`、`h1`、`location.href` 均与所供页面一致；页面引用的外部脚本经 TLS 取回并执行（`asset-ok`）；`net_log` 两条记录均为 200。
+- 负向：固定值错误时导航**未传输任何 HTTP 字节**（TCP 1 次、HTTP 0 次），服务端在握手中以 `bad_certificate` 中止，文档标题与正文均为空。
+
 **组件生命周期（R364）：安装与卸载都经过实测，卸载后精确还原基础树。** [回执](../../artifacts/receipts/ruyijs-linux-companion-lifecycle-r364/validation.json)
 
 - 基础 R356 单独安装为 **252** 个文件；再装 `ruyijs-http1 0.2.2+inner.r363` 后为 **285** 个，新增 33 个，且没有任何基础文件被改写。

@@ -1,0 +1,67 @@
+{
+  "checked_at": "2026-11-24T17:14:29+0800",
+  "host": {
+    "containers": 60,
+    "name": "host185",
+    "oom": 0
+  },
+  "negative": {
+    "document_body": "",
+    "document_title": "",
+    "http_requests": [],
+    "net_log_errors": [
+      "peer certificate does not match any pinned digest"
+    ],
+    "peer_alert": "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad",
+    "tcp_connections": 1
+  },
+  "outcome": "context_navigate_over_https_verified_with_pin_enforcement",
+  "positive": {
+    "external_script_executed": "asset-ok",
+    "h1": "navbody",
+    "href": "https://127.0.0.1:39223/page",
+    "navigate_url": "https://127.0.0.1:39223/page",
+    "net_log": [
+      {
+        "status": 200,
+        "url": "https://127.0.0.1:39223/page"
+      },
+      {
+        "status": 200,
+        "url": "https://127.0.0.1:39223/asset.js"
+      }
+    ],
+    "peer_requests": [
+      "/page",
+      "/asset.js"
+    ],
+    "title_matches": true
+  },
+  "schema": "ruyijs-linux-navigate-https-r365.v1",
+  "scope": {
+    "negative": [
+      "with a wrong pin, navigation transferred zero HTTP bytes, the peer aborted at the handshake with bad_certificate, and no page content reached the document"
+    ],
+    "not_covered": [
+      "external CA trust",
+      "public HTTPS origins",
+      "h2 semantics",
+      "QUIC/HTTP3",
+      "redirect chains across schemes",
+      "Linux ARM64"
+    ],
+    "positive": [
+      "Context.navigate(\"https://\u2026\") committed a TLS-loaded document; title, h1 and location.href all reflected the served page",
+      "an external script referenced by that document was fetched over TLS and executed",
+      "net_log recorded both requests with status 200"
+    ]
+  },
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5256131,
+      "name": "ruyijs_http1-0.2.2+inner.r363-py3-none-linux_x86_64.whl",
+      "sha256": "c8f6adf974fe27d4ea26240dd4222ee3362db76ca73478ec4557e4cc0400dd4d"
+    }
+  }
+}
