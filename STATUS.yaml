@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T15:13:20+08:00'
+generated_at: '2026-11-24T16:25:39+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -103,10 +103,10 @@ projects:
     build:
       win_amd64: ready
       darwin_arm64: unknown
-      linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39)
+      linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R356_installed_13_of_13_95_assertions_worker_crypto__real_upgrade_rollback_uninstall
-    phase: R355 干净原生运行时已作为独立版本 R356 离线 wheel 安装、升级和回退，R354 原包保留；真实 Necko/NSS/QUIC 与 Linux ARM64 产品仍待验收
+    tests: R357_http1_addon_js_navigation_cabi_pass__R356_installed_13_of_13_and_rollback_pass
+    phase: R356 离线运行时与独立 R357 明文 HTTP/1 组件均已安装态实跑；R357 不包含 TLS、HTTP/2、QUIC 或 Mozilla Necko，联网其余部分与 Linux ARM64 产品待验收
     blocked_by:
     - A2
     - C3
@@ -1433,7 +1433,25 @@ projects:
             evidence_sha256: 26fde2cd14862a740ce7530b9d5c40e67b85e39ae786855d80097dd2fb41f0f0
             repository_receipt: artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json
             separate: [live_necko_nss_quic, arm64_product, public_release, manylinux_or_musl]
-          private_product: linux_amd64_clean_private_offline_wheel_and_archive_verified
+          private_http1_companion_r357:
+            terminal: optional_cleartext_http1_transport_installed_and_verified_on_R356
+            native_http_source: 2345a6089ad837e923b4e83904bf1d7d42e31b32
+            build_source: 7669ab893d8766e4d7598aa96e32da582a39e5c9
+            published_source: 4ced856cbffcd3effa1ee601c31182b826871204
+            version: 0.1.0+inner.r357
+            base_version: 0.2.2+inner.20261101191032.r356
+            base_wheel_sha256: cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6
+            reproducible: {pep517_direct_and_sdist: true, byte_identical: true}
+            executed: {js_real_peer_challenges: true, post_and_query: true, head_404: true, chunked_gzip_deflate: true, navigation_and_external_script: true, independent_c_consumer: true, ipv6_loopback: true}
+            ownership: {separate_distributions: true, companion_uninstall_restored_base: true, exact_files_before_after: true}
+            artifact: deliverables/linux-ruyijs-http-r357/release/ruyijs_http1-0.1.0+inner.r357-py3-none-linux_x86_64.whl
+            artifact_bytes: 37532
+            artifact_sha256: 66121abc2983a51bbd859b2f894169a04186e5bb0bc48453b7fb4e4f124a4b9b
+            evidence: deliverables/linux-ruyijs-http-r357/validation.json
+            evidence_sha256: 189746dd15e5e47a453e22ee386e44b0f9a4064ec01ad625c98110defbc63f73
+            repository_receipt: artifacts/receipts/ruyijs-linux-http1-r357/validation.json
+            excluded: [mozilla_necko_nss, https_tls, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_product: linux_amd64_offline_base_plus_optional_cleartext_http1_companion
     inner_repo_state:
       exists: true
       created: '2026-11-04'
@@ -2095,7 +2113,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 8283ef8ed0fd7512b0b808e16b5452990540f4b5
+    commit: 4ced856cbffcd3effa1ee601c31182b826871204
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

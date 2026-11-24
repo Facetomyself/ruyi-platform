@@ -206,7 +206,7 @@ cat STATUS.yaml
 | --- | --- |
 | **RuyiTrace** | Linux 有范围明确的浏览器、桌面与无头实采验收。amd64 R5 提供独立源码标签和同包核验入口；管理面另行迭代。 |
 | **RuyiHttp** | Python 客户端及[原生平台矩阵](projects/ruyihttp/README.md)可复用；Linux 有 amd64 HTTPS 实跑和独立的 [ARM64 H1/H2/H3 验收](artifacts/receipts/ruyihttp-native-20261124/linux-aarch64.json)。 |
-| **RuyiJS 内部版** | [R356 离线 wheel](artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json)封装 R355 的干净原生构建，安装态 Python/C 13/13、Worker、WebCrypto 和 R354 升级/回退均已验证。[安装命令](submodules/ruyijs/docs/linux-amd64-clean-wheel.md)。真实网络和 ARM64 产品另验。 |
+| **RuyiJS 内部版** | [R356 离线 wheel](artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json)提供经安装态验证的干净原生运行时；另有独立可卸载的 [R357 明文 HTTP/1 组件](artifacts/receipts/ruyijs-linux-http1-r357/validation.json)，真实回环收发和导航已验证。[安装说明](submodules/ruyijs/docs/linux-http1.md)。TLS、h2、QUIC 与 ARM64 产品另验。 |
 | **ruyi-mcp** | 可自启 Firefox，也可在原生 amd64 上借用 Trace CLI 持有的 R5 会话；生产同会话已验，ARM64 与 Electron owner 另验。[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) |
 | **RuyiDOM（独立仓）** | Firefox 136 的离线 DOM 和显式浏览器导航；维护源码、供应商输入及历史 P3 镜像分开管理。见 [v0.1.0 源码交接](docs/14-source-handoff.md#ruyidom-独立源码交接)，它不占用平台 gitlink。 |
 

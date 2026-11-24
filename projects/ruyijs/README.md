@@ -64,7 +64,14 @@ ruyijs-inner/
 
 ### Linux x86_64 私有 donor
 
-**当前 pip 交付（R356）：R355 干净重建的原生文件已封装为独立版本 `0.2.2+inner.20261101191032.r356`。** [安装、升级与回退命令](../../submodules/ruyijs/docs/linux-amd64-clean-wheel.md) · [R356 回执](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) · [同一虚拟环境的迁移记录](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/lifecycle.json)。
+**当前联网组件（R357）：独立安装的 `ruyijs-http1 0.1.0+inner.r357` 为 R356 壳补齐明文 HTTP/1 helper。** [安装与实测说明](../../submodules/ruyijs/docs/linux-http1.md) · [R357 回执](../../artifacts/receipts/ruyijs-linux-http1-r357/validation.json) · [运行与归属检查](../../artifacts/receipts/ruyijs-linux-http1-r357/runtime-gates.json)。
+
+- 组件 wheel 37,532 字节，SHA-256 `66121abc2983a51bbd859b2f894169a04186e5bb0bc48453b7fb4e4f124a4b9b`；私有 C 源、8 个锁定输入和 16 个导出符号固定，直接构建与源码包再构建字节一致。它不替换或修改 R356 的基础 wheel。
+- 在 R356 安装态、UID 1000、仅回环网络的真实环境中，服务端观察到 JS 发出的 GET、二进制 POST、HEAD 与 404 请求，返回在服务端新生成的挑战，JS 逐字节读回；导航文件和外部脚本亦分别核对。每笔交换的客户端套接字属于载入该组件的 helper 进程。
+- `gzip`、`deflate`、分块传输均解码正确，截断的定长响应成为 `TypeError`，畸形/断开后可重试；显式代理和 HTTPS 都没有产生越界连接。独立 C 程序和 IPv6 回环也取得新响应。卸载组件后，R356 的文件树、13 组离线测试与 Worker/WebCrypto 全部恢复通过。
+- 边界：**这不是 Mozilla Necko/NSS**，无 TLS、h2、h3/QUIC、代理或外网验收。匹配真实 Necko/NSS 的 helper 与协议族、Linux ARM64 产品仍分别待办。
+
+**基础 pip 交付（R356）：R355 干净重建的原生文件已封装为独立版本 `0.2.2+inner.20261101191032.r356`。** [安装、升级与回退命令](../../submodules/ruyijs/docs/linux-amd64-clean-wheel.md) · [R356 回执](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) · [同一虚拟环境的迁移记录](../../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/lifecycle.json)。
 
 - 新 wheel 为 `py3-none-linux_x86_64`，29,749,981 字节，SHA-256 `cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6`。20 个原生文件、4 份构建证据与 R355 归档逐字节一致；18 个 Python 模块仅变更版本常量。未上传公共索引，也未改写 R354。
 - 真实下载件在 Ubuntu 24.04/glibc 2.39/CPython 3.12.3 断网安装。13/13 组、95 项断言通过；主进程和真实 Worker 各自加载包内的 18 个库，WebCrypto 结果及进程回收均核对。由安装后的头文件编译的 C 调用程序，在无编译器、无 Python 的 Ubuntu 镜像中取得 `42` 和 `ruyi40`。

@@ -1,0 +1,972 @@
+{
+  "children_reaped_with_pid1": true,
+  "cleanup_passed": true,
+  "core_passed": true,
+  "direct_c_abi": {
+    "body_sha256": "058030c7de42968618b220cae85df79d5aafd13a2d817c5cb8d46f6104b0e480",
+    "client": "/out/network environment/lib/python3.12/site-packages/ruyijs/_runtime/dist/libruyijs_client.so",
+    "passed": true,
+    "peer_path": "/c-abi",
+    "rpc_calls": 7,
+    "schema": 1,
+    "scope": "standalone private C ABI on the installed Linux shell, local cleartext HTTP/1",
+    "shell": "/out/network environment/lib/python3.12/site-packages/ruyijs/_runtime/dist/js",
+    "wire_requests": 1
+  },
+  "environment": {
+    "bytecode_disabled": true,
+    "interfaces": [
+      "lo"
+    ],
+    "isolated": true,
+    "prefix": "/out/network environment",
+    "python": "/out/network environment/bin/python",
+    "uid": 1000
+  },
+  "https_connections": [],
+  "independent_c_consumer": {
+    "consumer_sha256": "b108ab2afb62794ce5545551e07d4a9b9c72ac27c9264de46effbfa095cfeb87",
+    "passed": true,
+    "peer_requests": [
+      [
+        "/from-c",
+        "127.0.0.1:44066",
+        "857902da12bc65a7bb3c3ad8c7029e80"
+      ]
+    ],
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "857902da12bc65a7bb3c3ad8c7029e80"
+  },
+  "ipv6_loopback_peer": [
+    [
+      "::1",
+      "/from-js",
+      "localhost:41215"
+    ]
+  ],
+  "js_gate": true,
+  "native_library_missing_control": {
+    "error": "Installed native HTTP/1 library is unavailable or incompatible",
+    "passed": false,
+    "peer_saw_js_request": false
+  },
+  "native_session_pids": [
+    47
+  ],
+  "navigation_passed": true,
+  "peer_requests": [
+    {
+      "challenge": "f1b437a79b267a5a69a59c24b547eeb7f53e132b09cc110f",
+      "client_socket": "socket:[16565230]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": "request-3167e8dc5834f5686242f0e9",
+      "response_body": {
+        "length": 48,
+        "sha256": "2c0aecbbca7ed1d3c63696104b101f3346772a9e769c065d30d3d9fa770ebbd1"
+      },
+      "response_status": 200,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/get?mix=a%2Bb&mix=space%20here&run=3167e8dc5834f5686242f0e9",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "8ebac5f741166253656630d5fa5e2d0b99b74f64c554c9be",
+      "client_socket": "socket:[16573446]",
+      "content_length": "531",
+      "content_type": "application/octet-stream",
+      "exact_binary_match": true,
+      "host": "127.0.0.1:46592",
+      "method": "POST",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 531,
+        "sha256": "b82ea33da93da7f26e1156b2f942c3e686334a1f79c8beaefc96b8a905018d63"
+      },
+      "request_mark": "request-3167e8dc5834f5686242f0e9",
+      "response_body": {
+        "length": 581,
+        "sha256": "8656e136fa5bbad8ebda73c3c59d37505eddf18b9b1bdd00c88e6f7dfc898f1e"
+      },
+      "response_status": 201,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/post?mix=a%2Bb&mix=space%20here&run=3167e8dc5834f5686242f0e9",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "a685b074d310d42c89c6ccb3de55dc1d6a213421135f7040",
+      "client_socket": "socket:[16570696]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": "request-3167e8dc5834f5686242f0e9",
+      "response_body": {
+        "length": 48,
+        "sha256": "81c15abd87bda3a04ac4f2dfa68db1ff4a6412d3da9ddde02f3aabb95caa05ac"
+      },
+      "response_status": 404,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/missing",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "4a7eef87ed0d51333c6d1efbf8dce09041add3d6ef8db2c2",
+      "client_socket": "socket:[16572499]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "HEAD",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": "request-3167e8dc5834f5686242f0e9",
+      "response_body": {
+        "length": 48,
+        "sha256": "a766378809d51184eb61ba879cab7fbb8e8e844e1b4331d405c1b9ddb588c789"
+      },
+      "response_status": 200,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/head",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "d188c38c14f85d9fa7c97968f73fff893479f13532719107",
+      "client_socket": "socket:[16562056]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": null,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/malformed",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "0766f66b26b15ae612ff85e1256b20b172ed779145fd75b0",
+      "client_socket": "socket:[16574926]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": "request-3167e8dc5834f5686242f0e9",
+      "response_body": {
+        "length": 48,
+        "sha256": "9c089f3bea1f5cd497ad53d10a244b32fa8942af6c7e4741dfb0115e76243829"
+      },
+      "response_status": 200,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/recover-malformed",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "e4afebd062d25d4d8f7a24dae71c6b85d6c6308d486198f5",
+      "client_socket": "socket:[16562057]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": null,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/closed",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "104e779092cb2d0bb1e5428734ed1ea707847698ba75a84b",
+      "client_socket": "socket:[16571513]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": "request-3167e8dc5834f5686242f0e9",
+      "response_body": {
+        "length": 48,
+        "sha256": "749e969f09c7b0eee9fa928d35a21839153533e7549e5a02b3d1cddcfdf3e8ae"
+      },
+      "response_status": 200,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/recover-closed",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "37154b291a74fc950737f039966555c0a109a1c66a8a3cea",
+      "client_socket": "socket:[16571514]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": "request-3167e8dc5834f5686242f0e9",
+      "response_body": {
+        "length": 48,
+        "sha256": "00f7a61c39c576f28594c67ea465cf9006060b28a3ead38e0e1bc884938e3e8c"
+      },
+      "response_status": 200,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/recover-tls",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "f3f8590f2535c988396a859dcbb097c32cdddd9438d9d148",
+      "client_socket": "socket:[16571515]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": null,
+      "response_body": {
+        "length": 139,
+        "sha256": "b86f9ed1a18a680640581fcf1cbf440ed35ad4d2fab1b1d4ca3161f539271215"
+      },
+      "response_status": 200,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/navigate-3167e8dc5834f5686242f0e9",
+      "transfer_encoding": null
+    },
+    {
+      "challenge": "e122724a87fcbeda7f02815de589450be5faad728b08e74f",
+      "client_socket": "socket:[16571518]",
+      "content_length": null,
+      "content_type": null,
+      "host": "127.0.0.1:46592",
+      "method": "GET",
+      "protocol": "HTTP/1.1",
+      "request_body": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "request_mark": null,
+      "response_body": {
+        "length": 80,
+        "sha256": "bd2f9706eaf2cc332b46ec0825b845225bf810cbbf3a55d3fc6136282b8053d5"
+      },
+      "response_status": 200,
+      "shell_children": [
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [],
+          "native_session": false,
+          "owns_peer_socket": false,
+          "pid": 46,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16570679]",
+            "socket:[16570681]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        },
+        {
+          "cmdline": [
+            "/out/network environment/bin/python3",
+            "-I",
+            "-B",
+            "-m",
+            "ruyijs_necko.oneshot",
+            "--session",
+            "--timing-v3"
+          ],
+          "exe": "/usr/bin/python3.12",
+          "lib_maps": [
+            "7f2299e05000-7f2299e07000 r--p 00000000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e07000-7f2299e0b000 r-xp 00001000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0b000-7f2299e0c000 r--p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so",
+            "7f2299e0c000-7f2299e0d000 rw-p 00004000 fd:02 1672134004                 /out/network environment/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_http1.so"
+          ],
+          "native_session": true,
+          "owns_peer_socket": true,
+          "pid": 47,
+          "ppid": 34,
+          "session_io": [
+            "socket:[16573441]",
+            "socket:[16573443]"
+          ],
+          "start_ticks": 35710511,
+          "state": "S",
+          "venv_interpreter": true
+        }
+      ],
+      "target": "/external-3167e8dc5834f5686242f0e9.js",
+      "transfer_encoding": null
+    }
+  ],
+  "proxy_scope": "clean direct profile; explicit proxy configuration untested",
+  "scope": "installed R356 shell + separately installed R357 cleartext HTTP/1 companion; native loopback only",
+  "stages": {
+    "binary_post": {
+      "elapsed_ms": 36.9,
+      "status": "passed",
+      "target": "/post?mix=a%2Bb&mix=space%20here&run=3167e8dc5834f5686242f0e9"
+    },
+    "cleanup": {
+      "elapsed_ms": 48.4,
+      "status": "passed"
+    },
+    "closed_response": {
+      "elapsed_ms": 35.2,
+      "status": "passed",
+      "target": "/closed"
+    },
+    "context_healthy": {
+      "elapsed_ms": 0.2,
+      "status": "passed"
+    },
+    "direct_loopback_only": {
+      "elapsed_ms": 0.0,
+      "status": "passed"
+    },
+    "get_challenge": {
+      "elapsed_ms": 53.3,
+      "status": "passed",
+      "target": "/get?mix=a%2Bb&mix=space%20here&run=3167e8dc5834f5686242f0e9"
+    },
+    "http_404": {
+      "elapsed_ms": 33.7,
+      "status": "passed",
+      "target": "/missing"
+    },
+    "http_head": {
+      "elapsed_ms": 34.4,
+      "status": "passed",
+      "target": "/head"
+    },
+    "https_rejected_before_connect": {
+      "elapsed_ms": 118.5,
+      "status": "passed"
+    },
+    "malformed_response": {
+      "elapsed_ms": 34.5,
+      "status": "passed",
+      "target": "/malformed"
+    },
+    "navigation": {
+      "document_stage": "committed document and executed external script verified",
+      "elapsed_ms": 77.9,
+      "peer_document_hits": 1,
+      "peer_script_hits": 1,
+      "status": "passed",
+      "target": "http://127.0.0.1:46592/navigate-3167e8dc5834f5686242f0e9"
+    },
+    "recover_closed": {
+      "elapsed_ms": 33.1,
+      "status": "passed",
+      "target": "/recover-closed"
+    },
+    "recover_malformed": {
+      "elapsed_ms": 35.7,
+      "status": "passed",
+      "target": "/recover-malformed"
+    },
+    "recover_tls": {
+      "elapsed_ms": 34.9,
+      "status": "passed",
+      "target": "/recover-tls"
+    },
+    "same_origin_bootstrap": {
+      "elapsed_ms": 2.2,
+      "status": "passed"
+    },
+    "stored_decoy": {
+      "elapsed_ms": 19.6,
+      "status": "passed"
+    }
+  },
+  "versions": {
+    "ruyijs": "0.2.2+inner.20261101191032.r356",
+    "ruyijs-http1": "0.1.0+inner.r357"
+  }
+}

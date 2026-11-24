@@ -1,0 +1,35 @@
+{
+  "base": {
+    "installed_files": 224,
+    "installed_tree_sha256": "506ee0e060763b3aad7c20f5f9ce344f6fe1360c34e7f05d8f5b1cfbd9719c12",
+    "version": "0.2.2+inner.20261101191032.r356",
+    "wheel_entries": 222,
+    "wheel_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6"
+  },
+  "base_after_companion_uninstall": {
+    "installed_files": 225,
+    "installed_tree_sha256": "693a11227a155901ebf22a7f68306eb28cb08400620c0ef818ce792bfa9d26ac",
+    "version": "0.2.2+inner.20261101191032.r356",
+    "wheel_entries": 222,
+    "wheel_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6"
+  },
+  "base_installed_wheel_audit_again": true,
+  "companion": {
+    "installed_files": 15,
+    "installed_tree_sha256": "e0840a94ac531cbbc7cc8ec8290519e3b5521c9edc95b2880d4cd298a73e4c03",
+    "version": "0.1.0+inner.r357",
+    "wheel_entries": 13,
+    "wheel_sha256": "66121abc2983a51bbd859b2f894169a04186e5bb0bc48453b7fb4e4f124a4b9b"
+  },
+  "disjoint_records": true,
+  "new_paths_under_base_tree": [
+    "ruyijs/_runtime/vendor/necko-derived/python/bin/python3",
+    "ruyijs/_runtime/vendor/ruyijs-http1-sources.json"
+  ],
+  "offline_gates_still_pass": 13,
+  "returns_to_offline_profile": true,
+  "scope": "two independently uninstallable distributions in one venv",
+  "venv_package_list_initial_equals_final": true,
+  "worker_webcrypto_still_pass": true,
+  "wrong_companion_hash_left_install_unchanged": true
+}
