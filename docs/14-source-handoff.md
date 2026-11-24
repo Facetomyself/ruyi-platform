@@ -11,7 +11,7 @@
 | 校验旧版 Win64 产物 / 读取离线统计 | Trace **Win64 离线交接分支**，见下表 | 静态原件证据与合成测试，不是 Win64 私有 Firefox 的完整源树，也不是 Linux 实采证明。业务项目宜依赖有版本的输出 schema，避免把推断地址当成稳定 ABI。 |
 | HTTP 客户端 | [RuyiHttp](../projects/ruyihttp/README.md)：Python API、wheel 构建与已入库原生库 | 三平台既有库可重打包；Linux amd64 在 glibc 2.39 上通过 HTTPS/TLS 1.3/h2。Linux ARM64、macOS x86_64 新原生库及 H3/代理联验独立；重打 wheel 不等于从 C++/Rust 重建底层库。 |
 | JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | Linux 客户端、donor 与若干部件已有验收。以本交接基线 `ab060a5` 所对应 R344 回执为准，产品链接仍失败，未形成合格的内部 Linux `dist/js`/wheel。pixman 仍在编译阶段受阻于 include 形状，且该修复不等于下一次整链已过。 |
-| 程序化管理浏览器 | [MCP / owner 交接及验收表](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | stdio/bridge 的无浏览器门禁与 Trace 自身实采分开。候选 CLI 已从 GitHub 干净副本按锁文件构建出应用目录，但生产借用、RDP 暂停恢复、归还与最终 flush 的整链尚待验收。 |
+| 程序化管理浏览器 | [MCP / owner 交接及验收表](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | `d4f93cc` 的[原生 CI](https://github.com/Facetomyself/ruyi-mcp/actions/runs/45303990325) 通过双架构 Docker core 与 AMD64 Firefox ESR 基础门禁；与 Trace 自身实采分开。候选 CLI 已从 GitHub 干净副本按锁文件构建出应用目录，但生产借用、RDP 暂停恢复、归还与最终 flush 的整链尚待验收。 |
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
 

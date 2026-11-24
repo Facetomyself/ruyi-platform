@@ -1,0 +1,1 @@
+{"exit": 0, "elapsed_seconds": 172, "stop_reason": null, "ruyijs_at_stop": [], "scope": "only independent host185 source staging", "input_revision": "ccc0ffa1e65c291aa6cbdd68648f587eed6c0de9", "input_sha256": "e9450c2dd0bc3691f4dc15c82a4d50296c66589f947d53cb1ed868061e9feaf6", "staging_result": "staged_only 0", "passed": true}

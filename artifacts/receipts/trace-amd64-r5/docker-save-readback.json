@@ -1,0 +1,22 @@
+{
+  "architecture": "linux/amd64",
+  "archive_bytes": 849883136,
+  "archive_sha256": "7ad74a444d201998b858761f178ac50a71428f760540abd8bfe3cd3c6191dbd8",
+  "layers": [
+    {
+      "diff_id": "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+      "uncompressed_bytes": 80715776
+    },
+    {
+      "diff_id": "sha256:90810bb504339255580eff707ddd64f8d198d525878f3567d0d90075e0214e02",
+      "uncompressed_bytes": 441848832
+    },
+    {
+      "diff_id": "sha256:986a00917d0a1bbdc30a2f408f9313928344b2611cfe217ba1197d7e1a7fed2a",
+      "uncompressed_bytes": 327300608
+    }
+  ],
+  "local_image_id": "sha256:4703f111fffe49a9c3f851fad023b07febdfdb0cebc58776751ebd44d4d9a88d",
+  "passed": true,
+  "scope": "native-accepted amd64 docker save readback"
+}
