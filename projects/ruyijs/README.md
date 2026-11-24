@@ -78,6 +78,18 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**主机名匹配加固（R381）：修掉三个可被利用的匹配缺陷。** [回执](../../artifacts/receipts/ruyijs-linux-hostname-hardening-r381/validation.json)
+
+| 缺陷 | 后果 | 修法 |
+|---|---|---|
+| `a.*.test` 当字面量精确匹配 | 证书可声明含星号的名字并直接命中 | 含星号的证书名只当模式处理，永不字面比较 |
+| `*.wild.test` 接受空首标签 | `.wild.test` 能匹配通配符 | 首标签须非空并符合 LDH 规则 |
+| NUL / 制表 / 空格 / 斜杠 / 非 ASCII 分隔符未过滤 | 畸形主机名进入比较 | `_usable_host` 拒绝控制字符、分隔符与非 ASCII，长度上限 253 |
+
+- 单元矩阵 **18 项 0 不符**，覆盖尾点、大写、IPv4/IPv6、单标签主机（`localhost` 仍可用）、`*.example` 不匹配裸 `example`。
+- 端到端：签一张 SAN 为 `DNS:localhost,DNS:*.example` 的证书，**固定值指向该证书本身**，仍被链校验的主机名检查（代码 6）拒绝，对端 0 个 HTTP 请求。
+- 说明：openssl 拒绝签发含字面 `a.*.test` 的 SAN，所以该情形由单元矩阵覆盖而非真实握手。
+
 **累积回归（R380）：把 R363–R379 的关键修复放在同一个 wheel 上一起复验。** [回执](../../artifacts/receipts/ruyijs-linux-regression-r380/validation.json)
 
 | 项 | 结果 |

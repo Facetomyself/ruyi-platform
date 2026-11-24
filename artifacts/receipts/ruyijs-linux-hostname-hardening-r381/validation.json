@@ -1,0 +1,67 @@
+{
+  "artifact": {
+    "bytes": 5266384,
+    "name": "wheel.whl",
+    "sha256": "9554aec5305385d4dcb0a7fb0658ea89ba54e778c5e9a70904aa62fc475c4f94"
+  },
+  "checked_at": "2026-11-24T18:00:59+0800",
+  "defects_found": [
+    {
+      "description": "a certificate name \"a.*.test\" matched the host verbatim because the exact comparison ran before any wildcard reasoning",
+      "fix": "a name containing an asterisk is treated only as a pattern, never as a literal"
+    },
+    {
+      "description": "the pattern \"*.<base>\" accepted an empty first label, so \".wild.test\" matched",
+      "fix": "the first label must satisfy the LDH rule and be non-empty"
+    },
+    {
+      "description": "hosts with NUL, tab, space, slash, backslash or non-ASCII separators reached the comparison unchecked",
+      "fix": "_usable_host rejects control characters, separators and non-ASCII, and caps the length at 253"
+    }
+  ],
+  "end_to_end": {
+    "certificate": "SAN DNS:localhost,DNS:*.example",
+    "outcome": "refused with chain name check (6)",
+    "peer_alert": "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad",
+    "peer_http_requests": [],
+    "pin_matched_the_certificate": true
+  },
+  "host": {
+    "containers": 129,
+    "name": "host185",
+    "oom": 0
+  },
+  "notable": "openssl refused to sign a certificate with a literal \"a.*.test\" SAN, so that case is covered by the unit matrix rather than a live handshake",
+  "outcome": "malformed_and_wildcard_literal_certificate_names_are_refused",
+  "schema": "ruyijs-linux-hostname-hardening-r381.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "public CA root bundles",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "unit_matrix": {
+    "cases": 18,
+    "covers": [
+      "exact",
+      "trailing dot",
+      "uppercase",
+      "NUL injection",
+      "unicode separator",
+      "overlong host",
+      "wildcard single label",
+      "wildcard empty label",
+      "wildcard bare",
+      "wildcard nested",
+      "literal asterisk name",
+      "leading and trailing hyphen",
+      "valid hyphen",
+      "IPv4",
+      "IPv6",
+      "IP not matched by a wildcard",
+      "single-label host"
+    ],
+    "mismatches": 0
+  }
+}
