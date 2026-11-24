@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-11-24T17:16:37+0800",
+  "host": {
+    "containers": 62,
+    "name": "host185",
+    "oom": 0
+  },
+  "leaf_pin": {
+    "body_matches": true,
+    "net_log": [
+      {
+        "err": "",
+        "s": 200
+      }
+    ]
+  },
+  "outcome": "leaf_only_pinning_and_certificate_validity_enforced",
+  "parser_checks": {
+    "generalized_time": true,
+    "malformed_chain_rejected": true,
+    "utctime_century_rule": true
+  },
+  "peer": {
+    "alerts": [
+      "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad certifica"
+    ],
+    "served": [
+      "/leaf"
+    ]
+  },
+  "schema": "ruyijs-linux-pin-scope-r366.v1",
+  "scope": {
+    "hardening": [
+      "pinning now compares the presented leaf only; accepting any chain member let an unrelated intermediate satisfy a pin",
+      "the leaf validity window is parsed from DER and checked against the wall clock before any HTTP is written"
+    ],
+    "not_covered": [
+      "full RFC 5280 path validation: the adapter does not build or verify a chain to a root",
+      "hostname verification beyond NSS default checks",
+      "revocation via OCSP or CRL",
+      "external CA trust",
+      "h2 and QUIC"
+    ],
+    "positive": [
+      "a pin over the presented leaf certificate yields the peer body",
+      "a pin over a different, valid certificate is refused even though the chain is otherwise accepted"
+    ]
+  },
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5257332,
+      "name": "wheel.whl",
+      "sha256": "76d0b3aae58a7865ef99f2292f086302bd2cd897430650e7e904410a7693ab3b"
+    }
+  },
+  "wrong_leaf_pin": {
+    "net_log": [
+      {
+        "err": "peer leaf certificate does not match any pinned digest",
+        "s": 0
+      }
+    ],
+    "refused": true
+  }
+}

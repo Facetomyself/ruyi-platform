@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**证书固定收紧（R366）：只认叶子证书，并校验有效期。** [回执](../../artifacts/receipts/ruyijs-linux-pin-scope-r366/validation.json)
+
+- 之前固定值只要匹配**链中任意一张**证书即通过——一个无关的中间证书就能满足另一张服务器证书的固定值。现在只比对**叶子证书**。
+- 叶子证书的 DER 有效期被解析并与系统时钟核对，过期或尚未生效都在写出任何 HTTP 字节前拒绝。
+- 实测：叶子固定值命中时返回对端 body；换成另一张有效证书的固定值被拒（`peer leaf certificate does not match any pinned digest`，服务端 `bad_certificate`）。
+- **仍未做**：到根的完整 RFC 5280 路径校验、OCSP/CRL 吊销、外部 CA 信任。
+
 **导航走 HTTPS（R365）：`Context.navigate()` 与外部脚本均经 TLS 加载，错误固定值不加载任何内容。** [回执](../../artifacts/receipts/ruyijs-linux-navigate-https-r365/validation.json)
 
 - 正向：`navigate("https://…")` 提交文档后，`document.title`、`h1`、`location.href` 均与所供页面一致；页面引用的外部脚本经 TLS 取回并执行（`asset-ok`）；`net_log` 两条记录均为 200。
