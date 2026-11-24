@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**brotli 解码往返未建立（R400）：库编出来了，但没证明它能解码。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-roundtrip-r400/validation.json)
+
+- 已准备：用本机 `brotli 1.2.1`（与固定构建不同版本）压缩 `hello brotli from an independent encoder` 得 44 字节，嵌入 C 程序并断言解码结果。
+- **未跑通**：工具链镜像里 `/bin/sh`、`/bin/bash`、`/bin/python3` 都在，但 `clang-21` 在 `--entrypoint` 调用下无法按绝对路径解析；而它此前在 `bash -c` 里是可用的，说明真实路径没被捕获到。
+- 因此 `libbrotlidec.so` 目前**只被证明能链接，未被证明能解码**。
+- 已保留全部取证物：C 测试、嵌入的压缩数据、三个运行脚本，并在回执中记录，下一轮无需重建。
+
 **brotli 解码器可编出（R399）：上一轮的结论也不准确。** [回执](../../artifacts/receipts/ruyijs-linux-brotli-build-r399/validation.json)
 
 - R398 说"需引入完整解压源码"。**实测反驳**：源码就在树内——`dec/` 6 个 `.c`、`common/` 6 个 `.c`，共 12 个编译单元。

@@ -1,0 +1,36 @@
+{
+  "attempts": [
+    "/bin/sh -c: exec /bin/sh no such file or directory",
+    "--entrypoint /bin/sh: same",
+    "--entrypoint clang-21: not found in $PATH",
+    "--entrypoint /usr/bin/clang-21: stat no such file",
+    "listing /usr/local/bin and /bin to locate clang: the host link timed out"
+  ],
+  "blocked_by": "the toolchain image has /bin/sh, /bin/bash and /bin/python3, but clang-21 is not at /usr/bin/clang-21 and not on the default PATH for an --entrypoint invocation; the earlier successful brotli build called it from inside a bash -c, so the real path was never captured",
+  "carried_forward": {
+    "artefacts": "deliverables/linux-ruyijs-tls-r358/brtest/ holds the C test, the embedded payload, and the three runner scripts",
+    "library": "libbrotlidec.so 187,456 bytes remains at the host path br-out/"
+  },
+  "checked_at": "2026-11-24T23:37:00+08:00",
+  "intent": "prove libbrotlidec actually decodes a stream it did not produce, using an independent encoder (brotli 1.2.1 on this box, not the pinned build)",
+  "next_step": "capture the real clang path with a single listing command, then run the prepared test unchanged",
+  "not_established": "no decode round trip; the library is still only proven to link, not to decode",
+  "outcome": "the_decode_round_trip_was_not_established_and_the_reason_is_recorded",
+  "prepared": {
+    "compressed_bytes": 44,
+    "payload": "hello brotli from an independent encoder",
+    "test_source": "br_roundtrip.c embeds the compressed hex and asserts the decoded string"
+  },
+  "schema": "ruyijs-linux-brotli-roundtrip-r400.v1",
+  "still_open": [
+    "brotli decode round trip",
+    "brotli wiring and packaging",
+    "zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}
