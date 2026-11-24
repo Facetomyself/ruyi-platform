@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**锚点接入 HTTPS 路径（R376）：链校验真正生效，不再只是独立工具。** [回执](../../artifacts/receipts/ruyijs-linux-anchor-r376/validation.json)
+
+- 固定值文件可额外声明 `trust_anchors`（`path` + `sha256`）；加载时校验摘要，摘要不符即失败关闭。缺锚点校验器或摘要不符都不会静默放行。
+- 三个用例：正确 CA 锚点 → 200 并取回 body；**未签发该叶子的 CA** → 拒绝（NSS `-8079` unknown CA），对端 0 个 HTTP 请求；**非 CA 证书当锚点** → 拒绝（代码 `912`），对端 0 个请求。
+- 锚点是可选的：不声明时仍是原有的叶子固定模型。每次交换使用独立 NSS 数据库，锚点不会在主机间串用。
+- 仍未做：OCSP/CRL 吊销、公共 CA 根库、h2、QUIC。
+
 **传统链校验可用（R375）：PKIX 不可用，但 NSS 的旧校验器能完成到 CA 的链校验，并发现一个真实缺陷。** [回执](../../artifacts/receipts/ruyijs-linux-chain-legacy-r375/validation.json)
 
 - 换用 `CERT_VerifyCertNow`（本构建导出）+ `CERT_ImportCerts` 将锚点导入临时库并标记可信，成功完成叶子→CA 的路径与签名校验。

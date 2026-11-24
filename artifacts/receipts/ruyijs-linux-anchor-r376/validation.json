@@ -1,0 +1,61 @@
+{
+  "behaviour": {
+    "pin_plus_correct_anchor": "verified against the CA that signed the leaf and returned the peer body",
+    "pin_plus_non_ca_anchor": "refused with code 912 because the anchor is an end-entity certificate",
+    "pin_plus_unrelated_anchor": "refused with NSS -8079 unknown CA before any HTTP request"
+  },
+  "cases": {
+    "pin_plus_correct_anchor": {
+      "error": "",
+      "pass": true,
+      "peer_alert": null,
+      "peer_requests": [
+        "GET /x HTTP/1.1"
+      ],
+      "status": 200
+    },
+    "pin_plus_non_ca_anchor": {
+      "error": "certificate chain verification failed (912)",
+      "pass": true,
+      "peer_alert": "SSLError:[SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad certifica",
+      "peer_requests": [],
+      "status": null
+    },
+    "pin_plus_unrelated_anchor": {
+      "error": "certificate chain verification failed (-8079)",
+      "pass": true,
+      "peer_alert": "SSLError:[SSL: TLSV1_ALERT_UNKNOWN_CA] tlsv1 alert unknown ca (_ssl.c",
+      "peer_requests": [],
+      "status": null
+    }
+  },
+  "checked_at": "2026-11-24T17:50:06+0800",
+  "configuration": "the pin file may carry a trust_anchors list of {path, sha256}; the digest is verified at load time, the anchor DER is passed to the bundled legacy verifier, and a missing verifier or anchor mismatch fails closed",
+  "host": {
+    "containers": 119,
+    "name": "host185",
+    "oom": 0
+  },
+  "notes": [
+    "anchors are optional; without them the documented leaf-pinning model is unchanged",
+    "a fresh NSS database is created per exchange so anchors cannot leak between hosts",
+    "PKIX is still unavailable in this build; verification uses CERT_VerifyCertNow"
+  ],
+  "outcome": "chain_verification_runs_inside_the_https_path_when_anchors_are_declared",
+  "schema": "ruyijs-linux-anchor-integration-r376.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "external public CA bundles",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "wheels": {
+    "base_sha256": "cec72669fdfed34ea39c02f8c04125e90535fc1bf06bff12e8ac11acf7285bd6",
+    "companion": {
+      "bytes": 5265654,
+      "name": "wheel.whl",
+      "sha256": "e065420697bd742c1a944ab48b29e1fbe6acc0318b75b0123ddb2cbe25d8ab9c"
+    }
+  }
+}

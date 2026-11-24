@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T17:47:02+08:00'
+generated_at: '2026-11-24T17:50:06+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R375_legacy_chain_verification__R374_pkix_gap__R373_proxy_failclosed
+    tests: R376_anchor_integration__R375_legacy_chain__R374_pkix_gap
     phase: R356 离线运行时、R357 明文 HTTP/1 组件及 R358 固定 NSS 的 TLS 适配层已分别验收；JS 层 HTTPS/h2/QUIC 端到端与 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_anchor_integration_r376:
+            terminal: chain_verification_inside_the_https_path_when_anchors_are_declared
+            correct_anchor: {status: 200, verified_against_signing_ca: true}
+            unrelated_anchor: {refused: true, nss_code: -8079, peer_http_requests: 0}
+            non_ca_anchor: {refused: true, code: 912, peer_http_requests: 0}
+            anchors_optional: true
+            companion_version: 0.2.9+inner.r376
+            artifact_sha256: e065420697bd742c1a944ab48b29e1fbe6acc0318b75b0123ddb2cbe25d8ab9c
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-anchor.json
+            evidence_sha256: 50f377ad7f4c6eb33ec3aa40bc9bb117b9599652d084597b2686bf56f9ac6135
+            repository_receipt: artifacts/receipts/ruyijs-linux-anchor-r376/validation.json
+            excluded: [ocsp_crl_revocation, external_public_ca_bundles, http2_framing, quic_http3, arm64_product]
           private_chain_legacy_r375:
             terminal: chain_to_ca_verified_with_the_legacy_nss_verifier
             pkix_available: false
@@ -2272,7 +2284,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 15101f5b6c62d20716760615d19703241663ecbd
+    commit: 20a31f369e936b0d0c6b3d9cc8fd6a47934b9a03
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
