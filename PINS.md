@@ -227,7 +227,7 @@ CXXABI_1.3.9
 | clang | 21（apt.llvm.org） | Firefox / necko 构建 |
 | Rust / cargo | 最新稳定 | Neqo、necko_quic |
 | cbindgen | 最新 | NSS 绑定 |
-| Node | ≥ 20.20 / ≥ 22 | RuyiTrace 控制台 |
+| Node | ≥ 22.12.0（以 `console/tooling/package.json` 的 engines 为准） | RuyiTrace 控制台构建；Electron 运行时另行固定 |
 | glibc | **≥ 2.38** | Linux 原生库运行 |
 | pefile / 类似 | — | domtrace 反编译（`scripts/env-anchors.py` 依赖） |
 
@@ -257,3 +257,7 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 ### 历史 pin
 
 - `1c80d8889b47185f4b6f20be4b97cd9db99532f1`：首个 Docker 设计稿，被上述通过原生容器 CI 的实现取代。
+
+## 10. 2026-11-24 交接：开发基线与发行源码分开
+
+四个组件的开发 pin 以 `git ls-tree HEAD:submodules` 为准；[状态账本](STATUS.yaml) 的 `submodules.*.commit` 是同一组完整 SHA。旧账本中的 HTTP `b4cc7b2`、JS `8c87251`、Trace `27438fc` 是历史短引用，不是此次交接的 gitlink。amd64 R5 使用独立的 [Trace 源码锁和输入文件清单](artifacts/receipts/trace-amd64-r5/source-lock.json)，并不修改开发 gitlink 来追发布标签。发行、管理候选、Win64 离线工具的完整提交与检出方式见[使用指南](docs/14-source-handoff.md)。
