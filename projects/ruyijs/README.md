@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**回归验证（R411）：加入 zstd 没有破坏任何既有编码。** [回执](../../artifacts/receipts/ruyijs-linux-regression-r411/validation.json)
+
+- 同一 wheel（`a05b4cfd…`）上重跑：离线 29 个 **OK**、端到端 4 个 **OK**。
+- **brotli 端到端复测通过**（`sent_br: true`，body 一致）；**gzip 端到端复测通过**（`sent_gzip: true`，body 一致）。
+- 为什么这轮必要：zstd 是加进编码表和协商列表的，那里的错误可能只破坏 br 或 gzip，而只测 zstd 发现不了。
+- 声明现为 `gzip, deflate, br, zstd`。
+
 **zstd 端到端通过（R410）：两种压缩编码现在都完整可用。** [回执](../../artifacts/receipts/ruyijs-linux-zstd-e2e-r410/validation.json)
 
 - wheel `0.2.23+inner.r410`，5,440,285 字节，SHA-256 `a05b4cfd…6c3f14`。

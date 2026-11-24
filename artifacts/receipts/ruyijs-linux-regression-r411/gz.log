@@ -1,0 +1,3 @@
+{"passed": true, "status": 200, "body": "hello gzip still works", "sent_gzip": true}
+RC=0
+END

@@ -1,0 +1,3 @@
+{"passed": true, "status": 200, "body": "hello brotli from an independent encoder", "err": "", "sent_br": true, "advertised": ["gzip, deflate, br, zstd"]}
+RC=0
+END

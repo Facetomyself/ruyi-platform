@@ -1,0 +1,30 @@
+{
+  "advertised_after_change": "gzip, deflate, br, zstd",
+  "artifact_under_test": {
+    "name": "ruyijs_http1-0.2.23+inner.r410-py3-none-linux_x86_64.whl",
+    "sha256": "a05b4cfd1cfcb5cc134f917626a31995b8a400f095adff7e16ee537d1d6c3f14"
+  },
+  "checked_at": "2026-11-25T01:59:00+08:00",
+  "checks": {
+    "brotli_end_to_end_against_the_new_wheel": "200, exact body, peer confirmed it sent br",
+    "gzip_end_to_end_against_the_new_wheel": "200, exact body, peer confirmed it sent gzip",
+    "handshake_suite": "4 tests OK",
+    "offline_suite": "29 tests OK"
+  },
+  "evidence": {
+    "brotli_log": "2da38f29b2547f224984e285a33bf12349081008b326edb610385e716fcdaf65",
+    "gzip_log": "b73358b7f92b257d7c931a5a708a49ab90736eadf4dd26722f9cbdc6223b4b67",
+    "regression_log": "19d436e0da06bf52a4283423319bd959c2a335f50072fc702a690c7c49dc20eb"
+  },
+  "not_proven": [
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "outcome": "adding_zstd_did_not_break_any_existing_coding_or_test",
+  "schema": "ruyijs-linux-regression-r411.v1",
+  "why_this_round_mattered": "zstd was added to the coding table and to the negotiation list; a mistake there could have broken br or gzip without any zstd test noticing"
+}
