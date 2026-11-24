@@ -1,0 +1,42 @@
+{
+  "artifact": {
+    "bytes": 5267914,
+    "name": "wheel.whl",
+    "sha256": "72d67cd1cc0d8d0a89bb95198950ba90e9bc53492ad3b907d87d7a5023b08a82"
+  },
+  "checked_at": "2026-11-24T19:55:00+08:00",
+  "future_cutoff": {
+    "body": "hi",
+    "cutoff": "400101000000Z",
+    "peer_requests": [
+      1
+    ],
+    "status": 200
+  },
+  "not_changed": "no product code changed this round; this is a re-check, not a new delivery",
+  "original_receipt": {
+    "artifact_sha256": "72d67cd1cc0d8d0a89bb95198950ba90e9bc53492ad3b907d87d7a5023b08a82",
+    "sha256": "b6a6f456509ecf55d589c4f346295ea1d94a937d43f0f0a50bca0f899c1468dd",
+    "still_matches": true
+  },
+  "outcome": "r388_cutoff_claims_hold_under_an_independent_rerun",
+  "past_cutoff": {
+    "cutoff": "200101000000Z",
+    "error": "certificate was issued after its root's distrust cutoff",
+    "peer_alert": "SSLError",
+    "peer_requests": [],
+    "value": {
+      "e": "TypeError: NetworkError when attempting to fetch resource."
+    }
+  },
+  "schema": "ruyijs-linux-cutoff-recheck-r389.v1",
+  "still_open": [
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "why": "the ledger keeps accumulating receipts; this round re-derived two of the R388 claims with fresh probe scripts rather than re-reading the original one"
+}

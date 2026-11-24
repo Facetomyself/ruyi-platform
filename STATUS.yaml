@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T19:52:00+08:00'
+generated_at: '2026-11-24T19:55:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R388_live_cutoffs__R387_cutoff_offline__R386_pem_anchors
+    tests: R389_cutoff_recheck__R388_live_cutoffs__R387_cutoff_offline
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,14 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_cutoff_recheck_r389:
+            terminal: r388_cutoff_claims_hold_under_an_independent_rerun
+            past_cutoff: {refused: true, reason: root_distrust_cutoff, peer_requests: 0}
+            future_cutoff: {status: 200, peer_requests: 1}
+            product_code_changed: false
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-cutoff-recheck.json
+            evidence_sha256: 42a5623faf432588439c23a129941c5efe09b7a595686b1ca90039a72a09698a
+            repository_receipt: artifacts/receipts/ruyijs-linux-cutoff-recheck-r389/validation.json
           private_cutoff_r388:
             terminal: per_root_distrust_cutoffs_enforced_on_the_live_https_path
             r387_defect: cutoffs_name_never_bound_in_exchange
