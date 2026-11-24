@@ -1,0 +1,33 @@
+{
+  "artifact": {
+    "bytes": 5268337,
+    "name": "wheel.whl",
+    "sha256": "371b1210f00a853a68af3d8379a1b36eab02d12a5e25ec763e17612918557431",
+    "version": "0.2.20+inner.r393"
+  },
+  "checked_at": "2026-11-24T22:20:00+08:00",
+  "closes": "the gap left by R394 \u2014 the previous packaged artifact predated the ABI fix (fb48165)",
+  "log_sha256": "3c64bdde315057781b343775b171da8499c18c8163218eeee803c693e5827afc",
+  "not_done": [
+    "brotli/zstd decoding",
+    "OCSP/CRL revocation",
+    "default Mozilla roots (product decision)",
+    "PKIX name constraints",
+    "h2 framework",
+    "QUIC",
+    "ARM64"
+  ],
+  "outcome": "wheel_with_the_adapter_abi_fix_built_installed_and_tested",
+  "runner_notes": [
+    "the acceptance had to run the two test files directly: `python -m unittest ci...` fails under -I because the isolated interpreter drops sys.path, and discover needs /w/ci to be a package, which it is not",
+    "a partially transferred wheel copy was renamed partial-invalid.whl rather than published; only the file whose hash matches the build log is used"
+  ],
+  "schema": "ruyijs-linux-wheel-r393.v1",
+  "source_commit": "4dc7121e6cefc6190997bd2730a84279d540c23f",
+  "verified_on_the_installed_wheel": {
+    "end_to_end_tests": "Ran 3 tests, OK",
+    "installed_tls_py_has_declare_adapter": true,
+    "offline_tests": "Ran 19 tests, OK",
+    "wheel_contains_28_entries": true
+  }
+}

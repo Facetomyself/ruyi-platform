@@ -78,6 +78,12 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**含 ABI 修复的 wheel（R393）：`0.2.20+inner.r393` 已构建、安装并测试通过。** [回执](../../artifacts/receipts/ruyijs-linux-wheel-r393/validation.json)
+
+- 工件 5,268,337 字节，SHA-256 `371b1210…a853a68a`。安装后 `tls.py` 确认含 `declare_adapter`，wheel 内含 28 个条目。
+- 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
+- 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
+
 **端到端握手测试（R394）：`ci/test_linux_tls_handshake.py` 三个用例在主机上全部通过，并抓到一个真实产品缺陷。** [回执](../../artifacts/receipts/ruyijs-linux-e2e-tests-r394/validation.json)
 
 - **缺陷**：`exchange()` 接受调用方传入的 `adapter`，但 ABI 声明只写在 `load_adapter()` 里。外部传入的库没被声明，ctypes 把 `necko_tls_alpn` 的返回值当 `int`，`.decode()` 直接失败。

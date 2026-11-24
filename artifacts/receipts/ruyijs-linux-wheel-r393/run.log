@@ -1,0 +1,34 @@
+test_declare_adapter_exists_and_is_idempotent (__main__.AdapterAbi.test_declare_adapter_exists_and_is_idempotent)
+exchange() accepts a caller-supplied library, so declarations must be ... ok
+test_cutoff_parsing_and_enforcement (__main__.Anchors.test_cutoff_parsing_and_enforcement) ... ok
+test_der_and_pem (__main__.Anchors.test_der_and_pem) ... ok
+test_pins_and_digest (__main__.Anchors.test_pins_and_digest) ... ok
+test_rejects (__main__.Anchors.test_rejects) ... ok
+test_blobs_validate_every_element (__main__.Chain.test_blobs_validate_every_element) ... ok
+test_names_and_validity_on_real_der (__main__.Chain.test_names_and_validity_on_real_der) ... ok
+test_matching_rules (__main__.Hosts.test_matching_rules) ... ok
+test_chunked (__main__.Parsing.test_chunked) ... ok
+test_close_delimited_accepted (__main__.Parsing.test_close_delimited_accepted) ... ok
+test_compression (__main__.Parsing.test_compression) ... ok
+test_decode_bomb_bounded (__main__.Parsing.test_decode_bomb_bounded) ... ok
+test_decode_rejects_trailing_bytes (__main__.Parsing.test_decode_rejects_trailing_bytes) ... ok
+test_fixed_length_and_head (__main__.Parsing.test_fixed_length_and_head) ... ok
+test_header_block_bound (__main__.Parsing.test_header_block_bound) ... ok
+test_rejects (__main__.Parsing.test_rejects) ... ok
+test_unchunk_rejects_truncation (__main__.Parsing.test_unchunk_rejects_truncation) ... ok
+test_pinned_for_lookup (__main__.Pins.test_pinned_for_lookup) ... ok
+test_requires_a_host_pin (__main__.Pins.test_requires_a_host_pin) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.151s
+
+OK
+test_hostname_mismatch_is_refused (__main__.HandshakeTests.test_hostname_mismatch_is_refused)
+The certificate names localhost; asking for 127.0.0.1 must be refused. ... ok
+test_pinned_round_trip (__main__.HandshakeTests.test_pinned_round_trip) ... ok
+test_unpinned_is_refused (__main__.HandshakeTests.test_unpinned_is_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.038s
+
+OK
