@@ -78,6 +78,13 @@ ruyijs-inner/
 - **R363：** 分块、gzip、deflate 三种 HTTPS 响应在安装后的 JS 中均解码为同样的 5120 字节（校验和 652800）。同时修复一个真实安全缺陷：NSS 会话恢复会让后续握手跳过证书校验，现在每次交换使用独立 peer id 强制完整握手并校验。
 - 打包流程现在会在构建期校验 NSS 闭包完整性并拒绝不完整集合。本轮据此发现并修复了缺失的 `libmozsqlite3.so`（`libsoftokn3` 的加载期依赖）以及构建路径符号链接导致的悬空头文件。
 
+**NSS 生命周期（R379）：撤回一句不成立的隔离声明。** [回执](../../artifacts/receipts/ruyijs-linux-nss-lifetime-r379/validation.json)
+
+- 原代码每次链校验都新建 NSS 数据库目录并删除，注释写着"每次调用隔离锚点"。**这不成立**：NSS 每进程只能初始化一次，首次导入的锚点在 helper 进程内一直存在。
+- 结论修正为：锚点在同一 helper 进程内累积。当前 helper 是每请求一个短命子进程，所以进程边界即请求边界——实测 4 次连续带锚点请求各自返回自己的 body。
+- **未做**：复用同一个长命 helper 时的按主机锚点隔离。这条已写进缺口，不再含糊。
+- 组件 `0.2.10+inner.r379`。
+
 **JS 路径同样受链校验约束（R378）：不是只有 Python API 生效。** [回执](../../artifacts/receipts/ruyijs-linux-js-anchor-r378/validation.json)
 
 - `fetch("https://…")` 经打包后的 `fetch()` 入口进入同一校验钩子：正确 CA 锚点 200 并取回 body；未签发该叶子的 CA 被拒（`-8079`），对端 **0 个** HTTP 请求。

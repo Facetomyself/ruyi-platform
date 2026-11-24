@@ -8,6 +8,7 @@
 |---|---|---|
 | **已验 · RuyiJS amd64 离线发行** | [R356 wheel](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) 使用 R355 干净原生构建的确切字节。新装及从 R354 升级均通过 13 组安装态测试及真实 Worker/WebCrypto，显式回退后的文件清单完全恢复。 | 依照[固定版本的安装命令](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)使用；公共索引、跨发行版认证、联网与 ARM64 不继承本项证明。 |
 | **P1 · Trace / MCP 发布与管理面** | [M2 标准与暂停中停止](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)用 Trace `f8eeb0e` + MCP `8f3839b` + R5；MCP 当前 pin `b5e204a` 又验过[自然到期、错范围无页面动作及实际归还](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | **挡扩大支持矩阵，不挡已验的原生 AMD64 CLI 组合。** 发布新 CLI/MCP 组合时固定双方 SHA 与同一浏览器摘要，重跑正常归还及暂停中停止两档；另测 Firefox 进程意外丢失，核对租约、descriptor、profile 及输出。生产 ARM64、Electron 充当 owner、跨执行机 SSH stdio 分开签收。[执行入口](../projects/ruyi-mcp/PRODUCTION-OWNER.md) |
+| **已验 · NSS 生命周期范围** | [R379](../artifacts/receipts/ruyijs-linux-nss-lifetime-r379/validation.json)：锚点在单进程内累积；4 次连续带锚点请求各自正确。 | 复用长命 helper 时的按主机隔离未实现，需要时应改为每主机独立进程。 |
 | **已验 · JS 路径链校验** | [R378](../artifacts/receipts/ruyijs-linux-js-anchor-r378/validation.json)：JS `fetch()` 与 Python API 走同一校验；错误锚点拒绝，锚点被替换亦拒绝（摘要校验）。 | OCSP/CRL 与公共 CA 根库仍缺。 |
 | **已验 · 锚点接入 HTTPS 路径** | [R376](../artifacts/receipts/ruyijs-linux-anchor-r376/validation.json)：声明锚点时在握手钩子内做链校验；错误 CA 与非 CA 锚点均拒绝且 0 请求。 | 未做 OCSP/CRL 与公共 CA 根库，故仍不等于通用公网信任。 |
 | **部分已验 · 到 CA 链校验（独立工具，已被 R376 取代）** | [R375](../artifacts/receipts/ruyijs-linux-chain-legacy-r375/validation.json)：旧校验器可完成叶子→CA 校验；修复了非 CA 锚点被信任的缺陷。 | 尚未接入适配层与 JS 路径；OCSP/CRL 吊销不可用；PKIX 仍不可用。 |

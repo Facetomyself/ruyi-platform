@@ -1,0 +1,42 @@
+{
+  "artifact": {
+    "bytes": 5265888,
+    "name": "wheel.whl",
+    "sha256": "114d2e12cf080b37fee35f6d803cadf78ca9a7d32b0b90a56f5d242df2ecc231"
+  },
+  "checked_at": "2026-11-24T17:56:02+0800",
+  "documented_scope": "anchors accumulate within one helper process; a long-lived process reusing a single helper would need per-host isolation that this path does not attempt",
+  "finding": {
+    "claim_removed": "a fresh database per call keeps anchors from one host out of another",
+    "description": "the code created a fresh NSS database directory for every chain check, implying per-call isolation, but NSS can only be initialised once per process, so anchors imported on the first exchange remain for the life of the helper process",
+    "why_it_still_passes": [
+      "the helper is a short-lived per-request subprocess, so the process lifetime is the request",
+      "four sequential anchored exchanges in one context all returned their own peer body"
+    ]
+  },
+  "host": {
+    "containers": 124,
+    "name": "host185",
+    "oom": 0
+  },
+  "measured": {
+    "all_200": true,
+    "exchanges": 4,
+    "peer_requests": [
+      "/0",
+      "/1",
+      "/2",
+      "/3"
+    ]
+  },
+  "outcome": "repeated_anchored_exchanges_work_and_the_real_scope_is_now_documented",
+  "schema": "ruyijs-linux-nss-lifetime-r379.v1",
+  "still_open": [
+    "per-host anchor isolation for a reused long-lived helper",
+    "OCSP/CRL revocation",
+    "public CA root bundles",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ]
+}

@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T17:53:15+08:00'
+generated_at: '2026-11-24T17:56:02+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R378_js_anchor_enforcement__R376_anchor_integration__R375_legacy_chain
+    tests: R379_nss_lifetime_scope__R378_js_anchor_enforcement__R376_anchor_integration
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_nss_lifetime_r379:
+            terminal: repeated_anchored_exchanges_work_and_the_real_scope_is_documented
+            removed_claim: fresh_database_per_call_isolates_anchors
+            real_scope: anchors_accumulate_within_one_helper_process
+            sequential_anchored_exchanges: 4
+            all_returned_own_body: true
+            companion_version: 0.2.10+inner.r379
+            artifact_sha256: 114d2e12cf080b37fee35f6d803cadf78ca9a7d32b0b90a56f5d242df2ecc231
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-nss-lifetime.json
+            evidence_sha256: 820d00e5adb2b86976e1b5837da62263d7ff0c8624ae38fb01b5b5f91ee8657a
+            repository_receipt: artifacts/receipts/ruyijs-linux-nss-lifetime-r379/validation.json
+            excluded: [long_lived_helper_isolation, ocsp_crl_revocation, public_ca_root_bundles, http2_framing, quic_http3]
           private_js_anchor_r378:
             terminal: chain_check_gates_the_javascript_path_and_tampered_anchors_are_refused
             js_correct_anchor: {status: 200, peer_requests: 1}
@@ -2293,7 +2305,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 20a31f369e936b0d0c6b3d9cc8fd6a47934b9a03
+    commit: 177fa3466d2f60e7c1a35e38ffe8dd0dbfdaed62
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
