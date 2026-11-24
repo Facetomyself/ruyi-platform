@@ -1,4 +1,4 @@
-generated_at: '2026-11-25T01:15:00+08:00'
+generated_at: '2026-11-25T01:30:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,7 +105,7 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R408_br_end_to_end__R407_brotli_packaged__R406_brotli_wiring
+    tests: R409_zstd_decode_proven__R408_br_end_to_end__R407_brotli_packaged
     phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
     blocked_by:
     - A2
@@ -1451,6 +1451,18 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_zstd_decode_r409:
+            terminal: the_zstd_decoder_builds_from_in_tree_sources_and_decodes_data_from_an_independent_encoder
+            encoder: zstandard_0_25_0
+            compressed_bytes: 47
+            decoded_bytes: 38
+            exact_match: true
+            build_flags_required: -DZSTD_DISABLE_ASM
+            integrated_into_product: false
+            evidence: deliverables/linux-ruyijs-tls-r358/validation-zstd-decode.json
+            evidence_sha256: e2cab189774eea52da20235463e37208f71ba36b9bddded20af6de87d90e42b2
+            repository_receipt: artifacts/receipts/ruyijs-linux-zstd-decode-r409/validation.json
+            excluded: [zstd_wiring, zstd_packaging, zstd_e2e_over_tls, ocsp_crl_revocation, quic_http3]
           private_br_e2e_r408:
             terminal: a_real_tls_peer_answered_with_brotli_and_the_client_decoded_it_end_to_end
             client_advertised: gzip, deflate, br

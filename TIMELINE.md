@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **909 个 commit**（platform 297 / ruyitrace 121 / ruyihttp 39 / ruyijs 391 / ruyi-mcp 61）。
+五个仓库共 **910 个 commit**（platform 298 / ruyitrace 121 / ruyihttp 39 / ruyijs 391 / ruyi-mcp 61）。
 
 ---
 

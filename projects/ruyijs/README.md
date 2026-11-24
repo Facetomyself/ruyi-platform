@@ -84,6 +84,13 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**zstd 解码器可编出并解码（R409）。** [回执](../../artifacts/receipts/ruyijs-linux-zstd-decode-r409/validation.json)
+
+- **证明**：本机 `zstandard 0.25.0` 压缩 47 字节；固定构建 `third_party/zstd` 的 `common/`+`decompress/` 编出的解码器解出 `hello zstd from an independent encoder`，`strcmp` 断言通过，`RC=0`。
+- **两个必须的细节**：① 默认引用汇编符号，纯 C 链共享库会失败 → `-DZSTD_DISABLE_ASM`；② 源码用 `../zstd.h`、`../zstd_errors.h` 引用 lib 根的头文件，需一并复制。
+- **结构性事实**：该树的 zstd 只有解压，**没有 `compress/` 目录**，所以压缩数据必须来自外部——这也是编码器用外部库而非树内的原因。
+- **未接入产品**：没有进 `tls.py`、没有进 `build_backend`、不在任何 wheel 里、协商未变。这条只证明**解码能力与所需编译参数**。
+
 **brotli 端到端通过（R408）。** [回执](../../artifacts/receipts/ruyijs-linux-br-e2e-r408/validation.json)
 
 - 真实 TLS 服务端**只在客户端声明 `br` 时才**返回 brotli 压缩体；实测声明为 `gzip, deflate, br`，服务端确认 `sent_br: true`。

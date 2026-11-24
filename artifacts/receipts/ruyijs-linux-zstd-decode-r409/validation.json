@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-11-25T01:30:00+08:00",
+  "not_integrated": [
+    "not wired into tls.py",
+    "not compiled by build_backend",
+    "not in any wheel",
+    "no negotiation change"
+  ],
+  "outcome": "the_zstd_decoder_builds_from_in_tree_sources_and_decodes_data_from_an_independent_encoder",
+  "proof": {
+    "compressed_bytes": 47,
+    "decoder": "the zstd common/ and decompress/ sources of the pinned tree, 12 units",
+    "encoder": "zstandard 0.25.0 on oracle-dsh",
+    "exit": "RC=0",
+    "payload": "hello zstd from an independent encoder",
+    "result": "decoded 38 bytes, exact match asserted by strcmp"
+  },
+  "schema": "ruyijs-linux-zstd-decode-r409.v1",
+  "still_open": [
+    "zstd wiring into tls.py",
+    "zstd packaging",
+    "zstd end to end over TLS",
+    "OCSP/CRL revocation",
+    "default Mozilla roots",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "structural_note": "the tree ships decompress only, with no compress/ directory, so a compressor had to come from outside; that is why the encoder is zstandard 0.25.0 rather than the tree itself",
+  "two_details_that_mattered": [
+    {
+      "fix": "-DZSTD_DISABLE_ASM",
+      "problem": "zstd references an assembly helper symbol by default, which cannot be resolved when linking a shared object from C alone"
+    },
+    {
+      "fix": "copy those headers alongside common/ and decompress/",
+      "problem": "the sources include ../zstd.h and ../zstd_errors.h from lib/ root"
+    }
+  ],
+  "why_not_integrated_this_round": "the remaining rounds are few; recording the proven capability with exact build flags is worth more than a half-finished integration"
+}

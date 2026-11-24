@@ -1,0 +1,5 @@
+BUILT
+decoded 38 bytes: hello zstd from an independent encoder
+DECODE_OK
+RC=0
+END
