@@ -41,7 +41,7 @@ ruyitrace/
 | --- | --- |
 | 开关数 | **74**（`switches.js` 与 `xul.dll` strings 一致） |
 | 文档声称 | 69（cheatsheet 陈旧） |
-| 幽灵开关 | `MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING`（文档有，内核无） |
+| JS 队列参数 | `MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING` 由随包 JS 读取，与原生开关清单分开，见 [C2 勘误](../../docs/04-risks-and-gaps.md#c2--moz_dom_http_packet_trace_max_pending-的读取层) |
 | 源码 | ❌ 不在包内，`moz-src/` 只有 572 文件删减片段 |
 | 输出 | 12 类文件（jsonl / bin / wasm / packet） |
 

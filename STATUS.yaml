@@ -1,4 +1,4 @@
-generated_at: '2026-11-24T12:39:53+08:00'
+generated_at: '2026-11-24T13:02:19+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -1924,19 +1924,30 @@ projects:
         behavior_recovery: complete (74/74 switches, RuyiJS RPC counts excluded)
         output_formats: complete (13/13, 4852 lines C++)
         instrumentation: code ready, compiles, index chain verified
-        console: complete (2919 lines, not integrated with real data)
-        runtime_verification: headless launch observed; no Linux core trace captured
-    status: analysis_complete_runtime_unverified
+        console: scoped native amd64 and ARM64 desktop readback; production owner gate is Linux CLI
+        runtime_verification: scoped Linux Firefox DOM/click/Storage runs and amd64 R5 script-error; see release_source_lock and mcp_production_receipt
+    status: scoped_linux_runtime_and_amd64_cli_owner_verified
 reverse_analysis:
   target: domtrace
-  status: not_started
-  progress: 0/74 开关定位
+  status: win64_offline_handoff_published
+  progress: '74/74 开关已定位；115 份 Win64 静态回执，原件静态证据与 Linux 实机覆盖分别验收'
+  handoff_commit: c3e0937cc455fac6b45f2725185dc5735e927785
   method: PE 静态分析 → 函数聚类 → 语义重建 → 交叉验证
   outputs:
   - projects/ruyitrace/domtrace-analysis.md
   - artifacts/analysis/domtrace/
-  blocked_by:
-  - L4
+  blocked_by: []  # L4 describes original-source provenance, not a blocker for the published static handoff
+related_projects:
+  ruyidom:
+    repository: https://github.com/Facetomyself/ruyidom
+    relationship: independent_release
+    platform_gitlink: null
+    release_tag: v0.1.0
+    release_commit: 4009bae850f9b64d413bd41a94dd7b3c56f86b40
+    runtime_inputs: [firefox_136, vendor_framework_outside_git]
+    evidence: artifacts/receipts/ruyidom-source-v0.1.0.json
+    evidence_sha256: 97eb6560678fd95aae7b0f30289ecb53503e9e867cedb5f45d80dc6c139938bb
+    pending: [native_arm64_docker_release_validation]
 artifacts:
   ruyijs-0.2.2+inner.492ee47:
     sha256: a7be9c4aa04823b32277562ec65082a4ae3844beb7ccf330a53271d8ec82a50e
@@ -1958,47 +1969,58 @@ artifacts:
     in_git: false
 blockers:
   D-MCP:
+    state: amd64_cli_verified_other_targets_open
     title: Linux 生产 Trace owner 同会话验收
     severity: D
     decision: AMD64 Linux CLI 已确认真实暂停、借用归还、自然到期和关闸；ARM64 生产、Electron 以及独立浏览器进程丢失用例另行验收
   A2:
+    state: target_specific_abi_floor
     title: Linux 原生库要求 glibc 2.38
     severity: A
     decision: pending
   B3:
+    state: closed
     title: backports 导入写法与 pyproject 声明不一致
     severity: B
     decision: none
   C1:
+    state: resolved_source_of_truth
     title: domtrace 开关数量文档不一致（69/67/74）
     severity: C
     decision: 以 74 为准
   C2:
+    state: resolved_by_reader_layer
     title: MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING 幽灵开关
     severity: C
-    decision: 文档标记废弃
+    decision: 随包 HttpPacketTrace JS 读取待写队列上限；xul.dll 未命中字面量不等于 JS 侧废弃
   C3:
+    state: historical_wheel_provenance_open
     title: 内部 wheel 溯源链断裂
     severity: C
     decision: pending
   D2:
+    state: closed
     title: 契约测试 6 项 Windows 假设
     severity: D
     decision: none
   D3:
+    state: historical_wheel_gap_candidate_has_offline_tests
     title: 内部 ruyijs wheel 无测试套件
     severity: D
     decision: none
   L2-gap:
+    state: historical_win64_snapshot_not_r353_blocker
     title: 内部 wheel 落后上游 0.4.1 的 4 个平台化文件
     severity: B
-    decision: 以上游为基重建
+    decision: 公开 fork 仅作参照；R353 私有壳已用实际本地传输运行
   R-ruyijs:
+    state: offline_amd64_verified_parity_and_distribution_open
     title: ruyijs 内部版原生壳需还原（js.exe 49.5MB）——已在进行
     severity: B
-    decision: 继续语义重建，优先补 181 个未命中 identity
+    decision: 历史 Windows identity 差异另验；R353 的优先缺口为全洁净重建、wheel 和真实联网
     progress: 56/237 hash_diff 命中 + 9/9 inner_only 语义化
   L4:
+    state: original_win64_source_unavailable_scoped_linux_runtime_verified
     title: domtrace 内核源码缺失，需反编译还原
     severity: A
     decision: 反编译先行

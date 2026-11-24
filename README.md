@@ -200,21 +200,22 @@ cat STATUS.yaml
 
 ## 八、交付与复用状态（2026-11-24）
 
-**其他项目从[源码与构建交接](docs/14-source-handoff.md)开始**：含组件选择、固定源码的检出命令、历史验收与本次复核的区别，以及管理面下一步。机器可读账本见 [STATUS.yaml](STATUS.yaml)。
+**先选依赖，再选制品：**[项目关系表](docs/01-architecture.md#下游先选依赖再选证据)区分运行依赖、可选借用和数据对照；[当前交付缺口](docs/04-risks-and-gaps.md#当前交付缺口)列出每项阻塞的用途和通过条件。拉源码、构建或校验制品见[交接手册](docs/14-source-handoff.md)，机器账本见 [STATUS.yaml](STATUS.yaml)。
 
 | 项目 | 当前交付 |
 | --- | --- |
 | **RuyiTrace** | Linux 有范围明确的浏览器、桌面与无头实采验收。amd64 R5 提供独立源码标签和同包核验入口；管理面另行迭代。 |
 | **RuyiHttp** | Python 客户端及三平台既有原生运行库可复用；[Linux amd64 HTTPS 验收](projects/ruyihttp/README.md)。新平台原生库是另一项交付。 |
 | **RuyiJS 内部版** | [Linux amd64 离线候选](artifacts/receipts/ruyijs-linux-amd64-r353/validation.json)已通过严格链接和解包实跑：13/13 组 Python/C 检查，另有 Ubuntu 基础镜像 C 客户端回读。[使用说明](submodules/ruyijs/docs/linux-amd64-candidate.md)；正式 wheel 与真实网络联验独立。 |
-| **ruyi-mcp** | 已纳管的独立控制面；Electron 桌面、无头 CLI 与 MCP 借用会话验收分列，见[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md)。 |
+| **ruyi-mcp** | 可自启 Firefox，也可在原生 amd64 上借用 Trace CLI 持有的 R5 会话；生产同会话已验，ARM64 与 Electron owner 另验。[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) |
+| **RuyiDOM（独立仓）** | Firefox 136 的离线 DOM 和显式浏览器导航；维护源码、供应商输入及历史 P3 镜像分开管理。见 [v0.1.0 源码交接](docs/14-source-handoff.md#ruyidom-独立源码交接)，它不占用平台 gitlink。 |
 
 **反编译是本仓两条主线**：`ruyijs-inner` 与 `ruyitrace/domtrace`。方法论相同（见 `docs/05-reverse-analysis.md`），对象与难度不同：
 
 | | ruyijs-inner | ruyitrace/domtrace |
 | --- | --- | --- |
 | 反编译对象 | `js.exe`（49.5 MB，C++） | `xul.dll`（178 MB，C++） |
-| 当前进度 | 见 `projects/ruyijs/reverse-analysis.md` | 74/74 开关 + 13/13 输出（见 `docs/13`） |
+| 证据层次 | [Win64 语义还原](projects/ruyijs/reverse-analysis.md)与 [R353 离线运行](artifacts/receipts/ruyijs-linux-amd64-r353/validation.json)分别核对 | 74 个开关是 Win64 静态清单；Linux 实际可签收的采集项以[具体包的验收](docs/14-source-handoff.md)为准 |
 | 已知锚点 | Python 绑定接口、`build-identity.json` | 74 个 `MOZ_DOM_*` env 字符串、完整原理手册 |
 | 对照物 | `ff-ruyijs` public 源码（可读，但非基线） | 无（官方 Firefox 不含 domtrace） |
 | 难度 | 中（有跨平台参考实现） | 高（无参考） |

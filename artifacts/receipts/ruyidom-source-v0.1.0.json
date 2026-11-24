@@ -1,0 +1,80 @@
+{
+  "schema": "ruyidom.source-handoff/v1",
+  "repository": "https://github.com/Facetomyself/ruyidom",
+  "visibility": "private",
+  "commit": "4009bae850f9b64d413bd41a94dd7b3c56f86b40",
+  "source": {
+    "remoteTrackedFiles": 40,
+    "privateRuntimeTracked": false,
+    "maintenanceUnitTests": 16,
+    "makeCheckInCleanClone": "pass"
+  },
+  "arm64NativeCleanClone": {
+    "os": "Ubuntu 22.04",
+    "systemLibs": "APT packages extracted into project sysroot",
+    "authorizedPrivateBundleReadBackBySsh": true,
+    "publicArtifacts": "verified pinned Firefox tar and websocket-client wheel",
+    "offlineRestoreAndCheck": "pass",
+    "nativeSmoke": "RuyiDOM:offline",
+    "browserRedirectCsp": "pass",
+    "temporaryEntries": [],
+    "fixtureRequests": [
+      "GET /start",
+      "GET /page",
+      "GET /external.js"
+    ],
+    "workingTreeAfterTests": "clean"
+  },
+  "arm64PublicDownloadFromEmptyCache": {
+    "status": "pass",
+    "firefoxSha256": "bef7a1f0c2c6afda65f1c1edbe3e13fdd935c336b162430c7d3513922740800a",
+    "wheelSha256": "e1a673830a9c7bfa47b1cd3d5e4178f4c9651d80a4eab02c9c23a1c3ec6250ce"
+  },
+  "arm64Docker": "recipe supplied; native Docker daemon unavailable for this release validation",
+  "vendorHandoff": {
+    "location": "authorized private storage; see docs/INPUTS.md",
+    "fileCount": 2,
+    "bytes": 29417,
+    "sha256": "13cc25c42b239ae039c021c23173c58d65c7928b1725c4dddc0f6faa33804580",
+    "independentReadback": "byte-for-byte pass"
+  },
+  "historicalP3Image": {
+    "provenance": "predates this Git commit; 5 main runtime scripts compared byte-for-byte to original P3 build context",
+    "verifiedReceiptInRepository": "docs/releases/p3-receipt.json"
+  },
+  "githubHostedCI": {
+    "run": "https://github.com/Facetomyself/ruyidom/actions/runs/45323039617",
+    "status": "job not started (GitHub account billing/spending limit); no hosted test result"
+  },
+  "tag": "v0.1.0",
+  "annotatedTagObject": "76de7ebf41e2dea90b98efe2769183e004ee3a17",
+  "offlineGitBundle": {
+    "sha256": "dba641eb3f7d64c3503e0262b1243c1c26d07506aca60c28b3d8fc7c66358c71",
+    "bytes": 87632,
+    "test": "git bundle verify; offline clone, detached tag checkout and make check passed"
+  },
+  "amd64PortableDocker": {
+    "host": "host185",
+    "dockerVersion": "28.1.1",
+    "source": "allowlisted git archive of release commit",
+    "inputManifestSha256": "4ea20752862c2192c543c1cbcc29a05eab7e904522a25e39f0b1f83d64dc621a",
+    "base": "Ubuntu 24.04",
+    "baseImageId": "sha256:7da97f743f397971f35dd21cd2d19a7da070a150e0cfa3eda559e71891ec7533",
+    "imageId": "sha256:cc022567e8668b5eeb169e7cbc69a221ab288a945c113da9e90763dc1d907b55",
+    "runtimeUidGid": "10001:10001",
+    "tests": {
+      "browserCheck": 0,
+      "nativeSmoke": 0,
+      "contentAndEngineVersion": 0,
+      "nativeFeatureSuite": 0,
+      "fullBrowserSuite": 0,
+      "crossOrigin": 0,
+      "browserProcessLoss": 0
+    },
+    "browserGroupsPassed": 12,
+    "browserColdStartsPassed": 10,
+    "nativeNavigation": "expected NS_ERROR_CONTENT_BLOCKED; positive browser navigation passed",
+    "cleanup": "temporary test image removed; initially one conflicting shared-layer deletion, independently checked clean after final cleanup",
+    "publishedImage": false
+  }
+}

@@ -1,6 +1,21 @@
 # 01 · 组件级架构与数据流
 
-三件套虽然共享 Firefox 159 血统，但组件边界完全不同。本文按「数据从哪进、走哪条路、从哪出」逐层拆。
+## 下游先选依赖，再选证据
+
+`ruyi-platform` 是**版本与交接仓，不是需要启动的服务**。[四个 gitlink](../.gitmodules) 分别锁定 Trace、MCP、JS、Http；RuyiDOM 是[独立发布的第五个相关项目](14-source-handoff.md#ruyidom-独立源码交接)。以下按实际接口区分依赖，不能把共享 Firefox 技术来源画成产品之间的调用链。
+
+| 谁使用谁 | 关系与所有权 | 下游可以省掉什么 |
+|---|---|---|
+| Trace CLI 或 Electron → 匹配架构的插桩 Firefox | **运行依赖**。CLI 与 Electron 是两种入口。由启动方持有进程、profile、采集闸门和最终刷盘；amd64 R5 内核的冻结输入与管理 CLI 的维护提交不同。[构建与制品](14-source-handoff.md) | 无头采集无需 Electron、MCP、RuyiJS、RuyiHttp 或 RuyiDOM。旧包附带的内部 JS wheel 是可选工具资源。 |
+| MCP → Python bridge → Firefox | **自启模式**。MCP 管自己的进程、profile 与 BiDi；可选用 Trace Firefox 做浏览器，但导航和 RDP 通过本身不等于产生 DOMTrace。[自启验收](../artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json) | 仅需自动化或调试时，无需先运行 Trace owner。 |
+| MCP → Trace owner → 已运行的 Firefox | **借用模式，可选集成**。MCP 只持排他租约，经回环 owner IPC 做页面操作；RDP 调试是独立通道。Trace 保留唯一 BiDi 会话、进程和 flush 权；MCP 归还后浏览器继续运行。证据分别看 [M2 两种停止方式](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)及[自然到期和范围检查](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | 不启动第二个 Firefox，不把“归还租约”实现成关闭 owner 的浏览器。无需 JS/Http 库。 |
+| Python 或 C 客户端 → RuyiJS 私有壳 | **运行依赖**。R353 的离线 `dist/js`、C 客户端、匹配的绑定与共享库按一套分发。在线导航另需[兼容的 Necko helper 和原生栈](../submodules/ruyijs/src/resource_network/necko_linux.cpp)，未包含在[本版归档](../submodules/ruyijs/docs/linux-amd64-candidate.md)。 | 离线 DOM/JS 无需浏览器 owner。安装 RuyiHttp 不是为 R353 补齐联网 helper 的替代方案。 |
+| Python 调用方 → RuyiHttp → 自带的 Necko/NSS/QUIC 运行库 | **独立传输客户端**。与 RuyiJS 的派生适配有共同的协议/ABI 来源；双方有各自的包、依赖和验收。[HTTP 的平台矩阵](../projects/ruyihttp/README.md) | 发 HTTP 请求无需浏览器、MCP、JS 壳或 DOM。HTTP 的 h2 成功也不是 JS 联网或 H3 验收。 |
+| 调用方 → RuyiDOM → Firefox **136** + 供应商 JS | **独立工具链**。`native` 用 xpcshell 做离线 DOM；显式 `browser` 后端使用真实内容进程导航。供应商输入在 Git 外，详见[固定版本输入清单](https://github.com/Facetomyself/ruyidom/blob/4009bae850f9b64d413bd41a94dd7b3c56f86b40/docs/INPUTS.md)。 | RuyiDOM 不是 RuyiJS 的别名、Trace 159 的前端或第五个子模块；不把 136 的行为当作 159 的发布证据。 |
+
+**跨项目对照只传数据。** 在自有测试页上，业务项目可把同一 fixture 的 Trace 记录、RuyiJS/RuyiDOM 求值结果、RuyiHttp 响应分开存档，以 fixture 摘要、组件 SHA、架构和运行时版本关联。它们是可选的结果对照；不存在一条需要同时运行五个产品的流水线。发布阻塞及验收顺序见[当前缺口](04-risks-and-gaps.md#当前交付缺口)。
+
+下文保留三件套的实现细节；涉及旧 Win64 包的描述按该包理解。
 
 ---
 
@@ -111,13 +126,13 @@
 
 | | `win_amd64` | `darwin_arm64` | `linux_x86_64` |
 | --- | --- | --- | --- |
-| 状态 | ready | ready | ready（未 live 验证） |
+| 状态 | ready | ready | ready（amd64 Ubuntu 24.04 / glibc 2.39 已实测 HTTPS） |
 | NSS | 3.131 | 3.132 | 3.132 |
 | Neqo | 0.32.0 | 0.33.0 | 0.33.0 |
 | wheel tag | `py3-none-win_amd64` | `py3-none-macosx_26_0_arm64` | `py3-none-manylinux_2_39_x86_64` |
 | 原生文件数 | 6 | 6 | 14 |
 | UA | `Windows NT 10.0; Win64; x64` | `Macintosh; Intel Mac OS X 10.15` | `X11; Linux x86_64` / `aarch64` |
-| 实测 | ✅ 200 / ALPN h2 / NSS 3.131 | ✅ 200 / ALPN h2 / NSS 3.132（Mac mini） | ⚠️ 仅 ELF/ABI/manifest 检查 |
+| 实测 | ✅ 200 / ALPN h2 / NSS 3.131 | ✅ 200 / ALPN h2 / NSS 3.132（Mac mini） | [HTTPS 200 / TLS 1.3 / h2](../projects/ruyihttp/README.md#linux-x86_64-验收记录)；QUIC 库装载与 H3 握手分别验收 |
 
 ### 2.3 TLS profile 的真实情况（重要）
 
@@ -227,7 +242,7 @@ ffProc = spawn(firefoxPath, launchArgs, { env })
 | `switches.js` 实际 `SWITCHES` 数组 | **74** |
 | `xul.dll` strings 里的 `MOZ_DOM_*` | **74**（与上一条完全一致） |
 
-**以 `switches.js` / `xul.dll` 的 74 为准**。`MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING` 只在文档里存在，内核已不读。
+**原生开关清单以 `switches.js` / `xul.dll` 的 74 为准。** 另一个层次的 `MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING` 由随包 `HttpPacketTrace.sys.mjs` 的 `getMaxPendingWrites()` 读取，控制 JS 待写队列。在原生 DLL 查不到同名字符串，不能据此判定这个 JS 配置无效。
 
 ---
 

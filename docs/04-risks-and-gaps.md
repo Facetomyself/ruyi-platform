@@ -1,6 +1,20 @@
 # 04 · 已知缺口、矛盾点与待决策项
 
-下文保留分阶段调查及已降级结论。**当前交付缺口**以[其他项目的接入边界](14-source-handoff.md)及[管理面 M0–M3 门禁](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md)为准，特别要区分已验收的 Trace 浏览器与仍待联验的管理面；JS 产品链接是独立工程。
+## 当前交付缺口
+
+**2026-11-24，以上午交接标签之后、平台纳入 R353 的 `241b0ad` 为核对基线。** 已经通过的两道门先从待办移走：AMD64 R5 的 Trace CLI 与 MCP 生产同会话有真实回执；RuyiJS 私有 Linux amd64 壳已链接并从离线归档实跑。剩余工作按**会阻塞哪种下游交付**排列，不用单一“完成百分比”。依赖类型见[架构关系表](01-architecture.md#下游先选依赖再选证据)，版本检出见[交接手册](14-source-handoff.md)。
+
+| 优先级 / 责任组件 | 目前可以依赖 | 还挡住什么；怎样才算通过 |
+|---|---|---|
+| **P1 · RuyiJS 发行工程** | [R353](../artifacts/receipts/ruyijs-linux-amd64-r353/validation.json) 严格链接退出 0、未定义符号从 R352 的 129 降至 0；归档读回 13/13 组、83 项断言，含真实 C/Python 求值和 DOM。另在干净 Ubuntu 镜像跑过 C 客户端冒烟。 | **挡正式 Linux wheel 和从源码独立复建，不挡指定 Ubuntu amd64 的离线归档使用。** 从单一提交、空对象目录构建 1,268 个选定源单元，保留输入清单与链接报告；再产 wheel，在新 venv、无构建树和 `LD_LIBRARY_PATH` 的环境安装，跑 `Context.eval`、`load_page`、C ABI 并读回包摘要。[候选使用说明](../submodules/ruyijs/docs/linux-amd64-candidate.md) |
+| **P1 · Trace / MCP 发布与管理面** | [M2 标准与暂停中停止](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)用 Trace `f8eeb0e` + MCP `8f3839b` + R5；MCP 当前 pin `b5e204a` 又验过[自然到期、错范围无页面动作及实际归还](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | **挡扩大支持矩阵，不挡已验的原生 AMD64 CLI 组合。** 发布新 CLI/MCP 组合时固定双方 SHA 与同一浏览器摘要，重跑正常归还及暂停中停止两档；另测 Firefox 进程意外丢失，核对租约、descriptor、profile 及输出。生产 ARM64、Electron 充当 owner、跨执行机 SSH stdio 分开签收。[执行入口](../projects/ruyi-mcp/PRODUCTION-OWNER.md) |
+| **P1（若需要联网）· RuyiJS 与 RuyiHttp 各自负责** | R353 只签离线档；[RuyiHttp](../projects/ruyihttp/README.md#linux-x86_64-验收记录)在 glibc 2.39 实测 HTTPS 200/TLS 1.3/h2。 | **JS 侧**按其 helper 契约随包提供匹配的 Necko/NSS 库，在受控 HTTP(S) 服务跑真实导航与网络日志；**Http 侧**对明确的代理链与 H3 服务分别验 CONNECT/代理和实际协商 h3。QUIC 动态库可加载、另一客户端能连，都不是这两项的通过证据。 |
+| **P2 · 架构与宿主** | Trace 有独立 ARM64 浏览器及虚拟桌面证据；MCP 有双架构 core；Http 已有既定三平台运行库。 | Linux ARM64/macOS x86_64 的 **Http 原生库**、RuyiJS ARM64、Trace 生产 ARM64 共会话、物理显示分别建包验收；仅在要承诺更低 glibc 时做相应目标发行版测试。Trace 托管检查曾因计费未获 runner，应在 runner 可用后重跑；已有本地源码通过记录与 hosted CI 分开。 |
+| **使用 RuyiDOM 时 · 独立仓与制品维护者** | [v0.1.0 源码交接回执](../artifacts/receipts/ruyidom-source-v0.1.0.json)有干净 ARM64 原生和 amd64 源码构建的便携 Docker 验收；amd64 浏览器后端 12 组通过。 | Git clone 只带维护源码。新机器先按[输入清单](https://github.com/Facetomyself/ruyidom/blob/4009bae850f9b64d413bd41a94dd7b3c56f86b40/docs/INPUTS.md)恢复供应商包与 Firefox 136，核验摘要，再按所选后端实跑。ARM64 发行镜像仍需原生 Docker 验证。`native` 的 HTTP 导航受限是既定边界，真实导航选 `browser`；历史 P3 镜像不是从 v0.1.0 构建。 |
+
+**另有一条不能合并的发布线。** [常驻采集 CLI2 产品标签](https://github.com/Facetomyself/ruyitrace/blob/f3f45baaee75a700ed4d41fdc5e4e70d977df1b6/product/release-lock.json)锁定实际 CLI 输入 `29a1111`，复用 R5 内核。它验过 256 个开关代际、512 条原生边界与同一宿主的空 Docker 引擎加载。Trace 主线的常驻修复 `61a4c15`、平台 Trace pin、CLI2 产品镜像是不同对象；CLI2 证据不自动继承生产 M2。若下游需要“一份镜像兼有常驻配额与 MCP 借用”，先合成一个明确版本，再在**同一镜像摘要**上同时通过这两组测试。第二物理宿主、严格内容进程过滤证据仍应单列。
+
+下列 A/B/C/D 条目保留原始调查和纠错过程。编号数量不是当前未完成项计数；例如 B3 的 backports 与 D2 的六项 Windows 假设在 [HTTP 状态账本](../STATUS.yaml) 已列为关闭。
 
 ---
 
@@ -156,9 +170,9 @@ strings -a kernel/xul.dll | grep -oE 'MOZ_DOM_[A-Z0-9_]+' | sort -u | wc -l
 - **结论**：**74 是正确的**，文档陈旧
 - **建议**：以 `switches.js` 做单一真相源，自动生成 cheatsheet，别手写
 
-### C2 · `MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING` 是幽灵开关
+### C2 · `MOZ_DOM_HTTP_PACKET_TRACE_MAX_PENDING` 的读取层
 
-只在 cheatsheet 出现，`xul.dll` 没有，`switches.js` 注释确认「内核已不再读取」。
+初版只在 DLL 搜索，误称为幽灵开关。Win64 3.5.0 随包 `HttpPacketTrace.sys.mjs` 的 `getMaxPendingWrites()` 实际读取它，合法范围 1–8192，默认 256；这是 **JS 队列参数**，不计作额外原生开关。以下命令只说明文档与原生字符串的差异。
 
 ```bash
 grep -c 'HTTP_PACKET_TRACE_MAX_PENDING' RuyiTrace/app-3.5.0/resources/domtrace/README-cheatsheet.md  # ≥1
@@ -235,12 +249,12 @@ cd RuyiHttp/repo && /tmp/ruyivenv/bin/python -m unittest discover -s tests
 
 AMD64 R5 的 Linux CLI [生产门禁](../projects/ruyi-mcp/PRODUCTION-OWNER.md)已通过。AMD64 真机租约自然到期与失效后控制权已[单独验收](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)；Electron owner、ARM64 生产、部署中的跨机器 SSH stdio，以及真实浏览器进程丢失仍为 `To be confirmed`；独立 ARM64 fixture 的回执仍只覆盖其有界范围。
 
-## 待决策清单
+## 历史决策清单（原始建议；当前选择见页首）
 
 | # | 决策项 | 选项 | 建议 | 阻塞什么 |
 | --- | --- | --- | --- | --- |
 | 1 | 目标 glibc | 24.04+ / 降版本重编 | **24.04+** | A2 全部 |
-| 2 | Firefox commit 基线 | `9a2dc53c` / `39bfd14c` / `2887d9de` | **`39bfd14c`**（RuyiTrace 内核） | 阶段 1 全部 |
+| 2 | Firefox commit 基线 | `9a2dc53c` / `39bfd14c` / `2887d9de` | 原建议 `39bfd14c` 仅能标识 Win64 私有内核；Linux Trace/R353 用官方 `9a2dc53c`，见 [PINS](../PINS.md) | 旧建议已替代 |
 | 3 | domtrace 源码 | A 官方树 / B 反推 / C 问上游 | **A 先验证 10 分钟，C 并行** | 阶段 4（占 70% 工作量） |
 | 4 | `necko` Python 层 | 两份独立 / 合流成一个包 | **合流** | B1，长期维护成本 |
 | 5 | `necko_posix` 源码 | 三份副本 / submodule | **submodule** | B2 |

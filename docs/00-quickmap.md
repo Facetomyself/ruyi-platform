@@ -21,11 +21,11 @@
 
 | 我要… | 看这里 |
 | --- | --- |
-| 搞清三个项目的边界 | [`01-architecture.md`](01-architecture.md) |
+| 判断是否需要同时安装几个项目，谁持有浏览器 | [四个固定组件 + 独立 RuyiDOM：硬依赖、借用与数据对照](01-architecture.md#下游先选依赖再选证据) |
 | 拿到某个项目的源码 | [`02-source-recovery.md`](02-source-recovery.md) |
 | 把某层移植到 Linux | [`03-linux-port.md`](03-linux-port.md) |
 | 维护 ruyi-mcp、更新 pin 或验收 Docker | [ruyi-mcp 项目入口](../projects/ruyi-mcp/README.md) |
-| 知道现在卡在哪 | [`04-risks-and-gaps.md`](04-risks-and-gaps.md) + [`../STATUS.yaml`](../STATUS.yaml) |
+| 判断现在卡在哪、需要谁验收 | [交付缺口与通过条件](04-risks-and-gaps.md#当前交付缺口) + [机器状态](../STATUS.yaml) |
 | 反编译 domtrace 内核 | [`05-reverse-analysis.md`](05-reverse-analysis.md) |
 | **domtrace 该插在哪** | [`../projects/ruyitrace/instrumentation-sites.md`](../projects/ruyitrace/instrumentation-sites.md) |
 | **要改 Codegen 的哪几处** | [`../projects/ruyitrace/codegen-changes.md`](../projects/ruyitrace/codegen-changes.md) |

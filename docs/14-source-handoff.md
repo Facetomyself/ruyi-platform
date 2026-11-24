@@ -73,7 +73,7 @@ git clone --branch v0.1.0 --single-branch "$repo" ruyidom
 test "$(git -C ruyidom rev-parse HEAD)" = "$sha"
 ```
 
-[v0.1.0 发布页](https://github.com/Facetomyself/ruyidom/releases/tag/v0.1.0)也提供离线源码 Git bundle 和 `SHA256SUMS`。Git 只交付维护源码；供应商框架字节 `not-in-git`。依赖按[固定版本的输入恢复说明](https://github.com/Facetomyself/ruyidom/blob/4009bae850f9b64d413bd41a94dd7b3c56f86b40/docs/INPUTS.md)另外准备。[host185 工件取用与校验](https://github.com/Facetomyself/openclaw-infra/blob/main/hosts/self-server/projects/ruyidom-browser-candidate.md#10-common-tasks)提供私有框架最小包和历史 AMD64 P3 Docker 归档的取用方法。P3 在源码导入 Git 之前已验收，并非从 `v0.1.0` 构建。
+[v0.1.0 源码交接回执](../artifacts/receipts/ruyidom-source-v0.1.0.json)分别记录干净 ARM64 原生恢复、从该提交构建的 amd64 便携镜像测试，以及未运行的 ARM64 Docker 门禁；这是区别于历史 P3 的一条证据链。[v0.1.0 发布页](https://github.com/Facetomyself/ruyidom/releases/tag/v0.1.0)也提供离线源码 Git bundle 和 `SHA256SUMS`。Git 只交付维护源码；供应商框架字节 `not-in-git`。依赖按[固定版本的输入恢复说明](https://github.com/Facetomyself/ruyidom/blob/4009bae850f9b64d413bd41a94dd7b3c56f86b40/docs/INPUTS.md)另外准备。[host185 工件取用与校验](https://github.com/Facetomyself/openclaw-infra/blob/main/hosts/self-server/projects/ruyidom-browser-candidate.md#10-common-tasks)提供私有框架最小包和历史 AMD64 P3 Docker 归档的取用方法。P3 在源码导入 Git 之前已验收，并非从 `v0.1.0` 构建。
 
 ## 以后如何维护
 
