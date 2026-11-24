@@ -1948,7 +1948,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 39cfb13bf8b0aed3e0cc7bd0a63b591f0a5362d3
+    commit: ab060a5f80989dbf0c1c06e54c1924cb24d30a5e
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
