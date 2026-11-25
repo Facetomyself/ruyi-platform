@@ -1,0 +1,33 @@
+{
+  "as_of": "2026-11-25T17:08:02+00:00",
+  "attempt": "attempt.j1mT36SL",
+  "build_tool_source": "934c67f0cc71f403663e455deb18585e7ee822b5",
+  "host": "oracle-reverse-dev",
+  "not_yet_established": [
+    "current final kernel linked",
+    "upstream audit and same-package native data",
+    "ARM CLI2 and private noVNC image IDs",
+    "authenticated public ARM desktop"
+  ],
+  "passed": {
+    "public_dns_and_tls_health": true,
+    "renewal_rehearsal": true,
+    "staged_gecko_input": true,
+    "target_identity": true
+  },
+  "platform": "linux/arm64",
+  "provisional_build_id": "20261125162841",
+  "raw_sha256": {
+    "dns.json": "ba0072f9edc982f07f26ceab3c22c957ea59e7768584d58b35637eab3ac9d758",
+    "hk-relay.json": "efe0d99285bb9fd7de6b1c1534584593600122f1de16eea3037c586898318855",
+    "host185.json": "8c90204a1b9e8c87bda2d5e79960bd6d960b788ebd94548925361b220fcba33e",
+    "oci-shape-and-network.json": "db633a96ea29fd0ec2c1bef9948859827aa7b938de3998aad67509a925a532e7",
+    "oracle-dsh.json": "cec20bb01a1a7b00deb405d4eeb92d5916c7b16711ea928705278cf66495453a",
+    "renewal.json": "3936813a196743c492115b4303f260244efba08d1712f1b2e3b79aca901d1c4b",
+    "reviewed-gecko-inputs.json": "04e53ed351c8343a8fa25dbaf65925f5e724d2ca28e397172ab3a0daaa69e783",
+    "site-health.json": "f3657ad9d427e8d3433753371cc6f31bb8690695407c9bd40407300c5a8335ee"
+  },
+  "schema": "ruyitrace-arm64-staging.v1",
+  "scope": "immutable preparatory checkpoint; network response is not desktop acceptance",
+  "source_base": "c3723ca5f71e860ed19d1fa1a4305da930dc7428"
+}

@@ -1,0 +1,27 @@
+{
+  "checked_utc": "2026-11-25T16:24:08+00:00",
+  "display_name": "oracle-reverse-dev",
+  "shape": "VM.Standard.A1.Flex",
+  "ocpus": 4.0,
+  "memory_gb": 24.0,
+  "state": "RUNNING",
+  "region": "ap-singapore-2",
+  "public_ip": "140.245.61.236",
+  "private_ip": "10.0.0.139",
+  "subnet_public_ip_allowed": true,
+  "admission": {
+    "80": {
+      "from_all_ipv4": true,
+      "covering_rules": 2
+    },
+    "443": {
+      "from_all_ipv4": true,
+      "covering_rules": 2
+    },
+    "8443": {
+      "from_all_ipv4": true,
+      "covering_rules": 2
+    }
+  },
+  "changed_cloud_network": false
+}

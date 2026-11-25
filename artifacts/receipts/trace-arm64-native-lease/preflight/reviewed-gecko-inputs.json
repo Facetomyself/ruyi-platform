@@ -1,0 +1,7 @@
+{
+  "trace_input_sha256": "6086912b4fa649afb77be7dae15c21fbc58946aba6675d82090cc895c8003558",
+  "gecko_diff_sha256": "58bef440831a743f5504a984504f171397cb409da4b56340a962283e244546e0",
+  "config/makefiles/rust.mk": "00e689bfe6b3e817d4db898f237b0998e3f5722115923e76c8a5bda752f08291",
+  "python/mozbuild/mozbuild/action/check_binary.py": "2bcb667c2652afe1e08d681d7a6acd75bb15889dc57ec3fd359e5ca8ef650983",
+  "exact_reviewed_patch": true
+}

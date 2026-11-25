@@ -1,0 +1,1 @@
+{"ts": "2026-11-25T17:08:02+00:00", "host": "oracle-reverse-dev", "arch": "aarch64", "cpu": 4, "memory_kib": 24547968, "root_free_bytes": 115913080832, "ssh": "active", "docker": "active", "caddy": "inactive", "certbot_timer": "active", "port_80": false, "port_443": false, "exact_original_rules": true, "active_builder": true, "kernel_stage": "build", "kernel_qa_present": false}

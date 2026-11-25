@@ -1,0 +1,1 @@
+{"checked": "2026-11-25T16:43:44+00:00", "passed": true, "kind": "Certbot staging HTTP-01 renewal with production deployment hook", "public_certificate_unchanged": true, "public_fullchain_sha256": "851409c4423bdebd6413f0e9d272ceb7a1bb68e702cb708b81b73d5a2f2ed469", "timer_active": true, "port_80_and_443_closed": true}
