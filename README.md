@@ -208,7 +208,7 @@ cat STATUS.yaml
 | **RuyiHttp** | Python 客户端及[原生平台矩阵](projects/ruyihttp/README.md)可复用；Linux 有 amd64 HTTPS 实跑和独立的 [ARM64 H1/H2/H3 验收](artifacts/receipts/ruyihttp-native-20261124/linux-aarch64.json)。 |
 | **RuyiJS 内部版** | [R356 离线 wheel](artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json)提供经安装态验证的干净原生运行时；另有独立可卸载的 [R357 明文 HTTP/1 组件](artifacts/receipts/ruyijs-linux-http1-r357/validation.json)，真实回环收发和导航已验证。[安装说明](submodules/ruyijs/docs/linux-http1.md)。TLS、h2、QUIC 与 ARM64 产品另验。 |
 | **ruyi-mcp** | 可自启 Firefox，也可在原生 amd64 上借用 Trace CLI 持有的 R5 会话；生产同会话已验，ARM64 与 Electron owner 另验。[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) |
-| **RuyiDOM（独立仓）** | v0.2.0：Firefox 136.0 继续承载离线 DOM，显式浏览器导航可选 Firefox 153.8.0 ESR；ARM64 Docker 已从零构建并验收。见 [源码交接、验收范围与 P3 历史归档](docs/14-source-handoff.md#ruyidom-独立源码交接)；RuyiDOM 单独检出，平台 gitlink 维持原样。 |
+| **RuyiDOM（独立仓）** | v0.3.0：ARM64 已完成 Firefox ESR 内容引擎的源码编译、打包和 Docker 验收；离线 DOM 的可信脚本宿主仍为官方 Firefox 136.0。见 [部署、构建与历史基线](docs/14-source-handoff.md#ruyidom-独立源码交接)；RuyiDOM 单独检出，平台 gitlink 维持原样。 |
 
 **反编译是本仓两条主线**：`ruyijs-inner` 与 `ruyitrace/domtrace`。方法论相同（见 `docs/05-reverse-analysis.md`），对象与难度不同：
 
