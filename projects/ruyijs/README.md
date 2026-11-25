@@ -84,6 +84,14 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**h2 端到端通过（R430）：vendored h2 + 真实 TLS 对端。** [回执](../../artifacts/receipts/ruyijs-linux-h2-e2e-r430/validation.json)
+
+- wheel `0.2.38+inner.r430` 携带 vendored `h2 4.4.1 + hpack 4.2.0 + hyperframe 6.1.0`（MIT，24 模块 + 3 LICENSE）；入口 `fetch(..., http2=True)`，默认仍 False。
+- e2e：ALPN 协商 `h2`，对端收到完整伪头 + 4 种编码通告，客户端 200 / `hello`。
+- **路上修掉 5 个真缺陷**：h2 4.x 改名 `receive_data`；pending 门控死锁；双 close 释放 SSL 两次（SIGSEGV，faulthandler 定位）；读计数未绑定；vendored 路径导入。
+- 信任模型不变：验证（pin/链/名）在帧化之前完成。
+- **未声称**：多路复用（一连接一请求）、server push、JS 层 http2 标志（API 在 companion 上）。
+
 **默认 Mozilla 根库（R423）：`default_anchors: true` 加入 pin 文件即可启用。** [回执](../../artifacts/receipts/ruyijs-linux-default-roots-r423/validation.json)
 
 - 121 张根 + 1 条 cutoff（Izenpe）打进 wheel `0.2.31+inner.r423`（新 3 个条目，两文件带构建期钉死的哈希，换文件即拒绝）。

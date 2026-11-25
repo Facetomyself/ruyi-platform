@@ -1,0 +1,48 @@
+{
+  "chain_proven": {
+    "alpn_selected": "h2",
+    "body": "hello",
+    "protocol": "h2",
+    "request_headers_seen_by_peer": [
+      ":authority",
+      "/:method",
+      "/:path",
+      "/:scheme",
+      "accept-encoding: gzip, deflate, br, zstd"
+    ],
+    "status": 200
+  },
+  "checked_at": "2026-11-25T16:05:00+08:00",
+  "defects_fixed_on_the_way": [
+    "h2 4.4.1 renames data_received to receive_data",
+    "a pending-gated read loop deadlocks when PR_Available reports 0 over an undecrypted TLS record",
+    "a double necko_tls_close freed the SSL handle twice and crashed with SIGSEGV, localized with faulthandler",
+    "a read counter used before assignment",
+    "the vendored import needed its own directory on sys.path"
+  ],
+  "evidence": {
+    "probe": "c3f012462cd3abdac0a38c6f9b86a0b0418d30a84813dbf2673ade150912697c",
+    "run_log": "8a27aa597e55b8d4f8bdede39ca8bc4197fd1ffe5a78362caabf388a4eca21d0"
+  },
+  "not_claimed": [
+    "multiplexing (one request per connection)",
+    "server push",
+    "priority tree (constants ported, tree not sent by default)",
+    "JS-layer fetch passing http2 yet (flag is on the companion API)"
+  ],
+  "outcome": "a_real_tls_peer_negotiates_h2_and_the_vendored_framing_completes_the_exchange",
+  "schema": "ruyijs-linux-h2-e2e-r430.v1",
+  "still_open": [
+    "QUIC build",
+    "h3",
+    "ARM64",
+    "OCSP enforcement"
+  ],
+  "trust_model": "verification (pin, chain, name) is unchanged and ran before any h2 framing; h2 only changes the wire protocol after the handshake",
+  "what_ships": {
+    "bytes": 5656064,
+    "entry": "fetch(..., http2=True); default stays http2=False",
+    "vendored": "h2 4.4.1 + hpack 4.2.0 + hyperframe 6.1.0 (MIT, 24 modules + 3 LICENSEs, 109889 bytes of wheels)",
+    "wheel": "ruyijs_http1-0.2.38+inner.r430"
+  }
+}

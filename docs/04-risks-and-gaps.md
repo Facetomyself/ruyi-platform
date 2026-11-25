@@ -16,6 +16,7 @@
 | **已验 · TLS profile 计数边界** | [R384](../artifacts/receipts/ruyijs-linux-profile-bounds-r384/validation.json)：四类计数均设上限，超界在调用 NSS 前拒绝；真实 profile 仍可握手。 | profile 接口尚未被 JS 路径使用；客户端证书未接通。 |
 | **已验 · h2 拒绝（实机）** | [R397](../artifacts/receipts/ruyijs-linux-h2-refusal-r397/validation.json)：选 h2 的对端被拒且未收到任何 HTTP 字节。 | h2 **帧与多路复用**仍未实现。 |
 | **已补 · ALPN 守卫测试** | [R396](../artifacts/receipts/ruyijs-linux-alpn-coverage-r396/validation.json)：`h2` 拒绝逻辑抽为纯函数并覆盖；变异可检出。 | h2 **帧与多路复用**仍未实现；端到端 h2 用例本轮未在主机执行。 |
+| **已验 · h2 端到端（R430）** | [R430](../artifacts/receipts/ruyijs-linux-h2-e2e-r430/validation.json)：ALPN h2 协商成功，vendored 帧化完成请求，200+body。 | 多路复用、server push、JS 层标志、QUIC/h3、ARM64 仍未签收。 |
 | **已验 · 默认 Mozilla 根库（R423）** | [R423](../artifacts/receipts/ruyijs-linux-default-roots-r423/validation.json)：121 根 + cutoff 随 wheel 分发，pin 文件 opt-in，测试 CA 被拒（-8079）。 | OCSP/CRL、PKIX、h2、QUIC、ARM64 仍未签收。 |
 | **已验 · 含 ABI 修复的 wheel** | [R393](../artifacts/receipts/ruyijs-linux-wheel-r393/validation.json)：安装后 19 个离线 + 3 个端到端测试全绿，`declare_adapter` 在打包产物中确认存在。 | brotli/OCSP/h2/QUIC/ARM64 仍未做。 |
 | **已补 · 端到端握手测试** | [R394](../artifacts/receipts/ruyijs-linux-e2e-tests-r394/validation.json)：3 个用例通过，并暴露 `exchange()` 对调用方传入库未声明 ABI 的缺陷（已修）。 | wheel 尚未包含该修复；brotli/OCSP/h2/QUIC/ARM64 仍未做。 |
