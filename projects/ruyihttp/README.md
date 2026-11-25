@@ -116,6 +116,17 @@ HTTP CONNECT、HTTPS CONNECT、SOCKS5h 三种入口经第二跳 CONNECT 到达�
 
 在原生 Intel runner 上编译 6 个 x86_64 dylib。最低部署版本从 Mach-O load commands 读取为 15.0，实际安装机为 macOS 15.7.9。第一版 H3 已经传输成功但 `tls=null`，未提升为正式运行时。修复 donor QUIC 桥后，从 Neqo 会话取回 TLS 版本、ALPN、cipher、恢复状态；实际选择的 Firefox 版本随请求传入。新的[严格验收](https://github.com/Facetomyself/ruyihttp/actions/runs/45341302623)通过 6 项 H3、10 项两跳代理与 H2 EOF 正反对照。[目标机回执及工件身份](../../artifacts/receipts/ruyihttp-native-20261124/darwin-x86_64.json)。
 
+### 2026-11-25：请求异常路径与信任边界
+
+| 场景 | 旧基线 `846f8ff` | 修复后的验收判据 |
+| --- | --- | --- |
+| 已发送 POST，复用连接时回执丢失 | 一次调用被服务器读完两次 | 默认只送达一次，向调用方报告结果未知的连接错误；安全 GET、协议明确未处理及调用方显式允许的重试仍可用 |
+| IPv4 跨站 fetch | 末两段相同的不同 IPv4 被当作同站，附带目标的 Strict Cookie | 使用完整规范化 IP；Cookie 与 `Sec-Fetch-Site` 一致，保留同 IP 不同端口及 DNS 注册域的合法同站行为 |
+| 跨源 H2 连接复用与 DNS | 调用线程阻塞，拨号获得新的时间预算 | 按一次连接尝试的绝对期限分配池等待、DNS 与拨号；过期时归还租约，证书不匹配仍拒绝复用 |
+| H2 上传中提前收到完整 413 和 `RST_STREAM(NO_ERROR)` | 调用方只拿到连接错误 | 保存状态、头和完整正文，获知停止上传后不再拉取下一块；截断、错误长度和 `CANCEL` 仍失败 |
+
+复验：在源码树外，以安装了目标 wheel 和 PySocks 的 Python 环境执行 `bash /path/to/checkout/ci/verify_request_boundaries.sh`。以上 TCP、TLS、HTTP/2 对端均为回环监听器，Cookie 用例检查实际准备好的请求。[分平台回执](../../artifacts/receipts/ruyihttp-request-boundaries-20261125.json)。
+
 ## 剩余缺口
 
 | 项 | 卡在哪 |

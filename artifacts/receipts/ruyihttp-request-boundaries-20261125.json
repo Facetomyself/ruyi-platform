@@ -1,0 +1,93 @@
+{
+  "baseline": "846f8ff770a2559ba879799b1f5626178ca99015",
+  "fixed": "ea44f8fe4468bbee80996e4e73745d6d53c072cc",
+  "wheel_run": "https://github.com/Facetomyself/ruyihttp/actions/runs/45645529186",
+  "source_ci": "https://github.com/Facetomyself/ruyihttp/actions/runs/45645533325",
+  "main_transport_ci": "https://github.com/Facetomyself/ruyihttp/actions/runs/45647028712",
+  "runtime_native_files_changed": false,
+  "local_contracts": {
+    "discovered": 78,
+    "passed": 67,
+    "default_opt_in_skips": 11,
+    "pysocks": "1.7.1"
+  },
+  "local_arm_evidence": {
+    "cpu": "aarch64",
+    "userspace": "isolated glibc 2.39 / Python 3.10 / NSS 3.132",
+    "wheel_sha256": "c5a853a42e6f5302c239267de691ec8f5d0e0dca04108053e776ae52c84848fb",
+    "note": "Actual delivered wheel unpacked outside source tree, local loopback origins and process-local DNS controls only",
+    "content_sha256": "40c6676053c31e7a915a4ad5675796858f2e1afbafbc15dd69c1c960e402cd9d"
+  },
+  "platforms": [
+    {
+      "platform": "darwin_x86_64",
+      "runner_job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45645529186/job/139315404515",
+      "result": "success",
+      "evidence": {
+        "dns": "Blocked DNS: connect budget 0.12s, elapsed 0.240s, target HTTP requests=0",
+        "coalescing_tls": "PASS: matching SAN reused verified H2, mismatched SAN rejected; one DNS answer per target",
+        "h2_early": "9/9 native H2 cases passed",
+        "cookie": "test_schemeful_site_controls (test_cookie_site.CookieSiteTests.test_schemeful_site_controls) ... ok",
+        "single_post": "test_read_post_body_is_not_replayed_at_default_retry_setting (test_retry_safety.NativeRetryLoopbackTests.test_read_post_body_is_not_replayed_at_default_retry_setting) ... ok"
+      },
+      "wheel_sha256": "2162435786e6c803c1174b469e39710fc97544a7a9d79001727974ef7fb58af1",
+      "native_files_checked": 6
+    },
+    {
+      "platform": "darwin_arm64",
+      "runner_job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45645529186/job/139315404872",
+      "result": "success",
+      "evidence": {
+        "dns": "Blocked DNS: connect budget 0.12s, elapsed 0.129s, target HTTP requests=0",
+        "coalescing_tls": "PASS: matching SAN reused verified H2, mismatched SAN rejected; one DNS answer per target",
+        "h2_early": "9/9 native H2 cases passed",
+        "cookie": "test_schemeful_site_controls (test_cookie_site.CookieSiteTests.test_schemeful_site_controls) ... ok",
+        "single_post": "test_read_post_body_is_not_replayed_at_default_retry_setting (test_retry_safety.NativeRetryLoopbackTests.test_read_post_body_is_not_replayed_at_default_retry_setting) ... ok"
+      },
+      "wheel_sha256": "29faa7d56b70e0c79e5a7e5f0c39f0320f3a9da67c967f8df177870e6f55856f",
+      "native_files_checked": 6
+    },
+    {
+      "platform": "win_amd64",
+      "runner_job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45645529186/job/139315404950",
+      "result": "success",
+      "evidence": {
+        "dns": "Blocked DNS: connect budget 0.12s, elapsed 0.125s, target HTTP requests=0",
+        "coalescing_tls": "PASS: matching SAN reused verified H2, mismatched SAN rejected; one DNS answer per target",
+        "h2_early": "9/9 native H2 cases passed",
+        "cookie": "test_schemeful_site_controls (test_cookie_site.CookieSiteTests.test_schemeful_site_controls) ... ok",
+        "single_post": "test_read_post_body_is_not_replayed_at_default_retry_setting (test_retry_safety.NativeRetryLoopbackTests.test_read_post_body_is_not_replayed_at_default_retry_setting) ... ok"
+      },
+      "wheel_sha256": "a4648820060fea62898bbb8dd7ec9de153b2acac47b129a66dfbe5f371408d43",
+      "native_files_checked": 6
+    },
+    {
+      "platform": "linux_aarch64",
+      "runner_job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45645529186/job/139315405004",
+      "result": "success",
+      "evidence": {
+        "dns": "Blocked DNS: connect budget 0.12s, elapsed 0.121s, target HTTP requests=0",
+        "coalescing_tls": "PASS: matching SAN reused verified H2, mismatched SAN rejected; one DNS answer per target",
+        "h2_early": "9/9 native H2 cases passed",
+        "cookie": "test_schemeful_site_controls (test_cookie_site.CookieSiteTests.test_schemeful_site_controls) ... ok",
+        "single_post": "test_read_post_body_is_not_replayed_at_default_retry_setting (test_retry_safety.NativeRetryLoopbackTests.test_read_post_body_is_not_replayed_at_default_retry_setting) ... ok"
+      },
+      "wheel_sha256": "c5a853a42e6f5302c239267de691ec8f5d0e0dca04108053e776ae52c84848fb",
+      "native_files_checked": 14
+    },
+    {
+      "platform": "linux_x86_64",
+      "runner_job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45645529186/job/139315405011",
+      "result": "success",
+      "evidence": {
+        "dns": "Blocked DNS: connect budget 0.12s, elapsed 0.121s, target HTTP requests=0",
+        "coalescing_tls": "PASS: matching SAN reused verified H2, mismatched SAN rejected; one DNS answer per target",
+        "h2_early": "9/9 native H2 cases passed",
+        "cookie": "test_schemeful_site_controls (test_cookie_site.CookieSiteTests.test_schemeful_site_controls) ... ok",
+        "single_post": "test_read_post_body_is_not_replayed_at_default_retry_setting (test_retry_safety.NativeRetryLoopbackTests.test_read_post_body_is_not_replayed_at_default_retry_setting) ... ok"
+      },
+      "wheel_sha256": "858e63987319e5de15b0d2e2f487d7603e318de968fcd59b15ac3021e25f6cc7",
+      "native_files_checked": 14
+    }
+  ]
+}
