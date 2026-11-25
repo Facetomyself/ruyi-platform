@@ -13,7 +13,7 @@
 | HTTP 客户端 | [RuyiHttp](../projects/ruyihttp/README.md)：Python API、wheel 构建与已入库原生库 | Linux amd64 在 glibc 2.39 上通过 HTTPS/TLS 1.3/h2；另有[原生 Linux ARM64 与 H1/H2/H3 验收](../artifacts/receipts/ruyihttp-native-20261124/linux-aarch64.json)。另见 [Intel macOS 原生验收](../artifacts/receipts/ruyihttp-native-20261124/darwin-x86_64.json)；这些传输证据属于 RuyiHttp，不替代 RuyiJS 联网验收。 |
 | JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | [R355 干净重建原生包](../artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json)：Ubuntu 24.04/glibc 2.39 从空目录编译 1,268 个私有单元、解包实跑 Python/C 13/13，另验 Worker 与 WebCrypto。[原生包运行命令](../submodules/ruyijs/docs/linux-amd64-clean.md)。pip 安装使用[R356](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)；直接明文 HTTP/1 另装可卸载的 [R357 组件](../submodules/ruyijs/docs/linux-http1.md)。[R356 安装态回执](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) · [R357 真实回环收发回执](../artifacts/receipts/ruyijs-linux-http1-r357/validation.json)。TLS、h2、QUIC 与 RuyiJS ARM64 产品另验。 |
 | 程序化管理浏览器 | [MCP / owner 交接及验收表](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | [AMD64 R5 生产 M2](../projects/ruyi-mcp/PRODUCTION-OWNER.md)通过排他借用、真断点、归还与重借、暂停中停止及原生关闸读回；使用从干净 GitHub 检出构建并搬到另一台主机的独立 CLI。 |
-| 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM 独立源码交接](#ruyidom-独立源码交接) | 维护源码与供应商运行输入分开；历史 AMD64 Docker 候选另有验收和归档回执。 |
+| 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM v0.2.0 独立源码交接](#ruyidom-独立源码交接) | 已验收 ARM64 双引擎 Docker；amd64 为只读兼容验证。历史 AMD64 P3 另有独立归档回执。 |
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
 
@@ -63,17 +63,33 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 [RuyiDOM 私有源码仓](https://github.com/Facetomyself/ruyidom)维护 Linux 启动器、适配层、测试与构建工具；`main` 用于日常维护。RuyiDOM 单独检出，现有四个 gitlink 与各自的版本固定方式维持原样。
 
-新机器用有读取权限的 Git 账号检出附注标签 `v0.1.0` 并核对完整提交：
+新机器用有读取权限的 Git 账号检出[附注标签 `v0.2.0`](https://github.com/Facetomyself/ruyidom/tree/v0.2.0)并核对完整提交：
 
 ```bash
 set -eu
-sha=4009bae850f9b64d413bd41a94dd7b3c56f86b40
+sha=1a1421051ebb0de38c7f194983fd2503d777db51
 repo=https://github.com/Facetomyself/ruyidom.git
-git clone --branch v0.1.0 --single-branch "$repo" ruyidom
+git clone --branch v0.2.0 --single-branch "$repo" ruyidom
 test "$(git -C ruyidom rev-parse HEAD)" = "$sha"
+make -C ruyidom check
 ```
 
-[v0.1.0 源码交接回执](../artifacts/receipts/ruyidom-source-v0.1.0.json)分别记录干净 ARM64 原生恢复、从该提交构建的 amd64 便携镜像测试，以及未运行的 ARM64 Docker 门禁；这是区别于历史 P3 的一条证据链。[v0.1.0 发布页](https://github.com/Facetomyself/ruyidom/releases/tag/v0.1.0)也提供离线源码 Git bundle 和 `SHA256SUMS`。Git 只交付维护源码；供应商框架字节 `not-in-git`。依赖按[固定版本的输入恢复说明](https://github.com/Facetomyself/ruyidom/blob/4009bae850f9b64d413bd41a94dd7b3c56f86b40/docs/INPUTS.md)另外准备。[host185 工件取用与校验](https://github.com/Facetomyself/openclaw-infra/blob/main/hosts/self-server/projects/ruyidom-browser-candidate.md#10-common-tasks)提供私有框架最小包和历史 AMD64 P3 Docker 归档的取用方法。P3 在源码导入 Git 之前已验收，并非从 `v0.1.0` 构建。
+`make check` 校验维护源码；真实运行和镜像构建另按[输入恢复说明](https://github.com/Facetomyself/ruyidom/blob/1a1421051ebb0de38c7f194983fd2503d777db51/docs/INPUTS.md)准备供应商框架和固定的公开依赖，供应商框架仍为 `not-in-git`。
+
+[v0.2.0 变更](https://github.com/Facetomyself/ruyidom/blob/1a1421051ebb0de38c7f194983fd2503d777db51/CHANGELOG.md#v020--2026-11-25)经定向回归验证：完整 RPC 回复帧超 8 MiB 时返回 `result_too_large`，原页、兄弟页和新页仍可用；native 序列化保留调用方沙箱全局属性；导航超时分别覆盖主文档响应前和解析阻塞脚本阶段。恢复运行输入后，执行 `make -C ruyidom regression-fixes` 复测。
+
+[双引擎实测回执](https://github.com/Facetomyself/ruyidom/blob/1a1421051ebb0de38c7f194983fd2503d777db51/docs/releases/dual-engines-v0.2.json)对应冻结运行提交 `de30443e1d1530176b4321412e7f05945123cfa1`，与上面的发布标签提交分开记录。Firefox 136.0 继续作为可信脚本和 native DOM 宿主；Firefox `153.8.0esr` 仅供显式选择浏览器内容进程，136.0 也是可用的内容引擎。
+
+- **ARM64 Docker**：在 `oracle-reverse-dev` 上从零无缓存构建；两个内容引擎浏览器套件各 12/12，通过 [ARM64 构建及验收流程](https://github.com/Facetomyself/ruyidom/blob/1a1421051ebb0de38c7f194983fd2503d777db51/docs/FIREFOX-MATRIX.md#复现与切换)可复测。保留标签 `ruyidom:arm64-de30443-dual-r2zidw5j` 仅在该主机本地，未导出或推送到注册表。2026-11-25 15:44:33 UTC 只读核对为 `linux/arm64`，镜像 ID 为 `sha256:9fa4311f1d136cb5032ed5df5f985e1e33297a98752966629e9e9bb38626c9bc`：
+
+  ```bash
+  ssh oracle-reverse-dev 'docker image inspect --format "{{.Id}} {{.Os}}/{{.Architecture}}" ruyidom:arm64-de30443-dual-r2zidw5j'
+  ```
+
+- **amd64**：在 host185 的现有 P3 容器中只读挂载冻结源码与单独校验的 ESR 安装树，两个内容引擎浏览器套件各 12/12；此次只验证运行兼容，未重新构建 amd64 镜像。
+- **构建边界**：Docker 配方使用 Mozilla 官方已编译的 Firefox；未运行完整上游 Gecko `mach build`。
+
+[v0.1.0 源码交接回执](../artifacts/receipts/ruyidom-source-v0.1.0.json)仍记录当时的干净 ARM64 原生恢复、amd64 便携镜像测试，以及未运行的 ARM64 Docker 门禁；[v0.1.0 发布页](https://github.com/Facetomyself/ruyidom/releases/tag/v0.1.0)仍提供离线源码 Git bundle 和 `SHA256SUMS`。[host185 工件取用与校验](https://github.com/Facetomyself/openclaw-infra/blob/main/hosts/self-server/projects/ruyidom-browser-candidate.md#10-common-tasks)记录私有框架最小包与**历史 AMD64 P3 Docker 归档**的取用方法。该 P3 归档在源码导入 Git 前已验收，与 `v0.1.0`、`v0.2.0` 和本次 ARM64 本地标签是不同工件。
 
 ## 以后如何维护
 
