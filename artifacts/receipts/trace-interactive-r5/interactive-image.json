@@ -33,16 +33,21 @@
   },
   "empty_engine_load": {
     "additional_parent_config": false,
+    "archive_bytes": 348670847,
+    "archive_sha256": "33265d0e7ac8fd713b6943a7a2837f9a5459b22f72a67c0e87f7a4fc0e025def",
     "extra_binary_or_qa_mounts": 0,
+    "image_id": "sha256:9d3201e2689a974f431f090c31e08a3d2c2794da03e483cd31eada8badf0918a",
     "initial_images": 0,
     "passed": true,
     "viewer_uds_http": 200
   },
   "evidence_sha256": {
     "acceptance.json": "bc041d606a0aba725175b6ec1915416551dccba4e167ae6c902f82966791eb6e",
-    "empty-engine-final.json": "47ed156d6c8c8507653450c8c3d4df7c29ecba304a9f4720a39de32c9bec391d",
+    "empty-engine-final-host185.json": "bb20a4d255db54d56ae8675ecd9e7df572cc52f81e6f8b58c1aca60898c548cc",
+    "empty-engine-final.json": "d6a1cf858f1f2acbc61473794266063e472dabd2d14c03e0bd4eb862ed0e7d38",
     "local-view.json": "257ed97c660b63340789c932445712d7269167e7c905c9b646a86c1fcc71f0a5",
     "operator-release.json": "a5c2e758c151c43b2fca949517c1229971fa827cac88d8607b02b2ca9116cc46",
+    "product-readback.json": "2151fc10f583a30d2043ed37588fcf74c0e97f5a9ebd299f669c0912a60b6104",
     "release-export.json": "3c4e245c71880758d6f593f7251aa54b1c41fb317990c81fe25bb397bbaab069",
     "resource-measurements.json": "cdcef69ad85781c2aeb50ab3f28a7e90f878d24734c855bb0078d1000d87201c",
     "transport-release.json": "ccce4e291f26b1e8c04deb2d5ce4bcb1e4f38b4ccbdf06e8cd2b600834692d59"

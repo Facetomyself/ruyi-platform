@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "regular_authorized_ssh_tcp_forward": true,
+  "host_loopback_only": true,
+  "http_ui": 200,
+  "rfb_js": 200,
+  "websocket_upgrade": 101,
+  "rfb_banner": "003.008",
+  "foreign_host": 403,
+  "foreign_or_missing_ws_origin": 403,
+  "alternate_target_query": 403,
+  "directory_listing": 404,
+  "raw_viewer_published": false,
+  "sshd_or_firewall_modified": false,
+  "direct_streamlocal_on_this_ssh_identity": "administratively-prohibited"
+}

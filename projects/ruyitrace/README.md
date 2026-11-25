@@ -8,7 +8,7 @@
 
 定制 Firefox 159（domtrace 插桩）+ Linux CLI，可选 Electron 控制台。用于采集和分析 DOM、点击与脱敏摘要。Linux 命令行开发从 [CLI 手册](../../submodules/ruyitrace/console/cli/README.md) 开始；重建内核看[跨机器构建](../../submodules/ruyitrace/docs/linux-build-from-source.md)。
 
-需要人工操作时用独立的[交互镜像](../../submodules/ruyitrace/product/interactive/README.md)：私有 noVNC 操作同一个 Firefox，断线重连保持同一进程与 run，采集仍走 `capture on/off`；默认不录屏、不记键值、不落轨迹。验收回执见 [`artifacts/receipts/trace-interactive-r5/interactive-image.json`](../../artifacts/receipts/trace-interactive-r5/interactive-image.json)。另有 **opt-in** 的临时公网演示：`demo-public.sh` 在宿主一个已发布预算端口上开随机 48 位 token 路径，可选在页面内自动填写会话码，到点自毁容器与规则；它必须显式提供 `PUBLIC_HOST`，脚本本身不改动防火墙，也不属于默认的仅回环姿态，明文 HTTP 下链接等同会话凭据。
+需要人工操作时用独立的[交互镜像](../../submodules/ruyitrace/product/interactive/README.md)：私有 noVNC 操作同一个 Firefox，断线重连保持同一进程与 run，采集仍走 `capture on/off`；默认不录屏、不记键值、不落轨迹。验收回执见 [`artifacts/receipts/trace-interactive-r5/interactive-image.json`](../../artifacts/receipts/trace-interactive-r5/interactive-image.json)。短时分享另走[独立 TLS 网关与可核对的租约回收](../../submodules/ruyitrace/product/interactive/public-demo.md)：预授权精确来源和绑定地址，通过一次性邀请兑换 Secure/HttpOnly 会话，默认 20 分钟；撤销/到期先断开已连接的桌面，再让 CLI 收尾。systemd 为中途失败及跨启动的遗留资源对账，服务从不管理防火墙。旧明文入口已停用；不影响镜像标签或私有工作流。[正式归档重新验收](../../artifacts/receipts/trace-interactive-r5/README.md)与[网关回环实机回执](../../artifacts/receipts/trace-public-lease-v1/README.md)分开记录。
 
 同一 Firefox 会话的 MCP 接入见 [ruyi-mcp 与组件边界](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。
 

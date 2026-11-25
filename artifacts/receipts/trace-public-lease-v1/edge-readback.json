@@ -1,0 +1,1 @@
+{"aiohttp": "3.14.5", "files": 204, "manifest_sha256": "f42be2df94ef5b9e070bbaa974e6822f5fe6866a88ae04cce96095f201fce7b9", "openssl": "OpenSSL 3.0.13 30 Jan 2024", "parent_image_id": "sha256:9d3201e2689a974f431f090c31e08a3d2c2794da03e483cd31eada8badf0918a", "passed": true, "python": "3.12.3", "scope": "installed edge bytes, native parser and Python ABI", "uid": 1000}

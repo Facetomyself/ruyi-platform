@@ -122,34 +122,10 @@ python3 -B scripts/verify-trace-release.py || fail=1
 
 echo
 echo "== 6.5 Trace 交互镜像证据对齐 =="
-python3 -B - <<'PY' || fail=1
-import hashlib, json, subprocess
-from pathlib import Path
-import yaml
-
-status = yaml.safe_load(Path('STATUS.yaml').read_text())['projects']['ruyitrace']
-data = json.loads(Path(status['interactive_image']).read_bytes())
-assert data['schema'] == 'ruyitrace-interactive-image.v1' and data['platform'] == 'linux/amd64'
-archive = data['archive']
-assert isinstance(archive['bytes'], int) and archive['bytes'] > 0 and len(archive['sha256']) == 64
-assert data['parent_image_id'] == 'sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6'
-accept = data['acceptance']
-assert (accept['native'], accept['exclusive_single_viewer'], accept['reconnect_same_owner'], accept['no_published_ports']) == (True, 'after-valid-vncauth-submission', True, True)
-assert (accept['native_clicks'], accept['closed_window_markers'], accept['non_click_events']) == (1, 0, 0)
-assert accept['page_receipt'] == {'clicks': 3, 'drops': 1, 'sliderOK': True, 'submits': 1, 'textOK': True, 'titleOK': True}
-assert accept['page_receipt_after_reconnect'] is True
-assert accept['cli_gate']['on'] == 'open' and accept['cli_gate']['off'] == 'closed' and accept['cli_gate']['marker'] == 'withdrawn'
-assert data['empty_engine_load']['passed'] and not data['empty_engine_load']['additional_parent_config']
-assert data['transport']['ssh_loopback_tcp_forward'] and data['transport']['websocket_upgrade'] == 101
-assert not data['transport']['raw_viewer_published'] and not data['transport']['sshd_modified']
-assert all(data['operator'][k] for k in ('start', 'status', 'arm', 'on', 'off', 'stop', 'non_tty_code_refused', 'profile_outside_output_mount'))
-assert data['limits'] == {'arm': False, 'keystroke_or_trajectory_persistence': False, 'os_ime_candidate_flow': False,
-                          'physical_keyboard_or_trackpad': False, 'recording': False, 'second_physical_host': False}
-for name, digest in data['evidence_sha256'].items():
-    assert len(digest) == 64 and Path(name).name == name
-subprocess.run(['git', '-C', 'submodules/ruyitrace', 'merge-base', '--is-ancestor', data['source']['commit'], 'HEAD'], check=True)
-print('PASS  interactive image ' + data['image_id'][:19] + '..., archive ' + str(archive['bytes']) + ' bytes, declared gaps unchanged')
-PY
+python3 -B scripts/verify-trace-interactive.py || fail=1
+python3 -B -m unittest discover -s tests -p 'test_interactive_release_identity.py' -q || fail=1
+echo "== 6.6 临时 TLS 租约与回收回执 =="
+python3 -B -m unittest discover -s tests -p 'test_public_lease_proof.py' -q || fail=1
 
 echo
 echo "== 7. Trace CLI 实机证据对应源码 =="

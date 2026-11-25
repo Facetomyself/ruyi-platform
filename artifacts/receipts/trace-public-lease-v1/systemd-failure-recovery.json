@@ -1,0 +1,1 @@
+{"passed": true, "scope": "isolated loopback systemd on host185", "startup_negative_exit": 2, "startup_reason": "pinned_local_image_unavailable", "failed_startup_cleaned": true, "invitation_emitted": false, "unrecorded_created_container_reconciled": true, "previous_boot_fixture": true, "actual_host_reboot": false, "remaining_scoped_containers": 0, "firewall": "none_owned"}

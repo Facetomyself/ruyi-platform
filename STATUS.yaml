@@ -2271,6 +2271,7 @@ projects:
     mcp_production_receipt: artifacts/receipts/trace-amd64-r5/m2-delivery.json
     cross_machine_build: submodules/ruyitrace/docs/linux-build-from-source.md
     interactive_image: artifacts/receipts/trace-interactive-r5/interactive-image.json
+    optional_tls_lease: artifacts/receipts/trace-public-lease-v1/release.json
     blocked_by: []
     remaining:
     - Linux browser producer coverage beyond verified DOM, click, explicit Web Storage and amd64 window-script-error summaries
@@ -2874,14 +2875,14 @@ submodules:
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: 901239503140ccc393a347856160fb5e9844faa1
+    commit: c3723ca5f71e860ed19d1fa1a4305da930dc7428
     state: added
 docs_health:
   total_markdown: 46
   total_cpp_files: 62
-  total_scripts: 17
+  total_scripts: 19
   reproduce_manual: REPRODUCE.md
-  last_full_verification: '2026-11-24: verify-pins passed; Trace clean GitHub checkout and standalone CLI inventory verified separately'
+  last_full_verification: '2026-11-26 +08:00: verify-pins includes native Trace TLS lease witnesses, immutable release-lock cross-check and candidate rejection; private interactive image unchanged'
 tooling:
   scripts:
     domtrace-anchors.py: xul.dll 74 开关锚点提取

@@ -1,0 +1,1452 @@
+{
+  "baseline_image_id": "sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6",
+  "configurations": {
+    "headless": {
+      "active": {
+        "cpu_delta_ns": 8698390801,
+        "cpu_percent_one_core": 28.9935,
+        "memory_working_set_end_bytes": 375623680,
+        "memory_working_set_peak_sample_bytes": 382611456,
+        "page_animation_after": {
+          "elapsed_ms": 32000,
+          "updates": 641
+        },
+        "page_animation_before": {
+          "elapsed_ms": 2000,
+          "updates": 41
+        },
+        "raw_samples": [
+          {
+            "api_round_trip_ns": 5074178,
+            "cpu_total_ns": 14847932599,
+            "inactive_file_bytes": 25030656,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 407642112,
+            "memory_working_set_bytes": 382611456,
+            "midpoint_ns": 2566757
+          },
+          {
+            "api_round_trip_ns": 6573099,
+            "cpu_total_ns": 15151520321,
+            "inactive_file_bytes": 25030656,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 407130112,
+            "memory_working_set_bytes": 382099456,
+            "midpoint_ns": 1003443280
+          },
+          {
+            "api_round_trip_ns": 5456658,
+            "cpu_total_ns": 15448847665,
+            "inactive_file_bytes": 25034752,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 407068672,
+            "memory_working_set_bytes": 382033920,
+            "midpoint_ns": 2003008780
+          },
+          {
+            "api_round_trip_ns": 5097419,
+            "cpu_total_ns": 15739939156,
+            "inactive_file_bytes": 25034752,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 407085056,
+            "memory_working_set_bytes": 382050304,
+            "midpoint_ns": 3002849277
+          },
+          {
+            "api_round_trip_ns": 5069426,
+            "cpu_total_ns": 16034237681,
+            "inactive_file_bytes": 25034752,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 406990848,
+            "memory_working_set_bytes": 381956096,
+            "midpoint_ns": 4002830624
+          },
+          {
+            "api_round_trip_ns": 5455767,
+            "cpu_total_ns": 16325299412,
+            "inactive_file_bytes": 25034752,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 406978560,
+            "memory_working_set_bytes": 381943808,
+            "midpoint_ns": 5003008291
+          },
+          {
+            "api_round_trip_ns": 6745185,
+            "cpu_total_ns": 16637217070,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 404324352,
+            "memory_working_set_bytes": 379285504,
+            "midpoint_ns": 6003571990
+          },
+          {
+            "api_round_trip_ns": 5263766,
+            "cpu_total_ns": 16919142838,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 404271104,
+            "memory_working_set_bytes": 379232256,
+            "midpoint_ns": 7002899100
+          },
+          {
+            "api_round_trip_ns": 4896682,
+            "cpu_total_ns": 17201445335,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 404307968,
+            "memory_working_set_bytes": 379269120,
+            "midpoint_ns": 8002716848
+          },
+          {
+            "api_round_trip_ns": 12212073,
+            "cpu_total_ns": 17478724476,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 404324352,
+            "memory_working_set_bytes": 379285504,
+            "midpoint_ns": 9006248748
+          },
+          {
+            "api_round_trip_ns": 5295281,
+            "cpu_total_ns": 17839187276,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 403955712,
+            "memory_working_set_bytes": 378916864,
+            "midpoint_ns": 10002916930
+          },
+          {
+            "api_round_trip_ns": 6487450,
+            "cpu_total_ns": 18128948675,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 403750912,
+            "memory_working_set_bytes": 378712064,
+            "midpoint_ns": 11003528216
+          },
+          {
+            "api_round_trip_ns": 5662839,
+            "cpu_total_ns": 18421949166,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 403652608,
+            "memory_working_set_bytes": 378613760,
+            "midpoint_ns": 12003109564
+          },
+          {
+            "api_round_trip_ns": 5298248,
+            "cpu_total_ns": 18709262183,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 403935232,
+            "memory_working_set_bytes": 378896384,
+            "midpoint_ns": 13002928598
+          },
+          {
+            "api_round_trip_ns": 5074072,
+            "cpu_total_ns": 18995679877,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 402657280,
+            "memory_working_set_bytes": 377618432,
+            "midpoint_ns": 14002798532
+          },
+          {
+            "api_round_trip_ns": 5263781,
+            "cpu_total_ns": 19291984739,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 402755584,
+            "memory_working_set_bytes": 377716736,
+            "midpoint_ns": 15002907859
+          },
+          {
+            "api_round_trip_ns": 7225532,
+            "cpu_total_ns": 19586159619,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 402784256,
+            "memory_working_set_bytes": 377745408,
+            "midpoint_ns": 16003889411
+          },
+          {
+            "api_round_trip_ns": 5109828,
+            "cpu_total_ns": 19873872905,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 403300352,
+            "memory_working_set_bytes": 378261504,
+            "midpoint_ns": 17002823745
+          },
+          {
+            "api_round_trip_ns": 5466171,
+            "cpu_total_ns": 20189345079,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 402890752,
+            "memory_working_set_bytes": 377851904,
+            "midpoint_ns": 18003029540
+          },
+          {
+            "api_round_trip_ns": 5690351,
+            "cpu_total_ns": 20474259028,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 402006016,
+            "memory_working_set_bytes": 376967168,
+            "midpoint_ns": 19003114118
+          },
+          {
+            "api_round_trip_ns": 6507798,
+            "cpu_total_ns": 20766624774,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 402268160,
+            "memory_working_set_bytes": 377229312,
+            "midpoint_ns": 20003527748
+          },
+          {
+            "api_round_trip_ns": 5819602,
+            "cpu_total_ns": 21047084144,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 402268160,
+            "memory_working_set_bytes": 377229312,
+            "midpoint_ns": 21003076635
+          },
+          {
+            "api_round_trip_ns": 5487565,
+            "cpu_total_ns": 21334539235,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 401682432,
+            "memory_working_set_bytes": 376643584,
+            "midpoint_ns": 22002916086
+          },
+          {
+            "api_round_trip_ns": 5085982,
+            "cpu_total_ns": 21635538558,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 401690624,
+            "memory_working_set_bytes": 376651776,
+            "midpoint_ns": 23002801643
+          },
+          {
+            "api_round_trip_ns": 5333873,
+            "cpu_total_ns": 21926813829,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 401580032,
+            "memory_working_set_bytes": 376541184,
+            "midpoint_ns": 24002950567
+          },
+          {
+            "api_round_trip_ns": 7279155,
+            "cpu_total_ns": 22203574453,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 401342464,
+            "memory_working_set_bytes": 376303616,
+            "midpoint_ns": 25003909749
+          },
+          {
+            "api_round_trip_ns": 5477281,
+            "cpu_total_ns": 22473103414,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 401219584,
+            "memory_working_set_bytes": 376180736,
+            "midpoint_ns": 26003003180
+          },
+          {
+            "api_round_trip_ns": 5331150,
+            "cpu_total_ns": 22731220496,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 401010688,
+            "memory_working_set_bytes": 375971840,
+            "midpoint_ns": 27002938726
+          },
+          {
+            "api_round_trip_ns": 4898545,
+            "cpu_total_ns": 22999455687,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 400756736,
+            "memory_working_set_bytes": 375717888,
+            "midpoint_ns": 28002718416
+          },
+          {
+            "api_round_trip_ns": 4859732,
+            "cpu_total_ns": 23271916777,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 400887808,
+            "memory_working_set_bytes": 375848960,
+            "midpoint_ns": 29002695012
+          },
+          {
+            "api_round_trip_ns": 6840094,
+            "cpu_total_ns": 23546323400,
+            "inactive_file_bytes": 25038848,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 400662528,
+            "memory_working_set_bytes": 375623680,
+            "midpoint_ns": 30003692832
+          }
+        ],
+        "samples": 31,
+        "target_seconds": 30,
+        "viewer_bytes_after": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "viewer_bytes_before": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "viewer_bytes_delta": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "wall_ns": 30001126075,
+        "warmup_seconds": 2
+      },
+      "geometry": {
+        "dpr": 1,
+        "screen": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "window": [
+          1280,
+          720
+        ]
+      },
+      "isolation": {
+        "interfaces": [
+          "lo"
+        ],
+        "net_namespace": 4026532592,
+        "read_only_root": true,
+        "runs_mount_read_only": true,
+        "uid": 1000,
+        "viewer_mount_read_only": true
+      },
+      "owner_container_id": "3e0b9f2ce66262672489dad886e7135ca81f5b38fbfee3699cc85dbca9f1e0d2",
+      "owner_image_id": "sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6",
+      "owner_product_args": [
+        "run",
+        "--gated",
+        "--headless",
+        "--out",
+        "/runs/interactive",
+        "--profile",
+        "/runs/interactive/profile",
+        "--sinks",
+        "core,click",
+        "--duration",
+        "150",
+        "--",
+        "--kiosk",
+        "--window-size",
+        "1280,720",
+        "http://127.0.0.1:18761/benchmark"
+      ],
+      "public_novnc": false,
+      "stage": "complete",
+      "static": {
+        "cpu_delta_ns": 1634523556,
+        "cpu_percent_one_core": 20.4639,
+        "memory_working_set_end_bytes": 383922176,
+        "memory_working_set_peak_sample_bytes": 399888384,
+        "page_animation_after": null,
+        "page_animation_before": null,
+        "raw_samples": [
+          {
+            "api_round_trip_ns": 30575425,
+            "cpu_total_ns": 12068852495,
+            "inactive_file_bytes": 10010624,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 409899008,
+            "memory_working_set_bytes": 399888384,
+            "midpoint_ns": 15609442
+          },
+          {
+            "api_round_trip_ns": 5365594,
+            "cpu_total_ns": 12207282713,
+            "inactive_file_bytes": 12361728,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 403660800,
+            "memory_working_set_bytes": 391299072,
+            "midpoint_ns": 1002941367
+          },
+          {
+            "api_round_trip_ns": 4815348,
+            "cpu_total_ns": 12591343675,
+            "inactive_file_bytes": 24907776,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 419835904,
+            "memory_working_set_bytes": 394928128,
+            "midpoint_ns": 2002640768
+          },
+          {
+            "api_round_trip_ns": 5238385,
+            "cpu_total_ns": 12780515095,
+            "inactive_file_bytes": 24907776,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 416845824,
+            "memory_working_set_bytes": 391938048,
+            "midpoint_ns": 3002865691
+          },
+          {
+            "api_round_trip_ns": 5095487,
+            "cpu_total_ns": 13060746011,
+            "inactive_file_bytes": 25030656,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 423354368,
+            "memory_working_set_bytes": 398323712,
+            "midpoint_ns": 4002698153
+          },
+          {
+            "api_round_trip_ns": 7308541,
+            "cpu_total_ns": 13207800738,
+            "inactive_file_bytes": 25030656,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 416120832,
+            "memory_working_set_bytes": 391090176,
+            "midpoint_ns": 5003903283
+          },
+          {
+            "api_round_trip_ns": 5272267,
+            "cpu_total_ns": 13345034116,
+            "inactive_file_bytes": 25030656,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 413769728,
+            "memory_working_set_bytes": 388739072,
+            "midpoint_ns": 6002886835
+          },
+          {
+            "api_round_trip_ns": 5303142,
+            "cpu_total_ns": 13607166204,
+            "inactive_file_bytes": 25030656,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 411537408,
+            "memory_working_set_bytes": 386506752,
+            "midpoint_ns": 7002896057
+          },
+          {
+            "api_round_trip_ns": 5408071,
+            "cpu_total_ns": 13703376051,
+            "inactive_file_bytes": 25030656,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 408952832,
+            "memory_working_set_bytes": 383922176,
+            "midpoint_ns": 8002949054
+          }
+        ],
+        "samples": 9,
+        "target_seconds": 8,
+        "viewer_bytes_after": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "viewer_bytes_before": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "viewer_bytes_delta": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "wall_ns": 7987339612,
+        "warmup_seconds": 3
+      },
+      "viewer_peer_container_id": "5c1db7662d1eb702314ef5510b47db06951618469da1e79c56df874da1d7c714"
+    },
+    "interactive-novnc": {
+      "active": {
+        "cpu_delta_ns": 15903919762,
+        "cpu_percent_one_core": 53.0123,
+        "memory_working_set_end_bytes": 468742144,
+        "memory_working_set_peak_sample_bytes": 470319104,
+        "page_animation_after": {
+          "elapsed_ms": 32000,
+          "updates": 641
+        },
+        "page_animation_before": {
+          "elapsed_ms": 2000,
+          "updates": 41
+        },
+        "raw_samples": [
+          {
+            "api_round_trip_ns": 4214683,
+            "cpu_total_ns": 18226844333,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 469397504,
+            "memory_working_set_bytes": 469397504,
+            "midpoint_ns": 2124530
+          },
+          {
+            "api_round_trip_ns": 6337965,
+            "cpu_total_ns": 18795622976,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 468488192,
+            "memory_working_set_bytes": 468488192,
+            "midpoint_ns": 1003360613
+          },
+          {
+            "api_round_trip_ns": 4591472,
+            "cpu_total_ns": 19297397285,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 468635648,
+            "memory_working_set_bytes": 468635648,
+            "midpoint_ns": 2002448757
+          },
+          {
+            "api_round_trip_ns": 4063515,
+            "cpu_total_ns": 19824122090,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467783680,
+            "memory_working_set_bytes": 467783680,
+            "midpoint_ns": 3002185065
+          },
+          {
+            "api_round_trip_ns": 4185953,
+            "cpu_total_ns": 20335484396,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467816448,
+            "memory_working_set_bytes": 467816448,
+            "midpoint_ns": 4002241799
+          },
+          {
+            "api_round_trip_ns": 4173572,
+            "cpu_total_ns": 20865811210,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467828736,
+            "memory_working_set_bytes": 467828736,
+            "midpoint_ns": 5002238233
+          },
+          {
+            "api_round_trip_ns": 4270809,
+            "cpu_total_ns": 21400337344,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 468082688,
+            "memory_working_set_bytes": 468082688,
+            "midpoint_ns": 6002306211
+          },
+          {
+            "api_round_trip_ns": 3646933,
+            "cpu_total_ns": 21905648851,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467992576,
+            "memory_working_set_bytes": 467992576,
+            "midpoint_ns": 7002014857
+          },
+          {
+            "api_round_trip_ns": 4706560,
+            "cpu_total_ns": 22457964587,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467587072,
+            "memory_working_set_bytes": 467587072,
+            "midpoint_ns": 8002588998
+          },
+          {
+            "api_round_trip_ns": 4444771,
+            "cpu_total_ns": 22995145619,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467480576,
+            "memory_working_set_bytes": 467480576,
+            "midpoint_ns": 9002458900
+          },
+          {
+            "api_round_trip_ns": 4360987,
+            "cpu_total_ns": 23518594130,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467763200,
+            "memory_working_set_bytes": 467763200,
+            "midpoint_ns": 10002416456
+          },
+          {
+            "api_round_trip_ns": 6542686,
+            "cpu_total_ns": 24068839883,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467288064,
+            "memory_working_set_bytes": 467288064,
+            "midpoint_ns": 11003432009
+          },
+          {
+            "api_round_trip_ns": 4361231,
+            "cpu_total_ns": 24585955309,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467681280,
+            "memory_working_set_bytes": 467681280,
+            "midpoint_ns": 12002422625
+          },
+          {
+            "api_round_trip_ns": 4656885,
+            "cpu_total_ns": 25128708957,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467415040,
+            "memory_working_set_bytes": 467415040,
+            "midpoint_ns": 13002564301
+          },
+          {
+            "api_round_trip_ns": 4838579,
+            "cpu_total_ns": 25686138409,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467324928,
+            "memory_working_set_bytes": 467324928,
+            "midpoint_ns": 14002564317
+          },
+          {
+            "api_round_trip_ns": 4254904,
+            "cpu_total_ns": 26208755994,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467329024,
+            "memory_working_set_bytes": 467329024,
+            "midpoint_ns": 15002237477
+          },
+          {
+            "api_round_trip_ns": 6321552,
+            "cpu_total_ns": 26720848551,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467337216,
+            "memory_working_set_bytes": 467337216,
+            "midpoint_ns": 16003333606
+          },
+          {
+            "api_round_trip_ns": 4803912,
+            "cpu_total_ns": 27250114739,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467341312,
+            "memory_working_set_bytes": 467341312,
+            "midpoint_ns": 17002632364
+          },
+          {
+            "api_round_trip_ns": 4198680,
+            "cpu_total_ns": 27797708106,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467169280,
+            "memory_working_set_bytes": 467169280,
+            "midpoint_ns": 18002348199
+          },
+          {
+            "api_round_trip_ns": 4875575,
+            "cpu_total_ns": 28347396595,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 466997248,
+            "memory_working_set_bytes": 466997248,
+            "midpoint_ns": 19002579740
+          },
+          {
+            "api_round_trip_ns": 5437185,
+            "cpu_total_ns": 28868360207,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467185664,
+            "memory_working_set_bytes": 467185664,
+            "midpoint_ns": 20002953713
+          },
+          {
+            "api_round_trip_ns": 4844700,
+            "cpu_total_ns": 29411799105,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 466997248,
+            "memory_working_set_bytes": 466997248,
+            "midpoint_ns": 21002557849
+          },
+          {
+            "api_round_trip_ns": 2782406,
+            "cpu_total_ns": 29954263451,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467304448,
+            "memory_working_set_bytes": 467304448,
+            "midpoint_ns": 22001507954
+          },
+          {
+            "api_round_trip_ns": 4559972,
+            "cpu_total_ns": 30463154977,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467234816,
+            "memory_working_set_bytes": 467234816,
+            "midpoint_ns": 23002443310
+          },
+          {
+            "api_round_trip_ns": 5910836,
+            "cpu_total_ns": 30995870895,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467378176,
+            "memory_working_set_bytes": 467378176,
+            "midpoint_ns": 24003185637
+          },
+          {
+            "api_round_trip_ns": 5117856,
+            "cpu_total_ns": 31504962218,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467165184,
+            "memory_working_set_bytes": 467165184,
+            "midpoint_ns": 25002810508
+          },
+          {
+            "api_round_trip_ns": 4878072,
+            "cpu_total_ns": 32009161318,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467296256,
+            "memory_working_set_bytes": 467296256,
+            "midpoint_ns": 26002630437
+          },
+          {
+            "api_round_trip_ns": 3832887,
+            "cpu_total_ns": 32489467435,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467447808,
+            "memory_working_set_bytes": 467447808,
+            "midpoint_ns": 27002079396
+          },
+          {
+            "api_round_trip_ns": 4190784,
+            "cpu_total_ns": 33099904019,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 470061056,
+            "memory_working_set_bytes": 470061056,
+            "midpoint_ns": 28002237560
+          },
+          {
+            "api_round_trip_ns": 4258574,
+            "cpu_total_ns": 33605655477,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 470319104,
+            "memory_working_set_bytes": 470319104,
+            "midpoint_ns": 29002285439
+          },
+          {
+            "api_round_trip_ns": 4626606,
+            "cpu_total_ns": 34130764095,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 468742144,
+            "memory_working_set_bytes": 468742144,
+            "midpoint_ns": 30002547772
+          }
+        ],
+        "samples": 31,
+        "target_seconds": 30,
+        "viewer_bytes_after": {
+          "from_uds": 21598372,
+          "to_uds": 69076
+        },
+        "viewer_bytes_before": {
+          "from_uds": 2654454,
+          "to_uds": 35092
+        },
+        "viewer_bytes_delta": {
+          "from_uds": 18943918,
+          "to_uds": 33984
+        },
+        "wall_ns": 30000423242,
+        "warmup_seconds": 2
+      },
+      "geometry": {
+        "dpr": 1,
+        "screen": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1152,
+          648
+        ],
+        "window": [
+          1152,
+          648
+        ]
+      },
+      "isolation": {
+        "interfaces": [
+          "lo"
+        ],
+        "net_namespace": 4026532592,
+        "read_only_root": true,
+        "runs_mount_read_only": true,
+        "uid": 1000,
+        "viewer_mount_read_only": true
+      },
+      "owner_container_id": "0e66b1a9dc16fa289859f9ea44dd13c52fd0df59cd33929356066693d87fa724",
+      "owner_image_id": "sha256:9d3201e2689a974f431f090c31e08a3d2c2794da03e483cd31eada8badf0918a",
+      "owner_product_args": [
+        "session",
+        "--out",
+        "/runs/interactive",
+        "--sinks",
+        "core,click",
+        "--duration",
+        "150",
+        "--",
+        "http://127.0.0.1:18761/benchmark"
+      ],
+      "public_novnc": true,
+      "stage": "complete",
+      "static": {
+        "cpu_delta_ns": 668568142,
+        "cpu_percent_one_core": 8.3573,
+        "memory_working_set_end_bytes": 468652032,
+        "memory_working_set_peak_sample_bytes": 468652032,
+        "page_animation_after": null,
+        "page_animation_before": null,
+        "raw_samples": [
+          {
+            "api_round_trip_ns": 5815278,
+            "cpu_total_ns": 16062894849,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467595264,
+            "memory_working_set_bytes": 467595264,
+            "midpoint_ns": 2932956
+          },
+          {
+            "api_round_trip_ns": 6445717,
+            "cpu_total_ns": 16151055357,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 468258816,
+            "memory_working_set_bytes": 468258816,
+            "midpoint_ns": 1003462207
+          },
+          {
+            "api_round_trip_ns": 4977823,
+            "cpu_total_ns": 16228582222,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 468262912,
+            "memory_working_set_bytes": 468262912,
+            "midpoint_ns": 2002721558
+          },
+          {
+            "api_round_trip_ns": 4255299,
+            "cpu_total_ns": 16340623232,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467079168,
+            "memory_working_set_bytes": 467079168,
+            "midpoint_ns": 3002292772
+          },
+          {
+            "api_round_trip_ns": 4474879,
+            "cpu_total_ns": 16414128005,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467083264,
+            "memory_working_set_bytes": 467083264,
+            "midpoint_ns": 4002483627
+          },
+          {
+            "api_round_trip_ns": 5790696,
+            "cpu_total_ns": 16499839747,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467132416,
+            "memory_working_set_bytes": 467132416,
+            "midpoint_ns": 5003042413
+          },
+          {
+            "api_round_trip_ns": 4704397,
+            "cpu_total_ns": 16567397756,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 467132416,
+            "memory_working_set_bytes": 467132416,
+            "midpoint_ns": 6002539645
+          },
+          {
+            "api_round_trip_ns": 5296158,
+            "cpu_total_ns": 16657898671,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 468537344,
+            "memory_working_set_bytes": 468537344,
+            "midpoint_ns": 7002804419
+          },
+          {
+            "api_round_trip_ns": 5119729,
+            "cpu_total_ns": 16731462991,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 468652032,
+            "memory_working_set_bytes": 468652032,
+            "midpoint_ns": 8002729301
+          }
+        ],
+        "samples": 9,
+        "target_seconds": 8,
+        "viewer_bytes_after": {
+          "from_uds": 1361287,
+          "to_uds": 32740
+        },
+        "viewer_bytes_before": {
+          "from_uds": 1361287,
+          "to_uds": 32740
+        },
+        "viewer_bytes_delta": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "wall_ns": 7999796345,
+        "warmup_seconds": 3
+      },
+      "viewer_peer_container_id": "3096170ab216e29c6c312217727f36be4b37dfd0fa1f90160659de73319d465a"
+    },
+    "interactive-unviewed": {
+      "active": {
+        "cpu_delta_ns": 8700524304,
+        "cpu_percent_one_core": 29.0016,
+        "memory_working_set_end_bytes": 456851456,
+        "memory_working_set_peak_sample_bytes": 461651968,
+        "page_animation_after": {
+          "elapsed_ms": 32000,
+          "updates": 641
+        },
+        "page_animation_before": {
+          "elapsed_ms": 2000,
+          "updates": 41
+        },
+        "raw_samples": [
+          {
+            "api_round_trip_ns": 5202088,
+            "cpu_total_ns": 16041111124,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 460480512,
+            "memory_working_set_bytes": 460480512,
+            "midpoint_ns": 2628953
+          },
+          {
+            "api_round_trip_ns": 3809059,
+            "cpu_total_ns": 16335262895,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 460619776,
+            "memory_working_set_bytes": 460619776,
+            "midpoint_ns": 1002006005
+          },
+          {
+            "api_round_trip_ns": 4117608,
+            "cpu_total_ns": 16667876436,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 461008896,
+            "memory_working_set_bytes": 461008896,
+            "midpoint_ns": 2002157447
+          },
+          {
+            "api_round_trip_ns": 4208269,
+            "cpu_total_ns": 17041500811,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459956224,
+            "memory_working_set_bytes": 459956224,
+            "midpoint_ns": 3002354970
+          },
+          {
+            "api_round_trip_ns": 4830455,
+            "cpu_total_ns": 17365029638,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 460181504,
+            "memory_working_set_bytes": 460181504,
+            "midpoint_ns": 4002661680
+          },
+          {
+            "api_round_trip_ns": 7018156,
+            "cpu_total_ns": 17684044980,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459788288,
+            "memory_working_set_bytes": 459788288,
+            "midpoint_ns": 5003739402
+          },
+          {
+            "api_round_trip_ns": 4943434,
+            "cpu_total_ns": 18006583586,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 461651968,
+            "memory_working_set_bytes": 461651968,
+            "midpoint_ns": 6002671436
+          },
+          {
+            "api_round_trip_ns": 2925204,
+            "cpu_total_ns": 18307206975,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 461574144,
+            "memory_working_set_bytes": 461574144,
+            "midpoint_ns": 7001565210
+          },
+          {
+            "api_round_trip_ns": 3750754,
+            "cpu_total_ns": 18595903887,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 461467648,
+            "memory_working_set_bytes": 461467648,
+            "midpoint_ns": 8002105821
+          },
+          {
+            "api_round_trip_ns": 4444118,
+            "cpu_total_ns": 18862381863,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 461307904,
+            "memory_working_set_bytes": 461307904,
+            "midpoint_ns": 9002373608
+          },
+          {
+            "api_round_trip_ns": 5229619,
+            "cpu_total_ns": 19124065431,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 460812288,
+            "memory_working_set_bytes": 460812288,
+            "midpoint_ns": 10002748863
+          },
+          {
+            "api_round_trip_ns": 5263148,
+            "cpu_total_ns": 19468776816,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459948032,
+            "memory_working_set_bytes": 459948032,
+            "midpoint_ns": 11002825974
+          },
+          {
+            "api_round_trip_ns": 5031671,
+            "cpu_total_ns": 19714986688,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459972608,
+            "memory_working_set_bytes": 459972608,
+            "midpoint_ns": 12002627981
+          },
+          {
+            "api_round_trip_ns": 4589644,
+            "cpu_total_ns": 19989605711,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459993088,
+            "memory_working_set_bytes": 459993088,
+            "midpoint_ns": 13002446230
+          },
+          {
+            "api_round_trip_ns": 5594658,
+            "cpu_total_ns": 20248176084,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459472896,
+            "memory_working_set_bytes": 459472896,
+            "midpoint_ns": 14002999293
+          },
+          {
+            "api_round_trip_ns": 4460571,
+            "cpu_total_ns": 20488057496,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459485184,
+            "memory_working_set_bytes": 459485184,
+            "midpoint_ns": 15002377113
+          },
+          {
+            "api_round_trip_ns": 2253360,
+            "cpu_total_ns": 20725801784,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459481088,
+            "memory_working_set_bytes": 459481088,
+            "midpoint_ns": 16001231577
+          },
+          {
+            "api_round_trip_ns": 3309639,
+            "cpu_total_ns": 20938672767,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 459489280,
+            "memory_working_set_bytes": 459489280,
+            "midpoint_ns": 17001757997
+          },
+          {
+            "api_round_trip_ns": 4401574,
+            "cpu_total_ns": 21217349804,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 457297920,
+            "memory_working_set_bytes": 457297920,
+            "midpoint_ns": 18002377608
+          },
+          {
+            "api_round_trip_ns": 4190536,
+            "cpu_total_ns": 21465157874,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 457302016,
+            "memory_working_set_bytes": 457302016,
+            "midpoint_ns": 19002221385
+          },
+          {
+            "api_round_trip_ns": 3884063,
+            "cpu_total_ns": 21743318417,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 457310208,
+            "memory_working_set_bytes": 457310208,
+            "midpoint_ns": 20002038533
+          },
+          {
+            "api_round_trip_ns": 5154445,
+            "cpu_total_ns": 22038759532,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 456794112,
+            "memory_working_set_bytes": 456794112,
+            "midpoint_ns": 21002732577
+          },
+          {
+            "api_round_trip_ns": 5998253,
+            "cpu_total_ns": 22332218525,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 457183232,
+            "memory_working_set_bytes": 457183232,
+            "midpoint_ns": 22003191745
+          },
+          {
+            "api_round_trip_ns": 4726606,
+            "cpu_total_ns": 22627871091,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 456957952,
+            "memory_working_set_bytes": 456957952,
+            "midpoint_ns": 23002553817
+          },
+          {
+            "api_round_trip_ns": 4380323,
+            "cpu_total_ns": 22925166342,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 457056256,
+            "memory_working_set_bytes": 457056256,
+            "midpoint_ns": 24002393421
+          },
+          {
+            "api_round_trip_ns": 4220084,
+            "cpu_total_ns": 23218028129,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 457064448,
+            "memory_working_set_bytes": 457064448,
+            "midpoint_ns": 25002310922
+          },
+          {
+            "api_round_trip_ns": 3987560,
+            "cpu_total_ns": 23508330824,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 457072640,
+            "memory_working_set_bytes": 457072640,
+            "midpoint_ns": 26002196513
+          },
+          {
+            "api_round_trip_ns": 4537301,
+            "cpu_total_ns": 23798721385,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 457084928,
+            "memory_working_set_bytes": 457084928,
+            "midpoint_ns": 27002393859
+          },
+          {
+            "api_round_trip_ns": 4702852,
+            "cpu_total_ns": 24097637131,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 456835072,
+            "memory_working_set_bytes": 456835072,
+            "midpoint_ns": 28002595645
+          },
+          {
+            "api_round_trip_ns": 4554654,
+            "cpu_total_ns": 24416782992,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 456843264,
+            "memory_working_set_bytes": 456843264,
+            "midpoint_ns": 29002464905
+          },
+          {
+            "api_round_trip_ns": 5013740,
+            "cpu_total_ns": 24741635428,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 456851456,
+            "memory_working_set_bytes": 456851456,
+            "midpoint_ns": 30002755768
+          }
+        ],
+        "samples": 31,
+        "target_seconds": 30,
+        "viewer_bytes_after": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "viewer_bytes_before": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "viewer_bytes_delta": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "wall_ns": 30000126815,
+        "warmup_seconds": 2
+      },
+      "geometry": {
+        "dpr": 1,
+        "screen": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1152,
+          648
+        ],
+        "window": [
+          1152,
+          648
+        ]
+      },
+      "isolation": {
+        "interfaces": [
+          "lo"
+        ],
+        "net_namespace": 4026532592,
+        "read_only_root": true,
+        "runs_mount_read_only": true,
+        "uid": 1000,
+        "viewer_mount_read_only": true
+      },
+      "owner_container_id": "5010f8c27a7fb47248867001f1c751db3a30cbbb2efc6b7d0fae7d3cac4eebd5",
+      "owner_image_id": "sha256:9d3201e2689a974f431f090c31e08a3d2c2794da03e483cd31eada8badf0918a",
+      "owner_product_args": [
+        "session",
+        "--out",
+        "/runs/interactive",
+        "--sinks",
+        "core,click",
+        "--duration",
+        "150",
+        "--",
+        "http://127.0.0.1:18761/benchmark"
+      ],
+      "public_novnc": false,
+      "stage": "complete",
+      "static": {
+        "cpu_delta_ns": 1952096957,
+        "cpu_percent_one_core": 24.4005,
+        "memory_working_set_end_bytes": 463204352,
+        "memory_working_set_peak_sample_bytes": 478703616,
+        "page_animation_after": null,
+        "page_animation_before": null,
+        "raw_samples": [
+          {
+            "api_round_trip_ns": 4736364,
+            "cpu_total_ns": 12868210678,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 440348672,
+            "memory_working_set_bytes": 440348672,
+            "midpoint_ns": 2394985
+          },
+          {
+            "api_round_trip_ns": 6969827,
+            "cpu_total_ns": 13540651419,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 449347584,
+            "memory_working_set_bytes": 449347584,
+            "midpoint_ns": 1003745087
+          },
+          {
+            "api_round_trip_ns": 4818033,
+            "cpu_total_ns": 13755693989,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 470761472,
+            "memory_working_set_bytes": 470761472,
+            "midpoint_ns": 2002705464
+          },
+          {
+            "api_round_trip_ns": 4360641,
+            "cpu_total_ns": 13913063073,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 470507520,
+            "memory_working_set_bytes": 470507520,
+            "midpoint_ns": 3002344307
+          },
+          {
+            "api_round_trip_ns": 4756283,
+            "cpu_total_ns": 14209893154,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 478703616,
+            "memory_working_set_bytes": 478703616,
+            "midpoint_ns": 4002576267
+          },
+          {
+            "api_round_trip_ns": 7241600,
+            "cpu_total_ns": 14428117471,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 469856256,
+            "memory_working_set_bytes": 469856256,
+            "midpoint_ns": 5003870367
+          },
+          {
+            "api_round_trip_ns": 5163271,
+            "cpu_total_ns": 14545386618,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 466726912,
+            "memory_working_set_bytes": 466726912,
+            "midpoint_ns": 6002826542
+          },
+          {
+            "api_round_trip_ns": 5251829,
+            "cpu_total_ns": 14655068863,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 465252352,
+            "memory_working_set_bytes": 465252352,
+            "midpoint_ns": 7002872825
+          },
+          {
+            "api_round_trip_ns": 4885184,
+            "cpu_total_ns": 14820307635,
+            "inactive_file_bytes": 0,
+            "inactive_file_field": "total_inactive_file",
+            "memory_usage_bytes": 463204352,
+            "memory_working_set_bytes": 463204352,
+            "midpoint_ns": 8002615491
+          }
+        ],
+        "samples": 9,
+        "target_seconds": 8,
+        "viewer_bytes_after": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "viewer_bytes_before": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "viewer_bytes_delta": {
+          "from_uds": 0,
+          "to_uds": 0
+        },
+        "wall_ns": 8000220506,
+        "warmup_seconds": 3
+      },
+      "viewer_peer_container_id": "cb3ce729fb7ef533c0a1260fc17bf5462fbcbd2cafe163d6d113aca121ba707f"
+    }
+  },
+  "cpu_metric": "cgroup total_usage delta / local monotonic midpoint wall delta * 100 (one core)",
+  "fixture_sha256": "ffe1f4acef1a7b0d7866509b6cd0898328075f051919d693c66a1083b2cf3591",
+  "fixture_url": "http://127.0.0.1:18761/benchmark",
+  "headless_requested_size": [
+    1280,
+    720
+  ],
+  "headless_viewport_differs": true,
+  "headless_window_differs": true,
+  "host": {
+    "api_version": "1.49",
+    "architecture": "x86_64",
+    "cgroup_version": "1",
+    "docker_engine_id": "02ce48a5-a131-4b60-b6ad-69551f295bb7",
+    "kernel_version": "3.10.0-1160.119.1.el7.x86_64",
+    "logical_cpus": 8,
+    "server_version": "28.1.1"
+  },
+  "interactive_image_id": "sha256:9d3201e2689a974f431f090c31e08a3d2c2794da03e483cd31eada8badf0918a",
+  "memory_metric": "sampled cgroup max(0, usage - total_inactive_file [v1] or inactive_file [v2]) bytes",
+  "owner_common_docker_options": [
+    "--pull",
+    "never",
+    "--user",
+    "1000:1000",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges=true",
+    "--ipc",
+    "private",
+    "--cpus",
+    "1",
+    "--memory",
+    "1600m",
+    "--memory-swap",
+    "1600m",
+    "--pids-limit",
+    "400",
+    "--shm-size",
+    "192m",
+    "--stop-timeout",
+    "25",
+    "--tmpfs",
+    "/tmp:rw,nosuid,nodev,mode=1777,size=256m",
+    "--log-driver",
+    "none"
+  ],
+  "passed": true,
+  "schema": 1,
+  "timing": "1s one-shot Docker Unix API sample schedule",
+  "viewer_bytes_metric": "QA relay successful writes to and reads from /viewer/view.sock, HTTP+WebSocket bytes",
+  "viewer_framebuffer_pixels": [
+    1280,
+    720
+  ]
+}

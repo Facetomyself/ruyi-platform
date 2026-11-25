@@ -1,0 +1,1 @@
+{"passed": true, "host_loopback_only": true, "public_ui_http": 200, "rfb_module_http": 200, "foreign_host_http": 403, "foreign_ws_origin_http": 403, "missing_ws_origin_http": 403, "dir_listing_http": 404, "csp_frame_ancestors": "'none'", "form_data_saved_by_viewer": false}

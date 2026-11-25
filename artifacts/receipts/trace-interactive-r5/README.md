@@ -1,0 +1,7 @@
+# RuyiTrace R5 CLI2 交互镜像离线验收
+
+[平台记录](interactive-image.json)对应 Linux amd64 镜像 `sha256:9d3201e2689a974f431f090c31e08a3d2c2794da03e483cd31eada8badf0918a`，归档为 `ruyitrace-interactive-r5-cli2-v1-linux-amd64.docker.tar.gz`（348,670,847 字节，SHA-256 `33265d0e7ac8fd713b6943a7a2837f9a5459b22f72a67c0e87f7a4fc0e025def`）。[镜像源码标签](https://github.com/Facetomyself/ruyitrace/tree/product/interactive-r5-cli2-v1-amd64)固定于 `9f8dbb9bbbd322c2e6a17b05b89fd23690067f2c`；后续平台采用的 Trace 子模块或演示网关源码提交，不改变这些已发布的镜像字节及来源。
+
+- [空引擎原始回执](empty-engine-final.json)是该提交的 `product/interactive/qa/empty-engine.sh` 原样 stdout；[host185 旁证](empty-engine-final-host185.json)记录同次运行的实测归档长度、摘要、脚本摘要和宿主隔离校验。测试从空 Docker graph 开始，在独立 mount/net/PID namespace 内加载归档，验证标签、启动有头会话、经 Unix socket 获得 HTTP 200、干净停止。主 Docker daemon、镜像清单和宿主 TCP 监听保持原样。测试只覆盖同一台物理 amd64 主机，未使用公网入口。
+- 此前交付目录里同名的历史 `empty-engine-final.json`（回执 SHA-256 `47ed156d6c8c8507653450c8c3d4df7c29ecba304a9f4720a39de32c9bec391d`）实际对应候选镜像 `sha256:3359771a84f563f73f145d67f737d9bf988f2d4345f3b9c8ea30d9b7a8136ac3` 和候选归档 SHA-256 `4abcf01605689754fb264614430972b0f0a5224ab9300ac7a6f14eb49a6324bf`。该原件保留为候选历史，正式记录采用本目录的新回执。
+- [原生交互验收](acceptance.json)、[发行导出](release-export.json)和[产品层清单读回](product-readback.json)分别验证浏览器交互、发行归档、镜像产品载荷；它们与本次空引擎检查是不同证据。[平台验针](../../../scripts/verify-pins.sh)第 6.5 节按真实文件校验回执摘要，再用 `git show` 从固定镜像提交读取发行锁，对齐镜像 ID、归档摘要与长度。[离线验证脚本](../../../scripts/verify-trace-interactive.py)另支持 `--archive /绝对路径/归档.tar.gz`，读取归档本体和 Docker-save 清单，全程无需连接 Docker。

@@ -1,0 +1,49 @@
+{
+  "archive": {
+    "bytes": 351919702,
+    "name": "ruyitrace-public-edge-tls-lease-v1-linux-amd64.docker.tar.gz",
+    "sha256": "44c1f62192a851c8e183da31a3b12beff6769ff72495b7a0144016f3f2a731dc"
+  },
+  "image_id": "sha256:28eac74b5455256d4e20b41b7feb18c8371e9f940fee11c05d144ff771b57a22",
+  "limitations": {
+    "actual_public_ingress": false,
+    "actual_reboot": false,
+    "default_policy_seconds": 1200,
+    "native_ttl_test_seconds": 90,
+    "physical_host_count": 1
+  },
+  "parent_image_id": "sha256:9d3201e2689a974f431f090c31e08a3d2c2794da03e483cd31eada8badf0918a",
+  "raw_sha256": {
+    "edge-export.json": "a3cb9a884d968477daf512826677ad9602a5537a599e2427863e08fad8f86709",
+    "edge-readback.json": "d655e7bd636f0584fb5cbc9fd77c046d3e6ca0e4d562ab5b4be06a2644ed6ab4",
+    "final-expire.json": "c2acd09ac247d62ac9fa05c312434c7070db7009b54b9999b32a3b75c1e1d89a",
+    "final-host.json": "174a0df5d93caed5153bfc6f63af7f0dcc46885b93bcd9637717a237b8d7d446",
+    "final-revoke.json": "41bd55b7df2ab225bfaf07a39e1252c18c429ae09a43821c1427babbef13f46d",
+    "final-worker-loss.json": "c6e96af18c76073ab803abc7e3ddbf99e16af5eae5a2dd1ce9a2b16048b90c4c",
+    "prepare-final.json": "9f87d3a101fc210ac63f6c9fbfcd9ae26df4b00d6415f36421ba4f4d98752a77",
+    "systemd-failure-recovery.json": "96a31cb29bdefd039ee48ed80c51f6b33c1036c280933fffb2a3b3e646838e79"
+  },
+  "schema": "ruyitrace-public-lease.v1",
+  "source": {
+    "commit": "c3723ca5f71e860ed19d1fa1a4305da930dc7428",
+    "tag": "product/public-edge-tls-lease-v1-amd64"
+  },
+  "source_sha256": {
+    "demo-public.sh": "906b581263ab21376925e5d6ba3bc0ed204ec272e07c9f09b015385512072824",
+    "demo/manual.html": "26310c48f2cd83ce6d7a0c4b746d7d560a024b4bf5f3740b64f20fdfe275618c",
+    "demo_lease.py": "10be7be1ef61d5263945e0ddbd05c7556ca982fbc2416674be0fd33c42bcefca",
+    "edge-build/Dockerfile": "999402da11c8c661fca1f6790dfb1e07bf56f29a03fa481422180a2fe9d20a65",
+    "edge-build/build.sh": "3415a006632a6fa81a7c21d7fa7f28bf71190b4223061978cd76a712cabaa4a4",
+    "edge-build/prepare.py": "0cdf7362783024ccb75e214db8726e210026be0937f8c90a6cf952eed361baf6",
+    "edge-build/readback.py": "4e5adf1b1de81b37bf604bdf66df93ee95df6e247fd07e3ada84cb6c5c2eb1e0",
+    "edge-build/wheels-lock.json": "7dc6c9baa03e069b936914d3857af8563f81339235942f680546cafa4bde9479",
+    "public-gateway.py": "86ef3f85c0664cbd47930443b0ad5270fe3ad641a955ffd7fe22a86532dcc12c",
+    "qa/client.py": "29cbdd644fabc1e54fe8ed64a449eb42d432d18f168ea1a4e20ef6c19690d72d",
+    "qa/public_browser.py": "713f3eb19a15c1468811889b202a552565f399f2417388e0d43fa0f896e6025b",
+    "qa/public_native.py": "c5699d2818aa389710e9a9f26401e09e32463d1c47ca8460fca7ea1b77b34503",
+    "systemd/demo-sweep.service": "4161b6a6b6e007a49c16093fac05a14e9c84c7a6cb6dff7a10f15e88cdff067e",
+    "systemd/demo-sweep.timer": "f9e70f72f0433731ca6630224504aaecd7173c95d9183452192d300da1b4c497",
+    "systemd/demo@.service": "256200dfc65d78aec4ce43f74ca1a49acdfb518e16c40e3dce7ef5f84cca5e8e",
+    "systemd/install": "228f6d72b9e4efb98fcd2065fc08a7120775687d5536c0f7fe7d5a0d4dc8f83f"
+  }
+}
