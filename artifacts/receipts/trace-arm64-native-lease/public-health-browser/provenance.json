@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "scope": "independent public real browser on bounded marker, not ARM desktop",
+  "sha256": {
+    "fixture-closed-at": "4c8cc19a4955873bf32583b87f626f740161f55ea63d2756626774e4912bafd8",
+    "hk-relay.json": "bcb4bd773727b781056c96b66a360e127f3a5c1dc96dd66edebff78b82bb60f1",
+    "oracle-dsh-native-firefox.json": "b1477aef0f4712feea613b641047ccada594d46d9af3a3c350e4a9ba21a356ae",
+    "oracle-dsh.json": "cdf4f40040a0c0eccae7b0701babde06d816d6be547072c4abb41dd8a975f019",
+    "stock-dependencies.json": "b58a45b27a43e9b1ab76f09773bf7b1efa9a295966838c94fd37f2e2c6394f70"
+  },
+  "source": "406a0475d393767e7c57e32f2fd44784e5a7cb7d"
+}
