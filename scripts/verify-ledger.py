@@ -26,7 +26,12 @@ def blocks():
     scope = data
     for key in SECTION:
         scope = scope[key]
-    return {k: v for k, v in scope.items() if isinstance(v, dict)}
+    records = {k: v for k, v in scope.items() if isinstance(v, dict)}
+    # ARM component and later product receipts are a separate target, not
+    # children of the historically named x86 donor. Apply the same byte checks.
+    arm = data['projects']['ruyijs']['verified']['private_linux_aarch64_stages']
+    records.update({'arm64/' + k: v for k, v in arm.items()})
+    return records
 
 
 def main():

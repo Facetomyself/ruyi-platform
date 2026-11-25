@@ -1,4 +1,4 @@
-generated_at: '2026-11-25T23:41:32+08:00'
+generated_at: '2026-11-26T00:38:00+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -112,8 +112,8 @@ projects:
       win_amd64: ready
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
-      linux_aarch64: unsupported
-    tests: R431_quic_component_lifecycle_and_loopback_initial__R430_h2_companion__R423_opt_in_roots
+      linux_aarch64: verified native QUIC and companion components; standalone private shell and installed base wheel pending
+    tests: R432_arm64_quic_and_network_components__R431_amd64_quic__R430_h2_companion
     phase: R356 离线运行时及安装态 JS HTTPS 已验；R423 为显式启用根库的负对照，R430 为 companion 的单请求 h2。R431 独立 QUIC 共享库已在 Linux x86-64 验过会话生命周期和回环首包；带证书校验的 h3 请求、JS 路由和 Linux ARM64 产品仍待验收。
     blocked_by:
     - A2
@@ -131,6 +131,25 @@ projects:
         archive_kept_out_of_git: true
         verification: 'outer SHA-256 + 2071 top-level RECORD file hashes + x86_64 ELF header; no extraction or execution'
         scope: reference-only
+      private_linux_aarch64_stages:
+        quic_r432:
+          terminal: native_arm64_quic_lifecycle_and_loopback_initial
+          artifact: deliverables/arm64-ruyijs-native-r432/quic-q01/artifact/libnecko_quic.so
+          artifact_bytes: 3600800
+          artifact_sha256: 608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8
+          evidence: deliverables/arm64-ruyijs-native-r432/quic-q01/validation.json
+          evidence_sha256: 3788a5abe9062515c80314afa74acdcf74b09159081486dc2010c16d8aff1b62
+          repository_receipt: artifacts/receipts/ruyijs-linux-aarch64-quic-r432/validation.json
+          excluded: [installed_arm64_base_wheel, js_http3, authenticated_quic_handshake]
+        network_r432:
+          terminal: native_arm64_network_companion_nine_extracted_wheel_checks
+          artifact: deliverables/arm64-ruyijs-native-r432/network-n02/artifact/ruyijs_http1-0.2.39+inner.r432-py3-none-linux_aarch64.whl
+          artifact_bytes: 2585864
+          artifact_sha256: afe31c0601493f5e24af531099c8d4f61a634f34efe42190cf46962b7952bc4a
+          evidence: deliverables/arm64-ruyijs-native-r432/network-n02/component.json
+          evidence_sha256: 4bfdf471a1138ae64f7f56212860b8236a816ce9f2dec728f0594a06854ef717
+          repository_receipt: artifacts/receipts/ruyijs-linux-aarch64-network-r432/validation.json
+          excluded: [installed_arm64_base_wheel, js_http3, authenticated_quic_handshake]
       private_linux_x86_donor_source:
         host: host185
         offline_snapshot: 'exit 1 on missing Firefox Git blobs; OOMKilled=false; borrowed store was read-only'
@@ -2871,7 +2890,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: e005ad35882802182459d262452a1169b2c171fb
+    commit: 6ac2a6032a3716fe10c7858c7b2498db7d6c82fb
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

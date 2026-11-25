@@ -1,0 +1,116 @@
+{
+  "abi": {
+    "exports": [
+      "necko_quic_call",
+      "necko_quic_init",
+      "necko_quic_set_decoder",
+      "necko_quic_version"
+    ],
+    "needed": [
+      "libnssutil3.so",
+      "libnss3.so",
+      "libssl3.so",
+      "libnspr4.so",
+      "libfreebl3.so",
+      "libgcc_s.so.1",
+      "libc.so.6",
+      "libz.so.1"
+    ],
+    "runpath": "$ORIGIN",
+    "soname": "libnecko_quic.so"
+  },
+  "artifact": {
+    "bytes": 3600800,
+    "filename": "libnecko_quic.so",
+    "local_path": "deliverables/arm64-ruyijs-native-r432/quic-q01/artifact/libnecko_quic.so",
+    "sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8"
+  },
+  "checked_at": "2026-11-25T16:02:04.49292825Z",
+  "codec_tests": {
+    "output": [
+      "test compression_tests::certificate_decoders_require_exact_output_and_valid_input ... ok",
+      "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s"
+    ],
+    "passed": true
+  },
+  "containers": {
+    "build": {
+      "exit": 0,
+      "finished": "2026-11-25T16:02:03.741051139Z",
+      "id": "c62d6f2e61f4f0fce691dfd11d8649df0799f7b69907b9e9e8b50db4c04f1a1b",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "memory": 4294967296,
+      "network": "none",
+      "oom": false,
+      "readonly": true,
+      "started": "2026-11-25T15:59:49.053452122Z",
+      "swap": 4294967296,
+      "uid": "1000:1000"
+    },
+    "lifecycle": {
+      "exit": 0,
+      "finished": "2026-11-25T16:02:04.49292825Z",
+      "id": "a691580e1c1a240dfc2b8d6a0114c1e78a2cc238f4f7c8406c25f10e7544b61a",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "memory": 536870912,
+      "network": "none",
+      "oom": false,
+      "readonly": true,
+      "started": "2026-11-25T16:02:03.925962381Z",
+      "swap": 536870912,
+      "uid": "1000:1000"
+    }
+  },
+  "excluded": [
+    "QUIC server handshake",
+    "verified server identity during QUIC",
+    "HTTP/3 request/response",
+    "wheel integration",
+    "JS HTTP/3 route"
+  ],
+  "firefox_commit": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "host": "oracle-reverse-dev",
+  "input_private_commit": "14a8ea9017e3d93d6d0747c7e3b32a3f151ddbfd",
+  "passed": true,
+  "platform": "native Ubuntu 24.04 aarch64 / glibc 2.39",
+  "rust_target": "aarch64-unknown-linux-gnu",
+  "schema": "ruyijs-linux-aarch64-quic-component-r432.v1",
+  "sdk_manifest_sha256": "19fa8da1bdef4978c7cbf5a19a35028b683314674afbfcd5893c9dbb77df72da",
+  "sha256_evidence": {
+    "artifact/build.json": "ac5972b6f9799d5712e97f9541e1ae220ac3c8dfb795ee89261ea0f27732f03e",
+    "artifact/linux.Cargo.lock": "f29717b3b6dd6d0a756664bed35eff0f0c6541b081dd9bb547b359c4c22bd4de",
+    "logs/build.container.json": "28b39a48e042ea72911b58cf9052517c16cdf952b15152ac21f8fd32fe93d4cd",
+    "logs/build.log": "260358442c93bc1c34cfba32c60797c1c57a233787a51e38c53507382eff3191",
+    "logs/lifecycle.container.json": "48952d2ad5b1a65a0a2ff32463dc08186c61a41e91c6cca79e8037e9ef430eae",
+    "logs/lifecycle.log": "45c18efb650ad1ef5419aaee69b6f695615cbac91473374a074857132ca0a346"
+  },
+  "test": {
+    "first_output": {
+      "initial_bytes": 813,
+      "type": "QUIC v1 Initial",
+      "udp_bytes": 1252
+    },
+    "mapped_nss_libraries": [
+      "libfreebl3.so",
+      "libfreeblpriv3.so",
+      "libmozsqlite3.so",
+      "libnspr4.so",
+      "libnss3.so",
+      "libnssutil3.so",
+      "libplc4.so",
+      "libplds4.so",
+      "libsoftokn3.so",
+      "libssl3.so"
+    ],
+    "nss_bin": "/sdk/bin",
+    "passed": true,
+    "scope": "ABI lifecycle and public Initial structure only; no packet authentication, TLS handshake, certificate validation, HTTP/3 exchange or product integration exercised",
+    "so": "/component/libnecko_quic.so",
+    "version": "neqo-0.32.0/nss-3.131"
+  },
+  "versions": {
+    "neqo": "0.32.0",
+    "nss_rs": "0.16.1",
+    "runtime": "neqo-0.32.0/nss-3.131"
+  }
+}

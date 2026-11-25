@@ -84,6 +84,8 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**R432：Linux ARM64 组件已在 `oracle-reverse-dev` 运行。** [QUIC 私有预发布](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-quic-component-r432) · [ARM QUIC 实测](../../artifacts/receipts/ruyijs-linux-aarch64-quic-r432/validation.json) · [网络 companion 组件测试](../../artifacts/receipts/ruyijs-linux-aarch64-network-r432/validation.json)。QUIC 是原生 AArch64 ELF，独立进程实际收到 v1 Initial、关闭后旧句柄失效；UDP 对端未回包。另一个 wheel 内的网络 helper 通过九项检查，包含明文 HTTP/1、pin/锚点正反对照、Brotli/Zstd 和显式 h2。两者均非完整私有 JS 产品或已安装基座证明。
+
 **R431：私有 Linux x86-64 QUIC 组件。** [私有下载](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-quic-component-r431) · [原生验收回执](../../artifacts/receipts/ruyijs-linux-quic-component-r431/validation.json) · [复跑说明](../../submodules/ruyijs/docs/linux-quic-component.md)
 
 `libnecko_quic.so`（3,533,400 字节）由 Firefox 159、Neqo 0.32.0 和固定 NSS 3.131 离线构建。单独的进程立即加载四个 C ABI 导出，核对十个 SDK 库的文件身份；回环 UDP 收到了 1,252 字节的数据报，首个 QUIC v1 Initial 占 813 字节。`close` 后旧句柄失效。两个容器的实际退出码均为 0，无 OOM。发布文件取自带锁重建，SHA-256 `4aef6ddd84187d75fedce5ca984921d7500fceddc23b209863f2e6af5520486c`；另一次生成锁的构建通过相同行为检查，但 ELF 哈希不同。

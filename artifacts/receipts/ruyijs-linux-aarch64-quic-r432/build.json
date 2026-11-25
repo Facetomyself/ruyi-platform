@@ -1,0 +1,66 @@
+{
+  "abi": {
+    "exports": [
+      "necko_quic_call",
+      "necko_quic_init",
+      "necko_quic_set_decoder",
+      "necko_quic_version"
+    ],
+    "needed": [
+      "libnssutil3.so",
+      "libnss3.so",
+      "libssl3.so",
+      "libnspr4.so",
+      "libfreebl3.so",
+      "libgcc_s.so.1",
+      "libc.so.6",
+      "libz.so.1"
+    ],
+    "runpath": "$ORIGIN",
+    "soname": "libnecko_quic.so"
+  },
+  "bytes": 3600800,
+  "cargo": "cargo 1.100.0 (3acc79c0c 2026-11-05)",
+  "codec_archives": {
+    "libnecko_brotli.a": "35a3737f02e8da8aad1025038ea103893cc186dd4a66c1274f515b0e125ef955",
+    "libnecko_zstd.a": "48449d6c913c724a16f2fb81cca86ec310183706da8019770943818e53ab566a"
+  },
+  "codecs_tested": true,
+  "compiler_sha256": "4060e277c6c20c389669d58a15505ba6e663c358020a0a32700a63b9169173c1",
+  "component_only": true,
+  "elf_machine": 183,
+  "firefox_commit": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "jobs": 1,
+  "lock_mode": "locked",
+  "lock_sha256": "f29717b3b6dd6d0a756664bed35eff0f0c6541b081dd9bb547b359c4c22bd4de",
+  "neqo": "0.32.0",
+  "nss_rs": "0.16.1",
+  "private_rust_source_sha256": "d2baeb03b83ff3a011941a47b642e9d406e7d6749948c9d548ccf7f83170c460",
+  "rust_target": "aarch64-unknown-linux-gnu",
+  "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+  "schema": "ruyijs-private-linux-quic-build-v1",
+  "sdk_libraries": {
+    "libfreebl3.so": "bfda13d1629340dd4bc5996898f74647230d81bf76e3b14c5f9ae622cbe7790d",
+    "libfreeblpriv3.so": "437f9a211c257cbb8b94371052d48f8365b9910052d35fc6314170847fcb63df",
+    "libmozsqlite3.so": "01a06cdb9445300ca2c8e04d30a1094f74dac7316c64c948763a30858654cff8",
+    "libnspr4.so": "5768cb94185f12d89f8ef7e734609022de5555d9f1447a07dda506f2c82d8609",
+    "libnss3.so": "9fd29965c4ad48822c5a3169dbb797a73e08ac53855aa05849389bc8d67cb5a6",
+    "libnssutil3.so": "1c34455196bbc87a0970f2957ce2203adb5cb129cee571d8d7abb1c0e6a12234",
+    "libplc4.so": "a501d4b25eaf0c8a0ff7cd3bf796c3251bbde600f0d5ee4d805aefce40441a51",
+    "libplds4.so": "aa868639d6d9935f58c039559f965a3d4f4d0c874f0ca33058363948abed9f6f",
+    "libsoftokn3.so": "d384e4130db0204f14cec3ed4262e070a56ce86ff4dfe0ca18e5fa3b03aaf2e0",
+    "libssl3.so": "b8e239a3aab1530c9e8a5c3f4e6d4aee104ec8c46c6bb1dc2a45f7511d325496"
+  },
+  "sdk_manifest_sha256": "19fa8da1bdef4978c7cbf5a19a35028b683314674afbfcd5893c9dbb77df72da",
+  "sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8",
+  "target": "aarch64",
+  "target_profile": "aarch64",
+  "toolchain_sha256": {
+    "cargo": "392c317d939102f482142d8058db862c48b27a98e93a95d9ab4ac9661fc32ab4",
+    "clang": "4060e277c6c20c389669d58a15505ba6e663c358020a0a32700a63b9169173c1",
+    "clang++": "4060e277c6c20c389669d58a15505ba6e663c358020a0a32700a63b9169173c1",
+    "libclang": "8948571d3b878f401c093b46ecec606e988c15c1978f19cc2239b5f5eda307d5",
+    "llvm-ar": "facf5c7b3ec9d3d7da68c75901e1bf70a22ce7293263623394caff366d284b59",
+    "rustc": "8fee0134937bac4ab25e3915b64b4103c4338bb76699136d331b3958fecf7279"
+  }
+}
