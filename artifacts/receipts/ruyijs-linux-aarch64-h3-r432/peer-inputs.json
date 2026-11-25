@@ -1,0 +1,14 @@
+{
+  "distribution": "Ubuntu Noble",
+  "implementation": "ngtcp2",
+  "packages": {
+    "libev4t64_1%3a4.33-2.1build1_arm64.deb": "68f122939ef51726f4ae7ed44025997bccc5658ec11511a59ad42cfda14f5d18",
+    "libgnutls30t64_3.8.3-1.1ubuntu3.6_arm64.deb": "18482c85067bcc8e2b3802d7c3bb87bd54acf4da228e760054e88ef1e125d80a",
+    "libnghttp3-3_0.8.0-2_arm64.deb": "0f4dfd74cb008c6a2ba722be0281106fb13896eeea7bc60fca3e0332db38a469",
+    "libngtcp2-9_0.12.1+dfsg-1+deb12u1build0.24.04.1_arm64.deb": "93989882f8b8e9ad3bb6f0eef422b93142e1984d60331bd5d041a2eb826793f3",
+    "libngtcp2-crypto-gnutls2_0.12.1+dfsg-1+deb12u1build0.24.04.1_arm64.deb": "0d946c84066a6a2acc2873afcc559d29ecfa7c121953238eb3993c5a93fcf1a4",
+    "ngtcp2-server_0.12.1+dfsg-1+deb12u1build0.24.04.1_arm64.deb": "d675b21b91250af63c30755be0bfc53396dedc419a75757491e9f712c11f0824"
+  },
+  "schema": "ruyijs-arm64-h3-test-peer-v1",
+  "test_only": true
+}

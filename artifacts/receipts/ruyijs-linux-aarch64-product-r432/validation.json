@@ -1,0 +1,368 @@
+{
+  "artifacts": {
+    "base": {
+      "bytes": 143125622,
+      "file": "ruyijs-0.2.2+inner.20261101191032.r432-py3-none-linux_aarch64.whl",
+      "sha256": "1d1c119a0e8a8176df212bd118dd955e50be19b085b4c196918f86b4f7ebcc22"
+    },
+    "network_companion": {
+      "bytes": 2585864,
+      "file": "ruyijs_http1-0.2.39+inner.r432-py3-none-linux_aarch64.whl",
+      "sha256": "afe31c0601493f5e24af531099c8d4f61a634f34efe42190cf46962b7952bc4a"
+    },
+    "standalone_quic": {
+      "bytes": 3600800,
+      "file": "libnecko_quic.so",
+      "sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8"
+    }
+  },
+  "checked_at": "2026-11-25T18:03:56.773586893Z",
+  "controls": {
+    "base-wheel-w02": "5e4b79d0ca3a069ff60759ae7ea17c5e1f288370",
+    "h3-ngtcp2-qh02": "c4165c861837f3381853d5cbb9108e1b3e4ab5c2",
+    "install-base-i02": "5e4b79d0ca3a069ff60759ae7ea17c5e1f288370",
+    "install-pair-pair03": "9bfece69b7d44aee85102b85e14bbafdbd3812fe",
+    "network-n02": "a757cb93fd2c86d8d83055e4be44194cd888e22d",
+    "quic-q01": "14a8ea9017e3d93d6d0747c7e3b32a3f151ddbfd",
+    "release-readback-final01": "2dd9c2d9f13baf94f8bb654a70c05a82183d78c0",
+    "runtime-qa-t01": "99bf0f1fd8c478f81620ecfb97ef9557bda89d5e",
+    "strict-products-link01": "94cb3aaa5468e75743c5fb5e06664e7531ad5e2d"
+  },
+  "evidence_sha256": {
+    "base-installed.json": "1b840408c49fc71bfc34bc6cc3ff3264c494f3cce0e03e455d316bd00cd04da2",
+    "base-wheel-build.json": "4f8f1cb369e341613cf797a3dc5a349f43f858671c8258567a1dc876c298a10e",
+    "h3-component.json": "f51438abec471f1f94cfb0fba31ed738226bfcf27007e6300d3da5f8aae897c5",
+    "h3-peer-inputs.json": "39ca2bce74cd9bf6e5c407fdbd0b3d05f1c07459d32e991845407760bffb11c5",
+    "h3-via-wheel-nss.json": "6e4500646af8fc7d2e1cebe62ecb48a6946e533c13209fa96f23116b1f9930bd",
+    "installed-pair.json": "86cca32b338f09b4d43bba77c04f3523539ccc7637de5956fdf28c17420039fd",
+    "native-gates.json": "090a48122af563f758ed63b44d0d9dde098b249054e6316ad995cbf6ea5d1fd4",
+    "paired-install-summary.json": "241e6854b620b93f4e7650ed5b5b5baa09a16578dee07855d9a9966b3e8c584c",
+    "release-readback.json": "9de34729e5d322efd0b983710bbd2577c3c3334b621eee06d65cea48f4c1b77d",
+    "rollback-base.json": "cc61b2989733332ba7ea67992465416b0f69d35ef9192e87fbe009f039b69610",
+    "shard-readback.json": "27192c49edf15eff21f2140b136b543d96bf63afed5dd54466c273e3c47af83f",
+    "strict-link-status.json": "cd902d19df3a04b2b3a1ec90998d6f209e1b7597ae09d70938fe2e5b664f4a97",
+    "worker-crypto.json": "2dbde462c02d7ddf092e3163508b95776abb04c3694212c4dc2c0f10050b11a6"
+  },
+  "excluded": [
+    "JS default HTTP/3/Alt-Svc or WebTransport",
+    "public internet / default public-CA parity",
+    "manylinux/musl/other distributions or 32-bit ARM",
+    "byte-identical clean native rebuild"
+  ],
+  "firefox": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "host": "oracle-reverse-dev",
+  "images": {
+    "builder": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+    "compiler": {
+      "cargo": "392c317d939102f482142d8058db862c48b27a98e93a95d9ab4ac9661fc32ab4",
+      "clang": "4060e277c6c20c389669d58a15505ba6e663c358020a0a32700a63b9169173c1",
+      "clang++": "4060e277c6c20c389669d58a15505ba6e663c358020a0a32700a63b9169173c1",
+      "libclang": "8948571d3b878f401c093b46ecec606e988c15c1978f19cc2239b5f5eda307d5",
+      "llvm-ar": "facf5c7b3ec9d3d7da68c75901e1bf70a22ce7293263623394caff366d284b59",
+      "rustc": "8fee0134937bac4ab25e3915b64b4103c4338bb76699136d331b3958fecf7279"
+    },
+    "independent_install": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+    "stock_C_host": "sha256:7cf0c39cbf1f2d11eee47faaec04414d407cec919beca31f81b1ce9f9e75b8ce"
+  },
+  "installed_behavior": {
+    "base_after_companion_uninstall": true,
+    "base_record_rows": 278,
+    "companion_component_checks": {
+      "brotli": true,
+      "chain_negative": true,
+      "chain_positive": true,
+      "cleartext": true,
+      "h2_explicit_helper": true,
+      "maps": true,
+      "pin_negative": true,
+      "pin_positive": true,
+      "zstd": true
+    },
+    "companion_ownership_disjoint": true,
+    "dedicated_worker": {
+      "isolated": true,
+      "text": "\u03b2",
+      "value": 42
+    },
+    "default_dom": {
+      "text": "ARM64",
+      "title": "R432 ARM64",
+      "url": "https://acceptance.test/r432-arm64",
+      "value": 42
+    },
+    "default_js_http": 200,
+    "default_js_https": {
+      "alpn": "http/1.1",
+      "random_body_sha256": "77c2b232dcdf31419c4c5ed6e6b16308c5f9bdbdc99c25f2f05a55a4dd024a88",
+      "status": 200,
+      "wrong_pin_net_log": "peer leaf certificate does not match any pinned digest",
+      "wrong_pin_peer_http_bytes": 0
+    },
+    "https_navigate": {
+      "committed_document_matches_peer": true,
+      "executed_script_matches_peer": true,
+      "navigate_result": {
+        "url": "https://127.0.0.1:41363/page"
+      },
+      "page_path": "/page",
+      "passed": true,
+      "peer_paths": {
+        "/asset.js": {
+          "alpn": "http/1.1",
+          "marker_sha256": "41a8bd7c1fe48051cd1dea1e2c9f6197aaa3ed52e4f23fcf7cf42900b79baf54",
+          "tls": "TLSv1.3"
+        },
+        "/page": {
+          "alpn": "http/1.1",
+          "marker_sha256": "94cea670ae60593e2330130d043f196de89fc28cdd57d4c067801a6323517465",
+          "tls": "TLSv1.3"
+        }
+      },
+      "private_installed_shell_sha256": "4c69311dc1a287c644b17dc9082c6403c0818b88f580a6ff15c00e7c9c3d8a84",
+      "ready": "complete"
+    },
+    "mapping_count_in_shell": 18,
+    "mapping_count_in_worker": 18,
+    "offline_locked_install": true
+  },
+  "known_peer_difference": {
+    "details": "stock peer failed ASCII decoding an opaque ALPN identifier in two of three connections; not counted as a pass",
+    "peer": "aioquic 0.9.25-3build2",
+    "suite_passed": false
+  },
+  "native_behavior": {
+    "gates": {
+      "avif_decode": true,
+      "avif_support": true,
+      "cabi_debug": true,
+      "cabi_default": true,
+      "canvas_glyphs": true,
+      "canvas_rect": true,
+      "compression_brotli": true,
+      "compression_deflate": true,
+      "compression_deflate-raw": true,
+      "compression_gzip": true,
+      "page_dom": true,
+      "python_bridge": true,
+      "urlpattern": true
+    },
+    "sha256_abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "stock_c_consumer_results": [
+      42,
+      "ruyi40"
+    ],
+    "worker_reaped": true
+  },
+  "native_build": {
+    "C_client_exports": 7,
+    "bundled_dynamic_libraries": 18,
+    "checked_donor": "Firefox 159 standalone; not the private product",
+    "compiler_calls": 1268,
+    "donor_public_functions_preserved": 664,
+    "full_shards": 20,
+    "independent_private_translation_units": 1268,
+    "loader_relocation_rc": 0,
+    "private_hooks": 5,
+    "private_shell_sha256": "4c69311dc1a287c644b17dc9082c6403c0818b88f580a6ff15c00e7c9c3d8a84",
+    "retries": 0,
+    "single_rust_replacement": true,
+    "strict_link_rc": 0
+  },
+  "passed": true,
+  "private_application": {
+    "archive_sha256": "c7747fb10fb20a041965bd4d665442431e5b45e136342786a0dfae79875ddee5",
+    "commit": "e005ad35882802182459d262452a1169b2c171fb"
+  },
+  "qualified_platform": {
+    "glibc": "2.39",
+    "isa": "Linux AArch64",
+    "os": "Ubuntu 24.04",
+    "pip_tested": "24.0",
+    "python_requirement": ">=3.10",
+    "python_tested": "CPython 3.12.3",
+    "wheel_tag": "py3-none-linux_aarch64"
+  },
+  "quic": {
+    "abi": "standalone native C ABI, not a JS HTTP/3 route",
+    "caller_authentication": "event DER checked against the explicit private test CA, localhost name and leaf SHA; result passed to auth",
+    "cases": {
+      "correct_pin": {
+        "connected": true,
+        "fin": true,
+        "http_requests": 1,
+        "passed": true,
+        "response_bytes": 32,
+        "response_status": 200
+      },
+      "wrong_ca": {
+        "connected": false,
+        "fin": false,
+        "http_requests": 0,
+        "passed": true,
+        "response_bytes": 0,
+        "response_status": null
+      },
+      "wrong_leaf_pin": {
+        "connected": false,
+        "fin": false,
+        "http_requests": 0,
+        "passed": true,
+        "response_bytes": 0,
+        "response_status": null
+      }
+    },
+    "independent_peer": "unmodified Ubuntu Noble ngtcp2 / GnuTLS server",
+    "wheel_NSS": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss"
+  },
+  "release_tag": "linux-arm64-product-r432",
+  "repository": "Facetomyself/ruyijs-inner",
+  "requirements_sha256": "0ea1346768107e83a63180f3a9702d2131666f5c3c38d63570984c0b5888f63e",
+  "schema": "ruyijs-linux-arm64-product-r432.v1",
+  "verified_container_receipts": {
+    "avif-a01/avif.container.json": {
+      "completed_utc": "2026-11-25T16:06:55.249529819Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "d2358b704ce255feee01554cec3b9c26883d04d81bddeacd3e09e9587043b3be"
+    },
+    "base-wheel-w02/candidate.container.json": {
+      "completed_utc": "2026-11-25T17:50:04.113738685Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "c5096541c92caca320c5fc97723a62a3f332761d8f7888e2546c9063daac86f1"
+    },
+    "base-wheel-w02/notices.container.json": {
+      "completed_utc": "2026-11-25T17:49:45.512147518Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "dc05df12200a0eaf82103d7c531c41e23f88a391e006a49d14b80aa5a6afeb19"
+    },
+    "carrier-r01/carrier.container.json": {
+      "completed_utc": "2026-11-25T16:52:31.265664419Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "fedc705415561aa448e05250e5f664bbc31dc99cbd96b88463b7274408dd65b5"
+    },
+    "client-c01/client.container.json": {
+      "completed_utc": "2026-11-25T16:06:29.970108181Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "4b7fc3fc78fc2c7f1fa37bb22c2175309b6c9bbe637755ec898f7be4d124b866"
+    },
+    "codecs-z01/codecs.container.json": {
+      "completed_utc": "2026-11-25T16:16:29.764523227Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "c447ba1a48cb0cd69965969d77f8da62b17fcdb2ee81248ded77e508b248d786"
+    },
+    "font-glue-f01/font-glue.container.json": {
+      "completed_utc": "2026-11-25T16:47:14.629836623Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "dbe6884b3a0c35e6a12e9d6b65301cd5022f20ab201e75b5fb1034d31b5539c9"
+    },
+    "graphics-build-g02/graphics.container.json": {
+      "completed_utc": "2026-11-25T16:36:31.608361073Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "f0eac0cf639578e5486e5694fa567f610a8a9e9bb938a636ccf52e171f2cb6ea"
+    },
+    "h3-ngtcp2-qh02/interoperable-h3.container.json": {
+      "completed_utc": "2026-11-25T17:44:43.360527544Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "600a884fbe7289a7fbb20522aaf27778bb028f18e753ef4ffb4de3e297a3d05e"
+    },
+    "hard-sample-h01/hard.container.json": {
+      "completed_utc": "2026-11-25T16:53:06.124098772Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "a25f99e200153deca3c172c8305938150c084cebb9ee207f936bb83b607b2bd4"
+    },
+    "install-base-i02/install.container.json": {
+      "completed_utc": "2026-11-25T17:50:19.24002576Z",
+      "image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+      "sha256": "aeee1640a6a9427de3a723f5886a7b04d47000a76a2d1d1cac8349916f9fd57a"
+    },
+    "install-pair-pair03/install.container.json": {
+      "completed_utc": "2026-11-25T17:55:23.92345392Z",
+      "image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+      "sha256": "bf53b126c995229d2ba512cdd7924f52ab2bfd5ae6a7cffc0f69dd0854427c5a"
+    },
+    "network-n02/network.container.json": {
+      "completed_utc": "2026-11-25T16:16:15.492833306Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "94629338336618d9b30679ae73d738517f2ef0aa7ec979e464a3913b922ee17b"
+    },
+    "network-n02/wheel-qa.container.json": {
+      "completed_utc": "2026-11-25T16:16:20.80181284Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "b22c3c918a0e03078a2252a0c9421672feefbe8bd3c8595eafc003534473fbf7"
+    },
+    "noble-providers-v02/noble.container.json": {
+      "completed_utc": "2026-11-25T16:47:06.330191432Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "bbfa568a6f28e31a2affc9aed85900a5534800c199e6337630c922c9d75a6435"
+    },
+    "pack-graphics-gpack01/graphics-pack.container.json": {
+      "completed_utc": "2026-11-25T16:52:08.56157606Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "0f7c95436aaeb9bc39c28ba1a196e936a26aa67c13e1f22c316ea4851b6341e5"
+    },
+    "phase1-resume-s02/donor.container.json": {
+      "completed_utc": "2026-11-25T16:49:58.523397291Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "277a340b146c13ddab797f0eeb7a9944a65b25b51efa9e7a9df2fdf2f50c9ab5"
+    },
+    "prepare-shell-p01/shell.container.json": {
+      "completed_utc": "2026-11-25T16:52:11.110841442Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "606f8a0f9c7359113879f20466f3d66397e9d400ba138546145b9ad0d3a92537"
+    },
+    "quic-q01/build.container.json": {
+      "completed_utc": "2026-11-25T16:02:03.741051139Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "28b39a48e042ea72911b58cf9052517c16cdf952b15152ac21f8fd32fe93d4cd"
+    },
+    "quic-q01/lifecycle.container.json": {
+      "completed_utc": "2026-11-25T16:02:04.49292825Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "48952d2ad5b1a65a0a2ff32463dc08186c61a41e91c6cca79e8037e9ef430eae"
+    },
+    "release-readback-final01/readback.container.json": {
+      "completed_utc": "2026-11-25T18:03:56.773586893Z",
+      "image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+      "sha256": "41596ddd4e13c1d991f9104cb840928e24f95a250068479e924fa6e4276fd01c"
+    },
+    "runtime-qa-t01/c-host-compile.container.json": {
+      "completed_utc": "2026-11-25T17:47:32.391631496Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "788c95f15f117011d65300fdba1934f442f992e1748a184c344257f224e5f14f"
+    },
+    "runtime-qa-t01/c-host-stock.container.json": {
+      "completed_utc": "2026-11-25T17:47:32.75431604Z",
+      "image": "sha256:7cf0c39cbf1f2d11eee47faaec04414d407cec919beca31f81b1ce9f9e75b8ce",
+      "sha256": "df472f3ce30288fa9f0603d6accb1906af48f79fb3d261b1bea630d229f85d66"
+    },
+    "runtime-qa-t01/native-qa.container.json": {
+      "completed_utc": "2026-11-25T17:47:31.931165915Z",
+      "image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+      "sha256": "da014362e028b86e7ba52b4744ae4bd2eb310a678d61fa34f8d1d7d1f0b707ea"
+    },
+    "runtime-qa-t01/relocate.container.json": {
+      "completed_utc": "2026-11-25T17:47:25.995471476Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "f022771ab3101f518959983a6d62e41965e86d7d85b665acfa7e0f1cbf73b270"
+    },
+    "strict-products-link01/coverage.container.json": {
+      "completed_utc": "2026-11-25T17:47:09.675400818Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "0e13e6043d56739d0ad62784124a9c7e6063f87c962c21f31cc2ed4ada73e5da"
+    },
+    "strict-products-link01/link.container.json": {
+      "completed_utc": "2026-11-25T17:47:17.695146184Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "e595f3ca86e394e672935e4e571e593f576ef70056d82b4eba39233e2a7409af"
+    },
+    "strict-products-link01/providers.container.json": {
+      "completed_utc": "2026-11-25T17:46:58.26774658Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "c3daae2cf7ffb268e6c598b48cb75858091d0b92681f490ece592e46f36cabb8"
+    },
+    "urlpattern-u01/urlpattern.container.json": {
+      "completed_utc": "2026-11-25T16:32:46.900918238Z",
+      "image": "sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+      "sha256": "5fb39db4c49b44af99642115d2b54d8180c9a65f7246d44dcd9929ab0a9d5953"
+    }
+  }
+}

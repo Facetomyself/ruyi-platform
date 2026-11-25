@@ -1,0 +1,100 @@
+{
+  "build_receipt_sha256": "4f8f1cb369e341613cf797a3dc5a349f43f858671c8258567a1dc876c298a10e",
+  "closed": true,
+  "context": {
+    "exe": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/js",
+    "libraries": {
+      "libbrotlicommon.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libbrotlicommon.so.1",
+      "libbrotlidec.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libbrotlidec.so.1",
+      "libbz2.so.1.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libbz2.so.1.0",
+      "libcrypto.so.3": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libcrypto.so.3",
+      "libexpat.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libexpat.so.1",
+      "libfontconfig.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libfontconfig.so.1",
+      "libfreetype.so.6": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libfreetype.so.6",
+      "libfribidi.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libfribidi.so.0",
+      "libgcc_s.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libgcc_s.so.1",
+      "libglib-2.0.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libglib-2.0.so.0",
+      "libgraphite2.so.3": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libgraphite2.so.3",
+      "libharfbuzz.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libharfbuzz.so.0",
+      "libpcre2-8.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libpcre2-8.so.0",
+      "libpng16.so.16": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libpng16.so.16",
+      "libsharpyuv.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libsharpyuv.so.0",
+      "libstdc++.so.6": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libstdc++.so.6",
+      "libwebp.so.7": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libwebp.so.7",
+      "libz.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libz.so.1"
+    },
+    "pid": 19
+  },
+  "context_reaped": true,
+  "dom": {
+    "text": "ARM64",
+    "title": "R432 ARM64",
+    "url": "https://acceptance.test/r432-arm64",
+    "value": 42
+  },
+  "mode": "fresh-venv-base-only",
+  "module_origin": "/qa/venv/lib/python3.12/site-packages/ruyijs/__init__.py",
+  "passed": true,
+  "python_children_reaped": true,
+  "record_entries": 278,
+  "runtime": {
+    "files": {
+      "dist/js": "4c69311dc1a287c644b17dc9082c6403c0818b88f580a6ff15c00e7c9c3d8a84",
+      "dist/lib/libbrotlicommon.so.1": "71fdb0eb9f2c43c777ed0e7ab30f0741f76861739798a618ab030c12c792919c",
+      "dist/lib/libbrotlidec.so.1": "18ab766ad16cd9806ff65a9397e6c09c6bea15d7e8ef1b7614bb4b6134a25e58",
+      "dist/lib/libbz2.so.1.0": "ac19913f44443f68f2e3ca29d79caaa785cd257bb424b028234bb4a2e8745c07",
+      "dist/lib/libcrypto.so.3": "b27a2396652ee28629c94d59d667c417dbffdf2dee84e5bf140bd17d3eedb7d9",
+      "dist/lib/libexpat.so.1": "b4b445a092ad711e535cfa7241974f709b716194c58227abc75b05e3a3bec7f7",
+      "dist/lib/libfontconfig.so.1": "82c60a33531ebcbc55bb09f6ceab408347c22298f4564d9412cbe0f883254ce7",
+      "dist/lib/libfreetype.so.6": "99245e15654c582d5f421034652fd8c2970a23774bc06b84e335b755de45338f",
+      "dist/lib/libfribidi.so.0": "f25617883b0c10df0f143174c49454ca61c571a1051b5480070341223f95fbdb",
+      "dist/lib/libgcc_s.so.1": "f2d3ad2bf0b61f6bc944cc37d7b6ab7f88d2582b41ff989ca164803f56cc5f20",
+      "dist/lib/libglib-2.0.so.0": "1003d9edb8f9e860310b2c0ddaa1c29deb2fde3cf7268316fe655f4d44022187",
+      "dist/lib/libgraphite2.so.3": "26d512d2a2ca2a524def93057c46e2aa759d5e31990142ea8485e0cf167e87d8",
+      "dist/lib/libharfbuzz.so.0": "a59db36b314e8b9d03c59c587fe6651c8b46bd4736091f9d6784f5e0166a5907",
+      "dist/lib/libpcre2-8.so.0": "127de4a771344c3fe17cfe896007d618e1fd904dd322a364698fea2d79d363a8",
+      "dist/lib/libpng16.so.16": "cb6e50ae78b927c643263e7c0ae55f846d2a01986d870d2c27e7b999347058ed",
+      "dist/lib/libsharpyuv.so.0": "aa4617020b4bc450ef4382ea93ab3d6bef6571433498794a9b88a5675d52fe6d",
+      "dist/lib/libstdc++.so.6": "6e3112d35cfc86db7ee85b27e1746f67408e2837ff8628b46386c3eabd5682a4",
+      "dist/lib/libwebp.so.7": "d921459ab6508b3239218b0e4c2e44dbd2e702aeff4273190bf25d2036373930",
+      "dist/lib/libz.so.1": "52a1d5c0cbffb3596c7f0636cb1af8e131e00eb77ff92d1353057d5161d420d3",
+      "dist/libruyijs_client.so": "bb8e96be249ce6511af01b3f0fa8155156b2a79f673f500ee180f90f4c1cd055"
+    },
+    "manifest_sha256": "29ebd7e83f71ce98b2d6a603b508f2db21391b1f53e7e9275775e895397bf07a"
+  },
+  "schema": "ruyijs-arm64-base-wheel-installed-v1",
+  "sha256_abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+  "shell_sha256": "4c69311dc1a287c644b17dc9082c6403c0818b88f580a6ff15c00e7c9c3d8a84",
+  "wheel_sha256": "1d1c119a0e8a8176df212bd118dd955e50be19b085b4c196918f86b4f7ebcc22",
+  "worker": {
+    "exe": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/js",
+    "libraries": {
+      "libbrotlicommon.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libbrotlicommon.so.1",
+      "libbrotlidec.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libbrotlidec.so.1",
+      "libbz2.so.1.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libbz2.so.1.0",
+      "libcrypto.so.3": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libcrypto.so.3",
+      "libexpat.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libexpat.so.1",
+      "libfontconfig.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libfontconfig.so.1",
+      "libfreetype.so.6": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libfreetype.so.6",
+      "libfribidi.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libfribidi.so.0",
+      "libgcc_s.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libgcc_s.so.1",
+      "libglib-2.0.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libglib-2.0.so.0",
+      "libgraphite2.so.3": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libgraphite2.so.3",
+      "libharfbuzz.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libharfbuzz.so.0",
+      "libpcre2-8.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libpcre2-8.so.0",
+      "libpng16.so.16": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libpng16.so.16",
+      "libsharpyuv.so.0": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libsharpyuv.so.0",
+      "libstdc++.so.6": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libstdc++.so.6",
+      "libwebp.so.7": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libwebp.so.7",
+      "libz.so.1": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/lib/libz.so.1"
+    },
+    "pid": 27
+  },
+  "worker_child_executable_matches": true,
+  "worker_reaped": true,
+  "worker_reply": {
+    "isolated": true,
+    "text": "\u03b2",
+    "value": 42
+  }
+}

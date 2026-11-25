@@ -1,0 +1,60 @@
+{
+  "base_sha256": "1d1c119a0e8a8176df212bd118dd955e50be19b085b4c196918f86b4f7ebcc22",
+  "commands": {
+    "bootstrap": {
+      "exit": 0,
+      "log_sha256": "bc4f17f5c62f9bbc03b264be677e430b7baa9d851f7ec338b18da36baf498e17"
+    },
+    "navigate": {
+      "exit": 0,
+      "log_sha256": "6bfeb533b99cb8979c47958fca18e9b1a6d6f6156a902236e8b1f93347ab9637"
+    },
+    "pip-check": {
+      "exit": 0,
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    "release-install": {
+      "exit": 0,
+      "log_sha256": "142db43408dce30692958ad6c21f86799dc7a941b32733764f91f859b550b0ff"
+    },
+    "released-quic-vs-peer": {
+      "exit": 0,
+      "log_sha256": "1fb36a71e187939d51271b05b9c912f5a3c26d3c4494d37277b531f8f714fae6"
+    },
+    "venv": {
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "companion_sha256": "afe31c0601493f5e24af531099c8d4f61a634f34efe42190cf46962b7952bc4a",
+  "h3_receipt_sha256": "6e4500646af8fc7d2e1cebe62ecb48a6946e533c13209fa96f23116b1f9930bd",
+  "h3_scope": "separate native ABI, not JS routing",
+  "installed_navigation": {
+    "committed_document_matches_peer": true,
+    "executed_script_matches_peer": true,
+    "navigate_result": {
+      "url": "https://127.0.0.1:41363/page"
+    },
+    "page_path": "/page",
+    "passed": true,
+    "peer_paths": {
+      "/asset.js": {
+        "alpn": "http/1.1",
+        "marker_sha256": "41a8bd7c1fe48051cd1dea1e2c9f6197aaa3ed52e4f23fcf7cf42900b79baf54",
+        "tls": "TLSv1.3"
+      },
+      "/page": {
+        "alpn": "http/1.1",
+        "marker_sha256": "94cea670ae60593e2330130d043f196de89fc28cdd57d4c067801a6323517465",
+        "tls": "TLSv1.3"
+      }
+    },
+    "private_installed_shell_sha256": "4c69311dc1a287c644b17dc9082c6403c0818b88f580a6ff15c00e7c9c3d8a84",
+    "ready": "complete"
+  },
+  "nss_from_companion": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss",
+  "passed": true,
+  "quic_sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8",
+  "requirements_sha256": "0ea1346768107e83a63180f3a9702d2131666f5c3c38d63570984c0b5888f63e",
+  "schema": "ruyijs-arm64-release-instructions-readback-v1"
+}

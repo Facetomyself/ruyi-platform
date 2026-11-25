@@ -6,6 +6,8 @@
 
 | 优先级 / 责任组件 | 目前可以依赖 | 还挡住什么；怎样才算通过 |
 |---|---|---|
+| **已验 · 原生 Linux ARM64 私有产品（R432）** | [全量安装回执](../artifacts/receipts/ruyijs-linux-aarch64-product-r432/validation.json)：1,268 TU、18 库、13 项功能门、C、安装态默认 Context/Worker/WebCrypto、JS HTTPS 及导航外部脚本均在 ARM 真机运行。 | 认证范围为 Ubuntu 24.04 / glibc 2.39、CPython 3.12.3；musl、其它发行版与 32 位 ARM 仍各自待验。 |
+| **已验 · ARM64 原生 HTTP/3 互操作** | [正反对照](../artifacts/receipts/ruyijs-linux-aarch64-h3-r432/validation.json)：调用方核验服务器 DER 后由真实 QUIC ABI 完成 ngtcp2 H3 请求/响应；错误 pin 和错误 CA 均在发送 HTTP 之前终止。 | JS 默认 HTTP/3、WebTransport、公网证书策略仍未接通；另一测试对端 aioquic 0.9.25 有 ALPN 解码差异。 |
 | **已验 · Linux x86-64 QUIC 组件（R431）** | [宿主原生回执](../artifacts/receipts/ruyijs-linux-quic-component-r431/validation.json)：真实 ELF 加载，固定 NSS 映射，创建/驱动/关闭会话，回环收到 QUIC v1 Initial。 | 下一道门是对真实 h3 服务端完成带身份校验的握手并读回响应体，再接已安装 wheel 的 JS 路由。本项未覆盖这两道门。 |
 | **已验 · RuyiJS amd64 离线发行** | [R356 wheel](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) 使用 R355 干净原生构建的确切字节。新装及从 R354 升级均通过 13 组安装态测试及真实 Worker/WebCrypto，显式回退后的文件清单完全恢复。 | 依照[固定版本的安装命令](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)使用；公共索引、跨发行版认证、联网与 ARM64 不继承本项证明。 |
 | **P1 · Trace / MCP 发布与管理面** | [M2 标准与暂停中停止](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)用 Trace `f8eeb0e` + MCP `8f3839b` + R5；MCP 当前 pin `b5e204a` 又验过[自然到期、错范围无页面动作及实际归还](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | **挡扩大支持矩阵，不挡已验的原生 AMD64 CLI 组合。** 发布新 CLI/MCP 组合时固定双方 SHA 与同一浏览器摘要，重跑正常归还及暂停中停止两档；另测 Firefox 进程意外丢失，核对租约、descriptor、profile 及输出。生产 ARM64、Electron 充当 owner、跨执行机 SSH stdio 分开签收。[执行入口](../projects/ruyi-mcp/PRODUCTION-OWNER.md) |

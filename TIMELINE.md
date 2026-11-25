@@ -2,9 +2,9 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1019 个 commit**（platform 326 / ruyitrace 122 / ruyihttp 78 / ruyijs 432 / ruyi-mcp 61）。
+五个仓库共 **1032 个 commit**（platform 328 / ruyitrace 122 / ruyihttp 78 / ruyijs 443 / ruyi-mcp 61）。
 
-R432：新 ARM64 宿主已验证私有 QUIC 首包和网络组件九项回环检查。见[组件回执](artifacts/receipts/ruyijs-linux-aarch64-network-r432/validation.json)，整包验收独立。
+R432：ARM64 的 1,268 个私有 C++ 单元完成全量原生编译。基座、网络 companion 及离线安装命令经独立 venv 实跑，HTTP/3 另有原生正反例。[产品回执](artifacts/receipts/ruyijs-linux-aarch64-product-r432/validation.json) · [H3 回执](artifacts/receipts/ruyijs-linux-aarch64-h3-r432/validation.json)。
 
 RuyiTrace：短时桌面改为 TLS 一次性邀请和 systemd 租约；[回环实机](artifacts/receipts/trace-public-lease-v1/README.md)验证免输码首连、重连、到期及异常回收。[正式交互归档](artifacts/receipts/trace-interactive-r5/README.md)独立完成空引擎复验，历史候选回执不再用作正式发布证明。
 
@@ -158,7 +158,7 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1019 |
+| 五个仓库 commit | 1032 |
 | 文档 | 47 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 20 |

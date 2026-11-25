@@ -1,0 +1,21 @@
+{
+  "coverage": {
+    "coverage_complete": true,
+    "link_ready": true,
+    "passed": true,
+    "phase": "coverage",
+    "unit_count": 1268
+  },
+  "link": {
+    "output": {
+      "path": "/stage/linked/js",
+      "sha256": "4c69311dc1a287c644b17dc9082c6403c0818b88f580a6ff15c00e7c9c3d8a84"
+    },
+    "passed": true,
+    "private_object_count": 1268
+  },
+  "providers": {
+    "providers": 18
+  },
+  "rc": 0
+}

@@ -1,0 +1,67 @@
+{
+  "also_tested": {
+    "details": "stock peer failed ASCII decoding an opaque ALPN identifier in two of three connections; not counted as a pass",
+    "peer": "aioquic 0.9.25-3build2",
+    "suite_passed": false
+  },
+  "cases": {
+    "correct_pin": {
+      "accepted": true,
+      "chain_hostname_ok": true,
+      "challenge_inode_opens": 1,
+      "client_error": null,
+      "fin": true,
+      "leaf_pin_ok": true,
+      "matching_bytes": 32,
+      "observed_alpn": [
+        "h3"
+      ],
+      "peer_requests": 1,
+      "status": 200
+    },
+    "wrong_ca": {
+      "accepted": false,
+      "chain_hostname_ok": false,
+      "challenge_inode_opens": 0,
+      "client_error": "crypto alert: 49",
+      "fin": null,
+      "leaf_pin_ok": true,
+      "matching_bytes": 0,
+      "observed_alpn": [],
+      "peer_requests": 0,
+      "status": null
+    },
+    "wrong_leaf_pin": {
+      "accepted": false,
+      "chain_hostname_ok": true,
+      "challenge_inode_opens": 0,
+      "client_error": "crypto alert: 49",
+      "fin": null,
+      "leaf_pin_ok": false,
+      "matching_bytes": 0,
+      "observed_alpn": [],
+      "peer_requests": 0,
+      "status": null
+    }
+  },
+  "checked_at": "2026-11-25T17:44:43.360527544Z",
+  "excluded": [
+    "JS HTTP/3 route",
+    "automatic public CA trust",
+    "public Internet interoperability",
+    "WebTransport"
+  ],
+  "gate_commit": "c4165c861837f3381853d5cbb9108e1b3e4ab5c2",
+  "host": "oracle-reverse-dev",
+  "passed": true,
+  "peer": "unmodified Ubuntu Noble ngtcp2 / GnuTLS server",
+  "quic_artifact_sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8",
+  "quic_build_commit": "14a8ea9017e3d93d6d0747c7e3b32a3f151ddbfd",
+  "raw": {
+    "container_sha256": "600a884fbe7289a7fbb20522aaf27778bb028f18e753ef4ffb4de3e297a3d05e",
+    "peer_package_receipt_sha256": "39ca2bce74cd9bf6e5c407fdbd0b3d05f1c07459d32e991845407760bffb11c5",
+    "qa_sha256": "43b8aa7027d005b12f7404952f114c3f61b3afadddc80bb6972d4e18f195013c"
+  },
+  "schema": "ruyijs-arm64-quic-h3-component-interop-r432-v1",
+  "scope": "native C ABI on isolated IPv4 UDP loopback; external caller verifies event DER chain, hostname and exact leaf before reporting auth result"
+}

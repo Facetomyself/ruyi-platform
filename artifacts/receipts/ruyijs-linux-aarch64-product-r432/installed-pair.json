@@ -1,0 +1,228 @@
+{
+  "base_sha256": "1d1c119a0e8a8176df212bd118dd955e50be19b085b4c196918f86b4f7ebcc22",
+  "companion_sha256": "afe31c0601493f5e24af531099c8d4f61a634f34efe42190cf46962b7952bc4a",
+  "launcher": {
+    "alpn": null,
+    "exact_bytes": true,
+    "requests": [
+      "GET /launcher HTTP/1.1"
+    ],
+    "status": 200
+  },
+  "mode": "installed",
+  "ownership_disjoint": true,
+  "passed": true,
+  "schema": "ruyijs-arm64-network-qa-v1",
+  "shell": {
+    "decoded_body_sha256": "015a101778d809a1b813b706f0cc771683c66df0f86982be9709d63bbe92216c",
+    "installed_shell_sha256": "4c69311dc1a287c644b17dc9082c6403c0818b88f580a6ff15c00e7c9c3d8a84",
+    "status": 200,
+    "tls": {
+      "pin_negative": {
+        "context_closed": true,
+        "js_error": "TypeError: NetworkError when attempting to fetch resource.",
+        "launcher_path": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/vendor/necko-derived/python/bin/python3",
+        "launcher_sha256": "fb14ba548a09fa3ab9709fd8f1bfa4cdf74e47305d23912dc581a731ce537edd",
+        "leaf_sha256": "ab7e64bc31c1991eb7dc2a337e95e17c9f1c76a4faa31b91289ff1b4a2671b95",
+        "net_log": {
+          "error": "peer leaf certificate does not match any pinned digest",
+          "id": 1,
+          "matched": false,
+          "method": "GET",
+          "requestBody": "",
+          "status": 0,
+          "url": "https://127.0.0.1:57081/installed-tls/82e9c1de78161b5221855888dd4ae60f"
+        },
+        "passed": true,
+        "peer": {
+          "alpn": null,
+          "helper": {
+            "argv": [
+              "/qa/venv/bin/python3",
+              "-I",
+              "-B",
+              "-m",
+              "ruyijs_necko.oneshot",
+              "--session",
+              "--timing-v3"
+            ],
+            "elf_loader": "/usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+            "executable": "/usr/bin/python3.12",
+            "native_paths": {
+              "libfreebl3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreebl3.so",
+              "libfreeblpriv3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreeblpriv3.so",
+              "libmozsqlite3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libmozsqlite3.so",
+              "libnspr4.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnspr4.so",
+              "libnss3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnss3.so",
+              "libnssutil3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnssutil3.so",
+              "libplc4.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplc4.so",
+              "libplds4.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplds4.so",
+              "libruyijs_tls.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_tls.so",
+              "libsoftokn3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libsoftokn3.so",
+              "libssl3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libssl3.so"
+            },
+            "pid": 82
+          },
+          "http_bytes": 0,
+          "peer_error": "SSLError: [SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad certificate (_ssl.c:1000)",
+          "requests": [],
+          "tcp_connected": true
+        },
+        "shell_executable": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/js"
+      },
+      "pin_positive": {
+        "context_closed": true,
+        "decoded_body_sha256": "77c2b232dcdf31419c4c5ed6e6b16308c5f9bdbdc99c25f2f05a55a4dd024a88",
+        "launcher_path": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/vendor/necko-derived/python/bin/python3",
+        "launcher_sha256": "fb14ba548a09fa3ab9709fd8f1bfa4cdf74e47305d23912dc581a731ce537edd",
+        "leaf_sha256": "ab7e64bc31c1991eb7dc2a337e95e17c9f1c76a4faa31b91289ff1b4a2671b95",
+        "net_log": {
+          "error": "",
+          "id": 1,
+          "matched": false,
+          "method": "GET",
+          "requestBody": "",
+          "status": 200,
+          "url": "https://127.0.0.1:50609/installed-tls/55ad68d040c551c84a6c10b49f328013"
+        },
+        "passed": true,
+        "peer": {
+          "alpn": "http/1.1",
+          "helper": {
+            "argv": [
+              "/qa/venv/bin/python3",
+              "-I",
+              "-B",
+              "-m",
+              "ruyijs_necko.oneshot",
+              "--session",
+              "--timing-v3"
+            ],
+            "elf_loader": "/usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+            "executable": "/usr/bin/python3.12",
+            "native_paths": {
+              "libfreebl3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreebl3.so",
+              "libfreeblpriv3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreeblpriv3.so",
+              "libmozsqlite3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libmozsqlite3.so",
+              "libnspr4.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnspr4.so",
+              "libnss3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnss3.so",
+              "libnssutil3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnssutil3.so",
+              "libplc4.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplc4.so",
+              "libplds4.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplds4.so",
+              "libruyijs_tls.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/libruyijs_tls.so",
+              "libsoftokn3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libsoftokn3.so",
+              "libssl3.so": "/qa/venv/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libssl3.so"
+            },
+            "pid": 70
+          },
+          "http_bytes": 421,
+          "requests": [
+            "GET /installed-tls/55ad68d040c551c84a6c10b49f328013 HTTP/1.1"
+          ],
+          "session_reused": false,
+          "tcp_connected": true
+        },
+        "shell_executable": "/qa/venv/lib/python3.12/site-packages/ruyijs/_runtime/dist/js",
+        "status": 200
+      }
+    }
+  },
+  "tests": {
+    "brotli": {
+      "alpn": "http/1.1",
+      "coding": "br",
+      "decoded_body_sha256": "015a101778d809a1b813b706f0cc771683c66df0f86982be9709d63bbe92216c",
+      "passed": true,
+      "requests": [
+        "GET /brotli HTTP/1.1"
+      ],
+      "status": 200
+    },
+    "chain_negative": {
+      "alpn": null,
+      "error": "certificate chain verification failed (-8079)",
+      "passed": true,
+      "peer_error": "SSLError: [SSL: TLSV1_ALERT_UNKNOWN_CA] tlsv1 alert unknown ca (_ssl.c:1000)",
+      "requests": []
+    },
+    "chain_positive": {
+      "alpn": "http/1.1",
+      "coding": null,
+      "decoded_body_sha256": "015a101778d809a1b813b706f0cc771683c66df0f86982be9709d63bbe92216c",
+      "passed": true,
+      "requests": [
+        "GET /chain_positive HTTP/1.1"
+      ],
+      "status": 200
+    },
+    "cleartext": {
+      "alpn": null,
+      "decoded_body_sha256": "015a101778d809a1b813b706f0cc771683c66df0f86982be9709d63bbe92216c",
+      "passed": true,
+      "requests": [
+        "GET /clear HTTP/1.1"
+      ],
+      "status": 200
+    },
+    "h2_explicit_helper": {
+      "alpn": "h2",
+      "decoded_body_sha256": "015a101778d809a1b813b706f0cc771683c66df0f86982be9709d63bbe92216c",
+      "passed": true,
+      "requests": [
+        "/frame-split"
+      ],
+      "status": 200
+    },
+    "maps": {
+      "cutoffs": 1,
+      "native_sha256": {
+        "libbrotlidec.so": "555213014a9c0553a2ee2b05503f7f93aa2dd6981dd683cd52cae5849dab8662",
+        "libchain_verify.so": "dbb63cdcd4f56e45f18dd5b775df66fe6c6b7fb14b126b55754678484a8788e5",
+        "libfreebl3.so": "bfda13d1629340dd4bc5996898f74647230d81bf76e3b14c5f9ae622cbe7790d",
+        "libfreeblpriv3.so": "437f9a211c257cbb8b94371052d48f8365b9910052d35fc6314170847fcb63df",
+        "libmozsqlite3.so": "01a06cdb9445300ca2c8e04d30a1094f74dac7316c64c948763a30858654cff8",
+        "libnspr4.so": "5768cb94185f12d89f8ef7e734609022de5555d9f1447a07dda506f2c82d8609",
+        "libnss3.so": "9fd29965c4ad48822c5a3169dbb797a73e08ac53855aa05849389bc8d67cb5a6",
+        "libnssutil3.so": "1c34455196bbc87a0970f2957ce2203adb5cb129cee571d8d7abb1c0e6a12234",
+        "libplc4.so": "a501d4b25eaf0c8a0ff7cd3bf796c3251bbde600f0d5ee4d805aefce40441a51",
+        "libplds4.so": "aa868639d6d9935f58c039559f965a3d4f4d0c874f0ca33058363948abed9f6f",
+        "libruyijs_http1.so": "8f04453338f2f62141ceff2ccb187fb48efdb8faab8c673c17b75067ca86c928",
+        "libruyijs_tls.so": "6fccc71702546a02140d83ec4d73b9ffeb27a8f80af8d22793fee6391df5ab1a",
+        "libsoftokn3.so": "d384e4130db0204f14cec3ed4262e070a56ce86ff4dfe0ca18e5fa3b03aaf2e0",
+        "libssl3.so": "b8e239a3aab1530c9e8a5c3f4e6d4aee104ec8c46c6bb1dc2a45f7511d325496",
+        "libzstddec.so": "5c71fb6296d1e9c886153801e51b4f3739bcf785f1b07facc45fc4a23e89b1d9"
+      },
+      "nspr": "4.40",
+      "nss": "3.131",
+      "passed": true,
+      "roots": 121
+    },
+    "pin_negative": {
+      "alpn": null,
+      "error": "peer leaf certificate does not match any pinned digest",
+      "passed": true,
+      "peer_error": "SSLError: [SSL: SSLV3_ALERT_BAD_CERTIFICATE] sslv3 alert bad certificate (_ssl.c:1000)",
+      "requests": []
+    },
+    "pin_positive": {
+      "alpn": "http/1.1",
+      "coding": null,
+      "decoded_body_sha256": "015a101778d809a1b813b706f0cc771683c66df0f86982be9709d63bbe92216c",
+      "passed": true,
+      "requests": [
+        "GET /pin_positive HTTP/1.1"
+      ],
+      "status": 200
+    },
+    "zstd": {
+      "alpn": "http/1.1",
+      "coding": "zstd",
+      "decoded_body_sha256": "015a101778d809a1b813b706f0cc771683c66df0f86982be9709d63bbe92216c",
+      "passed": true,
+      "requests": [
+        "GET /zstd HTTP/1.1"
+      ],
+      "status": 200
+    }
+  }
+}

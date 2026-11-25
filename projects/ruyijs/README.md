@@ -84,7 +84,11 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
-**R432：Linux ARM64 组件已在 `oracle-reverse-dev` 运行。** [QUIC 私有预发布](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-quic-component-r432) · [ARM QUIC 实测](../../artifacts/receipts/ruyijs-linux-aarch64-quic-r432/validation.json) · [网络 companion 组件测试](../../artifacts/receipts/ruyijs-linux-aarch64-network-r432/validation.json)。QUIC 是原生 AArch64 ELF，独立进程实际收到 v1 Initial、关闭后旧句柄失效；UDP 对端未回包。另一个 wheel 内的网络 helper 通过九项检查，包含明文 HTTP/1、pin/锚点正反对照、Brotli/Zstd 和显式 h2。两者均非完整私有 JS 产品或已安装基座证明。
+**R432：Linux ARM64 私有产品已交付。** [完整私有发行](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-product-r432) · [安装指南](../../submodules/ruyijs/docs/linux-arm64.md) · [安装态验收](../../artifacts/receipts/ruyijs-linux-aarch64-product-r432/validation.json)。在 Ubuntu 24.04 / glibc 2.39 上，1,268 个私有 C++ 单元的 ARM 原生对象通过核验，严格链接、18 库搬迁、13 项原生功能门及 stock Ubuntu 的 C 宿主实跑均通过。全新无源码 venv 的默认 `Context()`、DOM、独立 Worker/回收和 WebCrypto 已验；双 wheel 安装后实际 JS HTTPS `fetch()`、`navigate()` 外部脚本及错 pin 零 HTTP 字节也已验。移除 companion 后基座行为复验通过。
+
+**R432：Linux ARM64 网络组件与协议范围。** [H3 协议回执](../../artifacts/receipts/ruyijs-linux-aarch64-h3-r432/validation.json) 区分原生 ABI 与 JS 路由：调用方验证 DER 链、主机名和 pin 后，ngtcp2/GnuTLS 对端实际返回 HTTP/3 200、32 字节及 FIN；错 CA 与错 pin 均为零请求。独立 aioquic 0.9.25 互操作对照未全部通过。JS 自动选 h3、WebTransport、公网和跨发行版不在本次证据内。
+
+**R432 早期的组件检查：** [QUIC 私有预发布](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-quic-component-r432) · [ARM QUIC 实测](../../artifacts/receipts/ruyijs-linux-aarch64-quic-r432/validation.json) · [网络 companion 组件测试](../../artifacts/receipts/ruyijs-linux-aarch64-network-r432/validation.json)。QUIC 是原生 AArch64 ELF，独立进程实际收到 v1 Initial、关闭后旧句柄失效；UDP 对端未回包。另一个 wheel 内的网络 helper 通过九项检查，包含明文 HTTP/1、pin/锚点正反对照、Brotli/Zstd 和显式 h2。两者均非完整私有 JS 产品或已安装基座证明。
 
 **R431：私有 Linux x86-64 QUIC 组件。** [私有下载](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-quic-component-r431) · [原生验收回执](../../artifacts/receipts/ruyijs-linux-quic-component-r431/validation.json) · [复跑说明](../../submodules/ruyijs/docs/linux-quic-component.md)
 

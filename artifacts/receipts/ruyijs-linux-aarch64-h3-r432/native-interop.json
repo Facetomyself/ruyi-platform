@@ -1,0 +1,772 @@
+{
+  "cases": {
+    "correct_pin": {
+      "client": {
+        "abi_version": "neqo-0.32.0/nss-3.131",
+        "auth": {
+          "accepted": true,
+          "chain_and_hostname_ok": true,
+          "expected_leaf_sha256": "f8346b7b7e7f1c7e8a66c2aeb652ef63aeb4478bf2487f44bf77fa8087e16cf4",
+          "hostname": "localhost",
+          "openssl_exit": 0,
+          "openssl_output": "/tmp/quic-ngtcp2-xxhlqk62/correct_pin/client/presented-leaf.pem: OK",
+          "pin_ok": true,
+          "presented_der_sha256": [
+            "f8346b7b7e7f1c7e8a66c2aeb652ef63aeb4478bf2487f44bf77fa8087e16cf4"
+          ],
+          "trust_anchor_sha256": "a561b778a29db38f2e6ae17e6f07ad8a236c48842f1101f3324e103726afba04"
+        },
+        "body_bytes": 32,
+        "body_sha256": "2c0ffc1d062385f83b3a2f915df8d018df66e0becf4a2b3ccded4f1cedc7657c",
+        "connected": true,
+        "handle_closed": true,
+        "local": [
+          "127.0.0.1",
+          46290
+        ],
+        "maps": {
+          "libfreebl3.so": {
+            "file_id": [
+              8,
+              1,
+              263884
+            ],
+            "input_path": "/sdk/bin/libfreebl3.so",
+            "mapped_path": "/sdk/bin/libfreebl3.so"
+          },
+          "libfreeblpriv3.so": {
+            "file_id": [
+              8,
+              1,
+              263883
+            ],
+            "input_path": "/sdk/bin/libfreeblpriv3.so",
+            "mapped_path": "/sdk/bin/libfreeblpriv3.so"
+          },
+          "libmozsqlite3.so": {
+            "file_id": [
+              8,
+              1,
+              263882
+            ],
+            "input_path": "/sdk/bin/libmozsqlite3.so",
+            "mapped_path": "/sdk/bin/libmozsqlite3.so"
+          },
+          "libnecko_quic.so": {
+            "file_id": [
+              8,
+              1,
+              4026412
+            ],
+            "input_path": "/quic/libnecko_quic.so",
+            "mapped_path": "/quic/libnecko_quic.so"
+          },
+          "libnspr4.so": {
+            "file_id": [
+              8,
+              1,
+              263878
+            ],
+            "input_path": "/sdk/bin/libnspr4.so",
+            "mapped_path": "/sdk/bin/libnspr4.so"
+          },
+          "libnss3.so": {
+            "file_id": [
+              8,
+              1,
+              263886
+            ],
+            "input_path": "/sdk/bin/libnss3.so",
+            "mapped_path": "/sdk/bin/libnss3.so"
+          },
+          "libnssutil3.so": {
+            "file_id": [
+              8,
+              1,
+              263881
+            ],
+            "input_path": "/sdk/bin/libnssutil3.so",
+            "mapped_path": "/sdk/bin/libnssutil3.so"
+          },
+          "libplc4.so": {
+            "file_id": [
+              8,
+              1,
+              263879
+            ],
+            "input_path": "/sdk/bin/libplc4.so",
+            "mapped_path": "/sdk/bin/libplc4.so"
+          },
+          "libplds4.so": {
+            "file_id": [
+              8,
+              1,
+              263880
+            ],
+            "input_path": "/sdk/bin/libplds4.so",
+            "mapped_path": "/sdk/bin/libplds4.so"
+          },
+          "libsoftokn3.so": {
+            "file_id": [
+              8,
+              1,
+              263885
+            ],
+            "input_path": "/sdk/bin/libsoftokn3.so",
+            "mapped_path": "/sdk/bin/libsoftokn3.so"
+          },
+          "libssl3.so": {
+            "file_id": [
+              8,
+              1,
+              263887
+            ],
+            "input_path": "/sdk/bin/libssl3.so",
+            "mapped_path": "/sdk/bin/libssl3.so"
+          }
+        },
+        "process": {
+          "exe": "/usr/bin/python3.12",
+          "finish_ns": 13021388818445,
+          "finished_at": "2026-11-25T17:44:41.286+00:00",
+          "pid": 13,
+          "ppid": 7,
+          "python": "3.12.3",
+          "start_ns": 13021331466111,
+          "started_at": "2026-11-25T17:44:41.229+00:00",
+          "uid": 1000
+        },
+        "remote": [
+          "127.0.0.1",
+          53619
+        ],
+        "response_fin": true,
+        "response_status": 200,
+        "stream": 0,
+        "timing": {
+          "auth_event_ns": 13021351213744,
+          "auth_sent_ns": 13021361602441,
+          "connected_ns": 13021382870955,
+          "request_queued_ns": 13021382956475,
+          "response_fin_ns": 13021384319718
+        }
+      },
+      "passed": true,
+      "peer": {
+        "challenge_inode": {
+          "access": 0,
+          "close_read": 1,
+          "open": 1
+        },
+        "challenge_sha256": "2c0ffc1d062385f83b3a2f915df8d018df66e0becf4a2b3ccded4f1cedc7657c",
+        "log_sha256": "2eaaa8f6767d3440ce96a928c64c37d1d9ccdc913d923282d87ada59c7a12dca",
+        "native_log": {
+          "alpn": [
+            "h3"
+          ],
+          "received_crypto_alert": [],
+          "received_udp": [
+            "[127.0.0.1]:46290"
+          ],
+          "requests": [
+            {
+              "headers": [
+                [
+                  ":method",
+                  "GET"
+                ],
+                [
+                  ":scheme",
+                  "https"
+                ],
+                [
+                  ":authority",
+                  "localhost:53619"
+                ],
+                [
+                  ":path",
+                  "/challenge-7181f69554028d720f304bec3d7dbbad.bin"
+                ]
+              ],
+              "headers_complete": true,
+              "line": "http: stream 0x0 request headers started",
+              "stream": 0
+            }
+          ],
+          "responses": [
+            {
+              "headers": [
+                [
+                  ":status",
+                  "200"
+                ],
+                [
+                  "server",
+                  "nghttp3/ngtcp2 server"
+                ],
+                [
+                  "content-type",
+                  "text/plain"
+                ],
+                [
+                  "content-length",
+                  "32"
+                ]
+              ],
+              "line": "http: stream 0x0 submit response headers",
+              "stream": 0
+            }
+          ]
+        },
+        "port": 53619,
+        "process": {
+          "exe": "/peer/usr/sbin/gtlsserver",
+          "exit": 0,
+          "finish_ns": 13021625442110,
+          "finished_at": "2026-11-25T17:44:41.523+00:00",
+          "live_at_stop": true,
+          "maps": {
+            "libgnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libgnutls.so.30.37.1",
+              "sha256": "17ffd34fd0bc239903ca37e95bb14eab6ee986c8d1260a5a08f16e0bfc669739"
+            },
+            "libnghttp3.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libnghttp3.so.3.0.2",
+              "sha256": "a8c7afd2a03d374992f6d3b5ad19815bef33c8c877e74c6a525f20d946600271"
+            },
+            "libngtcp2.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2.so.9.0.1",
+              "sha256": "482c896e46056ea537b67fc1340ce3bc8a7ff0a4b2a5da820f80ba41cfb9a93e"
+            },
+            "libngtcp2_crypto_gnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2_crypto_gnutls.so.2.1.0",
+              "sha256": "be73d54efa1686ea661228b28e80c2c97113963370d5127cb66da9db7fa9ac79"
+            }
+          },
+          "parent_pid": 7,
+          "pid": 12,
+          "ready_ns": 13020766761751,
+          "started_at": "2026-11-25T17:44:40.587+00:00",
+          "stop_sent_ns": 13021624211708,
+          "udp_socket_inode": "344253",
+          "uid": 1000
+        },
+        "qlog": {
+          "packet_rx": 10,
+          "packet_tx": 16,
+          "received_transport_close": [],
+          "request_fin": [
+            0
+          ],
+          "request_streams": [
+            0
+          ],
+          "response_fin": [
+            0
+          ]
+        },
+        "qlog_sha256": "ad21914e6052afe5fba7015af8c043a835d8fce5deff49ae7264ad6cbb844930",
+        "target": "/challenge-7181f69554028d720f304bec3d7dbbad.bin"
+      }
+    },
+    "wrong_ca": {
+      "client": {
+        "abi_version": "neqo-0.32.0/nss-3.131",
+        "auth": {
+          "accepted": false,
+          "chain_and_hostname_ok": false,
+          "expected_leaf_sha256": "f8346b7b7e7f1c7e8a66c2aeb652ef63aeb4478bf2487f44bf77fa8087e16cf4",
+          "hostname": "localhost",
+          "openssl_exit": 2,
+          "openssl_output": "CN = localhost\nerror 20 at 0 depth lookup: unable to get local issuer certificate\nerror /tmp/quic-ngtcp2-xxhlqk62/wrong_ca/client/presented-leaf.pem: verification failed",
+          "pin_ok": true,
+          "presented_der_sha256": [
+            "f8346b7b7e7f1c7e8a66c2aeb652ef63aeb4478bf2487f44bf77fa8087e16cf4"
+          ],
+          "trust_anchor_sha256": "4bc0b34b26fd4b3837480db6b2fcc62aa097c8e2a2501c7301745661994dff33"
+        },
+        "closed": {
+          "protocol_error": true,
+          "reason": "crypto alert: 49",
+          "state": "closed",
+          "type": "state"
+        },
+        "connected": false,
+        "handle_closed": true,
+        "local": [
+          "127.0.0.1",
+          35987
+        ],
+        "maps": {
+          "libfreebl3.so": {
+            "file_id": [
+              8,
+              1,
+              263884
+            ],
+            "input_path": "/sdk/bin/libfreebl3.so",
+            "mapped_path": "/sdk/bin/libfreebl3.so"
+          },
+          "libfreeblpriv3.so": {
+            "file_id": [
+              8,
+              1,
+              263883
+            ],
+            "input_path": "/sdk/bin/libfreeblpriv3.so",
+            "mapped_path": "/sdk/bin/libfreeblpriv3.so"
+          },
+          "libmozsqlite3.so": {
+            "file_id": [
+              8,
+              1,
+              263882
+            ],
+            "input_path": "/sdk/bin/libmozsqlite3.so",
+            "mapped_path": "/sdk/bin/libmozsqlite3.so"
+          },
+          "libnecko_quic.so": {
+            "file_id": [
+              8,
+              1,
+              4026412
+            ],
+            "input_path": "/quic/libnecko_quic.so",
+            "mapped_path": "/quic/libnecko_quic.so"
+          },
+          "libnspr4.so": {
+            "file_id": [
+              8,
+              1,
+              263878
+            ],
+            "input_path": "/sdk/bin/libnspr4.so",
+            "mapped_path": "/sdk/bin/libnspr4.so"
+          },
+          "libnss3.so": {
+            "file_id": [
+              8,
+              1,
+              263886
+            ],
+            "input_path": "/sdk/bin/libnss3.so",
+            "mapped_path": "/sdk/bin/libnss3.so"
+          },
+          "libnssutil3.so": {
+            "file_id": [
+              8,
+              1,
+              263881
+            ],
+            "input_path": "/sdk/bin/libnssutil3.so",
+            "mapped_path": "/sdk/bin/libnssutil3.so"
+          },
+          "libplc4.so": {
+            "file_id": [
+              8,
+              1,
+              263879
+            ],
+            "input_path": "/sdk/bin/libplc4.so",
+            "mapped_path": "/sdk/bin/libplc4.so"
+          },
+          "libplds4.so": {
+            "file_id": [
+              8,
+              1,
+              263880
+            ],
+            "input_path": "/sdk/bin/libplds4.so",
+            "mapped_path": "/sdk/bin/libplds4.so"
+          },
+          "libsoftokn3.so": {
+            "file_id": [
+              8,
+              1,
+              263885
+            ],
+            "input_path": "/sdk/bin/libsoftokn3.so",
+            "mapped_path": "/sdk/bin/libsoftokn3.so"
+          },
+          "libssl3.so": {
+            "file_id": [
+              8,
+              1,
+              263887
+            ],
+            "input_path": "/sdk/bin/libssl3.so",
+            "mapped_path": "/sdk/bin/libssl3.so"
+          }
+        },
+        "process": {
+          "exe": "/usr/bin/python3.12",
+          "finish_ns": 13023143877104,
+          "finished_at": "2026-11-25T17:44:43.041+00:00",
+          "pid": 19,
+          "ppid": 7,
+          "python": "3.12.3",
+          "start_ns": 13023117420141,
+          "started_at": "2026-11-25T17:44:43.015+00:00",
+          "uid": 1000
+        },
+        "remote": [
+          "127.0.0.1",
+          53366
+        ],
+        "stream": null,
+        "timing": {
+          "auth_event_ns": 13023127054357,
+          "auth_sent_ns": 13023137303654,
+          "client_closed_ns": 13023141762741
+        }
+      },
+      "passed": true,
+      "peer": {
+        "challenge_inode": {
+          "access": 0,
+          "close_read": 0,
+          "open": 0
+        },
+        "log_sha256": "a424352e8a17fabaa3e79385b2a0cf380916463c31b6247d2a96a3e5e3f1e5a3",
+        "native_log": {
+          "alpn": [],
+          "received_crypto_alert": [
+            {
+              "error_code": 305,
+              "packet_number": 1,
+              "packet_type": "Handshake",
+              "peer_relative_ms": 20
+            }
+          ],
+          "received_udp": [
+            "[127.0.0.1]:35987"
+          ],
+          "requests": [],
+          "responses": []
+        },
+        "port": 53366,
+        "process": {
+          "exe": "/peer/usr/sbin/gtlsserver",
+          "exit": 0,
+          "finish_ns": 13023399469281,
+          "finished_at": "2026-11-25T17:44:43.297+00:00",
+          "live_at_stop": true,
+          "maps": {
+            "libgnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libgnutls.so.30.37.1",
+              "sha256": "17ffd34fd0bc239903ca37e95bb14eab6ee986c8d1260a5a08f16e0bfc669739"
+            },
+            "libnghttp3.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libnghttp3.so.3.0.2",
+              "sha256": "a8c7afd2a03d374992f6d3b5ad19815bef33c8c877e74c6a525f20d946600271"
+            },
+            "libngtcp2.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2.so.9.0.1",
+              "sha256": "482c896e46056ea537b67fc1340ce3bc8a7ff0a4b2a5da820f80ba41cfb9a93e"
+            },
+            "libngtcp2_crypto_gnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2_crypto_gnutls.so.2.1.0",
+              "sha256": "be73d54efa1686ea661228b28e80c2c97113963370d5127cb66da9db7fa9ac79"
+            }
+          },
+          "parent_pid": 7,
+          "pid": 18,
+          "ready_ns": 13022524426415,
+          "started_at": "2026-11-25T17:44:42.393+00:00",
+          "stop_sent_ns": 13023398589479,
+          "udp_socket_inode": "340890",
+          "uid": 1000
+        },
+        "qlog": {
+          "packet_rx": 6,
+          "packet_tx": 5,
+          "received_transport_close": [
+            {
+              "error_code": 305,
+              "packet_number": 1,
+              "packet_type": "handshake",
+              "peer_relative_ms": 20
+            }
+          ],
+          "request_fin": [],
+          "request_streams": [],
+          "response_fin": []
+        },
+        "qlog_sha256": "3185e0a7533ba0022d7ba40582b12356c3fd08f5eef34a89683a7702d308ea53",
+        "target": "/challenge-238ec4079481295a7931bf6fa68d9424.bin"
+      }
+    },
+    "wrong_leaf_pin": {
+      "client": {
+        "abi_version": "neqo-0.32.0/nss-3.131",
+        "auth": {
+          "accepted": false,
+          "chain_and_hostname_ok": true,
+          "expected_leaf_sha256": "08346b7b7e7f1c7e8a66c2aeb652ef63aeb4478bf2487f44bf77fa8087e16cf4",
+          "hostname": "localhost",
+          "openssl_exit": 0,
+          "openssl_output": "/tmp/quic-ngtcp2-xxhlqk62/wrong_leaf_pin/client/presented-leaf.pem: OK",
+          "pin_ok": false,
+          "presented_der_sha256": [
+            "f8346b7b7e7f1c7e8a66c2aeb652ef63aeb4478bf2487f44bf77fa8087e16cf4"
+          ],
+          "trust_anchor_sha256": "a561b778a29db38f2e6ae17e6f07ad8a236c48842f1101f3324e103726afba04"
+        },
+        "closed": {
+          "protocol_error": true,
+          "reason": "crypto alert: 49",
+          "state": "closed",
+          "type": "state"
+        },
+        "connected": false,
+        "handle_closed": true,
+        "local": [
+          "127.0.0.1",
+          47414
+        ],
+        "maps": {
+          "libfreebl3.so": {
+            "file_id": [
+              8,
+              1,
+              263884
+            ],
+            "input_path": "/sdk/bin/libfreebl3.so",
+            "mapped_path": "/sdk/bin/libfreebl3.so"
+          },
+          "libfreeblpriv3.so": {
+            "file_id": [
+              8,
+              1,
+              263883
+            ],
+            "input_path": "/sdk/bin/libfreeblpriv3.so",
+            "mapped_path": "/sdk/bin/libfreeblpriv3.so"
+          },
+          "libmozsqlite3.so": {
+            "file_id": [
+              8,
+              1,
+              263882
+            ],
+            "input_path": "/sdk/bin/libmozsqlite3.so",
+            "mapped_path": "/sdk/bin/libmozsqlite3.so"
+          },
+          "libnecko_quic.so": {
+            "file_id": [
+              8,
+              1,
+              4026412
+            ],
+            "input_path": "/quic/libnecko_quic.so",
+            "mapped_path": "/quic/libnecko_quic.so"
+          },
+          "libnspr4.so": {
+            "file_id": [
+              8,
+              1,
+              263878
+            ],
+            "input_path": "/sdk/bin/libnspr4.so",
+            "mapped_path": "/sdk/bin/libnspr4.so"
+          },
+          "libnss3.so": {
+            "file_id": [
+              8,
+              1,
+              263886
+            ],
+            "input_path": "/sdk/bin/libnss3.so",
+            "mapped_path": "/sdk/bin/libnss3.so"
+          },
+          "libnssutil3.so": {
+            "file_id": [
+              8,
+              1,
+              263881
+            ],
+            "input_path": "/sdk/bin/libnssutil3.so",
+            "mapped_path": "/sdk/bin/libnssutil3.so"
+          },
+          "libplc4.so": {
+            "file_id": [
+              8,
+              1,
+              263879
+            ],
+            "input_path": "/sdk/bin/libplc4.so",
+            "mapped_path": "/sdk/bin/libplc4.so"
+          },
+          "libplds4.so": {
+            "file_id": [
+              8,
+              1,
+              263880
+            ],
+            "input_path": "/sdk/bin/libplds4.so",
+            "mapped_path": "/sdk/bin/libplds4.so"
+          },
+          "libsoftokn3.so": {
+            "file_id": [
+              8,
+              1,
+              263885
+            ],
+            "input_path": "/sdk/bin/libsoftokn3.so",
+            "mapped_path": "/sdk/bin/libsoftokn3.so"
+          },
+          "libssl3.so": {
+            "file_id": [
+              8,
+              1,
+              263887
+            ],
+            "input_path": "/sdk/bin/libssl3.so",
+            "mapped_path": "/sdk/bin/libssl3.so"
+          }
+        },
+        "process": {
+          "exe": "/usr/bin/python3.12",
+          "finish_ns": 13022237370868,
+          "finished_at": "2026-11-25T17:44:42.134+00:00",
+          "pid": 16,
+          "ppid": 7,
+          "python": "3.12.3",
+          "start_ns": 13022208161460,
+          "started_at": "2026-11-25T17:44:42.105+00:00",
+          "uid": 1000
+        },
+        "remote": [
+          "127.0.0.1",
+          37154
+        ],
+        "stream": null,
+        "timing": {
+          "auth_event_ns": 13022217849116,
+          "auth_sent_ns": 13022230793817,
+          "client_closed_ns": 13022235298984
+        }
+      },
+      "passed": true,
+      "peer": {
+        "challenge_inode": {
+          "access": 0,
+          "close_read": 0,
+          "open": 0
+        },
+        "log_sha256": "016b893af3b8bb367006e4075917bf64299e0d8de7a0ae0242c2153b46d09b21",
+        "native_log": {
+          "alpn": [],
+          "received_crypto_alert": [
+            {
+              "error_code": 305,
+              "packet_number": 1,
+              "packet_type": "Handshake",
+              "peer_relative_ms": 23
+            }
+          ],
+          "received_udp": [
+            "[127.0.0.1]:47414"
+          ],
+          "requests": [],
+          "responses": []
+        },
+        "port": 37154,
+        "process": {
+          "exe": "/peer/usr/sbin/gtlsserver",
+          "exit": 0,
+          "finish_ns": 13022487570995,
+          "finished_at": "2026-11-25T17:44:42.385+00:00",
+          "live_at_stop": true,
+          "maps": {
+            "libgnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libgnutls.so.30.37.1",
+              "sha256": "17ffd34fd0bc239903ca37e95bb14eab6ee986c8d1260a5a08f16e0bfc669739"
+            },
+            "libnghttp3.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libnghttp3.so.3.0.2",
+              "sha256": "a8c7afd2a03d374992f6d3b5ad19815bef33c8c877e74c6a525f20d946600271"
+            },
+            "libngtcp2.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2.so.9.0.1",
+              "sha256": "482c896e46056ea537b67fc1340ce3bc8a7ff0a4b2a5da820f80ba41cfb9a93e"
+            },
+            "libngtcp2_crypto_gnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2_crypto_gnutls.so.2.1.0",
+              "sha256": "be73d54efa1686ea661228b28e80c2c97113963370d5127cb66da9db7fa9ac79"
+            }
+          },
+          "parent_pid": 7,
+          "pid": 15,
+          "ready_ns": 13021660616808,
+          "started_at": "2026-11-25T17:44:41.535+00:00",
+          "stop_sent_ns": 13022486706794,
+          "udp_socket_inode": "340867",
+          "uid": 1000
+        },
+        "qlog": {
+          "packet_rx": 6,
+          "packet_tx": 5,
+          "received_transport_close": [
+            {
+              "error_code": 305,
+              "packet_number": 1,
+              "packet_type": "handshake",
+              "peer_relative_ms": 23
+            }
+          ],
+          "request_fin": [],
+          "request_streams": [],
+          "response_fin": []
+        },
+        "qlog_sha256": "24604464e0db3b3df6e44238e8ad233cf316fa6cbde5e753803fa0d59c7ac091",
+        "target": "/challenge-175d07e8d012d73ef479dd0ad3d2ccb7.bin"
+      }
+    }
+  },
+  "controller": {
+    "exe": "/usr/bin/python3.12",
+    "finish_ns": 13023405625131,
+    "finished_at": "2026-11-25T17:44:43.303+00:00",
+    "pid": 7,
+    "ppid": 1,
+    "python": "3.12.3",
+    "start_ns": 13018988825494,
+    "started_at": "2026-11-25T17:44:38.886+00:00",
+    "uid": 1000
+  },
+  "inputs": {
+    "library": "/quic/libnecko_quic.so",
+    "library_sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8",
+    "limits_s": {
+      "client_process": 14,
+      "exchange": 10,
+      "observation": 0.2,
+      "ready": 5,
+      "stop": 3
+    },
+    "loopback": "127.0.0.1",
+    "peer_expected_package": "ngtcp2-server 0.12.1+dfsg-1+deb12u1build0.24.04.1",
+    "peer_lib_dir": "/peer/usr/lib/aarch64-linux-gnu",
+    "peer_server": "/peer/usr/sbin/gtlsserver",
+    "peer_server_sha256": "cb20d62b51512f0fb871378627c9eb9e671b19cf9fa0b5a68c5288b48e01cf8b",
+    "peer_server_sha256_checked": true,
+    "sdk_bin": "/sdk/bin",
+    "sdk_sha256": {
+      "libfreebl3.so": "bfda13d1629340dd4bc5996898f74647230d81bf76e3b14c5f9ae622cbe7790d",
+      "libfreeblpriv3.so": "437f9a211c257cbb8b94371052d48f8365b9910052d35fc6314170847fcb63df",
+      "libmozsqlite3.so": "01a06cdb9445300ca2c8e04d30a1094f74dac7316c64c948763a30858654cff8",
+      "libnspr4.so": "5768cb94185f12d89f8ef7e734609022de5555d9f1447a07dda506f2c82d8609",
+      "libnss3.so": "9fd29965c4ad48822c5a3169dbb797a73e08ac53855aa05849389bc8d67cb5a6",
+      "libnssutil3.so": "1c34455196bbc87a0970f2957ce2203adb5cb129cee571d8d7abb1c0e6a12234",
+      "libplc4.so": "a501d4b25eaf0c8a0ff7cd3bf796c3251bbde600f0d5ee4d805aefce40441a51",
+      "libplds4.so": "aa868639d6d9935f58c039559f965a3d4f4d0c874f0ca33058363948abed9f6f",
+      "libsoftokn3.so": "d384e4130db0204f14cec3ed4262e070a56ce86ff4dfe0ca18e5fa3b03aaf2e0",
+      "libssl3.so": "b8e239a3aab1530c9e8a5c3f4e6d4aee104ec8c46c6bb1dc2a45f7511d325496"
+    }
+  },
+  "passed": true,
+  "schema": "ruyijs-arm64-quic-ngtcp2-interop-v1",
+  "scope": "component C ABI and stock H3 peer on IPv4 loopback only; no installed JS H3 or public network",
+  "test_leaf_der_sha256": "f8346b7b7e7f1c7e8a66c2aeb652ef63aeb4478bf2487f44bf77fa8087e16cf4"
+}
