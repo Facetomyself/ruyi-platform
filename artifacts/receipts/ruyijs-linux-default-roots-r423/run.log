@@ -1,0 +1,3 @@
+{"passed": true, "value": {"e": "TypeError: NetworkError when attempting to fetch resource."}, "err": "certificate chain verification failed (-8079)"}
+RC=0
+END

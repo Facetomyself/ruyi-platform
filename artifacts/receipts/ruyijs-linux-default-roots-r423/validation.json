@@ -1,0 +1,46 @@
+{
+  "checked_at": "2026-11-25T13:20:00+08:00",
+  "end_to_end": {
+    "interpretation": "the test CA is not among the 121 Mozilla roots, so the bundle loaded and was actually consulted; it widened chain checking without trusting an arbitrary CA",
+    "result": "refused with certificate chain verification failed (-8079), peer received zero HTTP requests",
+    "setup": "leaf chained to the private test CA, pin present, default_anchors:true"
+  },
+  "evidence": {
+    "probe": "8b7d2226a942573d422916e940d3b9704230e8800c43f34fe896c429844582cf",
+    "run_log": "701e86069681d5b55faca00dd5b47397e1e6a9c61d7e83fb8f5f5f11e3b2edcf"
+  },
+  "feature": {
+    "cutoffs_shipped": 1,
+    "digest_pinning": "both files fail closed on a swapped copy, same rule as caller anchors",
+    "model": "the leaf pin stays mandatory; only the chain anchor set widens to the Mozilla bundle",
+    "pin_key": "default_anchors: true",
+    "roots_pem_bytes": 181603,
+    "roots_shipped": 121
+  },
+  "not_changed": "the trust model stays opt-in; a pin file without default_anchors keeps the previous behaviour exactly",
+  "offline_tests": 34,
+  "outcome": "opt_in_default_mozilla_roots_ship_and_do_not_overtrust",
+  "schema": "ruyijs-linux-default-roots-r423.v1",
+  "still_open": [
+    "OCSP enforcement",
+    "CRL (not linkable)",
+    "PKIX name constraints",
+    "h2 framing",
+    "QUIC",
+    "ARM64"
+  ],
+  "unit_matrix": {
+    "caller cutoff for an unrelated root merges to 2 entries": "pass",
+    "combined with trust_anchors refused": "pass",
+    "default_anchors loads 121 roots and 1 cutoff": "pass",
+    "non-true value refused": "pass",
+    "swapped bundle digest mismatch": "pass"
+  },
+  "wheel": {
+    "bytes": 5549522,
+    "cutoffs_sha256": "c7da1746dd827a47584fa5fe82204e981eae4d628c8590fe4c23083b2a66ac1a",
+    "name": "ruyijs_http1-0.2.31+inner.r423-py3-none-linux_x86_64.whl",
+    "new_entries": 3,
+    "roots_sha256": "b5e44e6cf3ec2cda6131fec4e60a358ed022af5d5a8584da589b1851a56d0bb5"
+  }
+}

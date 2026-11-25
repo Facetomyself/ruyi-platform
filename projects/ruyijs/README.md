@@ -84,6 +84,14 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**默认 Mozilla 根库（R423）：`default_anchors: true` 加入 pin 文件即可启用。** [回执](../../artifacts/receipts/ruyijs-linux-default-roots-r423/validation.json)
+
+- 121 张根 + 1 条 cutoff（Izenpe）打进 wheel `0.2.31+inner.r423`（新 3 个条目，两文件带构建期钉死的哈希，换文件即拒绝）。
+- **信任模型不变**：叶子固定值仍必需；只有链锚点集合从"调用方显式给的"放宽到"Mozilla 根库"。
+- e2e：叶子链到私有测试 CA、pin 齐全、`default_anchors:true` → 拒绝（`-8079`）、对端 0 请求——证明 121 根确实被加载并参与判定，且没有顺带信任任意 CA。
+- 34 个离线测试通过（新增 1 个：加载 121、非 true 拒绝、与 trust_anchors 互斥、换文件哈希不符）。
+- 同时修了 fork 的 build.sh 注释漂移（PR #37，头部 33 = 命令 33）。
+
 **交接摘要（R422）：** [docs/15-linux-handoff.md](../../docs/15-linux-handoff.md) —— 一页纸说明交付了什么、凭什么相信、还差什么，以及三个高重复率的坑。给接手者，不必重读数百条台账。
 
 **OCSP 尝试的收尾（R421）：确认没有伤到既有路径。** [回执](../../artifacts/receipts/ruyijs-linux-chain-scope-r421/validation.json)
