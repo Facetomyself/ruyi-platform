@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T00:38:00+08:00'
+generated_at: '2026-11-26T02:19:45+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -46,14 +46,15 @@ projects:
     visibility_changed: '2026-11-20'
     submodule: submodules/ruyihttp
     source: complete
+    version: 0.9.1
     build:
-      win_amd64: ready (rebuilt, hash verified)
-      darwin_arm64: ready (rebuilt, hash verified)
-      linux_x86_64: ready (rebuilt; native x86_64 CPU, Ubuntu 24.04 container, glibc 2.39; live HTTPS 200, TLS 1.3, h2)
-      darwin_x86_64: ready (6 source-built x86_64 dylibs; macosx_15_0_x86_64; H1/H2/H3 on Intel macOS 15.7.9)
-      linux_aarch64: ready (14 source-built ELF; manylinux_2_39_aarch64; native H1/H2/H3 and Oracle ARM transport verified)
-    tests: 78 discovered locally (67 pass + 11 opt-in skips) with PySocks; installed-wheel request-boundary gates pass on five targets
-    latest_local_contract: '2026-11-25: offline source contracts and installed ARM64 wheel on isolated glibc 2.39; four review regressions exercised with controlled positive and negative cases'
+      win_amd64: ready (original pinned x64 DLLs; legacy JSON H3, NSS/Neqo telemetry)
+      darwin_arm64: ready (6 source-built arm64 dylibs; macOS 26+, measured H3 telemetry; body ABI v1)
+      linux_x86_64: ready (14 source-built amd64 ELF; manylinux_2_39, measured H1/H2/H3, body ABI v1)
+      darwin_x86_64: ready (6 source-built Intel dylibs; macOS 15+, measured H3 telemetry; body ABI v1)
+      linux_aarch64: ready (14 source-built AArch64 ELF; manylinux_2_39, measured H1/H2/H3, body ABI v1)
+    tests: 126/126 with source ARM64 native H3, body ABI, IPv6, SOCKS and retry gates enabled
+    latest_local_contract: '2026-11-26: CPython 3.10.12 on real aarch64, isolated glibc 2.39, NSS 3.132; installed-wheel qualification and timings recorded separately'
     native_wheel_inspection:
       tool: 2903c12608bbf1ffce9f6ee95406ef2aaaa38a7b
       scope: 'read-only ZIP inspection, bounded central directory and selected native entries, duplicate and non-x86 Linux guards; historical Windows passes, old macOS missing QUIC rejected'
@@ -84,7 +85,18 @@ projects:
       same_site: scheme plus full canonical IP, PSL for DNS names
       connect_budget: shared across pool wait, coalescing DNS, dial and handshake per attempt
       early_h2: preserve complete final response on NO_ERROR; 9/9 real TLS controls per target
-    phase: 原生 wheel 与请求边界已分项验收，见 build、transport_acceptance 和 request_boundaries
+    optimized_release:
+      version: 0.9.1
+      qualification: artifacts/receipts/ruyihttp-0.9.1/qualification.json
+      perf_reference: artifacts/receipts/ruyihttp-0.9.1/baseline.json
+      perf_candidate: artifacts/receipts/ruyihttp-0.9.1/candidate.json
+      perf_workflow: https://github.com/Facetomyself/ruyihttp/actions/runs/45670270866
+      full_matrix: https://github.com/Facetomyself/ruyihttp/actions/runs/45670260976
+      runtime_endpoints: ['3.10','3.14']
+      binary_body_v1: [linux_aarch64, linux_x86_64, darwin_arm64, darwin_x86_64]
+      legacy_json_body: [win_amd64]
+      trust: content-keyed immutable CA snapshots; leaf and host verified on each new handshake
+    phase: 0.9.1 传输、升级及性能验收，见 optimized_release
     blocked_by: []
     verified:
       native_hashes: pass
@@ -2886,7 +2898,7 @@ submodules:
     state: added
   ruyihttp:
     url: https://github.com/Facetomyself/ruyihttp
-    commit: ea44f8fe4468bbee80996e4e73745d6d53c072cc
+    commit: fae13b0a9eabbafbcdbf5c59438875525fcc0d0b
     visibility: public
     state: added
   ruyijs:

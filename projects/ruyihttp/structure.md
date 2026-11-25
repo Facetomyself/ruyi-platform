@@ -1,40 +1,25 @@
-# RuyiHttp 现有结构
+# RuyiHttp 目录与维护职责
 
-```
+```text
 submodules/ruyihttp/
-├── ruyihttp/                       Python 客户端和平台清单
-│   ├── _transport.py    exchange 抽象 / 重试 / 缓存
-│   ├── _http2.py    自实现 HTTP/2
-│   ├── _http3.py    QUIC
-│   ├── _firefox.py    header 顺序 / UA / cookie
-│   ├── _nss.py    ctypes 绑定
-│   ├── _tls_profiles.py    100–159 profile 表
-│   ├── _connect.py    TCP / 代理
-│   ├── sessions.py    Session 子类
-│   ├── _socks.py                     57
-│   ├── _retry.py                     47
-│   ├── api.py                        40
-│   ├── adapters.py                    9
-│   └── __init__.py                  101
-├── native/
-│   ├── linux_x86_64/   14 文件  8.4 MB
-│   ├── darwin_arm64/    6 文件  8.2 MB
-│   ├── win_amd64/       6 文件  7.2 MB
-│   ├── darwin_x86_64/   6 个 Intel Mach-O dylib、哈希及固定源码构建来源
-│   └── linux_aarch64/   14 个 AArch64 ELF、哈希与构建来源
-├── tools/             build_native.py / verify_runtime.py
-├── tests/             契约、原生清单、H3 集成测试
-├── ci/                安装后的 HTTP、双跳代理、H2 EOF 与原生平台验收
-├── docs/              build-native / licensing / platform-support
-├── setup.py    行
-├── pyproject.toml
-└── dist-v0.9.0-legacy/   2 个旧 wheel 归档 + VERIFICATION.md
+├── ruyihttp/                          Python API 与运行时配置
+│   ├── sessions.py、api.py             会话与 Requests 风格接口
+│   ├── _transport.py、_connect.py      连接池、拨号竞速、期限与 Alt-Svc
+│   ├── _http2.py、_http3.py            协议状态、上传/下载与复用
+│   ├── _retry.py、_socks.py            重试语义与 SOCKS 协商
+│   ├── _nss.py、_trust.py              NSS 绑定、只读 CA 缓存与逐连接校验
+│   ├── _native_buffer.py              有长度边界的原生缓冲区读取
+│   ├── _firefox.py、_tls_profiles.py   请求配置和站点判定
+│   └── runtime-manifest.json          原生文件、版本与四份数据文件的哈希
+├── native/                            每个目标一套库、SHA256SUMS 和来源记录
+│   └── patches/                       固定 donor 上的 H3 数据及观测补丁
+├── ci/                                目标机安装、协议、负例及旧版本升级验收
+├── tests/                             单元、契约与 opt-in 原生网络测试
+├── benchmarks/                        独立回环源站、性能采样和趋势报表
+├── tools/                             原生预检、导入、构建追溯及准入
+├── docs/                              平台、构建、H2 流控、性能与分发说明
+├── setup.py、pyproject.toml            平台标签、打包与项目元数据
+└── dist-v0.9.0-legacy/                 历史发布物，仅供溯源
 ```
 
-## 缺失
-
-| 项 | 现状 | 补法 |
-| --- | --- | --- |
-| 原生库 C/C++/Rust 源码 | ❌ 不在树内 | 参照 `ff-ruyijs/native/`（见 `docs/02-source-recovery.md` §1） |
-| 两个新原生平台 | 架构、原生库存及协议验证分开记录 | 见[平台矩阵](README.md#平台矩阵) |
-| Linux wheel | amd64、aarch64 均可从仓内原生文件重建 | [构建与验收](README.md) |
+[项目入口](README.md)记录当前适用范围和历史验收。平台版本、源提交及工件哈希见[固定版本](../../PINS.md)。wheel 安装后的 `ruyihttp/native-provenance.json` 对应当前包中的原生文件，不是其他目标的来源记录。

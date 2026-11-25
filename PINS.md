@@ -45,11 +45,18 @@ git commit -m "chore: pin firefox to 39bfd14cb45c (RuyiTrace kernel build)"
 
 | 平台 | NSS | NSPR | Neqo | 出处 |
 | --- | --- | --- | --- | --- |
-| `win_amd64` | 3.131 | 4.40 | 0.32.0 | 原 ruyihttp 0.9.0 wheel |
-| `darwin_arm64` | 3.132 | 4.40 | 0.33.0 | ruyijs 0.4.1 macOS wheel |
-| `linux_x86_64` | 3.132 | 4.40 | 0.33.0 | ruyijs 0.4.1 manylinux wheel |
-| `darwin_x86_64` | 3.132（预期） | 4.40 | 0.33.0 | 未构建 |
-| `linux_aarch64` | 3.132（预期） | 4.40 | 0.33.0 | 未构建 |
+| `win_amd64` | 3.131 | 4.40 | 0.32.0 | 原 PyPI ruyihttp 0.9.0 的 6 个 DLL；保留 JSON 正文 ABI |
+| `darwin_arm64` | 3.132 | 4.40 | 0.33.0 | 原生 Apple Silicon 源码构建，正文 ABI v1，minOS 26.0 |
+| `linux_x86_64` | 3.132 | 4.40 | 0.33.0 | 原生 amd64 源码构建，正文 ABI v1，glibc 2.39 |
+| `darwin_x86_64` | 3.132 | 4.40 | 0.33.0 | 原生 Intel Mac 源码构建，正文 ABI v1，minOS 15.0 |
+| `linux_aarch64` | 3.132 | 4.40 | 0.33.0 | 原生 ARM64 源码构建，正文 ABI v1，glibc 2.39 |
+
+**0.9.1 更新（2026-11-26）**：上表替代早期 donor wheel 与空槽位状态；原始 0.9.0 验收保留在项目历史。四个 POSIX 目标固定 ff-ruyijs `f557fcd437aae5f18f313eb330bd3ef50f5fc7df`，Firefox 源码 `2887d9de1f69c0e9776413da80e7ba0d1225dd9b`。Windows 的原始二进制来源以其固定 wheel SHA 为准，未推定对应的 Firefox Git 提交。原生文件和补丁哈希在所锁定子模块的 `native/<platform>/provenance.json`；交付包哈希与目标机作业见 [0.9.1 发布回执](artifacts/receipts/ruyihttp-0.9.1/qualification.json)。
+
+```bash
+cd submodules/ruyihttp
+python3 tools/build_native.py --check
+```
 
 **硬规则**：core 与 QUIC 必须整组同版本，禁止 3.131 与 3.132 混搭。
 

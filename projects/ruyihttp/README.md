@@ -4,7 +4,7 @@
 | --- | --- |
 | 仓库 | `Facetomyself/ruyihttp`（**public**，2026-11-20 起） |
 | 挂载 | `submodules/ruyihttp` |
-| 版本 | `0.9.0` |
+| 版本 | `0.9.1`（仓库 wheel；源自原 `0.9.0` 维护树） |
 | 许可 | MPL-2.0 |
 
 ## 是什么
@@ -19,17 +19,18 @@ Firefox Necko/NSS 的 Requests 风格 HTTP 客户端。不启动浏览器，TLS 
 
 ```
 submodules/ruyihttp/
-├── ruyihttp/            13 个 .py，约 3900 行
+├── ruyihttp/            Python 客户端、只读信任缓存、原生缓冲读取及平台清单
 ├── native/
 │   ├── win_amd64/       6 文件，7.2 MB（NSS 3.131 / Neqo 0.32.0）
-│   ├── darwin_arm64/    6 文件，8.2 MB（NSS 3.132 / Neqo 0.33.0）
-│   ├── linux_x86_64/   14 文件，8.4 MB（NSS 3.132 / Neqo 0.33.0）
+│   ├── darwin_arm64/    6 个 Apple Silicon 源码构建 dylib，正文 ABI v1
+│   ├── linux_x86_64/   14 个 Linux x86_64 源码构建 ELF，正文 ABI v1
 │   ├── darwin_x86_64/   6 个 x86_64 dylib 和固定源码构建来源
 │   └── linux_aarch64/   14 个 AArch64 ELF 和固定源码构建来源
 ├── tools/               build_native.py / verify_runtime.py / check_linux_candidate.py
 ├── tests/               契约、原生预检和 opt-in HTTP/3 集成测试
 ├── ci/                  安装后 HTTP、H2 EOF、H3 和双跳代理验收
-├── docs/                build-native / licensing / platform-support
+├── benchmarks/          真实回环源站、冷/热连接性能与并发隔离趋势
+├── docs/                构建、平台、H2 流控与性能策略
 ├── dist-v0.9.0-legacy/  脱钩旧 wheel 归档 + VERIFICATION.md
 └── setup.py             平台选择与原生库打包
 ```
@@ -127,13 +128,21 @@ HTTP CONNECT、HTTPS CONNECT、SOCKS5h 三种入口经第二跳 CONNECT 到达�
 
 复验：在源码树外，以安装了目标 wheel 和 PySocks 的 Python 环境执行 `bash /path/to/checkout/ci/verify_request_boundaries.sh`。以上 TCP、TLS、HTTP/2 对端均为回环监听器，Cookie 用例检查实际准备好的请求。[分平台回执](../../artifacts/receipts/ruyihttp-request-boundaries-20261125.json)。
 
+### 2026-11-26：0.9.1 传输性能、协议完整性与升级验收
+
+- H3 处理对端正常停止上传后结束源数据消费，保留有效最终响应并继续区分取消、截断。UDP 持续不可用时可以复用已验证的同源 TCP；短预算跳过无谓竞速。Alt-Svc 和 QUIC 恢复信息具有 TTL、容量及相应字节限制。
+- 降低 ctypes 读取的分配成本；可复用 H2 连接按流容量租出，大流和慢读者保留受限窗口。只缓存内容寻址的只读 CA/约束，轮换后新握手重新验证。两种 Linux 和两种 macOS 均由固定源码构建 H3 正文 ABI v1；Windows 保留原始 DLL 与 JSON 正文兼容路径。
+- 五份 wheel 分别在 CPython 3.10、3.14 安装，对协议及新旧版本升级作独立检查。单次低时延基准、同连接流隔离、native 读写计数及 Windows 旧桥字段各有自己的证据，不能彼此替代。详见[验收回执](../../artifacts/receipts/ruyihttp-0.9.1/qualification.json)与[成对性能摘要](../../artifacts/receipts/ruyihttp-0.9.1/performance.md)。
+
+复验：在产品仓运行 `python tools/build_native.py --check`，并按[性能文档](../../submodules/ruyihttp/docs/performance.md)在源码树外运行已安装工件基准。每周趋势任务以真实报文/哈希作为功能门禁，普通共享 runner 上的耗时只作趋势参考。
+
 ## 剩余缺口
 
 | 项 | 卡在哪 |
 | --- | --- |
 | HTTP/3 经代理 | 普通 TCP 代理和直连 H3 已分别验收；这两种能力并不构成 CONNECT-UDP/MASQUE 验收 |
 | 旧系统兼容性 | Intel Mac 15.0 是二进制部署下限，目标机验收版本为 15.7.9；未宣称在 macOS 11–14 或 Linux glibc < 2.39 上可用 |
-| 原生库 C/C++/Rust 源码 | 不在树内，来源为 `ff-ruyijs` 0.4.1 wheel，见 `docs/02-source-recovery.md` |
+| 原生来源 | Windows 固定历史 wheel；POSIX 固定 donor、Firefox 源提交和本地补丁。安装包内的 `native-provenance.json` 给出对应目标的逐文件来源 |
 
 ## 构建
 
@@ -160,4 +169,4 @@ python -m pip install -U 'setuptools>=77' wheel
 ## 许可
 
 `ruyihttp/` 保留 Mozilla Public License 2.0 声明。macOS / Linux 原生库来自
-`ff-ruyijs` 0.4.1。详见仓库内 `docs/licensing.md` 与 `THIRD_PARTY_NOTICES.md`。
+固定的 `ff-ruyijs` / Firefox 来源和补丁。详见仓库内 `docs/licensing.md` 与 `THIRD_PARTY_NOTICES.md`。

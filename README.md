@@ -82,7 +82,7 @@ RuyiTrace 有三块互不重叠的内容，混在一个仓里会互相污染版�
 
 | 目录 | 远端 | 可见性 | 状态 | 说明 |
 | --- | --- | --- | --- | --- |
-| `submodules/ruyihttp` | `Facetomyself/ruyihttp` | **public**（2026-11-20 起） | ✅ 已有 | 完整源码树，含 26 个原生库文件 |
+| `submodules/ruyihttp` | `Facetomyself/ruyihttp` | **public**（2026-11-20 起） | ✅ 已有 | Python 源码和五平台原生运行时，见[项目记录](projects/ruyihttp/README.md) |
 | `submodules/ruyijs` | `Facetomyself/ruyijs-inner` | private | ✅ 已有（2026-11-04） | **内部版反编译产物 + 工程化源码**，wheel 的唯一来源 |
 | `submodules/ruyitrace` | `Facetomyself/ruyitrace` | private | ✅ 已有 | 控制台 + domtrace 还原 + 发布清单 |
 | `submodules/ruyi-mcp` | `Facetomyself/ruyi-mcp` | public | ✅ 已纳管 | [MCP 项目入口](projects/ruyi-mcp/README.md)：Linux 控制面、Firefox 与 Trace 共会话 |
@@ -168,7 +168,7 @@ ruyi-platform/
 
 | 类型 | 入库 | 理由 |
 | --- | --- | --- |
-| 原生库 `.so` / `.dll` / `.dylib` | ✅ **入库** | 三平台合计 24 MB，保证 wheel 可离线构建 |
+| 原生库 `.so` / `.dll` / `.dylib` | ✅ **入库** | 每个已验收目标仅保留一套原生库，保证 wheel 可离线封装 |
 | 内部 wheel（46 MB） | ❌ | 只记 SHA256 + 来源，见 `artifacts/manifests/` |
 | RuyiTrace 包（557 MB zip / 1.5 GB 解包） | ❌ | 只记 SHA256 + 内核文件 hash |
 | Firefox 源码树 | ❌ | 数十 GB，靠 submodule + pin |
