@@ -1,0 +1,164 @@
+{
+  "artifact": {
+    "bytes": 3533400,
+    "local": "deliverables/linux-ruyijs-quic-r431/libnecko_quic.so",
+    "name": "libnecko_quic.so",
+    "sha256": "4aef6ddd84187d75fedce5ca984921d7500fceddc23b209863f2e6af5520486c",
+    "target_path": "/home/ruyijs-donor-isolated-moz159/native-tls-r358/quic-linux-r431.release-14db137/run/artifact/libnecko_quic.so"
+  },
+  "checked_at": "2026-11-25T23:02:48+08:00",
+  "documentation_commit": "e005ad35882802182459d262452a1169b2c171fb",
+  "evidence_sha256": {
+    "SHA256SUMS": "b77c1f634aedb6a2c1e1f14b01d2ad4254a22de2d15d2f1ae657dc1c8393a216",
+    "build.container.json": "73791657a4247e5fa0a4e3a2d726a5bf0f016735852902a01560e8b3cac3377f",
+    "build.json": "f2507330a8fc593daa785e60d9ced13149023a42ba9b3724dd0e7663bc28cc6b",
+    "build.log": "0061db7f13b62796454e005296031a96f90952e35276a1e117909520601744db",
+    "codec-test.log": "42060247a3b6f3c6c6e02037f752fc09ae31b94b8f25d0bd65f2a2d3021b9af6",
+    "lifecycle.container.json": "588b1ccd22e50a3ea4cb7e5f478f44e1a3d7a95a48caf39fe50c5373a9b83126",
+    "lifecycle.log": "45c18efb650ad1ef5419aaee69b6f695615cbac91473374a074857132ca0a346",
+    "local-tls-regression.log": "16aec73bbfca2dcf881b97e48f71e22a708cd1afb355784cfea45d81115e8314"
+  },
+  "excluded": [
+    "authenticated QUIC handshake",
+    "server identity and certificate verification",
+    "HTTP/3 request/response",
+    "Alt-Svc routing",
+    "JS fetch or navigate",
+    "wheel inclusion",
+    "WebTransport",
+    "Linux ARM64"
+  ],
+  "host": "host185",
+  "inputs": {
+    "firefox": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+    "locked_packages": 94,
+    "neqo": "0.32.0",
+    "nss_rs": "0.16.1",
+    "nss_runtime": "3.131",
+    "offline_lock_sha256": "f29717b3b6dd6d0a756664bed35eff0f0c6541b081dd9bb547b359c4c22bd4de",
+    "private_source_hashes": {
+      "ci/check_linux_quic_component.py": "d34aeceb4e7c3f8939a857de35948c01abfd08b91b33b0f32e9c66c8a731310d",
+      "ci/run_linux_quic_component.sh": "3407f50ccdaa4383a412561bbab1a7ab418f30aab28749a85bcb8561b3fd564b",
+      "native/necko_quic/Cargo.toml": "a05f68937fa90146f172ef8e35bccd0d23be97f96b642841a29e30d128596613",
+      "native/necko_quic/linux.Cargo.lock": "f29717b3b6dd6d0a756664bed35eff0f0c6541b081dd9bb547b359c4c22bd4de",
+      "native/necko_quic/src/lib.rs": "d2baeb03b83ff3a011941a47b642e9d406e7d6749948c9d548ccf7f83170c460",
+      "tools/build_necko_quic.py": "332a0544c1e8ecbd4c7fddf9c515acd047266b838e442ce466d34edb247c9186",
+      "tools/build_neqo_linux.py": "266d7d53f5461908c95d68daa0b6ea7a32ffbdea4b9c8e58ff242f0197652051"
+    },
+    "registry_checksummed_packages": 81,
+    "sdk_sha256": {
+      "libfreebl3.so": "6ce86d852bbd22dc50065b44ce0828a66e37a29e5a6b10fada6ccb20e2f225af",
+      "libfreeblpriv3.so": "bdc4874c5c2965e6b93b818a41a3f2682dd14add4b22f35c779f81b112baa0a0",
+      "libmozsqlite3.so": "3e9dafc58fe64d1ac99ec84321de0808d03680c3b5db7e4a49ce0b1ecb33ce7f",
+      "libnspr4.so": "8553151f1ebfdde081295b567068ac581fa40d40de3b7014323a1433f7f6a684",
+      "libnss3.so": "3535df70c96919957e9bd81d5f7e079c2e155c2399e82b078c3f10ba1188b608",
+      "libnssutil3.so": "e84d473051d778e5b3c793654481e8ec542d7853c534270e6f7143600ca665a0",
+      "libplc4.so": "9805d62a9d876b393a6f9f05c35eba1df2962ded8ee188d670b3c22dcb87a5ad",
+      "libplds4.so": "36e48d9bf6ff1275f53d256e324c53e9000ce2bf34fdb9ffabb70aad0e9e9050",
+      "libsoftokn3.so": "11d9e0313554f86330762ee846e9a8b0b5cc0ada0133a7e062bbd63cfec48db4",
+      "libssl3.so": "d077aaeb1b59e85f809ffbc7e102b2467c36e0a19e7371c429f79e7e47563643"
+    },
+    "toolchain_image": "sha256:a32898229c1715dff280efb9f9edc04543dea16ad79ff9acbe3ffe146a9fe3bd"
+  },
+  "passed": true,
+  "private_build_commit": "14db13721891fd2fe83da6295e612d369631f658",
+  "private_repository": "Facetomyself/ruyijs-inner",
+  "runtime": {
+    "build": {
+      "exit": 0,
+      "finished": "2026-11-25T15:02:46.910467825Z",
+      "id": "558d7d2662ced2f1cdb923af58274efa93be7d81263f121b9f7fdfe785850f26",
+      "image": "sha256:a32898229c1715dff280efb9f9edc04543dea16ad79ff9acbe3ffe146a9fe3bd",
+      "memory": 3984588800,
+      "network": "none",
+      "oom": false,
+      "readonly": true,
+      "swap": 3984588800,
+      "uid": "1000:1000"
+    },
+    "lifecycle": {
+      "exit": 0,
+      "finished": "2026-11-25T15:02:48.1996217Z",
+      "id": "f888e9f5c48c2f2a972586eb8997dab32738f9978246a06c0172a4590b9159ea",
+      "image": "sha256:a32898229c1715dff280efb9f9edc04543dea16ad79ff9acbe3ffe146a9fe3bd",
+      "memory": 536870912,
+      "network": "none",
+      "oom": false,
+      "readonly": true,
+      "swap": 536870912,
+      "uid": "1000:1000"
+    }
+  },
+  "schema": "ruyijs-linux-private-quic-component-r431.v1",
+  "stage": "standalone-linux-x86_64-quic-component",
+  "tests": {
+    "actual_elf": {
+      "exports": [
+        "necko_quic_call",
+        "necko_quic_init",
+        "necko_quic_set_decoder",
+        "necko_quic_version"
+      ],
+      "needed": [
+        "libnssutil3.so",
+        "libnss3.so",
+        "libssl3.so",
+        "libnspr4.so",
+        "libfreebl3.so",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2",
+        "libz.so.1"
+      ],
+      "runpath": "$ORIGIN",
+      "soname": "libnecko_quic.so"
+    },
+    "cdylib_and_required_sdk_files_rechecked": true,
+    "ctypes_and_udp": {
+      "first_output": {
+        "initial_bytes": 813,
+        "type": "QUIC v1 Initial",
+        "udp_bytes": 1252
+      },
+      "mapped_nss_libraries": [
+        "libfreebl3.so",
+        "libfreeblpriv3.so",
+        "libmozsqlite3.so",
+        "libnspr4.so",
+        "libnss3.so",
+        "libnssutil3.so",
+        "libplc4.so",
+        "libplds4.so",
+        "libsoftokn3.so",
+        "libssl3.so"
+      ],
+      "nss_bin": "/sdk/bin",
+      "passed": true,
+      "scope": "ABI lifecycle and public Initial structure only; no packet authentication, TLS handshake, certificate validation, HTTP/3 exchange or product integration exercised",
+      "so": "/component/libnecko_quic.so",
+      "version": "neqo-0.32.0/nss-3.131"
+    },
+    "host_worker_regression": "control-host source TLS suite: 34 discovered, 33 passed, one skipped; not the native QUIC gate",
+    "native_rust_certificate_decoders": "1 Rust test, 3 real decoder implementations, correct output and invalid input assertions",
+    "negative_checks": [
+      "malformed command buffers and addresses",
+      "pump before attach",
+      "events and pump after close return unknown HTTP/3 handle",
+      "repeat close is idempotent"
+    ]
+  },
+  "two_builds": {
+    "bit_identical": false,
+    "bootstrap_binary_sha256": "57d97a76dd930e508085997b11c45447148aa1ee2ca7446b9db8b60999af8ebe",
+    "bootstrap_bytes": 3533680,
+    "bootstrap_commit": "a03a5cf56ee373ee426088791917cd072e6e6347",
+    "bootstrap_first_output": {
+      "initial_bytes": 822,
+      "type": "QUIC v1 Initial",
+      "udp_bytes": 1252
+    },
+    "both_lifecycle_checks_passed": true,
+    "same_lock": true,
+    "shipped_binary": "locked run only"
+  }
+}

@@ -2,7 +2,10 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **945 个 commit**（platform 317 / ruyitrace 121 / ruyihttp 39 / ruyijs 407 / ruyi-mcp 61）。
+五个仓库共 **959 个 commit**（platform 318 / ruyitrace 121 / ruyihttp 39 / ruyijs 420 / ruyi-mcp 61）。
+
+R431：Firefox 159 的私有 QUIC 组件在原生 Linux x86-64 以锁定依赖重建，并在独立进程中送出回环 Initial、关闭会话。验收停在 QUIC 首包，尚未到 HTTP/3 请求或 JS 路由。见[实机回执](artifacts/receipts/ruyijs-linux-quic-component-r431/validation.json)。
+
 
 ---
 
@@ -151,7 +154,7 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 735 |
+| 五个仓库 commit | 959 |
 | 文档 | 47 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 18 |

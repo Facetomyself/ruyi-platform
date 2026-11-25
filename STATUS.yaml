@@ -1,4 +1,4 @@
-generated_at: '2026-11-25T16:05:00+08:00'
+generated_at: '2026-11-25T23:20:57+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -105,8 +105,8 @@ projects:
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
       linux_aarch64: unsupported
-    tests: R430_h2_end_to_end__R423_default_roots__R421_chain_scope
-    phase: R356 离线运行时、R357 明文 HTTP/1、R358 固定 NSS TLS 适配层、R360/R361 安装态 JS HTTPS 与 R376 锚点链校验均已分别验收；OCSP/CRL、公共 CA 根库、h2 与 QUIC 及 Linux ARM64 产品仍待验收
+    tests: R431_quic_component_lifecycle_and_loopback_initial__R430_h2_companion__R423_opt_in_roots
+    phase: R356 离线运行时及安装态 JS HTTPS 已验；R423 为显式启用根库的负对照，R430 为 companion 的单请求 h2。R431 独立 QUIC 共享库已在 Linux x86-64 验过会话生命周期和回环首包；带证书校验的 h3 请求、JS 路由和 Linux ARM64 产品仍待验收。
     blocked_by:
     - A2
     - C3
@@ -1479,6 +1479,19 @@ projects:
             evidence_sha256: 7edbc1b1774e4250818637c48d47dbdd0a1aad7f75c96cbf9d8ffd6d17228e7f
             repository_receipt: artifacts/receipts/ruyijs-linux-js-https-framing-r363/validation.json
             excluded: [external_ca_trust, http2, quic_http3, proxy_routing, external_network, arm64_product, public_release]
+          private_quic_component_r431:
+            terminal: private_linux_cdylib_loaded_and_observed_loopback_quic_v1_initial
+            build_commit: 14db13721891fd2fe83da6295e612d369631f658
+            private_prerelease: https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-quic-component-r431
+            artifact: deliverables/linux-ruyijs-quic-r431/libnecko_quic.so
+            artifact_bytes: 3533400
+            artifact_sha256: 4aef6ddd84187d75fedce5ca984921d7500fceddc23b209863f2e6af5520486c
+            runtime_gate: {host: host185, exports: 4, sdk_libraries_mapped: 10, udp_datagram_bytes: 1252, first_v1_initial_bytes: 813, build_rc: 0, lifecycle_rc: 0, oom: false}
+            not_bit_reproducible_across_two_runs: true
+            evidence: deliverables/linux-ruyijs-quic-r431/validation.json
+            evidence_sha256: 49b40f773babef17c3222c676ed347532eaff1d66444efded93ce4b48620407e
+            repository_receipt: artifacts/receipts/ruyijs-linux-quic-component-r431/validation.json
+            excluded: [authenticated_handshake, http3_request_response, alt_svc_routing, installed_js_fetch, wheel_integration, webtransport, arm64_product]
           private_h2_e2e_r430:
             terminal: a_real_tls_peer_negotiates_h2_and_the_vendored_framing_completes_the_exchange
             wheel: 0.2.38+inner.r430
@@ -2849,7 +2862,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: ae93a763d4525d193005458a17d5de252bf3bc36
+    commit: e005ad35882802182459d262452a1169b2c171fb
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

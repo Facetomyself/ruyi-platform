@@ -1,0 +1,55 @@
+{
+  "abi": {
+    "exports": [
+      "necko_quic_call",
+      "necko_quic_init",
+      "necko_quic_set_decoder",
+      "necko_quic_version"
+    ],
+    "needed": [
+      "libnssutil3.so",
+      "libnss3.so",
+      "libssl3.so",
+      "libnspr4.so",
+      "libfreebl3.so",
+      "libgcc_s.so.1",
+      "libc.so.6",
+      "ld-linux-x86-64.so.2",
+      "libz.so.1"
+    ],
+    "runpath": "$ORIGIN",
+    "soname": "libnecko_quic.so"
+  },
+  "bytes": 3533400,
+  "cargo": "cargo 1.100.0 (3acc79c0c 2026-11-05)",
+  "codec_archives": {
+    "libnecko_brotli.a": "9b79c3674defe165bb4979182471be9a85794f7003088ab17d25712a8bc3758a",
+    "libnecko_zstd.a": "948a62e79e598e0f98434e45f85f5b60d82cd32ca97049620b9f70ad1f6284c3"
+  },
+  "codecs_tested": true,
+  "compiler_sha256": "2451bd5e44d0fe575e3088eb29725b4b0820e5c335a3fdb889ae036f55b57f56",
+  "component_only": true,
+  "firefox_commit": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "jobs": 1,
+  "lock_mode": "locked",
+  "lock_sha256": "f29717b3b6dd6d0a756664bed35eff0f0c6541b081dd9bb547b359c4c22bd4de",
+  "neqo": "0.32.0",
+  "nss_rs": "0.16.1",
+  "private_rust_source_sha256": "d2baeb03b83ff3a011941a47b642e9d406e7d6749948c9d548ccf7f83170c460",
+  "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+  "schema": "ruyijs-private-linux-quic-build-v1",
+  "sdk_libraries": {
+    "libfreebl3.so": "6ce86d852bbd22dc50065b44ce0828a66e37a29e5a6b10fada6ccb20e2f225af",
+    "libfreeblpriv3.so": "bdc4874c5c2965e6b93b818a41a3f2682dd14add4b22f35c779f81b112baa0a0",
+    "libmozsqlite3.so": "3e9dafc58fe64d1ac99ec84321de0808d03680c3b5db7e4a49ce0b1ecb33ce7f",
+    "libnspr4.so": "8553151f1ebfdde081295b567068ac581fa40d40de3b7014323a1433f7f6a684",
+    "libnss3.so": "3535df70c96919957e9bd81d5f7e079c2e155c2399e82b078c3f10ba1188b608",
+    "libnssutil3.so": "e84d473051d778e5b3c793654481e8ec542d7853c534270e6f7143600ca665a0",
+    "libplc4.so": "9805d62a9d876b393a6f9f05c35eba1df2962ded8ee188d670b3c22dcb87a5ad",
+    "libplds4.so": "36e48d9bf6ff1275f53d256e324c53e9000ce2bf34fdb9ffabb70aad0e9e9050",
+    "libsoftokn3.so": "11d9e0313554f86330762ee846e9a8b0b5cc0ada0133a7e062bbd63cfec48db4",
+    "libssl3.so": "d077aaeb1b59e85f809ffbc7e102b2467c36e0a19e7371c429f79e7e47563643"
+  },
+  "sha256": "4aef6ddd84187d75fedce5ca984921d7500fceddc23b209863f2e6af5520486c",
+  "target": "x86_64"
+}
