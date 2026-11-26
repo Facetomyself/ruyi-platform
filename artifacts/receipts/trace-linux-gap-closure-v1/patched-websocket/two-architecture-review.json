@@ -1,0 +1,37 @@
+{
+  "architectures": {
+    "linux/amd64": {
+      "browser_image_id": "sha256:a0cec2d71681234165f6e22d9b8f52f993fdbb6723106152ec74a513b97f8e64",
+      "build_id": "20261123161729",
+      "cases": 22,
+      "full_byte_review_sha256": "33ffe0f3dd12291d1e4f45585d5ece952c8b86493bf1284619a052b35f1db7e5",
+      "gnu_elf_build_id": "dab69af38a09388214d0d5883d7d962919926179",
+      "native_firefox_sha256": "25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982",
+      "operator_archive_sha256": "9e01fc527e4d1c1c123159899797e0f17d670548aff83ebb3c9084caabe56489",
+      "original_byte_index_sha256": "f9436d2d97abc65794406fd1e4d31ccf50bcab4d2961c8c61cc9d95ff5ebbac4",
+      "regression_cases_on_new_bytes": 17,
+      "review_sha256": "b6f269eaa52b32c3b064347750a24825b0dacec5a85c39ed6d1f1fd1cb470494"
+    },
+    "linux/arm64": {
+      "browser_image_id": "sha256:ecb43c4ef8f448d41bce4213954bb202d308287fc21826ad38952b52e331c8ab",
+      "build_id": "20261125162841",
+      "cases": 22,
+      "full_byte_review_sha256": "d0a611a1ce6be4d8040a20f6d10b68b19b0aa992772356d995329c3bb57a2a85",
+      "gnu_elf_build_id": "8c6ec61b11b671e14bdcefbca4c9a79b23a357cf",
+      "native_firefox_sha256": "53747262e3af06ec0e4b98806efed38225b51b3c83b8b8d877eba133e4c9eacf",
+      "operator_archive_sha256": "10d940ce5a502fe7652ae7685534e16c7fdeb03579ea48d730453597e458ee33",
+      "original_byte_index_sha256": "185aac65ddd85fd0b8973e18981fe37ba6c7b1edba3bc85473ad5a4b6cac71f3",
+      "regression_cases_on_new_bytes": 17,
+      "review_sha256": "25241a28d98136e26d215d9c05580e87aea20fad5487e374263ab42e2198a77a"
+    }
+  },
+  "cases": 44,
+  "gate_architecture_cells": 8,
+  "gecko_source": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "patch_sha256": "3cecbf0b086ff1b630f79ce493d2c4f64782bdf96feb05a9d0a9db57fff3e45b",
+  "regression_cases_on_new_bytes": 34,
+  "runtime_source": "f177682d8dc4e028ad450a00f2d78acc4063e321",
+  "schema": "ruyitrace.patched-websocket-two-architecture-review.v1",
+  "scope": "approved synthetic loopback workloads on exact installed images",
+  "websocket_cases": 10
+}

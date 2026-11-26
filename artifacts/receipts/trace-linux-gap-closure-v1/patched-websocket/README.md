@@ -1,6 +1,6 @@
 # Patched Gecko WebSocket V2 — independent Linux/ARM64 acceptance
 
-**Qualified: Linux/ARM64, 22/22** on installed image `sha256:ecb43c4ef8f448d41bce4213954bb202d308287fc21826ad38952b52e331c8ab`. This is five WebSocket cases plus **17 regressions rerun on those same new bytes**: six Wasm, five JSCall and six HTTP. AMD64 is outside this verdict and needs its own native artifact, installed run originals, and independent review. This receipt covers only the approved, operator-selected loopback synthetic workloads.
+**Qualified: Linux/ARM64, 22/22** on installed image `sha256:ecb43c4ef8f448d41bce4213954bb202d308287fc21826ad38952b52e331c8ab`. This is five WebSocket cases plus **17 regressions rerun on those same new bytes**: six Wasm, five JSCall and six HTTP. This ARM-specific proof was not used to qualify a different architecture: [AMD64 has its own 22/22 independent verification](AMD64.md) and a separate full-byte verdict. The [joined report](two-architecture-review.json) checks all 44 distinct run identities. These receipts cover only the approved, operator-selected loopback synthetic workloads.
 
 ## What was observed
 

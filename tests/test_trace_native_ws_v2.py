@@ -2,6 +2,7 @@
 
 from dataclasses import replace
 import importlib.util
+import io
 from pathlib import Path
 import subprocess
 import sys
@@ -79,6 +80,13 @@ class NativeWriterControls(unittest.TestCase):
         for raw in (b'{"seq":1}', b'{"seq":1,"seq":2}\n', b'{"seq":1}\r\n'):
             with self.subTest(raw=raw), self.assertRaises(ValueError):
                 v.rows_of(raw)
+
+    def test_writer_budget_counts_rows_separately_from_scope_header(self):
+        h = v.canonical(dict(self.ids, state='header', documentPath='/' + 'a' * 90))
+        self.assertGreater(len(h), 256)
+        self.assertEqual(len(v.rows_of(h + v.canonical(row(1, 'tx', 1, True, 5)))), 2)
+        with self.assertRaisesRegex(ValueError, 'row/byte budget'):
+            v.rows_of(h + v.canonical(dict(row(1, 'tx', 1, True, 5), unexpected='a' * 256)))
 
 
 @unittest.skipUnless((RECEIPT / 'arm64-originals.zip').is_file(), 'local ARM64 originals ZIP not present')
@@ -164,9 +172,12 @@ class JoinedEvidenceControls(unittest.TestCase):
             v.verify(blobs)
 
 
+OMNI = importlib.util.spec_from_file_location('verify_amd64_omni', RECEIPT / 'verify_amd64_omni.py')
+om = importlib.util.module_from_spec(OMNI)
 AMD = importlib.util.spec_from_file_location('verify_patched_amd64', RECEIPT / 'verify_amd64.py')
 amd = importlib.util.module_from_spec(AMD)
-with patch.dict(sys.modules, verify=v):
+with patch.dict(sys.modules, verify=v, verify_amd64_omni=om):
+    OMNI.loader.exec_module(om)
     AMD.loader.exec_module(amd)
 
 
@@ -174,7 +185,7 @@ def synthetic_pins():
     # Admission-shape probes only; these are explicitly not artifact identities.
     digest = lambda field: v.sha(('synthetic test only: ' + field).encode())
     out = {name: digest(name) for name in ('kernel_sha256', 'libxul_sha256', 'operator_sha256', 'export_proof_sha256',
-                                           'image_receipt_sha256', 'evidence_index_sha256')}
+                                           'image_receipt_sha256', 'evidence_index_sha256', 'native_omni_review_sha256')}
     return dict(out, schema='ruyitrace.patched-amd64-review-pins.v1', platform=amd.ARCH,
                 image_id='sha256:' + digest('image'), elf_build_id=digest('elf')[:40],
                 kernel_bytes=1, operator_bytes=2, runtime_source=v.PRODUCT, source_set_sha256=v.SOURCE_SET,
@@ -221,6 +232,87 @@ class Amd64AdmissionControls(unittest.TestCase):
         self.assertEqual(indexed.returncode, 1)
         self.assertEqual(indexed.stdout, '')
         self.assertIn('missing or nonregular original: identity.json', indexed.stderr)
+
+
+class Amd64OmniDeltaControls(unittest.TestCase):
+    @staticmethod
+    def make_omni(build_config, script=b'const x = 7;', metadata=None):
+        buf = io.BytesIO()
+        with v.zipfile.ZipFile(buf, 'w') as z:
+            z.writestr('before.txt', b'before')
+            z.writestr(om.HTML, build_config)
+            item = v.zipfile.ZipInfo('after.sys.mjs', (2026, 11, 26, 0, 0, 0))
+            if metadata is not None:
+                item.external_attr = metadata
+            z.writestr(item, script)
+        return buf.getvalue()
+
+    def test_reconstructs_only_the_configure_token_and_zip_offsets(self):
+        old = om.ANCHOR + b' --disable-tests</p>'
+        new = old.replace(om.ANCHOR, om.ANCHOR + om.TOKEN)
+        a, b = self.make_omni(old), self.make_omni(new)
+        self.assertTrue(om.compare(a, b, count=3)['reconstructs_identical_archive'])
+        with self.assertRaisesRegex(ValueError, 'another build member change'):
+            om.compare(a, self.make_omni(new, script=b'const x = 8;'), count=3)
+        with self.assertRaisesRegex(ValueError, 'metadata changed'):
+            om.compare(a, self.make_omni(new, metadata=0o100777 << 16), count=3)
+        with self.assertRaisesRegex(ValueError, 'other content changes'):
+            om.compare(a, self.make_omni(new.replace(b'--disable-tests', b'--enable-tests')), count=3)
+
+    def test_amd_requires_a_receipt_and_arm_rejects_the_exception(self):
+        with self.assertRaisesRegex(ValueError, 'requires direct, pinned ZIP comparison'):
+            v.reviewed_native_omni(None, amd.admission(synthetic_pins()))
+        with self.assertRaisesRegex(ValueError, 'ARM native delta is frozen'):
+            v.reviewed_native_omni({'schema': 'synthetic'}, v.ARM64)
+
+
+@unittest.skipUnless((RECEIPT / 'amd64-originals.zip').is_file(), 'local AMD64 originals ZIP not present')
+class Amd64FrozenReceiptControls(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        raw = v.object_at((RECEIPT / 'amd64-review-pins.json').read_bytes())
+        cls.pins = amd.admission(raw)
+        cls.blobs = v.load_zip(RECEIPT / 'amd64-originals.zip', index_sha=raw['evidence_index_sha256'])
+        cls.omni = v.object_at((RECEIPT / 'amd64-native-omni-review.json').read_bytes())
+
+    def test_real_amd_receipts_reproduce_exact_case_verdict(self):
+        report = amd.verify_receipts(self.blobs, self.pins, self.omni)
+        self.assertEqual((report['platform'], report['accepted_cases'], report['regression_cases_on_new_bytes']),
+                         ('linux/amd64', 22, 17))
+        self.assertEqual((v.json.dumps(report, indent=2, sort_keys=True) + '\n').encode(),
+                         (RECEIPT / 'amd64-review.json').read_bytes())
+
+    def test_rejects_substituted_producer_packet_index(self):
+        name = 'qualified/summary.json'
+        summary = v.object_at(self.blobs[name])
+        summary['intakes']['websocket']['candidate_sha256'] = '0' * 64
+        altered = dict(self.blobs, **{name: v.canonical(summary)})
+        with self.assertRaisesRegex(ValueError, 'producer terminal summary is incomplete or mixed'):
+            amd.verify_receipts(altered, self.pins, self.omni)
+
+    def test_frozen_amd_allowance_rejects_conflated_omni_hash(self):
+        name = 'image/image.json'
+        img = v.object_at(self.blobs[name])
+        img['pre_overlay_omni_sha256'] = img['package_sha256']['omni.ja']
+        blob = v.canonical(img)
+        mutated = dict(self.blobs, **{name: blob})
+        with self.assertRaisesRegex(ValueError, 'runtime did not use exported installed bytes'):
+            amd.verify_receipts(mutated, replace(self.pins, image_manifest=v.sha(blob)), self.omni)
+
+
+@unittest.skipUnless((RECEIPT / 'amd64-review.json').is_file(), 'AMD64 cross-architecture report not present')
+class TwoArchitectureJoinControls(unittest.TestCase):
+    def test_join_requires_two_distinct_frozen_architecture_reports(self):
+        j = importlib.util.spec_from_file_location('join_patched_reviews', RECEIPT / 'join_reviews.py')
+        join = importlib.util.module_from_spec(j)
+        with patch.dict(sys.modules, verify=v):
+            j.loader.exec_module(join)
+        reports = {arch: tuple((RECEIPT / (arch.split('/')[1] + ending)).read_bytes()
+                              for ending in ('-review.json', '-full-byte-review.json')) for arch in join.PINS}
+        self.assertEqual(join.join(reports)['cases'], 44)
+        reports[amd.ARCH] = reports[v.ARCH]
+        with self.assertRaisesRegex(ValueError, 'pre-reviewed verdict digest differs'):
+            join.join(reports)
 
 
 if __name__ == '__main__':

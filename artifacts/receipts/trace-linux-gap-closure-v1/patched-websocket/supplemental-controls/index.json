@@ -1,0 +1,66 @@
+{
+  "files": {
+    "amd64/quota/native/native-armed.json": "b5731ee4ec8173c312f2318ca416bde55ede4535555a74238ef52e2f8f9e1191",
+    "amd64/quota/native/native-config.json": "231b0d2ed2b62edfadb396743bf45fdbc55608333116ef50cfa79f15beb9d5ea",
+    "amd64/quota/native/native-events.jsonl": "1193ab2c8de3a5d26e5cdc372d0b38414bd273df409a58673bfc42a4c949d0e1",
+    "amd64/quota/native/native-ready.json": "10e57dd02e3af0d4c13b1baae8bd7bb147ea7091483b66ce08a23f59807d3a07",
+    "amd64/quota/native/native-sealed.json": "ee1afebb565319666ed25e27e3d4b43ed32b644e1f5f1d764a4c872ac44073ce",
+    "amd64/quota/page.json": "43f8787cf95ce4bdda565f8fdc6da59f943b638e825aaec61d0c1e5523141b7b",
+    "amd64/quota/peer.json": "5386d9d39700d9f4416c0b6926da7dd40091ad42b24c9f37aeae7d21178dbc34",
+    "amd64/quota/run.json": "306acdc4ce521bd4aa0a3c08e437f3cd3cd8d345042ad2cdf40432dc66111688",
+    "amd64/route/native/native-armed.json": "c19c41a3f4475346b6e2377addffa1b3c1d072034009f6b0711fd6c0cd0e78de",
+    "amd64/route/native/native-config.json": "519cd475e74f3fa9ba4ca02264c3e9e0cd1d21083a240d43585e246333d08e0f",
+    "amd64/route/native/native-events.jsonl": "e3720ec9fd301b3a1f6a7ad0e16e338aefa35f3ce5de5803beb467422a140b6b",
+    "amd64/route/native/native-ready.json": "d8a8036d3c3a9fd70571858061a486255622e5604876c7cc97f76212ec84a733",
+    "amd64/route/native/native-sealed.json": "2e326cf3c05a4942f46b7522ae3072da856befc01ff816bed507ade4cfa607d7",
+    "amd64/route/page.json": "d31e41f2f59aa947d5f20c8d89eaf0650e111e8b40c3d3e0b57f425759778fad",
+    "amd64/route/peer.json": "dd5d497dfb828da368fa67de7f0984eaf9efd5b189b9ec03235d7999376306cc",
+    "amd64/route/run.json": "71dd52d36507b8c89a421213e644c6f991ed67c83160edb755ac05ee392e1acf",
+    "arm64/quota/native/native-armed.json": "b7fe82afc8e8e92e505521715b131b3211808b38516bc22bc1594896d5a7e66f",
+    "arm64/quota/native/native-config.json": "ade21061353046d8f0511c3be5aec93cfc005ad4b4d9609e129d7a2327f035d8",
+    "arm64/quota/native/native-events.jsonl": "29f28d99f55249eaeb4941eba94cf8a2677ff7b58c04c14f150390816bbe13c1",
+    "arm64/quota/native/native-ready.json": "315434f4fed3bbdc184801197c48823ad86b24da95f8008dfb42b6f7f836b3e0",
+    "arm64/quota/native/native-sealed.json": "5ce778ba16bd5103cfc819f83ea0fa7a1008a9dd199a770fb84c5609b630ce34",
+    "arm64/quota/page.json": "ab67f4e06fe96b9e5f470f465699540ce093dd4e7835fdfc72358f25d086f30d",
+    "arm64/quota/peer.json": "86bdff8e38b606e4036bd110b1ee02f27c14d70dad6a08abed7eeccfb89298fe",
+    "arm64/quota/run.json": "c9345a07238b9108eac1d922e1b16d36b87372e96ded43f1699960b78462a495",
+    "arm64/route/native/native-armed.json": "251b93bf0ea73aa1cceeae4d2b005f1f19b6f17469a0d35f6cbf7a2f11a4fdb1",
+    "arm64/route/native/native-config.json": "1211d363b39ab882d323594740e3c6b9d892820e941e6b938f4692f571729c55",
+    "arm64/route/native/native-events.jsonl": "c8588f9ca50106bfc8590418d3745b0aa4895be6d299b12425508a38c15f20a3",
+    "arm64/route/native/native-ready.json": "f06f95de3c8838e4192f24119c54fc27ee6f6ce52771a7d3b9341e84efc01fca",
+    "arm64/route/native/native-sealed.json": "bdbaec94809c2f9cfe28e0ad06a38492283d95402bc09937ade97755c962474e",
+    "arm64/route/page.json": "7adc59a339e3bb5f9bd64c3e4fb7afba405e6f51ed5c750fa1dae6113db86075",
+    "arm64/route/peer.json": "481a12e68c49eaaaca4b6ad9ed62ff75c54e7b1a39fe45fdd9a4433fd5930c49",
+    "arm64/route/run.json": "eec28167b0c8f5d7b864bb3fd2549616b9ac065ac8c2ef111d95fb79445af244"
+  },
+  "platforms": {
+    "amd64": {
+      "image_id": "sha256:a0cec2d71681234165f6e22d9b8f52f993fdbb6723106152ec74a513b97f8e64",
+      "native_source_capsule_sha256": "3225616bfc6d0df4b4ba61013bb4916b9a01725ece2bb4b781f52869728c5d2b",
+      "operator_cases": [
+        "http",
+        "http_redirect",
+        "jscall",
+        "wrong_document"
+      ],
+      "ws_readback_sha256": "35ac95b1efddff644d818cba89e6ddab5a1e25696340ae5a621db710772ec682"
+    },
+    "arm64": {
+      "image_id": "sha256:ecb43c4ef8f448d41bce4213954bb202d308287fc21826ad38952b52e331c8ab",
+      "native_source_capsule_sha256": "c95d3ca7042877703512b0ae35cfc688e55fc47fba429acb3218f0bb36c59b30",
+      "operator_cases": [
+        "http",
+        "http_redirect",
+        "jscall",
+        "wrong_document"
+      ],
+      "ws_readback_sha256": "91da79fd668b87e67322284b84e0b3dff47c2a1d14926755a37f762709206233"
+    }
+  },
+  "schema": "ruyitrace.patched-operator-supplements.v1",
+  "scope": "independent operator controls outside 22 preregistered cases; exact URI, size budget, and wrong-document outcomes",
+  "source_sha256": {
+    "operator_probe": "4da1d858ffbbbf5172ed0acf9658942888061773d62548505ef9fe240a3a7334",
+    "supplemental_report": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2"
+  }
+}

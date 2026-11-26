@@ -1,0 +1,61 @@
+{
+  "evidence_index_sha256": "f9436d2d97abc65794406fd1e4d31ccf50bcab4d2961c8c61cc9d95ff5ebbac4",
+  "installed_archive_proof_sha256": "78f0010d20742eb777dc936d6bb6b6ddff4d52bcae2f609a3af937caef0dfc54",
+  "native_firefox": {
+    "bytes": 81716568,
+    "checked_members": 56,
+    "elf": {
+      "bytes": 193879736,
+      "elf_build_id": "dab69af38a09388214d0d5883d7d962919926179",
+      "machine": 62,
+      "sha256": "e6d1befc5d1b097bdc63059d2947bc2d7a011e8d144590496b05eaf3bd06c06b"
+    },
+    "sha256": "25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982",
+    "source_stamp": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+    "upstream_build_id": "20261123161729",
+    "version": "159.0"
+  },
+  "native_omni_review_sha256": "b83c1f23defd73f616f0374fe1c0b0b1f5e0fa1957abee2fe0a6d6c74abde237",
+  "operator": {
+    "bytes": 508204336,
+    "config": "sha256:a0cec2d71681234165f6e22d9b8f52f993fdbb6723106152ec74a513b97f8e64",
+    "diff_ids": [
+      "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+      "sha256:90810bb504339255580eff707ddd64f8d198d525878f3567d0d90075e0214e02",
+      "sha256:986a00917d0a1bbdc30a2f408f9313928344b2611cfe217ba1197d7e1a7fed2a",
+      "sha256:79028e4d0820b542ceac3706662bf9db9f331a68d34320a82dd787e480092643",
+      "sha256:0a9bb42e0be98bafa264c80cab17f90380e381a08b5e5e70c57e8135ef7e8d06"
+    ],
+    "gzip_crc": true,
+    "overlay_blob": "blobs/sha256/0a9bb42e0be98bafa264c80cab17f90380e381a08b5e5e70c57e8135ef7e8d06",
+    "sha256": "9e01fc527e4d1c1c123159899797e0f17d670548aff83ebb3c9084caabe56489"
+  },
+  "operator_omni": {
+    "added_source_modules": [
+      "modules/ruyi-native/Policy.sys.mjs",
+      "modules/ruyi-native/RuyiNativeTelemetryChild.sys.mjs",
+      "modules/ruyi-native/RuyiNativeTelemetryParent.sys.mjs",
+      "modules/ruyi-native/Start.sys.mjs",
+      "modules/ruyi-native/Writer.sys.mjs",
+      "modules/ruyi-native/compute/Compute.sys.mjs",
+      "modules/ruyi-native/net/Network.sys.mjs"
+    ],
+    "changed_startup_member": "modules/ActorManagerParent.sys.mjs",
+    "image_id": "sha256:a0cec2d71681234165f6e22d9b8f52f993fdbb6723106152ec74a513b97f8e64",
+    "native_root_omni": {
+      "bytes": 48049519,
+      "sha256": "a6767fac0cda262c6c5f1675d73cc1727a48f1d88079b8eb707e4828eac52575"
+    },
+    "operator_root_omni": {
+      "bytes": 48066457,
+      "sha256": "05e04696867fa210fbcdca2d7c63eeeea29268745fb33c811c3b7d6f046477a7"
+    },
+    "platform": "linux/amd64",
+    "retained_buildconfig_sha256": "4c240e5f65f69efb1fc36c32ea8cb2033f80d7c382ddcaf6bf4d3cbf2f0e355e",
+    "retained_members": 2673,
+    "schema": "ruyitrace.amd64-operator-omni-review.v1"
+  },
+  "passed": true,
+  "platform": "linux/amd64",
+  "schema": "ruyitrace.patched-websocket-full-byte-review.v1"
+}

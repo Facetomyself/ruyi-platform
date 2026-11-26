@@ -1,0 +1,430 @@
+{
+  "checked_utc": "2026-11-26T14:58:11+00:00",
+  "fixture_sha256": "4da1d858ffbbbf5172ed0acf9658942888061773d62548505ef9fe240a3a7334",
+  "images": {
+    "amd64": {
+      "build_id": "20261123161729",
+      "byte_rechecked_files": 24,
+      "cases": {
+        "http": {
+          "config_sha256": "11f4375568468db2d38f892eecfbb5800f804586c25e72c897658b3a02e045ec",
+          "finished_utc": "2026-11-26T14:56:51+00:00",
+          "measurement_complete": true,
+          "native_rows": [
+            {
+              "chain": 1,
+              "family": "http",
+              "kind": "transaction",
+              "method": "GET",
+              "seq": 1,
+              "status": 418,
+              "transport": "network"
+            }
+          ],
+          "page": {
+            "bodyOk": true,
+            "document": "/owned/order",
+            "ignored": 202,
+            "status": 418
+          },
+          "peer": {
+            "/owned/client.js": 1,
+            "/owned/ignored": 1,
+            "/owned/order": 1,
+            "/owned/other-document": 0,
+            "/owned/redirect": 0,
+            "/owned/status": 1
+          },
+          "proof_sha256": "13b030ccea2bb4289497f3014adca3e53874f683b7186b7c6d0aca05297d0a8c",
+          "raw_sha256": "d94773f294b0a6897cc5b1d9347552404b7e0a996b5065a0c0ccc48bd1265aaa",
+          "run_id": "7490b45fd7a14039bf121f83e5362956",
+          "seal_sha256": "1b2e04cc0907b4e92d222885f0dbb15b690524f247ce948ae42cb822fe29e3a6",
+          "selection": {
+            "documentPath": "/owned/order",
+            "httpPath": "/owned/status",
+            "origin": "http://127.0.0.1:32817"
+          },
+          "started_utc": "2026-11-26T14:56:40+00:00",
+          "status": "ok",
+          "writer": {
+            "cap_eff": 0,
+            "content_pid": 132,
+            "exe": "/browser/firefox",
+            "libxul_mapped": true,
+            "no_new_privs": 1,
+            "pid": 12,
+            "seccomp": 2,
+            "uid": 1000
+          }
+        },
+        "http_redirect": {
+          "config_sha256": "be371940067198416b8c0daecccce833482464b7e4c47ec599b68bd17df8d31e",
+          "finished_utc": "2026-11-26T14:57:00+00:00",
+          "measurement_complete": true,
+          "native_rows": [
+            {
+              "chain": 1,
+              "family": "http",
+              "kind": "transaction",
+              "method": "GET",
+              "seq": 1,
+              "status": 302,
+              "transport": "network"
+            },
+            {
+              "chain": 1,
+              "family": "http",
+              "kind": "transaction",
+              "method": "GET",
+              "seq": 2,
+              "status": 418,
+              "transport": "network"
+            }
+          ],
+          "page": {
+            "bodyOk": true,
+            "document": "/owned/order",
+            "ignored": 202,
+            "status": 418
+          },
+          "peer": {
+            "/owned/client.js": 1,
+            "/owned/ignored": 1,
+            "/owned/order": 1,
+            "/owned/other-document": 0,
+            "/owned/redirect": 1,
+            "/owned/status": 1
+          },
+          "proof_sha256": "3df9f0d867d551f35afcc04f569756f1583df7457547c0bff470d033ed91315c",
+          "raw_sha256": "c0dbc7341f35a140ce54c959a5c93e6f230d2cc794ce50a3a172ceb97a1ebac4",
+          "run_id": "529ef2439eb68298c827fa2260641120",
+          "seal_sha256": "5f21e1f1cf5b61e55902abf9aa05e992d966914cfb730193383e57ae9a23c2d8",
+          "selection": {
+            "documentPath": "/owned/order",
+            "httpPath": "/owned/redirect",
+            "origin": "http://127.0.0.1:44149",
+            "redirectPath": "/owned/status"
+          },
+          "started_utc": "2026-11-26T14:56:51+00:00",
+          "status": "ok",
+          "writer": {
+            "cap_eff": 0,
+            "content_pid": 426,
+            "exe": "/browser/firefox",
+            "libxul_mapped": true,
+            "no_new_privs": 1,
+            "pid": 279,
+            "seccomp": 2,
+            "uid": 1000
+          }
+        },
+        "jscall": {
+          "config_sha256": "511875b74318b2bdadd96f2d94beec32b7b62c7a7461309a0e6402e902054ec6",
+          "finished_utc": "2026-11-26T14:57:15+00:00",
+          "measurement_complete": true,
+          "native_rows": [
+            {
+              "call": 1,
+              "family": "jscall",
+              "functionKind": "js",
+              "kind": "enter",
+              "seq": 1
+            },
+            {
+              "call": 1,
+              "family": "jscall",
+              "functionKind": "js",
+              "kind": "return",
+              "seq": 2
+            }
+          ],
+          "page": {
+            "document": "/owned/order",
+            "ignored": 13,
+            "value": 42
+          },
+          "peer": {
+            "/owned/client.js": 1,
+            "/owned/ignored": 0,
+            "/owned/order": 1,
+            "/owned/other-document": 0,
+            "/owned/redirect": 0,
+            "/owned/status": 0
+          },
+          "proof_sha256": "50b605687f9c486da0139a1ac10b74b93b237a1f6096a7f15ca8fdeae6aefbc1",
+          "raw_sha256": "0de2de6db6498c6905a694a5abe5374d8b21ae9577a3468eabc6e5c31a0e1ae5",
+          "run_id": "4a72ff9d5164bab396d1ae40b6381dcd",
+          "seal_sha256": "3163d3610fefcf922ce9b5edd6e8f40252ff7c519d79f16d20d686098715da09",
+          "selection": {
+            "documentPath": "/owned/order",
+            "functionName": "quoteTotal",
+            "jsStartColumn": 22,
+            "jsStartLine": 3,
+            "origin": "http://127.0.0.1:45352",
+            "scriptPath": "/owned/client.js"
+          },
+          "started_utc": "2026-11-26T14:57:07+00:00",
+          "status": "ok",
+          "writer": {
+            "cap_eff": 0,
+            "content_pid": 933,
+            "exe": "/browser/firefox",
+            "libxul_mapped": true,
+            "no_new_privs": 1,
+            "pid": 789,
+            "seccomp": 2,
+            "uid": 1000
+          }
+        },
+        "wrong_document": {
+          "config_sha256": "2a4f7a0979b221313b0bef3965c62eaccfe03581fc87019ed1b443f3f56bb7e8",
+          "finished_utc": "2026-11-26T14:57:07+00:00",
+          "measurement_complete": false,
+          "native_rows": null,
+          "observation_window_ms": 1200,
+          "page": {
+            "bodyOk": true,
+            "document": "/owned/other-document",
+            "ignored": 202,
+            "status": 418
+          },
+          "peer": {
+            "/owned/client.js": 1,
+            "/owned/ignored": 1,
+            "/owned/order": 1,
+            "/owned/other-document": 1,
+            "/owned/redirect": 0,
+            "/owned/status": 1
+          },
+          "proof_sha256": "a76817fdfbd9a9b6a53dacc34929ac378ecf0b79c7b8611a062b0b13425ab471",
+          "run_id": "dfb3f1bde5261c6f1b0d27307cac7b63",
+          "selection": {
+            "documentPath": "/owned/order",
+            "httpPath": "/owned/status",
+            "origin": "http://127.0.0.1:40227"
+          },
+          "started_utc": "2026-11-26T14:57:00+00:00",
+          "status": "out_of_scope_no_ipc_ready"
+        }
+      },
+      "container_id": "19e9ba9d76b79fb37a6c22ebf53bc573af10a26280e45fd5648588e5a6f0a29b",
+      "image_id": "sha256:a0cec2d71681234165f6e22d9b8f52f993fdbb6723106152ec74a513b97f8e64",
+      "image_manifest_sha256": "ea8b01dd2d029b811967df069e0d94f35fccf7ff95fa0734a1fa85e7785813ac",
+      "kernel_sha256": "25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982"
+    },
+    "arm64": {
+      "build_id": "20261125162841",
+      "byte_rechecked_files": 24,
+      "cases": {
+        "http": {
+          "config_sha256": "fe610c0b5a98d899d2dcd13904c15d7298793a160d4e6ec6716e14fffaf7004a",
+          "finished_utc": "2026-11-26T14:56:46+00:00",
+          "measurement_complete": true,
+          "native_rows": [
+            {
+              "chain": 1,
+              "family": "http",
+              "kind": "transaction",
+              "method": "GET",
+              "seq": 1,
+              "status": 418,
+              "transport": "network"
+            }
+          ],
+          "page": {
+            "bodyOk": true,
+            "document": "/owned/order",
+            "ignored": 202,
+            "status": 418
+          },
+          "peer": {
+            "/owned/client.js": 1,
+            "/owned/ignored": 1,
+            "/owned/order": 1,
+            "/owned/other-document": 0,
+            "/owned/redirect": 0,
+            "/owned/status": 1
+          },
+          "proof_sha256": "5cc6a605ee0fdad39e31aea02b74c427d6938e25b7352b30e322bcc53d5229c5",
+          "raw_sha256": "98bc0c4d7dce44063630b91058ce88c931ec4be0dabe18f3043faaaf49c13414",
+          "run_id": "efa8538677873404a9db564c8c43b99c",
+          "seal_sha256": "a396b8ccd944f86e04a9eac86c57a055627f1d11494d6f97bbd66499ea561147",
+          "selection": {
+            "documentPath": "/owned/order",
+            "httpPath": "/owned/status",
+            "origin": "http://127.0.0.1:45671"
+          },
+          "started_utc": "2026-11-26T14:56:41+00:00",
+          "status": "ok",
+          "writer": {
+            "cap_eff": 0,
+            "content_pid": 121,
+            "exe": "/browser/firefox",
+            "libxul_mapped": true,
+            "no_new_privs": 1,
+            "pid": 12,
+            "seccomp": 2,
+            "uid": 1000
+          }
+        },
+        "http_redirect": {
+          "config_sha256": "ca6dd54e7b33f8f10951c853d33278a4041a2c329ebcc1369e534656fa75d268",
+          "finished_utc": "2026-11-26T14:56:51+00:00",
+          "measurement_complete": true,
+          "native_rows": [
+            {
+              "chain": 1,
+              "family": "http",
+              "kind": "transaction",
+              "method": "GET",
+              "seq": 1,
+              "status": 302,
+              "transport": "network"
+            },
+            {
+              "chain": 1,
+              "family": "http",
+              "kind": "transaction",
+              "method": "GET",
+              "seq": 2,
+              "status": 418,
+              "transport": "network"
+            }
+          ],
+          "page": {
+            "bodyOk": true,
+            "document": "/owned/order",
+            "ignored": 202,
+            "status": 418
+          },
+          "peer": {
+            "/owned/client.js": 1,
+            "/owned/ignored": 1,
+            "/owned/order": 1,
+            "/owned/other-document": 0,
+            "/owned/redirect": 1,
+            "/owned/status": 1
+          },
+          "proof_sha256": "d5e72c021f6c76361c6076aee408906d2bfa56602fc3debcc9cbbd9ca50d247e",
+          "raw_sha256": "6261ba5be24d4751b3ef46cee61824b0f788445977830aca789414e3f5a65c38",
+          "run_id": "c6d07cb10afac101f55f852ec75e4804",
+          "seal_sha256": "6bec1e2665ce358954d0e8cb63b1f08da0b1e8c947f43c51e2bb8d0e579dceef",
+          "selection": {
+            "documentPath": "/owned/order",
+            "httpPath": "/owned/redirect",
+            "origin": "http://127.0.0.1:39015",
+            "redirectPath": "/owned/status"
+          },
+          "started_utc": "2026-11-26T14:56:46+00:00",
+          "status": "ok",
+          "writer": {
+            "cap_eff": 0,
+            "content_pid": 341,
+            "exe": "/browser/firefox",
+            "libxul_mapped": true,
+            "no_new_privs": 1,
+            "pid": 233,
+            "seccomp": 2,
+            "uid": 1000
+          }
+        },
+        "jscall": {
+          "config_sha256": "95562d8e6b063eca10252a810b00074eba36890247af5c0b7c8c7a26a952ba99",
+          "finished_utc": "2026-11-26T14:57:01+00:00",
+          "measurement_complete": true,
+          "native_rows": [
+            {
+              "call": 1,
+              "family": "jscall",
+              "functionKind": "js",
+              "kind": "enter",
+              "seq": 1
+            },
+            {
+              "call": 1,
+              "family": "jscall",
+              "functionKind": "js",
+              "kind": "return",
+              "seq": 2
+            }
+          ],
+          "page": {
+            "document": "/owned/order",
+            "ignored": 13,
+            "value": 42
+          },
+          "peer": {
+            "/owned/client.js": 1,
+            "/owned/ignored": 0,
+            "/owned/order": 1,
+            "/owned/other-document": 0,
+            "/owned/redirect": 0,
+            "/owned/status": 0
+          },
+          "proof_sha256": "a6761540f5e2539f7c82bdb9e4ac76de9a3e9e0b8bf1a6de921416fcf91b0237",
+          "raw_sha256": "9a724728c87d3478cc37f615281b8df7cb338082bcf633d6786b97323e0e21fc",
+          "run_id": "7a63ff0a1aed575eec40a6ef65f48be3",
+          "seal_sha256": "1b62acff6cca1aaa6a1fcd7278787be06e93a9c599effffd35a2544a0b52cf87",
+          "selection": {
+            "documentPath": "/owned/order",
+            "functionName": "quoteTotal",
+            "jsStartColumn": 22,
+            "jsStartLine": 3,
+            "origin": "http://127.0.0.1:39333",
+            "scriptPath": "/owned/client.js"
+          },
+          "started_utc": "2026-11-26T14:56:56+00:00",
+          "status": "ok",
+          "writer": {
+            "cap_eff": 0,
+            "content_pid": 785,
+            "exe": "/browser/firefox",
+            "libxul_mapped": true,
+            "no_new_privs": 1,
+            "pid": 674,
+            "seccomp": 2,
+            "uid": 1000
+          }
+        },
+        "wrong_document": {
+          "config_sha256": "17de712ee6cf7257ee5ca5057fc4ea74eda9e81ea8f24ad6dd1aecde613bb5fd",
+          "finished_utc": "2026-11-26T14:56:56+00:00",
+          "measurement_complete": false,
+          "native_rows": null,
+          "observation_window_ms": 1200,
+          "page": {
+            "bodyOk": true,
+            "document": "/owned/other-document",
+            "ignored": 202,
+            "status": 418
+          },
+          "peer": {
+            "/owned/client.js": 1,
+            "/owned/ignored": 1,
+            "/owned/order": 1,
+            "/owned/other-document": 1,
+            "/owned/redirect": 0,
+            "/owned/status": 1
+          },
+          "proof_sha256": "71d813d98e7de6fe2aaf8f45ba59c779a6b697f9d976765a9ad45b29566dd501",
+          "run_id": "e667226dd5b23464965abe4f72983073",
+          "selection": {
+            "documentPath": "/owned/order",
+            "httpPath": "/owned/status",
+            "origin": "http://127.0.0.1:44741"
+          },
+          "started_utc": "2026-11-26T14:56:51+00:00",
+          "status": "out_of_scope_no_ipc_ready"
+        }
+      },
+      "container_id": "b77318c70b6d05185a774da713d041b3f395f142bb84db7f9f29c604388f90b8",
+      "image_id": "sha256:ecb43c4ef8f448d41bce4213954bb202d308287fc21826ad38952b52e331c8ab",
+      "image_manifest_sha256": "26a2aa3dc226a79ecf746d68862b423b2fbe0f3824152f6676924fd89a56c215",
+      "kernel_sha256": "53747262e3af06ec0e4b98806efed38225b51b3c83b8b8d877eba133e4c9eacf"
+    }
+  },
+  "schema": 1,
+  "scope": "operator supplements, not part of fixed 22-case qualification",
+  "source_revision": "f177682d8dc4e028ad450a00f2d78acc4063e321",
+  "source_set_sha256": "d97edbcbb9e3d9849518d8b00f1ac24ff7b0b5ba6266ce436c69b9b46472baf5"
+}

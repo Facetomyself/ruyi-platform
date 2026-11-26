@@ -1,0 +1,44 @@
+{
+  "arch": "linux/amd64",
+  "build_id": "20261123161729",
+  "capsule_sha256": "3225616bfc6d0df4b4ba61013bb4916b9a01725ece2bb4b781f52869728c5d2b",
+  "cases": {
+    "quota": {
+      "accepted": 2,
+      "complete": false,
+      "finished_utc": "2026-11-26T14:54:43+00:00",
+      "limit": 1,
+      "native_raw_sha256": "1193ab2c8de3a5d26e5cdc372d0b38414bd273df409a58673bfc42a4c949d0e1",
+      "native_seal_sha256": "ee1afebb565319666ed25e27e3d4b43ed32b644e1f5f1d764a4c872ac44073ce",
+      "page_and_peer_lengths": [
+        65537
+      ],
+      "run_id": "720b83f592cf54e8eac2821befd85b5b",
+      "status": "partial"
+    },
+    "route": {
+      "accepted": 3,
+      "complete": true,
+      "finished_utc": "2026-11-26T14:54:34+00:00",
+      "limit": 0,
+      "native_raw_sha256": "e3720ec9fd301b3a1f6a7ad0e16e338aefa35f3ce5de5803beb467422a140b6b",
+      "native_seal_sha256": "2e326cf3c05a4942f46b7522ae3072da856befc01ff816bed507ade4cfa607d7",
+      "page_and_peer_lengths": [
+        5,
+        9
+      ],
+      "run_id": "a051a42f7b5529e0b6a4d693bdf72e77",
+      "status": "ok"
+    }
+  },
+  "container_removed": true,
+  "host": "self-server-host185-hk",
+  "image": "sha256:a0cec2d71681234165f6e22d9b8f52f993fdbb6723106152ec74a513b97f8e64",
+  "kernel_provenance": {
+    "installed_manifest_sha256": "59c2d39f78836c934c4fe6b19af83f8bd7b6369efef2544d5036d247c3fe5cc4",
+    "kind": "kernel_provenance",
+    "recorded_patched_archive_sha256": "25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982",
+    "verified_installed_libxul_sha256": "e6d1befc5d1b097bdc63059d2947bc2d7a011e8d144590496b05eaf3bd06c06b"
+  },
+  "schema": "ruyitrace.ws-operator-capsule-readback.v1"
+}

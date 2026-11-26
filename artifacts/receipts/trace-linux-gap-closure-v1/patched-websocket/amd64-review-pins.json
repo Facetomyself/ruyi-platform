@@ -1,0 +1,18 @@
+{
+  "capture_day_utc": "2026-11-26",
+  "elf_build_id": "dab69af38a09388214d0d5883d7d962919926179",
+  "evidence_index_sha256": "f9436d2d97abc65794406fd1e4d31ccf50bcab4d2961c8c61cc9d95ff5ebbac4",
+  "export_proof_sha256": "78f0010d20742eb777dc936d6bb6b6ddff4d52bcae2f609a3af937caef0dfc54",
+  "image_id": "sha256:a0cec2d71681234165f6e22d9b8f52f993fdbb6723106152ec74a513b97f8e64",
+  "image_receipt_sha256": "ea8b01dd2d029b811967df069e0d94f35fccf7ff95fa0734a1fa85e7785813ac",
+  "kernel_bytes": 81716568,
+  "kernel_sha256": "25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982",
+  "libxul_sha256": "e6d1befc5d1b097bdc63059d2947bc2d7a011e8d144590496b05eaf3bd06c06b",
+  "native_omni_review_sha256": "b83c1f23defd73f616f0374fe1c0b0b1f5e0fa1957abee2fe0a6d6c74abde237",
+  "operator_bytes": 508204336,
+  "operator_sha256": "9e01fc527e4d1c1c123159899797e0f17d670548aff83ebb3c9084caabe56489",
+  "platform": "linux/amd64",
+  "runtime_source": "f177682d8dc4e028ad450a00f2d78acc4063e321",
+  "schema": "ruyitrace.patched-amd64-review-pins.v1",
+  "source_set_sha256": "d97edbcbb9e3d9849518d8b00f1ac24ff7b0b5ba6266ce436c69b9b46472baf5"
+}

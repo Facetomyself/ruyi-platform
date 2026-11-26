@@ -1,0 +1,42 @@
+{
+  "baseline_image": "sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6",
+  "baseline_root_omni": {
+    "bytes": 48049483,
+    "sha256": "1167a101f5e50332a767a3dcdcec4f7acbb7242c25d3613a760fd0f3caab61c7"
+  },
+  "candidate_kernel": {
+    "bytes": 81716568,
+    "sha256": "25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982"
+  },
+  "candidate_root_omni": {
+    "bytes": 48049519,
+    "sha256": "a6767fac0cda262c6c5f1675d73cc1727a48f1d88079b8eb707e4828eac52575"
+  },
+  "platform": "linux/amd64",
+  "schema": "ruyitrace.amd64-native-omni-review.v1",
+  "zip_review": {
+    "added": [],
+    "changed": {
+      "chrome/toolkit/content/global/buildconfig.html": {
+        "candidate": {
+          "bytes": 2558,
+          "sha256": "4c240e5f65f69efb1fc36c32ea8cb2033f80d7c382ddcaf6bf4d3cbf2f0e355e"
+        },
+        "original": {
+          "bytes": 2522,
+          "sha256": "bb5f0de9d13643a0d63f5c420a231186622e34e739b83cf2ca062cf12b94fbce"
+        }
+      }
+    },
+    "identical_js_and_mjs": 1645,
+    "identical_wasm": 3,
+    "inserted_configure_option": "MOZBUILD_STATE_PATH=/root/.mozbuild",
+    "members": 2674,
+    "metadata_unchanged": true,
+    "order_unchanged": true,
+    "reconstructs_identical_archive": true,
+    "removed": [],
+    "unchanged": 2673,
+    "unchanged_member_index_sha256": "89d5bd81dc6d20b9303213883593c807f4e2d53cb85ef08e27511dbc30591af1"
+  }
+}

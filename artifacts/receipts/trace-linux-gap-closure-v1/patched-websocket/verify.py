@@ -59,6 +59,7 @@ class LanePins:
     image_manifest: str
     source_set: str
     day: str
+    native_omni_review_sha256: str = ''
 
     @property
     def cpu(self):
@@ -149,7 +150,7 @@ def bytes_record(raw):
     return dict(bytes=len(raw), sha256=sha(raw))
 
 
-def load_zip(path):
+def load_zip(path, *, index_sha=INDEX_SHA):
     need(path.is_file() and not path.is_symlink() and path.stat().st_size <= 600000, 'bounded regular ZIP required')
     with zipfile.ZipFile(path) as archive:
         infos = archive.infolist()
@@ -164,7 +165,7 @@ def load_zip(path):
             out[name] = archive.read(info)
             need(len(out[name]) == info.file_size, 'ZIP length mismatch')
     index = out.pop('original-byte-index.json')
-    need(sha(index) == INDEX_SHA, 'unexpected original-byte index SHA-256')
+    need(sha(index) == index_sha, 'unexpected original-byte index SHA-256')
     same(object_at(index), {name: bytes_record(raw) for name, raw in out.items()}, 'original-byte index mismatch')
     return out
 
@@ -256,7 +257,7 @@ def read_kernel_archive(path, receipt, *, pins=ARM64):
     need(seen == receipt['members'].keys(), 'native archive member enumeration mismatch')
 
 
-def read_operator_archive(path, proof, *, pins=ARM64):
+def read_operator_archive(path, proof, *, pins=ARM64, layer_path=False):
     """Rehash the full gzip, its selected config, and all five uncompressed layers."""
     need(opened(path, pins.archive_bytes) == pins.archive, 'local complete operator archive SHA mismatch')
     selected = f'blobs/sha256/{pins.image[7:]}'
@@ -306,10 +307,24 @@ def read_operator_archive(path, proof, *, pins=ARM64):
           labels['io.ruyitrace.product.scope']],
          [pins.base, proof['installed_package_sha256'], 'native-events-candidate'], 'local Docker package labels')
     need(not cfg['config'].get('ExposedPorts') and not cfg['config'].get('Volumes'), 'unexpected Docker ports or volumes')
-    return dict(bytes=pins.archive_bytes, sha256=pins.archive, config=pins.image, diff_ids=cfg['rootfs']['diff_ids'], gzip_crc=True)
+    return dict(bytes=pins.archive_bytes, sha256=pins.archive, config=pins.image, diff_ids=cfg['rootfs']['diff_ids'],
+                gzip_crc=True, **({'overlay_blob': m['Layers'][-1]} if layer_path else {}))
 
 
-def validate_release(e, *, pins=ARM64):
+def reviewed_native_omni(report, pins):
+    if pins.arch == ARM64.arch:
+        need(report is None and not pins.native_omni_review_sha256, 'ARM native delta is frozen to libxul only')
+        return None
+    need(pins.arch == 'linux/amd64' and type(report) is dict, 'AMD native omni delta requires direct, pinned ZIP comparison')
+    raw = (json.dumps(report, indent=2, sort_keys=True) + '\n').encode('ascii')
+    same(sha(raw), pins.native_omni_review_sha256, 'wrong independent AMD native omni review digest')
+    same([report[k] for k in ('schema', 'platform', 'baseline_image', 'candidate_kernel')],
+         ['ruyitrace.amd64-native-omni-review.v1', pins.arch, pins.base, dict(bytes=pins.kernel_bytes, sha256=pins.kernel)],
+         'AMD omni review has mixed architecture or artifact')
+    return report
+
+
+def validate_release(e, *, pins=ARM64, native_omni=None):
     proof_b = e.raw('export/archive-proof.json')
     img_b = e.raw('image/image.json')
     need(sha(proof_b) == pins.archive_proof and sha(img_b) == pins.image_manifest, 'wrong release proof or runtime manifest SHA')
@@ -341,7 +356,13 @@ def validate_release(e, *, pins=ARM64):
     same(sorted(before), sorted(after), 'runtime package inventory changed')
     same({n for n in before if before[n] != after[n]} == {'libxul.so', 'omni.ja'}, True,
          'runtime overlay must change libxul and omni.ja only')
-    need(after['libxul.so'] == pins.libxul and img['pre_overlay_omni_sha256'] == before['omni.ja'], 'native/JS overlay conflated')
+    reviewed_native_omni(native_omni, pins)
+    pre_overlay = before['omni.ja']
+    if native_omni is not None:
+        same(native_omni['baseline_root_omni']['sha256'], pre_overlay, 'wrong AMD original omni')
+        pre_overlay = native_omni['candidate_root_omni']['sha256']
+        need(pre_overlay not in {before['omni.ja'], after['omni.ja']}, 'AMD native and operator omni conflated')
+    need(after['libxul.so'] == pins.libxul and img['pre_overlay_omni_sha256'] == pre_overlay, 'native/JS overlay conflated')
     return levels, img
 
 
@@ -350,7 +371,7 @@ def check_tokens(raw, tokens, label):
         need(token.encode('ascii') in raw, f'{label}: missing source invariant: {token}')
 
 
-def validate_kernel(e, img, *, pins=ARM64):
+def validate_kernel(e, img, *, pins=ARM64, native_omni=None):
     lineage = e.obj('kernel/lineage.json')
     patch, actualdiff = e.raw('kernel/gecko-v2.patch'), e.raw('kernel/effective.diff')
     src = lineage['source']
@@ -377,9 +398,15 @@ def validate_kernel(e, img, *, pins=ARM64):
          'native lineage package identity')
     a, b = baseline['members'], native['members']
     same(set(a) == set(b), True, 'added or removed package members')
-    same(sorted(n for n in a if canonical(a[n]) != canonical(b[n])), ['firefox/libxul.so'], 'native archive delta')
+    reviewed_native_omni(native_omni, pins)
+    changed = ['firefox/libxul.so']
+    if native_omni is not None:
+        changed.append('firefox/omni.ja')
+        for inventory, key in ((a, 'baseline_root_omni'), (b, 'candidate_root_omni')):
+            same(inventory['firefox/omni.ja'], dict(type='file', **native_omni[key]), 'native AMD ZIP receipt member mismatch')
+    same(sorted(n for n in a if canonical(a[n]) != canonical(b[n])), changed, 'native archive delta')
     same(e.obj('kernel/member-delta.json'), dict(same_upstream_stamp=True, added=[], removed=[],
-                                                changed=['firefox/libxul.so'], unchanged=55), 'declared package delta')
+                                                changed=changed, unchanged=len(a) - len(changed)), 'declared package delta')
     linked, packaged = native['relinked_libxul'], native['packaged_libxul']
     same(lineage['libxul']['linked'], linked, 'relink identity')
     same(lineage['libxul']['packaged'], packaged, 'packaged ELF identity')
@@ -469,9 +496,10 @@ def read_criteria(e):
 
 def rows_of(raw):
     need(raw.endswith(b'\n') and b'\r' not in raw and len(raw) <= 131072, 'writer has no final line boundary')
-    out = [object_at(line) for line in raw[:-1].split(b'\n')]
-    need(len(out) <= 4097 and all(len(line) <= 256 for line in raw[:-1].split(b'\n')), 'writer row/byte budget')
-    return out
+    header, *rows = raw[:-1].split(b'\n')
+    # Writer.append limits business rows; the scope header is emitted separately.
+    need(len(header) <= 1024 and len(rows) <= 4096 and all(len(line) <= 256 for line in rows), 'writer row/byte budget')
+    return [object_at(line) for line in (header, *rows)]
 
 
 def scope_ids(header, gate, enabled):
@@ -706,10 +734,10 @@ def stock_unsupported(e, *, pins=ARM64):
     return ids['runId']
 
 
-def verify(blobs, *, pins=ARM64, producer_intakes=False):
+def verify(blobs, *, pins=ARM64, producer_intakes=False, native_omni=None):
     e = Evidence(blobs)
-    levels, img = validate_release(e, pins=pins)
-    elf = validate_kernel(e, img, pins=pins)
+    levels, img = validate_release(e, pins=pins, native_omni=native_omni)
+    elf = validate_kernel(e, img, pins=pins, native_omni=native_omni)
     validate_v2_sources(e)
     criteria = read_criteria(e)
     stock, run_ids = stock_controls(e, criteria, pins=pins)

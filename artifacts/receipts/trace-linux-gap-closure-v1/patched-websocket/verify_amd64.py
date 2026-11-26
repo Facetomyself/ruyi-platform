@@ -6,6 +6,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 import verify as review
+import verify_amd64_omni as omni
 
 ARCH = 'linux/amd64'
 BASE = 'sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6'
@@ -77,15 +78,30 @@ def input_members(args):
             for name, path in aliases.items()}
 
 
+def index_bytes(blobs):
+    return review.canonical({n: review.bytes_record(raw) for n, raw in blobs.items()})
+
+
 def evidence_index(blobs):
-    return review.sha(review.canonical({n: review.bytes_record(raw) for n, raw in blobs.items()}))
+    return review.sha(index_bytes(blobs))
+
+
+def pack_originals(path, blobs):
+    zipfile = review.zipfile
+    with zipfile.ZipFile(path, 'x') as archive:
+        for name, raw in sorted(dict(blobs, **{'original-byte-index.json': index_bytes(blobs)}).items()):
+            entry = zipfile.ZipInfo(name, date_time=(2026, 11, 26, 0, 0, 0))
+            entry.create_system = 3
+            entry.external_attr = 0o100444 << 16
+            archive.writestr(entry, raw, compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
 
 
 def admission(pins):
     """The person reviewing the completed artifacts supplies these pins out of band."""
     required = {'schema', 'platform', 'image_id', 'kernel_sha256', 'kernel_bytes', 'libxul_sha256',
                 'elf_build_id', 'operator_sha256', 'operator_bytes', 'runtime_source', 'source_set_sha256',
-                'export_proof_sha256', 'image_receipt_sha256', 'evidence_index_sha256', 'capture_day_utc'}
+                'export_proof_sha256', 'image_receipt_sha256', 'evidence_index_sha256', 'native_omni_review_sha256',
+                'capture_day_utc'}
     review.need(set(pins) == required and pins['schema'] == 'ruyitrace.patched-amd64-review-pins.v1'
                 and pins['platform'] == ARCH, 'AMD review pins schema or platform mismatch')
     for name in required - {'schema', 'platform', 'image_id', 'kernel_bytes', 'operator_bytes', 'runtime_source',
@@ -99,7 +115,7 @@ def admission(pins):
     review.same([pins['runtime_source'], pins['source_set_sha256']], [review.PRODUCT, review.SOURCE_SET],
                 'AMD lane must use the same admitted runtime source bytes as ARM')
     for name in ('kernel_sha256', 'libxul_sha256', 'operator_sha256', 'export_proof_sha256', 'image_receipt_sha256',
-                 'evidence_index_sha256', 'elf_build_id'):
+                 'evidence_index_sha256', 'native_omni_review_sha256', 'elf_build_id'):
         review.need(int(pins[name], 16) != 0, 'empty digest pin: ' + name)
     review.need(int(pins['image_id'][7:], 16) != 0, 'empty image ID pin')
     for name, bound in (('kernel_bytes', 512 * 1024**2), ('operator_bytes', 2 * 1024**3)):
@@ -112,7 +128,8 @@ def admission(pins):
                            kernel=pins['kernel_sha256'], kernel_bytes=pins['kernel_bytes'], libxul=pins['libxul_sha256'],
                            archive=pins['operator_sha256'], archive_bytes=pins['operator_bytes'],
                            archive_proof=pins['export_proof_sha256'], image_manifest=pins['image_receipt_sha256'],
-                           source_set=pins['source_set_sha256'], day=pins['capture_day_utc'])
+                           source_set=pins['source_set_sha256'], day=pins['capture_day_utc'],
+                           native_omni_review_sha256=pins['native_omni_review_sha256'])
 
 
 def utc(text):
@@ -161,51 +178,95 @@ def validate_producer(blobs, pins, verified):
                 <= utc(local['checked_utc']), 'native build, runtime, export or escrow chronology mismatch')
 
 
-def verify_amd64(blobs, raw_pins, kernel, docker):
+def verify_receipts(blobs, pins, native_omni_review):
+    semantic = {n: raw for n, raw in blobs.items() if not n.startswith('qualified/')}
+    out = review.verify(semantic, pins=pins, producer_intakes=True, native_omni=native_omni_review)
+    validate_producer(blobs, pins, out)
+    return out
+
+
+def verify_amd64(blobs, raw_pins, kernel, docker, *, baseline_docker=None):
     pins = admission(raw_pins)
     index = evidence_index(blobs)
     review.same(index, raw_pins['evidence_index_sha256'], 'AMD original-byte index digest mismatch')
-    semantic = {n: raw for n, raw in blobs.items() if not n.startswith('qualified/')}
-    out = review.verify(semantic, pins=pins, producer_intakes=True)
-    for name in (kernel, docker):
-        review.need(name.is_file() and not name.is_symlink(), 'actual full artifact is required: ' + name.name)
-    validate_producer(blobs, pins, out)
+    for path in (kernel, docker, baseline_docker):
+        review.need(path is not None and path.is_file() and not path.is_symlink(), 'actual full AMD artifact is required')
+    review.need(kernel.name == pins.kernel_name and docker.name == pins.archive_name, 'full artifact basenames differ from pin')
+    review.same([pins.kernel, pins.kernel_bytes], [omni.CANDIDATE_KERNEL, omni.CANDIDATE_KERNEL_BYTES],
+                'native AMD omni exception is bound to a different kernel')
+    source_omni, native_omni = omni.original_release_omni(baseline_docker), omni.native_omni(kernel)
+    native_omni_review = omni.checked_review(source_omni, native_omni)
+    del source_omni
+    out = verify_receipts(blobs, pins, native_omni_review)
     native = review.object_at(blobs['kernel/readback.json'])
     review.same(out['libxul_elf_build_id'], raw_pins['elf_build_id'], 'extra GNU ELF identity pin')
-    review.need(kernel.name == pins.kernel_name and docker.name == pins.archive_name, 'full artifact basenames differ from pin')
     review.read_kernel_archive(kernel, native, pins=pins)
     proof = review.object_at(blobs['export/archive-proof.json'])
-    operator = review.read_operator_archive(docker, proof, pins=pins)
+    operator = review.read_operator_archive(docker, proof, pins=pins, layer_path=True)
+    image = review.object_at(blobs['image/image.json'])
+    installed = omni.operator_omni(docker, operator['overlay_blob'], image, blobs['export/installed-package.json'])
+    overlay = omni.compare_overlay(native_omni, installed, {n: blobs[f'source/{n}'] for n in review.SOURCES}, image)
     full = dict(schema='ruyitrace.patched-websocket-full-byte-review.v1', platform=ARCH, passed=True,
                 evidence_index_sha256=index, installed_archive_proof_sha256=pins.archive_proof,
                 native_firefox=dict(native['archive'], checked_members=len(native['members']), **native['metadata'],
-                                    elf=native['packaged_libxul']), operator=operator)
+                                    elf=native['packaged_libxul']), operator=operator,
+                native_omni_review_sha256=pins.native_omni_review_sha256, operator_omni=overlay)
     return dict(review=out, full_bytes=full)
 
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
-    for name in ('qualified', 'kernel-dir', 'baseline', 'image-receipt', 'patch', 'native-work',
-                 'runtime-source', 'stock-control', 'stock-smoke'):
-        p.add_argument('--' + name, type=Path, required=True)
-    p.add_argument('--index-only', action='store_true', help='print a candidate index digest, not an acceptance result')
+    paths = ('qualified', 'kernel-dir', 'baseline', 'image-receipt', 'patch', 'native-work',
+             'runtime-source', 'stock-control', 'stock-smoke')
+    for name in paths:
+        p.add_argument('--' + name, type=Path)
+    action = p.add_mutually_exclusive_group()
+    action.add_argument('--index-only', action='store_true', help='print a candidate index digest, not an acceptance result')
+    action.add_argument('--pack-originals', type=Path, help='make a deterministic originals ZIP using the frozen index')
+    action.add_argument('--receipt-replay', type=Path, metavar='NATIVE_OMNI_REVIEW',
+                        help='replay archived receipt semantics without reopening binaries or issuing new qualification')
+    p.add_argument('--zip', type=Path, help='read indexed originals from ZIP instead of the original directory paths')
     p.add_argument('--pins', type=Path, help='reviewer-frozen AMD64 pins')
     p.add_argument('--pins-sha256', help='external expected SHA-256 of original pins JSON')
     p.add_argument('--kernel-tar', type=Path)
     p.add_argument('--operator-tar', type=Path)
+    p.add_argument('--baseline-docker', type=Path, help='actual original R5 CLI2 AMD64 Docker archive')
     args = p.parse_args(argv)
-    if not args.index_only and not (args.pins and args.pins_sha256 and args.kernel_tar and args.operator_tar):
-        p.error('AMD acceptance requires externally pinned identity and both full artifacts')
+    supplied = [getattr(args, n.replace('-', '_')) for n in paths]
+    if (args.zip and any(supplied)) or (not args.zip and not all(supplied)):
+        p.error('pass either --zip or all original input paths')
+    binary_review = not (args.index_only or args.pack_originals or args.receipt_replay)
+    if binary_review and not (args.pins and args.pins_sha256 and args.kernel_tar and args.operator_tar and args.baseline_docker):
+        p.error('AMD acceptance requires externally pinned identity and both full artifacts plus the original Docker baseline')
+    if (not args.index_only or args.zip) and not (args.pins and args.pins_sha256):
+        p.error('this action requires both --pins and --pins-sha256')
     try:
-        blobs = input_members(args)
-        if args.index_only:
-            print(review.canonical(dict(originals=len(blobs), evidence_index_sha256=evidence_index(blobs))).decode(), end='')
-            return 0
-        data = original(args.pins)
-        review.same(review.sha(data), args.pins_sha256, 'AMD review pins SHA does not match the out-of-band pin')
-        result = verify_amd64(blobs, review.object_at(data), args.kernel_tar, args.operator_tar)
-        print(review.canonical(result).decode(), end='')
-    except (ValueError, KeyError, OSError, EOFError, TypeError, review.tarfile.TarError) as exc:
+        raw_pins = None
+        if args.pins:
+            data = original(args.pins)
+            review.same(review.sha(data), args.pins_sha256, 'AMD review pins SHA does not match the out-of-band pin')
+            raw_pins = review.object_at(data)
+            pins = admission(raw_pins)
+        blobs = review.load_zip(args.zip, index_sha=raw_pins['evidence_index_sha256']) if args.zip else input_members(args)
+        index = evidence_index(blobs)
+        if raw_pins is not None:
+            review.same(index, raw_pins['evidence_index_sha256'], 'AMD original-byte index digest mismatch')
+        if args.index_only or args.pack_originals:
+            if args.pack_originals:
+                pack_originals(args.pack_originals, blobs)
+            result = dict(originals=len(blobs), evidence_index_sha256=index)
+        elif args.receipt_replay:
+            result = verify_receipts(blobs, pins, review.object_at(original(args.receipt_replay)))
+            review.same(result['libxul_elf_build_id'], raw_pins['elf_build_id'], 'extra GNU ELF identity pin')
+            archived = (review.json.dumps(result, indent=2, sort_keys=True) + '\n').encode()
+            result = dict(schema='ruyitrace.amd64-receipt-replay.v1', artifacts_reopened=False,
+                          accepted_case_receipts=result['accepted_cases'], original_byte_index_sha256=index,
+                          archived_case_verdict_sha256=review.sha(archived))
+        else:
+            result = verify_amd64(blobs, raw_pins, args.kernel_tar, args.operator_tar, baseline_docker=args.baseline_docker)
+        print(review.json.dumps(result, indent=2, sort_keys=True))
+    except (ValueError, KeyError, OSError, EOFError, TypeError, review.tarfile.TarError, review.zipfile.BadZipFile,
+            review.struct.error) as exc:
         p.exit(1, f'AMD qualification failed: {exc}\n')
     return 0
 
