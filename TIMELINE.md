@@ -2,7 +2,9 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1032 个 commit**（platform 328 / ruyitrace 122 / ruyihttp 78 / ruyijs 443 / ruyi-mcp 61）。
+五个仓库共 **1051 个 commit**（platform 331 / ruyitrace 138 / ruyihttp 78 / ruyijs 443 / ruyi-mcp 61）。
+
+RuyiTrace ARM64 R5 CLI2：BuildID `20261125162841` 在目标机通过原生编译、审计与采集；三个锁定镜像在同机隔离空引擎加载，独立 Firefox 经真实公网 WSS 看到桌面、重连并成功撤销。[证据链](artifacts/receipts/trace-arm64-native-lease/README.md) · [独立发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)。
 
 R432：ARM64 的 1,268 个私有 C++ 单元完成全量原生编译。基座、网络 companion 及离线安装命令经独立 venv 实跑，HTTP/3 另有原生正反例。[产品回执](artifacts/receipts/ruyijs-linux-aarch64-product-r432/validation.json) · [H3 回执](artifacts/receipts/ruyijs-linux-aarch64-h3-r432/validation.json)。
 
@@ -158,7 +160,7 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1032 |
+| 五个仓库 commit | 1051 |
 | 文档 | 47 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 20 |

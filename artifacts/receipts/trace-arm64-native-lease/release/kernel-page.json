@@ -1,0 +1,81 @@
+{
+  "mode": "audited-package",
+  "cases": [
+    {
+      "case": "off",
+      "marker": "8d4264b5adb11bd1462f1ae126eed9a3",
+      "page_ack": true,
+      "browser_exit": 0,
+      "png": true,
+      "probe_origin": "http://127.0.0.1:45753",
+      "require_window_context": true,
+      "require_dom_shape": true,
+      "require_clicks": true,
+      "require_storage_summary": true,
+      "pid_domain": "browser-parent",
+      "browser_pid": 9,
+      "content_at_ack": [
+        {
+          "pid": 98,
+          "namespace_pids": [
+            98
+          ],
+          "start_ticks": 3391284,
+          "web_role": "Isolated Web Co",
+          "evidence": "forkserver-web-role"
+        }
+      ],
+      "eligible_writer_pids": [
+        98
+      ],
+      "trace_verdict": "passed",
+      "core_files": [],
+      "verified_event_files": [],
+      "verified_storage_file": null
+    },
+    {
+      "case": "on",
+      "marker": "4072c3441855fb5867581a1bcefc830a",
+      "page_ack": true,
+      "browser_exit": 0,
+      "png": true,
+      "probe_origin": "http://127.0.0.1:34421",
+      "require_window_context": true,
+      "require_dom_shape": true,
+      "require_clicks": true,
+      "require_storage_summary": true,
+      "pid_domain": "browser-parent",
+      "browser_pid": 160,
+      "content_at_ack": [
+        {
+          "pid": 255,
+          "namespace_pids": [
+            255
+          ],
+          "start_ticks": 3391494,
+          "web_role": "Isolated Web Co",
+          "evidence": "forkserver-web-role"
+        }
+      ],
+      "eligible_writer_pids": [
+        255
+      ],
+      "trace_verdict": "passed",
+      "core_files": [
+        "trace_process_255.jsonl"
+      ],
+      "verified_event_files": [
+        "trace_event_process_255.jsonl"
+      ],
+      "verified_storage_file": "trace_storage_process_255.jsonl"
+    }
+  ],
+  "passed": true,
+  "runtime_identity": {
+    "kind": "audited-candidate",
+    "arch": "aarch64",
+    "build_id": "20261125162841",
+    "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+    "libxul_sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "pin": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "rust_opt_level": 1,
+  "rust_default_flags": [
+    "--cap-lints",
+    "warn"
+  ],
+  "rust_library_lto": true,
+  "upstream_audit_sources": "match",
+  "core_backend": true,
+  "sandbox": true,
+  "wasm_sandbox": true,
+  "wasi_sysroot": "/work/build/wasi/sysroot-wasm32-wasi",
+  "wasi_archive_sha256": "ced4ad66408022397388863bf5c1c3f0cea250c7445d4a5e2ab884c5a4e71660",
+  "archive_audit": "pending",
+  "browser_capture": "pending",
+  "source_base_repository": "https://github.com/mozilla-firefox/firefox",
+  "generated_source_stamp": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "generated_build_id": "20261125162841",
+  "arch": "aarch64",
+  "rust_target": "aarch64-unknown-linux-gnu"
+}

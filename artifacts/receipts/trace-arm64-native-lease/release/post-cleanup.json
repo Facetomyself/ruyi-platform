@@ -1,0 +1,44 @@
+{
+  "archive_sha256": "1de33f49c6ceac4cfd1686b42203bddb1255882c67cad80b4b617247c1c267cb",
+  "attempt": "attempt.j1mT36SL",
+  "build_id": "20261125162841",
+  "caddy": "inactive",
+  "certbot_timer": "active",
+  "checked_utc": "2026-11-26T00:28:02+00:00",
+  "docker": "active",
+  "host": "oracle-reverse-dev",
+  "iptables_sha256": {
+    "after": "ea0b8a0ad1372c031d348dc596686bdea9adba6b3d6fa64e58f11f370a2b9dfe",
+    "before": "ea0b8a0ad1372c031d348dc596686bdea9adba6b3d6fa64e58f11f370a2b9dfe"
+  },
+  "listeners_80_443": [],
+  "loaded_qa_units": [],
+  "oci_admission_sha256": {
+    "after": "2c677259dc4da11f59f0b8bf98dc1a4c5a4507ac8fbe8b2029b7669123b26d4c",
+    "before": "2c677259dc4da11f59f0b8bf98dc1a4c5a4507ac8fbe8b2029b7669123b26d4c"
+  },
+  "os_arch": "aarch64",
+  "platform": "linux/arm64",
+  "production_sweep": "active",
+  "public_chain_and_hostname_verified_with_system_ca": true,
+  "public_ipv4": "140.245.61.236",
+  "public_leaf_sha256": "f0fd003e8d47f99de6de1240bc41ab16baa4c446318344a5a2821df87770ded8",
+  "public_origin": "https://trace-arm64.zhangxuemin.work",
+  "public_port": 443,
+  "qa_ca_sha256": "4558551cf383d9862b507a468672d67ce1cd3c47fa7818e2b70f082431f629b7",
+  "qa_private_key_removed": true,
+  "remaining_lease_containers": 0,
+  "remaining_lease_runtime_directories": 0,
+  "remaining_qa_client_containers": 0,
+  "remaining_qa_units": 0,
+  "schema": "ruyitrace-arm64-post-cleanup.v1",
+  "source_sha256": {
+    "after": "51e1c45128e1af4da499e10662d954cec5e076dad866f59e6349fe989f822597",
+    "archive": "19b6412b8e5db92fe79193404aa7f115be526a8c9da61ffd9c1c05ed3d680bb1",
+    "before": "a38f93cdebd3bd001aac1eac8f5343ddd58d96ff11b72c860c8ae5c1e69d927d",
+    "external": "97cf180550f37b78a1c05bffaf33365e3e2d42b2c9a107b19593025aabba42a3",
+    "qa": "c5c04b411348d57b0dd7471c23d2ed73e76c562bac0b2d3962d224ee77c24630"
+  },
+  "ssh": "active",
+  "target_vnic": "10.0.0.139"
+}

@@ -226,6 +226,19 @@ CXXABI_1.3.9
 
 ---
 
+## 6.1 Linux ARM64 R5 CLI2 与 TLS 租约
+
+这条线与上面的 Win64 3.5.0 成品、以及 amd64 R5 回执分别固定。原生发行标签 [`arm64-r5-cli2-lease-v1`](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)，源码提交 `f1253a6ddf03dffa178d349231facc61866e686b`。主机 `oracle-reverse-dev`；Firefox 159 BuildID `20261125162841`；原始 Gecko 编译输入 `9a2dc53c369c7ae5172018b35988e1d2ffeff402`。
+
+| 实物 | 固定值 |
+|---|---|
+| 离线 Docker gzip | 381,640,590 B，SHA-256 `1de33f49c6ceac4cfd1686b42203bddb1255882c67cad80b4b617247c1c267cb` |
+| 原生 Firefox XZ | 74,821,272 B，SHA-256 `1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640` |
+| CLI / interactive / edge | 三个精确 config ID、4 / 5 / 6 层，见[离线包读回](artifacts/receipts/trace-arm64-native-lease/release/archive-verified.json) |
+| 发行证据 | [33 份实际回执的校验索引](artifacts/receipts/trace-arm64-native-lease/release/confirmation.json)：内核、镜像、空引擎、私有与真实公网桌面、清理；SHA-256 `b93cacc32627838fd7773f7d61d6c14a8f6359ff7b199a0ae61a2ecd61f1176c` |
+
+ARM 编译工具为 Clang/LLD 19.1.1、Rust 1.100.0、cbindgen 0.29.4；CLI 运行时为 Node 22.14.0。请按[产品级操作手册](submodules/ruyitrace/product/arm64/README.md)导入与验证，不要把其他组件的编译器条件当作这一发行的依据。
+
 ## 7. 工具链
 
 | 工具 | 版本要求 | 用途 |

@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "trace_revision": "c3723ca5f71e860ed19d1fa1a4305da930dc7428",
+  "builder": "4afb1045db0fbb9c552b2e7f1ececcf341ebd3481a6f217867679623d4478de8",
+  "attempt": "attempt.j1mT36SL",
+  "runtime_image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "package": {
+    "kind": "audited-candidate",
+    "arch": "aarch64",
+    "build_id": "20261125162841",
+    "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+    "libxul_sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+  },
+  "archive_bytes": 74821272,
+  "gecko_revision": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "gecko_diff_sha256": "58bef440831a743f5504a984504f171397cb409da4b56340a962283e244546e0",
+  "elf_build_id": "4b6a7c01b9f3959a40b87ddaa2c1a6e6a2c58e26",
+  "libgkrust_sha256": "7c9b4fd349c77c001199ee0c7dfea9e01a1aa4491d9577988af739c3e77cf530",
+  "upstream_audit_exit": 0,
+  "peak": {
+    "memory": 8589832192,
+    "swap": 229707776,
+    "combined": 8697888768,
+    "oom": 0,
+    "oom_kill": 0
+  },
+  "gate": {
+    "writer_pid": 409,
+    "window_id": 10737418241,
+    "session_ids": [
+      1,
+      2
+    ],
+    "click_ids": [
+      1,
+      2
+    ],
+    "closed_markers_found": 0,
+    "core_file": "trace_process_409.jsonl",
+    "event_file": "trace_event_process_409.jsonl",
+    "checked_core_files": 1
+  },
+  "exception_rows_by_case": {
+    "off": 0,
+    "opt-out": 0,
+    "wrong-origin": 0,
+    "gate-closed": 0,
+    "on": 1
+  },
+  "passed": true
+}

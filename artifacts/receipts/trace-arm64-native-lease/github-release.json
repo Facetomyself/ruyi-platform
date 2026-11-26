@@ -1,0 +1,68 @@
+{
+  "assets": [
+    {
+      "bytes": 381640590,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-r5-cli2-lease-v1/ruyitrace-public-edge-tls-lease-v1-linux-arm64.docker.tar.gz",
+      "github_asset_id": 793744319,
+      "github_digest": "sha256:1de33f49c6ceac4cfd1686b42203bddb1255882c67cad80b4b617247c1c267cb",
+      "name": "ruyitrace-public-edge-tls-lease-v1-linux-arm64.docker.tar.gz",
+      "sha256": "1de33f49c6ceac4cfd1686b42203bddb1255882c67cad80b4b617247c1c267cb",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 74821272,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-r5-cli2-lease-v1/ruyitrace-firefox159-r5-aarch64-20261125162841.tar.xz",
+      "github_asset_id": 793747199,
+      "github_digest": "sha256:1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+      "name": "ruyitrace-firefox159-r5-aarch64-20261125162841.tar.xz",
+      "sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 86456,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-r5-cli2-lease-v1/ruyitrace-skill-arm64-cli2-v1.zip",
+      "github_asset_id": 793747921,
+      "github_digest": "sha256:91b87dc22648d02e0708c63f90274dec45633bbb76345b768dad7e50c8a771bb",
+      "name": "ruyitrace-skill-arm64-cli2-v1.zip",
+      "sha256": "91b87dc22648d02e0708c63f90274dec45633bbb76345b768dad7e50c8a771bb",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 566,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-r5-cli2-lease-v1/release-images.json",
+      "github_asset_id": 793748021,
+      "github_digest": "sha256:5a6096d482917b9632e713668f14ebee89f9fa273d118cf6810fa44bd122cb28",
+      "name": "release-images.json",
+      "sha256": "5a6096d482917b9632e713668f14ebee89f9fa273d118cf6810fa44bd122cb28",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 5046,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-r5-cli2-lease-v1/ruyitrace-arm64-release.json",
+      "github_asset_id": 793748100,
+      "github_digest": "sha256:c1fd331ac38bb777939ef2aaa4d89856a8f4ee1996afb4d8035c03def48a3949",
+      "name": "ruyitrace-arm64-release.json",
+      "sha256": "c1fd331ac38bb777939ef2aaa4d89856a8f4ee1996afb4d8035c03def48a3949",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 528,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-r5-cli2-lease-v1/SHA256SUMS",
+      "github_asset_id": 793748192,
+      "github_digest": "sha256:d163aa01506e8b936d14addce7086d3eb6a3a105866e8e657fe81ae9545cbe3d",
+      "name": "SHA256SUMS",
+      "sha256": "d163aa01506e8b936d14addce7086d3eb6a3a105866e8e657fe81ae9545cbe3d",
+      "streamed_download_verified": true
+    }
+  ],
+  "checked_at": "2026-11-26T00:47:57+00:00",
+  "html_url": "https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1",
+  "passed": true,
+  "private": true,
+  "published_at": "2026-11-26T00:45:36Z",
+  "release_id": 458808224,
+  "repo": "Facetomyself/ruyitrace",
+  "schema": 1,
+  "source": "f1253a6ddf03dffa178d349231facc61866e686b",
+  "tag": "arm64-r5-cli2-lease-v1"
+}

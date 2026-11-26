@@ -1,0 +1,384 @@
+{
+  "arm_empty_tcp": {
+    "capabilities": {
+      "CapBnd": 0,
+      "CapEff": 0,
+      "CapInh": 0,
+      "CapPrm": 0
+    },
+    "gid": 1000,
+    "interfaces": [
+      "lo"
+    ],
+    "listeners": [],
+    "machine": "aarch64",
+    "no_new_privs": 1,
+    "no_published_ports": true,
+    "private": {
+      "/tmp/ruyitrace-interactive/rfb.sock": [
+        true,
+        384,
+        1000
+      ],
+      "/viewer/view.sock": [
+        true,
+        384,
+        1000
+      ]
+    },
+    "readonly": true,
+    "seccomp": 2,
+    "uid": 1000,
+    "viewer_ui_http": 200
+  },
+  "capture_off": {
+    "marker": "withdrawn",
+    "observed": "closed",
+    "requested": "closed"
+  },
+  "capture_on": {
+    "observed": "open",
+    "requested": "open",
+    "writer": {
+      "pid": 195,
+      "session": 1,
+      "startTime": "3519729"
+    }
+  },
+  "during": {
+    "acks": [
+      {
+        "clicks": 0,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 0,
+        "textOK": false,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 0,
+        "textOK": false,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 1,
+        "sliderOK": true,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      },
+      {
+        "clicks": 2,
+        "drops": 1,
+        "sliderOK": true,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      }
+    ],
+    "invalid": 0,
+    "loads": 1,
+    "static": {
+      "public_ui": 1,
+      "rfb_module": 1
+    },
+    "websockets": [
+      true,
+      false
+    ]
+  },
+  "fixture": "http://127.0.0.1:18761/fixture",
+  "framebuffer": [
+    1280,
+    720
+  ],
+  "identity_after_reconnect": {
+    "build_id": "20261125162841",
+    "embedded_init": true,
+    "executable_witness": "proc-exe",
+    "headed_kiosk": true,
+    "listener_ports": [
+      18761,
+      18762,
+      18763
+    ],
+    "main_processes": 1,
+    "owner_pid": 32,
+    "owner_start_ticks": "3519473",
+    "pid": 75,
+    "private_rfb_0600": true,
+    "run_id": "5ee295e5-f636-4ec3-a83d-b75cd50aced7",
+    "start_ticks": "3519532"
+  },
+  "identity_before_disconnect": {
+    "build_id": "20261125162841",
+    "embedded_init": true,
+    "executable_witness": "proc-exe",
+    "headed_kiosk": true,
+    "listener_ports": [
+      18761,
+      18762,
+      18763
+    ],
+    "main_processes": 1,
+    "owner_pid": 32,
+    "owner_start_ticks": "3519473",
+    "pid": 75,
+    "private_rfb_0600": true,
+    "run_id": "5ee295e5-f636-4ec3-a83d-b75cd50aced7",
+    "start_ticks": "3519532"
+  },
+  "identity_first_connected": {
+    "build_id": "20261125162841",
+    "embedded_init": true,
+    "executable_witness": "proc-exe",
+    "headed_kiosk": true,
+    "listener_ports": [
+      18761,
+      18762,
+      18763
+    ],
+    "main_processes": 1,
+    "owner_pid": 32,
+    "owner_start_ticks": "3519473",
+    "pid": 75,
+    "private_rfb_0600": true,
+    "run_id": "5ee295e5-f636-4ec3-a83d-b75cd50aced7",
+    "start_ticks": "3519532"
+  },
+  "image_id": "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43",
+  "interaction": {
+    "first_stayed_connected": true,
+    "page": {
+      "acks": [
+        {
+          "clicks": 0,
+          "drops": 0,
+          "sliderOK": false,
+          "submits": 0,
+          "textOK": false,
+          "titleOK": true
+        },
+        {
+          "clicks": 1,
+          "drops": 0,
+          "sliderOK": false,
+          "submits": 0,
+          "textOK": false,
+          "titleOK": true
+        },
+        {
+          "clicks": 1,
+          "drops": 0,
+          "sliderOK": false,
+          "submits": 1,
+          "textOK": true,
+          "titleOK": true
+        },
+        {
+          "clicks": 1,
+          "drops": 1,
+          "sliderOK": true,
+          "submits": 1,
+          "textOK": true,
+          "titleOK": true
+        }
+      ],
+      "invalid": 0,
+      "loads": 1,
+      "static": {
+        "public_ui": 1,
+        "rfb_module": 1
+      },
+      "websockets": [
+        true,
+        false
+      ]
+    },
+    "second_client_rejected": "after-valid-vncauth-submission",
+    "viewer_socket": {
+      "mode": "0600",
+      "uid": 1000,
+      "unix_socket": true
+    }
+  },
+  "native_after_stop": {
+    "completion": "requested-stop",
+    "exit": 0,
+    "run_id": "5ee295e5-f636-4ec3-a83d-b75cd50aced7",
+    "trace": {
+      "active_title_rows": 2,
+      "closed_title_markers": 0,
+      "core_files": 1,
+      "event_files": 1,
+      "fixture_native_clicks": 1,
+      "native_start_observed": true,
+      "native_stop_observed": true,
+      "non_click_event_rows": 0,
+      "session": 1,
+      "window_id": 10737418242,
+      "writer_pid": 195
+    }
+  },
+  "native_while_open": {
+    "active_title_rows": 2,
+    "closed_title_markers": 0,
+    "core_files": 1,
+    "event_files": 1,
+    "fixture_native_clicks": 1,
+    "native_start_observed": true,
+    "native_stop_observed": false,
+    "non_click_event_rows": 0,
+    "session": 1,
+    "window_id": 10737418242,
+    "writer_pid": 195
+  },
+  "no_container_published_ports": true,
+  "page_final": {
+    "acks": [
+      {
+        "clicks": 0,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 0,
+        "textOK": false,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 0,
+        "textOK": false,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 1,
+        "sliderOK": true,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      },
+      {
+        "clicks": 2,
+        "drops": 1,
+        "sliderOK": true,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      },
+      {
+        "clicks": 3,
+        "drops": 1,
+        "sliderOK": true,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      }
+    ],
+    "invalid": 0,
+    "loads": 1,
+    "static": {
+      "public_ui": 1,
+      "rfb_module": 1
+    },
+    "websockets": [
+      false,
+      false,
+      true
+    ]
+  },
+  "passed": true,
+  "platform": "linux/arm64",
+  "qa_peer_isolation": {
+    "interfaces": [
+      "lo"
+    ],
+    "net_namespace": 4026532622,
+    "read_only_root": true,
+    "runs_mount_read_only": true,
+    "uid": 1000,
+    "viewer_mount_read_only": true
+  },
+  "reconnect": {
+    "acks": [
+      {
+        "clicks": 0,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 0,
+        "textOK": false,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 0,
+        "textOK": false,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 0,
+        "sliderOK": false,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      },
+      {
+        "clicks": 1,
+        "drops": 1,
+        "sliderOK": true,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      },
+      {
+        "clicks": 2,
+        "drops": 1,
+        "sliderOK": true,
+        "submits": 1,
+        "textOK": true,
+        "titleOK": true
+      }
+    ],
+    "canvas_input_ready": true,
+    "invalid": 0,
+    "loads": 1,
+    "static": {
+      "public_ui": 1,
+      "rfb_module": 1
+    },
+    "websockets": [
+      false,
+      false,
+      true
+    ]
+  },
+  "schema": 1,
+  "scope": "fixed isolated loopback fixture, Latin and Chinese Unicode key events; no physical keyboard or OS IME candidate selection asserted",
+  "seconds": 18.05,
+  "viewer_client": "shipped /vnc.html noVNC UI in separate headless Firefox using the same audited binary, launched without RuyiTrace switches"
+}

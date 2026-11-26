@@ -1,0 +1,22 @@
+{
+  "aiohttp": "3.14.5",
+  "files": 204,
+  "manifest_sha256": "76ea1b3083c3ac301b0a3f8e45a7d890ecd59f9928a0a746b62eaa41d2cae51a",
+  "native_extensions": [
+    "aiohttp._http_parser",
+    "aiohttp._http_writer",
+    "aiohttp._websocket.mask",
+    "aiohttp._websocket.reader_c",
+    "frozenlist._frozenlist",
+    "multidict._multidict",
+    "propcache._helpers_c",
+    "yarl._quoting_c"
+  ],
+  "openssl": "OpenSSL 3.0.13 30 Jan 2024",
+  "parent_image_id": "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43",
+  "passed": true,
+  "platform": "linux/arm64",
+  "python": "3.12.3",
+  "scope": "installed ARM edge bytes and native extensions",
+  "uid": 1000
+}

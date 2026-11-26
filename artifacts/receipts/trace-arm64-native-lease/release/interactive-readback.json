@@ -1,0 +1,165 @@
+{
+  "elf_dependencies": {
+    "Xtigervnc": [
+      "/lib/aarch64-linux-gnu/libGL.so.1",
+      "/lib/aarch64-linux-gnu/libGLX.so.0",
+      "/lib/aarch64-linux-gnu/libGLdispatch.so.0",
+      "/lib/aarch64-linux-gnu/libX11.so.6",
+      "/lib/aarch64-linux-gnu/libXau.so.6",
+      "/lib/aarch64-linux-gnu/libXdmcp.so.6",
+      "/lib/aarch64-linux-gnu/libXfont2.so.2",
+      "/lib/aarch64-linux-gnu/libaudit.so.1",
+      "/lib/aarch64-linux-gnu/libbrotlicommon.so.1",
+      "/lib/aarch64-linux-gnu/libbrotlidec.so.1",
+      "/lib/aarch64-linux-gnu/libbsd.so.0",
+      "/lib/aarch64-linux-gnu/libbz2.so.1.0",
+      "/lib/aarch64-linux-gnu/libc.so.6",
+      "/lib/aarch64-linux-gnu/libcap-ng.so.0",
+      "/lib/aarch64-linux-gnu/libcap.so.2",
+      "/lib/aarch64-linux-gnu/libffi.so.8",
+      "/lib/aarch64-linux-gnu/libfontenc.so.1",
+      "/lib/aarch64-linux-gnu/libfreetype.so.6",
+      "/lib/aarch64-linux-gnu/libgcc_s.so.1",
+      "/lib/aarch64-linux-gnu/libgcrypt.so.20",
+      "/lib/aarch64-linux-gnu/libgmp.so.10",
+      "/lib/aarch64-linux-gnu/libgnutls.so.30",
+      "/lib/aarch64-linux-gnu/libgpg-error.so.0",
+      "/lib/aarch64-linux-gnu/libhogweed.so.6",
+      "/lib/aarch64-linux-gnu/libidn2.so.0",
+      "/lib/aarch64-linux-gnu/libjpeg.so.8",
+      "/lib/aarch64-linux-gnu/liblz4.so.1",
+      "/lib/aarch64-linux-gnu/liblzma.so.5",
+      "/lib/aarch64-linux-gnu/libm.so.6",
+      "/lib/aarch64-linux-gnu/libmd.so.0",
+      "/lib/aarch64-linux-gnu/libnettle.so.8",
+      "/lib/aarch64-linux-gnu/libp11-kit.so.0",
+      "/lib/aarch64-linux-gnu/libpam.so.0",
+      "/lib/aarch64-linux-gnu/libpcre2-8.so.0",
+      "/lib/aarch64-linux-gnu/libpixman-1.so.0",
+      "/lib/aarch64-linux-gnu/libpng16.so.16",
+      "/lib/aarch64-linux-gnu/libselinux.so.1",
+      "/lib/aarch64-linux-gnu/libstdc++.so.6",
+      "/lib/aarch64-linux-gnu/libsystemd.so.0",
+      "/lib/aarch64-linux-gnu/libtasn1.so.6",
+      "/lib/aarch64-linux-gnu/libunistring.so.5",
+      "/lib/aarch64-linux-gnu/libxcb.so.1",
+      "/lib/aarch64-linux-gnu/libz.so.1",
+      "/lib/aarch64-linux-gnu/libzstd.so.1",
+      "/lib/ld-linux-aarch64.so.1"
+    ],
+    "tigervncpasswd": [
+      "/lib/aarch64-linux-gnu/libc.so.6",
+      "/lib/aarch64-linux-gnu/libgcc_s.so.1",
+      "/lib/aarch64-linux-gnu/libm.so.6",
+      "/lib/aarch64-linux-gnu/libstdc++.so.6",
+      "/lib/ld-linux-aarch64.so.1"
+    ],
+    "xauth": [
+      "/lib/aarch64-linux-gnu/libX11.so.6",
+      "/lib/aarch64-linux-gnu/libXau.so.6",
+      "/lib/aarch64-linux-gnu/libXdmcp.so.6",
+      "/lib/aarch64-linux-gnu/libXext.so.6",
+      "/lib/aarch64-linux-gnu/libXmuu.so.1",
+      "/lib/aarch64-linux-gnu/libbsd.so.0",
+      "/lib/aarch64-linux-gnu/libc.so.6",
+      "/lib/aarch64-linux-gnu/libmd.so.0",
+      "/lib/aarch64-linux-gnu/libxcb.so.1",
+      "/lib/ld-linux-aarch64.so.1"
+    ],
+    "xdpyinfo": [
+      "/lib/aarch64-linux-gnu/libX11-xcb.so.1",
+      "/lib/aarch64-linux-gnu/libX11.so.6",
+      "/lib/aarch64-linux-gnu/libXau.so.6",
+      "/lib/aarch64-linux-gnu/libXcomposite.so.1",
+      "/lib/aarch64-linux-gnu/libXdmcp.so.6",
+      "/lib/aarch64-linux-gnu/libXext.so.6",
+      "/lib/aarch64-linux-gnu/libXi.so.6",
+      "/lib/aarch64-linux-gnu/libXinerama.so.1",
+      "/lib/aarch64-linux-gnu/libXrender.so.1",
+      "/lib/aarch64-linux-gnu/libXtst.so.6",
+      "/lib/aarch64-linux-gnu/libXxf86dga.so.1",
+      "/lib/aarch64-linux-gnu/libXxf86vm.so.1",
+      "/lib/aarch64-linux-gnu/libbsd.so.0",
+      "/lib/aarch64-linux-gnu/libc.so.6",
+      "/lib/aarch64-linux-gnu/libmd.so.0",
+      "/lib/aarch64-linux-gnu/libxcb.so.1",
+      "/lib/ld-linux-aarch64.so.1"
+    ],
+    "xkbcomp": [
+      "/lib/aarch64-linux-gnu/libX11.so.6",
+      "/lib/aarch64-linux-gnu/libXau.so.6",
+      "/lib/aarch64-linux-gnu/libXdmcp.so.6",
+      "/lib/aarch64-linux-gnu/libbsd.so.0",
+      "/lib/aarch64-linux-gnu/libc.so.6",
+      "/lib/aarch64-linux-gnu/libmd.so.0",
+      "/lib/aarch64-linux-gnu/libxcb.so.1",
+      "/lib/aarch64-linux-gnu/libxkbfile.so.1",
+      "/lib/ld-linux-aarch64.so.1"
+    ]
+  },
+  "files": 182,
+  "gid": 1000,
+  "image_id": "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43",
+  "isolation": {
+    "capabilities": 0,
+    "no_new_privs": 1,
+    "seccomp": 2
+  },
+  "local_parent_id": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+  "manifest_sha256": "53c8584dd5dd5f65cc90737ccbf8521dd461a195eb29110a49d273b64bea1ff6",
+  "parent": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+  "parent_readback": {
+    "cli_revision": "c3723ca5f71e860ed19d1fa1a4305da930dc7428",
+    "files": 61,
+    "manifest_sha256": "aa412b3769f06cd1044c1113253f0875cc40cbaed9d58f1682df4465aeec242b",
+    "node": {
+      "arch": "arm64",
+      "version": "v22.14.0"
+    },
+    "parent": "sha256:b7167d033b9dfa15a9eda6be6708016f53b77f2c31a9d117ee189ea27eb3377f",
+    "passed": true,
+    "platform": "linux/arm64",
+    "runtime": {
+      "arch": "aarch64",
+      "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+      "build_id": "20261125162841",
+      "kind": "audited-candidate",
+      "libxul_sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+    },
+    "runtime_base": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+    "runtime_receipt_sha256": "1f8d48d4c16258086c74472d33ee5f0afaccecdcd568c73566d22d541cc96c93",
+    "scope": "cli2-release",
+    "source_lock_sha256": "4d2f54e4be8a33c22ac80acfa78f6dcd740a5a82c594c99f866aa7e79cd7d5fc",
+    "system_trust": {
+      "files": [
+        "etc/ssl/certs/ca-certificates.crt",
+        "usr/lib/ssl/cert.pem"
+      ],
+      "isrg_roots": {
+        "ISRG_Root_X1.crt": "96bcec06264976f37460779acf28c5a7cfe8a3c0aae11a8ffcee05c0bddf08c6",
+        "ISRG_Root_X2.crt": "69729b8e15a86efc177a57afb7171dfc64add28c2fca8cf1507e34453ccb1470"
+      },
+      "path": "/usr/lib/ssl/cert.pem",
+      "root_count": 120,
+      "sha256": "64e7c24b0536b525fb19b145768bd5e6e12ced0df3db837c34553ea789acd143"
+    }
+  },
+  "passed": true,
+  "platform": "linux/arm64",
+  "public_tcp_ports": 0,
+  "rootfs_layers": [
+    "sha256:aa73cd41dfa9a0ae611beb63a869d6a014956ce82ce395d7d6cf83015b185e60",
+    "sha256:d239973e2a5817fa5f7ce90fc65535eb5a8572d332a48cefa3e64724e22dd6ee",
+    "sha256:bc7b3fc63789854e267e27bf1eebf62222f5222380f5e3594afa98f311b79473",
+    "sha256:e80969ea00353a206a9df5f0e60fb486206e4ac08e5a141f90a3af2203572274",
+    "sha256:81fb3a15e39491f691b51e9dee89d2a24c54ba3a236e909a1bb224affb7787b8"
+  ],
+  "scope": "private-release",
+  "tag": "ruyitrace/interactive:r5-cli2-v1-arm64",
+  "uid": 1000,
+  "version": {
+    "novnc": "1.7.0",
+    "tigervnc-standalone-server": "1.13.1+dfsg-2build2",
+    "websockify": "0.13.0"
+  }
+}

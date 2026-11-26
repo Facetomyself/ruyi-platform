@@ -1,0 +1,16 @@
+{
+  "attempt": "attempt.j1mT36SL",
+  "build_id": "20261125162841",
+  "ended": "2026-11-25T23:55:45+00:00",
+  "host": "oracle-reverse-dev",
+  "invocation": "20261125T235504Z-81a6ba47d52f",
+  "logs": "/home/ubuntu/ruyitrace-arm64-lease-v1/evidence/post-kernel-v1/runs/20261125T235504Z-81a6ba47d52f",
+  "passed": true,
+  "phase": "complete",
+  "run": "release-v1",
+  "schema": 1,
+  "source_revision": "934c67f0cc71f403663e455deb18585e7ee822b5",
+  "started": "2026-11-25T23:55:04+00:00",
+  "summary": "/home/ubuntu/ruyitrace-arm64-lease-v1/evidence/post-kernel-v1/summary.json",
+  "summary_sha256": "441b2678d9c0d713725c5522cb4aa75eccc702877ba8179521850f06524b614e"
+}

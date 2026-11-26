@@ -1,0 +1,69 @@
+{
+  "archive": {
+    "archive": "ruyitrace-public-edge-tls-lease-v1-linux-arm64.docker.tar.gz",
+    "bytes": 381640590,
+    "config_ids": [
+      "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43",
+      "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+      "sha256:928dfcbbfb4718a6020d8de96c8d24dbb095a26b51b104e3bfe7e4f98f7ba691"
+    ],
+    "gzip_crc_verified": true,
+    "layers": {
+      "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43": [
+        "sha256:aa73cd41dfa9a0ae611beb63a869d6a014956ce82ce395d7d6cf83015b185e60",
+        "sha256:d239973e2a5817fa5f7ce90fc65535eb5a8572d332a48cefa3e64724e22dd6ee",
+        "sha256:bc7b3fc63789854e267e27bf1eebf62222f5222380f5e3594afa98f311b79473",
+        "sha256:e80969ea00353a206a9df5f0e60fb486206e4ac08e5a141f90a3af2203572274",
+        "sha256:81fb3a15e39491f691b51e9dee89d2a24c54ba3a236e909a1bb224affb7787b8"
+      ],
+      "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc": [
+        "sha256:aa73cd41dfa9a0ae611beb63a869d6a014956ce82ce395d7d6cf83015b185e60",
+        "sha256:d239973e2a5817fa5f7ce90fc65535eb5a8572d332a48cefa3e64724e22dd6ee",
+        "sha256:bc7b3fc63789854e267e27bf1eebf62222f5222380f5e3594afa98f311b79473",
+        "sha256:e80969ea00353a206a9df5f0e60fb486206e4ac08e5a141f90a3af2203572274"
+      ],
+      "sha256:928dfcbbfb4718a6020d8de96c8d24dbb095a26b51b104e3bfe7e4f98f7ba691": [
+        "sha256:aa73cd41dfa9a0ae611beb63a869d6a014956ce82ce395d7d6cf83015b185e60",
+        "sha256:d239973e2a5817fa5f7ce90fc65535eb5a8572d332a48cefa3e64724e22dd6ee",
+        "sha256:bc7b3fc63789854e267e27bf1eebf62222f5222380f5e3594afa98f311b79473",
+        "sha256:e80969ea00353a206a9df5f0e60fb486206e4ac08e5a141f90a3af2203572274",
+        "sha256:81fb3a15e39491f691b51e9dee89d2a24c54ba3a236e909a1bb224affb7787b8",
+        "sha256:cb36509d8f1facaac45cf28f5de3cb3484ed60d8b6a2661e854d936cc98bfa9f"
+      ]
+    },
+    "path": "/home/ubuntu/ruyitrace-arm64-lease-v1/edge/release-v1/ruyitrace-public-edge-tls-lease-v1-linux-arm64.docker.tar.gz",
+    "platform": "linux/arm64",
+    "sha256": "1de33f49c6ceac4cfd1686b42203bddb1255882c67cad80b4b617247c1c267cb"
+  },
+  "attempt": "attempt.j1mT36SL",
+  "build_id": "20261125162841",
+  "edge": {
+    "manifest_sha256": "76ea1b3083c3ac301b0a3f8e45a7d890ecd59f9928a0a746b62eaa41d2cae51a",
+    "native_readback_sha256": "b1b7ffc1b41aa65ba6999bbbc026b6ee51bdd32afb5d9ebd8794e67e6afcc46e",
+    "registry": "/home/ubuntu/ruyitrace-arm64-lease-v1/edge/release-v1/readback/release-images.json",
+    "registry_sha256": "5a6096d482917b9632e713668f14ebee89f9fa273d118cf6810fa44bd122cb28",
+    "tag": "ruyitrace/public-edge:tls-lease-v1-arm64"
+  },
+  "host": "oracle-reverse-dev",
+  "images": {
+    "cli": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+    "edge": "sha256:928dfcbbfb4718a6020d8de96c8d24dbb095a26b51b104e3bfe7e4f98f7ba691",
+    "interactive": "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43"
+  },
+  "kernel_archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+  "kernel_summary_sha256": "36c197b7c4c8bfcfe784726ca4515a8e208a1f04b3dca85ab5190474a3e04519",
+  "passed": true,
+  "release_locks": {
+    "cli": {
+      "path": "/home/ubuntu/ruyitrace-arm64-lease-v1/evidence/release-v1/release-locks/cli/release-lock.json",
+      "sha256": "e387343161a3fa1ebec4367f629bf6d98698fd9ed4c54872680dab185b168011"
+    },
+    "interactive": {
+      "path": "/home/ubuntu/ruyitrace-arm64-lease-v1/evidence/release-v1/release-locks/interactive/release-lock.json",
+      "sha256": "7401798b87be92fd09682695b5d5f4651ad142a93bc76fd64226ad682b883bd2"
+    }
+  },
+  "run": "release-v1",
+  "schema": 1,
+  "source_revision": "934c67f0cc71f403663e455deb18585e7ee822b5"
+}

@@ -1,0 +1,15 @@
+{
+  "doctor_sha256": "adb1df9dcbfdd9c7758a397905e6343dd82d359a239a0e43c483cf99eaa208b8",
+  "firefox_build_id": "20261125162841",
+  "gecko_archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+  "gecko_attempt": "attempt.j1mT36SL",
+  "image_id": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+  "manifest_sha256": "aa412b3769f06cd1044c1113253f0875cc40cbaed9d58f1682df4465aeec242b",
+  "name": "ruyitrace/cli:r5-cli2-arm64",
+  "parent_image": "sha256:b7167d033b9dfa15a9eda6be6708016f53b77f2c31a9d117ee189ea27eb3377f",
+  "platform": "linux/arm64",
+  "readback_sha256": "369af7c555b20681c438795d29e62a0b0b6d20f7c3da74e7d737416372da01ed",
+  "runtime_base": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "schema": 2,
+  "source_revision": "934c67f0cc71f403663e455deb18585e7ee822b5"
+}

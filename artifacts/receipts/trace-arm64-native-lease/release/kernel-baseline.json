@@ -1,0 +1,49 @@
+{
+  "mode": "candidate",
+  "passed": true,
+  "require_window_context": true,
+  "runtime": {
+    "kind": "audited-candidate",
+    "arch": "aarch64",
+    "build_id": "20261125162841",
+    "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+    "libxul_sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+  },
+  "isolation": {
+    "uid": 1000,
+    "interfaces": [
+      "lo"
+    ],
+    "seccomp": 2,
+    "no_new_privs": 1,
+    "capabilities": 0,
+    "machine": "aarch64",
+    "kernel": "7.0.0-1017-oracle"
+  },
+  "event_files_by_case": {
+    "off": [],
+    "on": [
+      "trace_process_255.jsonl"
+    ]
+  },
+  "negative_control": null,
+  "extended_producers": true,
+  "parent_window_transport": true,
+  "storage_summary_file": "trace_storage_process_255.jsonl",
+  "gate_trace": {
+    "writer_pid": 409,
+    "window_id": 10737418241,
+    "session_ids": [
+      1,
+      2
+    ],
+    "click_ids": [
+      1,
+      2
+    ],
+    "closed_markers_found": 0,
+    "core_file": "trace_process_409.jsonl",
+    "event_file": "trace_event_process_409.jsonl",
+    "checked_core_files": 1
+  }
+}

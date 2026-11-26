@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "phase": "package_verified",
+  "archive": "/work/build/obj-wasi159/dist/firefox-159.0.en-US.linux-aarch64.tar.xz",
+  "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+  "browser_capture": "pending"
+}

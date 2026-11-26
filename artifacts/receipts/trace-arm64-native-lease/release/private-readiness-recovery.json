@@ -1,0 +1,27 @@
+{
+  "canvas_input_ready": true,
+  "checked_utc": "2026-11-25T23:54:11+00:00",
+  "checkpoint_sha256": "519700eedce9fdc2f5abb7705aae18ec94c7228523ed7c0c3af444734091c3da",
+  "completion_utc": "2026-11-25T23:54:29+00:00",
+  "corrected_fixture_executed": true,
+  "expected_image": "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43",
+  "host": "oracle-reverse-dev",
+  "moved_from": [
+    "/home/ubuntu/ruyitrace-arm64-lease-v1/evidence/release-v1/private-native-report.json",
+    "/home/ubuntu/ruyitrace-arm64-lease-v1/evidence/release-v1/private-native-output"
+  ],
+  "new_peer_sha256": "e7e7bf1c15e6b457dbe0e4c677d1924b352d953947f9470a11bf01652d639af2",
+  "new_qa_source": "/var/lib/ruyitrace-arm64-site/3c8ec093ba22b714ab57d4685229505182c52d56",
+  "old_peer_sha256": "661a6f0c34489df61133d858eded450e2dd963d19c91c809508e35c8bb566662",
+  "old_sha256": "a3df818a211dacd715b79945dce4185841ec554dc155981041f81db9adf1daa8",
+  "old_source": "/home/ubuntu/ruyitrace-arm64-lease-v1/source/product-934c67f0cc71f403663e455deb18585e7ee822b5",
+  "original_failed_receipt_preserved": true,
+  "passed": true,
+  "preserved_in": "/home/ubuntu/ruyitrace-arm64-lease-v1/evidence/release-v1/private-qa-failed-a3df818a211dacd7",
+  "private_qa_sha256": "e3199b7a9cf35a571584c30f162dc6e86baf100c6478a5b3cb2afdabf75e2f14",
+  "producer": "934c67f0cc71f403663e455deb18585e7ee822b5",
+  "production_image_changed": false,
+  "qa_revision": "3c8ec093ba22b714ab57d4685229505182c52d56",
+  "qa_tar_sha256": "9644fccc8ad9ef96316274294a431d9bc18fcf25534377594df955047d45ab6f",
+  "schema": 1
+}

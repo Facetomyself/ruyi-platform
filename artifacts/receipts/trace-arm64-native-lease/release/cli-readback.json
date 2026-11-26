@@ -1,0 +1,45 @@
+{
+  "cli_revision": "c3723ca5f71e860ed19d1fa1a4305da930dc7428",
+  "files": 61,
+  "image_id": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+  "local_parent_id": "sha256:b7167d033b9dfa15a9eda6be6708016f53b77f2c31a9d117ee189ea27eb3377f",
+  "manifest_sha256": "aa412b3769f06cd1044c1113253f0875cc40cbaed9d58f1682df4465aeec242b",
+  "node": {
+    "arch": "arm64",
+    "version": "v22.14.0"
+  },
+  "parent": "sha256:b7167d033b9dfa15a9eda6be6708016f53b77f2c31a9d117ee189ea27eb3377f",
+  "passed": true,
+  "platform": "linux/arm64",
+  "rootfs_layers": [
+    "sha256:aa73cd41dfa9a0ae611beb63a869d6a014956ce82ce395d7d6cf83015b185e60",
+    "sha256:d239973e2a5817fa5f7ce90fc65535eb5a8572d332a48cefa3e64724e22dd6ee",
+    "sha256:bc7b3fc63789854e267e27bf1eebf62222f5222380f5e3594afa98f311b79473",
+    "sha256:e80969ea00353a206a9df5f0e60fb486206e4ac08e5a141f90a3af2203572274"
+  ],
+  "runtime": {
+    "arch": "aarch64",
+    "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+    "build_id": "20261125162841",
+    "kind": "audited-candidate",
+    "libxul_sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+  },
+  "runtime_base": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "runtime_receipt_sha256": "1f8d48d4c16258086c74472d33ee5f0afaccecdcd568c73566d22d541cc96c93",
+  "scope": "cli2-release",
+  "source_lock_sha256": "4d2f54e4be8a33c22ac80acfa78f6dcd740a5a82c594c99f866aa7e79cd7d5fc",
+  "system_trust": {
+    "files": [
+      "etc/ssl/certs/ca-certificates.crt",
+      "usr/lib/ssl/cert.pem"
+    ],
+    "isrg_roots": {
+      "ISRG_Root_X1.crt": "96bcec06264976f37460779acf28c5a7cfe8a3c0aae11a8ffcee05c0bddf08c6",
+      "ISRG_Root_X2.crt": "69729b8e15a86efc177a57afb7171dfc64add28c2fca8cf1507e34453ccb1470"
+    },
+    "path": "/usr/lib/ssl/cert.pem",
+    "root_count": 120,
+    "sha256": "64e7c24b0536b525fb19b145768bd5e6e12ced0df3db837c34553ea789acd143"
+  },
+  "tag": "ruyitrace/cli:r5-cli2-arm64"
+}

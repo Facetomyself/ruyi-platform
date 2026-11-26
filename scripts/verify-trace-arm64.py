@@ -24,6 +24,17 @@ BASE = 'c3723ca5f71e860ed19d1fa1a4305da930dc7428'
 PRODUCER = '934c67f0cc71f403663e455deb18585e7ee822b5'
 HEALTH = '406a0475d393767e7c57e32f2fd44784e5a7cb7d'
 ADAPTER = '6002ac28cdcfe8d5c8ac0340f96d258de80038a8'
+QA_REVISION = '3c8ec093ba22b714ab57d4685229505182c52d56'
+QA_TAR = '9644fccc8ad9ef96316274294a431d9bc18fcf25534377594df955047d45ab6f'
+QA_FIRST = 'a3df818a211dacd715b79945dce4185841ec554dc155981041f81db9adf1daa8'
+QA_IMAGES = ('sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc',
+             'sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43')
+QA_DIR = 'product/interactive/qa'
+QA_TREES = ('7d1006a9d9e20e30abc0ebb3623272db85885b0b', 'afae41de95b763e104ddb40a6648a35781d63482')
+QA_OLD_PEER = '661a6f0c34489df61133d858eded450e2dd963d19c91c809508e35c8bb566662'
+QA_BLOBS = {'peer.py': 'e7e7bf1c15e6b457dbe0e4c677d1924b352d953947f9470a11bf01652d639af2',
+            'test_qa.py': '0a82f62cb4c168b92aa4f824d5ae9df24ca3adf980fd25c08c6d5e4a68113f41',
+            'client.py': '29cbdd644fabc1e54fe8ed64a449eb42d432d18f168ea1a4e20ef6c19690d72d'}
 GECKO = '9a2dc53c369c7ae5172018b35988e1d2ffeff402'
 DIFF = '58bef440831a743f5504a984504f171397cb409da4b56340a962283e244546e0'
 TRACE_INPUT = '6086912b4fa649afb77be7dae15c21fbc58946aba6675d82090cc895c8003558'
@@ -43,15 +54,17 @@ CASES = ('expire', 'revoke', 'worker-loss')
 RAW = tuple(x+'.json' for x in '''kernel-release-summary kernel-configured kernel-archive-audit kernel-runtime-identity
 kernel-baseline kernel-exception kernel-page kernel-gate-page kernel-package-result kernel-script-error-build
 post-kernel-summary post-kernel-result cli-lock interactive-lock cli-readback
-interactive-readback cli-product-manifest cli-doctor private-native edge-readback release-images production-verified-release archive-verified
-archive-export empty-engine loopback-expire loopback-revoke loopback-worker-loss external-desktop post-cleanup'''.split())
-GATES = ('immutable-source', 'kernel', 'locked-images', 'archive-receipts', 'isolated-engine', 'loopback-lifecycle',
-         'external-desktop', 'site-cleanup')
+interactive-readback cli-product-manifest cli-doctor private-native private-first-failure private-readiness-recovery private-qa-checkpoint
+edge-readback release-images production-verified-release archive-verified archive-export empty-engine loopback-expire loopback-revoke
+loopback-worker-loss external-desktop post-cleanup'''.split())
+GATES = ('immutable-source', 'kernel', 'locked-images', 'private-readiness-recovery', 'archive-receipts', 'isolated-engine',
+         'loopback-lifecycle', 'external-desktop', 'site-cleanup')
 TLS = ('TLSv1.2', 'TLSv1.3')
 IMMUTABLE_BLOBS = {
     'product/arm64/release_after_kernel.py': '4d962a84eac7593773ebf63caaa0bed296525db87985cf5cc749bf0eea0efa1a',
     'product/arm64/offline/verify_empty.py': '00d2569eab996585fd9ecd8804d9fea54a5e761e4ecd2bbe9739001c4359bed5',
     'product/interactive/qa/public_native.py': 'fcd6c090a8879883c5479937a37749000ad03f5fcbe69ef044cea724d8f3d847',
+    'product/arm64/ops/retest_input_ready.py': '502832c01a85b637dcab9605e21fcc80330df1e1bdc0f375c5df1c228c90c310',
 }
 LIMIT = 4*1024**2
 
@@ -187,11 +200,12 @@ def git(source, *args):
 
 def reviewed_source(source):
     with gate('immutable-source-unavailable'):
-        for revision in (BASE, PRODUCER, HEALTH, ADAPTER):
+        chain = (BASE, PRODUCER, HEALTH, ADAPTER, QA_REVISION)
+        for revision in chain:
             body = git(source, 'cat-file', 'commit', revision)
             frame = b'commit '+str(len(body)).encode()+b'\0'+body
             need(hashlib.sha1(frame).hexdigest() == revision, 'source-commit-object-id')
-        for earlier, later in zip((BASE, PRODUCER, HEALTH), (PRODUCER, HEALTH, ADAPTER)):
+        for earlier, later in zip(chain, chain[1:]):
             git(source, 'merge-base', '--is-ancestor', earlier, later)
     return source
 
@@ -207,6 +221,51 @@ def producer_functions(source, revision, path):
     scope = {'__name__': 'reviewed_arm64_producer'}
     exec(compile(source_blob(source, revision, path), path, 'exec'), scope)
     return scope
+
+
+def reviewed_qa(source):
+    def tree(revision):
+        return {path: row for row,path in (entry.split(b'\t',1) for entry in
+                    git(source,'ls-tree','-rz',revision,'--',QA_DIR).split(b'\0') if entry)}
+    def checksum(revision, name):
+        return sha(git(source,'cat-file','blob',f'{revision}:{QA_DIR}/{name}'))
+    original, corrected = tree(PRODUCER), tree(QA_REVISION)
+    inventory = tuple(git(source,'rev-parse',f'{r}:{QA_DIR}').decode('ascii').strip() for r in (PRODUCER,QA_REVISION))
+    need(inventory == QA_TREES and original.keys() == corrected.keys() and len(corrected) == 17
+         and {p for p in corrected if corrected[p] != original[p]} == {f'{QA_DIR}/{n}'.encode() for n in ('peer.py','test_qa.py')}
+         and checksum(PRODUCER,'peer.py') == QA_OLD_PEER and checksum(PRODUCER,'client.py') == QA_BLOBS['client.py']
+         and all(checksum(QA_REVISION,n) == h for n,h in QA_BLOBS.items()), 'reviewed-private-qa-tree-or-blob')
+    source_blob(source,QA_REVISION,'product/arm64/ops/retest_input_ready.py')
+    archive = git(source,'-c','tar.umask=0002','archive','--format=tar',QA_REVISION,QA_DIR)
+    need(sha(archive) == QA_TAR, 'reviewed-private-qa-archive-sha256')
+
+
+def private_readiness(get, hashes, source, ids):
+    reviewed_qa(source)
+    original, fixed, proof, checkpoint = (get(k) for k in
+        ('private-first-failure','private-native','private-readiness-recovery','private-qa-checkpoint'))
+    ui = ids['interactive']; report_sha = hashes['private-native.json']; evidence = SITE+'/evidence/release-v1/'
+    need((ids['cli'],ui) == QA_IMAGES and hashes['private-first-failure.json'] == QA_FIRST
+         and fields(original, schema=1, passed=False, image_id=ui, platform=PLATFORM,
+                    failure_phase='confirm capture off and reconnect',
+                    failure='QA peer finish: timed out waiting for matching rendered Firefox fixture pixels')
+         and fields(original['identity_after_reconnect'], build_id=BUILD)
+         and fields(original['reconnect']['acks'][-1], clicks=2) and 'canvas_input_ready' not in original['reconnect']
+         and 'native_after_stop' not in original, 'preserved-private-readiness-failure')
+    need(fields(proof, schema=1, host=HOST, producer=PRODUCER, qa_revision=QA_REVISION, qa_tar_sha256=QA_TAR,
+                expected_image=ui, old_sha256=QA_FIRST, old_peer_sha256=QA_OLD_PEER, new_peer_sha256=QA_BLOBS['peer.py'],
+                old_source=SITE+'/source/product-'+PRODUCER, new_qa_source='/var/lib/ruyitrace-arm64-site/'+QA_REVISION,
+                moved_from=[evidence+'private-native-report.json',evidence+'private-native-output'],
+                preserved_in=evidence+'private-qa-failed-'+QA_FIRST[:16], passed=True,
+                original_failed_receipt_preserved=True, production_image_changed=False, corrected_fixture_executed=True,
+                canvas_input_ready=True, private_qa_sha256=report_sha, checkpoint_sha256=hashes['private-qa-checkpoint.json'])
+         and same(checkpoint,dict(image_id=ui,sha256=report_sha))
+         and utc_seconds(proof['checked_utc']) <= utc_seconds(proof['completion_utc']) <=
+             utc_seconds(get('post-kernel-result')['started']), 'private-readiness-recovery-binding')
+    need(fields(fixed['reconnect'], canvas_input_ready=True) and fields(fixed['page_final']['acks'][-1],
+                    clicks=3,drops=1,submits=1,sliderOK=True,textOK=True,titleOK=True)
+         and fixed['identity_after_reconnect']['run_id'] != original['identity_after_reconnect']['run_id'],
+         'private-readiness-new-native-run')
 
 
 def kernel(get):
@@ -374,7 +433,7 @@ def network(get, source, ids, archive, ended):
     need(fields(c, **IDENTITY, schema='ruyitrace-arm64-post-cleanup.v1', os_arch=ARCH, archive_sha256=archive['sha256'],
                 public_origin=ORIGIN, public_ipv4=IP, target_vnic=VNIC, public_port=443, public_leaf_sha256=leaf,
                 public_chain_and_hostname_verified_with_system_ca=True, qa_private_key_removed=True,
-                listeners_80_443=[], remaining_lease_containers=0, remaining_qa_client_containers=0, remaining_qa_units=0,
+                listeners_80_443=[], loaded_qa_units=[], remaining_lease_containers=0, remaining_qa_client_containers=0, remaining_qa_units=0,
                 remaining_lease_runtime_directories=0, caddy='inactive', certbot_timer='active', ssh='active', docker='active')
          and digest(c['qa_ca_sha256']) and c['qa_ca_sha256'] not in {leaf,*ROOTS} and utc_seconds(c['checked_utc']) >= max(external_at,*checked)
          and all(digest(c[k]['before']) and fields(c[k], after=c[k]['before']) for k in ('iptables_sha256','oci_admission_sha256')), 'site-isolation-and-final-cleanup')
@@ -391,6 +450,8 @@ def release(root, source, archive, prepare):
         pkg = kernel(get)
     with gate('image-receipt-shape-or-native-check'):
         ids, proof, ended = images(get,hashes,source,pkg)
+    with gate('private-readiness-recovery-receipt-shape'):
+        private_readiness(get,hashes,source,ids)
     with gate('network-receipt-shape'):
         network(get,source,ids,proof,ended)
     if archive is not None:
@@ -401,6 +462,7 @@ def release(root, source, archive, prepare):
             need(fields(proof, **observed), 'archive-digest-or-config-layer-mismatch')
     index = dict(IDENTITY, schema='ruyitrace-arm64-release-confirmation.v1', source_base=BASE, producer_revision=PRODUCER,
                  route_fixture_revision=HEALTH, public_fixture_sha256=FIXTURE, adapter_revision=ADAPTER,
+                 private_qa_revision=QA_REVISION, private_qa_tar_sha256=QA_TAR,
                  raw_sha256=hashes, platform_checker=dict(mode='release-raw',passed=True,gates=list(GATES)))
     if prepare:
         return index

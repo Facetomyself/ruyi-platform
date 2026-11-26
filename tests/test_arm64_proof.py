@@ -1,4 +1,5 @@
 """Contract regressions. Synthetic receipts exist only inside TemporaryDirectory."""
+from contextlib import redirect_stdout
 import gzip
 import io
 import json
@@ -10,6 +11,7 @@ import sys
 import tarfile
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT/'scripts/verify-trace-arm64.py'
@@ -139,7 +141,19 @@ def raw_fixture(root, target):
         arm_empty_tcp=dict(isolation,listeners=[],viewer_ui_http=200,no_published_ports=True,gid=1000,readonly=True,
                            capabilities=dict.fromkeys(('CapInh','CapPrm','CapEff','CapBnd'),0)),
         identity_first_connected=ident,identity_before_disconnect=ident,identity_after_reconnect=ident,
+        reconnect=dict(canvas_input_ready=True),page_final=dict(acks=[dict(clicks=3,drops=1,submits=1,sliderOK=True,textOK=True,titleOK=True)]),
         native_after_stop=dict(run_id='unit',trace=dict(fixture_native_clicks=1,native_stop_observed=True,closed_title_markers=0))))
+    old = put('private-first-failure',dict(schema=1,passed=False,image_id=ui,platform=plat,
+              failure_phase='confirm capture off and reconnect',
+              failure='QA peer finish: timed out waiting for matching rendered Firefox fixture pixels',
+              identity_after_reconnect=dict(ident,run_id='original'),reconnect=dict(acks=[dict(clicks=2)])))
+    checkpoint = put('private-qa-checkpoint',dict(image_id=ui,sha256=private_hash)); evidence = site+'/evidence/release-v1/'
+    put('private-readiness-recovery',dict(schema=1,host=V['HOST'],producer=producer,qa_revision=V['QA_REVISION'],qa_tar_sha256=V['QA_TAR'],
+        expected_image=ui,old_sha256=old,old_peer_sha256=V['QA_OLD_PEER'],new_peer_sha256=V['QA_BLOBS']['peer.py'],
+        old_source=site+'/source/product-'+producer,new_qa_source='/var/lib/ruyitrace-arm64-site/'+V['QA_REVISION'],
+        moved_from=[evidence+'private-native-report.json',evidence+'private-native-output'],preserved_in=evidence+'private-qa-failed-'+old[:16],
+        checked_utc='2026-11-26T00:58:00+00:00',completion_utc='2026-11-26T00:59:00+00:00',passed=True,original_failed_receipt_preserved=True,
+        production_image_changed=False,corrected_fixture_executed=True,canvas_input_ready=True,private_qa_sha256=private_hash,checkpoint_sha256=checkpoint))
     cm = put('cli-product-manifest',dict(schema=1,scope='cli2-release',platform=plat,cli_revision=base,runtime=package,runtime_base=runtime,
                    runtime_receipt_sha256=rt_hash,source_lock_sha256=sl,parent=ID(8),node_version='22.14.0',ca_bundle_sha256=ca,ca_root_count=120,
                    baseline_sha256=base_hash,exception_sha256=err_hash,files={'one':{}}))
@@ -196,7 +210,7 @@ def raw_fixture(root, target):
              python_wrong_authority_verify_code=64,firefox_strict_https=True,firefox_wrong_authority='insecure certificate')))
     put('post-cleanup',dict(V['IDENTITY'],schema='ruyitrace-arm64-post-cleanup.v1',os_arch=arch,checked_utc=CLEANED,archive_sha256=archive['sha256'],
          public_origin=V['ORIGIN'],public_ipv4=V['IP'],target_vnic=V['VNIC'],public_port=443,public_leaf_sha256=leaf,qa_ca_sha256=H(12),
-         public_chain_and_hostname_verified_with_system_ca=True,qa_private_key_removed=True,listeners_80_443=[],remaining_lease_containers=0,
+         public_chain_and_hostname_verified_with_system_ca=True,qa_private_key_removed=True,listeners_80_443=[],loaded_qa_units=[],remaining_lease_containers=0,
          remaining_qa_client_containers=0,remaining_qa_units=0,remaining_lease_runtime_directories=0,caddy='inactive',certbot_timer='active',
          ssh='active',docker='active',iptables_sha256=dict(before=H(13),after=H(13)),oci_admission_sha256=dict(before=H(14),after=H(14))))
     for name,doc in repo.items():
@@ -219,7 +233,14 @@ class Release(unittest.TestCase):
         self.docs = raw_fixture(self.raw,self.archive)
 
     def run_verifier(self,*args):
-        return invoke('--receipts',self.root,'--trace-source',SOURCE,*args)
+        # Only these two historical anchors are replaced for temporary synthetic bytes.
+        ids = self.docs['post-kernel-summary.json']['images']
+        anchors = dict(QA_IMAGES=(ids['cli'],ids['interactive']),
+                       QA_FIRST=V['sha'](wire(self.docs['private-first-failure.json'])))
+        out = io.StringIO()
+        with mock.patch.dict(V['main'].__globals__,anchors), redirect_stdout(out):
+            rc = V['main'](['--receipts',str(self.root),'--trace-source',str(SOURCE),*(str(x) for x in args)])
+        return rc,json.loads(out.getvalue())
 
     def mutate(self, name, doc):
         (self.raw/(name+'.json')).write_bytes(wire(doc))
@@ -258,6 +279,44 @@ class Release(unittest.TestCase):
                 rc, result = self.run_verifier('--prepare-index')
                 self.assertEqual((rc,result['reason']),(1,why))
                 self.mutate(name,doc)
+
+    def test_site_cleanup_requires_explicitly_empty_loaded_qa_units(self):
+        name = 'post-cleanup'; original = self.docs[name+'.json']
+        for units in (None, ['ruyitrace-demo-qa-example.slice']):
+            with self.subTest(units=units):
+                changed = dict(original)
+                if units is None:
+                    del changed['loaded_qa_units']
+                else:
+                    changed['loaded_qa_units'] = units
+                self.mutate(name,changed)
+                rc, result = self.run_verifier('--prepare-index')
+                self.assertEqual((rc,result['reason']),(1,'site-isolation-and-final-cleanup'))
+
+    def test_private_recovery_rejects_bad_revision_report_sha_and_timing(self):
+        name = 'private-readiness-recovery'; original = self.docs[name+'.json']
+        for key,value in (('qa_revision',V['ADAPTER']),('qa_tar_sha256',H(89)),('new_peer_sha256',H(90)),
+                          ('private_qa_sha256',H(91)),('checkpoint_sha256',H(92)),('production_image_changed',True),
+                          ('completion_utc',EXTERNAL)):
+            with self.subTest(key=key):
+                self.mutate(name,dict(original,**{key:value}))
+                rc, result = self.run_verifier('--prepare-index')
+                self.assertEqual((rc,result['reason']),(1,'private-readiness-recovery-binding'))
+        self.mutate(name,original)
+        old = self.raw/'private-first-failure.json'; old.write_bytes(old.read_bytes()+b' ')
+        self.assertEqual(self.run_verifier('--prepare-index')[1]['reason'],'preserved-private-readiness-failure')
+
+    def test_private_recovery_requires_corrected_run_flag_even_with_bound_hashes(self):
+        docs = dict(self.docs); ids = docs['post-kernel-summary.json']['images']
+        name = 'private-native.json'; docs[name] = dict(docs[name],reconnect={'canvas_input_ready':False})
+        report_sha = V['sha'](wire(docs[name])); checkpoint = dict(image_id=ids['interactive'],sha256=report_sha)
+        docs['private-qa-checkpoint.json'] = checkpoint
+        proof_name = 'private-readiness-recovery.json'
+        docs[proof_name] = dict(docs[proof_name],private_qa_sha256=report_sha,checkpoint_sha256=V['sha'](wire(checkpoint)))
+        hashes = {k:V['sha'](wire(v)) for k,v in docs.items()}
+        with mock.patch.dict(V['main'].__globals__,QA_IMAGES=(ids['cli'],ids['interactive']),QA_FIRST=hashes['private-first-failure.json']):
+            with self.assertRaisesRegex(V['Failure'],'private-readiness-new-native-run'):
+                V['private_readiness'](lambda k:docs[k+'.json'],hashes,SOURCE,ids)
 
     def test_raw_byte_substitutions_fail_even_with_reissued_index(self):
         a = self.raw/'kernel-baseline.json'; old = a.read_bytes(); a.write_bytes(old+b' ')

@@ -1,0 +1,47 @@
+{
+  "active_session_revoked": true,
+  "checked_at": 1795651686,
+  "cli_orderly_stop": true,
+  "default_policy_seconds": 1200,
+  "disconnect": {
+    "active_ws_closed": true,
+    "stage": "disconnected"
+  },
+  "edge_image_id": "sha256:928dfcbbfb4718a6020d8de96c8d24dbb095a26b51b104e3bfe7e4f98f7ba691",
+  "firewall": "never-managed",
+  "first_view": {
+    "fragment_cleared": true,
+    "framebuffer": [
+      1280,
+      720
+    ],
+    "http_only_cookie_hidden_from_js": true,
+    "no_manual_code": true,
+    "stage": "connected",
+    "tls_hostname_verified": true
+  },
+  "harness_sha256": "fcd6c090a8879883c5479937a37749000ad03f5fcbe69ef044cea724d8f3d847",
+  "interactive_image_id": "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43",
+  "loopback_bind_verified": true,
+  "owned_containers_remaining": 0,
+  "owner_exit": 0,
+  "passed": true,
+  "phase": "reconcile",
+  "platform": "linux/arm64",
+  "public_listener": false,
+  "reason": "revoked",
+  "reconnect": {
+    "reused_cookie": true,
+    "reused_invitation": false,
+    "stage": "reconnected"
+  },
+  "runtime_directory_removed": true,
+  "scenario": "revoke",
+  "schema": 1,
+  "scope": "native loopback TLS fixture, two network-none Firefox sessions, no public demo",
+  "second_redemption_status": 403,
+  "test_ttl_seconds": 140,
+  "tls_listener_removed": true,
+  "unauthenticated_asset_status": 403,
+  "unauthenticated_grant_status": 403
+}

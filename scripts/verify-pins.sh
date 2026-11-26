@@ -142,7 +142,9 @@ else: raise SystemExit('ARM64 发行登记与确认文件不一致')
 PY
 ) || fail=1
 case "$arm_proof" in
-    release) python3 -B scripts/verify-trace-arm64.py --release || fail=1 ;;
+    release)
+        python3 -B scripts/verify-trace-arm64.py --release || fail=1
+        python3 -B -m unittest discover -s tests -p 'test_trace_arm_publication.py' -q || fail=1 ;;
     preflight-only) echo 'ARM64: only preparatory evidence registered; no product release claimed.' ;;
     *) fail=1 ;;
 esac

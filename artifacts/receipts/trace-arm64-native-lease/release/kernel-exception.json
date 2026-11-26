@@ -1,0 +1,41 @@
+{
+  "scope": "window-script-error-summary",
+  "schema": 1,
+  "passed": true,
+  "runtime": {
+    "kind": "audited-candidate",
+    "arch": "aarch64",
+    "build_id": "20261125162841",
+    "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+    "libxul_sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+  },
+  "window_script_error_build": {
+    "profile": "arm64-window-script-error-audited-v1",
+    "attempt": "attempt.j1mT36SL",
+    "source_stamp": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+    "build_id": "20261125162841",
+    "rust_sha256": "7c9b4fd349c77c001199ee0c7dfea9e01a1aa4491d9577988af739c3e77cf530",
+    "build_libxul_sha256": "a7ec3cd67e7ca2fc66b99cc0e3defba1d07c0f55a2eeb5ed9a02a047481c5ad3",
+    "elf_build_id": "4b6a7c01b9f3959a40b87ddaa2c1a6e6a2c58e26",
+    "trace_input_sha256": "6086912b4fa649afb77be7dae15c21fbc58946aba6675d82090cc895c8003558",
+    "gecko_diff_sha256": "58bef440831a743f5504a984504f171397cb409da4b56340a962283e244546e0"
+  },
+  "isolation": {
+    "uid": 1000,
+    "interfaces": [
+      "lo"
+    ],
+    "seccomp": 2,
+    "no_new_privs": 1,
+    "capabilities": 0,
+    "machine": "aarch64",
+    "kernel": "7.0.0-1017-oracle"
+  },
+  "exception_rows_by_case": {
+    "off": 0,
+    "opt-out": 0,
+    "wrong-origin": 0,
+    "gate-closed": 0,
+    "on": 1
+  }
+}

@@ -2318,7 +2318,7 @@ projects:
       domtrace: reconstructed Linux subset; original Win64 sources unavailable
     build:
       win_amd64: released
-      linux: 'audited Linux headless amd64 R5 plus earlier separate amd64/ARM64 desktop qualifications'
+      linux: 'separate audited native amd64 and arm64 R5/CLI2; ARM64 BuildID 20261125162841 qualified with a three-image offline bundle and direct public TLS desktop'
     tests: 'clean source: 176 Python passed; Node 66 passed/3 skipped; native C++/Node contract stage 22 Node passed'
     phase: relocated standalone CLI verified with production MCP on native amd64 R5, including owner stop during a real RDP pause
     release_source_lock: artifacts/receipts/trace-amd64-r5/source-lock.json
@@ -2328,10 +2328,12 @@ projects:
     interactive_image: artifacts/receipts/trace-interactive-r5/interactive-image.json
     optional_tls_lease: artifacts/receipts/trace-public-lease-v1/release.json
     arm64_site_preflight: artifacts/receipts/trace-arm64-native-lease/preflight/stage.json
+    arm64_release: artifacts/receipts/trace-arm64-native-lease/release/confirmation.json
+    arm64_github_release: artifacts/receipts/trace-arm64-native-lease/github-release.json
     blocked_by: []
     remaining:
-    - Linux browser producer coverage beyond verified DOM, click, explicit Web Storage and amd64 window-script-error summaries
-    - ARM64 and Electron production owner integration remain distinct from AMD64 Linux CLI; physical displays and wider producers are separate gates
+    - Linux browser producer coverage beyond verified DOM, dispatched clicks, explicit Web Storage and amd64/arm64 window-script-error summaries
+    - Production MCP-borrowed ARM64/Electron owners, physical displays, OS IME and wider event producers remain separate from the qualified ARM64 CLI/private/public desktop lease
     verified:
       kernel_hashes: pass
       domtrace_hashes: pass
@@ -2931,14 +2933,14 @@ submodules:
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: c3723ca5f71e860ed19d1fa1a4305da930dc7428
+    commit: f1253a6ddf03dffa178d349231facc61866e686b
     state: added
 docs_health:
   total_markdown: 47
   total_cpp_files: 62
   total_scripts: 20
   reproduce_manual: REPRODUCE.md
-  last_full_verification: '2026-11-26 +08:00: verify-pins includes native Trace TLS lease witnesses, immutable release-lock cross-check and candidate rejection; private interactive image unchanged'
+  last_full_verification: '2026-11-26 +08:00: ARM64 final product gate checks 33 native/desktop/cleanup receipts, config IDs and source; stable GitHub assets downloaded and rehashed. Independent amd64 product receipts unchanged.'
 tooling:
   scripts:
     domtrace-anchors.py: xul.dll 74 开关锚点提取

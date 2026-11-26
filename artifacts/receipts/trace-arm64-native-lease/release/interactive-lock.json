@@ -1,0 +1,16 @@
+{
+  "acceptance_sha256": "e3199b7a9cf35a571584c30f162dc6e86baf100c6478a5b3cb2afdabf75e2f14",
+  "firefox_build_id": "20261125162841",
+  "gecko_archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+  "gecko_attempt": "attempt.j1mT36SL",
+  "image_id": "sha256:3551d08e4cb9096cd453542da67dbd17e0a79b44e88887ca5e6ddef2b699eb43",
+  "layer_manifest_sha256": "53c8584dd5dd5f65cc90737ccbf8521dd461a195eb29110a49d273b64bea1ff6",
+  "manifest_sha256": "53c8584dd5dd5f65cc90737ccbf8521dd461a195eb29110a49d273b64bea1ff6",
+  "name": "ruyitrace/interactive:r5-cli2-v1-arm64",
+  "parent_image": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+  "platform": "linux/arm64",
+  "readback_sha256": "c7a463881d6fdc5dbd41064e3d1a83d11ba15769fbe149e6151fbc439ee56974",
+  "runtime_base": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "schema": 2,
+  "source_revision": "934c67f0cc71f403663e455deb18585e7ee822b5"
+}

@@ -1,0 +1,331 @@
+{
+  "baseline_sha256": "91bc9add943070b8527f55b0bc87db48bd6c7336b4e428d44da1b0ff7c57042f",
+  "ca_bundle_sha256": "64e7c24b0536b525fb19b145768bd5e6e12ced0df3db837c34553ea789acd143",
+  "ca_root_count": 120,
+  "cli_revision": "c3723ca5f71e860ed19d1fa1a4305da930dc7428",
+  "exception_sha256": "524ec47786bdb0da88c9b3e7278f4a5a56af6b252cf42f3e0d774bd5a78068cb",
+  "files": {
+    "etc/ssl/certs/ca-certificates.crt": {
+      "bytes": 180744,
+      "mode": 292,
+      "sha256": "64e7c24b0536b525fb19b145768bd5e6e12ced0df3db837c34553ea789acd143"
+    },
+    "opt/ruyitrace/cli/bin/ruyitrace": {
+      "bytes": 55,
+      "mode": 365,
+      "sha256": "96b634b168f32177b2b8bf2ad3089e673c3dd6354aa97f5b8f20470765235442"
+    },
+    "opt/ruyitrace/cli/build-receipt.json": {
+      "bytes": 8974,
+      "mode": 292,
+      "sha256": "53696c7bf3ee6767521b5497dee756a0517ee72614f3ce4d40ac349dc7426332"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/LICENSE": {
+      "bytes": 1499,
+      "mode": 292,
+      "sha256": "fa5659948374d4f555594f47f6da073b40dc503e921aeeece30df4362b3051a5"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/README.md": {
+      "bytes": 11863,
+      "mode": 292,
+      "sha256": "ed92f933ed41b95dcd949799c156a142973e296b183683e52a468a76df9f5f63"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/date.d.ts": {
+      "bytes": 2098,
+      "mode": 292,
+      "sha256": "c7ad3531c131f2b5b246b2d208b75c5403475ad155b7661fa2d673104b806791"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/date.js": {
+      "bytes": 4942,
+      "mode": 292,
+      "sha256": "fcc8fcce1a3e8660ac572fb827c20e49d269ad50686c085bb72c3c50771323d5"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/error.d.ts": {
+      "bytes": 1878,
+      "mode": 292,
+      "sha256": "c5ada15420e52bcc8a451a7c4f2daff318e6d0bf5f8c691b25158555a4508f0e"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/error.js": {
+      "bytes": 2787,
+      "mode": 292,
+      "sha256": "28dbfc2871c0707f97cebb5a8be7e343a9cee58250b5814813d748b90d9e0d3b"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/extract.d.ts": {
+      "bytes": 1878,
+      "mode": 292,
+      "sha256": "00c1a5d214514abf62695a8b92ca78b839e64b921f083bf58e1d6faff010df33"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/extract.js": {
+      "bytes": 4243,
+      "mode": 292,
+      "sha256": "74845a2bd9d0c585f7eb14d35ea234c3eb8fb86fd1efb3fb0bebd5c434ceb46e"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/index.cjs": {
+      "bytes": 25953,
+      "mode": 292,
+      "sha256": "690b76d0fac1eec8066b877e7345a4a127691007a363a045d0fea900d48186cb"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/index.d.ts": {
+      "bytes": 2207,
+      "mode": 292,
+      "sha256": "4ef8ce05fffa05c691083bc96f9e65bac35f79e0b4517c426a30d1123b09ba1e"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/index.js": {
+      "bytes": 1883,
+      "mode": 292,
+      "sha256": "ded3ee91f3ce1ef746f6b57459b0c68475658eacb8e88fd18336a5408de009a1"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/parse.d.ts": {
+      "bytes": 2091,
+      "mode": 292,
+      "sha256": "92f6be0d7e2937e9c13fec8bb38b0e1186db1cd654af86a8bbb2f78d40ba8b9d"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/parse.js": {
+      "bytes": 5694,
+      "mode": 292,
+      "sha256": "1c82702f0b4244a4d10ef43806a581a80277ff239d27bfd98ae5662c47c706d5"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/primitive.d.ts": {
+      "bytes": 1961,
+      "mode": 292,
+      "sha256": "e280a713f408497aacba06c0b058e5ceef3418819ff901fa145d065ef5fcc669"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/primitive.js": {
+      "bytes": 6576,
+      "mode": 292,
+      "sha256": "c979c3a950cc1757acf7e5359655cfe4192ae98711e7391bc9c86c8562946bd5"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/stringify.d.ts": {
+      "bytes": 1759,
+      "mode": 292,
+      "sha256": "c9a75924aa75b4e60542ff06437b3abd9679ee9f740245080fbe528f05fb8763"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/stringify.js": {
+      "bytes": 6453,
+      "mode": 292,
+      "sha256": "de9dafe2c331dc0b43da17de75a4f1337ddf262a5b21f7936c35c860917ca581"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/struct.d.ts": {
+      "bytes": 2103,
+      "mode": 292,
+      "sha256": "a7c3aa15e05ec77962b7ac9e93546a3ad616adb862a3e787aa9a78edc5ac278f"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/struct.js": {
+      "bytes": 7308,
+      "mode": 292,
+      "sha256": "690c2ec5c8efba9376d096196df93a387a3fa2e356e2dc9ba0564cf75564ea78"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/util.d.ts": {
+      "bytes": 2533,
+      "mode": 292,
+      "sha256": "8f3f902140fe673679da77cbfbb44dd113d1e4217fd05c4f6e5d9bee8b395b4c"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/dist/util.js": {
+      "bytes": 4209,
+      "mode": 292,
+      "sha256": "31ff99295cb2c69fdd6a0fcf8ff3b002a59c68f6e48c0b22265a5a09eee03ac7"
+    },
+    "opt/ruyitrace/cli/node_modules/smol-toml/package.json": {
+      "bytes": 1514,
+      "mode": 292,
+      "sha256": "16005fbf426692da35d5ddf81725a6a26d77b0ddac6dc44fb00eaf203d363fae"
+    },
+    "opt/ruyitrace/cli/src/cli/README.md": {
+      "bytes": 12698,
+      "mode": 292,
+      "sha256": "6b423d7ad58f676f27cade38764efcda9894a9da01f4b540f88862686a684195"
+    },
+    "opt/ruyitrace/cli/src/cli/budget.mjs": {
+      "bytes": 8600,
+      "mode": 292,
+      "sha256": "e816fadfb311d971a0f4a89c572ad4f3bcc67928866e41bfb16b8b8697c27749"
+    },
+    "opt/ruyitrace/cli/src/cli/config.mjs": {
+      "bytes": 3451,
+      "mode": 292,
+      "sha256": "c67ca2a1b33d3a477dbc582a973e0c6cf2f5e452394095b5906779106a079b1e"
+    },
+    "opt/ruyitrace/cli/src/cli/errors.mjs": {
+      "bytes": 1305,
+      "mode": 292,
+      "sha256": "fb02e5bcd016e505183fcfda121deeb5a297d634c79a98f7e800db16e919c549"
+    },
+    "opt/ruyitrace/cli/src/cli/gate.mjs": {
+      "bytes": 20393,
+      "mode": 292,
+      "sha256": "e9edf6962f0d6c213d5b78a8a5b8bda7241074c5ea2601737e374900b771e57a"
+    },
+    "opt/ruyitrace/cli/src/cli/launch.mjs": {
+      "bytes": 6070,
+      "mode": 292,
+      "sha256": "ff331f4b96ccd65314d8e164b8c7f1b12e7fc57dd1237a0dec2d9cabea37ef0f"
+    },
+    "opt/ruyitrace/cli/src/cli/mcp-bidi.mjs": {
+      "bytes": 26058,
+      "mode": 292,
+      "sha256": "3e534bb44430674075d3b5de4e1555d349f5244e254d782b2793e1c7ed561295"
+    },
+    "opt/ruyitrace/cli/src/cli/mcp-live.mjs": {
+      "bytes": 10099,
+      "mode": 292,
+      "sha256": "effcff3b2888a88a1e4a004b60d91202acf24fa1011f5d27567fda0460d3a1bd"
+    },
+    "opt/ruyitrace/cli/src/cli/mcp-rdp.mjs": {
+      "bytes": 10974,
+      "mode": 292,
+      "sha256": "9d15460eb4127f3622874f15ae82ff4d330943467a85323ccc4ef9bd684d7b0a"
+    },
+    "opt/ruyitrace/cli/src/cli/mcp-runtime.mjs": {
+      "bytes": 3779,
+      "mode": 292,
+      "sha256": "3d12e238ca2658e8dfa5c2a6fa7dd6039771837dab27c6ec95c06ce9ce0331be"
+    },
+    "opt/ruyitrace/cli/src/cli/owner.mjs": {
+      "bytes": 12005,
+      "mode": 292,
+      "sha256": "e8c6c75648188728fa8eb9e509bd72d70a7445a23db7397ff342888f9db72373"
+    },
+    "opt/ruyitrace/cli/src/cli/paths.mjs": {
+      "bytes": 4555,
+      "mode": 292,
+      "sha256": "4e07272b1e4cada26a6071ded2c9c11248f39449181713a105016972da3fc3e9"
+    },
+    "opt/ruyitrace/cli/src/cli/qualification.mjs": {
+      "bytes": 9481,
+      "mode": 292,
+      "sha256": "b3c95146cf19dcff4c969df8bd5ebbe46982f27552637b8dcb381e11b766cb39"
+    },
+    "opt/ruyitrace/cli/src/cli/ruyitrace.mjs": {
+      "bytes": 9384,
+      "mode": 292,
+      "sha256": "33e0a3dbe57df308665d169cdffd6956cecea9b40e9e0cb385dff319495156ad"
+    },
+    "opt/ruyitrace/cli/src/cli/state.mjs": {
+      "bytes": 4151,
+      "mode": 292,
+      "sha256": "8332e634dee05e19e686edcd7744560e4b3dd003357a57f3a6c426293559746e"
+    },
+    "opt/ruyitrace/cli/src/cli/status.mjs": {
+      "bytes": 712,
+      "mode": 292,
+      "sha256": "1d05d8c4ad0d265087677ab42a77eaf494ee0c5aff5230da4470299fa15fedf5"
+    },
+    "opt/ruyitrace/cli/src/main/gate-qualification.cjs": {
+      "bytes": 6904,
+      "mode": 292,
+      "sha256": "5c4635d69c9bcfc86d5cd86886577e3931a4f6e14d778d16c9523cdf76573608"
+    },
+    "opt/ruyitrace/cli/src/main/kernel-layout.cjs": {
+      "bytes": 2466,
+      "mode": 292,
+      "sha256": "57c20c58008caff805c0e5fc1fac9a795ce0d31911384ab36e83dc7fcc9ab5da"
+    },
+    "opt/ruyitrace/cli/src/main/linux-gate.cjs": {
+      "bytes": 4531,
+      "mode": 292,
+      "sha256": "4f074371150b54116f63e118faf41c0ec2f9664e7640822384ba23a3ec52ea80"
+    },
+    "opt/ruyitrace/cli/src/shared/firefox-environment.cjs": {
+      "bytes": 2515,
+      "mode": 292,
+      "sha256": "cfad644195750e013d694e644a188ccfc65ee980ab6309487e9d34690df1892a"
+    },
+    "opt/ruyitrace/doctor.py": {
+      "bytes": 16810,
+      "mode": 292,
+      "sha256": "c95020ab583ee69e25fd36359e25d365df1f6ced5afa58c47b4a9ad24592faad"
+    },
+    "opt/ruyitrace/inputs-lock.json": {
+      "bytes": 3319,
+      "mode": 292,
+      "sha256": "eb021c41e1b51f122918408573173050497a0d274d9595e74e87bfc566addb0b"
+    },
+    "opt/ruyitrace/licenses/node-LICENSE": {
+      "bytes": 140396,
+      "mode": 292,
+      "sha256": "1474fea5eff88dc92763acca3ca1f54b51fa153be1529eae74ace35957aea9ce"
+    },
+    "opt/ruyitrace/licenses/tini-copyright": {
+      "bytes": 1377,
+      "mode": 292,
+      "sha256": "9ca2a5573a28634de8972806ef43634c8718d17eb58fb2d820c1f29f8c5a4267"
+    },
+    "opt/ruyitrace/proofs/baseline.json": {
+      "bytes": 1338,
+      "mode": 292,
+      "sha256": "db54fdc408c85f2adc6a9eeb81a368d6b5e24882baa94c9b56f186534f8a5664"
+    },
+    "opt/ruyitrace/proofs/exception.json": {
+      "bytes": 1655,
+      "mode": 292,
+      "sha256": "8aae5e1bcf962263fcc094aadc2d9693c7a4588fe546ab45481fd0eec98e34be"
+    },
+    "opt/ruyitrace/public_tls.mjs": {
+      "bytes": 6257,
+      "mode": 292,
+      "sha256": "f4792158c4059d3131a37a3daf5ce7fcd2e63b11b7b012920c66a4bc362415e4"
+    },
+    "opt/ruyitrace/public_tls.py": {
+      "bytes": 3865,
+      "mode": 292,
+      "sha256": "838fafb34ba77633261709786e8c700a4dc42b304bdf0c88a061f3dac735494f"
+    },
+    "opt/ruyitrace/sealed.py": {
+      "bytes": 4534,
+      "mode": 292,
+      "sha256": "128582f394bff7c3e8aec23619baced67b2ae3e8beff657503c0261f69c753f3"
+    },
+    "opt/ruyitrace/source-lock.json": {
+      "bytes": 3436,
+      "mode": 292,
+      "sha256": "4d2f54e4be8a33c22ac80acfa78f6dcd740a5a82c594c99f866aa7e79cd7d5fc"
+    },
+    "opt/ruyitrace/tini": {
+      "bytes": 552328,
+      "mode": 365,
+      "sha256": "184b046dfad93ec52709e268e7db2400e6909de5430dc6d176b259c61867bc4c"
+    },
+    "opt/ruyitrace/trust.py": {
+      "bytes": 2998,
+      "mode": 292,
+      "sha256": "eafe8187aed6ad78975a28e6b01c0d185d23b2eb1a1ddb455c8b1981bed997c3"
+    },
+    "opt/ruyitrace/verify_install.py": {
+      "bytes": 3685,
+      "mode": 292,
+      "sha256": "17db1269d0d837d5eddca8de66a1f23e9e84f05a649e3f85acc9113589ae8790"
+    },
+    "usr/lib/ssl/cert.pem": {
+      "bytes": 180744,
+      "mode": 292,
+      "sha256": "64e7c24b0536b525fb19b145768bd5e6e12ced0df3db837c34553ea789acd143"
+    },
+    "usr/local/bin/node": {
+      "bytes": 117532552,
+      "mode": 365,
+      "sha256": "f15053488b3c49d16eb4b0da25593b459a79839248381f6aa61a876bcce54966"
+    },
+    "usr/local/bin/ruyitrace": {
+      "bytes": 3170,
+      "mode": 365,
+      "sha256": "b96edc0148121a0f4da7756d9b994a5f3b81340a74b931ea9334014f8a9d9ece"
+    }
+  },
+  "kernel_manifest_sha256": "fe482c96ff0206a8414aa8aa38342f44b2076d83695d7b0482b3ac99adf569da",
+  "node_version": "22.14.0",
+  "parent": "sha256:b7167d033b9dfa15a9eda6be6708016f53b77f2c31a9d117ee189ea27eb3377f",
+  "platform": "linux/arm64",
+  "runtime": {
+    "arch": "aarch64",
+    "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+    "build_id": "20261125162841",
+    "kind": "audited-candidate",
+    "libxul_sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+  },
+  "runtime_base": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "runtime_receipt_sha256": "1f8d48d4c16258086c74472d33ee5f0afaccecdcd568c73566d22d541cc96c93",
+  "schema": 1,
+  "scope": "cli2-release",
+  "source_lock_sha256": "4d2f54e4be8a33c22ac80acfa78f6dcd740a5a82c594c99f866aa7e79cd7d5fc",
+  "tini_version": "0.19.0"
+}

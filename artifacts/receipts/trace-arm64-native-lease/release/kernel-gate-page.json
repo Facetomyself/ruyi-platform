@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "mode": "audited-package-gate",
+  "nonce": "f6e2181257ac5f6a8f7abb184cd99bec",
+  "steps": [
+    {
+      "step": "start1",
+      "content": {
+        "pid": 409,
+        "namespace_pids": [
+          409
+        ],
+        "start_ticks": 3391755,
+        "web_role": "Isolated Web Co",
+        "evidence": "forkserver-web-role"
+      },
+      "live_web_count": 1
+    },
+    {
+      "step": "stop1",
+      "content": {
+        "pid": 409,
+        "namespace_pids": [
+          409
+        ],
+        "start_ticks": 3391755,
+        "web_role": "Isolated Web Co",
+        "evidence": "forkserver-web-role"
+      },
+      "live_web_count": 1
+    },
+    {
+      "step": "start2",
+      "content": {
+        "pid": 409,
+        "namespace_pids": [
+          409
+        ],
+        "start_ticks": 3391755,
+        "web_role": "Isolated Web Co",
+        "evidence": "forkserver-web-role"
+      },
+      "live_web_count": 1
+    },
+    {
+      "step": "stop2",
+      "content": {
+        "pid": 409,
+        "namespace_pids": [
+          409
+        ],
+        "start_ticks": 3391755,
+        "web_role": "Isolated Web Co",
+        "evidence": "forkserver-web-role"
+      },
+      "live_web_count": 1
+    },
+    {
+      "step": "done",
+      "content": {
+        "pid": 409,
+        "namespace_pids": [
+          409
+        ],
+        "start_ticks": 3391755,
+        "web_role": "Isolated Web Co",
+        "evidence": "forkserver-web-role"
+      },
+      "live_web_count": 1
+    }
+  ],
+  "pid_domain": "browser-parent",
+  "runtime_identity": {
+    "kind": "audited-candidate",
+    "arch": "aarch64",
+    "build_id": "20261125162841",
+    "archive_sha256": "1ae57564c96eec28453ef20bbdebe3b494b15524efcf99be510dd5d158cbb640",
+    "libxul_sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+  },
+  "probe_origin": "http://127.0.0.1:42337",
+  "browser_exit": 0,
+  "png": true,
+  "load_barrier_seen": true,
+  "trace": {
+    "writer_pid": 409,
+    "window_id": 10737418241,
+    "session_ids": [
+      1,
+      2
+    ],
+    "click_ids": [
+      1,
+      2
+    ],
+    "closed_markers_found": 0,
+    "core_file": "trace_process_409.jsonl",
+    "event_file": "trace_event_process_409.jsonl",
+    "checked_core_files": 1
+  },
+  "failed_step": null,
+  "observed_writer_pid": 409
+}
