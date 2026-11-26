@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T15:57:25+08:00'
+generated_at: '2026-11-26T18:16:58+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -2901,7 +2901,13 @@ related_projects:
       mode: on_demand
       default_network: none
       checked_at: '2026-11-26T00:55:54Z'
-    pending: [second_arm64_host_clean_store_import]
+    arm64_second_host_restore:
+      host: oracle-dsh
+      product_commit: 1344fec24407b5d525ea5b47e0ba6522c8522279
+      evidence: artifacts/receipts/ruyidom-arm64-v0.3-cold-restore.json
+      evidence_sha256: b97fb7d6232844a3c82c953cd24b24a04c463f06efdbda4d1f06164b5f477a2a
+      scope: empty_store_import_and_real_navigation
+    pending: [bare_jammy_arm64_abi, amd64_full_source_build]
     historical_v0_1_handoff: artifacts/receipts/ruyidom-source-v0.1.0.json
 artifacts:
   ruyijs-0.2.2+inner.492ee47:

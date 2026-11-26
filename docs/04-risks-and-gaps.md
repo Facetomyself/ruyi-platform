@@ -59,7 +59,7 @@
 | **部分已验 · RuyiJS TLS 原生层** | [R358](../artifacts/receipts/ruyijs-linux-tls-r358/validation.json)：固定 NSS 3.131 的 TLS 1.3 握手、ALPN 协商、不受信任证书拒绝，以及基于 DER 证书固定值的 HTTPS 客户端往返均已实测；未配置固定值直接拒连；固定值不匹配在 TLS 握手中止，不发送 HTTP 请求字节。 | 仍需 JS `fetch()`/`navigate()` 的 HTTPS 端到端与外部 CA 信任；h2 语义、QUIC 与 ARM64 另验。 |
 | **部分已验 · RuyiJS 明文 HTTP/1** | [R357 组件](../artifacts/receipts/ruyijs-linux-http1-r357/validation.json)在 R356 安装态上真实收发：JS 读到回环服务新生成的挑战，GET/POST/HEAD/404、二进制体、参数、gzip/deflate/chunked、导航及外部脚本均经服务端核对；独立 C 程序也取得新响应。卸载该组件恢复 R356 原文件树。 | 该项只覆盖 libc 上的私有明文 HTTP/1。HTTPS 另有条目（R358 适配层、R360/R361 安装态、R376 锚点链校验）。**仍需** h2、QUIC/h3、OCSP/CRL、公共 CA 根库与代理支持各自实测；未列出者不得据本项推断。 |
 | **P2 · 架构与宿主** | Trace 有独立 ARM64 浏览器及虚拟桌面证据；MCP 有双架构 core；Http 已核验 Linux ARM64 和 Intel macOS 原生库。 | RuyiJS ARM64、Trace 生产 ARM64 共会话、物理显示分别建包验收；仅在要承诺更低 glibc 时做相应目标发行版测试。Trace 托管检查曾因计费未获 runner，应在 runner 可用后重跑；已有本地源码通过记录与 hosted CI 分开。 |
-| **使用 RuyiDOM 时 · 独立仓与制品维护者** | ARM64 源码版镜像已在 Noble 容器内通过真实浏览器验收，归档在原 Docker 存储回载后复测；见[v0.3.0 发行回执](../artifacts/receipts/ruyidom-arm64-source-v0.3.0.json)和[主机操作入口](14-source-handoff.md#ruyidom-独立源码交接)。 | 第二台 ARM64 主机的空存储冷导入仍未验证。裸 Jammy 的动态库版本不足，优先使用已验收的 Noble 镜像；`native` 的 HTTP 导航受限属已知边界，真实导航选择 `browser`。 |
+| **使用 RuyiDOM 时 · 独立仓与制品维护者** | [v0.3.0 发行](../artifacts/receipts/ruyidom-arm64-source-v0.3.0.json)已通过 Noble 容器验收和原机回载；同一归档后续在第二台 ARM64 主机的隔离空存储中冷恢复并通过真实导航/离线冒烟，见[交接及验证范围](14-source-handoff.md#ruyidom-独立源码交接)。 | 裸 Jammy 的 ABI 兼容、amd64 完整源码构建仍待各自验收；部署优先用已验收的 Noble 镜像。真实 HTTP(S) 导航使用 `browser`。 |
 
 **另有一条不能合并的发布线。** [常驻采集 CLI2 产品标签](https://github.com/Facetomyself/ruyitrace/blob/f3f45baaee75a700ed4d41fdc5e4e70d977df1b6/product/release-lock.json)锁定实际 CLI 输入 `29a1111`，复用 R5 内核。它验过 256 个开关代际、512 条原生边界与同一宿主的空 Docker 引擎加载。Trace 主线的常驻修复 `61a4c15`、平台 Trace pin、CLI2 产品镜像是不同对象；CLI2 证据不自动继承生产 M2。若下游需要“一份镜像兼有常驻配额与 MCP 借用”，先合成一个明确版本，再在**同一镜像摘要**上同时通过这两组测试。第二物理宿主、严格内容进程过滤证据仍应单列。
 
@@ -318,6 +318,7 @@ AMD64 R5 的 Linux CLI [生产门禁](../projects/ruyi-mcp/PRODUCTION-OWNER.md)�
 
 | 轮次 | 更正内容 |
 | --- | --- |
+| 2026-11-26 · RuyiDOM 后续 | 原发行时仅有同机回载及第二台主机归档摘要；后续同一归档在第二台原生 ARM64 主机独立空存储中导入，并通过真实浏览器导航和 native 冒烟，关闭冷恢复缺口。见[第二主机冷恢复](14-source-handoff.md#ruyidom-独立源码交接)。 |
 | 2026-11-26 · RuyiDOM | [v0.1.0](../artifacts/receipts/ruyidom-source-v0.1.0.json)的「ARM64 Docker 待验」是历史结论。[v0.3.0](../artifacts/receipts/ruyidom-arm64-source-v0.3.0.json)已关闭这项缺口；第二台主机冷导入另列，不因同机回载通过而关闭。 |
 | 初版 | A1 判定「`_pipe.py` 需整文件重写 127 行」 |
 | **更正** | 上游 ff-ruyijs 0.4.1 `python/ruyijs/_pipe.py` 已 208 行且含 AF_UNIX 分支；内部 wheel 只是旧快照。降级为「覆盖 4 个文件」。 |

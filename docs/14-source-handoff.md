@@ -93,7 +93,11 @@ make -C ruyidom check
 ssh oracle-reverse-dev 'docker image inspect --format "{{.Id}} {{.Os}}/{{.Architecture}}" ruyidom:arm64-source-20261125161200-648b02c0896e1cae'
 ```
 
-镜像 8/8 项验收通过，源码版内容引擎的浏览器套件 12/12、冷启动 10/10。Ubuntu 24.04 Noble 容器内通过，裸 Ubuntu 22.04 Jammy 因动态库符号缺失启动失败。归档已在原 ARM 主机的现有 Docker 存储离线重载，镜像 ID 一致，native 冒烟和浏览器重定向/CSP 通过；维护工作区的独立副本只核验归档摘要，尚无第二台主机冷导入的验收。
+**v0.3.0 发行时的验收**：镜像 8/8 项通过，源码版内容引擎的浏览器套件 12/12、冷启动 10/10。Ubuntu 24.04 Noble 容器内通过，裸 Ubuntu 22.04 Jammy 因动态库符号缺失启动失败。归档在原 ARM 主机的现有 Docker 存储离线重载后，镜像 ID 一致，native 冒烟和浏览器重定向/CSP 通过；当时第二台主机只核对了归档摘要。
+
+**第二台 ARM64 主机冷恢复**：2026-11-26 10:04 UTC，在 `oracle-dsh` 原生 ARM64 上，把同一份 v0.3.0 归档导入本机新建的隔离 Docker/containerd 空存储。导入前镜像、容器、内容记录、快照及物理 blob 计数均为零；导入后核对原镜像配置摘要、manifest 及 7 层摘要。Docker 29 的 containerd 存储显示的是 manifest 摘要，与旧存储显示的配置摘要是两个不同标识。复验见[换机步骤](https://github.com/Facetomyself/ruyidom/blob/1344fec24407b5d525ea5b47e0ba6522c8522279/docs/ARM64-SOURCE-RELEASE.md#2-在另一台-arm64-机器部署)和[独立冷恢复回执](../artifacts/receipts/ruyidom-arm64-v0.3-cold-restore.json)。
+
+Firefox 136 native 序列化 10/10；真实浏览器完成 `GET /start` → `/page` → `/external.js`，验过外链 nonce、两项 CSP 内联阻断和清理。较早一次默认 15 秒用例超时，本次冷恢复后的默认 15 秒和单独的 75 秒用例均通过。补跑原八项命令通过 7/8：整套 `browser-nav` 达到 270 秒上限、5 秒终止宽限后退出 137；第二台主机没有完整组数或冷启动计数。独立存储已清理。成功范围是使用镜像内 Noble 用户态的冷恢复与真实导航；裸 Jammy ABI 和 amd64 完整源码构建另验。
 
 ### v0.2.0：官方内容引擎基线与历史 AMD64 P3
 

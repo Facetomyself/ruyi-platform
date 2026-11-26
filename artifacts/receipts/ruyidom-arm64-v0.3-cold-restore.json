@@ -1,0 +1,94 @@
+{
+  "architecture": "linux/arm64",
+  "buildHost": "oracle-reverse-dev",
+  "cleanupUTC": "2026-11-26T10:12:53Z",
+  "coldRestoreAndRealNavigationPassed": true,
+  "configSHA256": "sha256:f9d740cf768f3c5048e8850f55e4355946abb1a64f054c054673f00b8a2fd23d",
+  "dockerVersion": "29.9.3",
+  "earlierDefaultFailure": "An earlier isolated run reached /page and exceeded the original navigation deadline; the same unmodified standalone case passed on this restore.",
+  "eightOriginalCommands": {
+    "coldStartCountOnReceiver": null,
+    "fullMatrixPassed": false,
+    "fullNavCommandCutoffSeconds": 270,
+    "groupCountOnReceiver": null,
+    "killGraceSeconds": 5,
+    "passed": 7,
+    "results": {
+      "browser-136-control": 0,
+      "browser-cross": 0,
+      "browser-loss": 0,
+      "browser-nav": 137,
+      "browser-rpc-limit": 0,
+      "image-tree": 0,
+      "launcher-check": 0,
+      "native-136": 0
+    },
+    "total": 8
+  },
+  "emptyBeforeLoad": {
+    "containerdImages": 0,
+    "containers": 0,
+    "contentRecords": 0,
+    "dockerImages": 0,
+    "overlaySnapshots": 0,
+    "physicalBlobs": 0
+  },
+  "finishedUTC": "2026-11-26T10:12:05Z",
+  "fullInternalAttemptSHA256": "9464a72e13a0dbef4002810f572960d777c9cc1aa3bf2d27c550591265935b47",
+  "hostUserspace": "Ubuntu 22.04 ARM64, glibc 2.35",
+  "imageUserspace": "Ubuntu 24.04",
+  "localArchive": {
+    "bytes": 386773602,
+    "measured_sha256": "7824494c3f3ce30f1e8df4086dc3ce7eade69e7b2f5a6a7f8c2556657b0a8e34"
+  },
+  "manifestSHA256": "sha256:1c35c2a41300a62b03c2c8a8d0ccd26a18f97edfebaf9dfcf26e5636ae89f377",
+  "nativeSerializationCasesPassed": 10,
+  "nativeStorage": "fresh local file-backed, transparently compressed btrfs; isolated containerd overlayfs",
+  "navigation": [
+    {
+      "blockedInlineScripts": 2,
+      "budgetMs": 15000,
+      "cleanTeardown": true,
+      "elapsedMs": 13086.75,
+      "finalPath": "/page",
+      "freshExternalValueAndNonceMatched": true,
+      "logSHA256": "86f81d6c10a666e662eee7571bf9eafb917a6813d6ca7f290f03f8cb548cd99e",
+      "requests": [
+        "GET /start",
+        "GET /page",
+        "GET /external.js"
+      ]
+    },
+    {
+      "blockedInlineScripts": 2,
+      "budgetMs": 75000,
+      "cleanTeardown": true,
+      "elapsedMs": 15477.79,
+      "finalPath": "/page",
+      "freshExternalValueAndNonceMatched": true,
+      "logSHA256": "d8fa1311f4af6e612a292c9de823de799a2968b7d1cc4f063a1a40e380be773e",
+      "requests": [
+        "GET /start",
+        "GET /page",
+        "GET /external.js"
+      ]
+    }
+  ],
+  "noRemainingJobContainers": true,
+  "offlineEngine": true,
+  "primaryDockerAndServicesUnchanged": true,
+  "privateStoreRemoved": true,
+  "receiver": "oracle-dsh",
+  "receiverMachine": "aarch64",
+  "renderer": "153.8.0esr-source-20261125161200",
+  "schema": "ruyidom-v030-second-arm-cold-navigation-v1",
+  "scope": "original v0.3.0 ARM Docker archive, fresh store and real redirect/CSP; not a bare-host ABI check or an AMD64 build",
+  "storeAfterLoad": {
+    "blobs": 9,
+    "casRecords": 9,
+    "snapshots": 7,
+    "verifiedRootFSLayers": 7
+  },
+  "tagInArchive": "ruyidom:arm64-source-20261125161200-648b02c0896e1cae",
+  "user": "10001:10001"
+}
