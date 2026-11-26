@@ -1,0 +1,18 @@
+{
+  "design_sha256": "5128c4dbd4d160c1d6e0f2588773d6af52799885a0b9902ca4c5d70e566bdd58",
+  "schema": "ruyitrace.linux-gap-control-index.v1",
+  "status": "workload_verified_only",
+  "targets": {
+    "amd64": {
+      "cases": 22,
+      "native_product_credit": 0,
+      "sha256": "d6deba5d9fca764417ded76724023738d93e2820acc7e24ca6c14a822d9dcebc"
+    },
+    "arm64": {
+      "cases": 22,
+      "native_product_credit": 0,
+      "sha256": "4f2f222158caa4106c29173536514010f486e8e814dc5182c62f339cc2c4e711"
+    }
+  },
+  "trace_source": "7850d6a83cfef818f44ff14d9cef3c96e7c6cdf9"
+}

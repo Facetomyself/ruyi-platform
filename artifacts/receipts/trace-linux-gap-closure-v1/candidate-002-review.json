@@ -1,0 +1,119 @@
+{
+  "cells": {
+    "linux/amd64/registered-wasm-export-boundary": {
+      "cases": 6,
+      "observed_native_rows": 8,
+      "packet_sha256": "1a4f9ea6bbcd24b0fc39568b0d09fd00837fbaf0b4983e36514b7f7feb852f1e",
+      "sealed_zero_cases": [
+        "compile_only",
+        "instantiate_only",
+        "disabled",
+        "other_origin"
+      ],
+      "status": "bounded_raw_evidence_verified_pending_strict_external_review"
+    },
+    "linux/amd64/scoped-loopback-get-transaction": {
+      "cases": 6,
+      "observed_native_rows": 4,
+      "packet_sha256": "6625f35f42777f9732b059b4103967ae382203a584b6d3de1f69101cb8fd2c7b",
+      "sealed_zero_cases": [
+        "skip",
+        "disabled",
+        "other_origin"
+      ],
+      "status": "bounded_raw_evidence_verified_pending_strict_external_review"
+    },
+    "linux/amd64/selected-fixedAdd-debugger-frame": {
+      "cases": 5,
+      "observed_native_rows": 8,
+      "packet_sha256": "6ec4d87adca8801e5d49f9ed8cea8f6fc13808ced39b9add524645d0b58fe425",
+      "sealed_zero_cases": [
+        "skip",
+        "disabled",
+        "other_origin"
+      ],
+      "status": "bounded_raw_evidence_verified_pending_strict_external_review"
+    },
+    "linux/arm64/registered-wasm-export-boundary": {
+      "cases": 6,
+      "observed_native_rows": 8,
+      "packet_sha256": "01be3dba8bbba4a5b4ee6a7a5a10b1a28a06b727195fa5745a16d8ad6f6cee9b",
+      "sealed_zero_cases": [
+        "compile_only",
+        "instantiate_only",
+        "disabled",
+        "other_origin"
+      ],
+      "status": "bounded_raw_evidence_verified_pending_strict_external_review"
+    },
+    "linux/arm64/scoped-loopback-get-transaction": {
+      "cases": 6,
+      "observed_native_rows": 4,
+      "packet_sha256": "8068017e7ecf212f8497212591a11b025fee905ff6f9e6b281349226f3921660",
+      "sealed_zero_cases": [
+        "skip",
+        "disabled",
+        "other_origin"
+      ],
+      "status": "bounded_raw_evidence_verified_pending_strict_external_review"
+    },
+    "linux/arm64/selected-fixedAdd-debugger-frame": {
+      "cases": 5,
+      "observed_native_rows": 8,
+      "packet_sha256": "e16a070e54e35b29ec0e252254ee028fd5b906400cb8e4db57d869f68a475138",
+      "sealed_zero_cases": [
+        "skip",
+        "disabled",
+        "other_origin"
+      ],
+      "status": "bounded_raw_evidence_verified_pending_strict_external_review"
+    }
+  },
+  "constraints": [
+    "synthetic opt-in literal IPv4 loopback, exact top-level /harness",
+    "selected external fixedAdd frame and two registered nonstreaming Wasm exports; metadata only",
+    "only tested HTTP GET cases: network, linked redirect, cache, disabled, skip and foreign caller",
+    "local offline review of recorded custody, not a new capture, product signature or external witness",
+    "no Win74/JIT, all-origin capture, payload capture, production release or site change"
+  ],
+  "design_sha256": "5128c4dbd4d160c1d6e0f2588773d6af52799885a0b9902ca4c5d70e566bdd58",
+  "evidence_digest_kind": "sha256 of exact member-sha256.json bytes in the evidence ZIP",
+  "evidence_members": 639,
+  "evidence_sha256": "0253ecf8967eea348ba331df953627d2cde310edde0b15275ec63f02772f387e",
+  "images": {
+    "amd64": {
+      "archive_bytes": 396067353,
+      "archive_sha256": "79c2005f2d020e68f614624c3e0e7765715bc1cca14e9f1571450dacb3dfbcca",
+      "build_id": "20261123161729",
+      "image_id": "sha256:14f2ce66295f7b041d74db4c22cf8cb24e3ea832df3f74063689e70502590d87",
+      "local_archive_rehashed": false,
+      "repeat_equal": true,
+      "runtime_manifest_sha256": "571dbc6b0b3ecdaf3dbffde0131534f12744eb9890ca90a4b167423aba2fa11e"
+    },
+    "arm64": {
+      "archive_bytes": 390055722,
+      "archive_sha256": "fa0cdf41ac245318fb51d1a62b6771b644ad0cb6220036a66ccbe3740793ba13",
+      "build_id": "20261125162841",
+      "image_id": "sha256:1ae4616eeabc8d3b4317e25162221fe2f47dc1c60d8a14f91af2a4d22215791e",
+      "local_archive_rehashed": false,
+      "repeat_equal": true,
+      "runtime_manifest_sha256": "299540737e64e4a84a95345b4595a053cf05ed29cf4562e9b846f691faf2ae06"
+    }
+  },
+  "initial_qa_source": "7850d6a83cfef818f44ff14d9cef3c96e7c6cdf9",
+  "integrated_qa_bundle_sha256": "b831052eca466c39856b182b96029051791766de22633a31d317610251074658",
+  "product_qualified": false,
+  "product_source": "815556bd57d6f2918f6794f67533b80bc5965fbe",
+  "schema": "ruyitrace.platform-candidate-002-review.v1",
+  "status": "bounded_raw_evidence_verified_pending_strict_external_review",
+  "stock_workloads_only": 44,
+  "structurally_eligible_observers": 80,
+  "unqualified": [
+    "websocket",
+    "ime",
+    "display",
+    "electron"
+  ],
+  "verified_cases": 34,
+  "websocket": "unsupported_on_candidate_002_base_kernels"
+}

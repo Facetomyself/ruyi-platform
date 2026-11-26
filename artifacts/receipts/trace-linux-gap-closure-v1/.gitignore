@@ -1,0 +1,2 @@
+# Compact, allowlisted receipt ZIP only; the repository-wide binary rules still apply.
+!candidate-002-originals.zip

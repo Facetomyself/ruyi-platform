@@ -1,0 +1,520 @@
+{
+  "arch": "linux/arm64",
+  "cases": [
+    {
+      "browser_exit": -15,
+      "case": "call_export",
+      "gate": "wasm",
+      "page": {
+        "outputs": [
+          42,
+          -5,
+          -2147483648
+        ]
+      },
+      "peer": null,
+      "run_id": "0a570b29d16856e37cf510ba511c427f",
+      "sha256": {
+        "host.json": "6d1a5c9389e96754ba7c41dde19d2c21ea2b5c926b75cb2f63aeba5c68dc335a",
+        "page.json": "e546bcb6eb1911ae0c88cb573accb0556fe4f2df8d4448a47c054e0607bf1ef5",
+        "peer.json": "0d3be7904a208eac373579aed7e29a749323c7df1b619ce74d689a4809e929ed",
+        "run.json": "c77a67b8833251b1c0522c5c901e1a299019df458f246a9aa24e42d6e57696e3"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "compile_only",
+      "gate": "wasm",
+      "page": {
+        "calls": 0,
+        "compiled": 1,
+        "instantiated": 0
+      },
+      "peer": null,
+      "run_id": "c5ee2d02aec9417d0db80ab6415bb8fa",
+      "sha256": {
+        "host.json": "5ab0002849ae2917a632ffe7096f632452ebedf212bafb7498a13081c27d8a35",
+        "page.json": "5835f748eca28f3647cc155f3c6b304cf074fb3cff18dc864f344fffe1bdc467",
+        "peer.json": "52d823f2d71a0ab02bc6f8c0632c70917117067dc823e1279dbdf0d89afa689c",
+        "run.json": "01e7f9450ae6c39127e9e4e5f3c6cfa1a8bd7d4f697b3877d75ebec4ca69c6d6"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "instantiate_only",
+      "gate": "wasm",
+      "page": {
+        "calls": 0,
+        "compiled": 1,
+        "instantiated": 1
+      },
+      "peer": null,
+      "run_id": "ee09fb5d2606ef0c37e72bee89b2e3df",
+      "sha256": {
+        "host.json": "5dfafcf5edf445cf1ddc56d46556fa8715d03a682df6921ea2a4c5fba204aaef",
+        "page.json": "2cf1090ccb5132b28f11083449855151ef69a07c2920220fc6220ea3f270b1e4",
+        "peer.json": "bc88e02d168c4b974f146f6494009af6ae8952b89fd39288454e87524b32c2e8",
+        "run.json": "b77f4ab1824739c317c873d8f3bb5675cf162e461ca2429082dcd4058e97b3e6"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "trap",
+      "gate": "wasm",
+      "page": {
+        "observed_wasm_runtimeerror": true
+      },
+      "peer": null,
+      "run_id": "4137ccb5ab99c7fa84e641d4da9ff663",
+      "sha256": {
+        "host.json": "4eab307fb29c4b5c227da9374346873a145463783aa0f5b789bd584ef459e570",
+        "page.json": "fc11a7bb125f8a70b9e5ed4099a5a4b6c8dd768193417a7b4ce125e995230eed",
+        "peer.json": "cab5c3e97a7b091f2b30615f25ca1a7ef38b0a2ce0fb03c137691a7a3da16780",
+        "run.json": "83aaf65eb67815f93d8bc116a969d701a893a0f6c948f6c37dd8536b750c9818"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "disabled",
+      "gate": "wasm",
+      "page": {
+        "outputs": [
+          42,
+          -5,
+          -2147483648
+        ]
+      },
+      "peer": null,
+      "run_id": "6f8d40e1376872116e126b96dd130ec9",
+      "sha256": {
+        "host.json": "d8f2ce62ac0257eeb11ce9ca96f5a952a572cb33beea6713ce5f645396bd94bf",
+        "page.json": "3130216712e5b1f4b6e102e737d9a83f53dae500cb3b7cac62b9491fecc05864",
+        "peer.json": "e60761913f52c3df66986506eb94a14657cafae7ce590f0e119938b6f3dbd6b4",
+        "run.json": "ca15b112308c866589091c11d10d82fb7694c33df3cc472d415a17ce95007e1b"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "other_origin",
+      "gate": "wasm",
+      "page": {
+        "other_origin_called_export": true
+      },
+      "peer": null,
+      "run_id": "ba108a429c45adb0e2ac7fafd1637ec6",
+      "sha256": {
+        "host.json": "b3c4d38d24e21792c158ab6514db6f3df5cea6641a82bac1c3c94c75490ba478",
+        "page.json": "48e89d4fb183eb1dbbb4936a6939e54d2782ce9596143afacae28e2b36b146e5",
+        "peer.json": "93659a820bf967d80831745762e4517bad6b0d4aaf5ccd34c97c59dd0b24bd6b",
+        "run.json": "b5dbbf5c0f0909d8b7c69a7703b2876db9967232e5dea5edce8052032fea7e07"
+      },
+      "source_role": "other",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "normal",
+      "gate": "jscall",
+      "page": {
+        "outputs": [
+          42,
+          -5,
+          -2147483648
+        ]
+      },
+      "peer": null,
+      "run_id": "46f1daa315462382a71440e3ab939d96",
+      "sha256": {
+        "host.json": "2e1ad743d71332d596fac8e68c04a190621d3d48c6e7c8a450c304c0d5d2a551",
+        "page.json": "af665c1c397bbccdfe9c219a86b896d291200989dcbbfb5d15c4b5204d8ac6c0",
+        "peer.json": "3e5db435448185483eb50b754ecea94762e69e5b12da2e8f2bffa76b2bfb8f8f",
+        "run.json": "a4e90ff7607ec5c98ec46a3c2d83df2c7674ea8cc23d480728dbc668e16e0fbc"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "skip",
+      "gate": "jscall",
+      "page": {
+        "completed": true,
+        "target_calls": 0
+      },
+      "peer": null,
+      "run_id": "34af08a8ef63fe71c024b58337552505",
+      "sha256": {
+        "host.json": "561fb2933cd3e5b8a1a0faaf0f3ff317b1e49ef008f9a46faecbf88c10ff8a98",
+        "page.json": "02c5dc6fa089793a08b388a38ec5c27c40b861b9d91ebd4ff1d20ec44829d8ac",
+        "peer.json": "9585b9899081090607ef080b2febf8795a397bf1d4755d9384ff86596f078755",
+        "run.json": "74618cd20918c2f9df73a50a5a31bb743e1d4fc17ae440f2ade0a80700268312"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "throw",
+      "gate": "jscall",
+      "page": {
+        "observed_typeerror": true
+      },
+      "peer": null,
+      "run_id": "d36d913a5568686f6cd361393b7e0c2e",
+      "sha256": {
+        "host.json": "9a9305b196a6b84435da262f70a75663c39b08adce9afa65669ec7f95e4211ac",
+        "page.json": "478db8f20c15ae469fef6a37dc04c6b1bb2abda83fd9f3e97682fbcce4a37983",
+        "peer.json": "a568e84186201e2cad16870e93a22c9112f462b882a42577652c8a8185c3e5a0",
+        "run.json": "a37679e7039f66907ab9573e9e4106f8fa5f0940b38572ed3a63a4faaa8afd80"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "disabled",
+      "gate": "jscall",
+      "page": {
+        "outputs": [
+          42,
+          -5,
+          -2147483648
+        ]
+      },
+      "peer": null,
+      "run_id": "6820032a9d5fe87fd351554c68f2769a",
+      "sha256": {
+        "host.json": "3d30aa232db4b2cb04be602c5ff527b230ad2d2aa5b27de80c42bdf434a5a699",
+        "page.json": "27abe342aada18af57b9367af3a49e8432bc24d28eb80d3421952eeeb1947c98",
+        "peer.json": "2f787b29a2eb5fc073c910c4303fe20624d42717abb3fc59de2096b8260f0970",
+        "run.json": "ea44533c30a18ea5751e2302500a8d90430e9dd7f7548cd9a7b5b271c1937438"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "other_origin",
+      "gate": "jscall",
+      "page": {
+        "other_origin_completed": true,
+        "target_calls": 3
+      },
+      "peer": null,
+      "run_id": "1a9a41fa915478a65060ca104bb1292a",
+      "sha256": {
+        "host.json": "8a1e8ad72be44032943c6b0c3ee3eb8d77efaf5d9134fb83fc08a57f5f2b1847",
+        "page.json": "251202ad82a81142af306fa5fd7176c880bee8ba41d99bb453a5ad24f0d7a55b",
+        "peer.json": "78839b748ddd66137965f4ee1765b7f44402244331eb28dfee0f2cea90d268e8",
+        "run.json": "57daf9e5fa96aaeb5e5623abfc74f989440a0c0dcd97cf68df35f12db3b996d7"
+      },
+      "source_role": "other",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "fetch",
+      "gate": "http",
+      "page": {
+        "body_ok": true,
+        "status": 200
+      },
+      "peer": {
+        "responses_200": 1,
+        "route_gets": 1
+      },
+      "run_id": "4273a68ecbf56b0750d60d02a0bb89a3",
+      "sha256": {
+        "host.json": "8b3589d6e87ed5ddce3dc0ca7a62613fc4061898168381ff2fa685f8d5a525c5",
+        "page.json": "168367496b77220d324a85d688a4ee9adec43d2f7f785083ad51e3d90e2ac066",
+        "peer.json": "86582b3938b51056cae83e680a4cfc29e8908efe188d989d27038df909153c74",
+        "run.json": "5fdded033d909d49b69eb18646150ad2d347c0864ea37268c2c6556b276e02a1"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "skip",
+      "gate": "http",
+      "page": {
+        "completed": true,
+        "requested": false
+      },
+      "peer": {
+        "route_gets": 0
+      },
+      "run_id": "e9581ff09d01e36c80957740c9aa5c69",
+      "sha256": {
+        "host.json": "777277a989cd47d53502d7a73740df1c6a63cc83891c6e125bb53e17ab7b13f7",
+        "page.json": "bb8ed1165194efa0cb99fc73a9071172dc6dccf479af5b7682579c013f84c533",
+        "peer.json": "71be2f02865681f33daaba82533e4f5a78a0a6c648dffd7db3ba5d0e41ca4be7",
+        "run.json": "b265284f80af0a041d69b303560b13b9a47555bfc10797f8fee98dd57e988313"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "disabled",
+      "gate": "http",
+      "page": {
+        "body_ok": true,
+        "status": 200
+      },
+      "peer": {
+        "responses_200": 1,
+        "route_gets": 1
+      },
+      "run_id": "c1bae7a54a14735b446b9de04b7941c3",
+      "sha256": {
+        "host.json": "074ebd90f90278566b4cc5b1da3ecfb68dc98be0288934f57aea27dc323399ab",
+        "page.json": "e987f75d109b3697ca47e68fd1b4d1a7bd71458d62602fc65e8545e9a55162a0",
+        "peer.json": "8a757785154046aa2662af6ed87f92a9a8a97663a907d845b4324768ed6cc4d5",
+        "run.json": "b2e7c8f0d5899977aa9a75ea4e092d01973b24dab5bb4a43772a8e1fd9ea379b"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "redirect",
+      "gate": "http",
+      "page": {
+        "body_ok": true,
+        "status": 200
+      },
+      "peer": {
+        "statuses": [
+          302,
+          200
+        ]
+      },
+      "run_id": "c5bcb011fb6e9d9d3736156dba5d9b89",
+      "sha256": {
+        "host.json": "d8efbc4419740b2a04d9c6964fae436f338b98ea455a22b5f1504b9cf11c91c8",
+        "page.json": "d68777f89781b8faf977c03e8972d38f3b603387fe1972748461a014d45f3091",
+        "peer.json": "975b833a70cc50ffe77e949a4f1b810f4c327ff48522264569459587286ec119",
+        "run.json": "7af0fec7152a750f6d95c4f2ea048171f7e5aec72bf3221c49905330d78d1a1f"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "cache_hit",
+      "gate": "http",
+      "page": {
+        "body_ok": true,
+        "completed": true
+      },
+      "peer": {
+        "new_route_gets": 0
+      },
+      "run_id": "2e560e71b996c31c2d705933ecdc38ab",
+      "sha256": {
+        "host.json": "16197c52f7ea23e0716fb23eb0ae785cef302f8ae3b7571569ffdea298920f13",
+        "page.json": "930fd67e4cccc31c41a9f8e813cc67661f299f297c9722e76a75424398044727",
+        "peer.json": "4aeda2caca30e62eadba9b4b6a61f5bf5f4ae71eab627ce34b3b620bfd0bbf52",
+        "run.json": "7b97f72e5599fb9823ba266835e7cfca3ad3c122303a922bf962a8e247110929"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "other_origin",
+      "gate": "http",
+      "page": {
+        "other_origin_status": 200
+      },
+      "peer": {
+        "other_route_gets": 1
+      },
+      "run_id": "2159f2184160d9e2051bb1653afe4c07",
+      "sha256": {
+        "host.json": "be127da55bbcad5c01c3c0c5ead3eb2e8a7e4ff0c36cb1034665d822a4da2b84",
+        "page.json": "d4cb168b7411bd3338c66f4c6a6247b5457fcc055573a4723922b7d591e36215",
+        "peer.json": "a5da82b79d8c4bdc5c462ff394d0bee313594ae857e8a4b678d7adf629182cf8",
+        "run.json": "5d74f48e43c38eb1f716240a87930e7e5f32124a76d7abc86b5948febb391606"
+      },
+      "source_role": "other",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "fragment_and_ping",
+      "gate": "websocket",
+      "page": {
+        "message_lengths": [
+          5,
+          8
+        ],
+        "normal_close": true
+      },
+      "peer": {
+        "client_to_server": [
+          [
+            1,
+            1,
+            5
+          ],
+          [
+            10,
+            1,
+            1
+          ],
+          [
+            8,
+            1,
+            2
+          ]
+        ],
+        "server_to_client": [
+          [
+            1,
+            1,
+            5
+          ],
+          [
+            1,
+            0,
+            4
+          ],
+          [
+            9,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            8,
+            1,
+            2
+          ]
+        ],
+        "upgrade_101": 1
+      },
+      "run_id": "7a5f181975931cf090dd7b8bfafc8376",
+      "sha256": {
+        "host.json": "1c7f372e55358307f6cb31378933c3c76a51bd52a4e27ada808f484c51d236b3",
+        "page.json": "2527a2d4a82e960f30705bbca2ef79c03b4f5a4948b3d361aee9c287eb7cb8ea",
+        "peer.json": "8a7f70767a28aaf9a21abf31c0cecb8c2d533bbe37185025ab8cb433078149b9",
+        "run.json": "f0a8c30225f6d3bf710dc35e0bd3886f3b3764a74c23e467d1d75df6671b9619"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "upgrade_only",
+      "gate": "websocket",
+      "page": {
+        "messages": 0,
+        "normal_close": true
+      },
+      "peer": {
+        "close_each_way": 1,
+        "data_frames": 0,
+        "upgrade_101": 1
+      },
+      "run_id": "10d4c7e66762876734b3ac3b60066304",
+      "sha256": {
+        "host.json": "279f9b54f70101f23b9496e5eea6e6424a8fe9e102d87f710646f7e36f20dc88",
+        "page.json": "66fcc8e07afa22f44f2eb3cb6ebd0538fde6bca2d2535a8b8826ca920f04783a",
+        "peer.json": "e7fa90feb652479d8ee97cedcf63a95549f6b1e1886da06831469d0cd6c6de6f",
+        "run.json": "dc882d9bddf768fd469fdd90829238881687e2beec3135ae139db9280fa1048f"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "skip",
+      "gate": "websocket",
+      "page": {
+        "completed": true,
+        "opened": false
+      },
+      "peer": {
+        "frames": 0,
+        "upgrade_101": 0
+      },
+      "run_id": "14cdd54fa7ce9c785127bbf86318d9cd",
+      "sha256": {
+        "host.json": "da8b0ae8e81e28193e3479c40e743d56c9f15b1be866f03641296cfae6a1cfb8",
+        "page.json": "206409cd8163287a80760845352bda64a3ced43d03930a337acff4bdd9c87d0b",
+        "peer.json": "d03935580f79b6989af75144ee0b123fa35b99fc5f1f88de2477c755f417bd21",
+        "run.json": "b085ae6d544ce5eb07a29d515499143ba8b7065b93e409d5ac7e48bf66a21585"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "disabled",
+      "gate": "websocket",
+      "page": {
+        "message_lengths": [
+          5,
+          8
+        ]
+      },
+      "peer": {
+        "data_tx_plus_rx": 4,
+        "upgrade_101": 1
+      },
+      "run_id": "56850f03b645de13789f2a597e8ab50e",
+      "sha256": {
+        "host.json": "0579571ae8dfa7e53688f7ad3b68807c0bc47fc5617536d801f1ff38ba4ba8bc",
+        "page.json": "eebc3d40a5e3ad3c0945e9dfe2637c7a42ff6ee497a511aa58782558c04dff23",
+        "peer.json": "433d17c77c13c3f853faa2bdb84fa3d2aaf05d811ab0ec0fe39268303174bd79",
+        "run.json": "c12b6e98fc4b9a62fa72a894ef540baa8320691a8d76fd356c0b7abd04dbcc2f"
+      },
+      "source_role": "primary",
+      "writer_observed": false
+    },
+    {
+      "browser_exit": -15,
+      "case": "other_origin",
+      "gate": "websocket",
+      "page": {
+        "other_origin_received": true
+      },
+      "peer": {
+        "other_upgrade_101": 1
+      },
+      "run_id": "1883ab6f9d02a8896249cedbce1a3b72",
+      "sha256": {
+        "host.json": "f9bf5c8aaf5816a3e5fa3b38707f45e65625ecef750b386b6456a6404a8976b6",
+        "page.json": "0ae89c9860f7233bbf63c295be49994f4147cf4ed29cb6bc160ca093a7af4b16",
+        "peer.json": "0e90ce86551ea0ab8e3a77281a1ba8a968bb946018b4a24e1b44fad3cb54704f",
+        "run.json": "c1d5986472ea182abf214926037172c36df46abf8c5316ee78513b58ed1e735e"
+      },
+      "source_role": "other",
+      "writer_observed": false
+    }
+  ],
+  "firefox_build_id": "20261125162841",
+  "fixture_sha256": "b502a3db1d6a1896b7b60df095c56f45dfc4eb1a93d398f2225f1c3116e0457c",
+  "page_source_sha256": "e59743eb8c208764e7ddb1ea43ad3f80c39a1fa989d05d2fdfecee52ba4b314f",
+  "passed_new_product_sinks": 0,
+  "passed_workload_cases": 22,
+  "schema": "ruyitrace.native-event-control-set.v1",
+  "scope": "two observers where applicable: real Mozilla-derived R5 page and independent loopback peer; scoped process exited after control, not producer qualification",
+  "source_image": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc"
+}

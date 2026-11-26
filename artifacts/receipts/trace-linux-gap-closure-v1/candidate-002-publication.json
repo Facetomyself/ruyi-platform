@@ -1,0 +1,61 @@
+{
+  "approved_for_default_site": false,
+  "assets": [
+    {
+      "bytes": 396067353,
+      "github_digest": "sha256:79c2005f2d020e68f614624c3e0e7765715bc1cca14e9f1571450dacb3dfbcca",
+      "id": 795339523,
+      "name": "ruyitrace-native-amd64-14f2ce66295f7b04.docker.tar.gz",
+      "sha256": "79c2005f2d020e68f614624c3e0e7765715bc1cca14e9f1571450dacb3dfbcca",
+      "streamed_after_publication": true,
+      "url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.1.0-alpha.1/ruyitrace-native-amd64-14f2ce66295f7b04.docker.tar.gz"
+    },
+    {
+      "bytes": 390055722,
+      "github_digest": "sha256:fa0cdf41ac245318fb51d1a62b6771b644ad0cb6220036a66ccbe3740793ba13",
+      "id": 795343976,
+      "name": "ruyitrace-native-arm64-1ae4616eeabc8d3b.docker.tar.gz",
+      "sha256": "fa0cdf41ac245318fb51d1a62b6771b644ad0cb6220036a66ccbe3740793ba13",
+      "streamed_after_publication": true,
+      "url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.1.0-alpha.1/ruyitrace-native-arm64-1ae4616eeabc8d3b.docker.tar.gz"
+    },
+    {
+      "bytes": 2908,
+      "github_digest": "sha256:4e6da8f833285df20003f550a589a91402816e644b71bae7c9daa6483d45e9b4",
+      "id": 795346313,
+      "name": "candidate-002.json",
+      "sha256": "4e6da8f833285df20003f550a589a91402816e644b71bae7c9daa6483d45e9b4",
+      "streamed_after_publication": true,
+      "url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.1.0-alpha.1/candidate-002.json"
+    },
+    {
+      "bytes": 5927,
+      "github_digest": "sha256:64bd5788fd1ffa04ceb30bb5f8c7b57a427ae0d3f3ae9cd58054daefe0558556",
+      "id": 795346371,
+      "name": "NATIVE-EVENTS.md",
+      "sha256": "64bd5788fd1ffa04ceb30bb5f8c7b57a427ae0d3f3ae9cd58054daefe0558556",
+      "streamed_after_publication": true,
+      "url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.1.0-alpha.1/NATIVE-EVENTS.md"
+    },
+    {
+      "bytes": 408,
+      "github_digest": "sha256:26fd63fa04903cd81891b2099804c56399b4f6f27ae0f8f6240f79db8ff8f974",
+      "id": 795346421,
+      "name": "SHA256SUMS",
+      "sha256": "26fd63fa04903cd81891b2099804c56399b4f6f27ae0f8f6240f79db8ff8f974",
+      "streamed_after_publication": true,
+      "url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.1.0-alpha.1/SHA256SUMS"
+    }
+  ],
+  "checked_utc": "2026-11-26T10:23:04+00:00",
+  "id": 459248248,
+  "passed": true,
+  "prerelease": true,
+  "private": true,
+  "published_at": "2026-11-26T10:21:57Z",
+  "repo": "Facetomyself/ruyitrace",
+  "schema": "ruyitrace.native-private-prerelease.v1",
+  "source": "b90f5f0a7fe28b244da927de4a3b68efe7176c08",
+  "tag": "native-events-v0.1.0-alpha.1",
+  "url": "https://github.com/Facetomyself/ruyitrace/releases/tag/native-events-v0.1.0-alpha.1"
+}
