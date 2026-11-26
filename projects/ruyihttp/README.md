@@ -4,7 +4,7 @@
 | --- | --- |
 | 仓库 | `Facetomyself/ruyihttp`（**public**，2026-11-20 起） |
 | 挂载 | `submodules/ruyihttp` |
-| 版本 | `0.9.3`（独立维护，从上游 0.9.0 起步并选择性跟进 [0.11.0](https://pypi.org/project/ruyihttp/0.11.0/)） |
+| 版本 | `0.9.4`（独立维护，从上游 0.9.0 起步并选择性跟进 [0.11.0](https://pypi.org/project/ruyihttp/0.11.0/)） |
 | 许可 | MPL-2.0 |
 
 ## 是什么
@@ -28,7 +28,7 @@ submodules/ruyihttp/
 │   └── linux_aarch64/   14 个 AArch64 ELF 和固定源码构建来源
 ├── tools/               build_native.py / verify_runtime.py / check_linux_candidate.py
 ├── tests/               契约、原生预检和 opt-in HTTP/3 集成测试
-├── ci/                  安装后 HTTP、H2 EOF、H3 和双跳代理验收
+├── ci/                  安装后 HTTP、H2 EOF、直连 H3、双跳 TCP 与单跳 MASQUE 验收
 ├── benchmarks/          真实回环源站、冷/热连接性能与并发隔离趋势
 ├── docs/                构建、平台、H2 流控与性能策略
 ├── dist-v0.9.0-legacy/  脱钩旧 wheel 归档 + VERIFICATION.md
@@ -43,11 +43,15 @@ submodules/ruyihttp/
 | --- | --- | --- | --- |
 | `win_amd64` | ready | 161.0 / 3.133 / 0.34.0 | `py3-none-win_amd64` |
 | `darwin_arm64` | ready | 161.0 / 3.133 / 0.34.0 | `py3-none-macosx_26_0_arm64` |
-| `linux_x86_64` | ready（Ubuntu 24.04 容器已通过 HTTPS 验收） | 161.0 / 3.133 / 0.34.0 | `py3-none-manylinux_2_39_x86_64` |
+| `linux_x86_64` | ready（原生 amd64，Debian 11/glibc 2.31 实装） | 161.0 / 3.133 / 0.34.0 | `py3-none-manylinux_2_31_x86_64` |
 | `darwin_x86_64` | ready（Intel macOS 15.7.9 安装及 H1/H2/H3） | 161.0 / 3.133 / 0.34.0 | `py3-none-macosx_15_0_x86_64` |
-| `linux_aarch64` | ready（原生 ARM64 编译、安装及 H1/H2/H3） | 161.0 / 3.133 / 0.34.0 | `py3-none-manylinux_2_39_aarch64` |
+| `linux_aarch64` | ready（原生 AArch64，Debian 11/glibc 2.31 实装） | 161.0 / 3.133 / 0.34.0 | `py3-none-manylinux_2_31_aarch64` |
 
-打包器要求状态为 `ready`，且平台目录的文件集合及 SHA-256 与清单完全一致；单独放入一个同名库不会生成目标 wheel。Linux 槽位的最低 glibc 标签为 2.39，即使跨打包宿主更旧也不能把标签降到 2.31。
+打包器要求状态为 `ready`，且平台目录的文件集合及 SHA-256 与清单完全一致；单独放入一个同名库不会生成目标 wheel。从 0.9.4 起，Linux 两槽的 ABI 目标为 glibc 2.31，需通过低基线原生构建、ELF / loader 审计、最低系统实装与较新宿主回归。0.9.3 的现有 wheel 仍为 2.39，不能靠改文件名下调。
+
+### 2026-11-26：0.9.4 — H3 通过 MASQUE，Linux 下限 2.31
+
+`masque://` 为显式 UDP 代理：先以独立 CA 验证代理的 H3 CONNECT-UDP，再由原生 Neqo/NSS 与源站握手。源站地址通过 URI 模板交给代理；双跳 TCP 代理、普通 `https://` CONNECT 与直连 H3 各自保留。已覆盖回环 IPv4/IPv6、256 KiB 下载与单次上传回显、错误证书、拒绝响应、黑洞及回退/重定向阻断；独立 `masque-go` 对端也单独验证。[安装和用法](../../submodules/ruyihttp/docs/masque.md) · [glibc 2.31 环境](../../submodules/ruyihttp/docs/linux-glibc231-qualification.md) · [五平台交付回执](../../artifacts/receipts/ruyihttp-0.9.4/README.md)。
 
 ### 2026-11-26：0.9.3 同平台 Firefox 网络行为对照
 
@@ -113,7 +117,7 @@ RUYIHTTP_LIVE=1 env/bin/python smoke_local.py
 
 在 x86_64 Linux 上从已安装 wheel 建立真正的 QUIC 连接。独立 UDP 服务端记录 TLS 1.3、ALPN `h3`、流 0 与 4；关闭所有 TCP 监听后，IPv4 和 IPv6 都经 `Session` 完成端口型 Alt-Svc 升级。256 KiB GET/POST、流重置/超时后复用以及三种证书反例均有专门断言。修复前 IPv6 地址丢失方括号导致升级失败。见[已安装 wheel 回归](https://github.com/Facetomyself/ruyihttp/actions/runs/45334742501)。
 
-HTTP CONNECT、HTTPS CONNECT、SOCKS5h 三种入口经第二跳 CONNECT 到达受控 TLS 源站；三端分别记录请求，校验临时响应值和代理认证头隔离。第二跳断开时零源站请求；错误域名证书分别在 HTTPS 入口或源站阻止请求。共 [10 项通过](https://github.com/Facetomyself/ruyihttp/actions/runs/45333462315)。结论限于服务端联链的 TCP 代理路径，未验收 CONNECT-UDP/MASQUE。
+HTTP CONNECT、HTTPS CONNECT、SOCKS5h 三种入口经第二跳 CONNECT 到达受控 TLS 源站；三端分别记录请求，校验临时响应值和代理认证头隔离。第二跳断开时零源站请求；错误域名证书分别在 HTTPS 入口或源站阻止请求。共 [10 项通过](https://github.com/Facetomyself/ruyihttp/actions/runs/45333462315)。该次结论仅限服务端联链的 TCP 代理；CONNECT-UDP/MASQUE 已在上文 0.9.4 中独立验收。
 
 ### 2026-11-24：Linux ARM64 原生构建与目标机网络验证
 
@@ -144,12 +148,12 @@ HTTP CONNECT、HTTPS CONNECT、SOCKS5h 三种入口经第二跳 CONNECT 到达�
 
 复验：在产品仓运行 `python tools/build_native.py --check`，并按[性能文档](../../submodules/ruyihttp/docs/performance.md)在源码树外运行已安装工件基准。每周趋势任务以真实报文/哈希作为功能门禁，普通共享 runner 上的耗时只作趋势参考。
 
-## 剩余缺口
+## 当前范围
 
-| 项 | 卡在哪 |
+| 项 | 已有证据与边界 |
 | --- | --- |
-| HTTP/3 经代理 | 普通 TCP 代理和直连 H3 已分别验收；这两种能力并不构成 CONNECT-UDP/MASQUE 验收 |
-| 旧系统兼容性 | Intel Mac 15.0 是二进制部署下限，目标机验收版本为 15.7.9；未宣称在 macOS 11–14 或 Linux glibc < 2.39 上可用 |
+| HTTP/3 经代理 | 0.9.4 已验单跳 `masque://` H3 外层、转发 UDP 与原生内层 H3；边界为多跳 MASQUE、HTTP/2 外层、capsule-only 代理及 CONNECT-IP |
+| 旧系统兼容性 | Intel Mac 15.0 是二进制部署下限，目标机验收版本为 15.7.9；未宣称在 macOS 11–14 或 Linux glibc < 2.31 上可用 |
 | 原生来源 | Windows 固定历史 wheel；POSIX 固定 donor、Firefox 源提交和本地补丁。安装包内的 `native-provenance.json` 给出对应目标的逐文件来源 |
 
 ## 构建
@@ -163,7 +167,7 @@ python -m pip wheel --no-build-isolation --no-deps -w dist .
 # 交叉构建
 RUYIHTTP_PLATFORM=win_amd64    python -m pip wheel --no-build-isolation --no-deps -w dist .
 RUYIHTTP_PLATFORM=darwin_arm64 python -m pip wheel --no-build-isolation --no-deps -w dist .
-RUYIHTTP_PLATFORM=linux_x86_64 RUYIHTTP_GLIBC=2.39 \
+RUYIHTTP_PLATFORM=linux_x86_64 RUYIHTTP_GLIBC=2.31 \
   python -m pip wheel --no-build-isolation --no-deps -w dist .
 ```
 

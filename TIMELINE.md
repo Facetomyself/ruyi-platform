@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1154 个 commit**（platform 340 / ruyitrace 142 / ruyihttp 157 / ruyijs 454 / ruyi-mcp 61）。
+五个仓库共 **1192 个 commit**（platform 345 / ruyitrace 142 / ruyihttp 190 / ruyijs 454 / ruyi-mcp 61）。
 
 R433：RuyiJS 发布两只 Linux ARM64 wheel，并用实际下载包验证安装。`oracle-reverse-dev` 正式入口已切换至 R433，完整 R432 回滚与恢复均经实测。[发布与部署回执](artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)。
 
@@ -18,6 +18,10 @@ R431：Firefox 159 的私有 QUIC 组件在原生 Linux x86-64 以锁定依赖�
 
 
 ---
+
+## 2026-11-26：RuyiHttp 0.9.4
+
+原有直连 H3 和双跳 TCP 的分开通过记录，无法证明 UDP 走过代理。此版以限定目标的两种独立代理、专用 UDP 出口和真实原生 H3 源站分别观察链路，并校验负例。两种 Linux ABI 经 Bullseye 重编和 2.31 原生架构的普通 pip 实装复验；保留 v0.9.3 Release 的原 SHA 和标签。[对应提交与五平台精确 wheel](artifacts/receipts/ruyihttp-0.9.4/README.md)。
 
 ## 第一段 · 建仓（阶段 1–3）
 
@@ -172,7 +176,7 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1154 |
+| 五个仓库 commit | 1192 |
 | 文档 | 47 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 21 |

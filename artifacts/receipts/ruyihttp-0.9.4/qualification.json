@@ -1,0 +1,2531 @@
+{
+  "run_id": 45810139410,
+  "run_attempt": 1,
+  "commit": "74953f70e87f5935a9ce4410c639727d26ea323e",
+  "version": "0.9.4",
+  "default_firefox": "159",
+  "workflow": ".github/workflows/wheels.yml",
+  "integrated_wheels": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410",
+  "native_libraries_checked": 46,
+  "modern_cpython_endpoints": 10,
+  "lowest_system_cpython_endpoints": 4,
+  "paired_performance": {
+    "baseline": "0.9.3",
+    "included_in_wheel_gate": false,
+    "run_id": 45810150980,
+    "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810150980"
+  },
+  "complete_qualification_sha256": "7b05ecd08a3019555367956725ab646270eda0c6546b954d21ea2db085e3f5ce",
+  "bundle_sha256": "c36913a1e3c152c07bf5ad028f1a97e7a6b851bc0be7385d1aed4d1d6079b111",
+  "bundle_bytes": 22204990,
+  "receipt_kind": "compact index of the five final wheels; complete qualified per-gate records and raw digests in the self-verifying wheel handoff",
+  "latest_published_release": "v0.9.3 (unchanged)",
+  "slots": [
+    {
+      "slot": "linux_x86_64",
+      "wheel": "ruyihttp-0.9.4-py3-none-manylinux_2_31_x86_64.whl",
+      "sha256": "8f6e78ba29799625bd46adc2d73928e06fbbe4a06c541e9bb1f9f7f9b15854d3",
+      "size": 4200542,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/job/139875534020",
+      "job_id": 139875534020,
+      "wheel_artifact": {
+        "archive_sha256": "bf72c3b8f992e3eb51a895e8033d0d31cb80a90ab62ae98177bbeb4ed43b75d6",
+        "bytes": 4134626,
+        "id": 15113715614,
+        "name": "verified-ruyihttp-linux_x86_64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15113715614"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "41a4e9c9ff8d76a796ea48ed27d89de5e20a11d8ec22da01d9fe2850983b047b",
+        "bytes": 507928,
+        "id": 15113325719,
+        "name": "wheel-evidence-linux_x86_64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15113325719"
+      },
+      "inspection": {
+        "tag": "py3-none-manylinux_2_31_x86_64",
+        "native_provenance_sha256": "a9ae119d1747013602b7a0d8ac83a324716a35559fd411b591b91e7f4b503f8c",
+        "record_entries_checked": 205,
+        "python_files_checked": 17
+      },
+      "native_sha256": {
+        "libfreebl3.so": "f82a335ffefd5513291567d7b2ad26ff7f41f72352bb590172fe4d15080136ce",
+        "libfreeblpriv3.so": "7cd39039b7e2669b31d06a1bba5f6740972100423b07c1a8b799a594061d1a07",
+        "libnecko_core.so": "30bb0708f7c6e4cf6c280f6ac6d036cec6e2ce99f20ebf028f35e652bc4ca359",
+        "libnecko_quic.so": "866e9d84ac9f4af48102c6176eddae1c1070134ed2f508b5ad6abf69ed2edd2b",
+        "libnspr4.so": "832d5e62eacbb067eee30f8e5c899ec44157aaca51030473a296c584b95791d6",
+        "libnss3.so": "ee79d366db0848d947f58abfd637588ad8234f5da5eb5dc14d50045b32e771cc",
+        "libnssckbi.so": "f52ee23da0dbbe6de7bb1c753b3848960e8a30afca9a38b7ec1198a0dbcb18d9",
+        "libnsssysinit.so": "4beab5125eb787f77c6df3be2c9418487039b4d7b5c774646eca4e508900aa02",
+        "libnssutil3.so": "fe84251b511858cd5f76310fb874addb3911cc07ea3ddfbbda902e7575d8e433",
+        "libplc4.so": "c837bdec2daf84e0558e1fbfdc68830969085d20d2869372d8adbcebf2faca4a",
+        "libplds4.so": "949db68dcda2a077af321684c62d7adf170f2c5e2c75f131994bc13bdc20daf7",
+        "libsoftokn3.so": "6744e029216d68bb99942544f306ec684074fd88a33e1cd81df0c7df232794b7",
+        "libsqlite3.so": "a72f4e9fc3db1d34696e76f34e3deb1e6a96ca2368c1f678abcea3b7b00ec622",
+        "libssl3.so": "d536bd56b3deb271d8dc0a2de19e11774e7f9ca49802037afcef5388c5bac765"
+      },
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.22",
+          "native_machine": "x86_64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "d91d9940b3ef3e0f1c49c0ab050c1bb5920452540fdfdccf8ae7f9820413298a"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "805e95b379c8b82a72d6f16f7263b9192108427073694b6792139686c2809ca0"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "44133433cf7c2b4c103df90b2a2bdeb7bf4f535b335d10ba91465bb39ad67e9e"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "5a9708614db21f6f43063ed4cfd8362dd414913e2c94744d63110932145ca552"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "9d388bd9233d33d9ae79249d24e45dfce97606b04b701635bf270af70060fb8b"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "6f5a6e6ab7bc18fd3ae13fd2e7b1f46e4eb6bd7cf81ea7f09efa05b51d52383b"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "d05e47dca4749e37fd7dde0ef42d19fbee2ba26aca310fb23c2858d0bc8f0c20"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "853d37e803c548ce64005be8bc5dbad996f7bb0ce32e569ab3620ee01c2b2c0a"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "417db0e007090f612d4faa7c5514b8d9c0f23f57a265c9df6d21a52180693af9"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "7817aeba89b96f1d7a2ec7eb31c16f1de89e0a0ea0e7dce0f49af4e9714088fa"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "cf375e40e6a965dbcd51aa45ed84cf85a071597f8f915d711e352afea0466b73"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "8f9f8a01bc78a2241356282b11c07901ee7c99acf1a1848c4d987934559fd463"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880"
+            },
+            "posix-quic-policy": {
+              "exit": 0,
+              "sha256": "a36230dbce132eaf011bf8eb85748909352a0624b95e4511bd88392ae6edaccd"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "dde3c17d1fe6c20d9c5ee510057ac16dde48e04293e77d0e87ac4f4ff7657d8a"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "d56c7cf0d34bbe4c1ac30458e5f6a8024ab71715c6d1c0b31f185bed9159b551"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "18129e073139492d72d4694effadec489b1f3a2c7d824a50fc440ad5edc978d0"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "5d7d5bcb92d39558151a164873f3fa7ca67af52db8a3bd501c423b9c53f5bc59"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "05116b2b70669dd088218136882d483491dc213029ef146073658dd559a19d6c"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "392e97cf1a79a1c930a8fca655c1582a9edd7ab6e7e3d789d46a76d2a347da6f"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "e52fb84d9b3f04a9e5ebb0ed419226f4b2cc55810aebf2123ecc4443623dcc04"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "02a34d28414cd1102db324f52d94f388e253c04f3e3346988a7e736f00b28a09"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "0d3783839c41cbebc55a1d5de51fd0e565725d3827318f2dab0c74079dacb83a"
+            }
+          },
+          "profile_wire_sha256": "c39b7ec3f3eab929ac269f46412160ab9c8a8bdc07d667b1cde7c1bb4665d58d",
+          "h2_first_flight_sha256": "ccb40a3724fbbccd631e6f02a5c75ebb134e0e7d6b4f2352be9f769c74a33215",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.10.22",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "19490f43dd2e10db0991ec209922035db33f0dc7db0eb06b458633cb4680872b",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "c84d47a2e9fdba644411e7659616c15d46ab80c364c047c5fb4d6df7298f1ee3",
+              "outbound": "dae82dec4e71d43cdf0148caa1124a14be0aaededa1d22c425131502dc5bb94c"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "44d2550d7437c6ce7fa82cc7121170a5cb760a58101fb7eeb75b833d206f8a23",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "eba4a83e010faee5a7f5839b6d57ba5655fa088e3d925fe167c7d374036f331f",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "38af1e0996e59b4c386de4f6be2fcb9bdb5cf7f54a287d6e4fe12e2721b95818",
+              "out": "834413975f8f456fe2df8a7fceb26ce094c0ad6f7a0051e539302394bd8f761f"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-manylinux_2_39_x86_64.whl",
+              "sha256": "68e25f029b1097b7eb04102d9457945beaf0c514535b9ac9f9638ac632ca7dc3",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-manylinux_2_39_x86_64.whl",
+              "sha256": "bcb6ff81c7e1f5336a86549224c3d29b1095b19c6ff90d32275547eceae2b154",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-manylinux_2_39_x86_64.whl",
+              "sha256": "0807a741d8f8e541fe0c71273888d653372a036f7a2aca35f4c4f215093a9045",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-manylinux_2_39_x86_64.whl",
+              "sha256": "056729152736a3de16786cf466c290068c257a8e3771206db78314e468188b5b",
+              "in_place": true
+            }
+          }
+        },
+        "3.14": {
+          "python": "3.14.10",
+          "native_machine": "x86_64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "78e74d4b90b7c09d3daf873e45bb386bebfddbb15a431ef1aa768c52a2c1a12a"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "96663f08e6a354008d5c6b0cdace56edba78c7ad94faf1863f04267c2636ff08"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "6fa497be1a1432d8655c8ef1eee4be97f728b7350da27815cc65660ce60e1674"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "5a9708614db21f6f43063ed4cfd8362dd414913e2c94744d63110932145ca552"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "9d388bd9233d33d9ae79249d24e45dfce97606b04b701635bf270af70060fb8b"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "aebdbb3fb0d7fb0e35e30ef11385355b299567fac23c35e1bc9d2d03ac78bd74"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "2fdc03a5997ac6c5b31af53b4517de093b903730617e9a9f05a7315179b59a47"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "b0f8bb20788c994dfdbf9660b11ba05f1ae3bc18a9e78eb7f751f26ae4d36b76"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "417db0e007090f612d4faa7c5514b8d9c0f23f57a265c9df6d21a52180693af9"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "1692c3d08d4812eac8b5a97e36575e3b341717ef20ba9a3b048db0f4284b439e"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "031374455ddca6ecdd44111825017ba35d8e6b03a7729c707085896b3d7ca7a1"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "8f9f8a01bc78a2241356282b11c07901ee7c99acf1a1848c4d987934559fd463"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880"
+            },
+            "posix-quic-policy": {
+              "exit": 0,
+              "sha256": "a36230dbce132eaf011bf8eb85748909352a0624b95e4511bd88392ae6edaccd"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "5f1b49ff5316c4b7f7ab62776930474c39b7b9f347900562686141a4efed732b"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "f7121a1c4641e8ad0d34d3e64b5aaacdc9277ff38821769b69f41c7fecd7b2e0"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "4c81d9155c62b40d58e6be62921f8301c4d9baee443fae0fce9ce89c892c12a0"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "093275fc25f020e81211b80af109e5d82de69bd5a21c5878125f02e69f9ab8d1"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "a762fbfb5673ec663f09a60ec4fa6189204176f5e02cac03f142e8c736b8d850"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "de594f31d0e742949427314d4441017a07f3b9bc1c36c58d438fb16b4dcb1a16"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "e413fca03c3c6aacf68cb05b292ab9a14f28e6bfdd18728aadc553017b4589dd"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "15dff0eb4e5aefeefd1cab9bad7b02128cca34597095fa14a437668ae8773516"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "d0bfb0d3cde427647102947dd435691265c8df687d1e1a589b74a28af1c2b5f0"
+            }
+          },
+          "profile_wire_sha256": "bb8d36c2d2ffe601f917f1ce93d8e4461e7ef4c2a645474997f850e18bc7d5be",
+          "h2_first_flight_sha256": "7a824cb3e972fa19f27f4ab741c91431b5dcfbaf09c90adb55d0e5b64d1c9669",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.14.10",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "586f17293e5bcc6eb3ad3bf5d78427ea56267dd2fc9a9209fd040a6cf5cef006",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "503dfb0354413ca180575c6dbc4cc9272bb85be3a985323a43b157c89f4358a5",
+              "outbound": "08309a7a0ce753c62a14df0c17803be22057c3c59bc722526b042bed47eaec0a"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "44d2550d7437c6ce7fa82cc7121170a5cb760a58101fb7eeb75b833d206f8a23",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "3b7cbb76adbe4f1c0edcaaff20b19f622f79109a4102f017a9aaf9af224d8cc5",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "5cbea8260bc0508492b4e1658a4d0fb25fd46ad870360a9bb75cafb9d10c3ddd",
+              "out": "d75e09c880ce4319fa09f3bdc1e7fae932fc6cc16f9ff9a8ca26d9354ab5b43c"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-manylinux_2_39_x86_64.whl",
+              "sha256": "68e25f029b1097b7eb04102d9457945beaf0c514535b9ac9f9638ac632ca7dc3",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-manylinux_2_39_x86_64.whl",
+              "sha256": "bcb6ff81c7e1f5336a86549224c3d29b1095b19c6ff90d32275547eceae2b154",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-manylinux_2_39_x86_64.whl",
+              "sha256": "0807a741d8f8e541fe0c71273888d653372a036f7a2aca35f4c4f215093a9045",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-manylinux_2_39_x86_64.whl",
+              "sha256": "056729152736a3de16786cf466c290068c257a8e3771206db78314e468188b5b",
+              "in_place": true
+            }
+          }
+        }
+      },
+      "glibc_2_31": {
+        "attestation_sha256": "630a7090100aab720efc550ef586f5ecea833cb481273f690818811c98977496",
+        "wheel_sha256": "8f6e78ba29799625bd46adc2d73928e06fbbe4a06c541e9bb1f9f7f9b15854d3",
+        "endpoints": {
+          "3.10": {
+            "slot": "linux_x86_64",
+            "arch": "x86_64",
+            "python": "3.10.18",
+            "glibc": "glibc 2.31",
+            "container": {
+              "artifact_kind": "local-release-directory",
+              "attempt": "1",
+              "base_manifest": "sha256:4e96d6c7c610e5b2a46ff8a36cc76a159d57a5b865d580eda29d51afdc1a1923",
+              "docker_platform": "linux/amd64",
+              "endpoint": "3.10",
+              "image_id": "sha256:b8066652948a9da0cdc69a2e4a057729f31207716d57ef0806c334d738512ec1",
+              "index": "sha256:65c6bdcca22db1a3468a0262ae05f38a0a718f51e9818cd09c12094aaae28a33",
+              "producer_attempt": "1",
+              "producer_run_id": "45810139410",
+              "qualification_commit": "74953f70e87f5935a9ce4410c639727d26ea323e",
+              "run_id": "45810139410"
+            },
+            "highest_glibc_dynamic_requirement": "2.30",
+            "masque_status": "wire-passed",
+            "gates": [
+              "installed-identity",
+              "http1",
+              "native-h2-h3",
+              "posix-quic-policy",
+              "profile-reference",
+              "profile-wire",
+              "h2-preface",
+              "test_http3_native",
+              "test_h3_body_abi",
+              "test_alt_svc_native",
+              "proxy-chain",
+              "h2-eof",
+              "request-boundaries",
+              "masque-rfc9298"
+            ],
+            "negative_093": {
+              "commit": "e8f8b02703239a18a75760d791c15936af632c40",
+              "pip_rejected": true,
+              "sha256": "056729152736a3de16786cf466c290068c257a8e3771206db78314e468188b5b",
+              "wheel": "ruyihttp-0.9.3-py3-none-manylinux_2_39_x86_64.whl"
+            },
+            "summary_sha256": "07b3287aa60c0387abb3147f6a891298c43e404c5889633c925d3a6070379d93",
+            "wire_receipt": {
+              "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+              "independent_tls_negative_cases": 4,
+              "python": "3.10.18",
+              "relay_only": true,
+              "rfc9298": true,
+              "scenarios": [
+                "ok",
+                "auth-required",
+                "deny",
+                "bad-gateway",
+                "wrong-relay-ca",
+                "wrong-relay-name",
+                "wrong-origin-ca",
+                "wrong-origin-name",
+                "no-connect",
+                "no-datagram",
+                "small-quic-datagram",
+                "blackhole",
+                "contexts",
+                "bad-context",
+                "capsule-reverse",
+                "custom-path",
+                "ipv6-origin",
+                "redirect-http",
+                "redirect-off-route",
+                "missing-extra",
+                "client-certificate",
+                "post-stall"
+              ],
+              "sha256": "9524b86601d0f35248812f74529927d297ac785a5ad2563b9fe3cb1218df4b9e",
+              "timed_out_post_count": 1,
+              "udp_framed_sha256": {
+                "inbound": "b9e31b45488e720737e41c3b1e73181e7509fcc060e2e1c058e8ee5c9e34f140",
+                "outbound": "0c8145c3135ae3a7b0fc56b792abb26b648e121093c4a8d1272688dd3207b4da"
+              },
+              "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+            },
+            "system_cxx_ceilings": {
+              "CXXABI": "1.3.12",
+              "GLIBCXX": "3.4.28"
+            },
+            "installed_wheel_origin_check": "pip-report-sha256-and-wheel-member-bytes"
+          },
+          "3.14": {
+            "slot": "linux_x86_64",
+            "arch": "x86_64",
+            "python": "3.14.10",
+            "glibc": "glibc 2.31",
+            "container": {
+              "artifact_kind": "local-release-directory",
+              "attempt": "1",
+              "base_manifest": "sha256:4e96d6c7c610e5b2a46ff8a36cc76a159d57a5b865d580eda29d51afdc1a1923",
+              "docker_platform": "linux/amd64",
+              "endpoint": "3.14",
+              "image_id": "sha256:b9196f3c7242337495927e011083ce8254a8688979e0bc0e3ac0040f4865c931",
+              "index": "sha256:65c6bdcca22db1a3468a0262ae05f38a0a718f51e9818cd09c12094aaae28a33",
+              "producer_attempt": "1",
+              "producer_run_id": "45810139410",
+              "qualification_commit": "74953f70e87f5935a9ce4410c639727d26ea323e",
+              "run_id": "45810139410"
+            },
+            "highest_glibc_dynamic_requirement": "2.30",
+            "masque_status": "wire-passed",
+            "gates": [
+              "installed-identity",
+              "http1",
+              "native-h2-h3",
+              "posix-quic-policy",
+              "profile-reference",
+              "profile-wire",
+              "h2-preface",
+              "test_http3_native",
+              "test_h3_body_abi",
+              "test_alt_svc_native",
+              "proxy-chain",
+              "h2-eof",
+              "request-boundaries",
+              "masque-rfc9298"
+            ],
+            "negative_093": {
+              "commit": "e8f8b02703239a18a75760d791c15936af632c40",
+              "pip_rejected": true,
+              "sha256": "056729152736a3de16786cf466c290068c257a8e3771206db78314e468188b5b",
+              "wheel": "ruyihttp-0.9.3-py3-none-manylinux_2_39_x86_64.whl"
+            },
+            "summary_sha256": "e43b2a69f212be7892ea4f20d35c533413b1451d367deb26ab7a4982b1efbe61",
+            "wire_receipt": {
+              "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+              "independent_tls_negative_cases": 4,
+              "python": "3.14.10",
+              "relay_only": true,
+              "rfc9298": true,
+              "scenarios": [
+                "ok",
+                "auth-required",
+                "deny",
+                "bad-gateway",
+                "wrong-relay-ca",
+                "wrong-relay-name",
+                "wrong-origin-ca",
+                "wrong-origin-name",
+                "no-connect",
+                "no-datagram",
+                "small-quic-datagram",
+                "blackhole",
+                "contexts",
+                "bad-context",
+                "capsule-reverse",
+                "custom-path",
+                "ipv6-origin",
+                "redirect-http",
+                "redirect-off-route",
+                "missing-extra",
+                "client-certificate",
+                "post-stall"
+              ],
+              "sha256": "0ac91ca0afca20682a1954236ba8f72ff2f77912eea3bc2b1e360fb0a3e27b5f",
+              "timed_out_post_count": 1,
+              "udp_framed_sha256": {
+                "inbound": "ea18eab669d5f724e2508fa38cf76016c8fa819ef6d16a38e4a19894898b6a1e",
+                "outbound": "551a63acceb75e5cbecc3b1f0d348fe3b283d1521ffe3bdc54d64d86ee7671aa"
+              },
+              "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+            },
+            "system_cxx_ceilings": {
+              "CXXABI": "1.3.12",
+              "GLIBCXX": "3.4.28"
+            },
+            "installed_wheel_origin_check": "direct-url-sha256"
+          }
+        }
+      }
+    },
+    {
+      "slot": "linux_aarch64",
+      "wheel": "ruyihttp-0.9.4-py3-none-manylinux_2_31_aarch64.whl",
+      "sha256": "191552eeb0428961e77113f1022c84ac2ec7da7c9be7e1921dca772a6bc469ef",
+      "size": 4141024,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/job/139875533987",
+      "job_id": 139875533987,
+      "wheel_artifact": {
+        "archive_sha256": "163868da454d3c289b5847652a0232933a169f0fce09753439802db4f584c623",
+        "bytes": 4073079,
+        "id": 15112567278,
+        "name": "verified-ruyihttp-linux_aarch64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15112567278"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "1f286c32068c643ddd313388e894388982940168bab7a76ad96c349e76028f38",
+        "bytes": 509733,
+        "id": 15113021604,
+        "name": "wheel-evidence-linux_aarch64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15113021604"
+      },
+      "inspection": {
+        "tag": "py3-none-manylinux_2_31_aarch64",
+        "native_provenance_sha256": "918a0dce2151ccc3471b1a7908e2526b9fb96273a148ed4967f5c20d640c6581",
+        "record_entries_checked": 205,
+        "python_files_checked": 17
+      },
+      "native_sha256": {
+        "libfreebl3.so": "43b8b9a524d7f63547c979a1ed63406bbdddc875ec1ba1fcb0975ab9c49a945f",
+        "libfreeblpriv3.so": "6441c97fb821655edd28f91e20ec4845ce9db110fa7cf39808be9736deff0dfb",
+        "libnecko_core.so": "d3d47244aa10b5261fef27500a81918b650c2e457e8a890920440b98cf9d8aa4",
+        "libnecko_quic.so": "3d653af343b0f40d1d587fda5d9c2bf17d218272db55b1f8feba950f51d40e68",
+        "libnspr4.so": "708c09f36dd7e1ccafced261e555629ff0bebe44ca5fadd1ae45f588e71d08cd",
+        "libnss3.so": "b70ffb6efab786046766c580fa87baccf52b8f1e09fe7a9ac6f729e81cdc3589",
+        "libnssckbi.so": "a259f907a01f5cc9411c7f967880b1755daaaea777e03a3a0526c58886c2b21e",
+        "libnsssysinit.so": "98ee4899f036dc4ea1c8b4150795299d51e5b0e6a0bdbefa5d678d15d4618653",
+        "libnssutil3.so": "53f13f366ce1e036f7445b7996ee599f5d5f61cc596401e79593b766f8ecda8c",
+        "libplc4.so": "f58b8e85a7a2466b284cba6dcb1fc0ea7a85575ff4406ab88a07c0b51de619a1",
+        "libplds4.so": "83bcfbe411c5b3bc78c9148c78ea53176479fbc2c46dfb9abcdcfa5ed4eb5c54",
+        "libsoftokn3.so": "4efe3a7763f4d33a9c48052b9cc8a37d4b4d5efaa0f99aa4bfd95f74f34ffef5",
+        "libsqlite3.so": "8f150c52d76128c1babcc01e29b6b5a21ba9f791c075d1c37aa49417ae942bec",
+        "libssl3.so": "cf21be0422836a51bb5b8dfad0983b2ef7c598836c16f32696da18f0cf6eacec"
+      },
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.22",
+          "native_machine": "aarch64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "65c66cf0845382f89e5aa8c19b7b499e8e96c3562ec921c01d44251d62a72290"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "1b5894f5402bf725258348282ac3eb323e577d66a29842f4a4241ea52b943e5a"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "ec37aecfc16551b3256a0d2161402f81dcab1e6d7b334bf3706b2405e15fbb2b"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "bf99c5266331c1e29b18784bcda6699e80aebf3ec0c4a486a176a676c1643657"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "9d388bd9233d33d9ae79249d24e45dfce97606b04b701635bf270af70060fb8b"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "fe7826768f6ca4236c4654af34cb662d1a1c79c8820da1f6a4da679f37279cbf"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "eebaf89f59d496b3f6c7ace5e70608899d43a5f334b31a7b1b7e3329e2b800c0"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "e5a89d5fcaed9ecdcf13374fa8691bb15361d4dfa2f619fbfe8c17916e2daa40"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "417db0e007090f612d4faa7c5514b8d9c0f23f57a265c9df6d21a52180693af9"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "7817aeba89b96f1d7a2ec7eb31c16f1de89e0a0ea0e7dce0f49af4e9714088fa"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "23e242ea0e2df7d93e90033c600c7ab0090d78808467d80770114d7644cb1960"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "f5a2b6d6744580265a2cbd507a7160a8f0ef70167ec2875d00b0b30f14664e00"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880"
+            },
+            "posix-quic-policy": {
+              "exit": 0,
+              "sha256": "a36230dbce132eaf011bf8eb85748909352a0624b95e4511bd88392ae6edaccd"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "fdf9db9dd6abb7a86fa0d7420ba976ee7baaa0ffe8b732234fe11a4eeb30f188"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "598d72b2edb2209d9c3b504a1b35ee83b71788c4da12307c628d05251b548cff"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "5f884ffcb88492657c4ad1d99cd789129c535ac75aa16dd9e26d9b2b9e55f39b"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "7b29ea61ee93d26e38d604c367a5e15ef48715047ca38318654a147e71939e2f"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "e12558bc7d2ed3c477ee6c08caab232c9a40f0829dbf31f9d7aaacc3a50c16a5"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "7bbb6af51c25a423f0624351af6095ad0ee2e968514aa82b56cda94055c2dea4"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "fee0c25124774c776603c3a0c845d095b6374c6d217905cab13953b5c3555e9e"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "d1c8c3b1627b87b487a2a84f524675e912f8f67160cf69e8a8e8b10363bd0d92"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "614c32681fdf11e29f2e9bf0b538be3de94e14993e52bd4d61ce857d9f5712d2"
+            }
+          },
+          "profile_wire_sha256": "b066dc9bfc076a85063610b4673e60516356156744771969093e9e4d5f4e6bae",
+          "h2_first_flight_sha256": "0d56396ce1c0276ea7a6c00e3c1a8b15b84cd871cc4e30443d0acfcaaddf9356",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.10.22",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "fdd30a16b5c8ffba54373ddcbe0bef87cd86e8df829ed8a4ecf9f1fd060cdcef",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "fe8b9bf17ae1903bea0ce403f82f522dbe624bb05e2407171ae7ace9589693ca",
+              "outbound": "6075d99369cc6c25cc915bb32c4a1b39bfb7b78918983bb3bdeabfd072269f8c"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "203e4f0f454c5d5d7e17fc60cf062988cc66d26440c32b62442f213b06dea98b",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "d435412411be24ba80734822574ec0e7cd50e8916846f1707fbe0083d30049ce",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "fdb0b8da12505cad14b10d9b764b1247f76cb9be7c0ec6cf89f6b31bb8c47433",
+              "out": "1ccbbd0e8aad682f6cb7418223510a25d29ac12083e5b4890f9deb2036ca5fb5"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-manylinux_2_39_aarch64.whl",
+              "sha256": "55c4437b0dce2beaaf501377c8e38a266bb6a38f8fadbdc182608a85cfcc359e",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-manylinux_2_39_aarch64.whl",
+              "sha256": "abd2c1b9d3629e5bd9505ec44225b35609fb8eeac7e4c7bab58fae98bdd127ef",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-manylinux_2_39_aarch64.whl",
+              "sha256": "25da59905ec5d14ada625d035cf3dc889934e0512abfe56787d117b873c896f9",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-manylinux_2_39_aarch64.whl",
+              "sha256": "e0c7bdd60435f5f88619630428f6aa972b6c30a1d56baaa1ee7326861c5ed946",
+              "in_place": true
+            }
+          }
+        },
+        "3.14": {
+          "python": "3.14.10",
+          "native_machine": "aarch64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "65335bf5a2488b38cf865d449624c97025a93545acd6ea5cc84e763a7586ecab"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "cfce1b1f9adbb44a0947ba3b6cf2c912c202e061df9c7f02659885fd596ba13d"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "acca5561cbbc3178c805f36bd4655e369a44046d7a11823bb5e651ead3a82f7c"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "bf99c5266331c1e29b18784bcda6699e80aebf3ec0c4a486a176a676c1643657"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "9d388bd9233d33d9ae79249d24e45dfce97606b04b701635bf270af70060fb8b"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "9ccc025ec91bf38084088819f4f7ef6f131ef308b49920dbec123a7afec439e5"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "cb1ad8c89228caff3b47d2a95783e40b9f014f646525a870c2d26fae66ea958e"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "0d828bd398b87c410900d23091eead1737982eb112333a575a2bf10c5a373257"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "417db0e007090f612d4faa7c5514b8d9c0f23f57a265c9df6d21a52180693af9"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "1692c3d08d4812eac8b5a97e36575e3b341717ef20ba9a3b048db0f4284b439e"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "3c2fce13134bfc98139487a46786bd95123273c8142d3340bc68b4a3c05bd32b"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "f5a2b6d6744580265a2cbd507a7160a8f0ef70167ec2875d00b0b30f14664e00"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880"
+            },
+            "posix-quic-policy": {
+              "exit": 0,
+              "sha256": "a36230dbce132eaf011bf8eb85748909352a0624b95e4511bd88392ae6edaccd"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "633ad4f2d9193d3d3c8695775955b1e53be160f26e0a3664d068e1fb8a672df4"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "4c5fcd7bc906dd6ed3c5e47e9dc9a4c3ddc4857b545bd15a084beb28343ccae6"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "a495ac79bc70fceb23e593fbbb4064be893fefaf59a8775005f1281048c34494"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "720f15114d6887e59523f9b3163b0fc96a094522342db52ea78c114ffa15985c"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "40e6dcf88fdfb47f3b3d877cf654c43fab2ac3774cebfcb43c79de95bd2562b8"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "46d6e81511eec8aa9fac09d3f554de2c0130970f807eb0ccb58b460abd5da8e6"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "c3d0bac455b0b261283e52e90824f2ba90b2ceefba88d78bff2fbad77563a322"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "c0dcd773c54596bcdc23200bcc717141e9c2df87964a701880775156c0fd1f4e"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "e4c683ee5499b717dbfa203ae18c0705e6520c05c18d699b4e185e109177d2ba"
+            }
+          },
+          "profile_wire_sha256": "25e700729648e06b87574d87b5958981e842996361ef9dc101f02a714bca2f44",
+          "h2_first_flight_sha256": "0d56396ce1c0276ea7a6c00e3c1a8b15b84cd871cc4e30443d0acfcaaddf9356",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.14.10",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "388cdb5a936cbd9cc6fa51de4c87a6ec429b774a636ad7f8345ffc0b3047978f",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "fca72c0003a677297fd71f844607c827f3c26161fd4760c623aec4009443f558",
+              "outbound": "4a11d1ae44846fca82b01c3884be13b3ea5170a49262ce195f45c8ce9a21694a"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "203e4f0f454c5d5d7e17fc60cf062988cc66d26440c32b62442f213b06dea98b",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "88945b500be77a12645128821183f9433501924f22567790b26ad3a0b07485e5",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "5b0e435d65f00a957abe45b262e4b0aa22c9f864749c150f42da891c06e7db69",
+              "out": "9c2e404bcd0f98f0399a8c0be53769b285befdf1046b284deeff7d37a2cb8fee"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-manylinux_2_39_aarch64.whl",
+              "sha256": "55c4437b0dce2beaaf501377c8e38a266bb6a38f8fadbdc182608a85cfcc359e",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-manylinux_2_39_aarch64.whl",
+              "sha256": "abd2c1b9d3629e5bd9505ec44225b35609fb8eeac7e4c7bab58fae98bdd127ef",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-manylinux_2_39_aarch64.whl",
+              "sha256": "25da59905ec5d14ada625d035cf3dc889934e0512abfe56787d117b873c896f9",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-manylinux_2_39_aarch64.whl",
+              "sha256": "e0c7bdd60435f5f88619630428f6aa972b6c30a1d56baaa1ee7326861c5ed946",
+              "in_place": true
+            }
+          }
+        }
+      },
+      "glibc_2_31": {
+        "attestation_sha256": "94a84120f7069c7b3ff08ef884566d6c51ba032b580db652c792156947817c0c",
+        "wheel_sha256": "191552eeb0428961e77113f1022c84ac2ec7da7c9be7e1921dca772a6bc469ef",
+        "endpoints": {
+          "3.10": {
+            "slot": "linux_aarch64",
+            "arch": "aarch64",
+            "python": "3.10.18",
+            "glibc": "glibc 2.31",
+            "container": {
+              "artifact_kind": "local-release-directory",
+              "attempt": "1",
+              "base_manifest": "sha256:7f7a235298401ed56b486968fbb19049fda940005e114ad917e0e60362c93342",
+              "docker_platform": "linux/arm64",
+              "endpoint": "3.10",
+              "image_id": "sha256:65589df9ccefc943c6601a457bc150f5959b19c2d265e86e2b1ca3b1388d6303",
+              "index": "sha256:65c6bdcca22db1a3468a0262ae05f38a0a718f51e9818cd09c12094aaae28a33",
+              "producer_attempt": "1",
+              "producer_run_id": "45810139410",
+              "qualification_commit": "74953f70e87f5935a9ce4410c639727d26ea323e",
+              "run_id": "45810139410"
+            },
+            "highest_glibc_dynamic_requirement": "2.30",
+            "masque_status": "wire-passed",
+            "gates": [
+              "installed-identity",
+              "http1",
+              "native-h2-h3",
+              "posix-quic-policy",
+              "profile-reference",
+              "profile-wire",
+              "h2-preface",
+              "test_http3_native",
+              "test_h3_body_abi",
+              "test_alt_svc_native",
+              "proxy-chain",
+              "h2-eof",
+              "request-boundaries",
+              "masque-rfc9298"
+            ],
+            "negative_093": {
+              "commit": "e8f8b02703239a18a75760d791c15936af632c40",
+              "pip_rejected": true,
+              "sha256": "e0c7bdd60435f5f88619630428f6aa972b6c30a1d56baaa1ee7326861c5ed946",
+              "wheel": "ruyihttp-0.9.3-py3-none-manylinux_2_39_aarch64.whl"
+            },
+            "summary_sha256": "f6a6a3206da7bce331707dacd7be23ded16d935ca729f0857b3775291a1cd970",
+            "wire_receipt": {
+              "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+              "independent_tls_negative_cases": 4,
+              "python": "3.10.18",
+              "relay_only": true,
+              "rfc9298": true,
+              "scenarios": [
+                "ok",
+                "auth-required",
+                "deny",
+                "bad-gateway",
+                "wrong-relay-ca",
+                "wrong-relay-name",
+                "wrong-origin-ca",
+                "wrong-origin-name",
+                "no-connect",
+                "no-datagram",
+                "small-quic-datagram",
+                "blackhole",
+                "contexts",
+                "bad-context",
+                "capsule-reverse",
+                "custom-path",
+                "ipv6-origin",
+                "redirect-http",
+                "redirect-off-route",
+                "missing-extra",
+                "client-certificate",
+                "post-stall"
+              ],
+              "sha256": "e0adf1555c743120737de1ab3d71cee74548c60188eacb7683a03ebcd5446e91",
+              "timed_out_post_count": 1,
+              "udp_framed_sha256": {
+                "inbound": "19950d3f918de79565b4a91ddb322679155d89c3a86c886500d4c5975dcc8ffd",
+                "outbound": "bb16b56e30c96e64398f5d26f62263f8d8bd98b8a94ba8a8b6708cb18b44bc90"
+              },
+              "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+            },
+            "system_cxx_ceilings": {
+              "CXXABI": "1.3.12",
+              "GLIBCXX": "3.4.28"
+            },
+            "installed_wheel_origin_check": "pip-report-sha256-and-wheel-member-bytes"
+          },
+          "3.14": {
+            "slot": "linux_aarch64",
+            "arch": "aarch64",
+            "python": "3.14.10",
+            "glibc": "glibc 2.31",
+            "container": {
+              "artifact_kind": "local-release-directory",
+              "attempt": "1",
+              "base_manifest": "sha256:7f7a235298401ed56b486968fbb19049fda940005e114ad917e0e60362c93342",
+              "docker_platform": "linux/arm64",
+              "endpoint": "3.14",
+              "image_id": "sha256:fd468b4c1ef0fc4eb22a22a412dc67e7a82181fae317bada2c9a69a4ae686f8b",
+              "index": "sha256:65c6bdcca22db1a3468a0262ae05f38a0a718f51e9818cd09c12094aaae28a33",
+              "producer_attempt": "1",
+              "producer_run_id": "45810139410",
+              "qualification_commit": "74953f70e87f5935a9ce4410c639727d26ea323e",
+              "run_id": "45810139410"
+            },
+            "highest_glibc_dynamic_requirement": "2.30",
+            "masque_status": "wire-passed",
+            "gates": [
+              "installed-identity",
+              "http1",
+              "native-h2-h3",
+              "posix-quic-policy",
+              "profile-reference",
+              "profile-wire",
+              "h2-preface",
+              "test_http3_native",
+              "test_h3_body_abi",
+              "test_alt_svc_native",
+              "proxy-chain",
+              "h2-eof",
+              "request-boundaries",
+              "masque-rfc9298"
+            ],
+            "negative_093": {
+              "commit": "e8f8b02703239a18a75760d791c15936af632c40",
+              "pip_rejected": true,
+              "sha256": "e0c7bdd60435f5f88619630428f6aa972b6c30a1d56baaa1ee7326861c5ed946",
+              "wheel": "ruyihttp-0.9.3-py3-none-manylinux_2_39_aarch64.whl"
+            },
+            "summary_sha256": "4f9c63e1436498b15f50318810ecd51ebae6bd528b7cf8811b627efe097e487d",
+            "wire_receipt": {
+              "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+              "independent_tls_negative_cases": 4,
+              "python": "3.14.10",
+              "relay_only": true,
+              "rfc9298": true,
+              "scenarios": [
+                "ok",
+                "auth-required",
+                "deny",
+                "bad-gateway",
+                "wrong-relay-ca",
+                "wrong-relay-name",
+                "wrong-origin-ca",
+                "wrong-origin-name",
+                "no-connect",
+                "no-datagram",
+                "small-quic-datagram",
+                "blackhole",
+                "contexts",
+                "bad-context",
+                "capsule-reverse",
+                "custom-path",
+                "ipv6-origin",
+                "redirect-http",
+                "redirect-off-route",
+                "missing-extra",
+                "client-certificate",
+                "post-stall"
+              ],
+              "sha256": "cb7ceb514e8dfe94e447d20ca69206222bea3873e2cf68ca1fb185b3b65d85fd",
+              "timed_out_post_count": 1,
+              "udp_framed_sha256": {
+                "inbound": "831b58064bef59d45ec6841186fef910a9bcede27820797486213f466d79efd0",
+                "outbound": "1b51a5b445213b95d7019b3c1709597ba472dd14ef48b782336c319a9383c5cf"
+              },
+              "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+            },
+            "system_cxx_ceilings": {
+              "CXXABI": "1.3.12",
+              "GLIBCXX": "3.4.28"
+            },
+            "installed_wheel_origin_check": "direct-url-sha256"
+          }
+        }
+      }
+    },
+    {
+      "slot": "darwin_arm64",
+      "wheel": "ruyihttp-0.9.4-py3-none-macosx_26_0_arm64.whl",
+      "sha256": "a04671785eba6c61de45b93dd0d8fcc6bbc9778aa39f02e495aafd38c2100e68",
+      "size": 4214369,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/job/139875534154",
+      "job_id": 139875534154,
+      "wheel_artifact": {
+        "archive_sha256": "78fac4a4a27fea29e9405a99c9dfa3bfb58115e68571e179ba8a3788c1acec44",
+        "bytes": 4158198,
+        "id": 15113551188,
+        "name": "verified-ruyihttp-darwin_arm64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15113551188"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "9786dade0141c364aaa590ce7aa2500bc59687e81e1690a912a34abc7ff67ece",
+        "bytes": 89689,
+        "id": 15113381254,
+        "name": "wheel-evidence-darwin_arm64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15113381254"
+      },
+      "inspection": {
+        "tag": "py3-none-macosx_26_0_arm64",
+        "native_provenance_sha256": "dcaa376f4c61ebded930941fa3dfdf77283176546e4be03ff311b305664e6cdf",
+        "record_entries_checked": 197,
+        "python_files_checked": 17
+      },
+      "native_sha256": {
+        "libfreebl3.dylib": "04d29929d3b12640b1ec84cd8f0fe814b9a57f6040471ae2898203405afad2bb",
+        "libmozglue.dylib": "2e6d4287175b0d623c088a05dc76c5f973d0763a5c62e439e57f014045d2805d",
+        "libnecko_core.dylib": "8ba32df8f12d390f0ef83ff11f6186a818803882b4cab0463401c95ad2b28da2",
+        "libnecko_quic.dylib": "af4807cd567fe307db10e237b5cb78b84127cb95ba4a11caec0093542052d679",
+        "libnss3.dylib": "17d24937bbf2509dfaa2f6d2296678f605e6f86c3a8ac3cc25b6f4ada7febe95",
+        "libsoftokn3.dylib": "eaf276da9a0cf3be5f2d7f62b3d116c04579b84a31db979a48708a8c675291fa"
+      },
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.11",
+          "native_machine": "arm64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "ce88fa4a89f063b11536fca922299155701924beefc4a91edf1ae05794963fab"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "18c70e94a469d7b8cb2e5e20476088d568d0a0f0e1bb73e61fc08f6c440df690"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "1845a5b3b0da69db9efd82318356c09943d6fcab330b44e6276d457b4b75bc38"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "683cf63e17ded7587421900dd0720bba8745a8544d05dea26c61989b416752f5"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "9d388bd9233d33d9ae79249d24e45dfce97606b04b701635bf270af70060fb8b"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "2f17d288a29dce1f49d4f5ed62e523d25a35e2bf58c75fed35d77f9f12851bbe"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "3d1a35e0d714858edbd798e1714396414fc85577961dd3528363bc0338419164"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "474010628ed9445f3861248f8556fb4368afccaedfb3f84078a52bc0e69f1968"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "417db0e007090f612d4faa7c5514b8d9c0f23f57a265c9df6d21a52180693af9"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "7817aeba89b96f1d7a2ec7eb31c16f1de89e0a0ea0e7dce0f49af4e9714088fa"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "1509765349b91741f2fddf37874c3a6c52a63442ca8687e77a60d109792a5782"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "90754ec3a4c43681783ef559d4e19aef419a1923737531894f66c202e2be0977"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880"
+            },
+            "posix-quic-policy": {
+              "exit": 0,
+              "sha256": "a36230dbce132eaf011bf8eb85748909352a0624b95e4511bd88392ae6edaccd"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "97c33abfcd1fd85830234d0a1a4a3b2c922b2c953bf306859b8d416ce1291df6"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "852b4432a13181617812a9cbcd7a7e4b3b1e43d8c3680b802711c3a6a3165d9e"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "8d768bb0eaff52ff2761929581b19b47016cb4de20ca6ae89f2008536a06b2c9"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "43ae001b30beda38ae307eca2d51d83b96dc0bcc1e106bd73c561f8c9ebb8dbd"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "3ecf2d35a2f44acfd8837a1482efa8de4c14296a577f1e976f89d54d6125682a"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "48759d63f4d6fcd846521f20b4e2d51697877aed17de159227119d09c4b74448"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "c9789b6167e832d38ea926d56f36956cb6eb4581d540a608576e0c3291e9d2ce"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "59079e6d22e7ea6e7fc2b7ef8d43a2205b5c4a15c1b6aff8b21a64c309250108"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "48e9cd4e3c113d79e58af40db36e6598bd825247b6016df6fec7601f911f113b"
+            }
+          },
+          "profile_wire_sha256": "6afae7fdf204a760d887f7cb595c2f5171d9e69ee1f9736b115a58bb7b0bf712",
+          "h2_first_flight_sha256": "132254f0a63f4c34cb1ad767976d2fcd0f7cec045409911d48ad4206eccbc6a7",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.10.11",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "be2654c9dd3a90e83f97e8f6215b19d1a6fb88c928d62777dc23ffe72ba055a7",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "c5b7f21c1f54a84f4dad32354013e982f1a715babab41c2015128c1e97720e7a",
+              "outbound": "c680753dd7e1dd1fc0ac0eb7ed475ce99db1001f9f2457516da050ca8d921781"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "54533c6d47d95aa7398df1f8d069d68c1606ba480fe020b1ae23902f2bf6fa71",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "bd08396b720659b0ca9e0921a0b6c910445e822fa463e5d16c96d14436fc13bb",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "7b6ccafe885f700f513ba819165e88e19adfdd515218c0689dd63fec9ef89323",
+              "out": "3b0de9afe6da6b71fbe3e052b91408690f4d699fe247086e3d8e63db221da02a"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-macosx_26_0_arm64.whl",
+              "sha256": "9866458c979842e4a606ad0d33f99adfe8ec0eaf2b448b255701dec79312bcca",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-macosx_26_0_arm64.whl",
+              "sha256": "62fef6548f2362ccb3d3b61bc655d89df9d77b68f6822259b463dd085f090cfe",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-macosx_26_0_arm64.whl",
+              "sha256": "555bb5a92cf09f74bf8a076cd39acaa58ce2936629dd63aad5b9bf7d56e575d6",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-macosx_26_0_arm64.whl",
+              "sha256": "d107f8c871ed52fc610b4434673a8df7e4b11242216e09c5ae2e94dfebf8ab6c",
+              "in_place": true
+            }
+          }
+        },
+        "3.14": {
+          "python": "3.14.10",
+          "native_machine": "arm64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "e78b9e7724ca9c6d200d4173a29e6bdf4a3251fae9b7e9deb5f7822441f8a653"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "83f0343ba08287969ec05c58419f1192de39e054911ea73aca363d8a3b65fac1"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "52b2cee9e9cfb37e922ed9096b7b4e53258255aacd60fce8c393b314b5f0e3cb"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "683cf63e17ded7587421900dd0720bba8745a8544d05dea26c61989b416752f5"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "9d388bd9233d33d9ae79249d24e45dfce97606b04b701635bf270af70060fb8b"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "225e01efe639f32985e5e6fe6a8d3d4a61778d6e1403bae9d137e89f036114ac"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "1d2c2dfbe59a12943c095f307090f24074ccd34c6fd5568ac09a4e06e5b6ca6e"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "f76a7f532b0855b982f4979a799087ad2b13cf3fc9be3c703cefc983c10c3b2d"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "417db0e007090f612d4faa7c5514b8d9c0f23f57a265c9df6d21a52180693af9"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "51ae93ef0448b6df9fea1cd435e811b7f876ce6515ff80baaafde670e7027303"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "160eda056135f2fc6895822a7e639f50bf7ae99705f16c67f1a1145a2603fcea"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "90754ec3a4c43681783ef559d4e19aef419a1923737531894f66c202e2be0977"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880"
+            },
+            "posix-quic-policy": {
+              "exit": 0,
+              "sha256": "a36230dbce132eaf011bf8eb85748909352a0624b95e4511bd88392ae6edaccd"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "7d189df3be86b774a2a021f4fd4161a2f9a4db0e14621a7e837df37e15b32b34"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "9fb4b90ec9dd94177bd897957f6d2d945f2f949b52b484b6d30dbf451349c143"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "05f40209dfbfec9ec3022f45a4947ad569148b4d3c66c7209dd5ce966a205647"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "daa5b245fcfff2d129776423fab97bf87764aebdc8ebaf23148c00bd078e49b9"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "6f2a221a8d97459e9283b48d88c18b0b953325acd9463130473dea2223742218"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "30ac13a3422dbf03f51653afcc549c53461861e9fb2113a4a847be3632630916"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "cb017055c205847e6b517def77f138987b81dbd42cdb2edf46209b2afafd6679"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "507f759ab097e7daff9536659393570c62df1b543e538f089b93a26cf0ce7a4d"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "b0291988c57dc3228b240e38a5331a9ed9793594d8dd308df9d351c8a432e691"
+            }
+          },
+          "profile_wire_sha256": "3c771abc614053c3fb2f01b1d0f04d5dbcc85b447a69a6ab0c829ee17832892d",
+          "h2_first_flight_sha256": "dd275790534a12a744f261daf6283d41ae1ccc3534d8bfc74b3fa02ad0584f2e",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.14.10",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "9c34933df6a923784eb5afa43c225873e190fcda262082d7fe8311a57a555b8d",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "7c57a61c1f244db9d091977c61605100d30200c34f8fecae0a118bec573ec57c",
+              "outbound": "4b8320e99c7610e167a5bf9c5e6c2462dabf5154688eee35a488b181457a6e17"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "54533c6d47d95aa7398df1f8d069d68c1606ba480fe020b1ae23902f2bf6fa71",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "aa2fbb19ad3e79e68d5b57a89c7fd15910867d1c6ef0aa96e41fa6b451e91c9a",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "b994dc35a65d10721952c2badee7fbc62e8e74d307e8f51baed66bd18f1a7c2d",
+              "out": "c79af101775abb903c23bb9814e266cf2de736acdfb9bf91c65636826e237203"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-macosx_26_0_arm64.whl",
+              "sha256": "9866458c979842e4a606ad0d33f99adfe8ec0eaf2b448b255701dec79312bcca",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-macosx_26_0_arm64.whl",
+              "sha256": "62fef6548f2362ccb3d3b61bc655d89df9d77b68f6822259b463dd085f090cfe",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-macosx_26_0_arm64.whl",
+              "sha256": "555bb5a92cf09f74bf8a076cd39acaa58ce2936629dd63aad5b9bf7d56e575d6",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-macosx_26_0_arm64.whl",
+              "sha256": "d107f8c871ed52fc610b4434673a8df7e4b11242216e09c5ae2e94dfebf8ab6c",
+              "in_place": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "slot": "darwin_x86_64",
+      "wheel": "ruyihttp-0.9.4-py3-none-macosx_15_0_x86_64.whl",
+      "sha256": "cf038b0ceed31963c5cd810dbca0e9380802c057f92288c584ec7933b4baf616",
+      "size": 4405464,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/job/139875533533",
+      "job_id": 139875533533,
+      "wheel_artifact": {
+        "archive_sha256": "8db32f3036ee45fbf578e1997481a1ef44aa7ae7834b4c97192c472880cb5f4a",
+        "bytes": 4348481,
+        "id": 15114183639,
+        "name": "verified-ruyihttp-darwin_x86_64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15114183639"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "e7e164d621edc4965139516121214e44462f569d4a577bf0d888adad4cfd8b20",
+        "bytes": 92634,
+        "id": 15113404584,
+        "name": "wheel-evidence-darwin_x86_64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15113404584"
+      },
+      "inspection": {
+        "tag": "py3-none-macosx_15_0_x86_64",
+        "native_provenance_sha256": "8b2e04d6ed373ae3cb3c053c7989b37cc5cd88cad8fa0384d0fc83a4c0869929",
+        "record_entries_checked": 197,
+        "python_files_checked": 17
+      },
+      "native_sha256": {
+        "libfreebl3.dylib": "94718096805a3d1f9c4b6e3696c0c695e53f0ca375e4506818d5d35a4d8e4141",
+        "libmozglue.dylib": "5bed7dfdd89813f14ea1f9953bd8f6aa5bdb05f39e10529f7e586873ece44727",
+        "libnecko_core.dylib": "16257c1cf9cf44f90a96d52c3e069ae8f4f439723afbc8085b741adf257ac06c",
+        "libnecko_quic.dylib": "b72dee9ff1e4a3353948026f97aac86cec8aa6734fc5fbd407430b9032524d89",
+        "libnss3.dylib": "ceab4ba049adc23dff033dfbf9ec6f3c3b78be77ebd5dc614ffc57668d42910c",
+        "libsoftokn3.dylib": "bb2b4957f16ade4f49ce33e1b8f1bab57a808bcde71fe869eaaf94f50b8532d2"
+      },
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.21",
+          "native_machine": "x86_64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "91fd021d466b530ebe87550a9e0092f7c3dbae4efb1d25e6d1aaee4bfbfad12b"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "1e7a230cf479d85771628a8a206b65dc13737bd854582dff47254ca2732491b3"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "a890027c19fcfd6f315fa85eb4f68ba7cea72901717be1b2fe0c7eee2dee907e"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "8126c83aacd27b51d79397173b89aebb8f9103984ddc2dee333ea0622fa4b096"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "9d388bd9233d33d9ae79249d24e45dfce97606b04b701635bf270af70060fb8b"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "a9be6b97f494c66f565c242a6adff9c60da775e1d454907dc2b86a10e460e98a"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "13cd9e23f00dedca39f9a7f8c2e280b4c4f437a5609732d8ef1b2c76011c8e48"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "c5649c86760f2ed6e38fffc0e88048f5852c21a49da9682e812c2bd978253dae"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "417db0e007090f612d4faa7c5514b8d9c0f23f57a265c9df6d21a52180693af9"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "7817aeba89b96f1d7a2ec7eb31c16f1de89e0a0ea0e7dce0f49af4e9714088fa"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "1ce8ae4e6d514cef5b8fe6119e93ec84207be40f477f714ec54608eded0c37e9"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "db67ba1b97b9b125f1832eaa2e8cd7039026bd4912ffa0631d22e19a2915a0c7"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880"
+            },
+            "posix-quic-policy": {
+              "exit": 0,
+              "sha256": "a36230dbce132eaf011bf8eb85748909352a0624b95e4511bd88392ae6edaccd"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "b1eb7305578a27f49201ffb851fcc3b6ffbd9a9f41b128fc13b387394502186e"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "32c8728105fa3199c677eb73b948cfb3f201c3b13e9aec9feb11bf7eb23602d8"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "fc2ef1bc28959611329f7708f9264924addf5e74102ffcdf7dc62914bb233d89"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "96f182149a95128f5b7ee416c3cc39dcd556f98ca328ff85462dcf8adb585766"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "3666f2688bf22f8df19d944ee1ef03b583f5093082b2ae82dcd28e77059e0cdf"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "584c91c8adf99b73a9c56347e3cc8b62d0aa2d8f852d3e4aa07b5bf4618e0667"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "c39b04e7a7f323e90e139d71d57bcf1572c03b188bbf8ad52a41fcd5b486936f"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "14f44fd5408fbb3f68124da300a8988d172187de4b33452199ef43dfa61be3a6"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "807a21ef39bedb9d167e10a2154e15462266b83f412ba7b171cece812bbcf56f"
+            }
+          },
+          "profile_wire_sha256": "006d72e3c947ff99f300860cdcd4980f8ba725fd38a9de05d2b93ade0ab1bc5f",
+          "h2_first_flight_sha256": "05f82b02b5f17ae1449c301ec2b73addce6e818ba5a57e2de3449aaeae5c734b",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.10.21",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "d9abb665c0be4cc1ce695b235bfad510ca2932bea1eb18b80d8211456d498902",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "e6389e6751c73aca783ec22a97b01a754e159c9328b3ed7a0d42311338059d19",
+              "outbound": "571b81358a6f952d601441fa981b4e6575b93ea0484b233d19b73625f7259e26"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "faeafeffa85909f5e560cdefd27d0a333a6356cd6832f6ffa55423bbdc01534c",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "7cf4a13d746a625d80a421b718888212bafaa78ddbeb0afe1e75e296ace2a539",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "8534f76072839e35529a71dd698e4bafe004a00ee1aae16c0a15f4c7a1897f63",
+              "out": "c8c8077631464e348c8d60da6f849130de8dc924722f02d1a17e4bbd20b8579f"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-macosx_15_0_x86_64.whl",
+              "sha256": "4a02b6322e3c2e761e830821bbfb459365deb162d7ac37cbb50e832c37e782f7",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-macosx_15_0_x86_64.whl",
+              "sha256": "7974063253970b077aebbe7ea55495a42496ee8d3dc739128e298e4f40cd626a",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-macosx_15_0_x86_64.whl",
+              "sha256": "3381e474284800fa348ccbef0d8585c7be9bbfa77f16ea057aef44759ef9cfa1",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-macosx_15_0_x86_64.whl",
+              "sha256": "74ef2cec8f1e54d0f039973a3fb7acb10093cc6fa17a38df909709421c81ab99",
+              "in_place": true
+            }
+          }
+        },
+        "3.14": {
+          "python": "3.14.7",
+          "native_machine": "x86_64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "ed76434bcfd2cd9ef0c4314910f549301bf8c495e9e39dae773601043ccea7ee"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "40d31612ab05617fc8930e6feda2708cae5da1f38f4664446e7461d6c65702ed"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "06d4719d85b22f44bf66d5c8dcb2bcbf27dbffe7f88bc8f7d93f564d07b47488"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "8126c83aacd27b51d79397173b89aebb8f9103984ddc2dee333ea0622fa4b096"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "9d388bd9233d33d9ae79249d24e45dfce97606b04b701635bf270af70060fb8b"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "3b9395da412bad868e7cb688eeb4e21f2160ed1c8448ec153a6e3511dbfef1aa"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "869bc924c1f52f47c3b1f175815e9e398a498c272efc45b77e6a9c35f5e84ca8"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "9a4cb97d623c922a160040021ed959b1c132aaf39131f460241c37d2bfa8a497"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "417db0e007090f612d4faa7c5514b8d9c0f23f57a265c9df6d21a52180693af9"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "51ae93ef0448b6df9fea1cd435e811b7f876ce6515ff80baaafde670e7027303"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "ffe099095bfc32c1261e07d256118f7cec76d4e84836935fa83a6925c594a468"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "db67ba1b97b9b125f1832eaa2e8cd7039026bd4912ffa0631d22e19a2915a0c7"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880"
+            },
+            "posix-quic-policy": {
+              "exit": 0,
+              "sha256": "a36230dbce132eaf011bf8eb85748909352a0624b95e4511bd88392ae6edaccd"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "29d78c5f318d37919ce56b667ef7cec90ca00c3e891c9643952f62f0e9ffc876"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "f8e7cc11a844afcd417a6c637640c79a357186a313090f56cc65cb1ac6ab8105"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "1fc3f141e06013be3c462a1d83f686f217841a2b74368a5f3a5cbe2e09e8ed76"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "9b35505a87d81090d25b1f1b8e8bd96fe3762a8f0945d00d62a9b0a54c12d2f6"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "614590d0cc09ac5f74a320376a8520603b404e9dad5975167c4ca4c666d06d90"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "cb1b2d4916a51a6fe35f15fe20aa95c803ca3bfebf497b2fb66167c8b6c4d7e6"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "d68d225af7aab38f9701a761a1c9e66b5651cc596752885858a4fd965226eefc"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "7ce848ea17d2c5208a61b1c13ffb714bdfff222b0d329a18af465a2b0cf01be2"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "0728af14bdc72f479f963399297c235e5932b1d59305ce02a5a5edc3a58716b9"
+            }
+          },
+          "profile_wire_sha256": "3c3886241c269935a93bfc61c0b5b9c640cd68213d2a1853ff15eb3dfe77e71c",
+          "h2_first_flight_sha256": "13a826709ef27c1b5d4b3bc2a0f357339b8a62d11ba6d6f68c1702478f491ffb",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.14.7",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "fd3262dfd21d887b92d1d078c3a545001038f1dbe71c3c216957cfb56feb6655",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "7af913537a3762f439e1720f52bf0870f5a6f78a48b9145acc48025ca81735a3",
+              "outbound": "ef89b2b944c3c7160460b235e25fdd2ece4801333de3906f4a4bc9308a3d9a2b"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "faeafeffa85909f5e560cdefd27d0a333a6356cd6832f6ffa55423bbdc01534c",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "da7eea7b5c1cfb5b5eec8b9ac11d04560b426922bed8ddf1028c19a86330268e",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "d00ffdb6269ec21b85f4178afa8e8176331ce43be157ff6717079e97901f2e9f",
+              "out": "48638fde615ad2ffdbcd5c18b2a9599366c25d63da58c0d3c3ff2343b4bfe3e3"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-macosx_15_0_x86_64.whl",
+              "sha256": "4a02b6322e3c2e761e830821bbfb459365deb162d7ac37cbb50e832c37e782f7",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-macosx_15_0_x86_64.whl",
+              "sha256": "7974063253970b077aebbe7ea55495a42496ee8d3dc739128e298e4f40cd626a",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-macosx_15_0_x86_64.whl",
+              "sha256": "3381e474284800fa348ccbef0d8585c7be9bbfa77f16ea057aef44759ef9cfa1",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-macosx_15_0_x86_64.whl",
+              "sha256": "74ef2cec8f1e54d0f039973a3fb7acb10093cc6fa17a38df909709421c81ab99",
+              "in_place": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "slot": "win_amd64",
+      "wheel": "ruyihttp-0.9.4-py3-none-win_amd64.whl",
+      "sha256": "e6692f97d83eb8433640ad81a75d7a8aee7498729eae58f1f072591829d0f3c3",
+      "size": 4091750,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/job/139875533964",
+      "job_id": 139875533964,
+      "wheel_artifact": {
+        "archive_sha256": "fde9f75368ba53397645db985371b22aa39b2acfc340afbe3ef8fa02c54d3fc9",
+        "bytes": 4055030,
+        "id": 15112767063,
+        "name": "verified-ruyihttp-win_amd64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15112767063"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "49b4d392bc2b680f0fed8be73ba818a843cd445cd802a463a99da3a7cf30d8be",
+        "bytes": 101064,
+        "id": 15112731948,
+        "name": "wheel-evidence-win_amd64-45810139410-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410/artifacts/15112731948"
+      },
+      "inspection": {
+        "tag": "py3-none-win_amd64",
+        "native_provenance_sha256": "706b476e624e3f9dbdcce230c70ad942d76268648fae71033d81b093c6bcde1d",
+        "record_entries_checked": 197,
+        "python_files_checked": 17
+      },
+      "native_sha256": {
+        "freebl3.dll": "1e85ef195eb594307cd14a6ef4b3925a65cea145dbe5ff4c7d3c6aa9566001f7",
+        "mozglue.dll": "951e5c58d4124ef7b1aa6f561bb2a9b603a0621c5729cd906d633aa8396b4628",
+        "necko_core.dll": "91a730b6a94b796567d1a0673e9d9cfbaee00f7c6a87dfbf5ad149732eebd7c7",
+        "necko_quic.dll": "e46605309069e4acf4222e145c81d21a94bb185d2dadac4dbf557740aa36adad",
+        "nss3.dll": "4572738240953cd79cb738bd07181b7df752b11d865124b7037ddb5424fccbf1",
+        "softokn3.dll": "ca89dc62645d8ac56d37ea2323fbef6fc24f852b42486f32db2ff0526bdec105"
+      },
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.11",
+          "native_machine": "amd64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "f0470eca1d7c96b1fde2b0711b327548f8d138ce6617fa0ca2e14632cc63044a"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "0d7ca8b5b76d41851455f451caf004e81fe9ed60cac0410ed1480b3afedbc16c"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "50a950b220d2c5f3a8b70c9d0c9353930c5d140264131f3d3203f6a057358b7f"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "0e0fe4bcf8b634c5288d3596f03f8df43290f7462521eec2e927ac9227762a20"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "044e0ddc7e1216c67fc0bf8cf03b64a4227a1dc02ba14492b0ed98d99b8edeff"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "f9745e6fa3115e3c28c8ef37c560741034abf50d332657cb52754976c3aa2170"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "e810d0ca01185bebfbe648f41428b35dd192e2ae53b591d1ac2423af0df655bb"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "3ea015a936df7eace94516c387cb96c1e8ecc78a7b035e8652eef0062fb1a79f"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "e3f1d1a51cdabf0495cb8faaa207a1b55f35b915f9dffcc02c707702ade3ce04"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "a7470201dccfc102ca98a2d7007ace4a3cec6f97b61295f6eaefd249399796be"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "5dea5e84727492dd908de99a3df5c4362e0a2f15afdb17d186c31d1a41cbb201"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "12f06bcd7276c62e87fe842b7fdf5d59ab795464cee43b7d093f9a0df626208f"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "8a0de5af3bff514286d78db171b42e9ff23c3d9ff5b8a41f88da5aebd0953228"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "2d195f77a9755776e9bf78b300ecdfdc36fc639e3e81c83c89fc7a41579ee56e"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "7cf9d7f0044906871d9a89a7aee90b5d858f5e7fe6827d582ac14aa2ea1a76f9"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "6e30167abb4f2bfa255db7e8b150d0f25a5c03a2d4ae9f8fed07aa06dda15bad"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "365e2f658baa6c59a026f23a1b5b5d3d5dac0e0db3fc48c32952a0393bdf47ff"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "2dace0f7be305b1b8ed6b59335e03c1cbbf1a89f58b87c973c38fb332d803b1e"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "fecf9e953c20fad6047b4b526daa8c3ce962ce2da1ba0289e22c2e96c3ab212a"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "433a98eda49cb0c904c9dd39344d934c9bc773b9e1d1d31362abe55bcb68ba2f"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "aea7bb8e1174f5b91e7ddfec1cb5a3a6435b42cd0b0d4eb2e0db0051cd94c81c"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "8f9392d8c9633c632f8a0d5d735989c5ad170260b5ea649f3a9503e3cf6b8bb0"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "2f84f5c2cb267dcc33d18bedbd1591013ba9b40a8f2e43b9ce67410e8c9d28b3"
+            }
+          },
+          "profile_wire_sha256": "13a7c89fe5d746dc639007b64c08b7343b31c316361101ae07ebfcf40dc3d008",
+          "h2_first_flight_sha256": "b1f95f91ca794c53963c1212b44771364ee299098fbb6fe40b15adc01861c061",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.10.11",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "e0a87ee3973604d05c7a1e41deb6945f488c52069b4770b1e96f595693f8572a",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "10b075d23565319b0bfb7e2b8cef0d60cdb52cc7de1a851cf3111a7aabe9d56f",
+              "outbound": "e38e79ec8faa1ca3f04263110a92cb599792eb0f0b99c616e23623b1a18b9ed5"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "eeb6b53a55145a47b12362285992665c15d86e1201fe9ee369b25bf4ebfd606b",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "b9a2abe75ceb1c9df116e33eb95f4a64aa6512fa44c49376c22e1f9b314cd42f",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "539bcdd026c1b6e24c9cd5bb8be4590e252237b247a8ccae7b5de3c7f6d1be56",
+              "out": "e763e9fe5605f0b886214015f4b1b661ea2c1f37733789e3a002ae33c51cd648"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-win_amd64.whl",
+              "sha256": "95b67581b2538194b9fc9b41b7f7077f1cb2767dbc5c776d404e78cd11d42f48",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-win_amd64.whl",
+              "sha256": "2b058f9f8e54ec867db40400178b7f5a34b9b51c246bbf885ef277c04e039ac0",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-win_amd64.whl",
+              "sha256": "d485a28b8123cdfca5766d51b01a048ab22a41c6c124834d47447c2795b5b686",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-win_amd64.whl",
+              "sha256": "fdb87ca830156aa48e792ab850c1aef307f3af74e7658a87c5ec278dc2e85dbf",
+              "in_place": true
+            }
+          }
+        },
+        "3.14": {
+          "python": "3.14.10",
+          "native_machine": "amd64",
+          "gates": {
+            "firefox-profile-wire": {
+              "exit": 0,
+              "sha256": "db3f7e6a7878d6a767aa1d3310e5953f677e7de92dc33301c5821df78f0e641d"
+            },
+            "firefox-wire-comparator": {
+              "exit": 0,
+              "sha256": "6870e6ad1977a022c31eeca6c569f58b4c89f0f3e988205055e0179a080ff017"
+            },
+            "full-h3": {
+              "exit": 0,
+              "sha256": "e7a38a9af6cd29ef75d7c827a7d70977dc9ae33f182014dc8c69d29cd3c2b4ec"
+            },
+            "h2-eof": {
+              "exit": 0,
+              "sha256": "0e0fe4bcf8b634c5288d3596f03f8df43290f7462521eec2e927ac9227762a20"
+            },
+            "h2-official-preface": {
+              "exit": 0,
+              "sha256": "044e0ddc7e1216c67fc0bf8cf03b64a4227a1dc02ba14492b0ed98d99b8edeff"
+            },
+            "http1": {
+              "exit": 0,
+              "sha256": "f9745e6fa3115e3c28c8ef37c560741034abf50d332657cb52754976c3aa2170"
+            },
+            "install": {
+              "exit": 0,
+              "sha256": "1161c645cf744a69e6aebdb5dd6c178175d398e66f95cd90762633ea8b74beb7"
+            },
+            "installed-identity": {
+              "exit": 0,
+              "sha256": "ce4246285bba2ba6ef39bb41dfb27514dcdcfaffd2fd15084497fefa5864ad2a"
+            },
+            "masque-controls": {
+              "exit": 0,
+              "sha256": "477612e35003ccfdd9a78735a0c99e49e1f111a986cabf73f79070be9dd93c7a"
+            },
+            "masque-go-interop": {
+              "exit": 0,
+              "sha256": "a7470201dccfc102ca98a2d7007ace4a3cec6f97b61295f6eaefd249399796be"
+            },
+            "masque-rfc9298": {
+              "exit": 0,
+              "sha256": "15479e152adaae3a69fb11a83d1c2eaaffcaf7aa410e680a6edbfb8790ff2f03"
+            },
+            "native-transactions": {
+              "exit": 0,
+              "sha256": "dc48e69ab6188ef779332c3099281427c665ed82bf8d4c08616afe7239a29db8"
+            },
+            "official-reference-identity": {
+              "exit": 0,
+              "sha256": "8a0de5af3bff514286d78db171b42e9ff23c3d9ff5b8a41f88da5aebd0953228"
+            },
+            "pip-check": {
+              "exit": 0,
+              "sha256": "2d195f77a9755776e9bf78b300ecdfdc36fc639e3e81c83c89fc7a41579ee56e"
+            },
+            "proxy": {
+              "exit": 0,
+              "sha256": "dfc9d2d0938d84d592077718d64f1b9b5ad5a8fc1c6fc7d62afe37fc1da62183"
+            },
+            "request-boundaries": {
+              "exit": 0,
+              "sha256": "106ed1e148f1b2c30588af5bf960c6ea43248dd5c52f2f2c9e0ca4d56a82b271"
+            },
+            "test_alt_svc_native": {
+              "exit": 0,
+              "sha256": "d99612a13b331ac7cf62bb33c88361213687f97ebbce03c65c7cdf4a0f723e44"
+            },
+            "test_h3_body_abi": {
+              "exit": 0,
+              "sha256": "15345638a850bf6f7883765a892ced0fb3f7c7156523b3d0133c94e315f059f6"
+            },
+            "upgrade-0.9.0": {
+              "exit": 0,
+              "sha256": "25eeb4c245299d88c08f43ebd66171fddcd4361e77c0bbba8c0d5bbecaaf7cba"
+            },
+            "upgrade-fork-0.9.1": {
+              "exit": 0,
+              "sha256": "192a911283c192d96cc8b1b084fab9834e40931cc8d9c78a74326b4dd450d58b"
+            },
+            "upgrade-release-0.9.2": {
+              "exit": 0,
+              "sha256": "8e281f3c7977d03fad6160e12e9c6e5414c8d7cb61fff81f565615883a9344d4"
+            },
+            "upgrade-release-0.9.3": {
+              "exit": 0,
+              "sha256": "42c866d4af16e4afc65a93db780e35eb392de14256ecca454ba5b2fc13c7d3e2"
+            },
+            "upstream-trust-data": {
+              "exit": 0,
+              "sha256": "fe24715a4e22197f06135a94580ec4b2158684d50aaf00330c4beb54aba540a7"
+            }
+          },
+          "profile_wire_sha256": "6ec993ff689d5d1d8067ec32736aa3d07f0de54f58ef37eece671b94adc5e9f5",
+          "h2_first_flight_sha256": "b1f95f91ca794c53963c1212b44771364ee299098fbb6fe40b15adc01861c061",
+          "masque_controls": {
+            "coverage": [
+              "leaf-and-intermediate-tls-server-purpose",
+              "post-cancel-no-packet-burst",
+              "path-mtu"
+            ],
+            "passed": 93,
+            "source_sha256": {
+              "test_masque_codec.py": "91e8dd93f91c7fb5aca399b680fa7b1854c51888dabd25bc4d47aee6c605ec8a",
+              "test_masque_routing.py": "df65bafeef4817373183a51b1b9fecf9a82f26808325d94c398b36b85c3ce042",
+              "test_masque_transport.py": "6969d1861efa7720886f38721a47d63cff803e06325f991ac99029b70a9d67c4"
+            }
+          },
+          "masque_wire": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "independent_tls_negative_cases": 4,
+            "python": "3.14.10",
+            "relay_only": true,
+            "rfc9298": true,
+            "scenarios": [
+              "ok",
+              "auth-required",
+              "deny",
+              "bad-gateway",
+              "wrong-relay-ca",
+              "wrong-relay-name",
+              "wrong-origin-ca",
+              "wrong-origin-name",
+              "no-connect",
+              "no-datagram",
+              "small-quic-datagram",
+              "blackhole",
+              "contexts",
+              "bad-context",
+              "capsule-reverse",
+              "custom-path",
+              "ipv6-origin",
+              "redirect-http",
+              "redirect-off-route",
+              "missing-extra",
+              "client-certificate",
+              "post-stall"
+            ],
+            "sha256": "c073033f71c0c00529ade1a2ea881a27b7cdb36058930853ec03fc2bfbd39d97",
+            "timed_out_post_count": 1,
+            "udp_framed_sha256": {
+              "inbound": "9a7b45e176c9c76c6d86b0bee39fc9869f75a4a6262e45b84cbf68d7da9af6a3",
+              "outbound": "fec294b15b7e10f2b342c46b05973e40ec92bcb472ea517c2725ea6e0d4ab16d"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "masque_go_interop": {
+            "download_sha256": "b149dfe21a7bb6944b41ed2ef63850b23d3516d1b93c07a9007b15d306839519",
+            "fixture_sha256": "eeb6b53a55145a47b12362285992665c15d86e1201fe9ee369b25bf4ebfd606b",
+            "go": "go1.26.0",
+            "modules": {
+              "github.com/quic-go/masque-go": "v0.6.0",
+              "github.com/quic-go/quic-go": "v0.63.0"
+            },
+            "relay_only": true,
+            "sha256": "51af617eb9c2ee945b038782c40130c49e5c2b492ea8e4fff8bf58e532da44e0",
+            "successful_post_count": 1,
+            "udp_framed_sha256": {
+              "in": "0c152810f8d29e5d4e0ef3b802846355c88e80c3392279a735ac9133ea319bc3",
+              "out": "3a65b72fce2d970c6eeddb1214df94649aa35acf10b418a93be2b614d8428195"
+            },
+            "upload_sha256": "3c25d7f809ef6962ace193517115df5b7352992786785dcaf0c63a75eb5bcaa6"
+          },
+          "upgrade_inputs": {
+            "0.9.0": {
+              "filename": "ruyihttp-0.9.0-py3-none-win_amd64.whl",
+              "sha256": "95b67581b2538194b9fc9b41b7f7077f1cb2767dbc5c776d404e78cd11d42f48",
+              "in_place": true
+            },
+            "0.9.1": {
+              "filename": "ruyihttp-0.9.1-py3-none-win_amd64.whl",
+              "sha256": "2b058f9f8e54ec867db40400178b7f5a34b9b51c246bbf885ef277c04e039ac0",
+              "in_place": true
+            },
+            "0.9.2": {
+              "filename": "ruyihttp-0.9.2-py3-none-win_amd64.whl",
+              "sha256": "d485a28b8123cdfca5766d51b01a048ab22a41c6c124834d47447c2795b5b686",
+              "in_place": true
+            },
+            "0.9.3": {
+              "filename": "ruyihttp-0.9.3-py3-none-win_amd64.whl",
+              "sha256": "fdb87ca830156aa48e792ab850c1aef307f3af74e7658a87c5ec278dc2e85dbf",
+              "in_place": true
+            }
+          }
+        }
+      },
+      "windows_three_way_digest": "ed92a98a4664e1c856571128bbd95a7c021290221dcd0d22f4127be35b8a5ac9",
+      "windows_three_way_scope": "Final candidate / upstream Windows 0.11.0 / public fork v0.9.2 versus the official Firefox 161 capture on the same Windows runner (see complete handoff)."
+    }
+  ],
+  "independent_host": {
+    "slot": "linux_aarch64",
+    "glibc": "2.35",
+    "receipt": "independent-arm-glibc235.json",
+    "receipt_sha256": "0c90d87ce80c29c003011a840e5b0d82be737ae61af2078bbb4114571d764030"
+  }
+}
