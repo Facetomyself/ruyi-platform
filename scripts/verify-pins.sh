@@ -155,6 +155,13 @@ python3 -B scripts/verify-trace-site.py --source "$ROOT/submodules/ruyitrace" --
 python3 -B -m unittest discover -s tests -p 'test_trace_site_publication.py' -q || fail=1
 
 echo
+echo "== 6.9 独立原生事件与 Electron owner 预发行（不替代稳定站点） =="
+trace_gaps=artifacts/receipts/trace-linux-gap-closure-v1
+if python3 -B "$trace_gaps/verify_candidate_002.py" | cmp -s - "$trace_gaps/candidate-002-review.json"; then ok '双架构 JSCall / Wasm / HTTP 六个有界实采格'; else bad 'Trace native 002 proof' 'byte or semantic mismatch'; fi
+if python3 -B "$trace_gaps/electron-owner/verify_candidate_d.py" | cmp -s - "$trace_gaps/electron-owner/candidate-d-review.json"; then ok '双架构 Electron main 持有的十次真实生命周期'; else bad 'Trace Electron owner proof' 'byte or semantic mismatch'; fi
+python3 -B -m unittest discover -s tests -p 'test_trace_gap_prereleases.py' -q || fail=1
+
+echo
 echo "== 7. Trace CLI 实机证据对应源码 =="
 python3 -B - <<'PY' || fail=1
 from pathlib import Path, PurePosixPath

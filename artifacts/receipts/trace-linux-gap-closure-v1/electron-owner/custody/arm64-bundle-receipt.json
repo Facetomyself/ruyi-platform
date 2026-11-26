@@ -1,0 +1,202 @@
+{
+  "acceptance_sha256": "db54fdc408c85f2adc6a9eeb81a368d6b5e24882baa94c9b56f186534f8a5664",
+  "app_receipt_sha256": "f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481",
+  "arch": "arm64",
+  "chrome_sandbox_sha256": "e0f790d4301b8c427d147792d9209939663a41d2bce5ffaef475eba60cf83151",
+  "cli_product_image_id": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+  "electron_sha256": "4ca4d08c5f0819c1209feca629846a4fa65458d39f7fe89b1b280663068c20fc",
+  "electron_version": "45.4.1",
+  "format": 1,
+  "historical_electron_archive_sha256": "7e8604e7cadf6cf49758b2afd0bbbcf04fc6cd34daa397aab3b8e8fbe5726005",
+  "kernel_files": {
+    "application.ini": {
+      "sha256": "d7452dc6329a8538a0a644fda49a28021b51fe4298dcf61bddd87380cfe2022d",
+      "size": 851
+    },
+    "browser/chrome/icons/default/default128.png": {
+      "sha256": "be2fdb8622b028a2248510793980e8b9294cee66d55ca2cb0a103610bd409ba4",
+      "size": 17585
+    },
+    "browser/chrome/icons/default/default16.png": {
+      "sha256": "1e8aea59ad881e31e351f7f38143293a45a8e7b916571f3eccce5e89844c1969",
+      "size": 757
+    },
+    "browser/chrome/icons/default/default32.png": {
+      "sha256": "6b7170dd4e0ad2a095f11bb2d84c35bb7495e30e38218045eb85f81882f46a29",
+      "size": 2292
+    },
+    "browser/chrome/icons/default/default48.png": {
+      "sha256": "9ffbdd36b545394fca032ff753d5422c8092de97acd22ede27ea0b3b0dcb2359",
+      "size": 4462
+    },
+    "browser/chrome/icons/default/default64.png": {
+      "sha256": "060fd5cd86fda946ff84225f3035675e8031e25af55ef49c3bc16c779058fea9",
+      "size": 6441
+    },
+    "browser/omni.ja": {
+      "sha256": "08f6472e8ed4b2764a59848d91ef62707f1a68063707ff276894c6061116aef6",
+      "size": 54941226
+    },
+    "crashhelper": {
+      "sha256": "fa7b7309d9f21d1ebb2711728fa4e467787e5ee0d310c51c50c297fa081aae4a",
+      "size": 1511712
+    },
+    "crashreporter": {
+      "sha256": "ddb91ca86c5b8491400e15b23136ebb9024ed07d76d13e5c011ecddde6ad5cbd",
+      "size": 4099768
+    },
+    "defaults/pref/channel-prefs.js": {
+      "sha256": "ef9fba57b2c3755b630b44ccfe703e2753d538fa50e3c52fc279c29e6db8200f",
+      "size": 429
+    },
+    "dependentlibs.list": {
+      "sha256": "621f575eaaf819dd0b18976c6a8a94d1caae95a9c748f4c9058a052395a4d173",
+      "size": 189
+    },
+    "firefox": {
+      "sha256": "85c7a26b03d1d7466260c9bbfd1600ac3000aab39b1e946af0576f5186bb6f40",
+      "size": 547416
+    },
+    "firefox-bin": {
+      "sha256": "85c7a26b03d1d7466260c9bbfd1600ac3000aab39b1e946af0576f5186bb6f40",
+      "size": 547416
+    },
+    "fonts/TwemojiMozilla.ttf": {
+      "sha256": "6d90152ee0d29e82fe2a87793af5aa4b7ad13e6538360889e141e81ed299ee8e",
+      "size": 1474284
+    },
+    "gfxtest": {
+      "sha256": "c2651091be2dcca860191fafa68874d0487e422d070bc21f4efd3f3dd781db71",
+      "size": 41568
+    },
+    "gmp-clearkey/0.1/libclearkey.so": {
+      "sha256": "c57540061413241e955592328ed318da050a29b82670baa0ba49e5faac7a2cd4",
+      "size": 73256
+    },
+    "gmp-clearkey/0.1/manifest.json": {
+      "sha256": "b7d65e60cccb80ffb2e95b5ae7e355d2c8c37575e886eef4325ca04fa7ba68fc",
+      "size": 225
+    },
+    "icons/updater.png": {
+      "sha256": "cab5e9bc9511b0690e696b378efa6753705b1182660d9829f5b3dc9f0398e5cc",
+      "size": 2153
+    },
+    "libfreeblpriv3.so": {
+      "sha256": "203db144e133fafc652295a7e9a400c781efedbc29075ce6d4692587d665a378",
+      "size": 848640
+    },
+    "libgkcodecs.so": {
+      "sha256": "69bdbe7853cf7347df09e15597348acdae2af2c921ce316c49b4811331cdddea",
+      "size": 4831024
+    },
+    "liblgpllibs.so": {
+      "sha256": "a278326adf423f07d209176bb998cc9941ee3b58b525b3e9df53c8e89ff243fd",
+      "size": 131640
+    },
+    "libmozavcodec.so": {
+      "sha256": "f3039b38330bfcaabea7f7b85fd679b497b5314a3a2742316bfdff8758ba9818",
+      "size": 2099072
+    },
+    "libmozavutil.so": {
+      "sha256": "fd190b162cbaeb24a194d4515019aa491a3af46404f7d96c4fabdfc43cd11995",
+      "size": 539416
+    },
+    "libmozgtk.so": {
+      "sha256": "a41d2eac675385a53401c107b8a697af754e62ed55eef504b6774a5a02c17c8f",
+      "size": 4528
+    },
+    "libmozinference.so": {
+      "sha256": "c6e8e66fa54cbca7ab09414ef25e5c8febb0b3431d8f73031f191b7da8b963c4",
+      "size": 2108808
+    },
+    "libmozsandbox.so": {
+      "sha256": "be2cb7b1edb5d2b690fb98b31ad72bab15ed8166209aa3b535f128c0b9dc0895",
+      "size": 240704
+    },
+    "libmozsqlite3.so": {
+      "sha256": "9d1110a1446df1907a9424cc442097d854e3f03437356d2b4379c7e68ec65311",
+      "size": 1450840
+    },
+    "libmozwayland.so": {
+      "sha256": "98f44159278be5355f8e3afbce27ec11b3e36844fa34795a8224f38ccf3c94a3",
+      "size": 13008
+    },
+    "libnspr4.so": {
+      "sha256": "0a2ccf9206c1ceb9c32d3007b03cfd627829e1246775c89b7329e991afcd4648",
+      "size": 215592
+    },
+    "libnss3.so": {
+      "sha256": "0ad6f812ca9ca003744cb732a07c3d0ed29fbe9541d60ff2baffabaa8c92272d",
+      "size": 662296
+    },
+    "libnssutil3.so": {
+      "sha256": "6f2cbce6b81b94501be3624801b2852e23c19e40bce0e784200a7a951734f947",
+      "size": 172616
+    },
+    "libplc4.so": {
+      "sha256": "750cc29ad30311c63945f8f049bdb5a69e81fcf25409ada80a410638d50e918d",
+      "size": 16280
+    },
+    "libplds4.so": {
+      "sha256": "7b6212aee820fc5f37fae618e24739bba7d316e4398b722f91dd01e52da5112e",
+      "size": 12528
+    },
+    "libsmime3.so": {
+      "sha256": "f986a12e448b4e0c73950d54a7f731af96e6cff68301e57c1169043662f28fe5",
+      "size": 163800
+    },
+    "libsoftokn3.so": {
+      "sha256": "b9cfc601fda365b99463b58e79d7e807d19243bcf1a372097e48fcead9767aff",
+      "size": 335672
+    },
+    "libssl3.so": {
+      "sha256": "03ad5ccf47ed4767a933b816d6101d5839aa782225b4ea8f22775193a27cb1db",
+      "size": 364960
+    },
+    "libxul.so": {
+      "sha256": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19",
+      "size": 182839688
+    },
+    "omni.ja": {
+      "sha256": "d4f278be6f9e3c380ffcb00bf2711029484b2cbc98a2126429e727c795235ae4",
+      "size": 48049419
+    },
+    "pingsender": {
+      "sha256": "e285ab2c8dbfc7a44b898bd8dc1771df9670d93d6dadc3f3c17873be40233e69",
+      "size": 621992
+    },
+    "platform.ini": {
+      "sha256": "42c3b9f4f48be2b7b5ea356cc1efdd3f847001b1ecf426ebc881c41a36316e8a",
+      "size": 100
+    },
+    "precomplete": {
+      "sha256": "306f79579846bec73acc2be0656ffdb877882cb14045fc1c1d5b9cac84758324",
+      "size": 1394
+    },
+    "removed-files": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "update-settings.ini": {
+      "sha256": "c574f9f109b4dca4a6ab379167cd47a6bbee66c0a9640b1d19232da337202707",
+      "size": 113
+    },
+    "updater": {
+      "sha256": "9701e689c3d3ef0787b1c1bdba431b9c1c4b29f68bd0a1e6e972e7842fc6c926",
+      "size": 696264
+    },
+    "updater.ini": {
+      "sha256": "19852825ca4c1e02a39299bcc7d5606bf2685a2fae2a8fe5d855e8d11936219f",
+      "size": 638
+    }
+  },
+  "kind": "ruyitrace-local-native-qa-candidate",
+  "launcher_sha256": "85888811c637a43850246bbc4ac452c1054920863d200d649bda26fd8110223e",
+  "mcp_entry_sha256": "92dc797c9e0ca09ca24f55f205081330f1c846f2433295aa8a2d8483a876aa54",
+  "mcp_lock_sha256": "c771a13ef9aa5939d5cf4e16004c5ca008856877ec33e6721c7e538dc3951a94",
+  "mcp_source": "b5e204a76dc3974abadf1fe355392815ddddd6b7",
+  "runtime_receipt_sha256": "1f8d48d4c16258086c74472d33ee5f0afaccecdcd568c73566d22d541cc96c93",
+  "source_baseline": "e35e7278a49d4e67c9ad9e480308bf5e11273493",
+  "source_has_local_patch": false,
+  "source_revision": "724ef8e147dc1c688601346cb4d25cb3f26a8942"
+}

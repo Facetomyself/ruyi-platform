@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1144 个 commit**（platform 335 / ruyitrace 142 / ruyihttp 157 / ruyijs 449 / ruyi-mcp 61）。
+五个仓库共 **1148 个 commit**（platform 339 / ruyitrace 142 / ruyihttp 157 / ruyijs 449 / ruyi-mcp 61）。
 
 RuyiJS 在 `oracle-reverse-dev` 上有了与 RuyiDOM 并列的按需命令。固定完整版和纯基座恢复版均从正式入口实测，镜像归档另有独立私有密文回读。[主机部署回执](artifacts/receipts/ruyijs-oracle-arm64-host1/validation.json)。
 
@@ -162,11 +162,15 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 `oracle-reverse-dev` 以固定用户命令维护两个真实版本。普通升级与回滚、活跃公网桌面的版本准入、实际管理进程中断恢复，以及避免改指其他镜像标签的离线重载均经实机验证。详见[运维回执](artifacts/receipts/trace-arm64-site-operations/README.md)和[正式附件下载核验](artifacts/receipts/trace-arm64-site-operations/github-release.json)。
 
+## 2026-11-26 · Linux Trace 原生事件与 Electron 持有者
+
+独立于现有站点登记两条私有预发行数据：在两种原生架构分别观察指定 JS/Wasm 边界与 HTTP 事务，并用干净 Electron 主进程直接持有 Firefox/BiDi 完成五类实际 MCP 生命周期。参见[原生证据](artifacts/receipts/trace-linux-gap-closure-v1/README.md)与[桌面 owner 回读](artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/README.md)。Win64 开关定位、物理面板和现场输入法各自保留独立判据。
+
 ## 关键数字
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1144 |
+| 五个仓库 commit | 1148 |
 | 文档 | 47 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 21 |

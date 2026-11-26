@@ -247,6 +247,12 @@ ARM 编译工具为 Clang/LLD 19.1.1、Rust 1.100.0、cbindgen 0.29.4；CLI 运�
 
 以[逐字节索引](artifacts/receipts/trace-arm64-site-operations/index.json)核对 60 份运维实测（索引 SHA-256 `9f48d60970813f9c12a6e7a092b23a0071d49d9c9d6ea00eaaa0d8da00abc079`）；[正式下载复验](artifacts/receipts/trace-arm64-site-operations/github-release.json)单独核对 7 个附件。完整可复制命令见[站点手册](submodules/ruyitrace/product/arm64/site/README.md)。
 
+### Linux 原生事件私有候选（不改默认子模块或站点）
+
+[Alpha 1](https://github.com/Facetomyself/ruyitrace/releases/tag/native-events-v0.1.0-alpha.1) 的交付标签 `b90f5f0a7fe28b244da927de4a3b68efe7176c08`、运行时代码 `815556bd57d6f2918f6794f67533b80bc5965fbe`。两个归档都从正式下载地址回读：[下载回执](artifacts/receipts/trace-linux-gap-closure-v1/candidate-002-publication.json)。amd64 gzip `79c2005f2d020e68f614624c3e0e7765715bc1cca14e9f1571450dacb3dfbcca`；ARM64 gzip `fa0cdf41ac245318fb51d1a62b6771b644ad0cb6220036a66ccbe3740793ba13`。两个架构均有独立的 Wasm/JSCall/HTTP 原生样本，范围和零观测对照见[独立证据检查](artifacts/receipts/trace-linux-gap-closure-v1/candidate-002-review.json)。原 Win64 74 个静态开关、应用消息、带宽／流量数字、虚拟窗口与其他发行不作替代性凭据。
+
+[Electron 独立桌面预发行](https://github.com/Facetomyself/ruyitrace/releases/tag/linux-electron-owner-v0.1.0-alpha.1) 使用干净源码 `724ef8e147dc1c688601346cb4d25cb3f26a8942`，交付标签 `2d58cbdf43129a16afa315c70e0c93eb793758f3`；两个包使用相同应用回执 `f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481`，各自的原生 Electron、Firefox 与归档独立固定。五类持有者生命周期各架构实测，分见[原件读回](artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/README.md)与[六个附件的正式下载复验](artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/published.json)。本预发行不等同于已签收物理面板/真实本地用户的系统输入法。
+
 ## 7. 工具链
 
 | 工具 | 版本要求 | 用途 |

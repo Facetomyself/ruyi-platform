@@ -1,0 +1,86 @@
+{
+  "schema":"ruyitrace.qualification-design.v1",
+  "scope":"design_and_fixture_calibration_only",
+  "review_baseline":{"platform":"08f8fd4057fd42536b0c1bd957f48817839fd02d","trace":"e35e7278a49d4e67c9ad9e480308bf5e11273493","mcp_platform_pin":"b5e204a76dc3974abadf1fe355392815ddddd6b7","win64_switch_names":74,"win64_scope":"static_names_only","linux_cli2_sinks":["core","click","storage","exception"],"electron_existing_display_classes":["Xvfb","Weston-headless"],"electron_owner_reference":"linux-amd64-cli-owner-not-electron"},
+  "targets":["linux/amd64","linux/arm64"],
+  "initial_state":"not_qualified",
+  "intake_result_ceiling":"eligible_for_manual_review",
+  "observer_sources":{"workload":"controlled-page-ack","native":"firefox-native-writer","peer":"independent-loopback-server","framePeer":"independent-frame-observer","seat":"local-seat-observer","panel":"physical-panel-witness","window":"local-compositor","ime":"system-ime-observer","field":"controlled-input-field","main":"installed-electron-main","process":"os-process-observer","client":"stdio-mcp-borrower","traceTail":"independent-sealed-trace-reader"},
+  "gates":{
+    "jscall":{
+      "claim":"目标页面中一个显式标定函数的调用边界和异常结尾；首版不含操作码、函数正文或笼统的 JIT 覆盖声明。",
+      "reject_substitutes":["switch-string","node-call-counter","dom-title"] ,
+      "cases":{
+        "normal":{"workload":{"outputs":[42,-5,-2147483648]},"native":{"entries":3,"returns":3,"throws":0,"matched_pairs":3}},
+        "skip":{"workload":{"completed":true,"target_calls":0},"native":{"target_rows":0}},
+        "throw":{"workload":{"observed_typeerror":true},"native":{"entries":1,"returns":0,"throws":1,"matched_pairs":1}},
+        "disabled":{"workload":{"outputs":[42,-5,-2147483648]},"native":{"target_rows":0}},
+        "other_origin":{"workload":{"target_calls":3,"other_origin_completed":true},"native":{"out_of_scope_rows":0}}
+      }
+    },
+    "wasm":{
+      "claim":"JS 调用一个已知 Wasm 导出的进入/正常返回/trap；编译、实例化、静态反汇编和动态逐指令流各自独立。",
+      "reject_substitutes":["wasm-disassembly","node-instantiation","page-result-only"],
+      "cases":{
+        "call_export":{"workload":{"outputs":[42,-5,-2147483648]},"native":{"entries":3,"leaves":3,"traps":0,"matched_pairs":3}},
+        "compile_only":{"workload":{"compiled":1,"instantiated":0,"calls":0},"native":{"boundary_rows":0}},
+        "instantiate_only":{"workload":{"compiled":1,"instantiated":1,"calls":0},"native":{"boundary_rows":0}},
+        "trap":{"workload":{"observed_wasm_runtimeerror":true},"native":{"entries":1,"leaves":0,"traps":1,"matched_pairs":1}},
+        "disabled":{"workload":{"outputs":[42,-5,-2147483648]},"native":{"boundary_rows":0}},
+        "other_origin":{"workload":{"other_origin_called_export":true},"native":{"boundary_rows":0}}
+      }
+    },
+    "http":{
+      "claim":"Firefox 对固定 QA 路由的 HTTP 事务元数据，不是代理记录、TLS 数据包或业务正文。",
+      "reject_substitutes":["server-log-only","fetch-return-only","desktop-wss"],
+      "cases":{
+        "fetch":{"workload":{"status":200,"body_ok":true},"peer":{"route_gets":1,"responses_200":1},"native":{"method":"GET","status":200,"matched_transactions":1,"transport_class":"network"}},
+        "skip":{"workload":{"completed":true,"requested":false},"peer":{"route_gets":0},"native":{"matching_transactions":0}},
+        "disabled":{"workload":{"status":200,"body_ok":true},"peer":{"route_gets":1,"responses_200":1},"native":{"matching_transactions":0}},
+        "redirect":{"workload":{"status":200,"body_ok":true},"peer":{"statuses":[302,200]},"native":{"network_hops":[302,200],"linked_hop_pairs":1}},
+        "cache_hit":{"workload":{"completed":true,"body_ok":true},"peer":{"new_route_gets":0},"native":{"network_hops":[],"cache_hits":1}},
+        "other_origin":{"workload":{"other_origin_status":200},"peer":{"other_route_gets":1},"native":{"matching_transactions":0}}
+      }
+    },
+    "websocket":{
+      "claim":"自有应用连接的收发帧元数据；窗口 message、HTTP 升级、noVNC 的 WSS 是三种不同证据。",
+      "reject_substitutes":["http-101-only","message-callback-only","novnc-websocket"],
+      "cases":{
+        "fragment_and_ping":{"workload":{"message_lengths":[5,8],"normal_close":true},"framePeer":{"upgrade_101":1,"client_to_server":[[1,1,5],[10,1,1],[8,1,2]],"server_to_client":[[1,1,5],[1,0,4],[9,1,1],[0,1,4],[8,1,2]]},"native":{"connections":1,"tx":[[1,1,5],[10,1,1],[8,1,2]],"rx":[[1,1,5],[1,0,4],[9,1,1],[0,1,4],[8,1,2]]}},
+        "upgrade_only":{"workload":{"messages":0,"normal_close":true},"framePeer":{"upgrade_101":1,"data_frames":0,"close_each_way":1},"native":{"tx":[[8,1,2]],"rx":[[8,1,2]]}},
+        "skip":{"workload":{"completed":true,"opened":false},"framePeer":{"upgrade_101":0,"frames":0},"native":{"frames":0}},
+        "disabled":{"workload":{"message_lengths":[5,8]},"framePeer":{"upgrade_101":1,"data_tx_plus_rx":4},"native":{"frames":0}},
+        "other_origin":{"workload":{"other_origin_received":true},"framePeer":{"other_upgrade_101":1},"native":{"frames":0}}
+      }
+    },
+    "physical_display":{
+      "claim":"同一发行的 Electron 原始入口在本地物理 seat 对指定输出真实扫描显示。",
+      "reject_substitutes":["xvfb","weston-headless","novnc-screenshot","edid-only"],
+      "cases":{
+        "local_panel":{"window":{"release_window_visible":true,"two_presented_frames":true},"seat":{"active_local_seat":true,"connected_output_with_active_mode":true,"virtual_output":false},"panel":{"two_fresh_challenges_matched":true,"order_matched":true,"observed_at_panel":true}},
+        "headless_control":{"window":{"release_window_visible":true},"seat":{"virtual_output":true},"panel":{"physical_claim_awarded":false}}
+      }
+    },
+    "system_ime":{
+      "claim":"本地系统输入法在已声明的产品输入框内预编辑、选词、提交与取消；不等同于直接发送 Unicode。",
+      "reject_substitutes":["paste","dispatchEvent","direct-unicode","ime-daemon-exists"],
+      "cases":{
+        "select_candidate":{"seat":{"local_focused_field":true},"ime":{"preedit_observed":true,"nonfirst_candidate_selected":true,"commit_count":1},"field":{"composition_observed":true,"committed_expected_fixture":true,"commits":1}},
+        "cancel":{"ime":{"preedit_observed":true,"cancel_observed":true,"commit_count":0},"field":{"field_unchanged":true,"commits":0}},
+        "paste_control":{"ime":{"preedit_observed":false,"candidate_selected":false},"field":{"same_final_fixture":true,"ime_claim_awarded":false}},
+        "focus_change":{"seat":{"focus_moved":true},"ime":{"stale_commit_to_old_field":false},"field":{"old_field_unchanged":true}}
+      }
+    },
+    "electron_owner":{
+      "claim":"由已安装 Electron 主进程持有唯一 Firefox 与 BiDi，生产 MCP 仅借用；正常退出和异常丢失分别结算。",
+      "reject_substitutes":["cli-owner-r5","mock-electron-ipc","arm64-stage1-fixture","rdp-null","second-firefox"],
+      "cases":{
+        "borrow_return_reborrow":{"main":{"owner_kind":"electron-main","descriptor_issued":true},"process":{"firefox_instances":1,"bidi_sessions":1,"same_process_start":true},"client":{"page_action_ack":true,"reborrow_same_session":true,"borrowed_quit_released_only":true},"traceTail":{"matching_page_effect":true}},
+        "exclusive_and_stale":{"main":{"owner_kind":"electron-main","existing_lease_intact":true},"client":{"second_borrow_denied":true,"stale_generation_denied":true},"traceTail":{"unauthorized_page_effects":0}},
+        "paused_owner_stop":{"main":{"owner_kind":"electron-main","resumed_before_gate_close":true,"flush_ack":true},"client":{"rdp_pause_seen":true,"borrower_detached":true},"process":{"owned_children_remaining":0},"traceTail":{"ordered_close_and_flush":true,"sealed_readback":true}},
+        "borrower_lost":{"main":{"owner_kind":"electron-main","lease_reclaimed":true},"process":{"owner_firefox_survived":true},"client":{"fresh_borrow_same_session":true}},
+        "browser_lost":{"main":{"owner_kind":"electron-main","descriptor_revoked":true,"reported_unclean":true},"client":{"old_handle_denied":true},"process":{"owned_children_remaining":0},"traceTail":{"clean_flush_claimed":false}}
+      }
+    }
+  }
+}
