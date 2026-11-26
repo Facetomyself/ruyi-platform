@@ -15,8 +15,11 @@ class RuyiDOMHandoff(unittest.TestCase):
     def setUpClass(cls):
         cls.book = yaml.safe_load((ROOT / 'STATUS.yaml').read_text(encoding='utf-8'))
         cls.entry = cls.book['related_projects']['ruyidom']
-        cls.body = (ROOT / cls.entry['evidence']).read_bytes()
-        cls.receipt = json.loads(cls.body)
+        cls.original = cls.entry['historical_v0_3_0_arm64_release']
+        cls.original_body = (ROOT / cls.original['evidence']).read_bytes()
+        cls.original_receipt = json.loads(cls.original_body)
+        cls.current_body = (ROOT / cls.entry['evidence']).read_bytes()
+        cls.current_receipt = json.loads(cls.current_body)
 
     def test_release_and_operator_sources_are_separate(self):
         e = self.entry
@@ -34,13 +37,17 @@ class RuyiDOMHandoff(unittest.TestCase):
         self.assertIn(f'sha={ref}', handoff)
         self.assertIn(f'{repo}/blob/{operator}/deploy/arm64/README.md', handoff)
 
-    def test_current_state_matches_frozen_qualification(self):
-        e, r = self.entry, self.receipt
-        self.assertEqual(hashlib.sha256(self.body).hexdigest(), e['evidence_sha256'])
+    def test_v030_release_and_arm64_use_match_frozen_qualification(self):
+        e, h, r = self.entry, self.original, self.original_receipt
+        self.assertEqual((h['tag'], h['commit']), ('v0.3.0', '790cc23e6c049bbcb2d186656fa5545d1ef7bac6'))
+        self.assertEqual(hashlib.sha256(self.original_body).hexdigest(), h['evidence_sha256'])
+        self.assertEqual(h['evidence_sha256'], 'bea6ca613783071c68005dfa86b7faef738187fe3460dc2f25ec24e15864caee')
         self.assertEqual(r['schema'], 'ruyidom-arm64-source-release-v1')
         arm = e['arm64_deployment']
         self.assertEqual((arm['host'], arm['image_id'], arm['renderer']),
                          (r['nativeGeckoSourceHost'], r['ociImageId'], r['maintainedProfile']))
+        self.assertEqual((arm['local_tag'], arm['mode'], arm['default_network']),
+                         ('ruyidom:arm64-use', 'on_demand', 'none'))
         self.assertEqual(r['trustedScriptHost'], '136.0')
         self.assertEqual(set(r['mach']), {'configure', 'build', 'package'})
         self.assertTrue(all(x['exit'] == 0 for x in r['mach'].values()))
@@ -52,13 +59,12 @@ class RuyiDOMHandoff(unittest.TestCase):
         self.assertTrue((ROOT / e['historical_v0_1_handoff']).is_file())
 
     def test_second_arm_restore_has_separate_pinned_evidence(self):
-        e, original = self.entry, self.receipt
+        e, original = self.entry, self.original_receipt
         followup = e['arm64_second_host_restore']
-        self.assertEqual(hashlib.sha256(self.body).hexdigest(),
-                         'bea6ca613783071c68005dfa86b7faef738187fe3460dc2f25ec24e15864caee')
-        self.assertNotEqual(followup['evidence'], e['evidence'])
+        self.assertNotEqual(followup['evidence'], self.original['evidence'])
         body = (ROOT / followup['evidence']).read_bytes()
         self.assertEqual(hashlib.sha256(body).hexdigest(), followup['evidence_sha256'])
+        self.assertEqual(followup['evidence_sha256'], 'b97fb7d6232844a3c82c953cd24b24a04c463f06efdbda4d1f06164b5f477a2a')
         restored = json.loads(body)
         self.assertEqual(restored['schema'], 'ruyidom-v030-second-arm-cold-navigation-v1')
         self.assertEqual(followup['scope'], 'empty_store_import_and_real_navigation')
@@ -95,18 +101,87 @@ class RuyiDOMHandoff(unittest.TestCase):
         self.assertIs(commands['fullMatrixPassed'], False)
         self.assertIsNone(commands['groupCountOnReceiver'])
         self.assertIsNone(commands['coldStartCountOnReceiver'])
-        self.assertEqual(set(e['pending']), {'bare_jammy_arm64_abi', 'amd64_full_source_build'})
         self.assertEqual(restored['imageUserspace'], 'Ubuntu 24.04')
 
         source = followup['product_commit']
         self.assertRegex(source, r'^[a-f0-9]{40}$')
-        self.assertNotEqual(source, e['release_commit'])
+        self.assertNotEqual(source, self.original['commit'])
         prefix = f'{e["repository"]}/blob/{source}'
         pins = (ROOT / 'PINS.md').read_text(encoding='utf-8')
         handoff = (ROOT / 'docs/14-source-handoff.md').read_text(encoding='utf-8')
         self.assertIn(f'{prefix}/docs/releases/arm64-v0.3-cold-restore.json', pins)
         self.assertIn(f'{prefix}/docs/ARM64-SOURCE-RELEASE.md', handoff)
         self.assertIn(f'../{followup["evidence"]}', handoff)
+
+    def test_current_portability_evidence_is_distinct_from_v030(self):
+        e, r = self.entry, self.current_receipt
+        self.assertEqual(hashlib.sha256(self.current_body).hexdigest(), e['evidence_sha256'])
+        self.assertEqual(r['schema'], 'ruyidom-source-portability-v0.3.1')
+        self.assertEqual((e['release_tag'], r['release']), ('v0.3.1', 'v0.3.1'))
+        self.assertEqual(e['release_tag_object'], '436429465dd740ee67471198d34fc97c6c81b8b0')
+        self.assertNotEqual(e['release_commit'], self.original['commit'])
+        self.assertEqual(r['trustedScriptHost'], self.original_receipt['trustedScriptHost'])
+        self.assertEqual(e['pending'], [])
+        old = r['historical']
+        self.assertEqual((old['originalRelease'], old['sourceCommit'], old['oldReleaseReceiptSHA256']),
+                         (self.original['tag'], self.original['commit'], self.original['evidence_sha256']))
+        noble = old['originalNobleOnBareJammy']
+        self.assertEqual(noble['buildID'], self.original_receipt['buildID'])
+        self.assertIs(noble['passedFileCheck'], True)
+        self.assertIs(noble['actualBrowserStart'], False)
+        self.assertEqual(noble['firstRequestCount'], 0)
+        cold = old['arm64ColdRestore']
+        self.assertEqual(cold['sha256'], e['arm64_second_host_restore']['evidence_sha256'])
+        self.assertEqual((cold['optionalOriginalCommandsPassed'], cold['optionalOriginalCommandsTotal']), (7, 8))
+        self.assertIsNone(cold['fullOtherHostGroupCount'])
+        self.assertIsNone(cold['fullOtherHostColdStarts'])
+
+        handoff = (ROOT / 'docs/14-source-handoff.md').read_text(encoding='utf-8')
+        pins = (ROOT / 'PINS.md').read_text(encoding='utf-8')
+        self.assertIn(f'{e["repository"]}/blob/{e["release_commit"]}/docs/PORTABILITY.md', handoff)
+        self.assertIn(f'{e["repository"]}/tree/{self.original["commit"]}', pins)
+        self.assertIn(f'../{e["evidence"]}', handoff)
+        self.assertIn(e['evidence'], pins)
+
+    def test_new_amd64_and_bare_jammy_pass_their_own_gates(self):
+        r = self.current_receipt
+        amd, jammy = r['nativeAmd64'], r['jammyArm64']
+        self.assertEqual(r['mozillaSource']['sourceStamp'], self.original_receipt['sourceStamp'])
+        self.assertEqual((amd['buildID'], jammy['buildID']), ('20261126091201', '20261126091202'))
+        self.assertEqual((amd['libxul']['machine'], jammy['libxul']['machine']), ('x86_64', 'aarch64'))
+        self.assertEqual((amd['libxul']['size'], jammy['libxul']['size']), (183082880, 181036304))
+        for candidate, gate, command_key, count in (
+            (amd, amd['qa'], 'commands', 8), (jammy, jammy['bareGate'], 'commandExitCodes', 10),
+        ):
+            with self.subTest(engine=candidate['engine']):
+                self.assertEqual(set(candidate['mach']), {'configure', 'build', 'package'})
+                self.assertTrue(all(phase['exit'] == 0 for phase in candidate['mach'].values()))
+                self.assertIs(gate['passed'], True)
+                self.assertEqual(list(gate[command_key].values()), [0] * count)
+                self.assertEqual(len(gate['browserGroups']['pass']), 12)
+                self.assertEqual(gate['browserGroups']['fail'] + gate['browserGroups']['unsupported'], [])
+                self.assertEqual((gate['coldStarts'], gate['coldHTTPRequests']), (10, 10))
+
+        self.assertEqual(amd['image']['platform'], 'linux/amd64')
+        self.assertIs(amd['registryPush'], False)
+        self.assertEqual((amd['readback']['nativeSmoke'], amd['readback']['browserRedirectCSP']),
+                         ('RuyiDOM:offline', 'pass'))
+        self.assertIs(amd['readback']['sameHost'], True)
+        self.assertIs(amd['readback']['cleanStore'], False)
+        self.assertIs(jammy['containerUsedForRuntime'], False)
+        self.assertEqual((jammy['system'], jammy['glibc']), ('Ubuntu 22.04.5 LTS', 'glibc 2.35'))
+        abi = jammy['abi']
+        self.assertEqual((abi['checkedELFs'], abi['incompatibleELFs']), (30, 0))
+        self.assertEqual(set(abi['systemLoaderAndLibraries']), {'ld-linux-aarch64.so.1', 'libc.so.6', 'libstdc++.so.6'})
+        for key in ('matchedByDeviceAndInode', 'observedCandidateLibxulMatchesPackage',
+                    'freshExternalValueVerified', 'inlineScriptBlocked', 'cleanTeardown'):
+            self.assertIs(abi[key], True)
+
+        handoff = (ROOT / 'docs/14-source-handoff.md').read_text(encoding='utf-8')
+        for artifact in (amd['package'], amd['image']['archive'], jammy['package']):
+            self.assertIn(artifact['sha256'], handoff)
+            self.assertIn(f'{artifact["size"]:,}', handoff)
+        self.assertIn(amd['image']['imageID'], handoff)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,281 @@
+{
+  "historical": {
+    "arm64ColdRestore": {
+      "fullOtherHostColdStarts": null,
+      "fullOtherHostGroupCount": null,
+      "initialStoreEmpty": true,
+      "optionalOriginalCommandsPassed": 7,
+      "optionalOriginalCommandsTotal": 8,
+      "realNavigationPassed": true,
+      "receipt": "docs/releases/arm64-v0.3-cold-restore.json",
+      "receiver": "oracle-dsh",
+      "sha256": "b97fb7d6232844a3c82c953cd24b24a04c463f06efdbda4d1f06164b5f477a2a"
+    },
+    "oldReleaseReceiptSHA256": "bea6ca613783071c68005dfa86b7faef738187fe3460dc2f25ec24e15864caee",
+    "originalNobleOnBareJammy": {
+      "actualBrowserStart": false,
+      "buildID": "20261125161200",
+      "firstRequestCount": 0,
+      "incompatibleELFCount": 30,
+      "missingSymbols": [
+        "GLIBC_2.38",
+        "GLIBCXX_3.4.31",
+        "GLIBC_ABI_DT_RELR"
+      ],
+      "passedFileCheck": true
+    },
+    "originalRelease": "v0.3.0",
+    "sourceCommit": "790cc23e6c049bbcb2d186656fa5545d1ef7bac6"
+  },
+  "jammyArm64": {
+    "abi": {
+      "applicationContentProcessObserved": true,
+      "checkedELFs": 30,
+      "cleanTeardown": true,
+      "freshExternalValueVerified": true,
+      "incompatibleELFs": 0,
+      "inlineScriptBlocked": true,
+      "matchedByDeviceAndInode": true,
+      "observedCandidateLibxulMatchesPackage": true,
+      "requests": [
+        "/start",
+        "/page",
+        "/gate.js"
+      ],
+      "systemLoaderAndLibraries": {
+        "ld-linux-aarch64.so.1": "/usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "libc.so.6": "/usr/lib/aarch64-linux-gnu/libc.so.6",
+        "libstdc++.so.6": "/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.30"
+      },
+      "testSupplements": "Jammy GTK runtime; optional Mesa software renderer and NSS certutil. No replacement libc, loader or libstdc++.",
+      "verifiedAt": "2026-11-26T13:26:32+00:00"
+    },
+    "artifactDirectory": "/home/ubuntu/ruyidom-artifacts/esr153-jammy-source-20261126091202",
+    "artifactHost": "oracle-reverse-dev",
+    "bareGate": {
+      "abiProofSHA256": "16347e976294d608c9dff2a94b031a9bd51cc0789733e2f4e33437b7a2cc32ef",
+      "browserGroups": {
+        "fail": [],
+        "pass": [
+          "redirect-csp",
+          "wait-until",
+          "handle",
+          "async",
+          "http-errors",
+          "tls-trusted",
+          "tls-untrusted",
+          "navigation-timeout",
+          "interruption",
+          "cold-starts",
+          "worker",
+          "webgl"
+        ],
+        "unsupported": []
+      },
+      "coldHTTPRequests": 10,
+      "coldStarts": 10,
+      "commandExitCodes": {
+        "browser-136-control": 0,
+        "browser-cross": 0,
+        "browser-loss": 0,
+        "browser-nav": 0,
+        "browser-rpc-limit": 0,
+        "check-installed-tree": 0,
+        "launcher-check": 0,
+        "native-136": 0,
+        "offline-bootstrap": 0,
+        "system-libraries": 0
+      },
+      "passed": true,
+      "receiptSHA256": "5bd0d66d29050af018b5fbdaaa0fab0f8a7ee17b7671df66bcd9dfbb1869da36",
+      "teardown": {
+        "browserLoss": {
+          "liveProcesses": [],
+          "remainingProfiles": []
+        },
+        "candidateExecutablesRunning": [],
+        "navCleanupChecks": 21,
+        "navCleanupFallbackKills": 0,
+        "qaTmpDirectoryEmpty": true,
+        "systemProbeProfileRemoved": true
+      }
+    },
+    "buildID": "20261126091202",
+    "buildProofSHA256": "9ca42cf50184eabdd2b6faa2d3f025131f45ad19724d63b21757330c2c5265df",
+    "configSHA256": "e2552e45df44ef8a9d28b47398e92335388f4afe37aa82f9c1656f39a1b0e63a",
+    "containerUsedForRuntime": false,
+    "elfCount": 30,
+    "engine": "153.8.0esr-source-20261126091202",
+    "escrow": {
+      "manifestSHA256": "203352cc1e4d004afa99dcf84688f83d18fee0ea93f449b3e98006d393ae5e09",
+      "publishedUTC": "2026-11-26T13:35:26+00:00",
+      "verifiedManifestEntries": 36
+    },
+    "frozenToolImage": "sha256:8695c9448ba313f28ffe5ffbd6060ce34af4492865d33ef6ac77abb0da3ad087",
+    "glibc": "glibc 2.35",
+    "installTreeSHA256": "d42a2ffb98cc0d63e420e1593b5d98504f762802479dcfad86ba02ea31217e40",
+    "libxul": {
+      "class": "ELF64",
+      "eMachine": 183,
+      "endianness": "little",
+      "machine": "aarch64",
+      "sha256": "b4b34166c6266cdda95d8ded3d8371ea0c13f07d439ac42e03fa55ffb728ca24",
+      "size": 181036304,
+      "type": "ET_DYN"
+    },
+    "mach": {
+      "build": {
+        "attempt": "r1",
+        "elapsedSeconds": 13916,
+        "ended": "2026-11-26T13:22:43+00:00",
+        "exit": 0
+      },
+      "configure": {
+        "attempt": "r1",
+        "elapsedSeconds": 97,
+        "ended": "2026-11-26T09:30:47+00:00",
+        "exit": 0
+      },
+      "package": {
+        "attempt": "r1",
+        "elapsedSeconds": 165,
+        "ended": "2026-11-26T13:25:27+00:00",
+        "exit": 0
+      }
+    },
+    "nativeSourceHost": "oracle-reverse-dev",
+    "package": {
+      "name": "firefox-153.8.0.en-US.linux-aarch64.tar.xz",
+      "sha256": "d8d64b1628d6cbf2056c5edd9a2c53e11b0e2ab68288eb5f04b01346aeefa70e",
+      "size": 72862192
+    },
+    "packageReceiptSHA256": "9965c4852eb158430a96ee6bf365c6866c492a69aad5477c8be0ff46ea8da188",
+    "sixWasiLibraries": true,
+    "system": "Ubuntu 22.04.5 LTS",
+    "targetSysrootManifestSHA256": "827dcb11359161cdbae35fddb93443c56e019d391fab1740ca62ac096b97097b",
+    "testedHost": "oracle-dsh"
+  },
+  "mozillaSource": {
+    "release": "153.8.0esr",
+    "sha256": "824d5e0bbcae30825ee4ec3267d21018b01d33ac2fda50065de8c41153d4ec85",
+    "size": 805385648,
+    "sourceStamp": "44242c0bf7eef0918a458568730d8e36022e0743"
+  },
+  "nativeAmd64": {
+    "artifactDirectory": "/home/ruyidom-amd64/artifacts/esr153-source-20261126091201",
+    "artifactHost": "self-server-host185-hk",
+    "buildID": "20261126091201",
+    "configSHA256": "c88d767ccadab9fe4c7b3df2f24f8249d6843da24da1d55498a0570e49302641",
+    "elfCount": 29,
+    "engine": "153.8.0esr-source-20261126091201",
+    "frozenToolImage": "sha256:c476feb367cae70120a47c28c5afd07cd412ee61bd3db8007d9e614d453481fe",
+    "gateASHA256": "be119de462031159f23d6399d3b1ee0f64ed3e3e6e5df46efc79e9895ac2278f",
+    "gateBSHA256": "741cd245ba7e7c33a597cf646e23f8a7c94922e0292225c6cd0497eed550221a",
+    "image": {
+      "archive": {
+        "name": "ruyidom-amd64-source-20261126091201-portqa-a1622292532b.docker.tar.gz",
+        "sha256": "0b0132a0dc3c604b19b44688f52ed114c7507f63ddbf9cca7e5a348f107c34bc",
+        "size": 407591801
+      },
+      "imageID": "sha256:1f0347fd3b575c141b2856a590c83dbdb131403b6ce06a162694fc67bf05faac",
+      "manifestDigest": "sha256:f18e847ad4ea3cab1b98224bec42aa806acd14c93a194b241fcf56e9e04bee6c",
+      "platform": "linux/amd64",
+      "tag": "ruyidom:amd64-source-20261126091201-portqa-a1622292532b",
+      "user": "10001:10001"
+    },
+    "independentPackageReviewSHA256": "eb8d81047545a8505814ca57e45e77d2598ce8bf0a1e0dd855ae01031e73aee1",
+    "installTreeSHA256": "8f7dd52cd333f7b46175bfff169d283b717308e58ffa21b5446cc7b914a2e879",
+    "libxul": {
+      "class": "ELF64",
+      "eMachine": 62,
+      "endianness": "little",
+      "machine": "x86_64",
+      "sha256": "fa51ab8d1db536c97115051a3526dbfff9a74fdaa2e55143345b3bc5ac053bea",
+      "size": 183082880,
+      "type": "ET_DYN"
+    },
+    "mach": {
+      "build": {
+        "attempt": "resume01-compile",
+        "elapsedSeconds": 11896,
+        "ended": "2026-11-26T13:11:38+00:00",
+        "exit": 0
+      },
+      "configure": {
+        "attempt": "initial-configure",
+        "elapsedSeconds": 77,
+        "ended": "2026-11-26T09:50:27+00:00",
+        "exit": 0
+      },
+      "package": {
+        "attempt": "resume01-package",
+        "elapsedSeconds": 198,
+        "ended": "2026-11-26T13:14:59+00:00",
+        "exit": 0
+      }
+    },
+    "nativeSourceAndQaHost": "host185",
+    "package": {
+      "name": "firefox-153.8.0.en-US.linux-x86_64.tar.xz",
+      "sha256": "31944ed2290c63643662500896540b3268b9942f3e05884c42d9fdd19274a6e9",
+      "size": 80205228
+    },
+    "packageReceiptSHA256": "5b06d2200fee676cf6d917a1bc702e4aad5cfc0c3b18c461aa712d9c3cd0460d",
+    "qa": {
+      "browserGroups": {
+        "fail": [],
+        "pass": [
+          "redirect-csp",
+          "wait-until",
+          "handle",
+          "async",
+          "http-errors",
+          "tls-trusted",
+          "tls-untrusted",
+          "navigation-timeout",
+          "interruption",
+          "cold-starts",
+          "worker",
+          "webgl"
+        ],
+        "unsupported": []
+      },
+      "coldHTTPRequests": 10,
+      "coldStarts": 10,
+      "commands": {
+        "browser-136-control": 0,
+        "browser-cross": 0,
+        "browser-loss": 0,
+        "browser-nav": 0,
+        "browser-rpc-limit": 0,
+        "image-tree": 0,
+        "launcher-check": 0,
+        "native-136": 0
+      },
+      "passed": true
+    },
+    "readback": {
+      "browserRedirectCSP": "pass",
+      "cleanStore": false,
+      "nativeSmoke": "RuyiDOM:offline",
+      "originalP3ImageIdUnchanged": "sha256:9016856282f043a803d68f902ccb60b588e5fb2fe490610ad67c8608da9f65ad",
+      "requests": [
+        "GET /start",
+        "GET /page",
+        "GET /external.js"
+      ],
+      "sameHost": true,
+      "sha256": "79a5a6b2af8570f3bbfca0781459399ba2116ccaa6285e1802da843965802c18"
+    },
+    "registryPush": false,
+    "signedUpstreamChecksum": {
+      "primaryFingerprint": "14F26682D0916CDD81E37B6D61B7B526D98F0353",
+      "signedPath": "source/firefox-153.8.0esr.source.tar.xz",
+      "signingSubkeyFingerprint": "827E658608679618CD349F93678E455D76767AA3"
+    },
+    "target": "x86_64-pc-linux-gnu"
+  },
+  "release": "v0.3.1",
+  "schema": "ruyidom-source-portability-v0.3.1",
+  "trustedScriptHost": "136.0"
+}

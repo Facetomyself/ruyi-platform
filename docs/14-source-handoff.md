@@ -13,7 +13,7 @@
 | HTTP 客户端 | [RuyiHttp](../projects/ruyihttp/README.md)：Python API、wheel 构建与已入库原生库 | [0.9.4 精确 wheel 验收](../artifacts/receipts/ruyihttp-0.9.4/README.md)：Linux amd64 / ARM64 在 glibc 2.31 实装，另验直连 H1/H2/H3、双跳 TCP、原生内层 H3 通过单跳 CONNECT-UDP。Windows 和两种 Mac 分别检验同平台工件。这些证据属于 RuyiHttp，不替代 RuyiJS 联网验收。 |
 | JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | [R355 干净重建原生包](../artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json)：Ubuntu 24.04/glibc 2.39 从空目录编译 1,268 个私有单元、解包实跑 Python/C 13/13，另验 Worker 与 WebCrypto。[原生包运行命令](../submodules/ruyijs/docs/linux-amd64-clean.md)。pip 安装使用[R356](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)；直接明文 HTTP/1 另装可卸载的 [R357 组件](../submodules/ruyijs/docs/linux-http1.md)。[R356 安装态回执](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) · [R357 真实回环收发回执](../artifacts/receipts/ruyijs-linux-http1-r357/validation.json)。TLS、h2、QUIC 与 RuyiJS ARM64 产品另验。 |
 | 程序化管理浏览器 | [MCP / owner 交接及验收表](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | [AMD64 R5 生产 M2](../projects/ruyi-mcp/PRODUCTION-OWNER.md)通过排他借用、真断点、归还与重借、暂停中停止及原生关闸读回；使用从干净 GitHub 检出构建并搬到另一台主机的独立 CLI。 |
-| 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM v0.3.0 独立源码交接](#ruyidom-独立源码交接) | ARM64 源码版 ESR 内容引擎已通过 Docker 验收；可信脚本宿主仍为 Firefox 136.0。v0.2.0 官方内容引擎与历史 amd64/P3 证据分开保留。 |
+| 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM 独立源码交接](#ruyidom-独立源码交接) | v0.3.1 验收了 amd64 源码版 Docker 和裸 Jammy ARM64 内容引擎；现有 ARM64 日常入口沿用 v0.3.0 Noble 镜像，可信脚本宿主仍是 Firefox 136.0。 |
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
 
@@ -65,9 +65,33 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 **ARM64 日常使用**：在 `oracle-reverse-dev` 上以 `ubuntu` 运行 `/home/ubuntu/.local/bin/ruyidom verify`，验证真实浏览器导航。本地标签 `ruyidom:arm64-use` 指向下文同一个 v0.3.0 镜像 ID；入口按需启动临时容器，默认离线，未发布端口。见[主机使用与维护说明](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md)。
 
-### v0.3.0：ARM64 源码版 ESR 内容引擎
+### v0.3.1：源码版 ESR 的 amd64 与裸 Jammy ARM64 验收
 
-新机器用有读取权限的 Git 账号检出[发布标签 `v0.3.0`](https://github.com/Facetomyself/ruyidom/releases/tag/v0.3.0)并核对完整提交：
+检出[发布标签 `v0.3.1`](https://github.com/Facetomyself/ruyidom/releases/tag/v0.3.1)并核对完整提交；真实运行所需的受控工件、部署与复验命令见[可移植性手册](https://github.com/Facetomyself/ruyidom/blob/b57891fb9348842e22bbc9395c3db810c0c569fc/docs/PORTABILITY.md)和[发行回执](../artifacts/receipts/ruyidom-source-portability-v0.3.1.json)。
+
+```bash
+set -eu
+sha=b57891fb9348842e22bbc9395c3db810c0c569fc
+repo=https://github.com/Facetomyself/ruyidom.git
+git clone --branch v0.3.1 "$repo" ruyidom
+test "$(git -C ruyidom rev-parse HEAD)" = "$sha"
+make -C ruyidom check
+```
+
+- **amd64**：在 `host185` 原生完成 Firefox `153.8.0esr` 的完整源码编译和打包（Build ID `20261126091201`）。用新包构建的 `linux/amd64` 镜像通过 8/8 项、12/12 组浏览器测试、10/10 次冷启动。私有镜像归档在 `host185` 的现有 Docker 存储回载，按同一镜像 ID 复测 native 冒烟、浏览器重定向及 CSP。这与 v0.2.0 的只读叠加验证、历史 P3 和第二台 ARM64 主机空存储验证均不同。
+- **ARM64 裸 Jammy**：专用 Firefox `153.8.0esr` 包（Build ID `20261126091202`）在 `oracle-dsh` 的裸 Ubuntu 22.04.5 ARM64 / glibc 2.35 通过 10/10 条命令、12/12 组浏览器测试、10/10 次冷启动和 10 次回环请求。全部 30 个 ELF 通过 ABI 审计；实际导航核对外链脚本随机值与 CSP，进程映射按 inode 验证系统动态加载器、libc、libstdc++ 和该包的 `libxul.so`。原 v0.3.0 Noble 包在裸 Jammy 的启动失败仍是负对照。
+
+| v0.3.1 工件 | 字节数 | SHA-256 |
+| --- | ---: | --- |
+| amd64 Firefox 包 | 80,205,228 | `31944ed2290c63643662500896540b3268b9942f3e05884c42d9fdd19274a6e9` |
+| amd64 Docker 归档 | 407,591,801 | `0b0132a0dc3c604b19b44688f52ed114c7507f63ddbf9cca7e5a348f107c34bc` |
+| 裸 Jammy ARM64 Firefox 包 | 72,862,192 | `d8d64b1628d6cbf2056c5edd9a2c53e11b0e2ab68288eb5f04b01346aeefa70e` |
+
+保留的 amd64 镜像 ID：`sha256:1f0347fd3b575c141b2856a590c83dbdb131403b6ce06a162694fc67bf05faac`。日常 `ruyidom:arm64-use` 继续使用已部署的 v0.3.0 Noble 镜像，可信脚本宿主仍为官方 Firefox 136.0。
+
+### v0.3.0：ARM64 Noble 源码版 ESR 内容引擎
+
+需要复现原发行时，检出[发布标签 `v0.3.0`](https://github.com/Facetomyself/ruyidom/releases/tag/v0.3.0)并核对完整提交：
 
 ```bash
 set -eu
@@ -97,7 +121,7 @@ ssh oracle-reverse-dev 'docker image inspect --format "{{.Id}} {{.Os}}/{{.Archit
 
 **第二台 ARM64 主机冷恢复**：2026-11-26 10:04 UTC，在 `oracle-dsh` 原生 ARM64 上，把同一份 v0.3.0 归档导入本机新建的隔离 Docker/containerd 空存储。导入前镜像、容器、内容记录、快照及物理 blob 计数均为零；导入后核对原镜像配置摘要、manifest 及 7 层摘要。Docker 29 的 containerd 存储显示的是 manifest 摘要，与旧存储显示的配置摘要是两个不同标识。复验见[换机步骤](https://github.com/Facetomyself/ruyidom/blob/1344fec24407b5d525ea5b47e0ba6522c8522279/docs/ARM64-SOURCE-RELEASE.md#2-在另一台-arm64-机器部署)和[独立冷恢复回执](../artifacts/receipts/ruyidom-arm64-v0.3-cold-restore.json)。
 
-Firefox 136 native 序列化 10/10；真实浏览器完成 `GET /start` → `/page` → `/external.js`，验过外链 nonce、两项 CSP 内联阻断和清理。较早一次默认 15 秒用例超时，本次冷恢复后的默认 15 秒和单独的 75 秒用例均通过。补跑原八项命令通过 7/8：整套 `browser-nav` 达到 270 秒上限、5 秒终止宽限后退出 137；第二台主机没有完整组数或冷启动计数。独立存储已清理。成功范围是使用镜像内 Noble 用户态的冷恢复与真实导航；裸 Jammy ABI 和 amd64 完整源码构建另验。
+Firefox 136 native 序列化 10/10；真实浏览器完成 `GET /start` → `/page` → `/external.js`，验过外链 nonce、两项 CSP 内联阻断和清理。较早一次默认 15 秒用例超时，本次冷恢复后的默认 15 秒和单独的 75 秒用例均通过。补跑原八项命令通过 7/8：整套 `browser-nav` 达到 270 秒上限、5 秒终止宽限后退出 137；第二台主机没有完整组数或冷启动计数。独立存储已清理。成功范围是使用镜像内 Noble 用户态的冷恢复与真实导航；它与 v0.3.1 的裸 Jammy 和 amd64 源码验收分别记账。
 
 ### v0.2.0：官方内容引擎基线与历史 AMD64 P3
 

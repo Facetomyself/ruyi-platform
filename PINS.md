@@ -309,14 +309,15 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 
 | 对象 | 固定版本 | 用途 |
 | --- | --- | --- |
-| 产品发行 | [`v0.3.0`，`790cc23e6c049bbcb2d186656fa5545d1ef7bac6`](https://github.com/Facetomyself/ruyidom/tree/790cc23e6c049bbcb2d186656fa5545d1ef7bac6) | 对应[ARM64 自编 Firefox、镜像与 QA 回执](artifacts/receipts/ruyidom-arm64-source-v0.3.0.json)。 |
+| 当前产品发行 | [`v0.3.1`，`b57891fb9348842e22bbc9395c3db810c0c569fc`](https://github.com/Facetomyself/ruyidom/tree/b57891fb9348842e22bbc9395c3db810c0c569fc) | [可移植性回执](artifacts/receipts/ruyidom-source-portability-v0.3.1.json)固定 amd64 源码版镜像和裸 Jammy ARM64 专用包。 |
+| ARM64 Noble 历史发行 | [`v0.3.0`，`790cc23e6c049bbcb2d186656fa5545d1ef7bac6`](https://github.com/Facetomyself/ruyidom/tree/790cc23e6c049bbcb2d186656fa5545d1ef7bac6) | [原发行回执](artifacts/receipts/ruyidom-arm64-source-v0.3.0.json)独立固定现用 `arm64-use` 所指镜像及原机 QA。 |
 | 主机日常命令 | [`5dd1ea218d0824207069ffba443593656039274d`](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md) | 后续提交只标识宿主入口与说明；部署沿用已验收镜像，不能将它当作一次新编译。 |
 | 第二台 ARM64 冷恢复 | [`1344fec24407b5d525ea5b47e0ba6522c8522279`](https://github.com/Facetomyself/ruyidom/blob/1344fec24407b5d525ea5b47e0ba6522c8522279/docs/releases/arm64-v0.3-cold-restore.json) | [独立回执副本](artifacts/receipts/ruyidom-arm64-v0.3-cold-restore.json)验收同一归档的空存储导入和真实导航，发行标签及发行回执保持原样。 |
 
 RuyiDOM 独立检出，不在平台的四个 gitlink 中。具备私库读取权限时，可复核附注标签剥离后的提交；平台内可直接校验状态与回执：
 
 ```bash
-git ls-remote https://github.com/Facetomyself/ruyidom.git 'refs/tags/v0.3.0^{}'
+git ls-remote https://github.com/Facetomyself/ruyidom.git 'refs/tags/v0.3.1' 'refs/tags/v0.3.1^{}' 'refs/tags/v0.3.0^{}'
 python3 -B -m unittest discover -s tests -p 'test_ruyidom_handoff.py' -q
 ```
 
