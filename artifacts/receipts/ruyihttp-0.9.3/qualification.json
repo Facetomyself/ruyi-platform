@@ -1,0 +1,1867 @@
+{
+  "commit": "e8f8b02703239a18a75760d791c15936af632c40",
+  "default_firefox": "159",
+  "integrated_wheels": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862",
+  "native_libraries_checked": 46,
+  "qualification_scope": "selected native loopback observations and installed-wheel contract gates",
+  "run_attempt": 1,
+  "run_id": 45776283862,
+  "version": "0.9.3",
+  "workflow": ".github/workflows/wheels.yml",
+  "receipt_kind": "compact index; complete qualifier and hashed raw receipts in the five-wheel handoff",
+  "complete_qualification_sha256": "b10cf4df0fda81783ce8365a747c40d7365cec1ecea1838051f711d3af012c61",
+  "bundle_sha256": "f1ac567ce1153ad1637171ac68f3fc43850629a122fb4335b97c9590e1d9d6bc",
+  "slots": [
+    {
+      "slot": "linux_x86_64",
+      "wheel": "ruyihttp-0.9.3-py3-none-manylinux_2_39_x86_64.whl",
+      "sha256": "056729152736a3de16786cf466c290068c257a8e3771206db78314e468188b5b",
+      "size": 4190558,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/job/139760614307",
+      "job_id": 139760614307,
+      "wheel_artifact": {
+        "archive_sha256": "06b0ed7b7303c7d23537df5961c966f054ee04b07de3e05e63cda4666afc683a",
+        "bytes": 4124591,
+        "id": 15096695565,
+        "name": "verified-ruyihttp-linux_x86_64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15096695565"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "02056ea8b9fbfb0e4b42eddef070a9de7dd026b14b7cf9ce3e0614c8340219f2",
+        "bytes": 63415,
+        "id": 15096302232,
+        "name": "wheel-evidence-linux_x86_64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15096302232"
+      },
+      "inspection": {
+        "record_entries_checked": 203,
+        "python_files_checked": 15,
+        "native_provenance_sha256": "aa7c87802965bdef2e7cb081af9f67b6eae76a95937ada907a33d56fba48bfa8",
+        "tag": "py3-none-manylinux_2_39_x86_64"
+      },
+      "native_count": 14,
+      "data_count": 4,
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.22",
+          "native_machine": "x86_64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:53a522e3a616b27d2a937334f30fd9c5a574c0ed8c9d1175666316a348e5edfd",
+              "artifact_id": 15092919029,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654324",
+              "sha256": "55fed7476f8760719b865aef26094ff116809516b825744413711ba50a27ff7b"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:d01bbc4401fe9fdcac519df3a404d8622bb8122a735ca7f73b036e7f51352fb1",
+              "artifact_id": 15091499644,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522366",
+              "sha256": "ec4e9e34a82e22f2eae7075fc1715843176d196a43c5b3da600af141c62b775a"
+            }
+          },
+          "profile_wire_sha256": "d587fe353037a2daf8e1e8e9524aab405363dccb48afed7352376b66f92fa934",
+          "h2_first_flight_sha256": "2cfd7a869ad9859a85ee724b68d6f722c0fc842a53ade57105b0389ec3835083",
+          "previous_wire_sha256": "3ecfac809d01b531806109d0ee817f7ac73ef2329651d974a749e590dfeb29b2",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "posix-quic-policy": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "d5a759660986ed341a8ac55db1716e060d52adfd0633b38c0913007c31e8cf2f",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "ca05c4e763298f7837cfd5326d85230117a40ad4e69cf106d485dc631fdfd453",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "0807a741d8f8e541fe0c71273888d653372a036f7a2aca35f4c4f215093a9045",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.settings"
+              ]
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.settings"
+              ]
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.settings"
+              ]
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        },
+        "3.14": {
+          "python": "3.14.10",
+          "native_machine": "x86_64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:53a522e3a616b27d2a937334f30fd9c5a574c0ed8c9d1175666316a348e5edfd",
+              "artifact_id": 15092919029,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654324",
+              "sha256": "55fed7476f8760719b865aef26094ff116809516b825744413711ba50a27ff7b"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:d01bbc4401fe9fdcac519df3a404d8622bb8122a735ca7f73b036e7f51352fb1",
+              "artifact_id": 15091499644,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522366",
+              "sha256": "ec4e9e34a82e22f2eae7075fc1715843176d196a43c5b3da600af141c62b775a"
+            }
+          },
+          "profile_wire_sha256": "68d983493721a54186149568dc33d7ca1a65c0a377752c3b869deae61fc7d95b",
+          "h2_first_flight_sha256": "7a824cb3e972fa19f27f4ab741c91431b5dcfbaf09c90adb55d0e5b64d1c9669",
+          "previous_wire_sha256": "26e4596d581db3cbd68396a420f5da32e6fd736f60c9d27ca61562354858f3d6",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "posix-quic-policy": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "d5a759660986ed341a8ac55db1716e060d52adfd0633b38c0913007c31e8cf2f",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "ca05c4e763298f7837cfd5326d85230117a40ad4e69cf106d485dc631fdfd453",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "0807a741d8f8e541fe0c71273888d653372a036f7a2aca35f4c4f215093a9045",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.settings"
+              ]
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.settings"
+              ]
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.settings"
+              ]
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slot": "linux_aarch64",
+      "wheel": "ruyihttp-0.9.3-py3-none-manylinux_2_39_aarch64.whl",
+      "sha256": "e0c7bdd60435f5f88619630428f6aa972b6c30a1d56baaa1ee7326861c5ed946",
+      "size": 4134064,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/job/139760614541",
+      "job_id": 139760614541,
+      "wheel_artifact": {
+        "archive_sha256": "fdd51de394eea2079ffa051e34c03b19b297e6529a1674cf61a2b91bb4d0ae89",
+        "bytes": 4062854,
+        "id": 15096013738,
+        "name": "verified-ruyihttp-linux_aarch64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15096013738"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "059fb601c4c648f057b7d80997ace169105472e6f564028729d155a8975d5535",
+        "bytes": 66611,
+        "id": 15096013734,
+        "name": "wheel-evidence-linux_aarch64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15096013734"
+      },
+      "inspection": {
+        "record_entries_checked": 203,
+        "python_files_checked": 15,
+        "native_provenance_sha256": "532271f8eec1135d5c5c22f07c90aa5ee71c9a174255d0b075ea299035a9229e",
+        "tag": "py3-none-manylinux_2_39_aarch64"
+      },
+      "native_count": 14,
+      "data_count": 4,
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.22",
+          "native_machine": "aarch64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:28dc1269460d413a8500b64ebb80e4d6f5062452bff2703424c98041094d3407",
+              "artifact_id": 15093522331,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654373",
+              "sha256": "89e8f151c4a4a8cc95ec6f04c06c9adb100be9da4067a7e349d999e911161a81"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:f4476d78e6898ccd60c8457fc7b5247043baffade557a4d1dc9aaf5a687211d1",
+              "artifact_id": 15092685534,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522359",
+              "sha256": "ff529d225e5ea099b2f23a440914accbee92b592676d46d7a63997cde1bbacaf"
+            }
+          },
+          "profile_wire_sha256": "e5a25a3b03c03e53ad6afa6ff955d4d878959222812be0357fdf6a1a0cb9546b",
+          "h2_first_flight_sha256": "0d56396ce1c0276ea7a6c00e3c1a8b15b84cd871cc4e30443d0acfcaaddf9356",
+          "previous_wire_sha256": "f4c82052592b5f59970912b815724057df154bc52f5d319aeecdb8a37bcef38a",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "posix-quic-policy": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "bbe4d380e79dad9b1ee5f27b171e2f91b4cc17a989b46f525bb272af25e76e46",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "2a7571a05799f3503d9a7c1780b049efb97b349bc9a54f35dc55cd779f56f280",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "25da59905ec5d14ada625d035cf3dc889934e0512abfe56787d117b873c896f9",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h1.headers",
+                "h2.headers",
+                "h3.headers",
+                "h3.settings"
+              ]
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h1.headers",
+                "h2.headers",
+                "h3.headers",
+                "h3.settings"
+              ]
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h1.headers",
+                "h2.headers",
+                "h3.headers",
+                "h3.settings"
+              ]
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        },
+        "3.14": {
+          "python": "3.14.10",
+          "native_machine": "aarch64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:28dc1269460d413a8500b64ebb80e4d6f5062452bff2703424c98041094d3407",
+              "artifact_id": 15093522331,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654373",
+              "sha256": "89e8f151c4a4a8cc95ec6f04c06c9adb100be9da4067a7e349d999e911161a81"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:f4476d78e6898ccd60c8457fc7b5247043baffade557a4d1dc9aaf5a687211d1",
+              "artifact_id": 15092685534,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522359",
+              "sha256": "ff529d225e5ea099b2f23a440914accbee92b592676d46d7a63997cde1bbacaf"
+            }
+          },
+          "profile_wire_sha256": "683245e809f6e24d400bd662a45fb2a695960f437979a33294ea60661e5d6f71",
+          "h2_first_flight_sha256": "f5defed2503f9e55a5047cbfcf8b8a3005d921258ba2ebf56402ce65737b1d9c",
+          "previous_wire_sha256": "42e874d3bc56fca6f751cda3f1599a802eb79c955fbe46b833811bc733b75cb5",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "posix-quic-policy": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "bbe4d380e79dad9b1ee5f27b171e2f91b4cc17a989b46f525bb272af25e76e46",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "2a7571a05799f3503d9a7c1780b049efb97b349bc9a54f35dc55cd779f56f280",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "25da59905ec5d14ada625d035cf3dc889934e0512abfe56787d117b873c896f9",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h1.headers",
+                "h2.headers",
+                "h3.headers",
+                "h3.settings"
+              ]
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h1.headers",
+                "h2.headers",
+                "h3.headers",
+                "h3.settings"
+              ]
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h1.headers",
+                "h2.headers",
+                "h3.headers",
+                "h3.settings"
+              ]
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slot": "darwin_arm64",
+      "wheel": "ruyihttp-0.9.3-py3-none-macosx_26_0_arm64.whl",
+      "sha256": "d107f8c871ed52fc610b4434673a8df7e4b11242216e09c5ae2e94dfebf8ab6c",
+      "size": 4195384,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/job/139760614017",
+      "job_id": 139760614017,
+      "wheel_artifact": {
+        "archive_sha256": "68dbfad6ff5517e5c6dc701363dbd76e646a9954ef79a0af19b479b1c30805db",
+        "bytes": 4139528,
+        "id": 15095994760,
+        "name": "verified-ruyihttp-darwin_arm64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15095994760"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "69f5ce0539855aa2ecd3f1e6d401dc1fe42681e8dcca849d41b42b8fb9404e1b",
+        "bytes": 64611,
+        "id": 15096701924,
+        "name": "wheel-evidence-darwin_arm64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15096701924"
+      },
+      "inspection": {
+        "record_entries_checked": 195,
+        "python_files_checked": 15,
+        "native_provenance_sha256": "dcaa376f4c61ebded930941fa3dfdf77283176546e4be03ff311b305664e6cdf",
+        "tag": "py3-none-macosx_26_0_arm64"
+      },
+      "native_count": 6,
+      "data_count": 4,
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.11",
+          "native_machine": "arm64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:24a094ed3b3347782f39b9eadbfe846c711f8ac2f6854b94a2839c380179e241",
+              "artifact_id": 15093103770,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654216",
+              "sha256": "6a8fc6aeebf6df6208d38cb7b53fe4caeb4d35f9cc7c12edf12bf4a7bf9c47dc"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:db73ff8f0e857f65dae76b13bbfbe036174fbc0ec6c83c51f4dcc3689328e511",
+              "artifact_id": 15092695759,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522398",
+              "sha256": "a651239663474572788ffe66fa627167110f70041a0f525fbf50d922849f4d5b"
+            }
+          },
+          "profile_wire_sha256": "9fb363f2292f452f9b1142ff554a6cacd95f15bf1284b68ea9fc95916812e6e1",
+          "h2_first_flight_sha256": "3a297bbe2f09110a79f78a06e1bbda2f85ab89a22b271d2153d48bc59abf175b",
+          "previous_wire_sha256": "5af2dad8d748b61bc572e4fc67bf8baddb2a77d99bf8ff522bb2b61e972cfa68",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "posix-quic-policy": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "6f80e91afa8d42a3f3bfe8201ceebb4a1658dcf7af8438c5233e9d17f577ba0d",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "c939bd860f40d8720aa2588c3ff1ba871865ffdbb2f45db2b5e1c707363052f0",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "555bb5a92cf09f74bf8a076cd39acaa58ce2936629dd63aad5b9bf7d56e575d6",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        },
+        "3.14": {
+          "python": "3.14.10",
+          "native_machine": "arm64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:24a094ed3b3347782f39b9eadbfe846c711f8ac2f6854b94a2839c380179e241",
+              "artifact_id": 15093103770,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654216",
+              "sha256": "6a8fc6aeebf6df6208d38cb7b53fe4caeb4d35f9cc7c12edf12bf4a7bf9c47dc"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:db73ff8f0e857f65dae76b13bbfbe036174fbc0ec6c83c51f4dcc3689328e511",
+              "artifact_id": 15092695759,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522398",
+              "sha256": "a651239663474572788ffe66fa627167110f70041a0f525fbf50d922849f4d5b"
+            }
+          },
+          "profile_wire_sha256": "38ba2183eda5a6d4d3d4ac0da88366c9920e008398643ed5484a8ca807a3b2be",
+          "h2_first_flight_sha256": "3a297bbe2f09110a79f78a06e1bbda2f85ab89a22b271d2153d48bc59abf175b",
+          "previous_wire_sha256": "f575328b6b4a737b38bd34fba18ab24ae51578e2b9bb1f615bb301a58647c899",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "posix-quic-policy": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "6f80e91afa8d42a3f3bfe8201ceebb4a1658dcf7af8438c5233e9d17f577ba0d",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "c939bd860f40d8720aa2588c3ff1ba871865ffdbb2f45db2b5e1c707363052f0",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "555bb5a92cf09f74bf8a076cd39acaa58ce2936629dd63aad5b9bf7d56e575d6",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slot": "darwin_x86_64",
+      "wheel": "ruyihttp-0.9.3-py3-none-macosx_15_0_x86_64.whl",
+      "sha256": "74ef2cec8f1e54d0f039973a3fb7acb10093cc6fa17a38df909709421c81ab99",
+      "size": 4386479,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/job/139760614565",
+      "job_id": 139760614565,
+      "wheel_artifact": {
+        "archive_sha256": "ce131f565a87a87dab0eeddddcfde88bc85df0d74a271d0c396bedd2398b8b34",
+        "bytes": 4329568,
+        "id": 15096893197,
+        "name": "verified-ruyihttp-darwin_x86_64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15096893197"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "abeb2093a5357ae673c37e474d1c0aa22feeac0ac9255fb068a710b2872410a2",
+        "bytes": 67041,
+        "id": 15096674642,
+        "name": "wheel-evidence-darwin_x86_64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15096674642"
+      },
+      "inspection": {
+        "record_entries_checked": 195,
+        "python_files_checked": 15,
+        "native_provenance_sha256": "8b2e04d6ed373ae3cb3c053c7989b37cc5cd88cad8fa0384d0fc83a4c0869929",
+        "tag": "py3-none-macosx_15_0_x86_64"
+      },
+      "native_count": 6,
+      "data_count": 4,
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.21",
+          "native_machine": "x86_64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:507c21e707f76460432716dbf584c9cac1477f818f075c284a202ae3386f67e4",
+              "artifact_id": 15093721173,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654365",
+              "sha256": "3906c258580a0244fd7fb534839c31266bdfc19cab64191135bc0935cdc4334d"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:34932ecc79c87a66243228a21cef5a7c765d746f33711cddf8c4c82578ea50c6",
+              "artifact_id": 15092063357,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522104",
+              "sha256": "421d553120931c27d82d94ec11a3c4d11293828b6834b16daadec96886c33cd3"
+            }
+          },
+          "profile_wire_sha256": "5f59beaeb380bb0199fa059a5b86ca6e3953ec21f9e5b73dfc3a76be050ff44c",
+          "h2_first_flight_sha256": "4eb3c40b39930176bcb92906421de448371369a3e1b3a83e45688ff2a2e5be30",
+          "previous_wire_sha256": "64299eb0804799a794646698be2147f51751b799a83ece5554ec3b8ce5b370a4",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "posix-quic-policy": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "4a33730616d8a2b15c3163cb222447109b58b48afadc230a6da2b310b8adc0e8",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "6b0ea8be7ee2841cec93d129fefe52d5a5d8379583f20653a0fbac754636accc",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "3381e474284800fa348ccbef0d8585c7be9bbfa77f16ea057aef44759ef9cfa1",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        },
+        "3.14": {
+          "python": "3.14.7",
+          "native_machine": "x86_64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:507c21e707f76460432716dbf584c9cac1477f818f075c284a202ae3386f67e4",
+              "artifact_id": 15093721173,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654365",
+              "sha256": "3906c258580a0244fd7fb534839c31266bdfc19cab64191135bc0935cdc4334d"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:34932ecc79c87a66243228a21cef5a7c765d746f33711cddf8c4c82578ea50c6",
+              "artifact_id": 15092063357,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522104",
+              "sha256": "421d553120931c27d82d94ec11a3c4d11293828b6834b16daadec96886c33cd3"
+            }
+          },
+          "profile_wire_sha256": "8c1ef9cb891ba3b52580ec733306f21ed2d41d7e1a144c21937410757d3d1cbd",
+          "h2_first_flight_sha256": "13a826709ef27c1b5d4b3bc2a0f357339b8a62d11ba6d6f68c1702478f491ffb",
+          "previous_wire_sha256": "50c20ec062fac8cd6dc00e335ba28649634af3077dbd103b7d5da3c4e05bc667",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "posix-quic-policy": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "4a33730616d8a2b15c3163cb222447109b58b48afadc230a6da2b310b8adc0e8",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "6b0ea8be7ee2841cec93d129fefe52d5a5d8379583f20653a0fbac754636accc",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "3381e474284800fa348ccbef0d8585c7be9bbfa77f16ea057aef44759ef9cfa1",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": [
+                "h3.hello.extensions",
+                "h3.hello.extensions_anchored_positions.57",
+                "h3.hello.extensions_anchored_positions.65037",
+                "h3.initial.packet_bytes_without_dcid_and_pn",
+                "h3.initial.scid_length",
+                "h3.initial.version_information.available",
+                "h3.quic_version",
+                "h3.settings",
+                "h3.transport_parameters.initial_max_data",
+                "h3.transport_parameters.initial_max_stream_data_bidi_local"
+              ]
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slot": "win_amd64",
+      "wheel": "ruyihttp-0.9.3-py3-none-win_amd64.whl",
+      "sha256": "fdb87ca830156aa48e792ab850c1aef307f3af74e7658a87c5ec278dc2e85dbf",
+      "size": 4072708,
+      "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/job/139760614406",
+      "job_id": 139760614406,
+      "wheel_artifact": {
+        "archive_sha256": "c604a26eaa1b33499147f1412a80b64e3f7282b88d0ddb0788376f9f5be41482",
+        "bytes": 4035953,
+        "id": 15095529057,
+        "name": "verified-ruyihttp-win_amd64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15095529057"
+      },
+      "evidence_artifact": {
+        "archive_sha256": "7718e042664962fcdb5c6b553ca72dab047181c567a20c66b6a115a9f3c7ef07",
+        "bytes": 76382,
+        "id": 15096402478,
+        "name": "wheel-evidence-win_amd64-45776283862-1",
+        "url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/artifacts/15096402478"
+      },
+      "inspection": {
+        "record_entries_checked": 195,
+        "python_files_checked": 15,
+        "native_provenance_sha256": "706b476e624e3f9dbdcce230c70ad942d76268648fae71033d81b093c6bcde1d",
+        "tag": "py3-none-win_amd64"
+      },
+      "native_count": 6,
+      "data_count": 4,
+      "endpoints": {
+        "3.10": {
+          "python": "3.10.11",
+          "native_machine": "amd64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:7021f0abcc84aaa6e59061698a1a4961e4b51efac5a76e2532adbc4b84eaa981",
+              "artifact_id": 15093437767,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654145",
+              "sha256": "173ce042d6a639b8685f6e74d32b1d86465c4eba260f7bb79a3713b4ef9c6810"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:c64fa84e34cd6834a12177cac64b83d7200787cdeeaf981f9b997d53b4f43bbd",
+              "artifact_id": 15092451701,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522541",
+              "sha256": "863e9ab73cf1d47dd2cee26d649d108056a69560eeb460b5c03e7682aafe7fd9"
+            }
+          },
+          "profile_wire_sha256": "752ce3fe8c05bd1eacf89edd260d779c15ba3dc33766b14dca3c6666d46f38dd",
+          "h2_first_flight_sha256": "b1f95f91ca794c53963c1212b44771364ee299098fbb6fe40b15adc01861c061",
+          "previous_wire_sha256": "442b72aa75d2cc67b96497d8044607381377486e8172a575bfbbca7dc1f014c6",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "95b67581b2538194b9fc9b41b7f7077f1cb2767dbc5c776d404e78cd11d42f48",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "37f4b4c5efdfbef296a6f7a1fea6723a4069872660af5f8795bc986ccea37d6d",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "d485a28b8123cdfca5766d51b01a048ab22a41c6c124834d47447c2795b5b686",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": []
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": []
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": []
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        },
+        "3.14": {
+          "python": "3.14.10",
+          "native_machine": "amd64",
+          "reference_sha256": {
+            "firefox_h2_preface_references": {
+              "artifact_digest": "sha256:7021f0abcc84aaa6e59061698a1a4961e4b51efac5a76e2532adbc4b84eaa981",
+              "artifact_id": 15093437767,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45769558169/job/139738654145",
+              "sha256": "173ce042d6a639b8685f6e74d32b1d86465c4eba260f7bb79a3713b4ef9c6810"
+            },
+            "firefox_wire_references": {
+              "artifact_digest": "sha256:c64fa84e34cd6834a12177cac64b83d7200787cdeeaf981f9b997d53b4f43bbd",
+              "artifact_id": 15092451701,
+              "job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45766794582/job/139729522541",
+              "sha256": "863e9ab73cf1d47dd2cee26d649d108056a69560eeb460b5c03e7682aafe7fd9"
+            }
+          },
+          "profile_wire_sha256": "195a1d1d0f87786c42cfe60763f3d9c5aa4289f4e8c033a1571185528b321983",
+          "h2_first_flight_sha256": "b1f95f91ca794c53963c1212b44771364ee299098fbb6fe40b15adc01861c061",
+          "previous_wire_sha256": "730e23da108ae1cec4188ee1bc4d4d83495e2a955804f1ebfee723616e114d4a",
+          "gates": {
+            "firefox-profile-wire": 0,
+            "firefox-wire-comparator": 0,
+            "full-h3": 0,
+            "h2-eof": 0,
+            "h2-official-preface": 0,
+            "http1": 0,
+            "install": 0,
+            "installed-identity": 0,
+            "native-transactions": 0,
+            "official-reference-identity": 0,
+            "pip-check": 0,
+            "proxy": 0,
+            "request-boundaries": 0,
+            "test_alt_svc_native": 0,
+            "test_h3_body_abi": 0,
+            "upgrade-0.9.0": 0,
+            "upgrade-fork-0.9.1": 0,
+            "upgrade-release-0.9.2": 0,
+            "upstream-trust-data": 0
+          },
+          "upgrades": {
+            "0.9.0": {
+              "sha256": "95b67581b2538194b9fc9b41b7f7077f1cb2767dbc5c776d404e78cd11d42f48",
+              "in_place": true
+            },
+            "0.9.1": {
+              "sha256": "37f4b4c5efdfbef296a6f7a1fea6723a4069872660af5f8795bc986ccea37d6d",
+              "in_place": true
+            },
+            "0.9.2": {
+              "sha256": "d485a28b8123cdfca5766d51b01a048ab22a41c6c124834d47447c2795b5b686",
+              "in_place": true
+            }
+          },
+          "selection": {
+            "159": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": []
+            },
+            "160": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": []
+            },
+            "161": {
+              "differences": {},
+              "first_quic_version": 1,
+              "negotiated_quic_version": 1798521807,
+              "repeat_proof": {
+                "captures": 2,
+                "complete": true,
+                "distinct_non_grease_tls_orders": {
+                  "h3": 2
+                }
+              },
+              "initial_udp_bytes": 1252,
+              "initial_short_cid_bytes": 3,
+              "previous_difference_fields": []
+            }
+          },
+          "h2_nav_flight": {
+            "first_headers": {
+              "end_headers": true,
+              "end_stream": true,
+              "padded": false,
+              "priority": {
+                "depends_on": 0,
+                "exclusive": false,
+                "weight": 42
+              },
+              "stream": 3
+            },
+            "frames": [
+              {
+                "stream": 0,
+                "type": "SETTINGS",
+                "values": [
+                  [
+                    1,
+                    65536
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    4,
+                    131072
+                  ],
+                  [
+                    5,
+                    16384
+                  ]
+                ]
+              },
+              {
+                "increment": 12517377,
+                "stream": 0,
+                "type": "WINDOW_UPDATE"
+              }
+            ]
+          }
+        }
+      },
+      "windows_same_host": {
+        "firefox": "161",
+        "official_archive_sha256": "8368757b8e39ffe0441b2489e051d0d5ffc016c246ed5634495104da0e66fa83",
+        "official_build_id": "20261118180411",
+        "official_raw_sha256": "6068507ba4f850263f52c11f4e9136ddcd329954034b2f236a3c46d1a13d37b4",
+        "official_h2_raw_sha256": "18187290856769de23b8a260bcb26c538bd0fdb5c2959dcab27f9150e6a4568c",
+        "run_id": "45776283862",
+        "final_windows_job": "https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862/job/139760614406",
+        "peers": {
+          "candidate": {
+            "sha256": "fdb87ca830156aa48e792ab850c1aef307f3af74e7658a87c5ec278dc2e85dbf",
+            "differences_vs_official": {},
+            "repeat_proof": {
+              "captures": 3,
+              "complete": true,
+              "distinct_non_grease_tls_orders": {
+                "h3": 3
+              }
+            },
+            "h2_first_flight_differences": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "fork-0.9.2": {
+            "sha256": "d485a28b8123cdfca5766d51b01a048ab22a41c6c124834d47447c2795b5b686",
+            "differences_vs_official": {},
+            "repeat_proof": {
+              "captures": 3,
+              "complete": true,
+              "distinct_non_grease_tls_orders": {
+                "h3": 3
+              }
+            },
+            "h2_first_flight_differences": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "upstream-0.11.0": {
+            "sha256": "79eb2f08326c5f1e0a9ffddecef5136f45b50aefe952051f878e514a63939332",
+            "differences_vs_official": {},
+            "repeat_proof": {
+              "captures": 3,
+              "complete": true,
+              "distinct_non_grease_tls_orders": {
+                "h3": 3
+              }
+            },
+            "h2_first_flight_differences": [
+              {},
+              {},
+              {}
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

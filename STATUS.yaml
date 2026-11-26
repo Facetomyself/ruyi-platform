@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T11:23:46+08:00'
+generated_at: '2026-11-26T15:57:25+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -46,15 +46,15 @@ projects:
     visibility_changed: '2026-11-20'
     submodule: submodules/ruyihttp
     source: complete
-    version: 0.9.2
+    version: 0.9.3
     build:
       win_amd64: ready (six exact upstream 0.11.0 x64 DLLs, JSON H3 ABI; NSS 3.133 / Neqo 0.34.0)
       darwin_arm64: ready (6 source-built arm64 dylibs; macOS 26+, measured H3 telemetry; body ABI v1)
       linux_x86_64: ready (14 source-built amd64 ELF; manylinux_2_39, measured H1/H2/H3, body ABI v1)
       darwin_x86_64: ready (6 source-built Intel dylibs; macOS 15+, measured H3 telemetry; body ABI v1)
       linux_aarch64: ready (14 source-built AArch64 ELF; manylinux_2_39, measured H1/H2/H3, body ABI v1)
-    tests: 137 clean ARM64 native source tests; final installed-wheel 3.10/3.14 gates tracked separately
-    latest_local_contract: '2026-11-26: aarch64 glibc 2.39, Firefox 161 sources, NSS 3.133 / Neqo 0.34.0; three explicit profiles, H1/H2/UDP H3 and public PyPI H2'
+    tests: 171 native-enabled local ARM64 tests and five dual-interpreter installed-wheel parity gates
+    latest_local_contract: '2026-11-26: native aarch64 glibc 2.39, NSS 3.133 / Neqo 0.34; literal UA, H2 preface, TLS/QUIC/H3 and same-origin Fetch differentiated from v0.9.2'
     native_wheel_inspection:
       tool: 2903c12608bbf1ffce9f6ee95406ef2aaaa38a7b
       scope: 'read-only ZIP inspection, bounded central directory and selected native entries, duplicate and non-x86 Linux guards; historical Windows passes, old macOS missing QUIC rejected'
@@ -109,7 +109,17 @@ projects:
       windows_source: 'six DLLs from verified public wheel, not a source rebuild'
       posix_firefox_commit: 9c70d5d48c866afc2e581d6b7ff6de98a1371d99
       fork_upgrade_baseline: fae13b0a9eabbafbcdbf5c59438875525fcc0d0b
-    phase: 0.9.2 选择性同步及逐平台线路、原生、升级验收，见 upstream_sync_release
+    official_network_parity:
+      version: 0.9.3
+      qualification: artifacts/receipts/ruyihttp-0.9.3/qualification.json
+      firefox_fixtures: artifacts/receipts/ruyihttp-0.9.3/firefox-reference-receipts.json
+      h2_first_flight: artifacts/receipts/ruyihttp-0.9.3/firefox-h2-preface-receipts.json
+      full_matrix: https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862
+      target_profiles: ['159', '160', '161']
+      comparison: official en-US same OS and CPU, trusted loopback H1/H2 navigation and H3 same-origin fetch
+      source_runtime: Firefox 161 / NSS 3.133 / NSPR 4.40 / Neqo 0.34.0
+      old_release: https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.2
+    phase: 0.9.3 同平台线路和升级验证，见 official_network_parity
     blocked_by: []
     verified:
       native_hashes: pass
@@ -2978,7 +2988,7 @@ submodules:
     state: added
   ruyihttp:
     url: https://github.com/Facetomyself/ruyihttp
-    commit: 656655d3cc6b2027eb0d8c148a855e97f817db53
+    commit: e8f8b02703239a18a75760d791c15936af632c40
     visibility: public
     state: added
   ruyijs:

@@ -1,5 +1,10 @@
 # RuyiHttp 变更记录
 
+## 2026-11-26 — 0.9.3 真实 Firefox 同平台网络行为
+
+- 修复 Linux ARM64 公开 UA 与 POSIX QUIC 配置，保留真实架构选择和现有 H2/H3/证书/重试行为。
+- 五个目标分别对照签名的三个 Firefox 版本，窗口/设置和 UA 需通过真实线路差分；Windows 加入同一 runner 的上游原包对照。见[本次验收](../../artifacts/receipts/ruyihttp-0.9.3/README.md)。
+
 ## 2026-11-26 — 0.9.2 选择性同步上游信任数据和 Firefox 161 原生组件
 
 - 更新根和 PSL；保留 fork 的传输实现及 159 默认值，允许显式选择 160 和 161。

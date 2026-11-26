@@ -4,7 +4,7 @@
 | --- | --- |
 | 仓库 | `Facetomyself/ruyihttp`（**public**，2026-11-20 起） |
 | 挂载 | `submodules/ruyihttp` |
-| 版本 | `0.9.2`（独立维护，从上游 0.9.0 起步并选择性跟进 [0.11.0](https://pypi.org/project/ruyihttp/0.11.0/)） |
+| 版本 | `0.9.3`（独立维护，从上游 0.9.0 起步并选择性跟进 [0.11.0](https://pypi.org/project/ruyihttp/0.11.0/)） |
 | 许可 | MPL-2.0 |
 
 ## 是什么
@@ -48,6 +48,10 @@ submodules/ruyihttp/
 | `linux_aarch64` | ready（原生 ARM64 编译、安装及 H1/H2/H3） | 161.0 / 3.133 / 0.34.0 | `py3-none-manylinux_2_39_aarch64` |
 
 打包器要求状态为 `ready`，且平台目录的文件集合及 SHA-256 与清单完全一致；单独放入一个同名库不会生成目标 wheel。Linux 槽位的最低 glibc 标签为 2.39，即使跨打包宿主更旧也不能把标签降到 2.31。
+
+### 2026-11-26：0.9.3 同平台 Firefox 网络行为对照
+
+五个 OS/CPU 目标分别采集并验证 Mozilla 签名的 Firefox en-US 159.0、160.0、161.0。区分 H1/H2 导航与 H3 默认同源 fetch；对窗口、优先级、Hello、QUIC Initial/协商版本、TP、SETTINGS、完整 UA 和有序请求头进行限定字段对照，并验证新连接中应有的扩展排列变化。Linux ARM64 的 UA 冻结自 Firefox 123 开始，仍加载 AArch64 库；Windows 使用未修改原 DLL；macOS 已按同架构 Firefox 实测重建。见[工件验证](https://github.com/Facetomyself/ruyihttp/actions/runs/45776283862)、[本次证据](../../artifacts/receipts/ruyihttp-0.9.3/README.md)和[观测边界](../../submodules/ruyihttp/docs/firefox-profile-wire.md)。不以这些场景外推所有历史版本、所有页面或完整浏览器指纹。
 
 ### 2026-11-26：0.9.2 选择性同步
 

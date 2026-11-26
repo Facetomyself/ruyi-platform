@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1091 个 commit**（platform 334 / ruyitrace 142 / ruyihttp 105 / ruyijs 449 / ruyi-mcp 61）。
+五个仓库共 **1144 个 commit**（platform 335 / ruyitrace 142 / ruyihttp 157 / ruyijs 449 / ruyi-mcp 61）。
 
 RuyiJS 在 `oracle-reverse-dev` 上有了与 RuyiDOM 并列的按需命令。固定完整版和纯基座恢复版均从正式入口实测，镜像归档另有独立私有密文回读。[主机部署回执](artifacts/receipts/ruyijs-oracle-arm64-host1/validation.json)。
 
@@ -166,12 +166,12 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1091 |
+| 五个仓库 commit | 1144 |
 | 文档 | 47 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 21 |
 | domtrace 测试 | 20 项 |
-| ruyihttp 测试 | 137 项（原生开关全开）；另有五目标双端点升级/线路门禁 |
+| ruyihttp 测试 | 171 项（原生开关全开）；另有五平台双端点官方线路门禁 |
 | 校验节数（verify-pins） | 8 |
 
 > 口径：文档 = 排除 `submodules/` `upstream/` `artifacts/` 后的 `.md`；
