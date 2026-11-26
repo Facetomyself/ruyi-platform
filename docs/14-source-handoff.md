@@ -63,6 +63,8 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 [RuyiDOM 私有源码仓](https://github.com/Facetomyself/ruyidom)维护 Linux 启动器、适配层、测试与构建工具；`main` 用于日常维护。RuyiDOM 单独检出，现有四个 gitlink 与各自的版本固定方式维持原样。
 
+[RuyiDOM 实现与维护手册](https://github.com/Facetomyself/ruyidom/blob/1bfbd7c69e6ce4044510afd5ee9d04e774fb13c1/docs/architecture/README.md)涵盖 `native`／`browser` 双后端、RPC 与 BiDi 协议、句柄生命周期和优化复验，并说明如何编辑 Archify 图的 JSON 图源并再生成 SVG／HTML。这是知识手册入口，发布与运行证明仍以下文发行回执和实测记录为准。
+
 **ARM64 日常使用**：在 `oracle-reverse-dev` 上以 `ubuntu` 运行 `/home/ubuntu/.local/bin/ruyidom verify`，验证真实浏览器导航。本地标签 `ruyidom:arm64-use` 指向下文同一个 v0.3.0 镜像 ID；入口按需启动临时容器，默认离线，未发布端口。见[主机使用与维护说明](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md)。
 
 **验收机空间维护**：正式归档、校验清单、原始回执和已配置的运行依赖留存；只回收已结束的 QA 展开树及校验相同的临时副本。具体分类和复验方法见[项目空间回收手册](https://github.com/Facetomyself/ruyidom/blob/6ffb604b5771ff9646c765d03db13cfdf0a5fe38/docs/DEVELOPMENT.md#验收机空间回收)。
