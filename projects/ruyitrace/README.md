@@ -16,6 +16,8 @@
 
 **新增原生事件（独立私有预发行，不切站点）**：[Alpha 1 下载与取证](https://github.com/Facetomyself/ruyitrace/releases/tag/native-events-v0.1.0-alpha.1) 在真实 amd64、ARM64 Firefox 上各跑 17 项：显式标定的 JSCall、Wasm 导出边界、指定回环 GET/重定向/缓存事务。每个架构另有 22 个旧镜像页面/协议对照，绝不计入新原生覆盖。Alpha 1 的帧模式明确返回 `unsupported`，不是零帧通过。原始观测、错来源/关闭反例、完整归档摘要及[可复核的范围](../../artifacts/receipts/trace-linux-gap-closure-v1/README.md)与旧 R5 及 Win64 静态开关分列。
 
+**应用 WebSocket 帧另验**：在原版 `libxul` 仅能报告“不支持”的地方，ARM64 已原生重编元数据专用接口并通过[同镜像的 22 项独立复核](../../artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/README.md)。真实端点与浏览器原生 writer 分别观察到发送 3 帧、接收 5 帧；页面只收到 2 条消息。编译、Firefox 原归档的 56 个成员和最终镜像均绑定到实际字节。此 ARM 回执不为其它架构、委托 socket 传输或公网站点代签。
+
 **Electron 持有者是另一条发行线**：[两架构桌面预发行与中文现场包](https://github.com/Facetomyself/ruyitrace/releases/tag/linux-electron-owner-v0.1.0-alpha.1)。正式打包的 Electron 主进程直接持有同一个 Firefox/BiDi，真实 MCP 借还、排他和旧句柄拦截、暂停中停止、借用进程丢失/到期、Firefox 异常退出均按架构保留独立计时和落盘佐证。它不是旧 amd64 CLI-owner 的复用证明。详见[范围与原始读回](../../artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/README.md)。Xvfb/Weston 支持会话生命周期验收；实体显示与本地人工系统输入法仍须现场观测。
 
 同一 Firefox 会话的 MCP 接入见 [ruyi-mcp 与组件边界](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。
