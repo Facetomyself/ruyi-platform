@@ -1,0 +1,121 @@
+{
+  "application_commit": "10b6e5a5f2486f7b7d7ec83e3ec9707a8f8d1bb1",
+  "backup": {
+    "archive_name": "ruyijs-arm64-r433-host1.docker.tar.gz",
+    "bytes": 525262159,
+    "recovery_kit_sha256": "f2bfcaf3de0cfe2741ec86aea982e4fe9ebffd9087de94e65543d490b26a267e",
+    "same_store_restore_verified": true,
+    "sha256": "7504785e56fb0f00923b3badc9e60f5ff57e11785d57a4c5946655a7e0bb03ef",
+    "small_recovery_kit": "ruyijs-arm64-r433-host1-recovery.tar.gz"
+  },
+  "evidence_archive": {
+    "filename": "arm64-r433-release-evidence.tar.gz",
+    "sha256": "cab7dc4c3a29c8990bf4d2d18fec5c3cfe25bdae3b4fbde05b447640f2e876db"
+  },
+  "immutable_images": {
+    "base": {
+      "image_id": "sha256:9476cafeb33264ea9948d8f351db710e0bd8a93d794e2e9a5f16142870a3f2b5",
+      "image_tag": "ruyijs:arm64-r433-base-host1",
+      "profile": "base",
+      "release": "r433-base-host1",
+      "size": 1054552945,
+      "verify_sha256": "5ee7c53f9cc91d925a5c6c7494b698d34c669aafda9c514b8eb104f44185451f"
+    },
+    "full": {
+      "image_id": "sha256:5661a38cdf25d80b0df12119ea8e2e8c6881d84f4790e5dd62b57614f9c6d821",
+      "image_tag": "ruyijs:arm64-r433-host1",
+      "profile": "full",
+      "release": "r433-host1",
+      "size": 1066529044,
+      "verify_sha256": "5989425201b7b17959ad9f337fbe83035572ff89ff25a4d3378190e95b9220e0"
+    }
+  },
+  "installed_product": {
+    "base_record_entries": 285,
+    "blob_window_assertions": 58,
+    "blob_worker_assertions": 58,
+    "clean_base_and_pair": true,
+    "companion_gates": 9,
+    "companion_record_entries": 59,
+    "companion_removal_preserves_base": true,
+    "document_permissions": true,
+    "exact_dependency": true,
+    "ff159_fields": {
+      "blob_file": [
+        8,
+        8
+      ],
+      "canvas_159_control": [
+        1,
+        1
+      ],
+      "permissions": [
+        15,
+        15
+      ]
+    },
+    "mapped_libraries": 18,
+    "native_gate_count": 13,
+    "native_quic_h3_cases": [
+      "correct_pin",
+      "wrong_ca",
+      "wrong_leaf_pin"
+    ],
+    "positive_pin_http": 200,
+    "source_or_external_shell_mount": false,
+    "tls_navigation": true,
+    "worker_reaped": true,
+    "working_upgrade_from_r432": true,
+    "wrong_pin_peer_http_bytes": 0
+  },
+  "limits": [
+    "Linux AArch64, glibc >=2.39; not universal manylinux or musl",
+    "native QUIC C ABI acceptance is separate from default JavaScript transport",
+    "the retired realm Promise timing distinction and the private 8 MiB Blob quota remain as documented"
+  ],
+  "native_shell_sha256": "f67b6d0103c3f9106f4e86d3404baff4f86e482a1856b553c429493143875e23",
+  "passed": true,
+  "platform": {
+    "cpu": "aarch64",
+    "glibc": "glibc 2.39",
+    "os": "Ubuntu 24.04",
+    "python": "3.12.3",
+    "wheel_tag": "py3-none-linux_aarch64"
+  },
+  "private_source_tree": "b33d470db6c128948e8945c3338c8877292d8495",
+  "provenance": {
+    "current_native_changes_recompiled": 34,
+    "deterministic_wheel_outputs_on_three_native_attempts": true,
+    "historical_receipts_separated": true,
+    "retained_verified_units": 1234,
+    "verified_previous_source": "e005ad35882802182459d262452a1169b2c171fb"
+  },
+  "release_lock_sha256": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96",
+  "release_tag": "linux-arm64-product-r433",
+  "retained_rollback": {
+    "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+    "release": "r432-host1"
+  },
+  "schema": "ruyijs-linux-arm64-r433-publication-qualification-v1",
+  "scope": "prepublication qualification of the exact wheel bytes and immutable images; production activation is separately verified after downloading the published assets",
+  "target_commit": "1ee61b9e368c53da6cb4d37ac8edf4e79001df93",
+  "validated_at": "2026-11-26T11:27:26.630762+00:00",
+  "wheels": {
+    "ruyijs": {
+      "bytes": 143356091,
+      "filename": "ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl",
+      "r432_wheel_sha256": "1d1c119a0e8a8176df212bd118dd955e50be19b085b4c196918f86b4f7ebcc22",
+      "sha256": "43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218",
+      "tag": "py3-none-linux_aarch64",
+      "version": "0.2.2+inner.20261101191032.r433"
+    },
+    "ruyijs-http1": {
+      "bytes": 2587660,
+      "filename": "ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl",
+      "r432_wheel_sha256": "afe31c0601493f5e24af531099c8d4f61a634f34efe42190cf46962b7952bc4a",
+      "sha256": "0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf",
+      "tag": "py3-none-linux_aarch64",
+      "version": "0.2.39+inner.r433"
+    }
+  }
+}

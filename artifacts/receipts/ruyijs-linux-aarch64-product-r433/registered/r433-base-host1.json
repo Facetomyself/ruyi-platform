@@ -1,0 +1,16 @@
+{
+  "alias": "ruyijs:arm64-use",
+  "files": {
+    "README.md": "09803cbb40eda5be936e71097444ea95d89a3f7829b55db116252d3d85404da9",
+    "host.py": "805f32370d8efcac13411660d7dcb003c995df1348a8136542f43197ce58e63a"
+  },
+  "image_id": "sha256:9476cafeb33264ea9948d8f351db710e0bd8a93d794e2e9a5f16142870a3f2b5",
+  "image_tag": "ruyijs:arm64-r433-base-host1",
+  "input_lock": "bdc0637ff465eb0adf6a342662d9126ac3a560ffc2688f7545c171629f3280e8",
+  "parent_image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "product": "linux-arm64-product-r433",
+  "profile": "base",
+  "release": "r433-base-host1",
+  "revision": "1ee61b9e368c53da6cb4d37ac8edf4e79001df93",
+  "schema": 1
+}

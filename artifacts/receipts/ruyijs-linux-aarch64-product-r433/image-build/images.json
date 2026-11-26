@@ -1,0 +1,118 @@
+{
+  "attempt": "attempt-gdkn4720",
+  "base_image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "built_at": "2026-11-26T11:22:30.829298+00:00",
+  "files": {
+    "Dockerfile": "47723dd17e7c90fc43eefc7dc20c8fcb0445e8555b0a6d65df1eaad69d7b6dbe",
+    "check_linux_quic_component.py": "d34aeceb4e7c3f8939a857de35948c01abfd08b91b33b0f32e9c66c8a731310d",
+    "controls/check_blob_file_endings.py": "d10705498631797d281a27febf1f3908bab4a6228036b3f1e1787d174f435270",
+    "controls/check_document_permissions.py": "ca3a8092ed1b0bd504d3fa97302e2209f6bcf7020ea8b305aa0c958e6d624960",
+    "controls/release.py": "343cb41d5934b730d068e12dc261c50da1487d33349e9a49da1f8ed371c5798a",
+    "controls/verify_release.py": "8f967fe538ebb80be03f3325cd8d2499c40657fdce0be5ccaf0ed54b2cab451b",
+    "network/build_wheel.py": "d791aad176e473513d6e3052d149eb89b8710b5cf72cf4c4485f79f587b9fb30",
+    "network/check_wheel.py": "2821504b98a642cc2c9fd93c2960215373979626027919a29cf661afae2b728e",
+    "pack/common.py": "cb5a44b390268b02d55ce34ec62eb0c1f519d8eccfc44b372dc62d6807535af1",
+    "pack/exercise.py": "42b0821a5f2549718016c625b900e7311c50157fc70d92489306805bbc2ccf43",
+    "payload.py": "1c01dfb899a61827542cc3ceb3483dc7c3c1073dde86422fc8a7c46659b3c172",
+    "runtime.py": "68b3d14bec67f6a3c9618c5b9ea1f8b57de0e892eb51c0e8e906337fe2cd913a"
+  },
+  "host_sha256": "805f32370d8efcac13411660d7dcb003c995df1348a8136542f43197ce58e63a",
+  "image_manifest": {
+    "app_commit": "10b6e5a5f2486f7b7d7ec83e3ec9707a8f8d1bb1",
+    "artifacts": {
+      "libnecko_quic.so": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8",
+      "openssl": "a2044013d30169104887d7823bf7a0a1d443eafc34d7501876e22da532f24f0e",
+      "pip-24.0-py3-none-any.whl": "e995a37590643450898cfa5bd5113831a547506cd545c335a409339d0c1e87ab",
+      "release-lock.json": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96",
+      "requirements-linux-aarch64.txt": "7e9c082fb7bf689805de1776acc9d047cfbdda99480b2bef1c7d5925bb202fbf",
+      "ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl": "43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218",
+      "ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl": "0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf",
+      "wheel-build.json": "73f670777a59c7fa8bb3042c66bf4b5936e71ed37b4b682fbf2fd6bd75581656"
+    },
+    "base_image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+    "builder": {
+      "build_images.py": "926fff1152fd4826eed6c70ef685a3a303fc139698efc237858af2b36956610b",
+      "render.py": "8314c9249dd9b652ba291e57fa67679dd5ef1bd091d803a260f4d4069a2a8ae6"
+    },
+    "input_lock": "bdc0637ff465eb0adf6a342662d9126ac3a560ffc2688f7545c171629f3280e8",
+    "recipe_revision": "1ee61b9e368c53da6cb4d37ac8edf4e79001df93",
+    "release_lock_sha256": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96",
+    "release_tag": "linux-arm64-product-r433",
+    "runtime_manifest_sha256": "d86d66b9d84aa3d4af380f27acb38070cdef54e1d06beb7b7da9ae9a7371a2fb",
+    "schema": "ruyijs-linux-arm64-image-manifest-v1",
+    "shell_sha256": "f67b6d0103c3f9106f4e86d3404baff4f86e482a1856b553c429493143875e23",
+    "source_tree": "b33d470db6c128948e8945c3338c8877292d8495",
+    "sources": {
+      "Dockerfile": "47723dd17e7c90fc43eefc7dc20c8fcb0445e8555b0a6d65df1eaad69d7b6dbe",
+      "check_linux_quic_component.py": "d34aeceb4e7c3f8939a857de35948c01abfd08b91b33b0f32e9c66c8a731310d",
+      "controls/check_blob_file_endings.py": "d10705498631797d281a27febf1f3908bab4a6228036b3f1e1787d174f435270",
+      "controls/check_document_permissions.py": "ca3a8092ed1b0bd504d3fa97302e2209f6bcf7020ea8b305aa0c958e6d624960",
+      "controls/release.py": "343cb41d5934b730d068e12dc261c50da1487d33349e9a49da1f8ed371c5798a",
+      "controls/verify_release.py": "8f967fe538ebb80be03f3325cd8d2499c40657fdce0be5ccaf0ed54b2cab451b",
+      "network/build_wheel.py": "d791aad176e473513d6e3052d149eb89b8710b5cf72cf4c4485f79f587b9fb30",
+      "network/check_wheel.py": "2821504b98a642cc2c9fd93c2960215373979626027919a29cf661afae2b728e",
+      "pack/common.py": "cb5a44b390268b02d55ce34ec62eb0c1f519d8eccfc44b372dc62d6807535af1",
+      "pack/exercise.py": "42b0821a5f2549718016c625b900e7311c50157fc70d92489306805bbc2ccf43",
+      "payload.py": "1c01dfb899a61827542cc3ceb3483dc7c3c1073dde86422fc8a7c46659b3c172",
+      "runtime.py": "68b3d14bec67f6a3c9618c5b9ea1f8b57de0e892eb51c0e8e906337fe2cd913a"
+    },
+    "staged": {
+      "README.md": "09803cbb40eda5be936e71097444ea95d89a3f7829b55db116252d3d85404da9",
+      "escrow.py": "90580d8f5c8746fcb18909abd64031c99d6e6744fd505f3f5724e94435f199bb",
+      "host.py": "805f32370d8efcac13411660d7dcb003c995df1348a8136542f43197ce58e63a",
+      "manage.py": "db56120a0cca8d0f6c9fe2d8a29404f1113dfa08f74aef7e5e202f7e5023c764"
+    },
+    "templates": {
+      "ci/arm64_network/build_wheel.py": "d791aad176e473513d6e3052d149eb89b8710b5cf72cf4c4485f79f587b9fb30",
+      "ci/arm64_network/check_wheel.py": "2821504b98a642cc2c9fd93c2960215373979626027919a29cf661afae2b728e",
+      "ci/arm64_pack/common.py": "cb5a44b390268b02d55ce34ec62eb0c1f519d8eccfc44b372dc62d6807535af1",
+      "ci/arm64_pack/exercise.py": "78b0583211ed75ffcf7f0ae449ab42b06e48e2f920f5b7bf2f2ca22c5f1ab221",
+      "ci/check_blob_file_endings.py": "d10705498631797d281a27febf1f3908bab4a6228036b3f1e1787d174f435270",
+      "ci/check_document_permissions.py": "ca3a8092ed1b0bd504d3fa97302e2209f6bcf7020ea8b305aa0c958e6d624960",
+      "ci/check_linux_quic_component.py": "d34aeceb4e7c3f8939a857de35948c01abfd08b91b33b0f32e9c66c8a731310d",
+      "deploy/arm64/Dockerfile": "b3acc740a6ee3c300aeba96382aa926f132cb7376264be341f4cd4370d9e7880",
+      "deploy/arm64/build_images.py": "a55c51af45a4db53f038c1a926891374627b446ac31accaf60fdca6cd3da1936",
+      "deploy/arm64/escrow.py": "90580d8f5c8746fcb18909abd64031c99d6e6744fd505f3f5724e94435f199bb",
+      "deploy/arm64/host.py": "34c604a689e7151bd09fb6546430262e90e668df279b840e6bf8c700fe70c179",
+      "deploy/arm64/manage.py": "db56120a0cca8d0f6c9fe2d8a29404f1113dfa08f74aef7e5e202f7e5023c764",
+      "deploy/arm64/payload.py": "2d3d91f676da09097f56b89b8c1c8d9d1492b9d6023fb12b84d62c05e2b59e63",
+      "deploy/arm64/runtime.py": "b47b4854e4bf14cddf0c01acd1faa21de41d633be41c6cf594d71ed16c189793"
+    },
+    "versions": {
+      "base": "r433-base-host1",
+      "full": "r433-host1"
+    }
+  },
+  "images": {
+    "base": {
+      "image_id": "sha256:9476cafeb33264ea9948d8f351db710e0bd8a93d794e2e9a5f16142870a3f2b5",
+      "image_tag": "ruyijs:arm64-r433-base-host1",
+      "profile": "base",
+      "release": "r433-base-host1",
+      "size": 1054552945,
+      "verify_sha256": "5ee7c53f9cc91d925a5c6c7494b698d34c669aafda9c514b8eb104f44185451f"
+    },
+    "full": {
+      "image_id": "sha256:5661a38cdf25d80b0df12119ea8e2e8c6881d84f4790e5dd62b57614f9c6d821",
+      "image_tag": "ruyijs:arm64-r433-host1",
+      "profile": "full",
+      "release": "r433-host1",
+      "size": 1066529044,
+      "verify_sha256": "5989425201b7b17959ad9f337fbe83035572ff89ff25a4d3378190e95b9220e0"
+    }
+  },
+  "input_lock": "bdc0637ff465eb0adf6a342662d9126ac3a560ffc2688f7545c171629f3280e8",
+  "product": "linux-arm64-product-r433",
+  "recipe_revision": "1ee61b9e368c53da6cb4d37ac8edf4e79001df93",
+  "schema": 1,
+  "upstream_artifacts": {
+    "libnecko_quic.so": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8",
+    "openssl": "a2044013d30169104887d7823bf7a0a1d443eafc34d7501876e22da532f24f0e",
+    "pip-24.0-py3-none-any.whl": "e995a37590643450898cfa5bd5113831a547506cd545c335a409339d0c1e87ab",
+    "release-lock.json": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96",
+    "requirements-linux-aarch64.txt": "7e9c082fb7bf689805de1776acc9d047cfbdda99480b2bef1c7d5925bb202fbf",
+    "ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl": "43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218",
+    "ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl": "0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf",
+    "wheel-build.json": "73f670777a59c7fa8bb3042c66bf4b5936e71ed37b4b682fbf2fd6bd75581656"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "algorithm": "OpenPGP integrity protected AES256; separate operator-controlled high-entropy passphrase",
+  "at": "2026-11-26T11:34:48.972564+00:00",
+  "ciphertext_bytes": 525390512,
+  "ciphertext_file": "ruyijs-arm64-r433-host1.docker.tar.gz.gpg",
+  "ciphertext_sha256": "9c12ef8f05f14598296b5b4741e9d962233dbb3822dc76a2f59029285166b95b",
+  "passed": true,
+  "plain_archive_bytes": 525262159,
+  "plain_archive_sha256": "7504785e56fb0f00923b3badc9e60f5ff57e11785d57a4c5946655a7e0bb03ef",
+  "plaintext_archive_saved_on_controller": false,
+  "private_wheels_release_is_independent": true,
+  "read_back_decrypted_bytes_match": true,
+  "schema": 1,
+  "storage_host": "oracle-dsh"
+}

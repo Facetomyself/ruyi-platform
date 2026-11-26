@@ -1,0 +1,61 @@
+{
+  "evidence": {
+    "build.json": {
+      "sha256": "d2459c0348404329edc914586e17bef1d84539cfad17d538e17e67585b1228b9",
+      "wheel_path": "ruyijs/_runtime/build-proof/build.json"
+    },
+    "native-merge-gate.json": {
+      "sha256": "4f4bd5c9fc2cc464150d93559b84f0eae7405ca1611e8ed613028282072c43e3",
+      "wheel_path": "ruyijs/_runtime/build-proof/native-merge-gate.json"
+    },
+    "verification.json": {
+      "sha256": "90146350422f7622e0140cea8b002bef34e7f5637b9d9f74fe37d9164b7908e6",
+      "wheel_path": "ruyijs/_runtime/build-proof/verification.json"
+    }
+  },
+  "installed_wheel_validated": false,
+  "native_elf": {
+    "bytes": 487657880,
+    "recompiled_units": 34,
+    "retained_units": 1234,
+    "sha256": "f67b6d0103c3f9106f4e86d3404baff4f86e482a1856b553c429493143875e23",
+    "wheel_path": "ruyijs/_runtime/dist/js"
+  },
+  "private_commit": "10b6e5a5f2486f7b7d7ec83e3ec9707a8f8d1bb1",
+  "private_source_tree": "b33d470db6c128948e8945c3338c8877292d8495",
+  "readback": {
+    "companion_sources_sha256": "368f672e706ebeb4e5c679786617588fd439d5939069955900b6296c2caaa09a",
+    "disjoint_ownership": true,
+    "full_record_readback": true,
+    "manifest_sha256": "d86d66b9d84aa3d4af380f27acb38070cdef54e1d06beb7b7da9ae9a7371a2fb",
+    "record_rows": {
+      "ruyijs": 285,
+      "ruyijs-http1": 59
+    },
+    "runtime_sha256sums_sha256": "a861aafcbf7fa5f44cf34ba127689fa4738bb2742116472cab3893ed06361d04"
+  },
+  "requirements": {
+    "bytes": 230,
+    "filename": "requirements-linux-aarch64.txt",
+    "sha256": "7e9c082fb7bf689805de1776acc9d047cfbdda99480b2bef1c7d5925bb202fbf"
+  },
+  "schema": "ruyijs-arm64-r433-wheel-build-v1",
+  "wheels": {
+    "ruyijs": {
+      "bytes": 143356091,
+      "filename": "ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl",
+      "r432_wheel_sha256": "1d1c119a0e8a8176df212bd118dd955e50be19b085b4c196918f86b4f7ebcc22",
+      "sha256": "43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218",
+      "tag": "py3-none-linux_aarch64",
+      "version": "0.2.2+inner.20261101191032.r433"
+    },
+    "ruyijs-http1": {
+      "bytes": 2587660,
+      "filename": "ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl",
+      "r432_wheel_sha256": "afe31c0601493f5e24af531099c8d4f61a634f34efe42190cf46962b7952bc4a",
+      "sha256": "0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf",
+      "tag": "py3-none-linux_aarch64",
+      "version": "0.2.39+inner.r433"
+    }
+  }
+}

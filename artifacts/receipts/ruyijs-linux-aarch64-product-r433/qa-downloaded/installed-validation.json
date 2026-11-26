@@ -1,0 +1,107 @@
+{
+  "app_commit": "10b6e5a5f2486f7b7d7ec83e3ec9707a8f8d1bb1",
+  "arch": "aarch64",
+  "bind_mounted_shell": false,
+  "component_gates": 9,
+  "disjoint_ownership": true,
+  "feature_checks": {
+    "blob_log_sha256": "9c5453d03e9a80ebe5b6796c4fe064d0d50f5eead3262783e10830d4ea19b7b7",
+    "blob_window": 58,
+    "blob_worker": 58,
+    "permissions_log_sha256": "f08b2509fe224d9c53dbf538fa99f128a6ae7c8e8991da28a8a398a2531d553b",
+    "permissions_three_base_states": true
+  },
+  "ff159_fields": {
+    "blob_file": [
+      8,
+      8
+    ],
+    "canvas_159_control": [
+      1,
+      1
+    ],
+    "permissions": [
+      15,
+      15
+    ]
+  },
+  "files": {
+    "libnecko_quic.so": {
+      "bytes": 3600800,
+      "sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8"
+    },
+    "requirements-linux-aarch64.txt": {
+      "bytes": 230,
+      "sha256": "7e9c082fb7bf689805de1776acc9d047cfbdda99480b2bef1c7d5925bb202fbf"
+    },
+    "ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl": {
+      "bytes": 143356091,
+      "sha256": "43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218"
+    },
+    "ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl": {
+      "bytes": 2587660,
+      "sha256": "0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf"
+    },
+    "wheel-build.json": {
+      "bytes": 2461,
+      "sha256": "73f670777a59c7fa8bb3042c66bf4b5936e71ed37b4b682fbf2fd6bd75581656"
+    }
+  },
+  "files_verified": {
+    "after-removal": {
+      "base": 285,
+      "companion": 0
+    },
+    "base": {
+      "base": 285,
+      "companion": 0
+    },
+    "pair": {
+      "base": 285,
+      "companion": 59
+    },
+    "upgraded": {
+      "base": 285,
+      "companion": 59
+    }
+  },
+  "finished": "2026-11-26T11:34:22.768578+00:00",
+  "fresh_base_and_fresh_pair": true,
+  "glibc": "glibc 2.39",
+  "lock_sha256": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96",
+  "native_gates": 13,
+  "native_quic": {
+    "cases": [
+      "correct_pin",
+      "wrong_ca",
+      "wrong_leaf_pin"
+    ],
+    "passed": true,
+    "receipt_sha256": "06f33b5935b6c5c581d8420d0682e4b3ee93a8f3a115a0132b8aae6b3a7a12a4",
+    "scope": "native C ABI only",
+    "sdk_bin": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss"
+  },
+  "network": "loopback only",
+  "passed": true,
+  "python": "3.12.3",
+  "receipts": {
+    "after-removal": "18eb5d2afead459e059bbf8af2a449c8e0a18fb43bdc2a5e46ac92edd5007f39",
+    "base": "1c3a44537f5bd3fb60eb284909fe7fc9a2a8c8fb8675d982efcb59ed1e7ee638",
+    "pair": "eb9ab57760ff8b3efa6e0c07f36303e8a03c14494d501cd43bbc1f3b667f9f16",
+    "upgraded": "a487ef0365849a0229fd240640d6b46e5385b14941faca62299065f05734e79e"
+  },
+  "release_tag": "linux-arm64-product-r433",
+  "schema": "ruyijs-r433-source-free-consumer-v1",
+  "shell_sha256": "f67b6d0103c3f9106f4e86d3404baff4f86e482a1856b553c429493143875e23",
+  "started": "2026-11-26T11:33:12.700424+00:00",
+  "tls_correct_pin_status": 200,
+  "tls_navigation": true,
+  "tls_wrong_pin_peer_http_bytes": 0,
+  "upgrade_and_companion_removal": true,
+  "working_upgrade_from": [
+    "0.2.2+inner.20261101191032.r432",
+    "0.2.39+inner.r432",
+    "4c69311dc1a287c644b17dc9082c6403c0818b88f580a6ff15c00e7c9c3d8a84",
+    42
+  ]
+}

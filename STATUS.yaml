@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T19:31:54+08:00'
+generated_at: '2026-11-26T19:47:57+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -147,9 +147,9 @@ projects:
       win_amd64: ready
       darwin_arm64: unknown
       linux_x86_64: private-offline-wheel-installed-and-verified (Ubuntu 24.04, glibc 2.39); optional separate cleartext HTTP/1 helper installs and drives real loopback JS traffic
-      linux_aarch64: R432 native private base and companion wheels installed and verified on Ubuntu 24.04 / glibc 2.39 / CPython 3.12.3
-    tests: R432_arm64_full_installed_product_and_native_h3__R431_amd64_quic__R430_h2_companion
-    phase: 两种 Linux 架构有独立交付。ARM64 R432 已验全量原生编译、严格链接、全新安装的 JS/Worker/WebCrypto、JS HTTPS 和导航，以及独立 C ABI 的带身份校验 h3 请求。JS 默认 HTTP/3 路由与跨发行版认证仍独立于本项。
+      linux_aarch64: R433 stable private base and companion published, downloaded, and deployed on Ubuntu 24.04 / glibc 2.39 / CPython 3.12.3
+    tests: R433_arm64_published_wheels_clean_install_upgrade_active_full_rollback__R432_native_product_and_h3__R431_amd64_quic__R430_h2_companion
+    phase: ARM64 R433 双 wheel 已正式发布并从实际下载物验证新装、R432 升级和 companion 移除。生产使用 r433-host1，完整 r432-host1 已实测回滚。R432 的原生编译及独立 H3 证据保留，JS 默认 HTTP/3 路由与跨发行版认证另验。
     blocked_by:
     - A2
     - C3
@@ -167,7 +167,26 @@ projects:
         verification: 'outer SHA-256 + 2071 top-level RECORD file hashes + x86_64 ELF header; no extraction or execution'
         scope: reference-only
       private_linux_aarch64_stages:
+        r433_production:
+          terminal: stable_release_download_install_and_production_cutover_verified
+          host: oracle-reverse-dev
+          release: https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-product-r433
+          application_commit: 10b6e5a5f2486f7b7d7ec83e3ec9707a8f8d1bb1
+          release_recipe_commit: 1ee61b9e368c53da6cb4d37ac8edf4e79001df93
+          base: deliverables/linux-ruyijs-arm64-r433/release/ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl
+          base_sha256: 43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218
+          companion: deliverables/linux-ruyijs-arm64-r433/release/ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl
+          companion_sha256: 0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf
+          current: r433-host1
+          previous_full: r432-host1
+          immutable_full_image: sha256:5661a38cdf25d80b0df12119ea8e2e8c6881d84f4790e5dd62b57614f9c6d821
+          rollback_full_image: sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c
+          checks: [published_assets_11, installed_wheel_only, permission_fields_15_of_15, blob_file_fields_8_of_8, window_worker_assertions_116, native_gates_13, network_component_gates_9, pinned_https, actual_full_rollback_and_reactivation, private_backup]
+          evidence: deliverables/linux-ruyijs-arm64-r433/deployment.json
+          evidence_sha256: 82177b1d1d917756b80f5bda75acde14298aefaf63c3dcd8ef2893e63e0895c3
+          repository_receipt: artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json
         oracle_reverse_dev_ondemand_host1:
+          observation_scope: historical_r432_initial_deployment_before_r433_cutover
           terminal: installed_full_default_cli_and_separate_checked_recovery
           host: oracle-reverse-dev
           entry: /home/ubuntu/.local/bin/ruyijs
@@ -3021,7 +3040,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: e3aa1f3fd98baff69802e9e022d456da93d71694
+    commit: 1ee61b9e368c53da6cb4d37ac8edf4e79001df93
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

@@ -1,0 +1,16 @@
+{
+  "all_four_outputs_byte_identical": true,
+  "at": "2026-11-26T11:21:23.931336+00:00",
+  "attempts": [
+    "pack-01",
+    "pack-02",
+    "pack-final-01"
+  ],
+  "files": {
+    "requirements-linux-aarch64.txt": "7e9c082fb7bf689805de1776acc9d047cfbdda99480b2bef1c7d5925bb202fbf",
+    "ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl": "43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218",
+    "ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl": "0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf",
+    "wheel-build.json": "73f670777a59c7fa8bb3042c66bf4b5936e71ed37b4b682fbf2fd6bd75581656"
+  },
+  "passed": true
+}

@@ -1,0 +1,772 @@
+{
+  "cases": {
+    "correct_pin": {
+      "client": {
+        "abi_version": "neqo-0.32.0/nss-3.131",
+        "auth": {
+          "accepted": true,
+          "chain_and_hostname_ok": true,
+          "expected_leaf_sha256": "b4bde5be2991aa12f99476a2391b89766208e6393733ab055a0bb23f8f71ae32",
+          "hostname": "localhost",
+          "openssl_exit": 0,
+          "openssl_output": "/tmp/quic-ngtcp2-634ibwk2/correct_pin/client/presented-leaf.pem: OK",
+          "pin_ok": true,
+          "presented_der_sha256": [
+            "b4bde5be2991aa12f99476a2391b89766208e6393733ab055a0bb23f8f71ae32"
+          ],
+          "trust_anchor_sha256": "047ee9c93c8a544a169ae52cd93988e1077de18d2070bdea284143c4ba0243e0"
+        },
+        "body_bytes": 32,
+        "body_sha256": "0d8d93838532ea9591c3dc0d2cfd61992d016eaa03d9bee1b4f74d50ba447cb1",
+        "connected": true,
+        "handle_closed": true,
+        "local": [
+          "127.0.0.1",
+          51155
+        ],
+        "maps": {
+          "libfreebl3.so": {
+            "file_id": [
+              8,
+              1,
+              15024760
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreebl3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreebl3.so"
+          },
+          "libfreeblpriv3.so": {
+            "file_id": [
+              8,
+              1,
+              15024761
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreeblpriv3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreeblpriv3.so"
+          },
+          "libmozsqlite3.so": {
+            "file_id": [
+              8,
+              1,
+              15024762
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libmozsqlite3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libmozsqlite3.so"
+          },
+          "libnecko_quic.so": {
+            "file_id": [
+              8,
+              1,
+              15024209
+            ],
+            "input_path": "/wheels/libnecko_quic.so",
+            "mapped_path": "/wheels/libnecko_quic.so"
+          },
+          "libnspr4.so": {
+            "file_id": [
+              8,
+              1,
+              15024763
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnspr4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnspr4.so"
+          },
+          "libnss3.so": {
+            "file_id": [
+              8,
+              1,
+              15024764
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnss3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnss3.so"
+          },
+          "libnssutil3.so": {
+            "file_id": [
+              8,
+              1,
+              15024765
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnssutil3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnssutil3.so"
+          },
+          "libplc4.so": {
+            "file_id": [
+              8,
+              1,
+              15024766
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplc4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplc4.so"
+          },
+          "libplds4.so": {
+            "file_id": [
+              8,
+              1,
+              15024767
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplds4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplds4.so"
+          },
+          "libsoftokn3.so": {
+            "file_id": [
+              8,
+              1,
+              15024768
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libsoftokn3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libsoftokn3.so"
+          },
+          "libssl3.so": {
+            "file_id": [
+              8,
+              1,
+              15024769
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libssl3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libssl3.so"
+          }
+        },
+        "process": {
+          "exe": "/usr/bin/python3.12",
+          "finish_ns": 77174005044549,
+          "finished_at": "2026-11-26T11:33:53.902+00:00",
+          "pid": 369,
+          "ppid": 363,
+          "python": "3.12.3",
+          "start_ns": 77173953847308,
+          "started_at": "2026-11-26T11:33:53.851+00:00",
+          "uid": 1000
+        },
+        "remote": [
+          "127.0.0.1",
+          56919
+        ],
+        "response_fin": true,
+        "response_status": 200,
+        "stream": 0,
+        "timing": {
+          "auth_event_ns": 77173972802178,
+          "auth_sent_ns": 77173979080187,
+          "connected_ns": 77173986624359,
+          "request_queued_ns": 77173986696240,
+          "response_fin_ns": 77174002719025
+        }
+      },
+      "passed": true,
+      "peer": {
+        "challenge_inode": {
+          "access": 0,
+          "close_read": 1,
+          "open": 1
+        },
+        "challenge_sha256": "0d8d93838532ea9591c3dc0d2cfd61992d016eaa03d9bee1b4f74d50ba447cb1",
+        "log_sha256": "8cf5157326863a806aa3f6f4b2a3aeafa15e348f7e2ea930189699837da78ca9",
+        "native_log": {
+          "alpn": [
+            "h3"
+          ],
+          "received_crypto_alert": [],
+          "received_udp": [
+            "[127.0.0.1]:51155"
+          ],
+          "requests": [
+            {
+              "headers": [
+                [
+                  ":method",
+                  "GET"
+                ],
+                [
+                  ":scheme",
+                  "https"
+                ],
+                [
+                  ":authority",
+                  "localhost:56919"
+                ],
+                [
+                  ":path",
+                  "/challenge-7dcbcd6fd780650082f0b0a327ac4dfa.bin"
+                ]
+              ],
+              "headers_complete": true,
+              "line": "http: stream 0x0 request headers started",
+              "stream": 0
+            }
+          ],
+          "responses": [
+            {
+              "headers": [
+                [
+                  ":status",
+                  "200"
+                ],
+                [
+                  "server",
+                  "nghttp3/ngtcp2 server"
+                ],
+                [
+                  "content-type",
+                  "text/plain"
+                ],
+                [
+                  "content-length",
+                  "32"
+                ]
+              ],
+              "line": "http: stream 0x0 submit response headers",
+              "stream": 0
+            }
+          ]
+        },
+        "port": 56919,
+        "process": {
+          "exe": "/peer/usr/sbin/gtlsserver",
+          "exit": 0,
+          "finish_ns": 77174227737141,
+          "finished_at": "2026-11-26T11:33:54.125+00:00",
+          "live_at_stop": true,
+          "maps": {
+            "libgnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libgnutls.so.30.37.1",
+              "sha256": "17ffd34fd0bc239903ca37e95bb14eab6ee986c8d1260a5a08f16e0bfc669739"
+            },
+            "libnghttp3.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libnghttp3.so.3.0.2",
+              "sha256": "a8c7afd2a03d374992f6d3b5ad19815bef33c8c877e74c6a525f20d946600271"
+            },
+            "libngtcp2.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2.so.9.0.1",
+              "sha256": "482c896e46056ea537b67fc1340ce3bc8a7ff0a4b2a5da820f80ba41cfb9a93e"
+            },
+            "libngtcp2_crypto_gnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2_crypto_gnutls.so.2.1.0",
+              "sha256": "be73d54efa1686ea661228b28e80c2c97113963370d5127cb66da9db7fa9ac79"
+            }
+          },
+          "parent_pid": 363,
+          "pid": 368,
+          "ready_ns": 77173863862925,
+          "started_at": "2026-11-26T11:33:53.724+00:00",
+          "stop_sent_ns": 77174226539060,
+          "udp_socket_inode": "1435080",
+          "uid": 1000
+        },
+        "qlog": {
+          "packet_rx": 11,
+          "packet_tx": 19,
+          "received_transport_close": [],
+          "request_fin": [
+            0
+          ],
+          "request_streams": [
+            0
+          ],
+          "response_fin": [
+            0
+          ]
+        },
+        "qlog_sha256": "0dc29bf43532010bd1f33f9c259c06a4d93a4b9c5127ca22229b9f9df5e9fbd5",
+        "target": "/challenge-7dcbcd6fd780650082f0b0a327ac4dfa.bin"
+      }
+    },
+    "wrong_ca": {
+      "client": {
+        "abi_version": "neqo-0.32.0/nss-3.131",
+        "auth": {
+          "accepted": false,
+          "chain_and_hostname_ok": false,
+          "expected_leaf_sha256": "b4bde5be2991aa12f99476a2391b89766208e6393733ab055a0bb23f8f71ae32",
+          "hostname": "localhost",
+          "openssl_exit": 2,
+          "openssl_output": "CN = localhost\nerror 20 at 0 depth lookup: unable to get local issuer certificate\nerror /tmp/quic-ngtcp2-634ibwk2/wrong_ca/client/presented-leaf.pem: verification failed",
+          "pin_ok": true,
+          "presented_der_sha256": [
+            "b4bde5be2991aa12f99476a2391b89766208e6393733ab055a0bb23f8f71ae32"
+          ],
+          "trust_anchor_sha256": "b626c489e6ed3074ecffa920688440133514c1b93ef9bb1640d40caf5b99e1f7"
+        },
+        "closed": {
+          "protocol_error": true,
+          "reason": "crypto alert: 49",
+          "state": "closed",
+          "type": "state"
+        },
+        "connected": false,
+        "handle_closed": true,
+        "local": [
+          "127.0.0.1",
+          40435
+        ],
+        "maps": {
+          "libfreebl3.so": {
+            "file_id": [
+              8,
+              1,
+              15024760
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreebl3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreebl3.so"
+          },
+          "libfreeblpriv3.so": {
+            "file_id": [
+              8,
+              1,
+              15024761
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreeblpriv3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreeblpriv3.so"
+          },
+          "libmozsqlite3.so": {
+            "file_id": [
+              8,
+              1,
+              15024762
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libmozsqlite3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libmozsqlite3.so"
+          },
+          "libnecko_quic.so": {
+            "file_id": [
+              8,
+              1,
+              15024209
+            ],
+            "input_path": "/wheels/libnecko_quic.so",
+            "mapped_path": "/wheels/libnecko_quic.so"
+          },
+          "libnspr4.so": {
+            "file_id": [
+              8,
+              1,
+              15024763
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnspr4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnspr4.so"
+          },
+          "libnss3.so": {
+            "file_id": [
+              8,
+              1,
+              15024764
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnss3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnss3.so"
+          },
+          "libnssutil3.so": {
+            "file_id": [
+              8,
+              1,
+              15024765
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnssutil3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnssutil3.so"
+          },
+          "libplc4.so": {
+            "file_id": [
+              8,
+              1,
+              15024766
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplc4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplc4.so"
+          },
+          "libplds4.so": {
+            "file_id": [
+              8,
+              1,
+              15024767
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplds4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplds4.so"
+          },
+          "libsoftokn3.so": {
+            "file_id": [
+              8,
+              1,
+              15024768
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libsoftokn3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libsoftokn3.so"
+          },
+          "libssl3.so": {
+            "file_id": [
+              8,
+              1,
+              15024769
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libssl3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libssl3.so"
+          }
+        },
+        "process": {
+          "exe": "/usr/bin/python3.12",
+          "finish_ns": 77174735272025,
+          "finished_at": "2026-11-26T11:33:54.632+00:00",
+          "pid": 375,
+          "ppid": 363,
+          "python": "3.12.3",
+          "start_ns": 77174713822791,
+          "started_at": "2026-11-26T11:33:54.611+00:00",
+          "uid": 1000
+        },
+        "remote": [
+          "127.0.0.1",
+          54262
+        ],
+        "stream": null,
+        "timing": {
+          "auth_event_ns": 77174723131366,
+          "auth_sent_ns": 77174728971055,
+          "client_closed_ns": 77174732973382
+        }
+      },
+      "passed": true,
+      "peer": {
+        "challenge_inode": {
+          "access": 0,
+          "close_read": 0,
+          "open": 0
+        },
+        "log_sha256": "22710b191f8450080297cdd4f42108e33f2725ef32c1bcdf3d80e6ce99c9d11a",
+        "native_log": {
+          "alpn": [],
+          "received_crypto_alert": [
+            {
+              "error_code": 305,
+              "packet_number": 1,
+              "packet_type": "Handshake",
+              "peer_relative_ms": 15
+            }
+          ],
+          "received_udp": [
+            "[127.0.0.1]:40435"
+          ],
+          "requests": [],
+          "responses": []
+        },
+        "port": 54262,
+        "process": {
+          "exe": "/peer/usr/sbin/gtlsserver",
+          "exit": 0,
+          "finish_ns": 77174958279819,
+          "finished_at": "2026-11-26T11:33:54.855+00:00",
+          "live_at_stop": true,
+          "maps": {
+            "libgnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libgnutls.so.30.37.1",
+              "sha256": "17ffd34fd0bc239903ca37e95bb14eab6ee986c8d1260a5a08f16e0bfc669739"
+            },
+            "libnghttp3.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libnghttp3.so.3.0.2",
+              "sha256": "a8c7afd2a03d374992f6d3b5ad19815bef33c8c877e74c6a525f20d946600271"
+            },
+            "libngtcp2.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2.so.9.0.1",
+              "sha256": "482c896e46056ea537b67fc1340ce3bc8a7ff0a4b2a5da820f80ba41cfb9a93e"
+            },
+            "libngtcp2_crypto_gnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2_crypto_gnutls.so.2.1.0",
+              "sha256": "be73d54efa1686ea661228b28e80c2c97113963370d5127cb66da9db7fa9ac79"
+            }
+          },
+          "parent_pid": 363,
+          "pid": 374,
+          "ready_ns": 77174623318008,
+          "started_at": "2026-11-26T11:33:54.500+00:00",
+          "stop_sent_ns": 77174957061137,
+          "udp_socket_inode": "1434200",
+          "uid": 1000
+        },
+        "qlog": {
+          "packet_rx": 6,
+          "packet_tx": 5,
+          "received_transport_close": [
+            {
+              "error_code": 305,
+              "packet_number": 1,
+              "packet_type": "handshake",
+              "peer_relative_ms": 15
+            }
+          ],
+          "request_fin": [],
+          "request_streams": [],
+          "response_fin": []
+        },
+        "qlog_sha256": "90e46a7bd4c6e1f10d7617260badb4acd12a04119120d2e027eaac21d37e9020",
+        "target": "/challenge-80cc94dd452c79822117c6fd31cad257.bin"
+      }
+    },
+    "wrong_leaf_pin": {
+      "client": {
+        "abi_version": "neqo-0.32.0/nss-3.131",
+        "auth": {
+          "accepted": false,
+          "chain_and_hostname_ok": true,
+          "expected_leaf_sha256": "04bde5be2991aa12f99476a2391b89766208e6393733ab055a0bb23f8f71ae32",
+          "hostname": "localhost",
+          "openssl_exit": 0,
+          "openssl_output": "/tmp/quic-ngtcp2-634ibwk2/wrong_leaf_pin/client/presented-leaf.pem: OK",
+          "pin_ok": false,
+          "presented_der_sha256": [
+            "b4bde5be2991aa12f99476a2391b89766208e6393733ab055a0bb23f8f71ae32"
+          ],
+          "trust_anchor_sha256": "047ee9c93c8a544a169ae52cd93988e1077de18d2070bdea284143c4ba0243e0"
+        },
+        "closed": {
+          "protocol_error": true,
+          "reason": "crypto alert: 49",
+          "state": "closed",
+          "type": "state"
+        },
+        "connected": false,
+        "handle_closed": true,
+        "local": [
+          "127.0.0.1",
+          59009
+        ],
+        "maps": {
+          "libfreebl3.so": {
+            "file_id": [
+              8,
+              1,
+              15024760
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreebl3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreebl3.so"
+          },
+          "libfreeblpriv3.so": {
+            "file_id": [
+              8,
+              1,
+              15024761
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreeblpriv3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libfreeblpriv3.so"
+          },
+          "libmozsqlite3.so": {
+            "file_id": [
+              8,
+              1,
+              15024762
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libmozsqlite3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libmozsqlite3.so"
+          },
+          "libnecko_quic.so": {
+            "file_id": [
+              8,
+              1,
+              15024209
+            ],
+            "input_path": "/wheels/libnecko_quic.so",
+            "mapped_path": "/wheels/libnecko_quic.so"
+          },
+          "libnspr4.so": {
+            "file_id": [
+              8,
+              1,
+              15024763
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnspr4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnspr4.so"
+          },
+          "libnss3.so": {
+            "file_id": [
+              8,
+              1,
+              15024764
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnss3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnss3.so"
+          },
+          "libnssutil3.so": {
+            "file_id": [
+              8,
+              1,
+              15024765
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnssutil3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libnssutil3.so"
+          },
+          "libplc4.so": {
+            "file_id": [
+              8,
+              1,
+              15024766
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplc4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplc4.so"
+          },
+          "libplds4.so": {
+            "file_id": [
+              8,
+              1,
+              15024767
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplds4.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libplds4.so"
+          },
+          "libsoftokn3.so": {
+            "file_id": [
+              8,
+              1,
+              15024768
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libsoftokn3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libsoftokn3.so"
+          },
+          "libssl3.so": {
+            "file_id": [
+              8,
+              1,
+              15024769
+            ],
+            "input_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libssl3.so",
+            "mapped_path": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss/libssl3.so"
+          }
+        },
+        "process": {
+          "exe": "/usr/bin/python3.12",
+          "finish_ns": 77174373340492,
+          "finished_at": "2026-11-26T11:33:54.270+00:00",
+          "pid": 372,
+          "ppid": 363,
+          "python": "3.12.3",
+          "start_ns": 77174348703453,
+          "started_at": "2026-11-26T11:33:54.246+00:00",
+          "uid": 1000
+        },
+        "remote": [
+          "127.0.0.1",
+          34542
+        ],
+        "stream": null,
+        "timing": {
+          "auth_event_ns": 77174357992708,
+          "auth_sent_ns": 77174367144322,
+          "client_closed_ns": 77174371078208
+        }
+      },
+      "passed": true,
+      "peer": {
+        "challenge_inode": {
+          "access": 0,
+          "close_read": 0,
+          "open": 0
+        },
+        "log_sha256": "e83e39c461868c314aec5050dfdcb765b30a365d7e5c3fd920e4be18d8848f77",
+        "native_log": {
+          "alpn": [],
+          "received_crypto_alert": [
+            {
+              "error_code": 305,
+              "packet_number": 1,
+              "packet_type": "Handshake",
+              "peer_relative_ms": 18
+            }
+          ],
+          "received_udp": [
+            "[127.0.0.1]:59009"
+          ],
+          "requests": [],
+          "responses": []
+        },
+        "port": 34542,
+        "process": {
+          "exe": "/peer/usr/sbin/gtlsserver",
+          "exit": 0,
+          "finish_ns": 77174596430925,
+          "finished_at": "2026-11-26T11:33:54.494+00:00",
+          "live_at_stop": true,
+          "maps": {
+            "libgnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libgnutls.so.30.37.1",
+              "sha256": "17ffd34fd0bc239903ca37e95bb14eab6ee986c8d1260a5a08f16e0bfc669739"
+            },
+            "libnghttp3.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libnghttp3.so.3.0.2",
+              "sha256": "a8c7afd2a03d374992f6d3b5ad19815bef33c8c877e74c6a525f20d946600271"
+            },
+            "libngtcp2.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2.so.9.0.1",
+              "sha256": "482c896e46056ea537b67fc1340ce3bc8a7ff0a4b2a5da820f80ba41cfb9a93e"
+            },
+            "libngtcp2_crypto_gnutls.so.": {
+              "path": "/peer/usr/lib/aarch64-linux-gnu/libngtcp2_crypto_gnutls.so.2.1.0",
+              "sha256": "be73d54efa1686ea661228b28e80c2c97113963370d5127cb66da9db7fa9ac79"
+            }
+          },
+          "parent_pid": 363,
+          "pid": 371,
+          "ready_ns": 77174257325388,
+          "started_at": "2026-11-26T11:33:54.134+00:00",
+          "stop_sent_ns": 77174595212604,
+          "udp_socket_inode": "1434190",
+          "uid": 1000
+        },
+        "qlog": {
+          "packet_rx": 6,
+          "packet_tx": 5,
+          "received_transport_close": [
+            {
+              "error_code": 305,
+              "packet_number": 1,
+              "packet_type": "handshake",
+              "peer_relative_ms": 18
+            }
+          ],
+          "request_fin": [],
+          "request_streams": [],
+          "response_fin": []
+        },
+        "qlog_sha256": "517462b05a8e26d741d1e6af7b1874f9522e395949309f922b9189dccdf0b92e",
+        "target": "/challenge-1f6dfbdbb89889c033b7a3d1e9e71431.bin"
+      }
+    }
+  },
+  "controller": {
+    "exe": "/usr/bin/python3.12",
+    "finish_ns": 77174962490025,
+    "finished_at": "2026-11-26T11:33:54.860+00:00",
+    "pid": 363,
+    "ppid": 80,
+    "python": "3.12.3",
+    "start_ns": 77171661449716,
+    "started_at": "2026-11-26T11:33:51.559+00:00",
+    "uid": 1000
+  },
+  "inputs": {
+    "library": "/wheels/libnecko_quic.so",
+    "library_sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8",
+    "limits_s": {
+      "client_process": 14,
+      "exchange": 10,
+      "observation": 0.2,
+      "ready": 5,
+      "stop": 3
+    },
+    "loopback": "127.0.0.1",
+    "peer_expected_package": "ngtcp2-server 0.12.1+dfsg-1+deb12u1build0.24.04.1",
+    "peer_lib_dir": "/peer/usr/lib/aarch64-linux-gnu",
+    "peer_server": "/peer/usr/sbin/gtlsserver",
+    "peer_server_sha256": "cb20d62b51512f0fb871378627c9eb9e671b19cf9fa0b5a68c5288b48e01cf8b",
+    "peer_server_sha256_checked": true,
+    "sdk_bin": "/qa/pair-cwy3l4kg/v/lib/python3.12/site-packages/ruyijs_necko/_native/nss",
+    "sdk_sha256": {
+      "libfreebl3.so": "bfda13d1629340dd4bc5996898f74647230d81bf76e3b14c5f9ae622cbe7790d",
+      "libfreeblpriv3.so": "437f9a211c257cbb8b94371052d48f8365b9910052d35fc6314170847fcb63df",
+      "libmozsqlite3.so": "01a06cdb9445300ca2c8e04d30a1094f74dac7316c64c948763a30858654cff8",
+      "libnspr4.so": "5768cb94185f12d89f8ef7e734609022de5555d9f1447a07dda506f2c82d8609",
+      "libnss3.so": "9fd29965c4ad48822c5a3169dbb797a73e08ac53855aa05849389bc8d67cb5a6",
+      "libnssutil3.so": "1c34455196bbc87a0970f2957ce2203adb5cb129cee571d8d7abb1c0e6a12234",
+      "libplc4.so": "a501d4b25eaf0c8a0ff7cd3bf796c3251bbde600f0d5ee4d805aefce40441a51",
+      "libplds4.so": "aa868639d6d9935f58c039559f965a3d4f4d0c874f0ca33058363948abed9f6f",
+      "libsoftokn3.so": "d384e4130db0204f14cec3ed4262e070a56ce86ff4dfe0ca18e5fa3b03aaf2e0",
+      "libssl3.so": "b8e239a3aab1530c9e8a5c3f4e6d4aee104ec8c46c6bb1dc2a45f7511d325496"
+    }
+  },
+  "passed": true,
+  "schema": "ruyijs-arm64-quic-ngtcp2-interop-v1",
+  "scope": "component C ABI and stock H3 peer on IPv4 loopback only; no installed JS H3 or public network",
+  "test_leaf_der_sha256": "b4bde5be2991aa12f99476a2391b89766208e6393733ab055a0bb23f8f71ae32"
+}

@@ -1,0 +1,72 @@
+{
+  "assets": {
+    "INSTALL-linux-arm64.md": {
+      "bytes": 4926,
+      "id": 795587343,
+      "sha256": "b14d5287dbe019e873ead0a76c0425f335fd3db675336c5d99d07d14fb2ee906"
+    },
+    "SHA256SUMS": {
+      "bytes": 981,
+      "id": 795587422,
+      "sha256": "960074452f3d862167e69c1c9ce53a25bc71fa9258afd1ff5fcb2b44172bf192"
+    },
+    "arm64-r433-release-evidence.tar.gz": {
+      "bytes": 18781,
+      "id": 795587478,
+      "sha256": "cab7dc4c3a29c8990bf4d2d18fec5c3cfe25bdae3b4fbde05b447640f2e876db"
+    },
+    "libnecko_quic.so": {
+      "bytes": 3600800,
+      "id": 795587533,
+      "sha256": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8"
+    },
+    "release-lock.json": {
+      "bytes": 1121,
+      "id": 795587677,
+      "sha256": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96"
+    },
+    "requirements-linux-aarch64.txt": {
+      "bytes": 230,
+      "id": 795587738,
+      "sha256": "7e9c082fb7bf689805de1776acc9d047cfbdda99480b2bef1c7d5925bb202fbf"
+    },
+    "ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl": {
+      "bytes": 143356091,
+      "id": 795587777,
+      "sha256": "43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218"
+    },
+    "ruyijs-arm64-r433-host1-recovery.tar.gz": {
+      "bytes": 23237,
+      "id": 795588370,
+      "sha256": "f2bfcaf3de0cfe2741ec86aea982e4fe9ebffd9087de94e65543d490b26a267e"
+    },
+    "ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl": {
+      "bytes": 2587660,
+      "id": 795588440,
+      "sha256": "0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf"
+    },
+    "validation.json": {
+      "bytes": 4577,
+      "id": 795588560,
+      "sha256": "b5a905319346a650ce7dbeee6a5c3f30131ffa66295c4b3aff98f37ec81331c7"
+    },
+    "wheel-build.json": {
+      "bytes": 2461,
+      "id": 795588590,
+      "sha256": "73f670777a59c7fa8bb3042c66bf4b5936e71ed37b4b682fbf2fd6bd75581656"
+    }
+  },
+  "draft": false,
+  "exact_bytes_all_assets": true,
+  "id": 459320661,
+  "passed": true,
+  "prerelease": false,
+  "private_repository": true,
+  "published_at": "2026-11-26T11:31:32Z",
+  "readback_utc": "2026-11-26T11:31:49.320993+00:00",
+  "release_lock_sha256": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96",
+  "release_tag": "linux-arm64-product-r433",
+  "schema": 1,
+  "target_commit": "1ee61b9e368c53da6cb4d37ac8edf4e79001df93",
+  "url": "https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-product-r433"
+}

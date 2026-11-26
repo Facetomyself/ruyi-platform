@@ -1,0 +1,15 @@
+{
+  "active": "r432-host1",
+  "archive": "/home/ubuntu/ruyijs-artifacts/r433-host1/ruyijs-arm64-r433-host1.docker.tar.gz",
+  "bytes": 525262159,
+  "loaded": false,
+  "mode": "install",
+  "passed": true,
+  "previous": "r432-base-host1",
+  "refs": {
+    "ruyijs:arm64-r433-base-host1": "sha256:9476cafeb33264ea9948d8f351db710e0bd8a93d794e2e9a5f16142870a3f2b5",
+    "ruyijs:arm64-r433-host1": "sha256:5661a38cdf25d80b0df12119ea8e2e8c6881d84f4790e5dd62b57614f9c6d821"
+  },
+  "registered": [],
+  "sha256": "7504785e56fb0f00923b3badc9e60f5ff57e11785d57a4c5946655a7e0bb03ef"
+}

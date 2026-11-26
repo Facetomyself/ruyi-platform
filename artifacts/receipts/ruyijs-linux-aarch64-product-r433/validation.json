@@ -1,0 +1,178 @@
+{
+  "acceptance": {
+    "blob_file_fields": "8/8",
+    "clean_base_install": true,
+    "clean_paired_install": true,
+    "companion_component_gates": 9,
+    "default_Context_and_dedicated_worker_used_packaged_sha256": true,
+    "document_permission_fields": "15/15",
+    "fresh_release_download_executed": true,
+    "https_correct_pin": 200,
+    "https_wrong_pin_peer_bytes": 0,
+    "installed_wheel_owns_executable": true,
+    "native_product_gates": 13,
+    "native_quic_h3_control_cases": [
+      "correct_pin",
+      "wrong_ca",
+      "wrong_leaf_pin"
+    ],
+    "native_quic_is_default_js_routing": false,
+    "pip_check": true,
+    "preexisting_r432_upgrade": true,
+    "three_identical_native_packs": true,
+    "tls_navigation": true,
+    "uninstall_companion_preserves_base": true,
+    "window_worker_blob_assertions": 116
+  },
+  "all_published_assets_downloaded_and_hashed": 11,
+  "application_commit": "10b6e5a5f2486f7b7d7ec83e3ec9707a8f8d1bb1",
+  "checked_at": "2026-11-26T11:36:24.002196+00:00",
+  "deployment": {
+    "alias": "ruyijs:arm64-use",
+    "cli_eval_6x7": 42,
+    "current": "r433-host1",
+    "current_id": "sha256:5661a38cdf25d80b0df12119ea8e2e8c6881d84f4790e5dd62b57614f9c6d821",
+    "entry": "/home/ubuntu/.local/bin/ruyijs",
+    "final_maintenance_receipt_at": "2026-11-26T11:35:19.422783+00:00",
+    "idempotent_reactivation_changed": false,
+    "live_venv_versions": [
+      "0.2.2+inner.20261101191032.r433",
+      "0.2.39+inner.r433"
+    ],
+    "manage": "/home/ubuntu/.local/bin/ruyijsctl",
+    "matching_cli_and_qa_containers_remaining": 0,
+    "matching_listeners_across_deployment": 13,
+    "old_manifests_unchanged": true,
+    "previous": "r432-host1",
+    "previous_full_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+    "r433_base_recovery_id": "sha256:9476cafeb33264ea9948d8f351db710e0bd8a93d794e2e9a5f16142870a3f2b5",
+    "real_transition": [
+      {
+        "at": "2026-11-26T11:34:39.830556+00:00",
+        "current": "r433-host1",
+        "image_id": "sha256:5661a38cdf25d80b0df12119ea8e2e8c6881d84f4790e5dd62b57614f9c6d821",
+        "previous": "r432-host1",
+        "versions": [
+          "0.2.2+inner.20261101191032.r433",
+          "0.2.39+inner.r433"
+        ]
+      },
+      {
+        "at": "2026-11-26T11:34:47.196963+00:00",
+        "current": "r432-host1",
+        "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+        "previous": "r433-host1",
+        "versions": [
+          "0.2.2+inner.20261101191032.r432",
+          "0.2.39+inner.r432"
+        ]
+      },
+      {
+        "at": "2026-11-26T11:35:04.233898+00:00",
+        "current": "r433-host1",
+        "image_id": "sha256:5661a38cdf25d80b0df12119ea8e2e8c6881d84f4790e5dd62b57614f9c6d821",
+        "previous": "r432-host1",
+        "versions": [
+          "0.2.2+inner.20261101191032.r433",
+          "0.2.39+inner.r433"
+        ]
+      }
+    ],
+    "retained_r432_base_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+    "runtime_limits": {
+      "base": "0.2.2+inner.20261101191032.r433",
+      "cpu": "200000 100000",
+      "http1": "0.2.39+inner.r433",
+      "interfaces": [
+        [
+          1,
+          "lo"
+        ]
+      ],
+      "memory": "2147483648",
+      "pids": "192",
+      "read_only": true,
+      "user": 10001
+    },
+    "systemd_docker": "active",
+    "systemd_ssh": "active",
+    "unchanged_ruyidom_wrapper_and_use_tag": true
+  },
+  "evidence_sha256": {
+    "containers/downloaded-01.json": "6d0bff7c87682bce25963f697cc02bce3f084da14d3731f1802e5d41f9e1d929",
+    "containers/qa-01.json": "d0f5effa04bd38c6d7e6a15570a2be2ce38578c72e82a1187eb6b42d5c2ea9fc",
+    "final-pack-readback.json": "0e7fc7e2ca70b2ba4f17c2abdf90bba42f23c824c7d3df8e17d9c12e02a88872",
+    "github-final.json": "f48a4cf6ea12d7bd82ff3554bd973ce2461f0af67067455bb7d0a96f2dc5f613",
+    "image-build/images.json": "84d8dd1fd47d185e8f5c6e8564ba7ee41f315295bd6ddc2c413fced9c852043b",
+    "independent-live.json": "70b2b5633aae22a3d966f81e6976c1e3ce2f9173a70a7e002e4e401193a7d564",
+    "kit-check/check.json": "16dfcf4ddf63005b7971eebeb347cb7b9f76216a022db2023404526f3900d051",
+    "kit-check/install.json": "cc388ee618cdc86fc0d847fc194748c7897b5777eef6ad81c0c2a673f4d7f65e",
+    "live/production-checks.json": "af7d068605931c684a178c8cf78dc78e9a934abc4d6e475737cc8d8020975305",
+    "live/result.json": "16fa18ae0d258f2d43968dff8ad543096538bd369539da2d63b0a3adad5a25f0",
+    "offsite-backup.json": "2c8de2b8ec89680a8984e9ae516cb7858c7415673e80a39d947141a2759e7b8a",
+    "prepare/backup.json": "022bd40a56afd31dd61a41d09bc0d5f0e137aa1ef3dac2c563a40276507f7af2",
+    "prepare/restore.json": "2a26a901f4a61e1b1d7fea728a631d6702803df3a9a9ce03bb9cf8be948bb675",
+    "prepare/result.json": "1e1bf2cba99e5b955381824d0e964d11af705f1ab9a237572878123c6f5aca36",
+    "qa-01/installed-validation.json": "c8698a1ec8a52577ec59e8656c243162203ff8810fa5fa30a6fa3706364424f8",
+    "qa-downloaded/fields.json": "51b2ef358e106bbb5a9b038101751d0929436344f29cf3cf55357532025f36e2",
+    "qa-downloaded/installed-validation.json": "5b160539c89961d6d327edec7b271e3e19a3832218ba71986fb9b404fd990f93",
+    "qa-downloaded/ngtcp2.json": "06f33b5935b6c5c581d8420d0682e4b3ee93a8f3a115a0132b8aae6b3a7a12a4",
+    "registered/r432-host1.json": "7e3934c5977761e8b243c3cc4894d17a80c4b21177f12cef930a3e7de488c264",
+    "registered/r433-base-host1.json": "6da08bea71226fb24c844e4e134ffefd27934773f141c1eb8b9538a5602b70e3",
+    "registered/r433-host1.json": "15a66b47eefde40aed52744e769de612457bae8aa5d49c674e7765d280a39f6f",
+    "release-download.json": "76a33b9f7ef173687d94ee14f8bb8f417dc89644b152d743615312ceb624106a",
+    "release/SHA256SUMS": "960074452f3d862167e69c1c9ce53a25bc71fa9258afd1ff5fcb2b44172bf192",
+    "release/release-lock.json": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96",
+    "release/validation.json": "b5a905319346a650ce7dbeee6a5c3f30131ffa66295c4b3aff98f37ec81331c7",
+    "release/wheel-build.json": "73f670777a59c7fa8bb3042c66bf4b5936e71ed37b4b682fbf2fd6bd75581656"
+  },
+  "github_release_id": 459320661,
+  "host": "oracle-reverse-dev",
+  "linux_arm64_shell_sha256": "f67b6d0103c3f9106f4e86d3404baff4f86e482a1856b553c429493143875e23",
+  "passed": true,
+  "platform": {
+    "cpu": "aarch64",
+    "glibc": "glibc 2.39",
+    "os": "Ubuntu 24.04",
+    "python": "3.12.3",
+    "wheel_tag": "py3-none-linux_aarch64"
+  },
+  "private_repository": "Facetomyself/ruyijs-inner",
+  "private_src_tree": "b33d470db6c128948e8945c3338c8877292d8495",
+  "recipe_commit": "1ee61b9e368c53da6cb4d37ac8edf4e79001df93",
+  "recovery": {
+    "bytes": 525262159,
+    "clean_machine_cold_restore_tested": false,
+    "decrypted_hash_checked": true,
+    "local_plain_dual_image_archive": "/home/ubuntu/ruyijs-artifacts/r433-host1/ruyijs-arm64-r433-host1.docker.tar.gz",
+    "offhost": "oracle-dsh",
+    "offhost_ciphertext_bytes": 525390512,
+    "offhost_ciphertext_sha256": "9c12ef8f05f14598296b5b4741e9d962233dbb3822dc76a2f59029285166b95b",
+    "private_docker_registry_push": false,
+    "recovery_kit_check_and_managed_install_passed": true,
+    "same_host_docker_load_and_verify_both_ids": true,
+    "sha256": "7504785e56fb0f00923b3badc9e60f5ff57e11785d57a4c5946655a7e0bb03ef"
+  },
+  "release_lock_sha256": "481c8d25e7b6ba30a2f12e56692067b1792299e1511cebcb8fd17b341edf6d96",
+  "release_stable": true,
+  "release_tag": "linux-arm64-product-r433",
+  "release_url": "https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-product-r433",
+  "released_at_utc": "2026-11-26T11:31:32Z",
+  "schema": "ruyijs-r433-release-and-production-deployment-v1",
+  "wheels": {
+    "ruyijs": {
+      "bytes": 143356091,
+      "filename": "ruyijs-0.2.2+inner.20261101191032.r433-py3-none-linux_aarch64.whl",
+      "sha256": "43f9bdc7ee7cea17747d1d08fd8f0d275fca5d5ac685af6d98e11834292ba218",
+      "url": "https://github.com/Facetomyself/ruyijs-inner/releases/download/linux-arm64-product-r433/ruyijs-0.2.2%2Binner.20261101191032.r433-py3-none-linux_aarch64.whl",
+      "version": "0.2.2+inner.20261101191032.r433"
+    },
+    "ruyijs-http1": {
+      "bytes": 2587660,
+      "filename": "ruyijs_http1-0.2.39+inner.r433-py3-none-linux_aarch64.whl",
+      "sha256": "0104110889fa3317e02b308824b8e53a28f79e5723c1ca279a7a078b6a2803cf",
+      "url": "https://github.com/Facetomyself/ruyijs-inner/releases/download/linux-arm64-product-r433/ruyijs_http1-0.2.39%2Binner.r433-py3-none-linux_aarch64.whl",
+      "version": "0.2.39+inner.r433"
+    }
+  }
+}

@@ -109,6 +109,8 @@ git ls-tree HEAD firefox   # 子模块 pin = 2887d9de1f69c0e9776413da80e7ba0d122
 | 挂载 | `submodules/ruyijs` |
 | 描述 | `Private inner ruyiJS 0.2.2 tool tree` |
 | 状态 | 语义重建进行中，见 `projects/ruyijs/reverse-analysis.md` |
+| Linux ARM64 正式发行 | [`linux-arm64-product-r433`](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-product-r433)，配方和平台 gitlink `1ee61b9e368c53da6cb4d37ac8edf4e79001df93`；应用提交 `10b6e5a5f2486f7b7d7ec83e3ec9707a8f8d1bb1` |
+| 生产 / 回滚 | `oracle-reverse-dev`：`r433-host1` / `r432-host1`（均为完整版）。双 wheel 和镜像 ID 见[发行与部署回执](artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)。 |
 
 ### 还原进度（不动点）
 

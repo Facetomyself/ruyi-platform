@@ -1,0 +1,96 @@
+{
+  "candidate": {
+    "name": "private",
+    "version": "0.2.2+inner.20261101191032.r433"
+  },
+  "files_sha256": {
+    "fresh-edges.log": "a737f6f90e8a14ed53681e2e4af0195c18c5fe0ddff7525a29198f40c971641f",
+    "stock-reference.json": "928adbced0d58ead93e50fe092eca02bf9a7a5fa44708ac722770b3367abdd36"
+  },
+  "fixture_sha256": "ddc95dd58d62e2e6c4e270663740b8ae7c46a258394f2f53de37e2e4b4afad54",
+  "groups": {
+    "blob_file": {
+      "differences": [],
+      "equal_on_fixture": true,
+      "matched": 8,
+      "tested_fields": 8
+    },
+    "canvas_159_control": {
+      "differences": [],
+      "equal_on_fixture": true,
+      "matched": 1,
+      "tested_fields": 1
+    },
+    "color": {
+      "differences": [
+        {
+          "candidate": "rgb(calc(10 + 5), 20, 30)",
+          "field": "widgets.colors.numericCalc",
+          "firefox159": "rgb(15, 20, 30)"
+        }
+      ],
+      "equal_on_fixture": false,
+      "matched": 2,
+      "tested_fields": 3
+    },
+    "permissions": {
+      "differences": [],
+      "equal_on_fixture": true,
+      "matched": 15,
+      "tested_fields": 15
+    },
+    "pointer_synthetic": {
+      "differences": [
+        {
+          "candidate": 1,
+          "field": "widgets.syntheticPointer.before",
+          "firefox159": 0
+        }
+      ],
+      "equal_on_fixture": false,
+      "matched": 1,
+      "tested_fields": 2
+    },
+    "scroll_resolved": {
+      "differences": [
+        {
+          "candidate": "50%",
+          "field": "widgets.scrollbox.relative.width",
+          "firefox159": "110px"
+        },
+        {
+          "candidate": "50%",
+          "field": "widgets.scrollbox.noBar.width",
+          "firefox159": "110px"
+        }
+      ],
+      "equal_on_fixture": false,
+      "matched": 7,
+      "tested_fields": 9
+    },
+    "transform": {
+      "differences": [
+        {
+          "candidate": "translate(12px, 5px)",
+          "field": "widgets.transforms.flat",
+          "firefox159": "matrix(1, 0, 0, 1, 12, 5)"
+        },
+        {
+          "candidate": "translate3d(10px, 6px, 4px) scale3d(2, 1, 1)",
+          "field": "widgets.transforms.spatial",
+          "firefox159": "matrix3d(2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 10, 6, 4, 1)"
+        }
+      ],
+      "equal_on_fixture": false,
+      "matched": 1,
+      "tested_fields": 3
+    }
+  },
+  "reference": {
+    "build_id": "20261022150525",
+    "name": "firefox",
+    "source_stamp": "5add844c26613d7e4d84c799d6e23cf987b1240d",
+    "version": "159.0"
+  },
+  "schema": 1
+}

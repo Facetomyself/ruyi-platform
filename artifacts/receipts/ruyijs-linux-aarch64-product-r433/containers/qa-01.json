@@ -1,0 +1,28 @@
+{
+  "attempt": "qa-01",
+  "base_image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "cid": "cb4c2487aac14d198e37ce7e9a117debe9e38ee674a0c54302efb72fbc42fd46",
+  "cpus": 1500000000,
+  "exit": 0,
+  "finished": "2026-11-26T11:15:58.227973236Z",
+  "inputs": {
+    "/bootstrap": "ro",
+    "/checks/ci": "ro",
+    "/fixture": "ro",
+    "/legacy": "ro",
+    "/peer": "ro",
+    "/qa": "rw",
+    "/usr/bin/openssl": "ro",
+    "/wheels": "ro"
+  },
+  "log_sha256": "e2fe14983ff097903b099f282db8f506b705eec64f0974f84b299f91c6d34940",
+  "memory": 2147483648,
+  "memory_and_swap": 2147483648,
+  "network": "none",
+  "oom": false,
+  "phase": "qualify",
+  "root_readonly": true,
+  "schema": 1,
+  "started": "2026-11-26T11:14:42.619920931Z",
+  "user": "1000:1000"
+}
