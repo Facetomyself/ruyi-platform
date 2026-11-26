@@ -160,6 +160,9 @@ trace_gaps=artifacts/receipts/trace-linux-gap-closure-v1
 if python3 -B "$trace_gaps/verify_candidate_002.py" | cmp -s - "$trace_gaps/candidate-002-review.json"; then ok '双架构 JSCall / Wasm / HTTP 六个有界实采格'; else bad 'Trace native 002 proof' 'byte or semantic mismatch'; fi
 if python3 -B "$trace_gaps/electron-owner/verify_candidate_d.py" | cmp -s - "$trace_gaps/electron-owner/candidate-d-review.json"; then ok '双架构 Electron main 持有的十次真实生命周期'; else bad 'Trace Electron owner proof' 'byte or semantic mismatch'; fi
 if python3 -B "$trace_gaps/patched-websocket/verify.py" | cmp -s - "$trace_gaps/patched-websocket/arm64-review.json"; then ok 'ARM64 元数据内核/帧句柄与同镜像 22 案'; else bad 'Trace native WS ARM evidence' 'byte or semantic mismatch'; fi
+trace_ws=$trace_gaps/patched-websocket
+if python3 -B "$trace_ws/verify_amd64.py" --zip "$trace_ws/amd64-originals.zip" --receipt-replay "$trace_ws/amd64-native-omni-review.json" --pins "$trace_ws/amd64-review-pins.json" --pins-sha256 55663f92213e105a82f40d3fc18080996e1a75323ca8d2b4c96665d2e7905135 >/dev/null && python3 -B "$trace_ws/join_reviews.py" | cmp -s - "$trace_ws/two-architecture-review.json"; then ok 'AMD64 的 419 份原件和双架构 44 个独立 run'; else bad 'Trace native WS dual evidence' 'byte or semantic mismatch'; fi
+python3 -B -m unittest discover -s tests -p 'test_trace_native_beta_publication.py' -q || fail=1
 if python3 -B "$trace_gaps/desktop-seat/verify_desktop_seat.py" | cmp -s - "$trace_gaps/desktop-seat/desktop-seat-review.json"; then ok '真实虚拟席位观测和未签的实体/人工 IME 分级'; else bad 'Trace local seat evidence' 'scope or semantic mismatch'; fi
 python3 -B -m unittest discover -s tests -p 'test_trace_gap_prereleases.py' -q || fail=1
 

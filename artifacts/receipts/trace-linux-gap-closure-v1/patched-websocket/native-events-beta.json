@@ -1,0 +1,232 @@
+{
+  "architectures": {
+    "amd64": {
+      "archive_custody_report_sha256": "0eaec8587247306c09763529add46ed6cbcd4075c9b36f39b7b1ff0ce7eaf5f3",
+      "artifacts": {
+        "docker": {
+          "bytes": 508204336,
+          "name": "ruyitrace-native-amd64-a0cec2d716812341.docker.tar.gz",
+          "sha256": "9e01fc527e4d1c1c123159899797e0f17d670548aff83ebb3c9084caabe56489"
+        },
+        "kernel": {
+          "bytes": 81716568,
+          "name": "firefox-159.0.en-US.linux-x86_64.tar.xz",
+          "sha256": "25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982"
+        }
+      },
+      "authenticated_core_evidence_sha256": "b6f269eaa52b32c3b064347750a24825b0dacec5a85c39ed6d1f1fd1cb470494",
+      "authenticated_evidence_sha256": "33ffe0f3dd12291d1e4f45585d5ece952c8b86493bf1284619a052b35f1db7e5",
+      "custody_case_recheck_sha256": "2ccb00c0882034869061e88b76154d6a20d85719715e055233f25fdf5f300451",
+      "firefox_build_id": "20261123161729",
+      "firefox_libxul_elf_build_id": "dab69af38a09388214d0d5883d7d962919926179",
+      "firefox_libxul_sha256": "e6d1befc5d1b097bdc63059d2947bc2d7a011e8d144590496b05eaf3bd06c06b",
+      "image_id": "sha256:a0cec2d71681234165f6e22d9b8f52f993fdbb6723106152ec74a513b97f8e64",
+      "native_cases": {
+        "http": 6,
+        "jscall": 5,
+        "wasm": 6,
+        "websocket": 5
+      },
+      "native_cases_passed": 22,
+      "platform": "linux/amd64",
+      "rootfs_diffids": [
+        "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+        "sha256:90810bb504339255580eff707ddd64f8d198d525878f3567d0d90075e0214e02",
+        "sha256:986a00917d0a1bbdc30a2f408f9313928344b2611cfe217ba1197d7e1a7fed2a",
+        "sha256:79028e4d0820b542ceac3706662bf9db9f331a68d34320a82dd787e480092643",
+        "sha256:0a9bb42e0be98bafa264c80cab17f90380e381a08b5e5e70c57e8135ef7e8d06"
+      ],
+      "source_receipt_sha256": {
+        "image_provenance": "ea8b01dd2d029b811967df069e0d94f35fccf7ff95fa0734a1fa85e7785813ac",
+        "intake_matrix": "7a428a31345fa9f4914c6bcbd75051016e6ef7ab576f0f2322128f29ca605823",
+        "kernel_lineage": "c8ba2ea8d95f5c1edd32baff37540f4c29fd60f40f661a9aa67299eab19115e5",
+        "lane_identity": "2d2ada2bff2f7723b9b8ffb31e795d9b851afa13b7bd1ec0eed6b762f4d28129",
+        "operator_readback": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "standalone_omni_comparison": "6dd53616ccfe01f19792aae10b140ede47ef7c5d05bbcc40e9fcd28ed2af7cb0",
+        "websocket_readback": "35ac95b1efddff644d818cba89e6ddab5a1e25696340ae5a621db710772ec682"
+      }
+    },
+    "arm64": {
+      "archive_custody_report_sha256": "2b812b1db9c8fd089cd600e33e4dc6667ac0e78209eb759e8672c35f43f874bf",
+      "artifacts": {
+        "docker": {
+          "bytes": 494839061,
+          "name": "ruyitrace-native-arm64-ecb43c4ef8f448d4.docker.tar.gz",
+          "sha256": "10d940ce5a502fe7652ae7685534e16c7fdeb03579ea48d730453597e458ee33"
+        },
+        "kernel": {
+          "bytes": 74812416,
+          "name": "firefox-159.0.en-US.linux-aarch64.tar.xz",
+          "sha256": "53747262e3af06ec0e4b98806efed38225b51b3c83b8b8d877eba133e4c9eacf"
+        }
+      },
+      "authenticated_core_evidence_sha256": "25241a28d98136e26d215d9c05580e87aea20fad5487e374263ab42e2198a77a",
+      "authenticated_evidence_sha256": "d0a611a1ce6be4d8040a20f6d10b68b19b0aa992772356d995329c3bb57a2a85",
+      "custody_case_recheck_sha256": "f0224dec1b466a096dccdc69e73daaa48df0a145b6c50164b8bbdbad9f32ffc1",
+      "firefox_build_id": "20261125162841",
+      "firefox_libxul_elf_build_id": "8c6ec61b11b671e14bdcefbca4c9a79b23a357cf",
+      "firefox_libxul_sha256": "2e67090fb4450346076c45a39b1871d589f5da458a2f2cba710091c3e337fb24",
+      "image_id": "sha256:ecb43c4ef8f448d41bce4213954bb202d308287fc21826ad38952b52e331c8ab",
+      "native_cases": {
+        "http": 6,
+        "jscall": 5,
+        "wasm": 6,
+        "websocket": 5
+      },
+      "native_cases_passed": 22,
+      "platform": "linux/arm64",
+      "rootfs_diffids": [
+        "sha256:aa73cd41dfa9a0ae611beb63a869d6a014956ce82ce395d7d6cf83015b185e60",
+        "sha256:d239973e2a5817fa5f7ce90fc65535eb5a8572d332a48cefa3e64724e22dd6ee",
+        "sha256:bc7b3fc63789854e267e27bf1eebf62222f5222380f5e3594afa98f311b79473",
+        "sha256:e80969ea00353a206a9df5f0e60fb486206e4ac08e5a141f90a3af2203572274",
+        "sha256:02de6467408015a216fe1915fe8fcd1b1b151919a72c662229865383b3731226"
+      ],
+      "source_receipt_sha256": {
+        "image_provenance": "26a2aa3dc226a79ecf746d68862b423b2fbe0f3824152f6676924fd89a56c215",
+        "intake_matrix": "b936e363002a83072150264106f2e9563d9b4cb6f8e72273bdb926250008d1a3",
+        "kernel_lineage": "edeb0309b0ff7fb8f2416a668a334f597b20817dc70c90d6a197f9a88b06b4df",
+        "operator_readback": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "websocket_readback": "91da79fd668b87e67322284b84e0b3dff47c2a1d14926755a37f762709206233"
+      }
+    }
+  },
+  "gecko_patch_sha256": "3cecbf0b086ff1b630f79ce493d2c4f64782bdf96feb05a9d0a9db57fff3e45b",
+  "gecko_source": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "ordinary_cli2_and_site": "unchanged",
+  "physical_display": "outside_beta_scope",
+  "portable_skill": {
+    "bytes": 97591,
+    "member_files": 30,
+    "name": "ruyitrace-skill-v0.2.0.zip",
+    "sha256": "5fd47b719240490db04e9a339e8ba45d5fcfbfb83e492aa49b4d69a9a0bd78e5"
+  },
+  "prerelease": true,
+  "private": true,
+  "runtime_source": "f177682d8dc4e028ad450a00f2d78acc4063e321",
+  "schema": "ruyitrace.native-events-private-beta.v1",
+  "scope": "installed-native-closed-loop-lab-cases-only",
+  "supplemental": {
+    "amd64": {
+      "operator_http_alternate": {
+        "complete": true,
+        "evidence_sha256": "3df9f0d867d551f35afcc04f569756f1583df7457547c0bff470d033ed91315c",
+        "http_statuses": [
+          302,
+          418
+        ],
+        "matched_rows": 2,
+        "source_receipt_sha256": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "state": "measured"
+      },
+      "operator_http_direct": {
+        "complete": true,
+        "evidence_sha256": "13b030ccea2bb4289497f3014adca3e53874f683b7186b7c6d0aca05297d0a8c",
+        "http_statuses": [
+          418
+        ],
+        "matched_rows": 1,
+        "source_receipt_sha256": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "state": "measured"
+      },
+      "operator_jscall_alternate": {
+        "complete": true,
+        "evidence_sha256": "50b605687f9c486da0139a1ac10b74b93b237a1f6096a7f15ca8fdeae6aefbc1",
+        "matched_rows": 2,
+        "source_receipt_sha256": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "state": "measured"
+      },
+      "operator_wrong_document": {
+        "complete": false,
+        "evidence_sha256": "a76817fdfbd9a9b6a53dacc34929ac378ecf0b79c7b8611a062b0b13425ab471",
+        "source_receipt_sha256": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "state": "out_of_scope_no_ipc_ready"
+      },
+      "websocket_oversize": {
+        "complete": false,
+        "evidence_sha256": "ee1afebb565319666ed25e27e3d4b43ed32b644e1f5f1d764a4c872ac44073ce",
+        "limit_drops": 1,
+        "matched_rows": 2,
+        "peer_payload_lengths": [
+          65537
+        ],
+        "source_receipt_sha256": "35ac95b1efddff644d818cba89e6ddab5a1e25696340ae5a621db710772ec682",
+        "state": "partial_as_expected"
+      },
+      "websocket_selected_route": {
+        "complete": true,
+        "evidence_sha256": "2e326cf3c05a4942f46b7522ae3072da856befc01ff816bed507ade4cfa607d7",
+        "limit_drops": 0,
+        "matched_rows": 3,
+        "peer_payload_lengths": [
+          5,
+          9
+        ],
+        "source_receipt_sha256": "35ac95b1efddff644d818cba89e6ddab5a1e25696340ae5a621db710772ec682",
+        "state": "measured"
+      }
+    },
+    "arm64": {
+      "operator_http_alternate": {
+        "complete": true,
+        "evidence_sha256": "d5e72c021f6c76361c6076aee408906d2bfa56602fc3debcc9cbbd9ca50d247e",
+        "http_statuses": [
+          302,
+          418
+        ],
+        "matched_rows": 2,
+        "source_receipt_sha256": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "state": "measured"
+      },
+      "operator_http_direct": {
+        "complete": true,
+        "evidence_sha256": "5cc6a605ee0fdad39e31aea02b74c427d6938e25b7352b30e322bcc53d5229c5",
+        "http_statuses": [
+          418
+        ],
+        "matched_rows": 1,
+        "source_receipt_sha256": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "state": "measured"
+      },
+      "operator_jscall_alternate": {
+        "complete": true,
+        "evidence_sha256": "a6761540f5e2539f7c82bdb9e4ac76de9a3e9e0b8bf1a6de921416fcf91b0237",
+        "matched_rows": 2,
+        "source_receipt_sha256": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "state": "measured"
+      },
+      "operator_wrong_document": {
+        "complete": false,
+        "evidence_sha256": "71d813d98e7de6fe2aaf8f45ba59c779a6b697f9d976765a9ad45b29566dd501",
+        "source_receipt_sha256": "472ebbc5c9e5881f00ac72399efdf582c4609fb3550c723cb991f2b0c2418bb2",
+        "state": "out_of_scope_no_ipc_ready"
+      },
+      "websocket_oversize": {
+        "complete": false,
+        "evidence_sha256": "5ce778ba16bd5103cfc819f83ea0fa7a1008a9dd199a770fb84c5609b630ce34",
+        "limit_drops": 1,
+        "matched_rows": 2,
+        "peer_payload_lengths": [
+          65537
+        ],
+        "source_receipt_sha256": "91da79fd668b87e67322284b84e0b3dff47c2a1d14926755a37f762709206233",
+        "state": "partial_as_expected"
+      },
+      "websocket_selected_route": {
+        "complete": true,
+        "evidence_sha256": "bdbaec94809c2f9cfe28e0ad06a38492283d95402bc09937ade97755c962474e",
+        "limit_drops": 0,
+        "matched_rows": 3,
+        "peer_payload_lengths": [
+          5,
+          9
+        ],
+        "source_receipt_sha256": "91da79fd668b87e67322284b84e0b3dff47c2a1d14926755a37f762709206233",
+        "state": "measured"
+      }
+    }
+  },
+  "system_ime": "outside_beta_scope",
+  "tag": "native-events-v0.2.0-beta.1",
+  "tag_commit": "e407308c5ea67ddb3a57d0999db66e66d6e68691"
+}

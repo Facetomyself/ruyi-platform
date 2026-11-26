@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T22:27:06+08:00'
+generated_at: '2026-11-26T23:49:14+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -2426,7 +2426,23 @@ projects:
         kernel_sha256: 53747262e3af06ec0e4b98806efed38225b51b3c83b8b8d877eba133e4c9eacf
         review: artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/arm64-review.json
         full_bytes: artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/arm64-full-byte-review.json
-      amd64: {state: native_build_in_progress_no_final_receipt}
+      amd64:
+        state: scoped_native_case_and_archive_readback_verified
+        cases: {wasm: 6, jscall: 5, http: 6, websocket: 5}
+        archive_sha256: 9e01fc527e4d1c1c123159899797e0f17d670548aff83ebb3c9084caabe56489
+        kernel_sha256: 25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982
+        review: artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/amd64-review.json
+        full_bytes: artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/amd64-full-byte-review.json
+      joint_review: artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/two-architecture-review.json
+      joint_review_sha256: 8e7f53b446341cc0bedf8e2c321bbf087a5b2b5916207e4281d5bda8112fefbb
+      distinct_native_runs: 44
+      beta_tag: native-events-v0.2.0-beta.1
+      beta_tag_commit: e407308c5ea67ddb3a57d0999db66e66d6e68691
+      beta_release_id: 459605674
+      beta_published_utc: '2026-11-26T15:40:12Z'
+      post_publication_https_readbacks: 8
+      publication_proof: artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/beta-published.json
+      portable_skill_sha256: 5fd47b719240490db04e9a339e8ba45d5fcfbfb83e492aa49b4d69a9a0bd78e5
       default_site_changed: false
     linux_electron_owner_prerelease:
       tag: linux-electron-owner-v0.1.0-alpha.1

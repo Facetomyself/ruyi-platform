@@ -1,0 +1,150 @@
+{
+  "approval_sha256": "2b6f9fc8805a8dc8e8eda6a8642ab8499b1a0ff051b4360e61df109c33b7b08c",
+  "assets": {
+    "BETA-ZH.md": {
+      "asset_created_at": "2026-11-26T15:40:07Z",
+      "asset_updated_at": "2026-11-26T15:40:07Z",
+      "authorization_forwarded_to_cdn": false,
+      "bytes": 8695,
+      "canonical_url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.2.0-beta.1/BETA-ZH.md",
+      "github_digest": "sha256:429b7f690a8fdeaad9716b39f2e01d535ef23a48cf1d0c1074449804076e5131",
+      "hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "id": 796558557,
+      "readback_utc": "2026-11-26T15:41:48+00:00",
+      "sha256": "429b7f690a8fdeaad9716b39f2e01d535ef23a48cf1d0c1074449804076e5131"
+    },
+    "SHA256SUMS": {
+      "asset_created_at": "2026-11-26T15:40:07Z",
+      "asset_updated_at": "2026-11-26T15:40:08Z",
+      "authorization_forwarded_to_cdn": false,
+      "bytes": 713,
+      "canonical_url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.2.0-beta.1/SHA256SUMS",
+      "github_digest": "sha256:1f3537c24dfb16a58de44d37437f2fb30596bb5af96a23b459bfcdc40f25bbb1",
+      "hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "id": 796558612,
+      "readback_utc": "2026-11-26T15:41:48+00:00",
+      "sha256": "1f3537c24dfb16a58de44d37437f2fb30596bb5af96a23b459bfcdc40f25bbb1"
+    },
+    "firefox-159.0.en-US.linux-aarch64.tar.xz": {
+      "asset_created_at": "2026-11-26T15:39:21Z",
+      "asset_updated_at": "2026-11-26T15:39:27Z",
+      "authorization_forwarded_to_cdn": false,
+      "bytes": 74812416,
+      "canonical_url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.2.0-beta.1/firefox-159.0.en-US.linux-aarch64.tar.xz",
+      "github_digest": "sha256:53747262e3af06ec0e4b98806efed38225b51b3c83b8b8d877eba133e4c9eacf",
+      "hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "id": 796555902,
+      "readback_utc": "2026-11-26T15:40:58+00:00",
+      "sha256": "53747262e3af06ec0e4b98806efed38225b51b3c83b8b8d877eba133e4c9eacf"
+    },
+    "firefox-159.0.en-US.linux-x86_64.tar.xz": {
+      "asset_created_at": "2026-11-26T15:39:57Z",
+      "asset_updated_at": "2026-11-26T15:40:03Z",
+      "authorization_forwarded_to_cdn": false,
+      "bytes": 81716568,
+      "canonical_url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.2.0-beta.1/firefox-159.0.en-US.linux-x86_64.tar.xz",
+      "github_digest": "sha256:25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982",
+      "hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "id": 796557948,
+      "readback_utc": "2026-11-26T15:41:46+00:00",
+      "sha256": "25017b78ddd69c0beaac895b93a26ab8d0fcbb597ad5add20a5ae0e1ad2f9982"
+    },
+    "native-events-beta.json": {
+      "asset_created_at": "2026-11-26T15:40:06Z",
+      "asset_updated_at": "2026-11-26T15:40:06Z",
+      "authorization_forwarded_to_cdn": false,
+      "bytes": 10291,
+      "canonical_url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.2.0-beta.1/native-events-beta.json",
+      "github_digest": "sha256:b42f82538e325c835a84ea4105d1e15303d1c10a96a733a9efc8cf642671c043",
+      "hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "id": 796558490,
+      "readback_utc": "2026-11-26T15:41:47+00:00",
+      "sha256": "b42f82538e325c835a84ea4105d1e15303d1c10a96a733a9efc8cf642671c043"
+    },
+    "ruyitrace-native-amd64-a0cec2d716812341.docker.tar.gz": {
+      "asset_created_at": "2026-11-26T15:39:27Z",
+      "asset_updated_at": "2026-11-26T15:39:56Z",
+      "authorization_forwarded_to_cdn": false,
+      "bytes": 508204336,
+      "canonical_url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.2.0-beta.1/ruyitrace-native-amd64-a0cec2d716812341.docker.tar.gz",
+      "github_digest": "sha256:9e01fc527e4d1c1c123159899797e0f17d670548aff83ebb3c9084caabe56489",
+      "hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "id": 796556247,
+      "readback_utc": "2026-11-26T15:41:39+00:00",
+      "sha256": "9e01fc527e4d1c1c123159899797e0f17d670548aff83ebb3c9084caabe56489"
+    },
+    "ruyitrace-native-arm64-ecb43c4ef8f448d4.docker.tar.gz": {
+      "asset_created_at": "2026-11-26T15:38:50Z",
+      "asset_updated_at": "2026-11-26T15:39:20Z",
+      "authorization_forwarded_to_cdn": false,
+      "bytes": 494839061,
+      "canonical_url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.2.0-beta.1/ruyitrace-native-arm64-ecb43c4ef8f448d4.docker.tar.gz",
+      "github_digest": "sha256:10d940ce5a502fe7652ae7685534e16c7fdeb03579ea48d730453597e458ee33",
+      "hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "id": 796553906,
+      "readback_utc": "2026-11-26T15:40:52+00:00",
+      "sha256": "10d940ce5a502fe7652ae7685534e16c7fdeb03579ea48d730453597e458ee33"
+    },
+    "ruyitrace-skill-v0.2.0.zip": {
+      "asset_created_at": "2026-11-26T15:40:04Z",
+      "asset_updated_at": "2026-11-26T15:40:05Z",
+      "authorization_forwarded_to_cdn": false,
+      "bytes": 97591,
+      "canonical_url": "https://github.com/Facetomyself/ruyitrace/releases/download/native-events-v0.2.0-beta.1/ruyitrace-skill-v0.2.0.zip",
+      "github_digest": "sha256:5fd47b719240490db04e9a339e8ba45d5fcfbfb83e492aa49b4d69a9a0bd78e5",
+      "hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "id": 796558401,
+      "readback_utc": "2026-11-26T15:41:47+00:00",
+      "sha256": "5fd47b719240490db04e9a339e8ba45d5fcfbfb83e492aa49b4d69a9a0bd78e5"
+    }
+  },
+  "checked_utc": "2026-11-26T15:41:51+00:00",
+  "gecko_source": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+  "latest_before_and_after": {
+    "id": 458886757,
+    "tag": "arm64-site-ops-v1"
+  },
+  "main_sha": "e407308c5ea67ddb3a57d0999db66e66d6e68691",
+  "make_latest": false,
+  "native_patch_sha256": "3cecbf0b086ff1b630f79ce493d2c4f64782bdf96feb05a9d0a9db57fff3e45b",
+  "passed": true,
+  "prerelease": true,
+  "private": true,
+  "published_at": "2026-11-26T15:40:12Z",
+  "release_created_at": "2026-11-26T15:25:32Z",
+  "release_id": 459605674,
+  "release_url": "https://github.com/Facetomyself/ruyitrace/releases/tag/native-events-v0.2.0-beta.1",
+  "repo": "Facetomyself/ruyitrace",
+  "runtime_source": "f177682d8dc4e028ad450a00f2d78acc4063e321",
+  "schema": "ruyitrace.native-beta-private-prerelease-proof.v1",
+  "skill_tag": "ruyitrace-skill-v0.2.0",
+  "skill_tag_ref_sha": "e407308c5ea67ddb3a57d0999db66e66d6e68691",
+  "tag": "native-events-v0.2.0-beta.1",
+  "tag_commit": "e407308c5ea67ddb3a57d0999db66e66d6e68691",
+  "tag_patch_path": "product/native-events/net/gecko159-websocket-metadata-v2.patch",
+  "tag_ref_sha": "e407308c5ea67ddb3a57d0999db66e66d6e68691"
+}
