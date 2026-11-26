@@ -1,0 +1,1 @@
+{"fence_confirmed":true,"killed_at":"2026-11-26T02:06:39+00:00","manager_sha256":"79af5d55f9ef366b2bf223165064ce482b4dd6c6a4d0f929fccf200392dbc667","noninjected":true,"pid":370766,"real_manager_process":true,"schema":"ruyitrace-site-emergency-kill.v1","signal":"SIGKILL","target":"oracle-reverse-dev","transaction_id":"4c649cb23105dfd117db7243f2680818","wait_returncode":-9}

@@ -239,6 +239,12 @@ CXXABI_1.3.9
 
 ARM 编译工具为 Clang/LLD 19.1.1、Rust 1.100.0、cbindgen 0.29.4；CLI 运行时为 Node 22.14.0。请按[产品级操作手册](submodules/ruyitrace/product/arm64/README.md)导入与验证，不要把其他组件的编译器条件当作这一发行的依据。
 
+### ARM64 主机运维版本（独立于原生内核发行）
+
+[站点运维 Release](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-site-ops-v1) 固定 Trace 源码和平台 gitlink `e35e7278a49d4e67c9ad9e480308bf5e11273493`。当前 `r5-arm64-site2` 的原始 `release.json` SHA-256 为 `2d376eeed54510f870264f50a4c099faff56e7f4b9303fdf9e6734e7f3766acb`，回退 `r5-arm64-site1` 为 `55af3676c433c4db0db228187b6838b70db21b374058dc3ea8c4f1285ceaa600`。这是 `upgrade --sha256` 的值，不是镜像或归档 SHA。B 的 Docker 包是 381,656,666 字节、SHA-256 `e228e6ce839b6f3c0216ca81e978a6d655ed77a146acf5476f6fc82f2a23be75`；A 仍来自原 `arm64-r5-cli2-lease-v1`。两个版本的 CLI 和私有交互浏览器相同，网关 config ID 不同。
+
+以[逐字节索引](artifacts/receipts/trace-arm64-site-operations/index.json)核对 60 份运维实测（索引 SHA-256 `9f48d60970813f9c12a6e7a092b23a0071d49d9c9d6ea00eaaa0d8da00abc079`）；[正式下载复验](artifacts/receipts/trace-arm64-site-operations/github-release.json)单独核对 7 个附件。完整可复制命令见[站点手册](submodules/ruyitrace/product/arm64/site/README.md)。
+
 ## 7. 工具链
 
 | 工具 | 版本要求 | 用途 |

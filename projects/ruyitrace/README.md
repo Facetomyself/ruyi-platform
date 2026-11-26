@@ -12,6 +12,8 @@
 
 **ARM64 R5 已正式发布**：[私有 GitHub Release](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1) · [部署手册](../../submodules/ruyitrace/product/arm64/README.md) · [实机证据及原始回执](../../artifacts/receipts/trace-arm64-native-lease/README.md)。`oracle-reverse-dev`（4 OCPU / 24 GB）原生编译 Firefox 159 `20261125162841`，空引擎从真实归档加载 CLI、私有交互、TLS Edge 三个 ARM 镜像。另一台物理机 `oracle-dsh` 的 Firefox 从公网完成邀请兑换、WSS 桌面、重连和主动撤销。生产站点空闲时不开放桌面；SSH、证书续期和回收定时器保持运行。此结论不借用历史 ARM 包、TLS 健康页或 amd64 回执。
 
+**`oracle-reverse-dev` 日常入口**：以 `ubuntu` 运行 `/home/ubuntu/.local/bin/ruyitrace`。当前 `r5-arm64-site2`、回滚 `r5-arm64-site1`；`check` 核对状态，`verify` 重算归档 SHA 并实跑三镜像读回与原生 Firefox，`desktop` 才领取默认 20 分钟的一次性 HTTPS 邀请。两版实装、忙时准入、真实回滚及管理器中断恢复都已验证。见[固定版操作手册](../../submodules/ruyitrace/product/arm64/site/README.md)、[私有站点发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-site-ops-v1)和[60 份实机运维回执](../../artifacts/receipts/trace-arm64-site-operations/README.md)。
+
 同一 Firefox 会话的 MCP 接入见 [ruyi-mcp 与组件边界](../../docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。
 
 ## 三层

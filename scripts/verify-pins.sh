@@ -150,6 +150,11 @@ case "$arm_proof" in
 esac
 
 echo
+echo "== 6.8 ARM64 私有站点，两槽实装、真实公网与恢复 =="
+python3 -B scripts/verify-trace-site.py --source "$ROOT/submodules/ruyitrace" --require-emergency || fail=1
+python3 -B -m unittest discover -s tests -p 'test_trace_site_publication.py' -q || fail=1
+
+echo
 echo "== 7. Trace CLI 实机证据对应源码 =="
 python3 -B - <<'PY' || fail=1
 from pathlib import Path, PurePosixPath

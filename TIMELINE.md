@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1059 个 commit**（platform 333 / ruyitrace 138 / ruyihttp 78 / ruyijs 449 / ruyi-mcp 61）。
+五个仓库共 **1064 个 commit**（platform 334 / ruyitrace 142 / ruyihttp 78 / ruyijs 449 / ruyi-mcp 61）。
 
 RuyiJS 在 `oracle-reverse-dev` 上有了与 RuyiDOM 并列的按需命令。固定完整版和纯基座恢复版均从正式入口实测，镜像归档另有独立私有密文回读。[主机部署回执](artifacts/receipts/ruyijs-oracle-arm64-host1/validation.json)。
 
@@ -158,14 +158,18 @@ sparse clone 缺 `security/nss`。
 
 Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现固定版本，统一记录与其他组件的接口和验收状态。维护流程见 [ruyi-mcp 项目入口](projects/ruyi-mcp/README.md)。
 
+## 2026-11-26 · 私有 ARM64 Trace 站点按需运行
+
+`oracle-reverse-dev` 以固定用户命令维护两个真实版本。普通升级与回滚、活跃公网桌面的版本准入、实际管理进程中断恢复，以及避免改指其他镜像标签的离线重载均经实机验证。详见[运维回执](artifacts/receipts/trace-arm64-site-operations/README.md)和[正式附件下载核验](artifacts/receipts/trace-arm64-site-operations/github-release.json)。
+
 ## 关键数字
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1059 |
+| 五个仓库 commit | 1064 |
 | 文档 | 47 篇（含本文）|
 | C++ 文件 | 62 |
-| 校验脚本 | 20 |
+| 校验脚本 | 21 |
 | domtrace 测试 | 20 项 |
 | ruyihttp 测试 | 126 项（原生开关全开）；独立端点矩阵另计 |
 | 校验节数（verify-pins） | 8 |

@@ -1,0 +1,1 @@
+{"argv": ["/home/ubuntu/.local/bin/ruyitrace", "upgrade", "r5-arm64-site2", "--sha256", "2d376eeed54510f870264f50a4c099faff56e7f4b9303fdf9e6734e7f3766acb", "--plan"], "checked_utc": "2026-11-26T02:07:55+00:00", "exit": 0, "schema": "ruyitrace-site-invocation.v1", "stdout_sha256": "fab8d06058aa99f0609940844470e2ae82c46d75f94c256b1fccde56a91fd206"}

@@ -1,0 +1,11 @@
+{
+  "files": 36,
+  "host_source": "317b6f5575c5c55a215d7b1d66dc52e61f002185",
+  "manifest_sha256": "2d376eeed54510f870264f50a4c099faff56e7f4b9303fdf9e6734e7f3766acb",
+  "product_archive_sha256": "e228e6ce839b6f3c0216ca81e978a6d655ed77a146acf5476f6fc82f2a23be75",
+  "product_source": "41a5fbf5a760922ce442729080e8bb711418a5a4",
+  "slot_archive": "ruyitrace-site-slot-r5-arm64-site2.tar.gz",
+  "tar_bytes": 95117,
+  "tar_sha256": "c6f70af9ae522510c7b7c72c66cb07c5e7511fe9b4bf33c24d44e3e6291c8abf",
+  "version": "r5-arm64-site2"
+}

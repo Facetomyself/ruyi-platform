@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T10:04:57+08:00'
+generated_at: '2026-11-26T10:56:23+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -2345,6 +2345,20 @@ projects:
     arm64_site_preflight: artifacts/receipts/trace-arm64-native-lease/preflight/stage.json
     arm64_release: artifacts/receipts/trace-arm64-native-lease/release/confirmation.json
     arm64_github_release: artifacts/receipts/trace-arm64-native-lease/github-release.json
+    arm64_managed_site:
+      host: oracle-reverse-dev
+      stable_command: /home/ubuntu/.local/bin/ruyitrace
+      current: r5-arm64-site2
+      current_release_sha256: 2d376eeed54510f870264f50a4c099faff56e7f4b9303fdf9e6734e7f3766acb
+      rollback: r5-arm64-site1
+      rollback_release_sha256: 55af3676c433c4db0db228187b6838b70db21b374058dc3ea8c4f1285ceaa600
+      tag: arm64-site-ops-v1
+      default_lease_seconds: 1200
+      final_observed_state: idle
+      evidence_index: artifacts/receipts/trace-arm64-site-operations/index.json
+      evidence_index_sha256: 9f48d60970813f9c12a6e7a092b23a0071d49d9c9d6ea00eaaa0d8da00abc079
+      release_downloads: artifacts/receipts/trace-arm64-site-operations/github-release.json
+      runbook: submodules/ruyitrace/product/arm64/site/README.md
     blocked_by: []
     remaining:
     - Linux browser producer coverage beyond verified DOM, dispatched clicks, explicit Web Storage and amd64/arm64 window-script-error summaries
@@ -2960,14 +2974,14 @@ submodules:
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: f1253a6ddf03dffa178d349231facc61866e686b
+    commit: e35e7278a49d4e67c9ad9e480308bf5e11273493
     state: added
 docs_health:
   total_markdown: 47
   total_cpp_files: 62
-  total_scripts: 20
+  total_scripts: 21
   reproduce_manual: REPRODUCE.md
-  last_full_verification: '2026-11-26 +08:00: ARM64 final product gate checks 33 native/desktop/cleanup receipts, config IDs and source; stable GitHub assets downloaded and rehashed. Independent amd64 product receipts unchanged.'
+  last_full_verification: '2026-11-26 +08:00: 60 byte-indexed site operations receipts; real two-slot Docker reloads, independent public desktop A/B, guarded upgrade, rollback, SIGKILL recovery, and 7 streamed GitHub assets. Original ARM product and amd64 receipts retained.'
 tooling:
   scripts:
     domtrace-anchors.py: xul.dll 74 开关锚点提取

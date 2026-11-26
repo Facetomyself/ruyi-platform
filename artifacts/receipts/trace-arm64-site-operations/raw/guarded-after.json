@@ -1,0 +1,116 @@
+{
+  "active_trace_leases": 0,
+  "arch": "aarch64",
+  "cpus": 4,
+  "docker_engine": "e308e182-ef94-4f4f-a766-d7dc73dcb715 29.1.3 /var/lib/docker aarch64",
+  "docker_sock_dev_inode": [
+    29,
+    1726
+  ],
+  "host": "oracle-reverse-dev",
+  "initial_ledger_count": 5,
+  "listener_addresses": [
+    "tcp 0.0.0.0:111",
+    "tcp 0.0.0.0:22",
+    "tcp 127.0.0.1:40773",
+    "tcp 127.0.0.53%lo:53",
+    "tcp 127.0.0.54:53",
+    "tcp [::]:111",
+    "tcp [::]:22",
+    "udp 0.0.0.0:111",
+    "udp 10.0.0.139%enp0s6:68",
+    "udp 127.0.0.53%lo:53",
+    "udp 127.0.0.54:53",
+    "udp [::]:111",
+    "udp [fe80::17ff:fe00:fa1e]%enp0s6:546"
+  ],
+  "neighbor_project_dirs": [
+    "oracle-reverse",
+    "oracle-reverse-work",
+    "ruyidom-artifacts",
+    "ruyidom-esr-source.y00OuJ24JH",
+    "ruyidom-esr-toolchain.0463da414bdd2c50.RlVMuN5S",
+    "ruyidom-esr-toolchain.72017efff470fe87.B7ufqBxH",
+    "ruyidom-esr-toolchain.dd2b04b23fe29081.p4joiFsf",
+    "ruyidom-esr-toolchain.ee9baa82b7137818.mbS0UcBV",
+    "ruyijs-artifacts",
+    "ruyijs-private-arm64-r432"
+  ],
+  "non_trace_containers": [
+    "ruyi-arm64-desktop-export-r89 bea6fe3a931d873fe5e33664728513e5d88662fc827b459306de2eefdf0dd1b0 sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec created",
+    "ruyi-arm64-r53 aba815ccae35441be8aa80d4e82f99132b4aad82fffb34575d88ae4bcefa559d sha256:7cf0c39cbf1f2d11eee47faaec04414d407cec919beca31f81b1ce9f9e75b8ce exited",
+    "ruyi-arm64-smoke-stage-r54 b35bc66e7a454c62d26ac8e0923cbe3450b044b2250c2f9dc9d0ad16ee095650 sha256:7cf0c39cbf1f2d11eee47faaec04414d407cec919beca31f81b1ce9f9e75b8ce exited",
+    "ruyidom-esr-5ca83df52c91-attempt-01 9d799d0d67dc2ac9dfc7df9ee902b65cf3a04b76c9d39fed5b2d11811fbb70ae sha256:8695c9448ba313f28ffe5ffbd6060ce34af4492865d33ef6ac77abb0da3ad087 exited"
+  ],
+  "non_trace_containers_sha256": "e5874e605ab22a4ca49da77454cee3e389eeccf3a0baa5f3fd788c16aab6dcf6",
+  "non_trace_images": [
+    "ruyidom-esr153-arm64-toolchain:esr153.8.0-dd2b04b23fe29081-p4joiFsf sha256:cd2a39f1a630a7d2ab09f4321aa212d157213a41bba894df21c66aefd0ddf380",
+    "ruyidom-esr153-arm64-toolchain:esr153.8.0-ee9baa82b7137818-mbS0UcBV sha256:8695c9448ba313f28ffe5ffbd6060ce34af4492865d33ef6ac77abb0da3ad087",
+    "ruyidom:arm64-de30443-dual-r2zidw5j sha256:9fa4311f1d136cb5032ed5df5f985e1e33297a98752966629e9e9bb38626c9bc",
+    "ruyidom:arm64-source-20261125161200-648b02c0896e1cae sha256:f9d740cf768f3c5048e8850f55e4355946abb1a64f054c054673f00b8a2fd23d",
+    "ruyidom:arm64-use sha256:f9d740cf768f3c5048e8850f55e4355946abb1a64f054c054673f00b8a2fd23d",
+    "ruyijs-inner-arm64-toolchain:r432 sha256:c4b0a54337743fa0c2173dde1d04ca69336705f89fd184d5923a7fbd595f024c",
+    "ruyijs:arm64-r432-base-host1 sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+    "ruyijs:arm64-r432-host1 sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+    "ruyijs:arm64-use sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+    "ruyitrace-arm64-smoke:r54 sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+    "ubuntu:24.04 sha256:7cf0c39cbf1f2d11eee47faaec04414d407cec919beca31f81b1ce9f9e75b8ce"
+  ],
+  "non_trace_images_sha256": "edf7b7bdde3e9cb0d78350e2ec2c6b43d99674b790dc36514b98d95956af1b6e",
+  "operator_user": "uid=1001(ubuntu) gid=1001(ubuntu) groups=1001(ubuntu),4(adm),24(cdrom),27(sudo),30(dip),104(lxd),111(docker)",
+  "ruyidom_files": {
+    "/home/ubuntu/.local/share/ruyidom/last-verified.json": "f67a4ec1e1847a0f5b8fd03b5ca88ddd1a7a526ebc9eab1b0681583d2a7be0ad",
+    "/home/ubuntu/.local/share/ruyidom/releases/v0.3.0-host1/host.py": "bdb0bf9b76b08e31d71b4619dcdc34fa6cfe54e7b515468097b476c339fac18d",
+    "/home/ubuntu/.local/share/ruyidom/releases/v0.3.0-host1/release.json": "bea6ca613783071c68005dfa86b7faef738187fe3460dc2f25ec24e15864caee"
+  },
+  "ruyidom_wrapper_target": "/home/ubuntu/.local/share/ruyidom/releases/v0.3.0-host1/host.py",
+  "ruyijs_wheels": {
+    "ruyijs_http1-0.2.39+inner.r432-py3-none-linux_aarch64.whl": "afe31c0601493f5e24af531099c8d4f61a634f34efe42190cf46962b7952bc4a"
+  },
+  "sshd_config_hashes": {
+    "60-cloudimg-settings.conf": "474ef6932d6b998ec97b122a9d86af024b988d64c243f3caf01dd9e5ed41618e",
+    "sshd_config": "64325541513d33ea1d2ccd19c77750d458e67e7967fd2e7ef81d92f0aa2ffe21"
+  },
+  "time": "2026-11-26T02:40:47+00:00",
+  "units": {
+    "caddy.service": [
+      "MainPID=0",
+      "ActiveState=inactive",
+      "SubState=dead",
+      "InvocationID="
+    ],
+    "certbot.timer": [
+      "ActiveState=active",
+      "SubState=waiting",
+      "InvocationID=60600222c20a4bf9bb8e2b8880cfb4f0"
+    ],
+    "docker.service": [
+      "MainPID=1303",
+      "ActiveState=active",
+      "SubState=running",
+      "InvocationID=79ea3c4e8194427daf8cfb00a05e8a0b"
+    ],
+    "ruyitrace-demo-sweep.timer": [
+      "ActiveState=active",
+      "SubState=waiting",
+      "InvocationID=5e436a7e7a874a3d87d56ee84a7ff826"
+    ],
+    "ssh.service": [
+      "MainPID=1270",
+      "ActiveState=active",
+      "SubState=running",
+      "InvocationID=affffce6dc14429e93486670fca1f4d6"
+    ],
+    "ssh.socket": [
+      "ActiveState=active",
+      "SubState=running",
+      "InvocationID=430a49a88fd8440fa2d5c8764a424816"
+    ]
+  },
+  "user_commands": [
+    "ruyidom",
+    "ruyijs",
+    "ruyijsctl",
+    "ruyitrace"
+  ]
+}

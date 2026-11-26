@@ -204,7 +204,7 @@ cat STATUS.yaml
 
 | 项目 | 当前交付 |
 | --- | --- |
-| **RuyiTrace** | amd64 R5 历史包保持不变；[ARM64 R5 CLI2 正式发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)已在 4 核 ARM 主机原生编译，支持按 ID 离线加载、采集和按需 TLS 桌面。[33 份实机证据与范围](artifacts/receipts/trace-arm64-native-lease/README.md)。 |
+| **RuyiTrace** | amd64 R5 历史包保持不变；[ARM64 R5 CLI2 正式发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)已在 4 核 ARM 主机原生编译，支持按 ID 离线加载、采集和按需 TLS 桌面。[33 份原生产品回执](artifacts/receipts/trace-arm64-native-lease/README.md)。该机日常用 `ruyitrace`：已部署 site2，保留 site1 可回滚；见[操作手册](submodules/ruyitrace/product/arm64/site/README.md)与[60 份站点实机回执](artifacts/receipts/trace-arm64-site-operations/README.md)。 |
 | **RuyiHttp** | Python 客户端及[原生平台矩阵](projects/ruyihttp/README.md)可复用；Linux 有 amd64 HTTPS 实跑和独立的 [ARM64 H1/H2/H3 验收](artifacts/receipts/ruyihttp-native-20261124/linux-aarch64.json)。 |
 | **RuyiJS 内部版** | [R356 离线 wheel](artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json)提供经安装态验证的干净原生运行时；另有独立可卸载的 [R357 明文 HTTP/1 组件](artifacts/receipts/ruyijs-linux-http1-r357/validation.json)，真实回环收发和导航已验证。[安装说明](submodules/ruyijs/docs/linux-http1.md)。TLS、h2、QUIC 与 ARM64 产品另验。 |
 | **ruyi-mcp** | 可自启 Firefox，也可在原生 amd64 上借用 Trace CLI 持有的 R5 会话；生产同会话已验，ARM64 与 Electron owner 另验。[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) |

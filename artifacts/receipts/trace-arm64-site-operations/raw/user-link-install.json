@@ -1,0 +1,1 @@
+{"changed": true, "command": "/home/ubuntu/.local/bin/ruyitrace", "installed_links": ["/home/ubuntu/.local/share/ruyitrace/releases", "/home/ubuntu/.local/share/ruyitrace/current", "/home/ubuntu/.local/bin/ruyitrace"], "ok": true, "target": "/opt/ruyitrace/releases/r5-arm64-site1/host.py", "user": 1001, "version": "r5-arm64-site1"}

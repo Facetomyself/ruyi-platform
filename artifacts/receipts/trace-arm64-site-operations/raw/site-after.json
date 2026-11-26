@@ -1,0 +1,60 @@
+{
+  "cloud": {
+    "memory_gb": 24.0,
+    "oci_ingress_sha256": "2c677259dc4da11f59f0b8bf98dc1a4c5a4507ac8fbe8b2029b7669123b26d4c",
+    "ocpu": 4.0,
+    "private_ip": "10.0.0.139",
+    "public_ip": "140.245.61.236",
+    "region": "ap-singapore-2",
+    "relevant_ingress_rules": 2,
+    "shape": "VM.Standard.A1.Flex",
+    "tcp_80_and_443_admission": true
+  },
+  "compared": {
+    "host_input_unchanged": true,
+    "oci_ingress_unchanged": true
+  },
+  "host": {
+    "arch": "aarch64",
+    "docker_arch": "linux/aarch64",
+    "enabled": {
+      "certbot.timer": "enabled",
+      "ruyitrace-demo-sweep.timer": "enabled"
+    },
+    "existing_host_allow80_and_443": true,
+    "free_bytes": 98918801408,
+    "host_ip_443_dnat": 0,
+    "host_iptables_input_sha256": "ea0b8a0ad1372c031d348dc596686bdea9adba6b3d6fa64e58f11f370a2b9dfe",
+    "hostname": "oracle-reverse-dev",
+    "input_rule_count": 8,
+    "memory_kib": 24547968,
+    "online_cpu": 4,
+    "port443_listening": false,
+    "port80_listening": false,
+    "production_broker_installed": true,
+    "production_runtime_sessions": 0,
+    "projected_key_permissions": "root:0400",
+    "public_leaf_sha256": "f0fd003e8d47f99de6de1240bc41ab16baa4c446318344a5a2821df87770ded8",
+    "qa_loaded_units": [],
+    "qa_private_dirs": 0,
+    "qa_unit_files": 0,
+    "raw5900_listening": false,
+    "scoped_containers": {
+      "io.ruyitrace.demo.qa-client": 0,
+      "io.ruyitrace.demo.scope": 0,
+      "io.ruyitrace.qa.native-public": 0,
+      "io.ruyitrace.qa.public-client": 0
+    },
+    "services": {
+      "caddy": "inactive",
+      "certbot.timer": "active",
+      "docker": "active",
+      "ruyitrace-demo-sweep.timer": "active",
+      "ssh": "active"
+    },
+    "system_ca_verified": true,
+    "utc": "2026-11-26T02:09:35+00:00"
+  },
+  "schema": 1,
+  "scope": "Trace ARM64 site snapshot: actual primary VNIC, OCI effective TCP80/443 admissions, host filter/INPUT -S order, no counters or credentials"
+}

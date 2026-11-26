@@ -1,0 +1,77 @@
+{
+  "assets": [
+    {
+      "bytes": 381656666,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-site-ops-v1/ruyitrace-public-edge-tls-lease-v1-arm64.site2.docker.tar.gz",
+      "github_asset_id": 794064845,
+      "github_digest": "sha256:e228e6ce839b6f3c0216ca81e978a6d655ed77a146acf5476f6fc82f2a23be75",
+      "name": "ruyitrace-public-edge-tls-lease-v1-arm64.site2.docker.tar.gz",
+      "sha256": "e228e6ce839b6f3c0216ca81e978a6d655ed77a146acf5476f6fc82f2a23be75",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 95155,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-site-ops-v1/ruyitrace-site-slot-r5-arm64-site1.tar.gz",
+      "github_asset_id": 794067098,
+      "github_digest": "sha256:cf57de80754fe47ec65efb44ad5a93d314a620b2d8f4050a94e184260731816a",
+      "name": "ruyitrace-site-slot-r5-arm64-site1.tar.gz",
+      "sha256": "cf57de80754fe47ec65efb44ad5a93d314a620b2d8f4050a94e184260731816a",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 95117,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-site-ops-v1/ruyitrace-site-slot-r5-arm64-site2.tar.gz",
+      "github_asset_id": 794067151,
+      "github_digest": "sha256:c6f70af9ae522510c7b7c72c66cb07c5e7511fe9b4bf33c24d44e3e6291c8abf",
+      "name": "ruyitrace-site-slot-r5-arm64-site2.tar.gz",
+      "sha256": "c6f70af9ae522510c7b7c72c66cb07c5e7511fe9b4bf33c24d44e3e6291c8abf",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 133120,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-site-ops-v1/ruyitrace-site-core-arm64.tar",
+      "github_asset_id": 794067205,
+      "github_digest": "sha256:0a5a896c45b4e235915f370eaa9a7da9ba9224aac8c311de4cca8e51b8cede67",
+      "name": "ruyitrace-site-core-arm64.tar",
+      "sha256": "0a5a896c45b4e235915f370eaa9a7da9ba9224aac8c311de4cca8e51b8cede67",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 4406,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-site-ops-v1/ruyitrace-site-catalog.json",
+      "github_asset_id": 794067273,
+      "github_digest": "sha256:d7b669f9db45aec853f484e85827b36462fcdcaccb0ff8336adffafe5cbaa5a2",
+      "name": "ruyitrace-site-catalog.json",
+      "sha256": "d7b669f9db45aec853f484e85827b36462fcdcaccb0ff8336adffafe5cbaa5a2",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 21628,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-site-ops-v1/ARM64-SITE.md",
+      "github_asset_id": 794067326,
+      "github_digest": "sha256:bf36e0526b4fea7ae9b2523ca1b1a913fda78a05db088bf98bb4ecce62078db4",
+      "name": "ARM64-SITE.md",
+      "sha256": "bf36e0526b4fea7ae9b2523ca1b1a913fda78a05db088bf98bb4ecce62078db4",
+      "streamed_download_verified": true
+    },
+    {
+      "bytes": 613,
+      "download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/arm64-site-ops-v1/SHA256SUMS",
+      "github_asset_id": 794067373,
+      "github_digest": "sha256:d42260bef56870577adab58b8319e3f2d486aa440abfce0875d96c26826e6aaa",
+      "name": "SHA256SUMS",
+      "sha256": "d42260bef56870577adab58b8319e3f2d486aa440abfce0875d96c26826e6aaa",
+      "streamed_download_verified": true
+    }
+  ],
+  "checked_at": "2026-11-26T02:51:36+00:00",
+  "html_url": "https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-site-ops-v1",
+  "passed": true,
+  "private": true,
+  "published_at": "2026-11-26T02:51:28Z",
+  "release_id": 458886757,
+  "repo": "Facetomyself/ruyitrace",
+  "schema": 1,
+  "source": "e35e7278a49d4e67c9ad9e480308bf5e11273493",
+  "tag": "arm64-site-ops-v1"
+}

@@ -1,0 +1,215 @@
+{
+  "attribution": "Independent RuyiJS R432 on-demand host-management installation; the Trace command is a separate scoped addition.",
+  "equal_remaining_protected_fields": [
+    "active_trace_leases",
+    "arch",
+    "cpus",
+    "docker_engine",
+    "docker_sock_dev_inode",
+    "host",
+    "listener_addresses",
+    "neighbor_project_dirs",
+    "non_trace_containers",
+    "non_trace_containers_sha256",
+    "operator_user",
+    "ruyidom_files",
+    "ruyidom_wrapper_target",
+    "ruyijs_wheels",
+    "sshd_config_hashes",
+    "units"
+  ],
+  "host": "oracle-reverse-dev",
+  "host_records": {
+    "activation_and_recovery_records": [
+      {
+        "at": "2026-11-26T01:19:26.547438+00:00",
+        "event": "activate",
+        "image_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+        "manifest_sha256": "265bc518fb5bfedd80d3deaf3b3baf972d43669081afebe83d8ea2f8959e7659",
+        "path": "/home/ubuntu/.local/share/ruyijs/history/20261126T011926704493Z-activate.json",
+        "release": "r432-base-host1",
+        "sha256": "cd8876a5fce7275a87c45903bc594279361c46fbefa837058507e8a8ca4b8148"
+      },
+      {
+        "at": "2026-11-26T01:19:29.019747+00:00",
+        "event": "activate",
+        "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+        "manifest_sha256": "7e3934c5977761e8b243c3cc4894d17a80c4b21177f12cef930a3e7de488c264",
+        "path": "/home/ubuntu/.local/share/ruyijs/history/20261126T011929217466Z-activate.json",
+        "release": "r432-host1",
+        "sha256": "fb3d50f8a0d310d4a681c93236793f21c4238de83a68a02afb3247b230162623"
+      },
+      {
+        "at": "2026-11-26T01:21:52.822235+00:00",
+        "event": "activate",
+        "image_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+        "manifest_sha256": "265bc518fb5bfedd80d3deaf3b3baf972d43669081afebe83d8ea2f8959e7659",
+        "path": "/home/ubuntu/.local/share/ruyijs/history/20261126T012153017712Z-activate.json",
+        "release": "r432-base-host1",
+        "sha256": "702839335aa756f240d1e9e08e402a8461119f11d4a5457400f2dd27d3a24b33"
+      },
+      {
+        "at": "2026-11-26T01:21:56.568784+00:00",
+        "event": "activate",
+        "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+        "manifest_sha256": "7e3934c5977761e8b243c3cc4894d17a80c4b21177f12cef930a3e7de488c264",
+        "path": "/home/ubuntu/.local/share/ruyijs/history/20261126T012156770567Z-activate.json",
+        "release": "r432-host1",
+        "sha256": "ab42c87ce88795136f63546269965c370ec852fce0c96bccf57a74870f1d81b8"
+      },
+      {
+        "at": "2026-11-26T01:38:28.311865+00:00",
+        "event": "recover",
+        "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+        "manifest_sha256": "7e3934c5977761e8b243c3cc4894d17a80c4b21177f12cef930a3e7de488c264",
+        "path": "/home/ubuntu/.local/share/ruyijs/history/20261126T013828386980Z-recover.json",
+        "release": "r432-host1",
+        "sha256": "db85d029b33c350dbcfb2e3b58a9036f681758e2a947ef0fce31090f25b8388f"
+      }
+    ],
+    "active_manifest": {
+      "alias": "ruyijs:arm64-use",
+      "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+      "image_tag": "ruyijs:arm64-r432-host1",
+      "input_lock": "ba7e39a780378f25547c4e6e72fa4a8fc22477e8862d95e0ea1ee2b422eb6daf",
+      "release": "r432-host1",
+      "revision": "69c154a8f2806bb131954fa8c259732c42bb0eb7"
+    },
+    "escrow_manifest_metadata": {
+      "bundle": "r432-host1",
+      "bytes": 366909525,
+      "created": "2026-11-26T01:23:07.503936+00:00",
+      "filename": "ruyijs-arm64-r432-host1.docker.tar.gz",
+      "refs": {
+        "ruyijs:arm64-r432-base-host1": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+        "ruyijs:arm64-r432-host1": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c"
+      },
+      "sha256": "6fff918cf20e7656929a931f72741de9b3aff7cf0def39bb2c034f0983c9eecc"
+    },
+    "file_sha256": {
+      "/home/ubuntu/.local/share/ruyijs/OPERATIONS.md": "2993ccf34c23cdd880e613853e491232dbcecdd72cdbbe975d7c09166ee08beb",
+      "/home/ubuntu/.local/share/ruyijs/managers/8a5bd9c3a25cc85b3fe3d80b7f287f3d0c13db1ee5e5667cd8e5dfc7a207810b/manage.py": "db56120a0cca8d0f6c9fe2d8a29404f1113dfa08f74aef7e5e202f7e5023c764",
+      "/home/ubuntu/.local/share/ruyijs/releases/r432-host1/host.py": "34c604a689e7151bd09fb6546430262e90e668df279b840e6bf8c700fe70c179",
+      "/home/ubuntu/.local/share/ruyijs/releases/r432-host1/release.json": "7e3934c5977761e8b243c3cc4894d17a80c4b21177f12cef930a3e7de488c264",
+      "/home/ubuntu/ruyijs-artifacts/r432-host1/image-backup.json": "1bebaafc45bd58f0a1c9f3afb8c7377d9ae40665ad72f289e9f44b87c0e564b6",
+      "/home/ubuntu/ruyijs-artifacts/r432-host1/maintenance-source.rev": "ae12d6de9dc8ba0b0c3a860068dc714b40a091f39d8f4038560c21d5d2bbeb73"
+    },
+    "installation_source_pin_path": "/home/ubuntu/ruyijs-artifacts/r432-host1/maintenance-source.rev"
+  },
+  "independently_corroborating_source": {
+    "deployed_source_commit": "8c87cc1853968934ce4030e647b6ac57c68760a3",
+    "deployed_source_committed_utc": "2026-11-26T01:18:34Z",
+    "deployed_tools_raw_sha256": {
+      "deploy/arm64/host.py": "34c604a689e7151bd09fb6546430262e90e668df279b840e6bf8c700fe70c179",
+      "deploy/arm64/manage.py": "db56120a0cca8d0f6c9fe2d8a29404f1113dfa08f74aef7e5e202f7e5023c764"
+    },
+    "github_release_id": 458848655,
+    "infra_docs": {
+      "commit": "8cdf2740b9d8e316b14246b453d74edf0408fe8e",
+      "commit_utc": "2026-11-26T02:05:02Z",
+      "path": "hosts/oracle-reverse-dev/projects/ruyijs-arm64.md",
+      "reported_checked_utc": "2026-11-26T01:52:40Z",
+      "repository": "Facetomyself/openclaw-infra",
+      "sha256": "8ac9c94108384a8a09a04d89fb4b4036f31300284e2717729f4f8c26d05b2ced"
+    },
+    "release_assets": [
+      {
+        "id": 793904835,
+        "path": "validation.json",
+        "sha256": "e0aa53fdcd3ba2422101ce30853c5b0ddac899bfa7d96fb99649c4ae1abf7252"
+      },
+      {
+        "id": 793904837,
+        "identical_at_tag_path": "docs/oracle-arm64-on-demand.md",
+        "identical_host_path": "/home/ubuntu/.local/share/ruyijs/OPERATIONS.md",
+        "path": "ON-DEMAND.md",
+        "sha256": "2993ccf34c23cdd880e613853e491232dbcecdd72cdbbe975d7c09166ee08beb"
+      }
+    ],
+    "release_published_utc": "2026-11-26T01:47:34Z",
+    "release_tag": "oracle-arm64-r432-host1",
+    "release_tag_commit": "e3aa1f3fd98baff69802e9e022d456da93d71694",
+    "repository": "Facetomyself/ruyijs-inner",
+    "tools_match_deployed_and_tagged_commit": true
+  },
+  "live_readback_utc": "2026-11-26T02:15:57.219213699Z",
+  "non_trace_images": {
+    "added": [
+      "ruyijs:arm64-use sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c"
+    ],
+    "added_unique_image_ids": [],
+    "after_count": 11,
+    "after_sha256": "edf7b7bdde3e9cb0d78350e2ec2c6b43d99674b790dc36514b98d95956af1b6e",
+    "aggregate_equal": false,
+    "alias": "ruyijs:arm64-use",
+    "before_count": 10,
+    "before_sha256": "771a08516ff2220c56d8dd9b5c0deabe8fa0f2ad3c9d98b1829fd1d44d225ebc",
+    "docker_image_created_utc": "2026-11-26T01:07:15.185089963Z",
+    "platform": "linux/arm64",
+    "preexisting_image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+    "preexisting_tag": "ruyijs:arm64-r432-host1",
+    "removed": [],
+    "removed_unique_image_ids": [],
+    "retagged": []
+  },
+  "owner_symlinks": {
+    "/home/ubuntu/.local/bin/ruyijs": {
+      "birth_utc": "2026-11-26 01:19:26.648286028 +0000",
+      "ctime_utc": "2026-11-26 01:19:26.648286028 +0000",
+      "mtime_utc": "2026-11-26 01:19:26.648286028 +0000",
+      "owner": "ubuntu:ubuntu",
+      "resolved": "/home/ubuntu/.local/share/ruyijs/releases/r432-host1/host.py",
+      "target": "../share/ruyijs/current/host.py"
+    },
+    "/home/ubuntu/.local/bin/ruyijsctl": {
+      "birth_utc": "2026-11-26 01:19:25.097588900 +0000",
+      "ctime_utc": "2026-11-26 01:19:25.097588900 +0000",
+      "mtime_utc": "2026-11-26 01:19:25.097588900 +0000",
+      "owner": "ubuntu:ubuntu",
+      "resolved": "/home/ubuntu/.local/share/ruyijs/managers/8a5bd9c3a25cc85b3fe3d80b7f287f3d0c13db1ee5e5667cd8e5dfc7a207810b/manage.py",
+      "target": "../share/ruyijs/manager.py"
+    },
+    "/home/ubuntu/.local/share/ruyijs/current": {
+      "birth_utc": "2026-11-26 01:21:56.706519250 +0000",
+      "ctime_utc": "2026-11-26 01:21:56.706519250 +0000",
+      "mtime_utc": "2026-11-26 01:21:56.706519250 +0000",
+      "owner": "ubuntu:ubuntu",
+      "resolved": "/home/ubuntu/.local/share/ruyijs/releases/r432-host1",
+      "target": "releases/r432-host1"
+    }
+  },
+  "schema": "ruyitrace-site-concurrent-ruyijs.v1",
+  "surface_after": {
+    "path": "surface-after.json",
+    "sha256": "ad4d24bf7a6a9e5e784a6390e1f456f629533808e49f8d9539dd5a60e87a4d0f",
+    "time": "2026-11-26T02:09:33+00:00"
+  },
+  "surface_before": {
+    "path": "surface-baseline.json",
+    "sha256": "46dfcad025b4b3a740f6ec8c1fde751447b72f5fa85f7aed73f2593e99adf919",
+    "time": "2026-11-26T01:15:48+00:00"
+  },
+  "user_commands": {
+    "added": [
+      "ruyijs",
+      "ruyijsctl",
+      "ruyitrace"
+    ],
+    "after": [
+      "ruyidom",
+      "ruyijs",
+      "ruyijsctl",
+      "ruyitrace"
+    ],
+    "before": [
+      "ruyidom"
+    ],
+    "concurrent_ruyijs_additions": [
+      "ruyijs",
+      "ruyijsctl"
+    ],
+    "removed": [],
+    "trace_addition": "ruyitrace"
+  },
+  "verifier_guidance": "Require strict equality by default. Only this historical baseline window may use the exact documented single addition with a preexisting image ID; reject removals, retags, new IDs or any other difference. Require strict aggregate and command equality on the separate post-concurrent window."
+}
