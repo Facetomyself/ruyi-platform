@@ -63,6 +63,8 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 [RuyiDOM 私有源码仓](https://github.com/Facetomyself/ruyidom)维护 Linux 启动器、适配层、测试与构建工具；`main` 用于日常维护。RuyiDOM 单独检出，现有四个 gitlink 与各自的版本固定方式维持原样。
 
+**ARM64 日常使用**：在 `oracle-reverse-dev` 上以 `ubuntu` 运行 `/home/ubuntu/.local/bin/ruyidom verify`，验证真实浏览器导航。本地标签 `ruyidom:arm64-use` 指向下文同一个 v0.3.0 镜像 ID；入口按需启动临时容器，默认离线，未发布端口。见[主机使用与维护说明](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md)。
+
 ### v0.3.0：ARM64 源码版 ESR 内容引擎
 
 新机器用有读取权限的 Git 账号检出[发布标签 `v0.3.0`](https://github.com/Facetomyself/ruyidom/releases/tag/v0.3.0)并核对完整提交：
