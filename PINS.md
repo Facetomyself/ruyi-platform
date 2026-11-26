@@ -286,3 +286,19 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 ## 10. 2026-11-24 交接：开发基线与发行源码分开
 
 四个组件的开发 pin 以 `git ls-tree HEAD:submodules` 为准；[状态账本](STATUS.yaml) 的 `submodules.*.commit` 是同一组完整 SHA。Trace 开发 pin 包含已验收的独立 CLI；历史 amd64 R5 仍使用独立的 [源码锁](artifacts/receipts/trace-amd64-r5/source-lock.json) 与原标签。发行、CLI、Win64 离线工具的完整提交与检出方式见[使用指南](docs/14-source-handoff.md)。
+
+## 11. RuyiDOM 独立仓
+
+| 对象 | 固定版本 | 用途 |
+| --- | --- | --- |
+| 产品发行 | [`v0.3.0`，`790cc23e6c049bbcb2d186656fa5545d1ef7bac6`](https://github.com/Facetomyself/ruyidom/tree/790cc23e6c049bbcb2d186656fa5545d1ef7bac6) | 对应[ARM64 自编 Firefox、镜像与 QA 回执](artifacts/receipts/ruyidom-arm64-source-v0.3.0.json)。 |
+| 主机日常命令 | [`5dd1ea218d0824207069ffba443593656039274d`](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md) | 后续提交只标识宿主入口与说明；部署沿用已验收镜像，不能将它当作一次新编译。 |
+
+RuyiDOM 独立检出，不在平台的四个 gitlink 中。具备私库读取权限时，可复核附注标签剥离后的提交；平台内可直接校验状态与回执：
+
+```bash
+git ls-remote https://github.com/Facetomyself/ruyidom.git 'refs/tags/v0.3.0^{}'
+python3 -B -m unittest discover -s tests -p 'test_ruyidom_handoff.py' -q
+```
+
+历史 pin：[v0.1.0 的源码与换机验收](artifacts/receipts/ruyidom-source-v0.1.0.json)属于当时的覆盖范围；[v0.2.0](https://github.com/Facetomyself/ruyidom/tree/v0.2.0)使用 Mozilla 官方引擎。它们不替代当前自编 ARM64 发行证据。

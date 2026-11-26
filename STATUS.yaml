@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T02:26:10+08:00'
+generated_at: '2026-11-26T09:11:08+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -2833,12 +2833,24 @@ related_projects:
     repository: https://github.com/Facetomyself/ruyidom
     relationship: independent_release
     platform_gitlink: null
-    release_tag: v0.1.0
-    release_commit: 4009bae850f9b64d413bd41a94dd7b3c56f86b40
-    runtime_inputs: [firefox_136, vendor_framework_outside_git]
-    evidence: artifacts/receipts/ruyidom-source-v0.1.0.json
-    evidence_sha256: 97eb6560678fd95aae7b0f30289ecb53503e9e867cedb5f45d80dc6c139938bb
-    pending: [native_arm64_docker_release_validation]
+    release_tag: v0.3.0
+    release_commit: 790cc23e6c049bbcb2d186656fa5545d1ef7bac6
+    runtime_inputs: [firefox_136_trusted_script_host, selected_content_renderer, vendor_framework_outside_git]
+    evidence: artifacts/receipts/ruyidom-arm64-source-v0.3.0.json
+    evidence_sha256: bea6ca613783071c68005dfa86b7faef738187fe3460dc2f25ec24e15864caee
+    arm64_deployment:
+      host: oracle-reverse-dev
+      platform: linux/arm64
+      renderer: 153.8.0esr-source-20261125161200
+      image_id: sha256:f9d740cf768f3c5048e8850f55e4355946abb1a64f054c054673f00b8a2fd23d
+      local_tag: ruyidom:arm64-use
+      operator_commit: 5dd1ea218d0824207069ffba443593656039274d
+      command: /home/ubuntu/.local/bin/ruyidom
+      mode: on_demand
+      default_network: none
+      checked_at: '2026-11-26T00:55:54Z'
+    pending: [second_arm64_host_clean_store_import]
+    historical_v0_1_handoff: artifacts/receipts/ruyidom-source-v0.1.0.json
 artifacts:
   ruyijs-0.2.2+inner.492ee47:
     sha256: a7be9c4aa04823b32277562ec65082a4ae3844beb7ccf330a53271d8ec82a50e

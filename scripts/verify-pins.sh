@@ -238,5 +238,9 @@ print('PASS  borrowed lease expiry, scoped page effects and acknowledged release
 PY
 
 echo
+echo '== 9. RuyiDOM 独立发行与主机入口 =='
+python3 -B -m unittest discover -s tests -p 'test_ruyidom_handoff.py' -q || fail=1
+
+echo
 if [ "$fail" -eq 0 ]; then echo "全部通过"; else echo "有失败项"; fi
 exit "$fail"

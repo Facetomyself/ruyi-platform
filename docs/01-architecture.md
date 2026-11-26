@@ -11,7 +11,7 @@
 | MCP → Trace owner → 已运行的 Firefox | **借用模式，可选集成**。MCP 只持排他租约，经回环 owner IPC 做页面操作；RDP 调试是独立通道。Trace 保留唯一 BiDi 会话、进程和 flush 权；MCP 归还后浏览器继续运行。证据分别看 [M2 两种停止方式](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)及[自然到期和范围检查](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | 不启动第二个 Firefox，不把“归还租约”实现成关闭 owner 的浏览器。无需 JS/Http 库。 |
 | Python 或 C 客户端 → RuyiJS 私有壳 | **运行依赖，加可选明文组件**。[R356 wheel](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md) 提供 R355 壳、C 客户端和库；可独立卸载的 [R357 HTTP/1 组件](../submodules/ruyijs/docs/linux-http1.md) 才提供经实测的明文 HTTP/1 helper。两者都不包含 Mozilla Necko/NSS。 | 离线 DOM/JS 无需浏览器 owner；直接明文 HTTP/1 需要安装 R357。HTTPS、h2、QUIC 和代理仍无已验实现。 |
 | Python 调用方 → RuyiHttp → 自带的 Necko/NSS/QUIC 运行库 | **独立传输客户端**。与 RuyiJS 的派生适配有共同的协议/ABI 来源；双方有各自的包、依赖和验收。[HTTP 的平台矩阵](../projects/ruyihttp/README.md) | 发 HTTP 请求无需浏览器、MCP、JS 壳或 DOM。HTTP 的 h2 成功也不是 JS 联网或 H3 验收。 |
-| 调用方 → RuyiDOM → Firefox **136** + 供应商 JS | **独立工具链**。`native` 用 xpcshell 做离线 DOM；显式 `browser` 后端使用真实内容进程导航。供应商输入在 Git 外，详见[固定版本输入清单](https://github.com/Facetomyself/ruyidom/blob/4009bae850f9b64d413bd41a94dd7b3c56f86b40/docs/INPUTS.md)。 | RuyiDOM 不是 RuyiJS 的别名、Trace 159 的前端或第五个子模块；不把 136 的行为当作 159 的发布证据。 |
+| 调用方 → RuyiDOM 的脚本宿主 → 可选的独立内容浏览器 | **两个角色分别固定**。`native` 在官方 Firefox 136 的 xpcshell 内执行；`browser` 保留该可信脚本宿主，通过 BiDi 驱动真正的标签页。现用 ARM64 镜像选用从源码编译的 Firefox 153.8.0 ESR 内容引擎，见[平台交接与实测证据](14-source-handoff.md#ruyidom-独立源码交接)。 | 供应商 JS 单独恢复；无需 RuyiJS、RuyiTrace 或 MCP，仍是独立仓。内容浏览器升级不等于替换 native 脚本宿主。 |
 
 **跨项目对照只传数据。** 在自有测试页上，业务项目可把同一 fixture 的 Trace 记录、RuyiJS/RuyiDOM 求值结果、RuyiHttp 响应分开存档，以 fixture 摘要、组件 SHA、架构和运行时版本关联。它们是可选的结果对照；不存在一条需要同时运行五个产品的流水线。发布阻塞及验收顺序见[当前缺口](04-risks-and-gaps.md#当前交付缺口)。
 

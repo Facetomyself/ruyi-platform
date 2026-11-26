@@ -1,0 +1,156 @@
+{
+  "archive": {
+    "sha256": "9fbaa767a9d0eedd740378d945f7d9dacb8043df3cf93364f5cdec26b85d60d0",
+    "size": 72307796
+  },
+  "archiveName": "firefox-153.8.0.en-US.linux-aarch64.tar.xz",
+  "bareHostNegativeControl": {
+    "actualLoaderErrors": [
+      "GLIBC_2.38",
+      "GLIBC_ABI_DT_RELR",
+      "GLIBCXX_3.4.31"
+    ],
+    "bootstrapAndMetadataCheck": "pass",
+    "compiledPackageELFMaxNumericSymbolVersions": [
+      "GLIBC_2.39",
+      "GLIBCXX_3.4.32"
+    ],
+    "nobleContainerPositive": "pass",
+    "realPageNavigationSourceEngine": "browser-start failed before any HTTP request",
+    "stock136AndStockESRRedirectCsp": "pass",
+    "tested": "Ubuntu 22.04.5 ARM64/glibc 2.35"
+  },
+  "browserFull": {
+    "fail": [],
+    "pass": [
+      "redirect-csp",
+      "wait-until",
+      "handle",
+      "async",
+      "http-errors",
+      "tls-trusted",
+      "tls-untrusted",
+      "navigation-timeout",
+      "interruption",
+      "cold-starts",
+      "worker",
+      "webgl"
+    ],
+    "unsupported": []
+  },
+  "buildID": "20261125161200",
+  "checkedDateShanghai": "2026-11-26",
+  "coldStarts": 10,
+  "configuration": {
+    "artifactBuild": false,
+    "buildID": "20261125161200",
+    "configStatusSHA256": "2df8272b224f50eeb0860f3c5ef42deefbadc7184c2ed844dd16f97bde7e8174",
+    "provesFinalLinkOrPackage": false,
+    "reported": {
+      "CC_VERSION": "20.1.2",
+      "MOZ_APP_BASENAME": "Firefox",
+      "MOZ_APP_DISPLAYNAME": "Nightly",
+      "MOZ_LTO": null,
+      "MOZ_PGO": "",
+      "MOZ_UPDATE_CHANNEL": "default",
+      "RUSTC_VERSION": "1.100.0",
+      "WASM_CC_VERSION": "21.1.4"
+    },
+    "schema": "ruyidom-arm64-source-config-v1",
+    "sourceStamp": "44242c0bf7eef0918a458568730d8e36022e0743",
+    "verifiedSubstitutions": {
+      "CC_TYPE": "clang",
+      "MOZ_APP_VERSION": "153.8.0",
+      "MOZ_APP_VERSION_DISPLAY": "153.8.0esr",
+      "MOZ_BUILD_APP": "browser",
+      "MOZ_INCLUDE_SOURCE_INFO": "1",
+      "MOZ_PKG_FORMAT": "XZ",
+      "MOZ_SANDBOX": "1",
+      "MOZ_USING_WASM_SANDBOXING": "1",
+      "MOZ_WASM_SANDBOXING_EXPAT": "1",
+      "MOZ_WASM_SANDBOXING_GRAPHITE": "1",
+      "MOZ_WASM_SANDBOXING_HUNSPELL": "1",
+      "MOZ_WASM_SANDBOXING_OGG": "1",
+      "MOZ_WASM_SANDBOXING_SOUNDTOUCH": "1",
+      "MOZ_WASM_SANDBOXING_WOFF2": "1",
+      "host": "aarch64-unknown-linux-gnu",
+      "target": "aarch64-unknown-linux-gnu"
+    }
+  },
+  "coverage": "ARM64 content renderer; stock Firefox 136 trusted script host, not an amd64 compilation",
+  "delivery": {
+    "artifacts": {
+      "firefox-153.8.0.en-US.linux-aarch64.tar.xz": {
+        "bytes": 72307796,
+        "sha256": "9fbaa767a9d0eedd740378d945f7d9dacb8043df3cf93364f5cdec26b85d60d0"
+      },
+      "ruyidom-arm64-source-20261125161200-648b02c0896e1cae.docker.tar.gz": {
+        "bytes": 386773602,
+        "sha256": "7824494c3f3ce30f1e8df4086dc3ce7eade69e7b2f5a6a7f8c2556657b0a8e34"
+      }
+    },
+    "host": "oracle-reverse-dev",
+    "privateDirectory": "/home/ubuntu/ruyidom-artifacts/esr153-source-20261125161200",
+    "registryPush": false,
+    "reloadImageIdMatches": true,
+    "reloadedBrowserRedirectCsp": "pass",
+    "reloadedOfflineSmoke": "RuyiDOM:offline",
+    "reloadedOnExistingStore": true,
+    "verifiedOnSecondHostByArchiveSHA256": true
+  },
+  "installTreeSha256": "e61d1e66383cace18192f811c420a9924ae3cde792fbeaaaa7c859d9f22be909",
+  "libxul": {
+    "class": "ELF64",
+    "eMachine": 183,
+    "endianness": "little",
+    "machine": "aarch64",
+    "sha256": "185f37b960a4303c429cb7a2b648b10d65066b2afd678f5055e133f92745140e",
+    "size": 169081560,
+    "type": "ET_DYN"
+  },
+  "mach": {
+    "build": {
+      "attempt": "attempt-01",
+      "elapsedSeconds": 15183,
+      "ended": "2026-11-25T20:54:44+00:00",
+      "exit": 0
+    },
+    "configure": {
+      "attempt": "attempt-01",
+      "elapsedSeconds": 109,
+      "ended": "2026-11-25T16:41:42+00:00",
+      "exit": 0
+    },
+    "package": {
+      "attempt": "attempt-01",
+      "elapsedSeconds": 163,
+      "ended": "2026-11-25T20:57:27+00:00",
+      "exit": 0
+    }
+  },
+  "maintainedProfile": "153.8.0esr-source-20261125161200",
+  "nativeGeckoSourceHost": "oracle-reverse-dev",
+  "ociImageId": "sha256:f9d740cf768f3c5048e8850f55e4355946abb1a64f054c054673f00b8a2fd23d",
+  "packageReceiptSha256": "5d5186456b66ce681921e06a28cea174fca8c0bc3cb115775ef0aafe85f4df65",
+  "qa": {
+    "browser-136-control": 0,
+    "browser-cross": 0,
+    "browser-loss": 0,
+    "browser-nav": 0,
+    "browser-rpc-limit": 0,
+    "image-tree": 0,
+    "launcher-check": 0,
+    "native-136": 0
+  },
+  "renderer": "153.8.0esr-source-20261125161200",
+  "retainedImageTag": "ruyidom:arm64-source-20261125161200-648b02c0896e1cae",
+  "ruyidomBase": "1a1421051ebb0de38c7f194983fd2503d777db51",
+  "schema": "ruyidom-arm64-source-release-v1",
+  "sourceArchiveSha256": "824d5e0bbcae30825ee4ec3267d21018b01d33ac2fda50065de8c41153d4ec85",
+  "sourceBuildDateUTC": "2026-11-25",
+  "sourceRelease": "153.8.0esr",
+  "sourceStamp": "44242c0bf7eef0918a458568730d8e36022e0743",
+  "tagAtBuild": "ruyidom:source-20261125161200-648b02c0896e1cae",
+  "toolchainImageId": "sha256:8695c9448ba313f28ffe5ffbd6060ce34af4492865d33ef6ac77abb0da3ad087",
+  "trustedScriptHost": "136.0"
+}
