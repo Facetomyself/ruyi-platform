@@ -1,8 +1,12 @@
 """Offline negative tests for native WS V2 acceptance; arm64 ZIP integration is optional."""
 
+from dataclasses import replace
 import importlib.util
 from pathlib import Path
+import subprocess
+import sys
 import unittest
+from unittest.mock import patch
 
 
 RECEIPT = (Path(__file__).resolve().parents[1] / 'artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket')
@@ -94,6 +98,25 @@ class JoinedEvidenceControls(unittest.TestCase):
         self.assertEqual(report['accepted_cases'], 22)
         self.assertEqual(report['regression_cases_on_new_bytes'], 17)
         self.assertEqual(report['gates']['websocket']['native_rows'], 10)
+        self.assertEqual((v.json.dumps(report, indent=2, sort_keys=True) + '\n').encode(),
+                         (RECEIPT / 'arm64-review.json').read_bytes())
+
+    def test_amd_context_rejects_arm_release_even_if_manifest_hashes_are_supplied(self):
+        amd_pins = replace(amd.admission(synthetic_pins()), archive_proof=v.ARCHIVE_PROOF,
+                           image_manifest=v.IMAGE_MANIFEST)
+        with self.assertRaisesRegex(ValueError, 'wrong export identity'):
+            v.verify(self.blobs, pins=amd_pins, producer_intakes=True)
+
+    def test_producer_layout_still_checks_packet_original_byte_joins(self):
+        # ARM is the only real fixture while AMD acquisition is pending. Exercise
+        # the alternative intake layout without constructing a synthetic AMD pass.
+        blobs = dict(self.blobs)
+        del blobs['intake/index.json']
+        self.assertEqual(v.verify(blobs, producer_intakes=True), v.verify(self.blobs))
+        name = 'intake/arm64-websocket/cases/fragment_and_ping/native/original.bin'
+        blobs[name] = blobs[name][:-1]
+        with self.assertRaisesRegex(ValueError, 'substitutes the four native originals'):
+            v.verify(blobs, producer_intakes=True)
 
     def test_reject_wrong_kernel_even_with_consistent_native_receipt_digests(self):
         bad = '0' * 64
@@ -139,6 +162,65 @@ class JoinedEvidenceControls(unittest.TestCase):
         blobs = self.replace('controls/unsupported/native-sealed.json', lambda j: j.update(complete=True, status='ok'))
         with self.assertRaisesRegex(ValueError, 'stock unsupported is not a sealed zero'):
             v.verify(blobs)
+
+
+AMD = importlib.util.spec_from_file_location('verify_patched_amd64', RECEIPT / 'verify_amd64.py')
+amd = importlib.util.module_from_spec(AMD)
+with patch.dict(sys.modules, verify=v):
+    AMD.loader.exec_module(amd)
+
+
+def synthetic_pins():
+    # Admission-shape probes only; these are explicitly not artifact identities.
+    digest = lambda field: v.sha(('synthetic test only: ' + field).encode())
+    out = {name: digest(name) for name in ('kernel_sha256', 'libxul_sha256', 'operator_sha256', 'export_proof_sha256',
+                                           'image_receipt_sha256', 'evidence_index_sha256')}
+    return dict(out, schema='ruyitrace.patched-amd64-review-pins.v1', platform=amd.ARCH,
+                image_id='sha256:' + digest('image'), elf_build_id=digest('elf')[:40],
+                kernel_bytes=1, operator_bytes=2, runtime_source=v.PRODUCT, source_set_sha256=v.SOURCE_SET,
+                capture_day_utc='2026-11-26')
+
+
+class Amd64AdmissionControls(unittest.TestCase):
+    def test_separate_native_build_and_machine(self):
+        got = amd.admission(synthetic_pins())
+        self.assertEqual((got.arch, got.native_arch, got.machine, got.host), ('linux/amd64', 'x86_64', 62, 'host185'))
+        self.assertNotEqual(got.build, v.ARM64.build)
+        self.assertEqual(got.kernel_name, 'firefox-159.0.en-US.linux-x86_64.tar.xz')
+
+    def test_reject_stock_and_arm_artifact_pins(self):
+        for field, wrong in (('image_id', amd.STOCK), ('image_id', v.IMAGE), ('kernel_sha256', v.KERNEL),
+                             ('operator_sha256', v.ARCHIVE), ('libxul_sha256', v.LIBXUL)):
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'substituted'):
+                amd.admission(dict(synthetic_pins(), **{field: wrong}))
+
+    def test_reject_changed_source_and_placeholder(self):
+        with self.assertRaisesRegex(ValueError, 'runtime source'):
+            amd.admission(dict(synthetic_pins(), runtime_source='0' * 40))
+        with self.assertRaisesRegex(ValueError, 'empty digest pin'):
+            amd.admission(dict(synthetic_pins(), kernel_sha256='0' * 64))
+        p = synthetic_pins()
+        del p['kernel_sha256']
+        with self.assertRaisesRegex(ValueError, 'schema or platform'):
+            amd.admission(p)
+
+    def test_mismatched_index_cannot_qualify(self):
+        with self.assertRaisesRegex(ValueError, 'original-byte index digest mismatch'):
+            amd.verify_amd64({}, synthetic_pins(), None, None)
+
+    def test_cli_emits_no_acceptance_on_missing_native_artifacts(self):
+        args = [sys.executable, '-B', str(RECEIPT / 'verify_amd64.py')]
+        for n in ('qualified', 'kernel-dir', 'baseline', 'image-receipt', 'patch', 'native-work',
+                  'runtime-source', 'stock-control', 'stock-smoke'):
+            args.extend(('--' + n, str(RECEIPT / 'missing-test-input')))
+        sent = subprocess.run(args, text=True, capture_output=True, check=False)
+        self.assertEqual(sent.returncode, 2)
+        self.assertEqual(sent.stdout, '')
+        self.assertIn('requires externally pinned identity and both full artifacts', sent.stderr)
+        indexed = subprocess.run([*args, '--index-only'], text=True, capture_output=True, check=False)
+        self.assertEqual(indexed.returncode, 1)
+        self.assertEqual(indexed.stdout, '')
+        self.assertIn('missing or nonregular original: identity.json', indexed.stderr)
 
 
 if __name__ == '__main__':

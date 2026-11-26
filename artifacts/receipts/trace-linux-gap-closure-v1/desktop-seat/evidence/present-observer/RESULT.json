@@ -1,0 +1,31 @@
+{
+  "schema": "ruyitrace.present-observer-calibration-result.v1",
+  "source_revision": "724ef8e147dc1c688601346cb4d25cb3f26a8942",
+  "release_tag": "linux-electron-owner-v0.1.0-alpha.1",
+  "native_calibration_architecture": "arm64",
+  "virtual_backend": "private authenticated Xvfb, Present 1.2, no DRM device passthrough",
+  "native_fixture": {
+    "receipt": "arm64-native-fixture.json",
+    "wrong_owner_rejected_before_arming": true,
+    "notify_msc_completions": 1,
+    "pixmap_copy_completions": 1
+  },
+  "installed_clean_d": {
+    "receipt": "arm64-clean-d-xvfb.json",
+    "period_complete": true,
+    "total_present_complete_notify": 0,
+    "pixmap_completions": 0,
+    "notify_msc_completions": 0,
+    "own_drawable_resizes_observed_and_restored": 3,
+    "challenge_rounds_observed": 0,
+    "exact_chromium_rendering_backend_measured": false,
+    "same_backend_rejected_by_physical_mode": true
+  },
+  "xorg_physical_runtime_tested": false,
+  "amd64_native_runtime_tested": false,
+  "compositor_scanout_or_monitor_identity_proven": false,
+  "independent_physical_panel_witness": false,
+  "display_gate_v1": "held",
+  "ime_gate_v1": "held",
+  "qualification_awarded": false
+}

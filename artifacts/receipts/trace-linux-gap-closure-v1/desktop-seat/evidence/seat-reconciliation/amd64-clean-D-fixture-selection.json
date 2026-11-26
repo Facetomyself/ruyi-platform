@@ -1,0 +1,190 @@
+{
+  "app_receipt_sha256": "f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481",
+  "architecture": "x86_64",
+  "bundle_receipt_sha256": "e35f4f879a1fe08125bcc9af68daf10a4a11a3cc805daca064c4feff8a6f495c",
+  "exact_window_and_native_peer_bound": true,
+  "human_attestation_present": false,
+  "native_totals": {
+    "callbacks_outside_recorded_round_windows": 7,
+    "discarded_unbound_focus_notifications": 1,
+    "native_gtk_callback_discarded": 0,
+    "native_gtk_callback_events": 144,
+    "native_gtk_callback_sequence_gaps": 0,
+    "native_gtk_startup_focus_reset_excluded": 0,
+    "native_panel_notifications": 68,
+    "overflow": 0,
+    "peer_bound_focus_notifications": 30
+  },
+  "qualification_awarded": false,
+  "receipt_count": 4,
+  "receipt_sha256": {
+    "native-panel-observer": "22dcb2bc043794cf35ee9dab03aef964523661537b33cd62a6de61d62c9ace5e",
+    "plan": "72ad41532cbee8e41a887e89bcb404a1afbc5aebed3972dbc5c33a15673bd80e",
+    "product-1": "9fe7a8b441fa4e2f9fbebfe5f777cc3dc24404391561425a9d182227b6c5910b",
+    "product-2": "552470a494425638cd719f34b2d3ceb3bf95b0c7b3f3ac17b1f9441601bf9362",
+    "product-3": "9e04f0b0787956bd78be6af7e5c50ee25abf473ec98238e03b9802fc7ab4d0c4",
+    "product-4": "3d868c9fba0406e02bcf35463b7b49994eb39ee8be2ba860e0cc2c42a1d5a2ab",
+    "product-window": "e297edcbf6a77668472c14e6b70775266f761b0192283c4af98f881935a90517",
+    "release": "6ae8785aad9410ecba73688573a052463d6056ba8d2d9ae9ddab6358675a2f15",
+    "x11-1": "e9624760a5edaaa09cfb419b480349e21671e50bdd053a34bfdb5c9546196eee"
+  },
+  "rounds": {
+    "cancel": {
+      "field": {
+        "delayed_matching_ends": 0,
+        "ends": 0,
+        "expected_equal": false,
+        "matching_composition_ends": 0,
+        "moved_while_composing": false,
+        "other_inputs": 0,
+        "paste_events": 0,
+        "paste_inputs": 0,
+        "primary_empty": true,
+        "primary_focused": true,
+        "second_focused": false,
+        "secondary_empty": true,
+        "starts": 1,
+        "synthetic_events": 1,
+        "updates": 3
+      },
+      "native_panel": {
+        "focus_in": 6,
+        "focus_out": 6,
+        "last_observed_fixture_rank": 2,
+        "preedit_updates": 0,
+        "visible_lookup_updates": 3
+      },
+      "native_stage_pass": true,
+      "stock_gtk_callbacks": {
+        "commit": 0,
+        "commit_equal": 0,
+        "focus_in": 3,
+        "focus_out": 4,
+        "preedit_change": 11,
+        "preedit_end": 2,
+        "preedit_start": 3,
+        "reset": 4
+      },
+      "strict_product_pass": false
+    },
+    "focus_change": {
+      "field": {
+        "delayed_matching_ends": 0,
+        "ends": 0,
+        "expected_equal": false,
+        "matching_composition_ends": 0,
+        "moved_while_composing": true,
+        "other_inputs": 0,
+        "paste_events": 0,
+        "paste_inputs": 0,
+        "primary_empty": false,
+        "primary_focused": true,
+        "second_focused": true,
+        "secondary_empty": true,
+        "starts": 1,
+        "synthetic_events": 1,
+        "updates": 2
+      },
+      "native_panel": {
+        "focus_in": 12,
+        "focus_out": 12,
+        "last_observed_fixture_rank": 2,
+        "preedit_updates": 0,
+        "visible_lookup_updates": 3
+      },
+      "native_stage_pass": true,
+      "stock_gtk_callbacks": {
+        "commit": 0,
+        "commit_equal": 0,
+        "focus_in": 7,
+        "focus_out": 8,
+        "preedit_change": 27,
+        "preedit_end": 11,
+        "preedit_start": 11,
+        "reset": 7
+      },
+      "strict_product_pass": false
+    },
+    "paste_control": {
+      "field": {
+        "delayed_matching_ends": 0,
+        "ends": 0,
+        "expected_equal": true,
+        "matching_composition_ends": 0,
+        "moved_while_composing": false,
+        "other_inputs": 0,
+        "paste_events": 1,
+        "paste_inputs": 1,
+        "primary_empty": false,
+        "primary_focused": true,
+        "second_focused": false,
+        "secondary_empty": true,
+        "starts": 0,
+        "synthetic_events": 0,
+        "updates": 0
+      },
+      "native_panel": {
+        "focus_in": 6,
+        "focus_out": 6,
+        "last_observed_fixture_rank": null,
+        "preedit_updates": 0,
+        "visible_lookup_updates": 0
+      },
+      "native_stage_pass": true,
+      "stock_gtk_callbacks": {
+        "commit": 0,
+        "commit_equal": 0,
+        "focus_in": 2,
+        "focus_out": 1,
+        "preedit_change": 5,
+        "preedit_end": 3,
+        "preedit_start": 2,
+        "reset": 4
+      },
+      "strict_product_pass": true
+    },
+    "select_candidate": {
+      "field": {
+        "delayed_matching_ends": 0,
+        "ends": 0,
+        "expected_equal": true,
+        "matching_composition_ends": 0,
+        "moved_while_composing": false,
+        "other_inputs": 1,
+        "paste_events": 0,
+        "paste_inputs": 0,
+        "primary_empty": false,
+        "primary_focused": true,
+        "second_focused": false,
+        "secondary_empty": true,
+        "starts": 1,
+        "synthetic_events": 1,
+        "updates": 3
+      },
+      "native_panel": {
+        "focus_in": 1,
+        "focus_out": 0,
+        "last_observed_fixture_rank": 2,
+        "preedit_updates": 0,
+        "visible_lookup_updates": 3
+      },
+      "native_stage_pass": true,
+      "stock_gtk_callbacks": {
+        "commit": 1,
+        "commit_equal": 1,
+        "focus_in": 3,
+        "focus_out": 2,
+        "preedit_change": 8,
+        "preedit_end": 2,
+        "preedit_start": 2,
+        "reset": 4
+      },
+      "strict_product_pass": false
+    }
+  },
+  "scenario": "focus-then-record",
+  "stock_gtk_module_sha256": "3bffff1d9e6a0187c3e0290ac74c3da7450f1b24deae789d442a354c908a859f",
+  "strict_virtual_join_pass": false,
+  "virtual_native_XTest": true,
+  "zero_detected_channel_discards_gaps_and_overflow": true
+}

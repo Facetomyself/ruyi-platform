@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Offline acceptance of the pinned ARM64 patched Gecko operator image (stdlib only)."""
+"""Offline patched-Gecko acceptance core and frozen ARM64 command (stdlib only)."""
 
 import argparse
 import configparser
+from dataclasses import dataclass
 from datetime import datetime, timezone
 import gzip
 import hashlib
@@ -36,6 +37,47 @@ IMAGE_MANIFEST = '26a2aa3dc226a79ecf746d68862b423b2fbe0f3824152f6676924fd89a56c2
 FIXTURE = 'b831052eca466c39856b182b96029051791766de22633a31d317610251074658'
 SCRIPT = 'e59743eb8c208764e7ddb1ea43ad3f80c39a1fa989d05d2fdfecee52ba4b314f'
 INDEX_SHA = '185aac65ddd85fd0b8973e18981fe37ba6c7b1edba3bc85473ad5a4b6cac71f3'
+
+@dataclass(frozen=True)
+class LanePins:
+    arch: str
+    machine: int
+    native_arch: str
+    host: str
+    elf_label: str
+    build: str
+    product: str
+    base: str
+    stock_overlay: str
+    image: str
+    kernel: str
+    kernel_bytes: int
+    libxul: str
+    archive: str
+    archive_bytes: int
+    archive_proof: str
+    image_manifest: str
+    source_set: str
+    day: str
+
+    @property
+    def cpu(self):
+        return self.arch.split('/')[1]
+
+    @property
+    def archive_name(self):
+        return f'ruyitrace-native-{self.cpu}-{self.image[7:23]}.docker.tar.gz'
+
+    @property
+    def kernel_name(self):
+        return f'firefox-{VERSION}.en-US.linux-{self.native_arch}.tar.xz'
+
+
+ARM64 = LanePins(arch=ARCH, machine=MACHINE, native_arch='aarch64', host='oracle-reverse-dev', elf_label='AArch64',
+                 build=BUILD, product=PRODUCT, base=BASE, stock_overlay=STOCK_OVERLAY, image=IMAGE,
+                 kernel=KERNEL, kernel_bytes=KERNEL_BYTES, libxul=LIBXUL, archive=ARCHIVE, archive_bytes=ARCHIVE_BYTES,
+                 archive_proof=ARCHIVE_PROOF, image_manifest=IMAGE_MANIFEST, source_set=SOURCE_SET, day='2026-11-26')
+
 
 SOURCES = ('Policy.sys.mjs', 'RuyiNativeTelemetryChild.sys.mjs', 'RuyiNativeTelemetryParent.sys.mjs',
            'Start.sys.mjs', 'Writer.sys.mjs', 'build_image.py', 'compute/Compute.sys.mjs',
@@ -179,9 +221,9 @@ def elf_notes(head):
     return machine, notes
 
 
-def read_kernel_archive(path, receipt):
+def read_kernel_archive(path, receipt, *, pins=ARM64):
     """Rehash every TAR member from the pinned archive, without extracting files."""
-    need(opened(path, KERNEL_BYTES) == KERNEL, 'local complete kernel archive SHA mismatch')
+    need(opened(path, pins.kernel_bytes) == pins.kernel, 'local complete kernel archive SHA mismatch')
     seen = set()
     with tarfile.open(path, 'r|xz') as arc:
         for item in arc:
@@ -204,20 +246,20 @@ def read_kernel_archive(path, receipt):
             if name == 'firefox/libxul.so':
                 machine, notes = elf_notes(head)
                 same([machine, notes[(b'GNU', 3)].hex(), notes[(b'mzbldid', 1)].rstrip(b'\0').decode('ascii')],
-                     [MACHINE, receipt['packaged_libxul']['elf_build_id'], BUILD], 'packaged ELF architecture/GNU/upstream IDs')
+                     [pins.machine, receipt['packaged_libxul']['elf_build_id'], pins.build], 'packaged ELF architecture/GNU/upstream IDs')
             if name in {'firefox/application.ini', 'firefox/platform.ini'}:
                 parser = configparser.ConfigParser(interpolation=None)
                 parser.read_string(head.decode('utf-8'))
                 s, v = ('App', 'Version') if name.endswith('/application.ini') else ('Build', 'Milestone')
-                same([parser[s][v], parser[s]['BuildID'], parser[s]['SourceStamp']], [VERSION, BUILD, GECKO],
+                same([parser[s][v], parser[s]['BuildID'], parser[s]['SourceStamp']], [VERSION, pins.build, GECKO],
                      'packaged INI source/build stamp')
     need(seen == receipt['members'].keys(), 'native archive member enumeration mismatch')
 
 
-def read_operator_archive(path, proof):
+def read_operator_archive(path, proof, *, pins=ARM64):
     """Rehash the full gzip, its selected config, and all five uncompressed layers."""
-    need(opened(path, ARCHIVE_BYTES) == ARCHIVE, 'local complete operator archive SHA mismatch')
-    selected = f'blobs/sha256/{IMAGE[7:]}'
+    need(opened(path, pins.archive_bytes) == pins.archive, 'local complete operator archive SHA mismatch')
+    selected = f'blobs/sha256/{pins.image[7:]}'
     docs, diff, names = {}, {}, set()
     with gzip.open(path, 'rb') as source:
         with tarfile.open(fileobj=source, mode='r|') as arc:
@@ -253,49 +295,53 @@ def read_operator_archive(path, proof):
     need(m['Config'] == selected and not m.get('RepoTags'), 'unexpected Docker selected config or mutable tags')
     same(object_at(docs.get('repositories', b'{}')), {}, 'named repository entries')
     cfg_b = docs[selected]
-    need('sha256:' + sha(cfg_b) == IMAGE, 'local Docker config digest')
+    need('sha256:' + sha(cfg_b) == pins.image, 'local Docker config digest')
     cfg = object_at(cfg_b)
     same([cfg['os'], cfg['architecture'], cfg['config']['User'], cfg['rootfs']['type']],
-         ['linux', 'arm64', '1000:1000', 'layers'], 'local Docker platform or unprivileged user')
+         ['linux', pins.cpu, '1000:1000', 'layers'], 'local Docker platform or unprivileged user')
     same([diff[n] for n in m['Layers']], cfg['rootfs']['diff_ids'], 'local Docker content differs from claimed layers')
     same(cfg['rootfs']['diff_ids'], proof['rootfs_diffids'], 'local Docker content differs from installed-run host layers')
+    labels = cfg['config']['Labels']
+    same([labels['io.ruyitrace.native.base'], labels['io.ruyitrace.native.package.sha256'],
+          labels['io.ruyitrace.product.scope']],
+         [pins.base, proof['installed_package_sha256'], 'native-events-candidate'], 'local Docker package labels')
     need(not cfg['config'].get('ExposedPorts') and not cfg['config'].get('Volumes'), 'unexpected Docker ports or volumes')
-    return dict(bytes=ARCHIVE_BYTES, sha256=ARCHIVE, config=IMAGE, diff_ids=cfg['rootfs']['diff_ids'], gzip_crc=True)
+    return dict(bytes=pins.archive_bytes, sha256=pins.archive, config=pins.image, diff_ids=cfg['rootfs']['diff_ids'], gzip_crc=True)
 
 
-def validate_release(e):
+def validate_release(e, *, pins=ARM64):
     proof_b = e.raw('export/archive-proof.json')
     img_b = e.raw('image/image.json')
-    need(sha(proof_b) == ARCHIVE_PROOF and sha(img_b) == IMAGE_MANIFEST, 'wrong release proof or runtime manifest SHA')
+    need(sha(proof_b) == pins.archive_proof and sha(img_b) == pins.image_manifest, 'wrong release proof or runtime manifest SHA')
     proof, img = object_at(proof_b), object_at(img_b)
     package_b = e.raw('export/installed-package.json')
     package = object_at(package_b)
     files = {name: sha(e.raw(f'source/{name}')) for name in SOURCES}
-    need(sha(canonical(files)) == SOURCE_SET and img['source_set_sha256'] == SOURCE_SET, 'mixed product source bytes')
+    need(sha(canonical(files)) == pins.source_set and img['source_set_sha256'] == pins.source_set, 'mixed product source bytes')
     levels = proof['rootfs_diffids']
     need(len(set(levels)) == len(levels) == 5 and levels[-1] == img['overlay_diff_id'], 'rootfs diffID chain')
     for x in levels:
         match(x, r'sha256:[a-f0-9]{64}', 'bad layer digest')
-    same(proof, dict(schema='ruyitrace.native-artifact-readback.v1', source=PRODUCT, platform=ARCH,
-                     image_id=IMAGE, base=BASE, build_id=BUILD, archive_sha256=ARCHIVE, archive_bytes=ARCHIVE_BYTES,
+    same(proof, dict(schema='ruyitrace.native-artifact-readback.v1', source=pins.product, platform=pins.arch,
+                     image_id=pins.image, base=pins.base, build_id=pins.build, archive_sha256=pins.archive, archive_bytes=pins.archive_bytes,
                      gzip_crc_verified=True, installed_bytes_match=True, diffid_readback=True, passed=True,
-                     config_ids=[IMAGE], repository_tags=0, archive='ruyitrace-native-arm64-ecb43c4ef8f448d4.docker.tar.gz',
-                     patched_kernel_sha256=KERNEL, installed_package_sha256=sha(package_b),
+                     config_ids=[pins.image], repository_tags=0, archive=pins.archive_name,
+                     patched_kernel_sha256=pins.kernel, installed_package_sha256=sha(package_b),
                      rootfs_diffids=levels, source_files=files, utc=proof['utc']), 'wrong export identity or installed readback')
     ctrl = e.obj('export/controller.json')
-    need(ctrl['ok'] is True and ctrl['source'] == PRODUCT and ctrl['image'] == IMAGE, 'wrong export controller')
-    same(img, dict(package, candidate_image_id=IMAGE, manifest_sha256=sha(package_b), overlay_diff_id=levels[-1]),
+    need(ctrl['ok'] is True and ctrl['source'] == pins.product and ctrl['image'] == pins.image, 'wrong export controller')
+    same(img, dict(package, candidate_image_id=pins.image, manifest_sha256=sha(package_b), overlay_diff_id=levels[-1]),
          'runtime did not use exported installed bytes')
     same([img[k] for k in ('architecture', 'build_id', 'old_build_id', 'firefox_version', 'firefox_root',
                            'base_image_id', 'patched_firefox_archive_sha256', 'scope', 'source_sha256')],
-         ['arm64', BUILD, BUILD, VERSION, '/browser', BASE, KERNEL, 'native-events-candidate', files], 'mixed build identity')
+         [pins.cpu, pins.build, pins.build, VERSION, '/browser', pins.base, pins.kernel, 'native-events-candidate', files], 'mixed build identity')
     same(img['archive_modules'], {'modules/ruyi-native/' + n: v for n, v in files.items() if n.endswith('.sys.mjs')},
          'runtime archive module source digest mismatch')
     before, after = img['old_package_sha256'], img['package_sha256']
     same(sorted(before), sorted(after), 'runtime package inventory changed')
     same({n for n in before if before[n] != after[n]} == {'libxul.so', 'omni.ja'}, True,
          'runtime overlay must change libxul and omni.ja only')
-    need(after['libxul.so'] == LIBXUL and img['pre_overlay_omni_sha256'] == before['omni.ja'], 'native/JS overlay conflated')
+    need(after['libxul.so'] == pins.libxul and img['pre_overlay_omni_sha256'] == before['omni.ja'], 'native/JS overlay conflated')
     return levels, img
 
 
@@ -304,30 +350,30 @@ def check_tokens(raw, tokens, label):
         need(token.encode('ascii') in raw, f'{label}: missing source invariant: {token}')
 
 
-def validate_kernel(e, img):
+def validate_kernel(e, img, *, pins=ARM64):
     lineage = e.obj('kernel/lineage.json')
     patch, actualdiff = e.raw('kernel/gecko-v2.patch'), e.raw('kernel/effective.diff')
     src = lineage['source']
-    need(lineage['arch'] == 'aarch64' and lineage['schema'] == 1 and src['gecko_commit'] == GECKO
+    need(lineage['arch'] == pins.native_arch and lineage['schema'] == 1 and src['gecko_commit'] == GECKO
          and src['gecko_tree'] == GECKO_TREE and sha(patch) == PATCH, 'wrong native Gecko source/patch')
     same(src['patch'], bytes_record(patch), 'native build patch hash/length')
     same(src['effective_diff'], bytes_record(actualdiff), 'native patched source diff hash/length')
-    same(lineage['upstream_build_id'], dict(baseline=BUILD, candidate=BUILD, reused_upstream_stamp=True), 'upstream stamp')
+    same(lineage['upstream_build_id'], dict(baseline=pins.build, candidate=pins.build, reused_upstream_stamp=True), 'upstream stamp')
     baseline_b, native_b, independent_b = (e.raw('kernel/' + n) for n in ('baseline.json', 'build.json', 'readback.json'))
     baseline, native, independent = map(object_at, (baseline_b, native_b, independent_b))
     same(lineage['package']['native_receipt'], bytes_record(native_b), 'build receipt digest')
     same(lineage['package']['independent_receipt'], bytes_record(independent_b), 'independent package receipt digest')
     same(independent['independent_reference'], bytes_record(native_b), 'independent package references another build')
     for rec in (baseline, native, independent):
-        same(rec['arch'], 'aarch64', 'foreign architecture in package chain')
-        same(rec['metadata'], dict(source_stamp=GECKO, upstream_build_id=BUILD, version=VERSION), 'mixed source stamp')
+        same(rec['arch'], pins.native_arch, 'foreign architecture in package chain')
+        same(rec['metadata'], dict(source_stamp=GECKO, upstream_build_id=pins.build, version=VERSION), 'mixed source stamp')
         need(len(rec['members']) == 56, 'native package member count')
     same(native['stage_checked'], True, 'unverified staging substitution')
     same(native['members'], independent['members'], 'independent binary package member mismatch')
-    same(native['archive'], dict(bytes=KERNEL_BYTES, sha256=KERNEL), 'wrong kernel archive SHA or size')
+    same(native['archive'], dict(bytes=pins.kernel_bytes, sha256=pins.kernel), 'wrong kernel archive SHA or size')
     same(independent['archive'], native['archive'], 'independent readback used another kernel archive')
     same({k: lineage['package'][k] for k in ('bytes', 'sha256', 'member_count', 'name')},
-         dict(bytes=KERNEL_BYTES, sha256=KERNEL, member_count=56, name='firefox-159.0.en-US.linux-aarch64.tar.xz'),
+         dict(bytes=pins.kernel_bytes, sha256=pins.kernel, member_count=56, name=pins.kernel_name),
          'native lineage package identity')
     a, b = baseline['members'], native['members']
     same(set(a) == set(b), True, 'added or removed package members')
@@ -339,8 +385,8 @@ def validate_kernel(e, img):
     same(lineage['libxul']['packaged'], packaged, 'packaged ELF identity')
     same(lineage['libxul']['baseline_packaged'], baseline['packaged_libxul'], 'baseline ELF identity')
     same(independent['packaged_libxul'], packaged, 'independent readback of packaged ELF')
-    need(linked['machine'] == packaged['machine'] == MACHINE and linked['elf_build_id'] == packaged['elf_build_id']
-         and linked['sha256'] != packaged['sha256'] == LIBXUL
+    need(linked['machine'] == packaged['machine'] == pins.machine and linked['elf_build_id'] == packaged['elf_build_id']
+         and linked['sha256'] != packaged['sha256'] == pins.libxul
          and linked['elf_build_id'] != baseline['packaged_libxul']['elf_build_id'], 'ELF architecture/relink vs upstream stamp')
     same({k: b['firefox/libxul.so'][k] for k in ('bytes', 'sha256')},
          {k: packaged[k] for k in ('bytes', 'sha256')}, 'packaged ELF is not the archive member')
@@ -354,18 +400,23 @@ def validate_kernel(e, img):
     same(native_files['firefox/omni.ja'], img['pre_overlay_omni_sha256'], 'wrong pre-overlay omni.ja')
     for path in ('firefox', 'browser/omni.ja', 'libxul.so', 'omni.ja'):
         same(installed_files['firefox/' + path], img['package_sha256'][path], 'installed member hash mismatch')
-    check_tokens(e.raw('kernel/relinked-elf.txt'), ('AArch64', linked['elf_build_id']), 'relinked ELF')
+    check_tokens(e.raw('kernel/relinked-elf.txt'), (pins.elf_label, linked['elf_build_id']), 'relinked ELF')
     check_tokens(e.raw('kernel/build.log'), ('toolkit/library/build/libxul.so', 'build finally finished successfully!'), 'build log')
-    check_tokens(e.raw('kernel/phases.log'), ('compile_patched_websocket_objects', 'native_incremental_build',
-                                             'upstream_rust_networking_audit', 'package_verified'), 'build phases')
+    phases = ('apply_reviewed_patch', 'native_incremental_build', 'upstream_rust_networking_audit', 'package_verified')
+    if pins.arch == ARM64.arch:  # The ARM record contains this separate object-only canary.
+        phases += ('compile_patched_websocket_objects',)
+    check_tokens(e.raw('kernel/phases.log'), phases, 'build phases')
     audit_b = e.raw('kernel/networking-audit.json')
     audit, gk = object_at(audit_b), lineage['gkrust']
     same(gk['upstream_networking_audit'], bytes_record(audit_b), 'upstream audit digest')
     same([audit['exit_code'], audit['archive_audit'], audit['upstream_audit_sources'], audit['archive_stability'],
           audit['pin'], audit['generated_source_stamp'], audit['generated_build_id'], audit['arch'], audit['core_backend'],
-          audit['sandbox'], audit['wasm_sandbox'], gk['baseline_sha256'], gk['candidate_sha256']],
-         [0, 'passed', 'match', 'sha256-before-after-v1', GECKO, GECKO, BUILD, 'aarch64', True, True, True,
-          audit['sha256'], audit['sha256']], 'upstream networking audit continuity or result')
+          audit['sandbox'], audit['wasm_sandbox'], gk['candidate_sha256']],
+         [0, 'passed', 'match', 'sha256-before-after-v1', GECKO, GECKO, pins.build, pins.native_arch, True, True, True,
+          audit['sha256']], 'upstream networking audit continuity or result')
+    match(gk['baseline_sha256'], r'[a-f0-9]{64}', 'invalid Rust baseline digest')
+    if pins.arch == ARM64.arch:
+        same(gk['baseline_sha256'], gk['candidate_sha256'], 'frozen ARM Rust archive continuity')
     check_tokens(e.raw('kernel/native-work.sh'), ('upstream_rust_networking_audit', 'check_binary --networking'), 'audit invocation')
     return packaged['elf_build_id']
 
@@ -524,7 +575,7 @@ def verify_peer(peer, common, rid, role, spec, projected):
     return metrics
 
 
-def validate_case(e, gate, case, scope, spec, stock, levels):
+def validate_case(e, gate, case, scope, spec, stock, levels, *, pins=ARM64):
     key = f'{gate}--{case}'
     raw = lambda n: e.raw(f'lane/{key}/{n}')
     obs = [raw(f'native/{n}') for n in ORIGINALS]
@@ -534,25 +585,25 @@ def validate_case(e, gate, case, scope, spec, stock, levels):
     rid = ids['runId']
     validate_seal(ids, object_at(ready), object_at(armed), object_at(sealed), gate, len(rows))
     out = project(gate, case, rows)
-    common = dict(arch=ARCH, gate=gate, case=case)
+    common = dict(arch=pins.arch, gate=gate, case=case)
     host = object_at(raw('host.json'))
     attempt = host['attempt']
     match(attempt, 'run-[a-f0-9]{20}', 'host attempt ID')
-    same(host, dict(common, schema='ruyitrace.gap-host-run.v1', host='oracle-reverse-dev', attempt=attempt,
+    same(host, dict(common, schema='ruyitrace.gap-host-run.v1', host=pins.host, attempt=attempt,
                     remote='/var/lib/ruyitrace-gap-qa-v1/attempts/' + attempt, code=0, remaining_containers=0,
-                    docker_local_socket=True, base=False, image_id=IMAGE, snapshot_sha256=FIXTURE,
+                    docker_local_socket=True, base=False, image_id=pins.image, snapshot_sha256=FIXTURE,
                     additional_native_event_files=[], rootfs_layers=levels), 'host/image/attempt/output scan mismatch')
     run = object_at(raw('run.json'))
     role = 'other' if case == 'other_origin' else 'primary'
     times = tuple(datetime.fromisoformat(run[n]) for n in ('started_utc', 'finished_utc'))
-    need(all(t.tzinfo == timezone.utc and t.date().isoformat() == '2026-11-26' for t in times)
+    need(all(t.tzinfo == timezone.utc and t.date().isoformat() == pins.day for t in times)
          and 0 < (times[1] - times[0]).total_seconds() <= 165, 'candidate measurement time window')
     process = run['writer_process']
     need(type(process['start_ticks']) is int and process['start_ticks'] > 0, 'missing process birth identity')
     same(process, dict(pid=ids['writerPid'], start_ticks=process['start_ticks'], executable='/browser/firefox',
                        libxul_mapped=True, uid=1000, no_new_privs=1, seccomp=2, cap_eff='0000000000000000'),
          'writer OS identity or isolation')
-    same(run, dict(common, schema='ruyitrace.native-run.v1', image_id=IMAGE, build_id=BUILD, fixture_js_sha256=SCRIPT,
+    same(run, dict(common, schema='ruyitrace.native-run.v1', image_id=pins.image, build_id=pins.build, fixture_js_sha256=SCRIPT,
                    writer_process=process, run_id=rid, scope='installed-product-native-observation',
                    scope_sha256=sha(ids['origin'].encode('ascii')), native_metrics=spec['native'], native_status='ok',
                    native_rows=len(out), native_product_pass=True, browser_reaped=True, browser_exit=0,
@@ -572,9 +623,9 @@ def validate_case(e, gate, case, scope, spec, stock, levels):
                 process=process, host=host['host'], times=times, raw_sha256=sha(original), seal_sha256=sha(sealed))
 
 
-def validate_packet(e, gate, runs, observers, indexed):
-    root = f'intake/arm64-{gate}'
-    common = dict(arch=ARCH, gate=gate, source=PRODUCT, fixture_sha256=FIXTURE, artifact_sha256=ARCHIVE, build_id=BUILD)
+def validate_packet(e, gate, runs, observers, indexed, *, pins=ARM64, producer_intakes=False):
+    root = f'intake/{pins.cpu}-{gate}'
+    common = dict(arch=pins.arch, gate=gate, source=pins.product, fixture_sha256=FIXTURE, artifact_sha256=pins.archive, build_id=pins.build)
     candidate, seen, cases, total = e.raw(f'{root}/candidate.json'), set(), {}, 0
     roles = ('native', 'workload', *({'websocket': ('framePeer',), 'http': ('peer',)}.get(gate, ())))
     for case, r in runs.items():
@@ -588,7 +639,7 @@ def validate_packet(e, gate, runs, observers, indexed):
                 original = b'RUI_NATIVE_ORIGINALS_1\n' + b''.join(struct.pack('>Q', len(x)) + x for x in r['original'])
                 same_bytes = e.raw(f'{prefix}/original.bin') == original
                 need(same_bytes, 'packet resynthesizes or substitutes the four native originals')
-                who = dict(os=r['process'], image=IMAGE, host=r['host'], run_id=rid)
+                who = dict(os=r['process'], image=pins.image, host=r['host'], run_id=rid)
                 expected = {k: v for k, v in common.items() if k not in {'source', 'build_id'}}
                 same(object_at(raw), dict(expected, schema='ruyitrace.proposed-native-projection.v1', case=case,
                                          run_id=rid, original_sha256=sha(original), authorized_scope_sha256=r['scope'],
@@ -609,19 +660,20 @@ def validate_packet(e, gate, runs, observers, indexed):
     same(object_at(candidate), dict(common, schema='ruyitrace.proposed-candidate.v1', collection_kind='product-run', cases=cases),
          'intake candidate drift')
     outcome = e.obj(f'{root}/intake-result.json')
-    same(outcome, dict(arch=ARCH, cases=len(runs), gate=gate, observations=total, product_qualified=False,
+    same(outcome, dict(arch=pins.arch, cases=len(runs), gate=gate, observations=total, product_qualified=False,
                        status='eligible_for_manual_review',
                        reason='package authenticity, origin attribution, independent collector and human witness still require review'),
          'intake exceeds structural review ceiling')
-    same(indexed, dict(candidate_sha256=sha(candidate), intake=outcome), 'intake packet index mismatch')
+    if not producer_intakes:
+        same(indexed, dict(candidate_sha256=sha(candidate), intake=outcome), 'intake packet index mismatch')
     return total
 
 
-def stock_controls(e, criteria):
+def stock_controls(e, criteria, *, pins=ARM64):
     stock = e.obj('controls/stock-workload.json')
     same([stock[k] for k in ('schema', 'arch', 'source_image', 'firefox_build_id', 'page_source_sha256',
                              'passed_workload_cases', 'passed_new_product_sinks')],
-         ['ruyitrace.native-event-control-set.v1', ARCH, BASE, BUILD, SCRIPT, 22, 0], 'wrong stock workload-only control')
+         ['ruyitrace.native-event-control-set.v1', pins.arch, pins.base, pins.build, SCRIPT, 22, 0], 'wrong stock workload-only control')
     pairs = {(x['gate'], x['case']): x for x in stock['cases']}
     need(len(stock['cases']) == len(pairs) == 22 and {f'{g}--{c}' for g, c in pairs} == CELLS, 'stock workload case set')
     run_ids = set()
@@ -637,7 +689,7 @@ def stock_controls(e, criteria):
     return pairs, run_ids
 
 
-def stock_unsupported(e):
+def stock_unsupported(e, *, pins=ARM64):
     raw = rows_of(e.raw('controls/unsupported/native-events.jsonl'))
     need(len(raw) == 1, 'historical unsupported stock writer output includes rows')
     ids = {k: raw[0][k] for k in IDS if k != 'documentPath'}
@@ -649,31 +701,32 @@ def stock_unsupported(e):
     same(ready, dict(ids, state='ready'), 'historical ready')
     same(seal, dict(ids, state='sealed', status='unsupported', complete=False, accepted=0, drops=DROPS,
                     childSent=None, childSeen=0), 'stock unsupported is not a sealed zero')
-    same(e.obj('controls/unsupported/smoke.json'), dict(image=STOCK_OVERLAY, scope='blank enabled smoke', peer=None,
+    same(e.obj('controls/unsupported/smoke.json'), dict(image=pins.stock_overlay, scope='blank enabled smoke', peer=None,
          browser_exit=0, ready=ready, armed=None, sealed=seal, raw=raw), 'wrong historical unsupported run')
     return ids['runId']
 
 
-def verify(blobs):
+def verify(blobs, *, pins=ARM64, producer_intakes=False):
     e = Evidence(blobs)
-    levels, img = validate_release(e)
-    elf = validate_kernel(e, img)
+    levels, img = validate_release(e, pins=pins)
+    elf = validate_kernel(e, img, pins=pins)
     validate_v2_sources(e)
     criteria = read_criteria(e)
-    stock, run_ids = stock_controls(e, criteria)
-    stock_run = stock_unsupported(e)
+    stock, run_ids = stock_controls(e, criteria, pins=pins)
+    stock_run = stock_unsupported(e, pins=pins)
     need(stock_run not in run_ids, 'stock witnesses reused run identity')
     run_ids.add(stock_run)
     scope = e.obj('scope/index.json')
-    same(scope, dict(platform=ARCH, schema='ruyitrace.authorized-scope-readback.v2', qa_snapshot_sha256=FIXTURE,
+    same(scope, dict(platform=pins.arch, schema='ruyitrace.authorized-scope-readback.v2', qa_snapshot_sha256=FIXTURE,
                      scopes=scope['scopes']), 'scope readback index')
     same(sorted(scope['scopes']), sorted(CELLS), 'scope readback case set')
-    intake = e.obj('intake/index.json')
-    same(sorted(intake), sorted(f'arm64-{g}' for g in CASES), 'intake gate set')
+    intake = {} if producer_intakes else e.obj('intake/index.json')
+    if not producer_intakes:
+        same(sorted(intake), sorted(f'{pins.cpu}-{g}' for g in CASES), 'intake gate set')
     summary = e.obj('lane/summary.json')
     by_key = {(x['gate'], x['case']): x for x in summary['observations']}
     need(len(by_key) == len(summary['observations']) == 22 and {f'{g}--{c}' for g, c in by_key} == CELLS, 'lane case set')
-    same(summary, dict(arch=ARCH, schema='ruyitrace.gap-lane.v1', stock_control=False, image_id=IMAGE, snapshot=FIXTURE,
+    same(summary, dict(arch=pins.arch, schema='ruyitrace.gap-lane.v1', stock_control=False, image_id=pins.image, snapshot=FIXTURE,
                        completed=22, requested=22, passed=True, observations=summary['observations']), 'whole lane receipt')
     intervals, attempts, results = [], set(), {}
     for gate, cases in CASES.items():
@@ -683,7 +736,7 @@ def verify(blobs):
         for case in cases:
             try:
                 key = f'{gate}--{case}'
-                r = validate_case(e, gate, case, scope['scopes'][key], specs[case], stock[(gate, case)], levels)
+                r = validate_case(e, gate, case, scope['scopes'][key], specs[case], stock[(gate, case)], levels, pins=pins)
                 need(r['rid'] not in run_ids and r['attempt'] not in attempts, 'duplicate or historical run identity')
                 run_ids.add(r['rid'])
                 attempts.add(r['attempt'])
@@ -693,18 +746,19 @@ def verify(blobs):
                 runs[case] = r
             except (ValueError, KeyError, TypeError) as exc:
                 raise ValueError(f'{gate}/{case}: {exc}') from exc
-        total = validate_packet(e, gate, runs, criteria['observer_sources'], intake[f'arm64-{gate}'])
+        total = validate_packet(e, gate, runs, criteria['observer_sources'], intake.get(f'{pins.cpu}-{gate}'),
+                                pins=pins, producer_intakes=producer_intakes)
         results[gate] = dict(cases=len(runs), packet_observations=total, native_rows=sum(len(r['out']) for r in runs.values()),
                              originals={c: dict(run_id=r['rid'], original_sha256=r['raw_sha256'], seal_sha256=r['seal_sha256'],
                                                 rows=len(r['out'])) for c, r in sorted(runs.items())})
     intervals.sort()
     need(all(a[1] <= b[0] for a, b in zip(intervals, intervals[1:])), 'overlapping case attempts')
     e.end()
-    return dict(schema='ruyitrace.patched-websocket-offline-review.v1', status='qualified', platform=ARCH,
-                scope='native installed image, approved loopback synthetic QA only', build_id=BUILD,
-                runtime_source=PRODUCT, source_set_sha256=SOURCE_SET, gecko_source=GECKO, patch_sha256=PATCH,
-                browser_image_id=IMAGE, operator_archive_sha256=ARCHIVE, operator_archive_bytes=ARCHIVE_BYTES,
-                firefox_archive_sha256=KERNEL, firefox_archive_bytes=KERNEL_BYTES, libxul_sha256=LIBXUL,
+    return dict(schema='ruyitrace.patched-websocket-offline-review.v1', status='qualified', platform=pins.arch,
+                scope='native installed image, approved loopback synthetic QA only', build_id=pins.build,
+                runtime_source=pins.product, source_set_sha256=pins.source_set, gecko_source=GECKO, patch_sha256=PATCH,
+                browser_image_id=pins.image, operator_archive_sha256=pins.archive, operator_archive_bytes=pins.archive_bytes,
+                firefox_archive_sha256=pins.kernel, firefox_archive_bytes=pins.kernel_bytes, libxul_sha256=pins.libxul,
                 libxul_elf_build_id=elf, accepted_cases=22, regression_cases_on_new_bytes=17,
                 historical_stock_websocket='unsupported-not-zero', native_transport=TRANSPORT,
                 websocket_positive=dict(peer_client_to_server=TX, peer_server_to_client=RX, native_order=WS_ORDER,

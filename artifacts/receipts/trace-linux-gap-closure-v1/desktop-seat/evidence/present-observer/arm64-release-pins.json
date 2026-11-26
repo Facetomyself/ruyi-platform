@@ -1,0 +1,10 @@
+{
+  "architecture": "aarch64",
+  "identity_scope": "clean-authenticated-candidate",
+  "sha256": {
+    "bundle-receipt.json": "7cf94a281832de9331cb03d22210993b34f5e1d32d1a47859c434594ba89c131",
+    "electron": "4ca4d08c5f0819c1209feca629846a4fa65458d39f7fe89b1b280663068c20fc",
+    "launch-ruyitrace": "85888811c637a43850246bbc4ac452c1054920863d200d649bda26fd8110223e",
+    "resources/app/build-receipt.json": "f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481"
+  }
+}

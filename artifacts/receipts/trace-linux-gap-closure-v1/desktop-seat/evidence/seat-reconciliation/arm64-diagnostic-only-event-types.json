@@ -1,0 +1,337 @@
+{
+  "architecture": "aarch64",
+  "clean_D_base_sha256": "7cf94a281832de9331cb03d22210993b34f5e1d32d1a47859c434594ba89c131",
+  "diagnostic_app_sha256": "4a1949e2b97b939b96ad3516a6bdd3700b3996e7adc3865a9c337d728bad2980",
+  "diagnostic_fixture_sha256": "e6c1c0d56ba04ac120e78bab7b81028d3bc2bb0fca1b0211f926a6a29fec2215",
+  "diagnostic_only": true,
+  "diagnostic_receipt_sha256": "61fb1ba2e2c2ba5f33e0f7f78588efd842097cadc63614e72938eacd753e3a02",
+  "proves_clean_D_event_type": false,
+  "qualification_awarded": false,
+  "source_receipt_sha256": "e34f7a2a278f694af3d6797c3b3331620b443226af8ed4540477a7a273e96afc",
+  "steps": {
+    "cancel/after-preedit": {
+      "compositionend": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "compositionstart": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "compositionupdate": {
+        "trusted": 2,
+        "untrusted": 0
+      },
+      "input-composing": {
+        "trusted": 2,
+        "untrusted": 0
+      },
+      "input-insertText": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-other": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "primary-focus": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "secondary-focus": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "secondary-pointerdown": {
+        "trusted": 0,
+        "untrusted": 0
+      }
+    },
+    "cancel/before-record": {
+      "compositionend": {
+        "trusted": 0,
+        "untrusted": 1
+      },
+      "compositionstart": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "compositionupdate": {
+        "trusted": 3,
+        "untrusted": 0
+      },
+      "input-composing": {
+        "trusted": 3,
+        "untrusted": 0
+      },
+      "input-insertText": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-other": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "primary-focus": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "secondary-focus": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "secondary-pointerdown": {
+        "trusted": 0,
+        "untrusted": 0
+      }
+    },
+    "focus_change/after-preedit": {
+      "compositionend": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "compositionstart": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "compositionupdate": {
+        "trusted": 2,
+        "untrusted": 0
+      },
+      "input-composing": {
+        "trusted": 2,
+        "untrusted": 0
+      },
+      "input-insertText": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-other": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "primary-focus": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "secondary-focus": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "secondary-pointerdown": {
+        "trusted": 0,
+        "untrusted": 0
+      }
+    },
+    "focus_change/before-record": {
+      "compositionend": {
+        "trusted": 0,
+        "untrusted": 1
+      },
+      "compositionstart": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "compositionupdate": {
+        "trusted": 2,
+        "untrusted": 0
+      },
+      "input-composing": {
+        "trusted": 2,
+        "untrusted": 0
+      },
+      "input-insertText": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-other": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "primary-focus": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "secondary-focus": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "secondary-pointerdown": {
+        "trusted": 1,
+        "untrusted": 0
+      }
+    },
+    "paste_control/before-record": {
+      "compositionend": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "compositionstart": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "compositionupdate": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-composing": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-insertText": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-other": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-paste": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "paste": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "primary-focus": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "secondary-focus": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "secondary-pointerdown": {
+        "trusted": 0,
+        "untrusted": 0
+      }
+    },
+    "select_candidate/after-preedit": {
+      "compositionend": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "compositionstart": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "compositionupdate": {
+        "trusted": 2,
+        "untrusted": 0
+      },
+      "input-composing": {
+        "trusted": 2,
+        "untrusted": 0
+      },
+      "input-insertText": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-other": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "primary-focus": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "secondary-focus": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "secondary-pointerdown": {
+        "trusted": 0,
+        "untrusted": 0
+      }
+    },
+    "select_candidate/before-record": {
+      "compositionend": {
+        "trusted": 0,
+        "untrusted": 1
+      },
+      "compositionstart": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "compositionupdate": {
+        "trusted": 3,
+        "untrusted": 0
+      },
+      "input-composing": {
+        "trusted": 3,
+        "untrusted": 0
+      },
+      "input-insertText": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "input-other": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "input-paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "paste": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "primary-focus": {
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "secondary-focus": {
+        "trusted": 0,
+        "untrusted": 0
+      },
+      "secondary-pointerdown": {
+        "trusted": 0,
+        "untrusted": 0
+      }
+    }
+  },
+  "stock_gtk_callback_module_sha256": "ec76693338417d440a944d4d568e43e19de7da342b408ff5dc91c94dd2decc7f",
+  "stock_gtk_callback_wrapper_loaded": true
+}

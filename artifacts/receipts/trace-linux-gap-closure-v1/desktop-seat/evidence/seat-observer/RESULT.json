@@ -1,0 +1,23 @@
+{
+  "evidence": "arm64-gtk-native-final-live.json",
+  "physical_display": {
+    "amd64": "held",
+    "arm64": "held"
+  },
+  "qualification_awarded": false,
+  "schema": "ruyitrace-scoped-native-ime-observer-v2",
+  "system_ime": {
+    "amd64": "held",
+    "arm64": "held"
+  },
+  "tech_amd64": "v1_engine_activated_with_exact_sandboxed_product_window; v2_native_observer_not_run",
+  "tech_arm64": {
+    "detectable_gtk_sequence_gaps": 0,
+    "equal_text_paste_negative_no_native_lookup_or_commit": "observed",
+    "gtk_discards": 0,
+    "native_callback_events": 108,
+    "native_cancel_zero_commit": "observed",
+    "stock_product_native_preedit_select_nonfirst_commit": "observed",
+    "strict_product_focus_change": "held_missing_fourth_field_receipt"
+  }
+}

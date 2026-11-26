@@ -1,0 +1,119 @@
+{
+  "actual_shipped_source_sha": "724ef8e147dc1c688601346cb4d25cb3f26a8942",
+  "app_receipt_sha256": "f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481",
+  "assets": {
+    "DESKTOP-ALPHA-ZH.md": {
+      "asset_created_at": "2026-11-26T11:16:16Z",
+      "asset_updated_at": "2026-11-26T11:16:16Z",
+      "browser_download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/linux-electron-owner-v0.1.0-alpha.1/DESKTOP-ALPHA-ZH.md",
+      "bytes": 6707,
+      "credential_forwarded_to_redirect": false,
+      "github_digest": "sha256:717ca1b94d98135ecdc5e6ea877e892fdf43b5f35044e90c52186aa77e7c3e0b",
+      "https_readback_hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "https_readback_utc": "2026-11-26T11:17:03+00:00",
+      "id": 795537144,
+      "sha256": "717ca1b94d98135ecdc5e6ea877e892fdf43b5f35044e90c52186aa77e7c3e0b"
+    },
+    "SHA256SUMS": {
+      "asset_created_at": "2026-11-26T11:16:18Z",
+      "asset_updated_at": "2026-11-26T11:16:18Z",
+      "browser_download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/linux-electron-owner-v0.1.0-alpha.1/SHA256SUMS",
+      "bytes": 502,
+      "credential_forwarded_to_redirect": false,
+      "github_digest": "sha256:90162873872b1a510d6e42bbe1842b4c7ae145ebfa85d39b089adbfb2d2230bf",
+      "https_readback_hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "https_readback_utc": "2026-11-26T11:17:04+00:00",
+      "id": 795537239,
+      "sha256": "90162873872b1a510d6e42bbe1842b4c7ae145ebfa85d39b089adbfb2d2230bf"
+    },
+    "owner-inputs-v1.zip": {
+      "asset_created_at": "2026-11-26T11:16:17Z",
+      "asset_updated_at": "2026-11-26T11:16:17Z",
+      "browser_download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/linux-electron-owner-v0.1.0-alpha.1/owner-inputs-v1.zip",
+      "bytes": 7843,
+      "credential_forwarded_to_redirect": false,
+      "github_digest": "sha256:bb87c20d4397391b1dbe1a1a4ef616eae5003ebdbb64f4faa61fe85a583f382d",
+      "https_readback_hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "https_readback_utc": "2026-11-26T11:17:04+00:00",
+      "id": 795537193,
+      "sha256": "bb87c20d4397391b1dbe1a1a4ef616eae5003ebdbb64f4faa61fe85a583f382d"
+    },
+    "ruyitrace-linux-amd64-electron-owner-724ef8e.tar.gz": {
+      "asset_created_at": "2026-11-26T11:15:47Z",
+      "asset_updated_at": "2026-11-26T11:16:14Z",
+      "browser_download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/linux-electron-owner-v0.1.0-alpha.1/ruyitrace-linux-amd64-electron-owner-724ef8e.tar.gz",
+      "bytes": 239522229,
+      "credential_forwarded_to_redirect": false,
+      "github_digest": "sha256:791e4b0c2fe8b0fa08478b610e8503d0a5fae1a188d494eca44282a864c22829",
+      "https_readback_hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "https_readback_utc": "2026-11-26T11:17:02+00:00",
+      "id": 795535495,
+      "sha256": "791e4b0c2fe8b0fa08478b610e8503d0a5fae1a188d494eca44282a864c22829"
+    },
+    "ruyitrace-linux-arm64-electron-owner-724ef8e.tar.gz": {
+      "asset_created_at": "2026-11-26T11:14:08Z",
+      "asset_updated_at": "2026-11-26T11:14:32Z",
+      "browser_download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/linux-electron-owner-v0.1.0-alpha.1/ruyitrace-linux-arm64-electron-owner-724ef8e.tar.gz",
+      "bytes": 235142912,
+      "credential_forwarded_to_redirect": false,
+      "github_digest": "sha256:727c9d600721aba58a562b9a8ba55dc303aeb067b70982ec2344e9542aa1db76",
+      "https_readback_hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "https_readback_utc": "2026-11-26T11:16:43+00:00",
+      "id": 795529607,
+      "sha256": "727c9d600721aba58a562b9a8ba55dc303aeb067b70982ec2344e9542aa1db76"
+    },
+    "seat-operator-kit-v1.tar.gz": {
+      "asset_created_at": "2026-11-26T11:16:15Z",
+      "asset_updated_at": "2026-11-26T11:16:15Z",
+      "browser_download_url": "https://github.com/Facetomyself/ruyitrace/releases/download/linux-electron-owner-v0.1.0-alpha.1/seat-operator-kit-v1.tar.gz",
+      "bytes": 33242,
+      "credential_forwarded_to_redirect": false,
+      "github_digest": "sha256:bd6ddaa4c2c0fcb0e80361db196aeb5a46588df1c4e0981b18132fbb603f0d8c",
+      "https_readback_hosts": [
+        "api.github.com",
+        "release-assets.githubusercontent.com"
+      ],
+      "https_readback_utc": "2026-11-26T11:17:02+00:00",
+      "id": 795537100,
+      "sha256": "bd6ddaa4c2c0fcb0e80361db196aeb5a46588df1c4e0981b18132fbb603f0d8c"
+    }
+  },
+  "bundle_receipt_sha256": {
+    "amd64": "e35f4f879a1fe08125bcc9af68daf10a4a11a3cc805daca064c4feff8a6f495c",
+    "arm64": "7cf94a281832de9331cb03d22210993b34f5e1d32d1a47859c434594ba89c131"
+  },
+  "checked_utc": "2026-11-26T11:17:07+00:00",
+  "created_at": "2026-11-26T11:11:50Z",
+  "latest": false,
+  "latest_before_and_after": {
+    "id": 458886757,
+    "tag": "arm64-site-ops-v1"
+  },
+  "main_sha": "e35e7278a49d4e67c9ad9e480308bf5e11273493",
+  "passed": true,
+  "prerelease": true,
+  "private": true,
+  "published_at": "2026-11-26T11:16:21Z",
+  "release_id": 459305751,
+  "release_url": "https://github.com/Facetomyself/ruyitrace/releases/tag/linux-electron-owner-v0.1.0-alpha.1",
+  "repo": "Facetomyself/ruyitrace",
+  "schema": "ruyitrace.desktop-electron-private-prerelease-proof.v1",
+  "tag": "linux-electron-owner-v0.1.0-alpha.1",
+  "tag_commit_sha": "2d58cbdf43129a16afa315c70e0c93eb793758f3",
+  "tag_ref_sha": "2d58cbdf43129a16afa315c70e0c93eb793758f3"
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "ruyitrace-clean-D-seat-technical-reconciliation-v1",
+  "automated_environment": "private-Xvfb-stock-Pinyin-native-XTest-virtual-control",
+  "qualification_awarded": false,
+  "physical_display": {"arm64": "held", "amd64": "held"},
+  "system_ime": {"arm64": "held", "amd64": "held"},
+  "mechanical_round_collection_pass": {"arm64": true, "amd64": true},
+  "strict_clean_D_virtual_technical_pass": {"arm64": false, "amd64": false},
+  "strict_round_pass_both_architectures": {"select_candidate": false, "cancel": false, "paste_control": true, "focus_change": false},
+  "clean_D": {
+    "arm64": {"projection": "arm64-clean-D-fixture-selection.json", "actual_field_receipt_count": 4, "accepted_stock_gtk_callbacks": 164, "detected_gtk_sequence_gaps": 0, "rejected_gtk_callbacks": 0},
+    "amd64": {"projection": "amd64-clean-D-fixture-selection.json", "actual_field_receipt_count": 4, "accepted_stock_gtk_callbacks": 144, "detected_gtk_sequence_gaps": 0, "rejected_gtk_callbacks": 0}
+  },
+  "clean_D_focus_in_recorded_phase": {"trusted_secondary_focus": true, "moved_during_composition": true, "primary_empty": false, "secondary_empty": true, "stock_gtk_commit_count": 0},
+  "diagnostic_only_arm64": {
+    "separate_dirty_artifact": true,
+    "proves_type_on_sealed_clean_D": false,
+    "unwrapped_stock_gtk_agrees": true,
+    "before_record_click": true,
+    "operations_producing_one_untrusted_compositionend_and_zero_trusted_end": ["rank2_select", "escape_cancel", "active_secondary_pointer_focus"],
+    "wrapped_projection": "arm64-diagnostic-only-event-types.json",
+    "stock_unwrapped_projection": "arm64-diagnostic-only-plain-gtk-event-types.json"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "cells": {
+    "linux/amd64/physical-display": "held",
+    "linux/amd64/system-ime": "held",
+    "linux/arm64/physical-display": "held",
+    "linux/arm64/system-ime": "held"
+  },
+  "clean_d_virtual_ime": {
+    "amd64": {
+      "accepted_stock_gtk_callbacks": 144,
+      "actual_field_receipts": 4,
+      "callbacks_outside_recorded_rounds": 7,
+      "callbacks_within_recorded_rounds": 137,
+      "rounds": {
+        "cancel": {
+          "final_primary_empty": true,
+          "native_stage_observed": true,
+          "stock_gtk_commit": 0,
+          "strict_virtual_control_pass": false,
+          "trusted_ends": 0,
+          "trusted_matching_ends": 0,
+          "untrusted_aggregate": 1
+        },
+        "focus_change": {
+          "final_primary_empty": false,
+          "native_stage_observed": true,
+          "stock_gtk_commit": 0,
+          "strict_virtual_control_pass": false,
+          "trusted_ends": 0,
+          "trusted_matching_ends": 0,
+          "untrusted_aggregate": 1
+        },
+        "paste_control": {
+          "final_primary_empty": false,
+          "native_stage_observed": true,
+          "stock_gtk_commit": 0,
+          "strict_virtual_control_pass": true,
+          "trusted_ends": 0,
+          "trusted_matching_ends": 0,
+          "untrusted_aggregate": 0
+        },
+        "select_candidate": {
+          "final_primary_empty": false,
+          "native_stage_observed": true,
+          "stock_gtk_commit": 1,
+          "strict_virtual_control_pass": false,
+          "trusted_ends": 0,
+          "trusted_matching_ends": 0,
+          "untrusted_aggregate": 1
+        }
+      },
+      "zero_detected_gaps_discards_or_overflow": true
+    },
+    "arm64": {
+      "accepted_stock_gtk_callbacks": 164,
+      "actual_field_receipts": 4,
+      "callbacks_outside_recorded_rounds": 11,
+      "callbacks_within_recorded_rounds": 153,
+      "rounds": {
+        "cancel": {
+          "final_primary_empty": true,
+          "native_stage_observed": true,
+          "stock_gtk_commit": 0,
+          "strict_virtual_control_pass": false,
+          "trusted_ends": 0,
+          "trusted_matching_ends": 0,
+          "untrusted_aggregate": 1
+        },
+        "focus_change": {
+          "final_primary_empty": false,
+          "native_stage_observed": true,
+          "stock_gtk_commit": 0,
+          "strict_virtual_control_pass": false,
+          "trusted_ends": 0,
+          "trusted_matching_ends": 0,
+          "untrusted_aggregate": 1
+        },
+        "paste_control": {
+          "final_primary_empty": false,
+          "native_stage_observed": true,
+          "stock_gtk_commit": 0,
+          "strict_virtual_control_pass": true,
+          "trusted_ends": 0,
+          "trusted_matching_ends": 0,
+          "untrusted_aggregate": 0
+        },
+        "select_candidate": {
+          "final_primary_empty": false,
+          "native_stage_observed": true,
+          "stock_gtk_commit": 1,
+          "strict_virtual_control_pass": false,
+          "trusted_ends": 0,
+          "trusted_matching_ends": 0,
+          "untrusted_aggregate": 1
+        }
+      },
+      "zero_detected_gaps_discards_or_overflow": true
+    }
+  },
+  "constraints": [
+    "frozen technical evidence only; the verifier has no human-pass path",
+    "stock GTK counts are peer-bound record windows, not per-DOM-field or post-window proof",
+    "virtual Present can distinguish a timer from a pixmap but cannot attest final scanout",
+    "separate dirty diagnostic event types must not be imputed to sealed clean D",
+    "binary archives and raw identity-bearing lab artifacts remain outside Git"
+  ],
+  "dirty_diagnostic_only": {
+    "architecture": "linux/arm64",
+    "before_record_click": true,
+    "proves_clean_d_event_type": false,
+    "separately_dirty_artifact": true,
+    "trusted_matching_end": 0,
+    "untrusted_compositionend": 1,
+    "unwrapped_stock_gtk_agrees": true
+  },
+  "earlier_arm_observer": {
+    "accepted_callbacks": 108,
+    "actual_field_receipts": 3,
+    "qualification_awarded": false
+  },
+  "evidence_members": 19,
+  "evidence_sha256": "bca250f5ea50ffbecc6cfd4529d42128fef3b2c88cfbd628cfa201e2125f669f",
+  "formal_approvals": 0,
+  "human_signoff": false,
+  "kits_sha256": {
+    "seat-observer/seat-observer-kit-v2.tar.gz": "59ac75105b0ebe6db296f1223b09d5baa9621c6a58554fe02197f80be732e5e1",
+    "seat-reconciliation/seat-technical-qa-kit-v1.tar.gz": "0650dd6d5f5ef22695c4c269a27c2d5f1cf03c524636a00670844633eae8488a",
+    "seat/seat-operator-kit-v1.tar.gz": "bd6ddaa4c2c0fcb0e80361db196aeb5a46588df1c4e0981b18132fbb603f0d8c"
+  },
+  "native_virtual_present": {
+    "amd64_native_present_calibration": false,
+    "arm64_native_calibration_notify_msc_timer": 1,
+    "arm64_native_calibration_pixmap_copy": 1,
+    "arm64_product_period_ns": 6005707363,
+    "arm64_product_present_completions": 0,
+    "arm64_product_resizes": 3,
+    "measured_renderer_backend": false,
+    "physical_panel_witness": false,
+    "scanout_proven": false
+  },
+  "product_qualified": false,
+  "published_guide": "https://github.com/Facetomyself/ruyitrace/releases/download/linux-electron-owner-v0.1.0-alpha.1/DESKTOP-ALPHA-ZH.md",
+  "published_operator_handoff": "https://github.com/Facetomyself/ruyitrace/releases/download/linux-electron-owner-v0.1.0-alpha.1/seat-operator-kit-v1.tar.gz",
+  "published_release": "https://github.com/Facetomyself/ruyitrace/releases/tag/linux-electron-owner-v0.1.0-alpha.1",
+  "release_tag": "linux-electron-owner-v0.1.0-alpha.1",
+  "schema": "ruyitrace.platform-held-desktop-seat-evidence.v1",
+  "source": "724ef8e147dc1c688601346cb4d25cb3f26a8942",
+  "status": "technical_evidence_verified_physical_display_and_system_ime_held"
+}
