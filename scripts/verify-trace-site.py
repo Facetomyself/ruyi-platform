@@ -485,14 +485,26 @@ def git(repo, *argv):
     return subprocess.check_output(['git', '-C', str(repo), *argv], stderr=subprocess.DEVNULL, timeout=10)
 
 
-def verify_git(idx, source):
+def verify_git(idx, source, maintained=False):
     commit, tag = idx['source_commit'], idx['source_tag']
+    checkout = commit
     if (REPO / '.git').exists():
-        need(git(REPO, 'ls-files', '-s', '--', LINK).decode().strip() == f'160000 {commit} 0\t{LINK}', 'final source/gitlink mismatch')
+        entry = git(REPO, 'ls-files', '-s', '--', LINK).decode().strip()
+        if maintained:
+            # The installed site stays locked to the reviewed tag. A subsequent
+            # platform pin is admissible only with byte-identical ARM product sources.
+            match = re.fullmatch(r'160000 ([0-9a-f]{40}) 0\t' + re.escape(LINK), entry)
+            need(match is not None, 'invalid maintained source/gitlink'); checkout = match.group(1)
+        else:
+            need(entry == f'160000 {commit} 0\t{LINK}', 'final source/gitlink mismatch')
     repo = source or REPO / LINK
     if source is not None or (repo / '.git').exists():
         need(git(repo, 'rev-parse', '--verify', f'refs/tags/{tag}^{{commit}}').decode().strip() == commit, 'final source tag mismatch')
-        need(git(repo, 'rev-parse', '--verify', 'HEAD').decode().strip() == commit, 'current source checkout differs from final tag')
+        need(git(repo, 'rev-parse', '--verify', 'HEAD').decode().strip() == checkout, 'current source checkout differs from expected pin')
+        if maintained:
+            git(repo, 'merge-base', '--is-ancestor', commit, checkout)
+            need(git(repo, 'rev-parse', f'{commit}:product/arm64') == git(repo, 'rev-parse', f'{checkout}:product/arm64'),
+                 'maintained ARM product subtree differs from deployed release')
         for ref in (BASE, EDGE_SOURCE, HOST_SOURCE, GUARD_SOURCE):
             git(repo, 'merge-base', '--is-ancestor', ref, commit)
         for name, expected in (('manager.py', MANAGER), ('host.py', '62e9281e4d64b300e078257158c7004438920aa1edfd3f10447d16bc89e52b1e'),
@@ -511,10 +523,13 @@ def main():
     p.add_argument('--receipts', type=Path, default=ROOT)
     p.add_argument('--source', type=Path)
     p.add_argument('--require-emergency', action='store_true')
+    p.add_argument('--maintained-gitlink', action='store_true', help='require current gitlink to contain the exact installed tag with unchanged product/arm64 tree')
     a = p.parse_args()
     try:
         idx = verify(a.receipts.absolute(), a.require_emergency)
-        verify_git(idx, a.source)
+        # No --source means the normal maintained platform checkout. An explicit
+        # release checkout retains the original strict mode unless opted in.
+        verify_git(idx, a.source, a.maintained_gitlink or a.source is None)
     except Failure as exc:
         p.exit(1, f'trace site: {exc}\n')
     except (OSError, ValueError, KeyError, TypeError, AttributeError, IndexError, RecursionError, subprocess.SubprocessError):

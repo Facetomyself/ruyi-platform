@@ -2,6 +2,10 @@
 
 生产接入点为 **RuyiTrace Linux CLI `start --mcp`**，不是 Electron 窗口，也不是 MCP 自启浏览器。Trace 持有 Firefox 进程、一个 BiDi 会话及采集闸门；MCP 借用同一 Firefox 的排他租约，通过 owner 执行同源页面操作，必要时连接租约内的回环 RDP。部署以专用账号和私有网络命名空间为边界，Trace、Firefox 和 MCP 放在同一空间，容器无需发布控制端口。
 
+本文原始回执对应 AMD64 R5 CLI 的首次签收。最新双架构镜像、远端 stdio、真实进程退出及独立 Electron 证据和复测命令见[双架构验收矩阵](LIVE-MATRIX.md)。
+
+原始回执对应最初的 AMD64 R5 CLI。更新的双架构单镜像、真实跨机 stdio、孤立故障回收及独立 Electron 原启动器见[验收矩阵](LIVE-MATRIX.md)。
+
 ## 1. 在新机器从 GitHub 复现源码
 
 预备 Git、Node ≥22.12（验收用 Node 24）、Python ≥3.10、Python venv、PyYAML、C++17 编译器和 npm。真机门禁另需目标架构的 Linux Firefox 依赖或 Docker。私有仓读取权限由该机器的 Git 凭据配置负责。

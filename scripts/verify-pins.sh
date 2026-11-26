@@ -151,7 +151,7 @@ esac
 
 echo
 echo "== 6.8 ARM64 私有站点，两槽实装、真实公网与恢复 =="
-python3 -B scripts/verify-trace-site.py --source "$ROOT/submodules/ruyitrace" --require-emergency || fail=1
+python3 -B scripts/verify-trace-site.py --source "$ROOT/submodules/ruyitrace" --require-emergency --maintained-gitlink || fail=1
 python3 -B -m unittest discover -s tests -p 'test_trace_site_publication.py' -q || fail=1
 
 echo
@@ -250,6 +250,10 @@ assert (stop['leasesAcquired'], stop['leasesReleased'], stop['leasesExpired'], s
 assert stop['drainVerified'] and stop['sessionEndAcknowledged'] and stop['sessionNew'] == stop['sessionEnd'] == 1
 print('PASS  borrowed lease expiry, scoped page effects and acknowledged release')
 PY
+
+echo
+echo '== 8.1 同镜像双架构生产借用、浏览器退出和跨机 SSH stdio =='
+python3 -B projects/ruyi-mcp/qa/verify-matrix.py || fail=1
 
 echo
 echo '== 9. RuyiDOM 独立发行与主机入口 =='

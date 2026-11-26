@@ -11,8 +11,8 @@ import sys
 from pathlib import Path
 
 PLATFORM = Path(__file__).resolve().parents[1]
-ROOT = PLATFORM.parents[1]
-REPO = ROOT / "acceptance" / "r354-ruyijs"
+# Check the source the platform actually pins, not a host-specific development clone.
+REPO = PLATFORM / "submodules" / "ruyijs"
 TLS = REPO / "linux_http1" / "ruyijs_necko" / "tls.py"
 BACKEND = REPO / "linux_http1" / "build_backend.py"
 CHAIN = REPO / "linux_http1" / "native_tls_chain_verify.c"

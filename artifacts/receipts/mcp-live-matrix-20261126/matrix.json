@@ -1,0 +1,207 @@
+{
+  "schema": "ruyi-live-matrix.v1",
+  "starting_platform": "08f8fd4057fd42536b0c1bd957f48817839fd02d",
+  "release_basis": "0b44f0e4c5d26410f8220f10ab3833690c9c9315",
+  "scope": "Native Linux CLI borrowing in dedicated QA images, distinct-host SSH stdio, controlled real browser loss and the separately pinned original-launcher Electron owner prerelease. No public deployment or physical/IME qualification.",
+  "sets": {
+    "original": {
+      "amd64": {
+        "image_id": "sha256:c4de64a80b6d6109fa55144c6d41ef242086ff90543585f897d8a03c54f1da81",
+        "parent_id": "sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6",
+        "gates": {
+          "runtime": "original-amd64-runtime.json",
+          "standard": "original-amd64-standard.json",
+          "paused": "original-amd64-paused.json",
+          "expiry": "original-amd64-expiry.json",
+          "ssh": "original-amd64-ssh.json"
+        },
+        "run_exit_utc": [
+          [
+            "standard",
+            "0",
+            "2026-11-26T09:20:08Z",
+            "2026-11-26T09:20:30Z"
+          ],
+          [
+            "paused",
+            "0",
+            "2026-11-26T09:20:30Z",
+            "2026-11-26T09:20:47Z"
+          ],
+          [
+            "expiry",
+            "0",
+            "2026-11-26T09:20:47Z",
+            "2026-11-26T09:22:59Z"
+          ]
+        ]
+      },
+      "arm64": {
+        "image_id": "sha256:b6d0a8c8098d7903670190aaa3d29e9db5c5e2d0ba21683bd5e18cf6db04d943",
+        "parent_id": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+        "gates": {
+          "runtime": "original-arm64-runtime.json",
+          "standard": "original-arm64-standard.json",
+          "paused": "original-arm64-paused.json",
+          "expiry": "original-arm64-expiry.json",
+          "ssh": "original-arm64-ssh.json"
+        },
+        "run_exit_utc": [
+          [
+            "standard",
+            "0",
+            "2026-11-26T09:20:13Z",
+            "2026-11-26T09:20:25Z"
+          ],
+          [
+            "paused",
+            "0",
+            "2026-11-26T09:20:25Z",
+            "2026-11-26T09:20:39Z"
+          ],
+          [
+            "expiry",
+            "0",
+            "2026-11-26T09:20:39Z",
+            "2026-11-26T09:22:51Z"
+          ]
+        ]
+      }
+    },
+    "corrected": {
+      "amd64": {
+        "image_id": "sha256:f372860d05002dad9bc94937bbfbfcad4adcbad03b7a0613906be4293fe2966a",
+        "parent_id": "sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6",
+        "gates": {
+          "runtime": "corrected-amd64-runtime.json",
+          "standard": "corrected-amd64-standard.json",
+          "paused": "corrected-amd64-paused.json",
+          "expiry": "corrected-amd64-expiry.json",
+          "ssh": "corrected-amd64-ssh.json"
+        },
+        "run_exit_utc": [
+          [
+            "standard",
+            "0",
+            "2026-11-26T14:10:27Z",
+            "2026-11-26T14:10:38Z"
+          ],
+          [
+            "paused",
+            "0",
+            "2026-11-26T14:10:38Z",
+            "2026-11-26T14:10:50Z"
+          ],
+          [
+            "expiry",
+            "0",
+            "2026-11-26T14:10:50Z",
+            "2026-11-26T14:13:01Z"
+          ]
+        ]
+      },
+      "arm64": {
+        "image_id": "sha256:eebf10482a9680fbf48480c6b7b481c70c5e90742187f942747d252a179e33d8",
+        "parent_id": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+        "gates": {
+          "runtime": "corrected-arm64-runtime.json",
+          "standard": "corrected-arm64-standard.json",
+          "paused": "corrected-arm64-paused.json",
+          "expiry": "corrected-arm64-expiry.json",
+          "ssh": "corrected-arm64-ssh.json"
+        },
+        "run_exit_utc": [
+          [
+            "standard",
+            "0",
+            "2026-11-26T14:10:37Z",
+            "2026-11-26T14:10:48Z"
+          ],
+          [
+            "paused",
+            "0",
+            "2026-11-26T14:10:48Z",
+            "2026-11-26T14:11:01Z"
+          ],
+          [
+            "expiry",
+            "0",
+            "2026-11-26T14:11:01Z",
+            "2026-11-26T14:13:13Z"
+          ]
+        ]
+      }
+    }
+  },
+  "files": {
+    "original-amd64-runtime.json": "8f8f0bdc9171e95e96830da42ec4e8f911cb4041109b03f8e2dfee3a97325bf1",
+    "original-amd64-standard.json": "da6d757e17ad16540eff3938a9d6a3bb4d2f461beda3307df2497bdc67c0386e",
+    "original-amd64-paused.json": "def2c6dbb3bc7c0dc2f063bcc3802648cdec6eb18d4bcda900244c3426002959",
+    "original-amd64-expiry.json": "6a97df2ff9ce88a5697f2d44c5ab402738193fa59e9792f08c16d07fe91b3f21",
+    "original-amd64-ssh.json": "24f573adf738a93492a85c7608a0861191908e760fdbf7d9524ad87a45e3ea0b",
+    "original-arm64-runtime.json": "373c5e416236948a3ff98c16ac6fe2094c5e0e5ec82ff948b8fccf7b657c48ea",
+    "original-arm64-standard.json": "2ac1271f0262ca160f40f3d3af26ced3c14fb7bd74ca89d7510325eaa25aade0",
+    "original-arm64-paused.json": "b023f62f13e53bbb0e4c44a4d34ba409dc28f75750a775c09b0a304b44593025",
+    "original-arm64-expiry.json": "6a97df2ff9ce88a5697f2d44c5ab402738193fa59e9792f08c16d07fe91b3f21",
+    "original-arm64-ssh.json": "1a4fc9b34479f125db8f1617f57c88f80f99e51dd31236229f01277df0bc0621",
+    "corrected-amd64-runtime.json": "1e81ede0b0b7f7bd74eb9a6d12a4581c36ffc7b3322a1b13757c6a1e65092b58",
+    "corrected-amd64-standard.json": "70b606ad5dc016673516e34f3f6cc79db7f19193266ef5c2e2e90156e5255607",
+    "corrected-amd64-paused.json": "f02bf4b16a04744eabcb8160dfa138b357ac3aacf2cf394fde19192bb6b80602",
+    "corrected-amd64-expiry.json": "6a97df2ff9ce88a5697f2d44c5ab402738193fa59e9792f08c16d07fe91b3f21",
+    "corrected-amd64-ssh.json": "15429edec55e02fb3ec9e881f13214d5cf6edf0198711e1b3c42e9b4e98e1962",
+    "corrected-arm64-runtime.json": "ffe39c9f586d319999c9704e8a85e0061c00aaa7321e37062e1d1e6d94578627",
+    "corrected-arm64-standard.json": "44b75cb34cfa0f45513ec6077842587e63ca956c500c1d47fe34bf39c73faf92",
+    "corrected-arm64-paused.json": "2e5c65e4775463441e8fb98178d5e854ef25a2137fd51691653cb03f2311f42c",
+    "corrected-arm64-expiry.json": "6a97df2ff9ce88a5697f2d44c5ab402738193fa59e9792f08c16d07fe91b3f21",
+    "corrected-arm64-ssh.json": "82a8a70c1fe245709d243e9217130d12efa85a05700b886ab57da120517b8441",
+    "original-fault.json": "017cc866d463cb9559dac3a727cd2cfd8eea0065787321d605687fbc55cd512f",
+    "corrected-fault.json": "fd8639f66ffd7308100d6fde4e715cb701780f43bd773c89205316c6dbacac57",
+    "intermediate-start-timeout.json": "8c4530b3cd8911cd7af3c7a603c8da55a66e51957c67ae78a992b048d0f9df5e",
+    "electron-amd64-fresh.json": "285ddc59ac03a8a0d61bceae4f615ed07f8e300e7523ca095b843dcbac12c97d",
+    "electron-arm64-fresh.json": "93f1137f2092836ee6bcb410e76b6dc403f41acef4c0373f7d688f01d6776c02",
+    "electron-installed-bytes.json": "bba95373fdcf01743e6778f3e9adec63d33dba62cf38cfd4253575d37ad5dae4",
+    "electron-assets.json": "ef1e555b50df8e58a7803ed12abdb3d0012c59759f931feb52e5be0fa8d60c19"
+  },
+  "fault": {
+    "original": {
+      "image_id": "sha256:b6d0a8c8098d7903670190aaa3d29e9db5c5e2d0ba21683bd5e18cf6db04d943",
+      "runner_sha256": "43be7197fb09ede7008ecbab156c61a5a00ae22e5fb361aaed9907de98548dba",
+      "receipt": "original-fault.json",
+      "mode": "--browser-loss"
+    },
+    "corrected": {
+      "image_id": "sha256:eebf10482a9680fbf48480c6b7b481c70c5e90742187f942747d252a179e33d8",
+      "runner_sha256": "f362ec270edf0031f0b5b7426a17bff93237794f07f96690d53c999bf48d26ea",
+      "receipt": "corrected-fault.json",
+      "mode": "--browser-loss --require-retired-client"
+    }
+  },
+  "diagnostics": {
+    "intermediate_arm_start": {
+      "receipt": "intermediate-start-timeout.json",
+      "image": "sha256:2f8fb205be3966b9dcf6fe6b3b58327f7dd63b173eccf08fe0cda828b9ef89f0",
+      "reason": "Initial start exit 5. All three gates later passed on the identical intermediate image; final image was re-run separately."
+    },
+    "local_alternative_owner": "The exploratory Ozone option at 27b93a3 was not merged or qualified. Startup did not observe session_started. The independent released Electron implementation and its native receipts are used instead."
+  },
+  "ssh": {
+    "client_host": "oracle-dsh",
+    "amd64_destination": "host185",
+    "arm64_destination": "oracle-reverse-dev",
+    "scope": "local SDK over SSH -T; remote docker exec -i; no browser endpoint published/forwarded, no copy of descriptor credentials"
+  },
+  "electron": {
+    "tag": "linux-electron-owner-v0.1.0-alpha.1",
+    "tag_commit": "2d58cbdf43129a16afa315c70e0c93eb793758f3",
+    "installed_source": "724ef8e147dc1c688601346cb4d25cb3f26a8942",
+    "mcp": "b5e204a76dc3974abadf1fe355392815ddddd6b7",
+    "scope": "independent opt-in release; original launcher, true Electron main, 5 existing cases per architecture and one independent new Xvfb borrow/return/reborrow each",
+    "fresh": {
+      "amd64": "electron-amd64-fresh.json",
+      "arm64": "electron-arm64-fresh.json"
+    },
+    "install_verification": "electron-installed-bytes.json",
+    "release_downloads": "electron-assets.json"
+  },
+  "trace_ci_scope": "Local clean source verification and native gates; CI result is independent."
+}

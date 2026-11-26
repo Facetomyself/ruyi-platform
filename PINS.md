@@ -247,7 +247,7 @@ ARM 编译工具为 Clang/LLD 19.1.1、Rust 1.100.0、cbindgen 0.29.4；CLI 运�
 
 ### ARM64 主机运维版本（独立于原生内核发行）
 
-[站点运维 Release](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-site-ops-v1) 固定 Trace 源码和平台 gitlink `e35e7278a49d4e67c9ad9e480308bf5e11273493`。当前 `r5-arm64-site2` 的原始 `release.json` SHA-256 为 `2d376eeed54510f870264f50a4c099faff56e7f4b9303fdf9e6734e7f3766acb`，回退 `r5-arm64-site1` 为 `55af3676c433c4db0db228187b6838b70db21b374058dc3ea8c4f1285ceaa600`。这是 `upgrade --sha256` 的值，不是镜像或归档 SHA。B 的 Docker 包是 381,656,666 字节、SHA-256 `e228e6ce839b6f3c0216ca81e978a6d655ed77a146acf5476f6fc82f2a23be75`；A 仍来自原 `arm64-r5-cli2-lease-v1`。两个版本的 CLI 和私有交互浏览器相同，网关 config ID 不同。
+[站点运维 Release](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-site-ops-v1) 固定当时已部署的 Trace 源码 `e35e7278a49d4e67c9ad9e480308bf5e11273493`。平台当前开发 gitlink 为 `51852ce98804390a11ae326bd1205a5abf1a3eb6`；校验将旧标签、祖先关系和完整 `product/arm64` 子树分别核对，线上站点与发布锁维持原样。当前 `r5-arm64-site2` 的原始 `release.json` SHA-256 为 `2d376eeed54510f870264f50a4c099faff56e7f4b9303fdf9e6734e7f3766acb`，回退 `r5-arm64-site1` 为 `55af3676c433c4db0db228187b6838b70db21b374058dc3ea8c4f1285ceaa600`。这是 `upgrade --sha256` 的值，不是镜像或归档 SHA。B 的 Docker 包是 381,656,666 字节、SHA-256 `e228e6ce839b6f3c0216ca81e978a6d655ed77a146acf5476f6fc82f2a23be75`；A 仍来自原 `arm64-r5-cli2-lease-v1`。两个版本的 CLI 和私有交互浏览器相同，网关 config ID 不同。
 
 以[逐字节索引](artifacts/receipts/trace-arm64-site-operations/index.json)核对 60 份运维实测（索引 SHA-256 `9f48d60970813f9c12a6e7a092b23a0071d49d9c9d6ea00eaaa0d8da00abc079`）；[正式下载复验](artifacts/receipts/trace-arm64-site-operations/github-release.json)单独核对 7 个附件。完整可复制命令见[站点手册](submodules/ruyitrace/product/arm64/site/README.md)。
 
@@ -281,7 +281,7 @@ ARM 编译工具为 Clang/LLD 19.1.1、Rust 1.100.0、cbindgen 0.29.4；CLI 运�
 
 | 组件 | 源码仓 | 维护分支 | 平台固定提交 |
 | --- | --- | --- | --- |
-| ruyi-mcp | [Facetomyself/ruyi-mcp](https://github.com/Facetomyself/ruyi-mcp) | `linux` | `b5e204a76dc3974abadf1fe355392815ddddd6b7` |
+| ruyi-mcp | [Facetomyself/ruyi-mcp](https://github.com/Facetomyself/ruyi-mcp) | `linux` | `df0db8545a3f75461627a3f45c5bca8668211ea7` |
 
 ```bash
 cd /var/lib/dsh/Ruyi/ruyi-platform
@@ -293,6 +293,8 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 浏览器制品身份独立于该源码 pin，按 [Linux 验收](docs/03-linux-port.md#6-ruyi-mcp-分阶段验收)记录。
 
 ### 历史 pin
+
+- `b5e204a76dc3974abadf1fe355392815ddddd6b7`：初始双架构 CLI 生产验收以及独立 Electron Owner Alpha 1 的借用客户端。现维护版本新增异常退出终态核对和复用客户端的恢复路径；原证据不会被算作新版本实测。
 
 - `8f3839b6bd3c52688a8a0d7d94d81e6820e8ca0b`：生产 M2 初版借用与停机证据，仍按原提交复核。本版细化租约、错目标与归还契约。
 

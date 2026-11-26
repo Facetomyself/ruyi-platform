@@ -1,0 +1,104 @@
+{
+  "archives": {
+    "amd64": {
+      "acceptance_input_sha256": "1b4729132f4e2948b2cdac8be446bf85276a45668b28cc496bd0f92e73d610aa",
+      "app_files_verified": 91,
+      "archive": "ruyitrace-linux-amd64-electron-owner-724ef8e.tar.gz",
+      "archive_members": 240,
+      "archive_regular_files": 211,
+      "attested_members_verified": 141,
+      "binary_and_receipt_sha256": {
+        "bundle-receipt.json": "e35f4f879a1fe08125bcc9af68daf10a4a11a3cc805daca064c4feff8a6f495c",
+        "chrome-sandbox": "f16e2562837856845cfc8ebf4aa7f78b57fdadc6b69130509b1db87ce5d2f869",
+        "electron": "03100c52299d74c8f05a8f95338e24ffc65bcff36eb40776a00389fc2fc409af",
+        "launch-ruyitrace": "85888811c637a43850246bbc4ac452c1054920863d200d649bda26fd8110223e",
+        "resources/app/build-receipt.json": "f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481",
+        "resources/kernel/firefox": "49642c7be1ffa190e6b6f545b3394b44d01b04659836bc00eec2fdc23f661312",
+        "resources/kernel/libxul.so": "ac25767f89d2fa0099e665a630d2a499ad3e94f3ecac12ad71929476046e40ad"
+      },
+      "bytes": 239522229,
+      "electron_version": "45.4.1",
+      "elf_machine_by_member": {
+        "chrome-sandbox": 62,
+        "electron": 62,
+        "resources/kernel/firefox": 62,
+        "resources/kernel/libxul.so": 62
+      },
+      "firefox_build_id": "20261123161729",
+      "firefox_source_stamp": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+      "firefox_version": "159.0",
+      "historical_electron_distribution_archive_sha256": "f93884493703e8d44734234dc1b3caf34784cb568c006ce9cf511be4b046cf03",
+      "kernel_files_verified": 45,
+      "mcp_borrower_built_entry_sha256": "92dc797c9e0ca09ca24f55f205081330f1c846f2433295aa8a2d8483a876aa54",
+      "mcp_borrower_lock_sha256": "c771a13ef9aa5939d5cf4e16004c5ca008856877ec33e6721c7e538dc3951a94",
+      "mcp_borrower_source": "b5e204a76dc3974abadf1fe355392815ddddd6b7",
+      "r5_cli_product_image_id": "sha256:eb73d165ea9adc15864aeb054bc90a78670618c5c0606827997d357f1cae05c6",
+      "runtime_input_sha256": "65addb67ba399702cbcafae3ada56c563979d56f138f7ff6d683148edc6809cf",
+      "sha256": "791e4b0c2fe8b0fa08478b610e8503d0a5fae1a188d494eca44282a864c22829"
+    },
+    "arm64": {
+      "acceptance_input_sha256": "db54fdc408c85f2adc6a9eeb81a368d6b5e24882baa94c9b56f186534f8a5664",
+      "app_files_verified": 91,
+      "archive": "ruyitrace-linux-arm64-electron-owner-724ef8e.tar.gz",
+      "archive_members": 240,
+      "archive_regular_files": 211,
+      "attested_members_verified": 141,
+      "binary_and_receipt_sha256": {
+        "bundle-receipt.json": "7cf94a281832de9331cb03d22210993b34f5e1d32d1a47859c434594ba89c131",
+        "chrome-sandbox": "e0f790d4301b8c427d147792d9209939663a41d2bce5ffaef475eba60cf83151",
+        "electron": "4ca4d08c5f0819c1209feca629846a4fa65458d39f7fe89b1b280663068c20fc",
+        "launch-ruyitrace": "85888811c637a43850246bbc4ac452c1054920863d200d649bda26fd8110223e",
+        "resources/app/build-receipt.json": "f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481",
+        "resources/kernel/firefox": "85c7a26b03d1d7466260c9bbfd1600ac3000aab39b1e946af0576f5186bb6f40",
+        "resources/kernel/libxul.so": "a1b20f09c609511511485609502f36ac400637bc6884c9bd3c89bed29e7f3c19"
+      },
+      "bytes": 235142912,
+      "electron_version": "45.4.1",
+      "elf_machine_by_member": {
+        "chrome-sandbox": 183,
+        "electron": 183,
+        "resources/kernel/firefox": 183,
+        "resources/kernel/libxul.so": 183
+      },
+      "firefox_build_id": "20261125162841",
+      "firefox_source_stamp": "9a2dc53c369c7ae5172018b35988e1d2ffeff402",
+      "firefox_version": "159.0",
+      "historical_electron_distribution_archive_sha256": "7e8604e7cadf6cf49758b2afd0bbbcf04fc6cd34daa397aab3b8e8fbe5726005",
+      "kernel_files_verified": 45,
+      "mcp_borrower_built_entry_sha256": "92dc797c9e0ca09ca24f55f205081330f1c846f2433295aa8a2d8483a876aa54",
+      "mcp_borrower_lock_sha256": "c771a13ef9aa5939d5cf4e16004c5ca008856877ec33e6721c7e538dc3951a94",
+      "mcp_borrower_source": "b5e204a76dc3974abadf1fe355392815ddddd6b7",
+      "r5_cli_product_image_id": "sha256:9073c375ff26a8248e055e54f1ca28f289d92fc7f253d36685973fa8ecdd33bc",
+      "runtime_input_sha256": "1f8d48d4c16258086c74472d33ee5f0afaccecdcd568c73566d22d541cc96c93",
+      "sha256": "727c9d600721aba58a562b9a8ba55dc303aeb067b70982ec2344e9542aa1db76"
+    }
+  },
+  "browser_or_electron_executed": false,
+  "checked_utc": "2026-11-26T14:00:57.676776+00:00",
+  "initial_local_candidate_common_ancestor": "e35e7278a49d4e67c9ad9e480308bf5e11273493",
+  "initial_local_candidate_sha": "27b93a3b74528b5a69b43f313bc552415b067022",
+  "installed_trace_app_sha": "724ef8e147dc1c688601346cb4d25cb3f26a8942",
+  "local_binary_archives_rehashed": true,
+  "local_live_native_witness_added": false,
+  "mcp_source_gitlink": "b5e204a76dc3974abadf1fe355392815ddddd6b7",
+  "platform_main_sha": "0b44f0e4c5d26410f8220f10ab3833690c9c9315",
+  "published_baseline_sha": "e35e7278a49d4e67c9ad9e480308bf5e11273493",
+  "schema": "independent.installed-electron-release-review.v1",
+  "seat_kit_only_differences_from_tag": {
+    "product/desktop-seat/README.md": {
+      "difference": "tagged README adds the immutable archive and trailing-space explanatory paragraph",
+      "release_sha256": "fe5f8124f0e0cee59ca81391c3fcd6677f1728087eff69b566a2ead73ab13981",
+      "tagged_git_blob_sha256": "c3094a32aecf7c5a0c4b665e946544cf9704b6e96953ff166360ae8c2e4d3d40"
+    },
+    "product/desktop-seat/seat_gate.py": {
+      "difference": "one trailing ASCII space retained in published v1",
+      "release_sha256": "96aaaf6de8f8a3e0db4569c2942313fbccf44b32d5bfa96170ab812dd6f2ac1f",
+      "tagged_git_blob_sha256": "24acf97e53bd6ecd09c8477d3781bebc16ab562b8a5b708e9e4d39b0ede4f5cf"
+    }
+  },
+  "seat_kit_source_members_byte_identical_to_tag": 21,
+  "seat_kit_source_regular_members_verified": 23,
+  "tag_sha": "2d58cbdf43129a16afa315c70e0c93eb793758f3",
+  "trace_main_sha": "65b74cda8d274fb5be2ec4c3f205e25b3d202322",
+  "trace_source_files_verified": 13
+}

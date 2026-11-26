@@ -4,6 +4,10 @@
 
 本地 QA 的 Electron、MCP 与 Trace owner 分工见 [管理面验收与交接](MANAGEMENT-HANDOFF.md)。从干净检出继续开发、构建 CLI 或重跑 R5 生产借用，按[异机开发与验收手册](PRODUCTION-OWNER.md)执行。
 
+实际支持范围见[双架构同镜像验收矩阵](LIVE-MATRIX.md)：原生 CLI 借用、真实 SSH stdio、故障后的客户端回收和独立 Electron 发行，各用各自的真机回执。
+
+[双架构验收矩阵](LIVE-MATRIX.md)给出原生 CLI 借用、跨机 SSH stdio、Firefox 意外退出与同客户端恢复，以及独立 Electron 预发行的回执、版本和复测入口。
+
 ## 检出并验证
 
 ```bash

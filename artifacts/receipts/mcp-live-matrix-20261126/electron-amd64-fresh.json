@@ -1,0 +1,394 @@
+{
+  "case_receipt": {
+    "original_sha256": "dbf0c2ed108fca5f363e23e3bca77f18925672a53e9c7604391247dfc7443050",
+    "run": {
+      "arch": "x64",
+      "artifact": {
+        "acceptanceSha256": "1b4729132f4e2948b2cdac8be446bf85276a45668b28cc496bd0f92e73d610aa",
+        "appBuildSha256": "f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481",
+        "electronSha256": "03100c52299d74c8f05a8f95338e24ffc65bcff36eb40776a00389fc2fc409af",
+        "installReceiptSha256": "e35f4f879a1fe08125bcc9af68daf10a4a11a3cc805daca064c4feff8a6f495c",
+        "launcherSha256": "85888811c637a43850246bbc4ac452c1054920863d200d649bda26fd8110223e",
+        "mcpPin": "b5e204a76dc3974abadf1fe355392815ddddd6b7",
+        "runtimeReceiptSha256": "65addb67ba399702cbcafae3ada56c563979d56f138f7ff6d683148edc6809cf",
+        "traceSource": "724ef8e147dc1c688601346cb4d25cb3f26a8942"
+      },
+      "backend": "x11",
+      "case": "borrow_return_reborrow",
+      "client": {
+        "borrowed_quit_released_only": true,
+        "page_action_ack": true,
+        "reborrow_same_session": true
+      },
+      "main": {
+        "descriptor_issued": true,
+        "owner_kind": "electron-main"
+      },
+      "passed": true,
+      "process": {
+        "bidi_sessions": 1,
+        "electron_instance_sha256": "646daf050fc953e7b10586ffbc5fb30cb3bb3bb430b8f56725bde4df0100544e",
+        "firefox_instance_sha256": "b262498c686880b166b8a5a20279b7da9fbaea570e4d7f0532d6629e619fd3e3",
+        "firefox_instances": 1,
+        "interfaces": [
+          "lo"
+        ],
+        "owned_children_remaining": 0,
+        "renderer_no_new_privs": 1,
+        "renderer_seccomp": 2,
+        "same_process_start": true
+      },
+      "schema": "ruyitrace-electron-owner-native-qa.v1",
+      "traceTail": {
+        "matching_page_effect": true
+      },
+      "witness": {
+        "adminControls": [
+          {
+            "endMs": 13016,
+            "kind": "current-stop",
+            "ok": true,
+            "startMs": 12484,
+            "stopped": true
+          }
+        ],
+        "finalResult": {
+          "bidi": {
+            "getTree": 21,
+            "sessionEnd": 1,
+            "sessionEndAcknowledged": true,
+            "sessionNew": 1
+          },
+          "browserExit": {
+            "code": null,
+            "signal": "SIGTERM"
+          },
+          "completion": "requested-stop",
+          "gateConfirmation": "session-stopped",
+          "leases": {
+            "leasesAcquired": 2,
+            "leasesExpired": 0,
+            "leasesReleased": 2,
+            "leasesRevoked": 0
+          },
+          "nativeOwner": {
+            "browserLost": false,
+            "descriptorRevoked": true,
+            "disposition": "clean",
+            "flushAcknowledged": true,
+            "kind": "electron-main",
+            "resumedBeforeGateClose": true
+          },
+          "sha256": "27ebb2f9404b9e8bab279cd576669f44f6d9af03ac757a3056e6d2ef3d8cd95d"
+        },
+        "mcpCalls": [
+          {
+            "borrower": 1,
+            "endMs": 11829,
+            "observed": {
+              "alive": true,
+              "borrowed": true,
+              "pageCount": 1
+            },
+            "outcome": "ok",
+            "startMs": 11765,
+            "tool": "ruyi_attach_trace_session"
+          },
+          {
+            "action": "query",
+            "borrower": 1,
+            "endMs": 11850,
+            "observed": {
+              "elementCount": 1,
+              "fixtureText": "Click count 0"
+            },
+            "outcome": "ok",
+            "startMs": 11830,
+            "tool": "ruyi_trace_control"
+          },
+          {
+            "action": "click",
+            "borrower": 1,
+            "endMs": 11917,
+            "outcome": "ok",
+            "startMs": 11850,
+            "tool": "ruyi_trace_control"
+          },
+          {
+            "action": "query",
+            "borrower": 1,
+            "endMs": 11934,
+            "observed": {
+              "elementCount": 1,
+              "fixtureText": "Click count 1"
+            },
+            "outcome": "ok",
+            "startMs": 11917,
+            "tool": "ruyi_trace_control"
+          },
+          {
+            "borrower": 1,
+            "endMs": 11945,
+            "observed": {
+              "quit": true
+            },
+            "outcome": "ok",
+            "startMs": 11934,
+            "tool": "ruyi_browser_quit"
+          },
+          {
+            "borrower": 2,
+            "endMs": 12415,
+            "observed": {
+              "alive": true,
+              "borrowed": true,
+              "pageCount": 1
+            },
+            "outcome": "ok",
+            "startMs": 12357,
+            "tool": "ruyi_attach_trace_session"
+          },
+          {
+            "action": "query",
+            "borrower": 2,
+            "endMs": 12428,
+            "observed": {
+              "elementCount": 1,
+              "fixtureText": "Click count 1"
+            },
+            "outcome": "ok",
+            "startMs": 12415,
+            "tool": "ruyi_trace_control"
+          },
+          {
+            "action": "click",
+            "borrower": 2,
+            "endMs": 12463,
+            "outcome": "ok",
+            "startMs": 12428,
+            "tool": "ruyi_trace_control"
+          },
+          {
+            "action": "query",
+            "borrower": 2,
+            "endMs": 12471,
+            "observed": {
+              "elementCount": 1,
+              "fixtureText": "Click count 2"
+            },
+            "outcome": "ok",
+            "startMs": 12463,
+            "tool": "ruyi_trace_control"
+          },
+          {
+            "borrower": 2,
+            "endMs": 12483,
+            "observed": {
+              "quit": true
+            },
+            "outcome": "ok",
+            "startMs": 12477,
+            "tool": "ruyi_browser_quit"
+          }
+        ],
+        "writers": [
+          {
+            "byteLength": 3719,
+            "closed": 15,
+            "effects": [
+              {
+                "context_sha256": "8394f481bbaad03521373d1615e6a493886a420d402606df92ed09fed9de872b",
+                "index": 10,
+                "kind": "Document.title",
+                "value": "electron-owner-click-1"
+              },
+              {
+                "context_sha256": "8394f481bbaad03521373d1615e6a493886a420d402606df92ed09fed9de872b",
+                "index": 14,
+                "kind": "Document.title",
+                "value": "electron-owner-click-2"
+              }
+            ],
+            "fileSha256": "a8a9d83fc8584749b12a52dbb2210d34a579672cc563c8c0566cab69271a9162",
+            "opened": 0,
+            "session": 1,
+            "sessionRows": 16,
+            "writer_instance_sha256": "1304ccd092161c3625b8943b9ce3efac96950bbd12ab2266f0e3a0f2318cb452"
+          }
+        ]
+      }
+    },
+    "schema": "ruyitrace.electron-owner-qa-scrubbed.v1"
+  },
+  "host": {
+    "at_launch_load_1_5_15": [
+      1.81,
+      1.78,
+      1.94
+    ],
+    "at_launch_mem_available_mib": 13317,
+    "hostname": "host185",
+    "ssh_alias": "self-server-host185-hk",
+    "uname_machine": "x86_64"
+  },
+  "independent_verification": {
+    "criteria_sha256": "9a3cffd1a51e5423fab047e12f8b5c25eb2a61e76e5543eb0c739db75216871a",
+    "fresh_identities_distinct_from_all_ten_historical_cases": true,
+    "local_projection_crosscheck": {
+      "native_writer_sha256": [
+        "a8a9d83fc8584749b12a52dbb2210d34a579672cc563c8c0566cab69271a9162"
+      ],
+      "result_sha256": "27ebb2f9404b9e8bab279cd576669f44f6d9af03ac757a3056e6d2ef3d8cd95d",
+      "state": "ordered_close_read_back",
+      "state_sha256": "c7cea01e4d2d3fa20783f2d485102546a294b52a44983727ccb3b054c1a4179d"
+    },
+    "mcp_chronology_validated": true,
+    "native_original_rehash": {
+      "native_writer_sha256": [
+        "a8a9d83fc8584749b12a52dbb2210d34a579672cc563c8c0566cab69271a9162"
+      ],
+      "result_sha256": "27ebb2f9404b9e8bab279cd576669f44f6d9af03ac757a3056e6d2ef3d8cd95d",
+      "state": "ordered_close_read_back"
+    },
+    "per_case_run_validated": true,
+    "platform_commit": "77960d8ab64fc1670a0eea7be198b88021cccc45",
+    "verifier_sha256": "9aab0d0cab67334edf7ead8f904d4ac959073c1842355678160f3a66fb7d2157"
+  },
+  "native_readback": {
+    "original_projection_sha256": "a6f5504c5c7453cdb831ae6f703b440ce12c0423c3cb4e3d69a2e154bbabcad3",
+    "result": {
+      "browser": {
+        "code": null,
+        "signal": "SIGTERM"
+      },
+      "completion": "requested-stop",
+      "exit": 0,
+      "gate": {
+        "confirmation": "session-stopped",
+        "observed": "closed"
+      },
+      "mcp": {
+        "bidi": {
+          "getTree": 21,
+          "sessionEnd": 1,
+          "sessionEndAcknowledged": true,
+          "sessionNew": 1
+        },
+        "debuggerObserved": false,
+        "debuggerPauseNotices": 0,
+        "drainVerified": true,
+        "leasesAcquired": 2,
+        "leasesExpired": 0,
+        "leasesReleased": 2,
+        "leasesRevoked": 0
+      },
+      "native_owner": {
+        "browserLost": false,
+        "descriptorRevoked": true,
+        "disposition": "clean",
+        "flushAcknowledged": true,
+        "kind": "electron-main",
+        "resumedBeforeGateClose": true
+      },
+      "sha256": "27ebb2f9404b9e8bab279cd576669f44f6d9af03ac757a3056e6d2ef3d8cd95d"
+    },
+    "run_root_sha256": "132ef44b66b6e762bbc4aa8c228dd65b19e12e374cede1285416224dcf437856",
+    "schema": "ruyitrace.electron-owner-readback-scrubbed.v1",
+    "state": {
+      "electron_instance_sha256": "646daf050fc953e7b10586ffbc5fb30cb3bb3bb430b8f56725bde4df0100544e",
+      "firefox_instance_sha256": "b262498c686880b166b8a5a20279b7da9fbaea570e4d7f0532d6629e619fd3e3",
+      "owner_kind": "electron-main",
+      "phase": "exited",
+      "sha256": "c7cea01e4d2d3fa20783f2d485102546a294b52a44983727ccb3b054c1a4179d"
+    },
+    "writers": [
+      {
+        "bytes": 3719,
+        "complete_tail": true,
+        "selected_rows": [
+          {
+            "line": 1,
+            "row_sha256": "f3174873d47805f689747dd866deddba0ba4a5b53996dd1c9a2551846ca83c3b",
+            "session": 1,
+            "type": "session_started"
+          },
+          {
+            "context_sha256": "8394f481bbaad03521373d1615e6a493886a420d402606df92ed09fed9de872b",
+            "line": 11,
+            "row_sha256": "4d6942d2ec431d35352c4a2ce27ceb5ed784a2709508272b654077980f5ba727",
+            "session": 1,
+            "type": "Document.title:set",
+            "value": "electron-owner-click-1"
+          },
+          {
+            "context_sha256": "8394f481bbaad03521373d1615e6a493886a420d402606df92ed09fed9de872b",
+            "line": 15,
+            "row_sha256": "ba50a53256e35c08ee5dc6e76cf600252128cc798e3b8db6c07f0528ef4ceb82",
+            "session": 1,
+            "type": "Document.title:set",
+            "value": "electron-owner-click-2"
+          },
+          {
+            "line": 16,
+            "row_sha256": "5f0736686017c9fb3ca419dbd2391d1e402debda72369151e7d721c291113769",
+            "session": 1,
+            "type": "session_stopped"
+          }
+        ],
+        "sha256": "a8a9d83fc8584749b12a52dbb2210d34a579672cc563c8c0566cab69271a9162",
+        "writer_instance_sha256": "1304ccd092161c3625b8943b9ce3efac96950bbd12ab2266f0e3a0f2318cb452"
+      }
+    ]
+  },
+  "release": {
+    "app_receipt_sha256": "f7914d94b77947000e176771d934a28ae2f381c3df3944d5a5de78167e331481",
+    "firefox_libxul_sha256": "ac25767f89d2fa0099e665a630d2a499ad3e94f3ecac12ad71929476046e40ad",
+    "firefox_sha256": "49642c7be1ffa190e6b6f545b3394b44d01b04659836bc00eec2fdc23f661312",
+    "installed_app_source": "724ef8e147dc1c688601346cb4d25cb3f26a8942",
+    "linux_original_launcher_sha256": "85888811c637a43850246bbc4ac452c1054920863d200d649bda26fd8110223e",
+    "mcp_entry_sha256": "92dc797c9e0ca09ca24f55f205081330f1c846f2433295aa8a2d8483a876aa54",
+    "mcp_lock_sha256": "c771a13ef9aa5939d5cf4e16004c5ca008856877ec33e6721c7e538dc3951a94",
+    "mcp_source": "b5e204a76dc3974abadf1fe355392815ddddd6b7",
+    "packaging_tag_commit": "2d58cbdf43129a16afa315c70e0c93eb793758f3",
+    "published_artifact": {
+      "acceptance_sha256": "1b4729132f4e2948b2cdac8be446bf85276a45668b28cc496bd0f92e73d610aa",
+      "archive_sha256": "791e4b0c2fe8b0fa08478b610e8503d0a5fae1a188d494eca44282a864c22829",
+      "bundle_receipt_sha256": "e35f4f879a1fe08125bcc9af68daf10a4a11a3cc805daca064c4feff8a6f495c",
+      "bytes": 239522229,
+      "firefox_build_id": "20261123161729",
+      "name": "ruyitrace-linux-amd64-electron-owner-724ef8e.tar.gz",
+      "runtime_sha256": "65addb67ba399702cbcafae3ada56c563979d56f138f7ff6d683148edc6809cf"
+    },
+    "qa_node_sha256": "1abce2374a485bddae3c27b17a3e3143e2780232026e627c4fe74ddde3f380a1",
+    "runner_files_sha256": {
+      "README.md": "641a52f2fea3262518d59595bb3c1986370095f7613bb81143bf3c0385fb5c25",
+      "accept.mjs": "0109cd7ff53b531c41c8e9d6225f765f5c8a12d44a0df0de57bc33e510abdc1c",
+      "collect-originals.py": "e783573ce0bc3cf820df637568721fe1368c878c47e2a734baeba943cdc1aed2",
+      "isolated-linux.sh": "7471c01922484d5a90362736540bad5fca13fc648b3328ad4a4e18ad72a3db0d",
+      "release-alpha.1.json": "da0b7b044ffe556c6a56314d05ea1dc3b946e9ccb53462a834195023a5877edc",
+      "start-display.sh": "683319f1bb32f2cd95da7e70421c822adf53602a2310ae00bcd3fa885ab768f5"
+    },
+    "staged_archive_rehashed_and_installed_files_compared": 211,
+    "staged_installed_directory_entries_compared": 29,
+    "stock_scoped_sandbox_helper_mode": "4755",
+    "stock_scoped_sandbox_helper_sha256": "f16e2562837856845cfc8ebf4aa7f78b57fdadc6b69130509b1db87ce5d2f869",
+    "tag": "linux-electron-owner-v0.1.0-alpha.1"
+  },
+  "schema": "ruyitrace.canonical-electron-alpha1-retest.v1",
+  "scope": {
+    "default_ui": false,
+    "human_input_or_system_ime": false,
+    "network": "isolated Linux loopback only",
+    "physical_display": false,
+    "product_qualified": false,
+    "virtual_display": "Xvfb/X11"
+  },
+  "status": "passed",
+  "timing": {
+    "native_readback_utc": "2026-11-26T14:03:58.747313+00:00",
+    "receipt_written_utc": "2026-11-26T14:01:48.462593+00:00",
+    "run_started_utc": "2026-11-26T14:01:34Z",
+    "runner_exit": 0,
+    "runner_exit_observed_utc": "2026-11-26T14:01:48Z"
+  }
+}

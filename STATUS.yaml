@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T21:42:48+08:00'
+generated_at: '2026-11-26T22:27:06+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -13,9 +13,9 @@ projects:
     submodule: submodules/ruyi-mcp
     source: complete
     build: linux
-    tests: 129/129
-    phase: 生产借用态已锁定租约控制权、错误范围零页面操作与真实归还结果
-    docker_ci: https://github.com/Facetomyself/ruyi-mcp/actions/runs/45323705438
+    tests: 133/133
+    phase: 原生 AMD64、ARM64 单镜像生产借用与跨机 SSH 已通过；ARM64 突发 Firefox 退出后同客户端可重新借用
+    docker_ci: https://github.com/Facetomyself/ruyi-mcp/actions/runs/45836056393
     container:
       core: [linux/amd64, linux/arm64]
       amd64_stock_firefox: headless local navigation, status and quit verified
@@ -38,7 +38,14 @@ projects:
           status: pass
           evidence: artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json
           sha256: 6a97df2ff9ce88a5697f2d44c5ab402738193fa59e9792f08c16d07fe91b3f21
-        pending: [production_arm64, electron_owner, native_browser_process_loss]
+        native_architectures: [linux/amd64, linux/arm64]
+        same_image_standard_paused_expiry: pass
+        cross_machine_ssh_stdio: [linux/amd64, linux/arm64]
+        unexpected_firefox_exit: native ARM64 private pidfd fault, original failure retained; same stdio client recovers into a separate real run
+        current_matrix: artifacts/receipts/mcp-live-matrix-20261126/matrix.json
+        matrix_sha256: 8b7936beb8b0f9943fd050a2c6b998760a9351fcba857e911308acbc25db083d
+        electron_owner: separate opt-in Alpha 1, native virtual-seat 5/5 per architecture plus one new original-launcher borrow-return-reborrow per architecture
+        pending: []
     blocked_by: []
   ruyihttp:
     repo: Facetomyself/ruyihttp
@@ -2387,7 +2394,7 @@ projects:
       win_amd64: released
       linux: 'separate audited native amd64 and arm64 R5/CLI2; ARM64 BuildID 20261125162841 qualified with a three-image offline bundle and direct public TLS desktop'
     tests: 'clean source: 176 Python passed; Node 66 passed/3 skipped; native C++/Node contract stage 22 Node passed'
-    phase: relocated standalone CLI verified with production MCP on native amd64 R5, including owner stop during a real RDP pause
+    phase: native AMD64 and ARM64 CLI production verified on pinned images; app control and virtual-seat Electron remain separate lanes
     release_source_lock: artifacts/receipts/trace-amd64-r5/source-lock.json
     cli_native_receipt: artifacts/receipts/trace-amd64-r5/cli-native-amd64.json
     mcp_production_receipt: artifacts/receipts/trace-amd64-r5/m2-delivery.json
@@ -3001,10 +3008,10 @@ artifacts:
     in_git: false
 blockers:
   D-MCP:
-    state: amd64_cli_verified_other_targets_open
+    state: verified_bounded_cli_ssh_recovery_and_separate_electron_alpha
     title: Linux 生产 Trace owner 同会话验收
     severity: D
-    decision: AMD64 Linux CLI 已确认真实暂停、借用归还、自然到期和关闸；ARM64 生产、Electron 以及独立浏览器进程丢失用例另行验收
+    decision: 双架构 CLI 同镜像与跨机 stdio 已通过；ARM64 验证意外退出、未封存与同客户端恢复。独立 Electron Alpha 已在两个虚拟席位复验；实体显示与人工 IME 未签收。
   A2:
     state: target_specific_abi_floor
     title: Linux 原生库要求 glibc 2.38
@@ -3060,7 +3067,7 @@ submodules:
   ruyi-mcp:
     url: https://github.com/Facetomyself/ruyi-mcp.git
     branch: linux
-    commit: b5e204a76dc3974abadf1fe355392815ddddd6b7
+    commit: df0db8545a3f75461627a3f45c5bca8668211ea7
     visibility: public
     state: added
   ruyihttp:
@@ -3074,10 +3081,10 @@ submodules:
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
-    commit: e35e7278a49d4e67c9ad9e480308bf5e11273493
+    commit: 51852ce98804390a11ae326bd1205a5abf1a3eb6
     state: added
 docs_health:
-  total_markdown: 47
+  total_markdown: 48
   total_cpp_files: 62
   total_scripts: 21
   reproduce_manual: REPRODUCE.md

@@ -6,13 +6,19 @@ or a stale hash there silently converts a verified claim into an unverifiable
 one. This script is the check that claim implies.
 """
 import hashlib
+import os
 import sys
 from pathlib import Path
 
 import yaml
 
 PLATFORM = Path(__file__).resolve().parents[1]
-ROOT = PLATFORM.parents[1]          # /var/lib/dsh/Ruyi
+# An isolated clone may live at a different depth than the evidence archive.
+# Keep the original layout as the default; the override changes only the root,
+# never the recorded paths, digests or required receipt checks.
+ROOT = Path(os.environ.get('RUYI_PLATFORM_EVIDENCE_ROOT', PLATFORM.parents[1]))
+if not ROOT.is_absolute():
+    raise SystemExit('RUYI_PLATFORM_EVIDENCE_ROOT must be absolute')
 SECTION = ("projects", "ruyijs", "verified",
            "private_linux_x86_donor_source", "guarded_build")
 

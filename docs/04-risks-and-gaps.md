@@ -10,7 +10,7 @@
 | **已验 · ARM64 原生 HTTP/3 互操作** | [正反对照](../artifacts/receipts/ruyijs-linux-aarch64-h3-r432/validation.json)：调用方核验服务器 DER 后由真实 QUIC ABI 完成 ngtcp2 H3 请求/响应；错误 pin 和错误 CA 均在发送 HTTP 之前终止。 | JS 默认 HTTP/3、WebTransport、公网证书策略仍未接通；另一测试对端 aioquic 0.9.25 有 ALPN 解码差异。 |
 | **已验 · Linux x86-64 QUIC 组件（R431）** | [宿主原生回执](../artifacts/receipts/ruyijs-linux-quic-component-r431/validation.json)：真实 ELF 加载，固定 NSS 映射，创建/驱动/关闭会话，回环收到 QUIC v1 Initial。 | 下一道门是对真实 h3 服务端完成带身份校验的握手并读回响应体，再接已安装 wheel 的 JS 路由。本项未覆盖这两道门。 |
 | **已验 · RuyiJS amd64 离线发行** | [R356 wheel](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) 使用 R355 干净原生构建的确切字节。新装及从 R354 升级均通过 13 组安装态测试及真实 Worker/WebCrypto，显式回退后的文件清单完全恢复。 | 依照[固定版本的安装命令](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)使用；公共索引、跨发行版认证、联网与 ARM64 不继承本项证明。 |
-| **P1 · Trace / MCP 发布与管理面** | [M2 标准与暂停中停止](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)用 Trace `f8eeb0e` + MCP `8f3839b` + R5；MCP 当前 pin `b5e204a` 又验过[自然到期、错范围无页面动作及实际归还](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | **挡扩大支持矩阵，不挡已验的原生 AMD64 CLI 组合。** 发布新 CLI/MCP 组合时固定双方 SHA 与同一浏览器摘要，重跑正常归还及暂停中停止两档；另测 Firefox 进程意外丢失，核对租约、descriptor、profile 及输出。生产 ARM64、Electron 充当 owner、跨执行机 SSH stdio 分开签收。[执行入口](../projects/ruyi-mcp/PRODUCTION-OWNER.md) |
+| **Trace / MCP 发布与管理面** | [2026-11-26 矩阵](../projects/ruyi-mcp/LIVE-MATRIX.md)记录了原始和修复后两套固定组合的原生双架构单镜像、跨机 SSH stdio、原生 ARM64 意外退出与同客户端恢复。独立 Electron Alpha 的双架构原启动器复跑另列。 | 更换内核或版本组合仍需要独立验收。未把旧 CLI2 的配额、另一架构的故障注入、Alpha 或物理显示算作同一测试。 |
 | **已复核 · distrust 截止** | [R389](../artifacts/receipts/ruyijs-linux-cutoff-recheck-r389/validation.json)：新探针重跑 R388 两项声明，结论一致。 | 复核不改变缺口清单；OCSP/CRL 与默认根库仍未做。 |
 | **已验 · distrust 截止（实机）** | [R388](../artifacts/receipts/ruyijs-linux-cutoff-r388/validation.json)：过去 cutoff 拒绝、未来放行，拒绝理由明确；R387 的 `NameError` 缺陷已修。 | 仅覆盖调用方声明的 cutoff；默认 Mozilla 根与 OCSP/CRL 仍未做。 |
 | **部分已验 · distrust 截止（R387 已被取代）** | [R387](../artifacts/receipts/ruyijs-linux-cutoff-offline-r387/validation.json)：解析、绑定与执行逻辑离线全通过；实机未验，且当时存在未定位的 `SEC_ERROR_EXTENSION_NOT_FOUND`。 | 实机截止执行未签收；该 NSS 报错待查。这一行不能当作"已在线上生效"。 |
@@ -58,7 +58,7 @@
 | **已验 · RuyiJS JS 层固定证书 HTTPS（手工布局）** | [R360](../artifacts/receipts/ruyijs-linux-js-https-r360/validation.json)：安装态 R356 壳的 `fetch()` 走 `https:` 后，独立 TLS 服务端记录到 `GET /direct`，返回体与 JS 读回逐字节一致。错误固定值时 JS 得 `TypeError`，服务端接受 1 次 TCP 但收到 0 字节 HTTP。根因是缺少 bundled-interpreter 启动器，补上即通。 | 外部 CA 信任链、公网 HTTPS、h2 语义、QUIC/h3、`navigate()` 的 HTTPS 与 ARM64 均未签收。 |
 | **部分已验 · RuyiJS TLS 原生层** | [R358](../artifacts/receipts/ruyijs-linux-tls-r358/validation.json)：固定 NSS 3.131 的 TLS 1.3 握手、ALPN 协商、不受信任证书拒绝，以及基于 DER 证书固定值的 HTTPS 客户端往返均已实测；未配置固定值直接拒连；固定值不匹配在 TLS 握手中止，不发送 HTTP 请求字节。 | 仍需 JS `fetch()`/`navigate()` 的 HTTPS 端到端与外部 CA 信任；h2 语义、QUIC 与 ARM64 另验。 |
 | **部分已验 · RuyiJS 明文 HTTP/1** | [R357 组件](../artifacts/receipts/ruyijs-linux-http1-r357/validation.json)在 R356 安装态上真实收发：JS 读到回环服务新生成的挑战，GET/POST/HEAD/404、二进制体、参数、gzip/deflate/chunked、导航及外部脚本均经服务端核对；独立 C 程序也取得新响应。卸载该组件恢复 R356 原文件树。 | 该项只覆盖 libc 上的私有明文 HTTP/1。HTTPS 另有条目（R358 适配层、R360/R361 安装态、R376 锚点链校验）。**仍需** h2、QUIC/h3、OCSP/CRL、公共 CA 根库与代理支持各自实测；未列出者不得据本项推断。 |
-| **P2 · 架构与宿主** | Trace 有独立 ARM64 浏览器及虚拟桌面证据；MCP 有双架构 core；Http 已核验 Linux ARM64 和 Intel macOS 原生库。 | RuyiJS ARM64、Trace 生产 ARM64 共会话、物理显示分别建包验收；仅在要承诺更低 glibc 时做相应目标发行版测试。Trace 托管检查曾因计费未获 runner，应在 runner 可用后重跑；已有本地源码通过记录与 hosted CI 分开。 |
+| **P2 · 架构与宿主** | Trace 有独立 ARM64 浏览器及虚拟桌面证据；MCP 有双架构 core；Http 已核验 Linux ARM64 和 Intel macOS 原生库。 | RuyiJS ARM64、Trace 生产 ARM64 共会话与物理显示按项目分别留证；Trace 共会话现已通过专用 QA 镜像复验，物理显示另验；仅在要承诺更低 glibc 时做相应目标发行版测试。Trace 托管检查曾因计费未获 runner，应在 runner 可用后重跑；已有本地源码通过记录与 hosted CI 分开。 |
 | **使用 RuyiDOM 时 · 独立仓与制品维护者** | [v0.3.1 交接](14-source-handoff.md#ruyidom-独立源码交接)记录了 amd64 完整源码构建及 Docker 验收，以及专用 ARM64 包在裸 Jammy 上的 ABI 与真实导航验证。[v0.3.0 的第二主机冷恢复](../artifacts/receipts/ruyidom-arm64-v0.3-cold-restore.json)继续单列。 | 裸 Jammy 的通过范围仅适用于专用包；原 v0.3.0 Noble 包在裸 Jammy 的启动失败仍是负对照。现有 ARM64 日常入口沿用 Noble 镜像；真实 HTTP(S) 导航使用 `browser`。 |
 
 **另有一条不能合并的发布线。** [常驻采集 CLI2 产品标签](https://github.com/Facetomyself/ruyitrace/blob/f3f45baaee75a700ed4d41fdc5e4e70d977df1b6/product/release-lock.json)锁定实际 CLI 输入 `29a1111`，复用 R5 内核。它验过 256 个开关代际、512 条原生边界与同一宿主的空 Docker 引擎加载。Trace 主线的常驻修复 `61a4c15`、平台 Trace pin、CLI2 产品镜像是不同对象；CLI2 证据不自动继承生产 M2。若下游需要“一份镜像兼有常驻配额与 MCP 借用”，先合成一个明确版本，再在**同一镜像摘要**上同时通过这两组测试。第二物理宿主、严格内容进程过滤证据仍应单列。
@@ -296,7 +296,7 @@ cd RuyiHttp/repo && /tmp/ruyivenv/bin/python -m unittest discover -s tests
 
 ### D-MCP · Linux 生产 Trace owner 同会话验收
 
-AMD64 R5 的 Linux CLI [生产门禁](../projects/ruyi-mcp/PRODUCTION-OWNER.md)已通过。AMD64 真机租约自然到期与失效后控制权已[单独验收](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)；Electron owner、ARM64 生产、部署中的跨机器 SSH stdio，以及真实浏览器进程丢失仍为 `To be confirmed`；独立 ARM64 fixture 的回执仍只覆盖其有界范围。
+此前待验的四项已获得各自范围的回执：[ARM64 生产 CLI 借用、受控 Firefox 进程丢失、跨机器 SSH stdio](../projects/ruyi-mcp/LIVE-MATRIX.md)，以及[独立正式 Electron 预发行的虚拟席位](../artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/README.md)。最初 ARM64 fixture 只有租约等有界证据，未用作此次生产正例。CLI 进程丢失负例保留失败采集状态；恢复确认不等于原采集成功。实体面板和本地人工 IME 仍无现场签收。
 
 ## 历史决策清单（原始建议；当前选择见页首）
 

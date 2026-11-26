@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1192 个 commit**（platform 345 / ruyitrace 142 / ruyihttp 190 / ruyijs 454 / ruyi-mcp 61）。
+五个仓库共 **1213 个 commit**（platform 347 / ruyitrace 157 / ruyihttp 190 / ruyijs 454 / ruyi-mcp 65）。
 
 R433：RuyiJS 发布两只 Linux ARM64 wheel，并用实际下载包验证安装。`oracle-reverse-dev` 正式入口已切换至 R433，完整 R432 回滚与恢复均经实测。[发布与部署回执](artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)。
 
@@ -176,8 +176,8 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1192 |
-| 文档 | 47 篇（含本文）|
+| 五个仓库 commit | 1213 |
+| 文档 | 48 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 21 |
 | domtrace 测试 | 20 项 |

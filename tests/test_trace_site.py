@@ -209,6 +209,22 @@ class SiteProof(unittest.TestCase):
             with self.assertRaisesRegex(V.Failure, 'final source/gitlink mismatch'):
                 V.verify_git(dict(source_commit='f' * 40, source_tag=V.TAG), None)
 
+    def test_maintained_gitlink_cannot_substitute_different_arm_product(self):
+        (self.root / '.git').mkdir()
+        commit, checkout = 'a' * 40, 'b' * 40
+        def lookup(_repo, *args):
+            if args[0] == 'ls-files':
+                return f'160000 {checkout} 0\t{V.LINK}'.encode()
+            if args[0] == 'merge-base':
+                self.assertEqual(args, ('merge-base', '--is-ancestor', commit, checkout)); return b''
+            if args[-1] == 'HEAD': return checkout.encode()
+            if args[-1].endswith('^{commit}'): return commit.encode()
+            if args[-1].endswith(':product/arm64'): return args[-1].split(':')[0].encode()
+            self.fail(f'unexpected command {args}')
+        with patch.object(V, 'REPO', self.root), patch.object(V, 'git', side_effect=lookup):
+            with self.assertRaisesRegex(V.Failure, 'ARM product subtree differs'):
+                V.verify_git(dict(source_commit=commit, source_tag=V.TAG), self.root, True)
+
     def test_unsealed_bytes_and_unindexed_attempt(self):
         self.seal()
         raw = self.root / 'raw/desktop-site1.json'; raw.write_bytes(raw.read_bytes() + b' ')
