@@ -4,12 +4,12 @@
 | --- | --- |
 | 仓库 | `Facetomyself/ruyihttp`（**public**，2026-11-20 起） |
 | 挂载 | `submodules/ruyihttp` |
-| 版本 | `0.9.1`（仓库 wheel；源自原 `0.9.0` 维护树） |
+| 版本 | `0.9.2`（独立维护，从上游 0.9.0 起步并选择性跟进 [0.11.0](https://pypi.org/project/ruyihttp/0.11.0/)） |
 | 许可 | MPL-2.0 |
 
 ## 是什么
 
-Firefox Necko/NSS 的 Requests 风格 HTTP 客户端。不启动浏览器，TLS ClientHello / H2 SETTINGS / H3 优先级按 Firefox 100–159 的正式版发送。
+Firefox Necko/NSS 的 Requests 风格 HTTP 客户端。不启动浏览器，支持 Firefox 100–161 配置，默认 159；TLS/H2/H3 的具体观察和差异见[官方浏览器对照](../../submodules/ruyihttp/docs/firefox-profile-wire.md)。
 
 它不是 browser fact，也不替代 RuyiTrace、RuyiDOM 或 ruyipage。
 
@@ -21,7 +21,7 @@ Firefox Necko/NSS 的 Requests 风格 HTTP 客户端。不启动浏览器，TLS 
 submodules/ruyihttp/
 ├── ruyihttp/            Python 客户端、只读信任缓存、原生缓冲读取及平台清单
 ├── native/
-│   ├── win_amd64/       6 文件，7.2 MB（NSS 3.131 / Neqo 0.32.0）
+│   ├── win_amd64/       6 个上游 Windows DLL（NSS 3.133 / Neqo 0.34.0）
 │   ├── darwin_arm64/    6 个 Apple Silicon 源码构建 dylib，正文 ABI v1
 │   ├── linux_x86_64/   14 个 Linux x86_64 源码构建 ELF，正文 ABI v1
 │   ├── darwin_x86_64/   6 个 x86_64 dylib 和固定源码构建来源
@@ -41,13 +41,17 @@ submodules/ruyihttp/
 
 | 平台 | 状态 | Firefox / NSS / Neqo | wheel tag |
 | --- | --- | --- | --- |
-| `win_amd64` | ready | 159.0 / 3.131 / 0.32.0 | `py3-none-win_amd64` |
-| `darwin_arm64` | ready | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_26_0_arm64` |
-| `linux_x86_64` | ready（Ubuntu 24.04 容器已通过 HTTPS 验收） | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_x86_64` |
-| `darwin_x86_64` | ready（Intel macOS 15.7.9 安装及 H1/H2/H3） | 159.0 / 3.132 / 0.33.0 | `py3-none-macosx_15_0_x86_64` |
-| `linux_aarch64` | ready（原生 ARM64 编译、安装及 H1/H2/H3） | 159.0 / 3.132 / 0.33.0 | `py3-none-manylinux_2_39_aarch64` |
+| `win_amd64` | ready | 161.0 / 3.133 / 0.34.0 | `py3-none-win_amd64` |
+| `darwin_arm64` | ready | 161.0 / 3.133 / 0.34.0 | `py3-none-macosx_26_0_arm64` |
+| `linux_x86_64` | ready（Ubuntu 24.04 容器已通过 HTTPS 验收） | 161.0 / 3.133 / 0.34.0 | `py3-none-manylinux_2_39_x86_64` |
+| `darwin_x86_64` | ready（Intel macOS 15.7.9 安装及 H1/H2/H3） | 161.0 / 3.133 / 0.34.0 | `py3-none-macosx_15_0_x86_64` |
+| `linux_aarch64` | ready（原生 ARM64 编译、安装及 H1/H2/H3） | 161.0 / 3.133 / 0.34.0 | `py3-none-manylinux_2_39_aarch64` |
 
 打包器要求状态为 `ready`，且平台目录的文件集合及 SHA-256 与清单完全一致；单独放入一个同名库不会生成目标 wheel。Linux 槽位的最低 glibc 标签为 2.39，即使跨打包宿主更旧也不能把标签降到 2.31。
+
+### 2026-11-26：0.9.2 选择性同步
+
+先同步并独立核验 118 张 TLS server-trusted 根、一个签发截止约束与 10,463 条 PSL 规则，再添加显式 160/161、升级 Windows 6 DLL、从 Firefox 161 正式版源码重编四个 POSIX 套件。保留本仓 POST 重放限制、H2 流控、H3 STOP 与 POSIX 正文 ABI v1。两个 Python 端点都检查上代 0.9.0 和直接前代 fork 0.9.1 的原地升级。见[五平台最终实测](https://github.com/Facetomyself/ruyihttp/actions/runs/45747144872)及[精确提交与工件哈希](../../artifacts/receipts/ruyihttp-0.9.2/qualification.json)。
 
 ### Linux 原生候选静态预检
 

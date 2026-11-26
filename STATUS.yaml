@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T10:56:23+08:00'
+generated_at: '2026-11-26T11:23:46+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -46,15 +46,15 @@ projects:
     visibility_changed: '2026-11-20'
     submodule: submodules/ruyihttp
     source: complete
-    version: 0.9.1
+    version: 0.9.2
     build:
-      win_amd64: ready (original pinned x64 DLLs; legacy JSON H3, NSS/Neqo telemetry)
+      win_amd64: ready (six exact upstream 0.11.0 x64 DLLs, JSON H3 ABI; NSS 3.133 / Neqo 0.34.0)
       darwin_arm64: ready (6 source-built arm64 dylibs; macOS 26+, measured H3 telemetry; body ABI v1)
       linux_x86_64: ready (14 source-built amd64 ELF; manylinux_2_39, measured H1/H2/H3, body ABI v1)
       darwin_x86_64: ready (6 source-built Intel dylibs; macOS 15+, measured H3 telemetry; body ABI v1)
       linux_aarch64: ready (14 source-built AArch64 ELF; manylinux_2_39, measured H1/H2/H3, body ABI v1)
-    tests: 126/126 with source ARM64 native H3, body ABI, IPv6, SOCKS and retry gates enabled
-    latest_local_contract: '2026-11-26: CPython 3.10.12 on real aarch64, isolated glibc 2.39, NSS 3.132; installed-wheel qualification and timings recorded separately'
+    tests: 137 clean ARM64 native source tests; final installed-wheel 3.10/3.14 gates tracked separately
+    latest_local_contract: '2026-11-26: aarch64 glibc 2.39, Firefox 161 sources, NSS 3.133 / Neqo 0.34.0; three explicit profiles, H1/H2/UDP H3 and public PyPI H2'
     native_wheel_inspection:
       tool: 2903c12608bbf1ffce9f6ee95406ef2aaaa38a7b
       scope: 'read-only ZIP inspection, bounded central directory and selected native entries, duplicate and non-x86 Linux guards; historical Windows passes, old macOS missing QUIC rejected'
@@ -96,7 +96,20 @@ projects:
       binary_body_v1: [linux_aarch64, linux_x86_64, darwin_arm64, darwin_x86_64]
       legacy_json_body: [win_amd64]
       trust: content-keyed immutable CA snapshots; leaf and host verified on each new handshake
-    phase: 0.9.1 传输、升级及性能验收，见 optimized_release
+    upstream_sync_release:
+      version: 0.9.2
+      upstream: https://pypi.org/project/ruyihttp/0.11.0/
+      qualification: artifacts/receipts/ruyihttp-0.9.2/qualification.json
+      data_receipt: artifacts/receipts/ruyihttp-0.9.2/data-sources.json
+      reference_wire: artifacts/receipts/ruyihttp-0.9.2/firefox-reference.json
+      full_matrix: https://github.com/Facetomyself/ruyihttp/actions/runs/45747144872
+      default_firefox: '159'
+      supported_configs: '100-161'
+      native_source: 'Firefox 161; NSS 3.133 / NSPR 4.40 / Neqo 0.34.0'
+      windows_source: 'six DLLs from verified public wheel, not a source rebuild'
+      posix_firefox_commit: 9c70d5d48c866afc2e581d6b7ff6de98a1371d99
+      fork_upgrade_baseline: fae13b0a9eabbafbcdbf5c59438875525fcc0d0b
+    phase: 0.9.2 选择性同步及逐平台线路、原生、升级验收，见 upstream_sync_release
     blocked_by: []
     verified:
       native_hashes: pass
@@ -2965,7 +2978,7 @@ submodules:
     state: added
   ruyihttp:
     url: https://github.com/Facetomyself/ruyihttp
-    commit: fae13b0a9eabbafbcdbf5c59438875525fcc0d0b
+    commit: 656655d3cc6b2027eb0d8c148a855e97f817db53
     visibility: public
     state: added
   ruyijs:

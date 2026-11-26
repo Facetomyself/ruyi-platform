@@ -1,0 +1,1030 @@
+{
+  "version": "0.9.2",
+  "commit": "656655d3cc6b2027eb0d8c148a855e97f817db53",
+  "data_commit": "aecf8c436f175de667a471ade9e769a86619fa2d",
+  "comparison_baseline": "fae13b0a9eabbafbcdbf5c59438875525fcc0d0b",
+  "integrated_wheels": "https://github.com/Facetomyself/ruyihttp/actions/runs/45747144872",
+  "donor_wheel_sha256": "79eb2f08326c5f1e0a9ffddecef5136f45b50aefe952051f878e514a63939332",
+  "slots": [
+    {
+      "slot": "darwin_arm64",
+      "wheel": "ruyihttp-0.9.2-py3-none-macosx_26_0_arm64.whl",
+      "sha256": "555bb5a92cf09f74bf8a076cd39acaa58ce2936629dd63aad5b9bf7d56e575d6",
+      "size": 4193748,
+      "record_entries": 195,
+      "native_count": 6,
+      "data_count": 4,
+      "firefox_source": "161.0",
+      "nss": "3.133",
+      "neqo": "0.34.0",
+      "nspr": "4.40",
+      "h3_body_abi": 1,
+      "source": {
+        "donor": "f557fcd437aae5f18f313eb330bd3ef50f5fc7df",
+        "mozilla": "9c70d5d48c866afc2e581d6b7ff6de98a1371d99",
+        "pypi_wheel_sha256": null,
+        "kind": "target-native source build"
+      },
+      "run": "https://github.com/Facetomyself/ruyihttp/actions/runs/45747144872/job/139665852273",
+      "artifact_id": 15084910230,
+      "evidence_id": 15083828321,
+      "attempt": 1,
+      "endpoints": {
+        "3.10": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS', 'nss': '3.133', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False, 'profile': 'firefox-159'}",
+          "loaded_native": "loaded sibling libraries: libfreebl3.dylib, libmozglue.dylib, libnecko_core.dylib, libnecko_quic.dylib, libnss3.dylib, libsoftokn3.dylib",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 1.39 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "0d3783839c41cbebc55a1d5de51fd0e565725d3827318f2dab0c74079dacb83a",
+            "upgrade-fork-0.9.1": "c9e97ff73bd10a45ffde1d521ac093ace8d1bfdeeed231ec3739062e6c732284",
+            "upgrade-0.9.0": "be83006b5a952cc51f2de595e3d89e384d6fde62550148e512251d86691baa1e",
+            "test_h3_body_abi": "47b383ef8b840b56f0641077b93effca404219d90fbc0a6f914aca579468f0c8",
+            "test_alt_svc_native": "6bed50b41fc2b1e237423e8fde88de587e57a200f529fea90ea135b7e0cdcef2",
+            "request-boundaries": "37d054d02a304e9053b4f37e75cf1af57f750d179c5fd4067c5af780355b31c3",
+            "proxy": "b9f5e1ab284ade90b82645c712baa08d936329487cf84da4ded3b295e68a7318",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "1509765349b91741f2fddf37874c3a6c52a63442ca8687e77a60d109792a5782",
+            "installed-identity": "1d26ac27d94063bb50a35c3cdda6b74ce5100f3ae7570c190624038ff1ff7513",
+            "install": "0851d541ec44d75a7593ee4e939646dff52f1e7967906281fb2830282896226d",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "full-h3": "0a7acb55571ed7cdfede3ac13ec6d0c56a516ef827fa2ca30b1bea37d8e8a4a1",
+            "firefox-profile-wire": "2c8a4f99da3ac36deec44040f04091ed75d2e4ca7319463fe48a3796ed88e652"
+          }
+        },
+        "3.14": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS', 'nss': '3.133', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False, 'profile': 'firefox-159'}",
+          "loaded_native": "loaded sibling libraries: libfreebl3.dylib, libmozglue.dylib, libnecko_core.dylib, libnecko_quic.dylib, libnss3.dylib, libsoftokn3.dylib",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 12.40 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "e4c683ee5499b717dbfa203ae18c0705e6520c05c18d699b4e185e109177d2ba",
+            "upgrade-fork-0.9.1": "2eed34e7aff62c257a735307f7223c46a887d49d551c7af8d0eee34d2d479190",
+            "test_alt_svc_native": "8ffdd60bc2b04c572b82e155c658d27de73809e6903a0ff05fa2d021790f0b68",
+            "test_h3_body_abi": "47e03ede65c8746256a60b19e0d8395a39f9b21bd46857ceb9b443ca6bdc3ff6",
+            "upgrade-0.9.0": "32b14e0ba34719a77282cedbedc2671aa4d9e2c93fbb92c81faa67673ca7ccf4",
+            "request-boundaries": "668d0f1d9eaf5cc25c0d2c1cd5148036ce0cce23554061fda835641f6a230a5c",
+            "proxy": "8e15b845c4928b61368b8b55329e46f5f611a17c64d45ce3bbfda4ba4f0a9223",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "160eda056135f2fc6895822a7e639f50bf7ae99705f16c67f1a1145a2603fcea",
+            "installed-identity": "f6f89195541005e4884737683b7aca10a265cbdfe35f8cdff511ca21fd6a5e6e",
+            "install": "074686f33fccff35a02c500bac9ad49e57e8424fcaf38010469bbb7249ba25fa",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "full-h3": "bab2593c3593723a96a0577a9adfdb66270f8dfb668adf23c0d6f0bd652e63bd",
+            "firefox-profile-wire": "f97bb436ac3a484df01930331abf4eb931179148b9957310a7d9328b9c2d04a0"
+          }
+        }
+      }
+    },
+    {
+      "slot": "darwin_x86_64",
+      "wheel": "ruyihttp-0.9.2-py3-none-macosx_15_0_x86_64.whl",
+      "sha256": "3381e474284800fa348ccbef0d8585c7be9bbfa77f16ea057aef44759ef9cfa1",
+      "size": 4384154,
+      "record_entries": 195,
+      "native_count": 6,
+      "data_count": 4,
+      "firefox_source": "161.0",
+      "nss": "3.133",
+      "neqo": "0.34.0",
+      "nspr": "4.40",
+      "h3_body_abi": 1,
+      "source": {
+        "donor": "f557fcd437aae5f18f313eb330bd3ef50f5fc7df",
+        "mozilla": "9c70d5d48c866afc2e581d6b7ff6de98a1371d99",
+        "pypi_wheel_sha256": null,
+        "kind": "target-native source build"
+      },
+      "run": "https://github.com/Facetomyself/ruyihttp/actions/runs/45747144872/job/139665852372",
+      "artifact_id": 15084556182,
+      "evidence_id": 15084122028,
+      "attempt": 1,
+      "endpoints": {
+        "3.10": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS', 'nss': '3.133', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False, 'profile': 'firefox-159'}",
+          "loaded_native": "loaded sibling libraries: libfreebl3.dylib, libmozglue.dylib, libnecko_core.dylib, libnecko_quic.dylib, libnss3.dylib, libsoftokn3.dylib",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 2.94 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "061484760ff685a59b4bfea5d0b7d1cc9b315470b830bc17190ff3405f175e17",
+            "upgrade-fork-0.9.1": "e1a74cc8144cf34438dff073c57abd308d6de1629355b308595117b100540cb0",
+            "upgrade-0.9.0": "dbbeac0deaa3dfb7fd1449c1cbc2e37b47dbd832e3751ead19120d233ce1d78a",
+            "test_h3_body_abi": "1ed0086748fea066f181e4ff3f32136a36c562e6a7f0f98c3db79af5d47af2ff",
+            "test_alt_svc_native": "33b458dca24a8e6f134e5af2837df0d5985345b684287056e258d3d7ff4aa910",
+            "request-boundaries": "5fcd957cfec02c4981d74363681ffe646c5477cea6b7b9b6c57e1e902a3e2222",
+            "proxy": "2f70c5a6a19596301e3690eb744205d36402f5b4fc356b754afd96b5637584a1",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "1ce8ae4e6d514cef5b8fe6119e93ec84207be40f477f714ec54608eded0c37e9",
+            "installed-identity": "55b35e42deeb3524e483e3bae500987176c32baa9710af9dc7192633d3bff6be",
+            "install": "744e90555992652e2796fb36dae41fb6b7f96b97210a3ad63b4430a3841cf0a8",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "full-h3": "defe3ee404325bc5eae0e237c6918df899e0e5d23a4c6232dec777db73b630c7",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "firefox-profile-wire": "b3f1dbabd56a2297272da2d7224f48ed1d36959c4d659d85d5642afe301c028f"
+          }
+        },
+        "3.14": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS', 'nss': '3.133', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False, 'profile': 'firefox-159'}",
+          "loaded_native": "loaded sibling libraries: libfreebl3.dylib, libmozglue.dylib, libnecko_core.dylib, libnecko_quic.dylib, libnss3.dylib, libsoftokn3.dylib",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": false,
+              "quic_parameters_match_reference": false,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 2.90 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "89b1ab7e77e6d2477b3915e21b40d05b8a28d2675dd8e812a11c66e8e9bcc9db",
+            "upgrade-fork-0.9.1": "6582f568bb066ad837b958c3bac1b0a2f1b240192e480026934df4306cb3991a",
+            "upgrade-0.9.0": "be77bfbffb8e06b85c25eb3418e215de8870832ebc318d1cac1d146ef1104f42",
+            "test_h3_body_abi": "c0fd22946b8f4bd6aa8a983408940821d313173c063a3110a955c5abb2fb6a9b",
+            "request-boundaries": "18159f56625e7c68ac768dd835b566db7c4fb963cf5006bd7c9eff7b5985a0b1",
+            "test_alt_svc_native": "f5db4d89fd8052f292b7fe2aa9a57ff76b4797be01ffa220fc2662624518bf29",
+            "proxy": "73a24b1859fa0f6697b6cddaceb726d034b60302183735878bb44155d0036506",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "ffe099095bfc32c1261e07d256118f7cec76d4e84836935fa83a6925c594a468",
+            "install": "e4e1e29b87ed3e89a35c912d42daa4fd9befeb5b1fd01994258ad1862a811fd0",
+            "installed-identity": "a5157dfa18f783486618c936cb88930f6022041da8a2e83ad8d3583fcecc8223",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "full-h3": "49e635d99f21250a27d851323e86ee8086cbab6c673e77818f6b4f668328e443",
+            "firefox-profile-wire": "830d1172895bd09698ea455d9cb41a33c4aa6b016623a77881de4b4cf42d821d"
+          }
+        }
+      }
+    },
+    {
+      "slot": "linux_aarch64",
+      "wheel": "ruyihttp-0.9.2-py3-none-manylinux_2_39_aarch64.whl",
+      "sha256": "25da59905ec5d14ada625d035cf3dc889934e0512abfe56787d117b873c896f9",
+      "size": 4132658,
+      "record_entries": 203,
+      "native_count": 14,
+      "data_count": 4,
+      "firefox_source": "161.0",
+      "nss": "3.133",
+      "neqo": "0.34.0",
+      "nspr": "4.40",
+      "h3_body_abi": 1,
+      "source": {
+        "donor": "f557fcd437aae5f18f313eb330bd3ef50f5fc7df",
+        "mozilla": "9c70d5d48c866afc2e581d6b7ff6de98a1371d99",
+        "pypi_wheel_sha256": null,
+        "kind": "target-native source build"
+      },
+      "run": "https://github.com/Facetomyself/ruyihttp/actions/runs/45747144872/job/139665852370",
+      "artifact_id": 15083802633,
+      "evidence_id": 15083594245,
+      "attempt": 1,
+      "endpoints": {
+        "3.10": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS', 'nss': '3.133', 'profile': 'firefox-159', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False}",
+          "loaded_native": "loaded sibling libraries: libfreeblpriv3.so, libnecko_core.so, libnecko_quic.so, libnspr4.so, libnss3.so, libnssutil3.so, libplc4.so, libplds4.so, libsoftokn3.so, libsqlite3.so, libssl3.so",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 3.46 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "614c32681fdf11e29f2e9bf0b538be3de94e14993e52bd4d61ce857d9f5712d2",
+            "upgrade-fork-0.9.1": "7b7effa40458023e15c834dabe268ba7816519a8f18facd9c444df823942c73f",
+            "upgrade-0.9.0": "79b4cbef91939b06c023dd354a3555850f710176a2e2cbb0af5025f270bfa83b",
+            "test_h3_body_abi": "99ef81312cd303f4d598c8a5a0cedb68f5d1f35f0808462f7363c290a84be32a",
+            "test_alt_svc_native": "aad9b2b304a18ba95fb5d07b7ca2a867afeb206fbaf13333d6d60c2079a753be",
+            "request-boundaries": "da4d738bebbcf5bf309f0ebd270f5b65dcb6e78608e5c515b753bfe2f34c890f",
+            "proxy": "89d53136de871dcdcae41fd98e21454f8da7a8c65f2cffa57965457a20ca75c7",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "50df7c019d2a10c2f2b5cbc455f044210ee5b7fa7c3566dc50a3cc55c886d0dd",
+            "installed-identity": "e79174da89aac7da445c015bcaa29f0fe0add58ead9a275522cac33e33c8cc5b",
+            "install": "53b29db53da1a701981c6874e99fb0dc88098904854d7ee1f7399e1c626be9c9",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "full-h3": "3b86e80022882c688aab11e00cf4769c7fca4ff5ca3936d2f61bdd35271f76a4",
+            "firefox-profile-wire": "952cd85f8963e27a51f4166a2a301c5043958e4573111870cb9a7404a42bc23b"
+          }
+        },
+        "3.14": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS', 'nss': '3.133', 'profile': 'firefox-159', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False}",
+          "loaded_native": "loaded sibling libraries: libfreeblpriv3.so, libnecko_core.so, libnecko_quic.so, libnspr4.so, libnss3.so, libnssutil3.so, libplc4.so, libplds4.so, libsoftokn3.so, libsqlite3.so, libssl3.so",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 3.20 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "e4c683ee5499b717dbfa203ae18c0705e6520c05c18d699b4e185e109177d2ba",
+            "upgrade-fork-0.9.1": "c62667dcc4c5d873998abaef64a56d5e20c08275239fa63c15453a290012b250",
+            "upgrade-0.9.0": "76f03fe00a5fa7896c14fe6f0ed4896a6eae5f7f8c9661a2a65f764aa96ba49e",
+            "test_h3_body_abi": "058a3a4bd49aa4e4824ea000c990da2298824810416bc7afe6a38ec2cbaacecf",
+            "test_alt_svc_native": "e5afa37a546e2d26566bd06f5a34130472edbce53b64d48c4da35f8b9826b19d",
+            "request-boundaries": "2ac5a417f17d7f8932ef48e565b4b22a0773cf0bcdfdb19497a7a32a98ad0974",
+            "proxy": "f4bda94811e460336cd02c74041cedfe109ac610c06426eb4ed0bb3ca5b35658",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "673a96e0eebd39788925df15308af9775183edb341671ce7106ebbfa8e73af44",
+            "installed-identity": "f45c81c81c0d995bce076411c530f1b6dfa22f822b2b2b45327a8469c1b7a6f3",
+            "install": "84111558e44f4e6953826e8d50d10ca871fc73a0c3e5b9c9b091ca927e280364",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "full-h3": "f093b4b4ad1cda6f677d0b6a62e026ea9640e0d97587f6cbdb0aa3c92d6afccf",
+            "firefox-profile-wire": "e74fd4d78a7b396384debfd982ef662d08cb0339f8e067b023e21163bb2ddc3b"
+          }
+        }
+      }
+    },
+    {
+      "slot": "linux_x86_64",
+      "wheel": "ruyihttp-0.9.2-py3-none-manylinux_2_39_x86_64.whl",
+      "sha256": "0807a741d8f8e541fe0c71273888d653372a036f7a2aca35f4c4f215093a9045",
+      "size": 4189158,
+      "record_entries": 203,
+      "native_count": 14,
+      "data_count": 4,
+      "firefox_source": "161.0",
+      "nss": "3.133",
+      "neqo": "0.34.0",
+      "nspr": "4.40",
+      "h3_body_abi": 1,
+      "source": {
+        "donor": "f557fcd437aae5f18f313eb330bd3ef50f5fc7df",
+        "mozilla": "9c70d5d48c866afc2e581d6b7ff6de98a1371d99",
+        "pypi_wheel_sha256": null,
+        "kind": "target-native source build"
+      },
+      "run": "https://github.com/Facetomyself/ruyihttp/actions/runs/45747144872/job/139665852381",
+      "artifact_id": 15084240618,
+      "evidence_id": 15084265588,
+      "attempt": 1,
+      "endpoints": {
+        "3.10": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS', 'nss': '3.133', 'profile': 'firefox-159', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False}",
+          "loaded_native": "loaded sibling libraries: libfreeblpriv3.so, libnecko_core.so, libnecko_quic.so, libnspr4.so, libnss3.so, libnssutil3.so, libplc4.so, libplds4.so, libsoftokn3.so, libsqlite3.so, libssl3.so",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 2.56 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "0d3783839c41cbebc55a1d5de51fd0e565725d3827318f2dab0c74079dacb83a",
+            "upgrade-fork-0.9.1": "c2ca18ed4db704b2ed3da3f2182be86acd8fd3ed6785618a08bfae6ee3d33143",
+            "upgrade-0.9.0": "bb5024839c02046248dfd163a1fce996eeae36cf4151e5fcdb954367967b2a20",
+            "test_h3_body_abi": "769f423b3cdd1c0c51d059a23951e37628c9bb9ff3c1c3334c7f07573badc603",
+            "test_alt_svc_native": "3a32049c4d2823e8fb352ea8ef0c8620ea537d15bf39767b3e547c5f0c87c3f5",
+            "request-boundaries": "6f869a221b4f25ea54f597ed2ad98de34dd5ca44a3e2a494f1ea936f7efaa700",
+            "proxy": "d493bec9e98a3f61ae5d476cb2e02043ec827fe1ed7854c34e9eaaadeafb14cf",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "ee3d57a0454a649d6fb8af6443851e3b6e14798c66a2159937e66cad6a919fff",
+            "installed-identity": "82b372708dc3134f8319777568764fc0cdf701a24929e020bd14e4628b813c06",
+            "install": "287969d6d9c660d07cca1f2798dfbbdb473ab3fa4e621f57590fa5d600798d09",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "full-h3": "1d34d0202edf12061a50d303bc45cc607f0aa05c2f190db28a488ea1029234dd",
+            "firefox-profile-wire": "fa68a4726265b62854a651fd711ed869576b6fe823a032de3c882f8c606926ef"
+          }
+        },
+        "3.14": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS', 'nss': '3.133', 'profile': 'firefox-159', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False}",
+          "loaded_native": "loaded sibling libraries: libfreeblpriv3.so, libnecko_core.so, libnecko_quic.so, libnspr4.so, libnss3.so, libnssutil3.so, libplc4.so, libplds4.so, libsoftokn3.so, libsqlite3.so, libssl3.so",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [
+                [
+                  8,
+                  1
+                ]
+              ],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 2.81 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "e4c683ee5499b717dbfa203ae18c0705e6520c05c18d699b4e185e109177d2ba",
+            "upgrade-fork-0.9.1": "dfdff7d45941cc6581afdf0beec48b79506fa9ea3529773621242d7e29b42870",
+            "upgrade-0.9.0": "95444d1c165558cdd2a02d109e07311bf8191afb21654ba43101ce7726e37456",
+            "test_h3_body_abi": "90d1bc7befaed7638beea2fa1bd397a2d87c90a5886e782b492973ed83b294a5",
+            "test_alt_svc_native": "91e1a0732f01ba14f0869e644713edcfaf2745b6442a119407b542b9c5974882",
+            "request-boundaries": "1927dda58cd547e7ff7ac5931eca7206487aa327704c8130f0174f10208a7112",
+            "proxy": "53c095a4ffa16d60a9f4f60cc762ad5ba9cdb3eaa51be9c6873301621fe0338b",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "a98657ea86ce05013b50f12a78a908d8d3cbd043b09ef10b4a279466634d60b2",
+            "installed-identity": "440523eae241fec449229377ddb5a0a4a18947eb6736fe1d54d5c5033d1f7850",
+            "install": "1cb0268ac70eb7ce3cb2640b565fea2d4d91a64c205180f6d1485bc9898660a4",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "firefox-profile-wire": "8b50d1febde39d72fb2e2f25e0495fcf3a13e4e634167723b86be5b9e43267de",
+            "full-h3": "f862d9f25cb2f5bb111117b52d69a3403bb459790081bbdabb4ca011c0455951"
+          }
+        }
+      }
+    },
+    {
+      "slot": "win_amd64",
+      "wheel": "ruyihttp-0.9.2-py3-none-win_amd64.whl",
+      "sha256": "d485a28b8123cdfca5766d51b01a048ab22a41c6c124834d47447c2795b5b686",
+      "size": 4071734,
+      "record_entries": 195,
+      "native_count": 6,
+      "data_count": 4,
+      "firefox_source": "161.0",
+      "nss": "3.133",
+      "neqo": "0.34.0",
+      "nspr": "4.40",
+      "h3_body_abi": 0,
+      "source": {
+        "donor": null,
+        "mozilla": null,
+        "pypi_wheel_sha256": "79eb2f08326c5f1e0a9ffddecef5136f45b50aefe952051f878e514a63939332",
+        "kind": "pinned Windows DLL import"
+      },
+      "run": "https://github.com/Facetomyself/ruyihttp/actions/runs/45747144872/job/139665852111",
+      "artifact_id": 15083379988,
+      "evidence_id": 15084211103,
+      "attempt": 1,
+      "endpoints": {
+        "3.10": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS/Neqo', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False}",
+          "loaded_native": "loaded sibling libraries: freebl3.dll, mozglue.dll, necko_core.dll, necko_quic.dll, nss3.dll, softokn3.dll",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 0.00 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "d2073acf5b0d2e97a37053c50c737e870beb2348851cd0e2ca33bf925a235ff4",
+            "upgrade-fork-0.9.1": "150e1c8ea954db69a9b7e433d52a18bb9ddcffeff41a2530f411a5e84b8812d0",
+            "upgrade-0.9.0": "41863954035d6b941ee172b27ee37f490627e37885531067fced183533cc9ddc",
+            "test_h3_body_abi": "301ff6378b6e57ae932a1a202e193a75fd43ee6dde2b7c27d4fe85c357d4f4d0",
+            "test_alt_svc_native": "4d232eaa591459e95f6f58c0cb2398395cc8c7cc69e5a6468a461e7c2f18728c",
+            "request-boundaries": "ecf22ebb10cd2b0fbe2942a94c7dedea4f7e0e3e24e7c37bf5818ea4bfb0976e",
+            "proxy": "5cb2798417708e662cbc11621e7428159996def17a40944c6fdcace1640735d8",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "323fa399c5e6fc603569e3702e8a74fc6a23969c01d7cb26b47c96fd8d942fc9",
+            "installed-identity": "b3e3355865a47846a5260b1ae91023f27be68374e5667c08ae173dbdb68732ea",
+            "install": "cceccb0c95cf58a4db2caa7ef4f59274ffdc4b63a9ad96d4d0004e238809b4e4",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "full-h3": "dcd82ba78e555297634fc767c32ca53daa8141fa3aabcf2ae281043c77a8e7fa",
+            "firefox-profile-wire": "b94cc6878ad35df943d1d72c125de0239e6efcc2a6e10e7a61db524828cfe756"
+          }
+        },
+        "3.14": {
+          "gates": [
+            "firefox-profile-wire",
+            "full-h3",
+            "h2-eof",
+            "http1",
+            "install",
+            "installed-identity",
+            "native-transactions",
+            "pip-check",
+            "proxy",
+            "request-boundaries",
+            "test_alt_svc_native",
+            "test_h3_body_abi",
+            "upgrade-0.9.0",
+            "upgrade-fork-0.9.1",
+            "upstream-trust-data"
+          ],
+          "h2": "h2 200 20 {'backend': 'NSS', 'nss': '3.133', 'nspr': '4.40', 'profile': 'firefox-159', 'version': 772, 'alpn': 'h2', 'cipher_suite': 4866, 'resumed': False}",
+          "h3": "h3 200 30 {'backend': 'NSS/Neqo', 'alpn': 'h3', 'version': 772, 'cipher_suite': 4866, 'resumed': False}",
+          "loaded_native": "loaded sibling libraries: freebl3.dll, mozglue.dll, necko_core.dll, necko_quic.dll, nss3.dll, softokn3.dll",
+          "trust": "118 DER anchors, three retired roots rejected; ISRG Root X1 retained; same/cross-site cookie controls passed",
+          "upgrades": [
+            "0.9.0 -> 0.9.2",
+            "0.9.1 -> 0.9.2"
+          ],
+          "profiles": [
+            {
+              "selection": "159",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "160",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [],
+              "h3_settings_wheel_only": []
+            },
+            {
+              "selection": "161",
+              "h1_h2_headers_settings_match": true,
+              "h1_client_hello_diff_fields": [],
+              "h2_client_hello_diff_fields": [],
+              "quic_version_matches_reference": true,
+              "quic_parameters_match_reference": true,
+              "h3_settings_reference_only": [],
+              "h3_settings_wheel_only": []
+            }
+          ],
+          "fairness": "PASS fairness: B=b'ok' on connection 1 in 2.30 ms; A unread 655360/12582912 bytes, connection credit 11927552, stream credit 0",
+          "log_digests": {
+            "upstream-trust-data": "b48cfb5bc6e7c450b3f1ef32406892955d898f5bfff2749429d80911152ee687",
+            "upgrade-fork-0.9.1": "760d833f088282946384bd61d0ecbcb2208e528773fb0e8dca2a88f9ec213032",
+            "upgrade-0.9.0": "128224f3cdd56ec9463f3861b4b28f308944c4ecb7b1b551ad22fde821b73c0a",
+            "test_h3_body_abi": "890b142397b84a86b97ac95a22f23a01cc6dd9e4c85b110c93370094e9f1a6d8",
+            "test_alt_svc_native": "f7ca709f53d4fb26e15bda6c8309aba6d975a40e709806ea9a7e049ee33d7f08",
+            "request-boundaries": "b2bb26b17a84ab73887ac28e4b7fdcc3093e7cf463446807458e6399cc669f5f",
+            "proxy": "693548f938ca6e90b2ac95d216ae9fefca6454488dbf6bbf8d40f04699bc0e77",
+            "pip-check": "0d06830b758ba75d19643159123409ad46c8df33d76961bd08517e1634179880",
+            "native-transactions": "b0f66710bf641fb5a9de0acaea26cba8d452e4d3a7accfba32756961ecb0a98e",
+            "installed-identity": "457dbf5de0adc7b778585095029c1144f84949489f505096caf94cd726e21b54",
+            "install": "9a1684afe24d511006a025fd9be3c176d98efe487a67b796be4a60a2880db55e",
+            "http1": "2707361ce9f4bd4a77150d3dad0060c6d18cf639e325e90d305f484a5c15dcb6",
+            "h2-eof": "85e058d5e8326986316b43d403dc740f3361ba54b98b690f3447f31923f16595",
+            "full-h3": "74f613d40be6df732162fd44d497c29c5e84114ea1cf3a26713147e6dc101b74",
+            "firefox-profile-wire": "9298fcec269d3b47f2c93dd3c61a32904806d6328e2bf5584aa8d2446845045d"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "baseline": "83cf13d1c43710a9ce10e339e97eb616ec1df245",
+  "commit": "656655d3cc6b2027eb0d8c148a855e97f817db53",
+  "python_files_retained_bit_for_bit": {
+    "ruyihttp/_connect.py": {
+      "prior_fork_sha256": "205e1da50454482add3b653aaf69c783a76180b6b03a54b35ab61bc9b0c57b22",
+      "current_fork_sha256": "205e1da50454482add3b653aaf69c783a76180b6b03a54b35ab61bc9b0c57b22",
+      "upstream_011_python_sha256_lf": "104962c7e58a987a4460da69cf292522bad583c8fbe96379d864975e05d6f3fb"
+    },
+    "ruyihttp/_http2.py": {
+      "prior_fork_sha256": "f7a50ffbc4e76896ca07f4ddbbd371f54ea18a942e013130bd258f06d42f4a21",
+      "current_fork_sha256": "f7a50ffbc4e76896ca07f4ddbbd371f54ea18a942e013130bd258f06d42f4a21",
+      "upstream_011_python_sha256_lf": "7e6e5bfcb98f75d4073a8597ab2a2b2fc766262d04e2e676868585fea7f5506e"
+    },
+    "ruyihttp/_http3.py": {
+      "prior_fork_sha256": "bc04db264aa6ba52ad68fd2243cf27c5f48289487f0677dd4914d77216196bdd",
+      "current_fork_sha256": "bc04db264aa6ba52ad68fd2243cf27c5f48289487f0677dd4914d77216196bdd",
+      "upstream_011_python_sha256_lf": "c6f569591473bd88ea344f2aa12f4ea6601731dfb42a80150d53fbb6a73f9b60"
+    },
+    "ruyihttp/_native_buffer.py": {
+      "prior_fork_sha256": "7291163ca4d4dc42e61ceeb5edde8c94367250ba26f52816573487405c603034",
+      "current_fork_sha256": "7291163ca4d4dc42e61ceeb5edde8c94367250ba26f52816573487405c603034",
+      "upstream_011_python_sha256_lf": null
+    },
+    "ruyihttp/_retry.py": {
+      "prior_fork_sha256": "52191864043a0a709d8d6fd6ad8d839cbf0e81525b13b78869e61ec53bcba9af",
+      "current_fork_sha256": "52191864043a0a709d8d6fd6ad8d839cbf0e81525b13b78869e61ec53bcba9af",
+      "upstream_011_python_sha256_lf": "f332496917ffa2eec610819088b8e7acd9b213a0af5e59a7a8741a431a10ffac"
+    },
+    "ruyihttp/_socks.py": {
+      "prior_fork_sha256": "386045c241b5f4f1a5834248cf88c27d802568ff9bc84fc5e14ec70179a119a7",
+      "current_fork_sha256": "386045c241b5f4f1a5834248cf88c27d802568ff9bc84fc5e14ec70179a119a7",
+      "upstream_011_python_sha256_lf": "114524d52d0107994fcf1fb34efa73c2c42612ca1571e8896468404d9ad52163"
+    },
+    "ruyihttp/_transport.py": {
+      "prior_fork_sha256": "21c0b84d28d4a7643571278304c90cb4142092942cec7df33d7dd6692e2ae8f9",
+      "current_fork_sha256": "21c0b84d28d4a7643571278304c90cb4142092942cec7df33d7dd6692e2ae8f9",
+      "upstream_011_python_sha256_lf": "0d446c34050bd487f3cc93466135f911a374b3a53704aa0c4f0ebbf76bfe3e01"
+    },
+    "ruyihttp/_trust.py": {
+      "prior_fork_sha256": "fdbb6ab9b11ceb6ef45a47bc83b0a8bcb8b09c32c71af28a27b3d48bcc6cbe48",
+      "current_fork_sha256": "fdbb6ab9b11ceb6ef45a47bc83b0a8bcb8b09c32c71af28a27b3d48bcc6cbe48",
+      "upstream_011_python_sha256_lf": null
+    },
+    "ruyihttp/adapters.py": {
+      "prior_fork_sha256": "127ba26880bb81a9405e2dfe574a66446341f6e0a278f3d74a7b6ea7eeca931d",
+      "current_fork_sha256": "127ba26880bb81a9405e2dfe574a66446341f6e0a278f3d74a7b6ea7eeca931d",
+      "upstream_011_python_sha256_lf": "127ba26880bb81a9405e2dfe574a66446341f6e0a278f3d74a7b6ea7eeca931d"
+    },
+    "ruyihttp/api.py": {
+      "prior_fork_sha256": "cb27fc8014ffd4f5fe28be0434f3f142d7d17a395058fd800bffcee7c73c86a1",
+      "current_fork_sha256": "cb27fc8014ffd4f5fe28be0434f3f142d7d17a395058fd800bffcee7c73c86a1",
+      "upstream_011_python_sha256_lf": "cb27fc8014ffd4f5fe28be0434f3f142d7d17a395058fd800bffcee7c73c86a1"
+    },
+    "ruyihttp/sessions.py": {
+      "prior_fork_sha256": "c9319f84548f67b056fd252026371e97f052cc1cebff136ea67f51aa00787c3b",
+      "current_fork_sha256": "c9319f84548f67b056fd252026371e97f052cc1cebff136ea67f51aa00787c3b",
+      "upstream_011_python_sha256_lf": "c9319f84548f67b056fd252026371e97f052cc1cebff136ea67f51aa00787c3b"
+    }
+  },
+  "python_files_changed_selectively": {
+    "ruyihttp/__init__.py": {
+      "prior_fork_sha256": "51027a44338bb799383d79520af5c40a7d2350c345206ba05d4cd55e5cd46a11",
+      "current_fork_sha256": "82f9b4578c7eb6e0f0a9e06ade17dffc29c1a7678ccc22d627963b44846a60d1",
+      "upstream_011_python_sha256_lf": "9783b94d51698782668f6f47fc98693c5478c9c39386ac0bc6d0d39c6e079590"
+    },
+    "ruyihttp/_firefox.py": {
+      "prior_fork_sha256": "4cca97a5484683052f7ec002d5100323dde5c13cb03aee50608ff41b2dd019a6",
+      "current_fork_sha256": "9c23582bececaea762be9dbb9926e9ef483eb856b693e956c1b5593027303b36",
+      "upstream_011_python_sha256_lf": "7a918d96f33331ee66be65fe789eec633907439d2a98d9b71b35013d4ba4fc04"
+    },
+    "ruyihttp/_nss.py": {
+      "prior_fork_sha256": "3debbd19fc02e535e76a8e8ebe4c460d51b50a929c53cfeba120a5a2c8b637d4",
+      "current_fork_sha256": "576a2cfd14b3894c9851b1fb1cfc7ddfece8736a1c700e5528cd783342c66cc7",
+      "upstream_011_python_sha256_lf": "844ecd431a12f136409ed7cf05214bb5a7eb7a17ad75999a7d5c60ce426c9e7b"
+    },
+    "ruyihttp/_tls_profiles.py": {
+      "prior_fork_sha256": "6889c4685216299f14bd2f2d49fb5c553db262516b05e597cfb8d7f1f841968f",
+      "current_fork_sha256": "3473068acd806bab238a099ae65af1645fdd10eb928de07eea86fe0e816bf3c5",
+      "upstream_011_python_sha256_lf": "224f0a3e39890e915278ead5b4179789ae2f93076e8743edb3fb6d0c322a0b7f"
+    }
+  },
+  "notes": {
+    "__init__.py": "fork version only",
+    "_nss.py": "same manifest-driven exact runtime version check; more informative diagnostic",
+    "_firefox.py": "add opt-in versions and retain 159 default",
+    "_tls_profiles.py": "add aliases 160 and 161 to existing _P7; transport unchanged"
+  }
+}

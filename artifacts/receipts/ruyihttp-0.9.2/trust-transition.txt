@@ -1,0 +1,4 @@
+emSign Root CA - C1: previous trusted; candidate untrusted
+emSign ECC Root CA - G3: previous trusted; candidate untrusted
+emSign ECC Root CA - C3: previous trusted; candidate untrusted
+ISRG Root X1: previous trusted; candidate trusted
