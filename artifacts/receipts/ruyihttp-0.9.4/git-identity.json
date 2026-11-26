@@ -1,0 +1,77 @@
+{
+  "public_repo": "https://github.com/Facetomyself/ruyihttp",
+  "public_main": "74953f70e87f5935a9ce4410c639727d26ea323e",
+  "post_merge": {
+    "CI": {
+      "id": 45814595277,
+      "html_url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45814595277",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "74953f70e87f5935a9ce4410c639727d26ea323e",
+      "run_attempt": 1
+    },
+    "Linux H3 and proxy-chain acceptance": {
+      "id": 45814595179,
+      "html_url": "https://github.com/Facetomyself/ruyihttp/actions/runs/45814595179",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "74953f70e87f5935a9ce4410c639727d26ea323e",
+      "run_attempt": 1
+    },
+    "pull_request": {
+      "number": 4,
+      "html_url": "https://github.com/Facetomyself/ruyihttp/pull/4",
+      "merged": true,
+      "merge_commit_sha": "74953f70e87f5935a9ce4410c639727d26ea323e"
+    }
+  },
+  "unchanged_previous_release": {
+    "check_time": "2026-11-26T11:49:39.632317+00:00",
+    "tag": "v0.9.3",
+    "id": 459127741,
+    "commit": "e8f8b02703239a18a75760d791c15936af632c40",
+    "unchanged_assets": {
+      "qualification.json": [
+        794933050,
+        624846,
+        "b10cf4df0fda81783ce8365a747c40d7365cec1ecea1838051f711d3af012c61"
+      ],
+      "ruyihttp-0.9.3-py3-none-macosx_15_0_x86_64.whl": [
+        794933052,
+        4386479,
+        "74ef2cec8f1e54d0f039973a3fb7acb10093cc6fa17a38df909709421c81ab99"
+      ],
+      "ruyihttp-0.9.3-py3-none-macosx_26_0_arm64.whl": [
+        794932977,
+        4195384,
+        "d107f8c871ed52fc610b4434673a8df7e4b11242216e09c5ae2e94dfebf8ab6c"
+      ],
+      "ruyihttp-0.9.3-py3-none-manylinux_2_39_aarch64.whl": [
+        794932974,
+        4134064,
+        "e0c7bdd60435f5f88619630428f6aa972b6c30a1d56baaa1ee7326861c5ed946"
+      ],
+      "ruyihttp-0.9.3-py3-none-manylinux_2_39_x86_64.whl": [
+        794932973,
+        4190558,
+        "056729152736a3de16786cf466c290068c257a8e3771206db78314e468188b5b"
+      ],
+      "ruyihttp-0.9.3-py3-none-win_amd64.whl": [
+        794933054,
+        4072708,
+        "fdb87ca830156aa48e792ab850c1aef307f3af74e7658a87c5ec278dc2e85dbf"
+      ],
+      "ruyihttp-0.9.3-release-bundle.zip": [
+        794933114,
+        21354576,
+        "4030ce310f7b4cf12f49372e0762b451d8503359cfd9de4bd6dfc6b3168b1392"
+      ],
+      "SHA256SUMS": [
+        794933134,
+        747,
+        "7affb31405a4729f3c66adc90b33cbc497363333be42d8613af11f63cd7e1e81"
+      ]
+    },
+    "url": "https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.3"
+  }
+}

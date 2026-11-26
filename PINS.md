@@ -47,11 +47,13 @@ git commit -m "chore: pin firefox to 39bfd14cb45c (RuyiTrace kernel build)"
 | --- | --- | --- | --- | --- |
 | `win_amd64` | 3.133 | 4.40 | 0.34.0 | 上游 PyPI ruyihttp 0.11.0 原样导入的 6 个 DLL；保留 JSON 正文 ABI |
 | `darwin_arm64` | 3.133 | 4.40 | 0.34.0 | 原生 Apple Silicon 源码构建，正文 ABI v1，minOS 26.0 |
-| `linux_x86_64` | 3.133 | 4.40 | 0.34.0 | 原生 amd64 源码构建，正文 ABI v1，glibc 2.39 |
+| `linux_x86_64` | 3.133 | 4.40 | 0.34.0 | 原生 amd64 Bullseye 源码构建，正文 ABI v1，glibc 2.31 |
 | `darwin_x86_64` | 3.133 | 4.40 | 0.34.0 | 原生 Intel Mac 源码构建，正文 ABI v1，minOS 15.0 |
-| `linux_aarch64` | 3.133 | 4.40 | 0.34.0 | 原生 ARM64 源码构建，正文 ABI v1，glibc 2.39 |
+| `linux_aarch64` | 3.133 | 4.40 | 0.34.0 | 原生 ARM64 Bullseye 源码构建，正文 ABI v1，glibc 2.31 |
 
-**0.9.3 更新（2026-11-26）**：上表运行时版本和部署下限沿用，四套 POSIX 桥使用更新的真实 Neqo/NSS 配置及固定补丁重新构建，Windows 仍是原 PyPI 0.11.0 六个 DLL。公开配置与本机二进制 ABI 分开；159/160/161 五平台的可复现网络字段以 [Mozilla 目标机采样](artifacts/receipts/ruyihttp-0.9.3/firefox-reference-receipts.json) 和[最终发行格式验证](artifacts/receipts/ruyihttp-0.9.3/qualification.json)为准。原有 [GitHub Release v0.9.2](https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.2) 保持其原 tag、工件及回执。
+**0.9.4 更新（2026-11-26）**：Linux x86_64 / AArch64 的 14 个 ELF 各自原生重编、`auditwheel` 和 2.31 上真实安装验收；glibc 动态符号最高 2.30，并非宣称支持 glibc 2.30。新增单跳 H3 CONNECT-UDP 外层（aioquic 1.3 系），源站仍由 NSS / Neqo 处理；[本次固定提交与最终 wheel 回执](artifacts/receipts/ruyihttp-0.9.4/README.md)。
+
+**0.9.3 历史（2026-11-26）**：当时 Linux 部署下限为 2.39，四套 POSIX 桥使用更新的真实 Neqo/NSS 配置及固定补丁重新构建，Windows 仍是原 PyPI 0.11.0 六个 DLL。公开配置与本机二进制 ABI 分开；159/160/161 五平台的可复现网络字段以 [Mozilla 目标机采样](artifacts/receipts/ruyihttp-0.9.3/firefox-reference-receipts.json) 和[最终发行格式验证](artifacts/receipts/ruyihttp-0.9.3/qualification.json)为准。原有 [GitHub Release v0.9.2](https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.2) 保持其原 tag、工件及回执。
 
 **0.9.2 更新（2026-11-26）**：四个 POSIX 目标保持独立 ff-ruyijs donor `f557fcd437aae5f18f313eb330bd3ef50f5fc7df`，校验其旧 Firefox 160 gitlink 后单独使用官方 Firefox 161 源码 `9c70d5d48c866afc2e581d6b7ff6de98a1371d99`，不改本平台其他项目的 Firefox 基线。Windows 的六个 DLL 与上游经 SHA-256 和 RECORD 核对的 0.11.0 wheel 一致（仅导入，未宣称源码重建）。默认会话配置仍为 159，可显式选 160/161。见[0.9.2 工件与验收](artifacts/receipts/ruyihttp-0.9.2/qualification.json)；[0.9.1 历史回执](artifacts/receipts/ruyihttp-0.9.1/qualification.json)保留。
 

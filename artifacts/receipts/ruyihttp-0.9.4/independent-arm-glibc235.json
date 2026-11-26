@@ -1,0 +1,93 @@
+{
+  "source": "74953f70e87f5935a9ce4410c639727d26ea323e",
+  "wheel": "ruyihttp-0.9.4-py3-none-manylinux_2_31_aarch64.whl",
+  "sha256": "191552eeb0428961e77113f1022c84ac2ec7da7c9be7e1921dca772a6bc469ef",
+  "source_run": 45810139410,
+  "source_attempt": 1,
+  "source_artifact": 15112567278,
+  "arch": "aarch64",
+  "glibc": "glibc 2.35",
+  "cpython": "3.10.12",
+  "native_files": {
+    "libnecko_core.so": "d3d47244aa10b5261fef27500a81918b650c2e457e8a890920440b98cf9d8aa4",
+    "libnecko_quic.so": "3d653af343b0f40d1d587fda5d9c2bf17d218272db55b1f8feba950f51d40e68",
+    "libnss3.so": "b70ffb6efab786046766c580fa87baccf52b8f1e09fe7a9ac6f729e81cdc3589",
+    "libnssutil3.so": "53f13f366ce1e036f7445b7996ee599f5d5f61cc596401e79593b766f8ecda8c",
+    "libssl3.so": "cf21be0422836a51bb5b8dfad0983b2ef7c598836c16f32696da18f0cf6eacec",
+    "libnspr4.so": "708c09f36dd7e1ccafced261e555629ff0bebe44ca5fadd1ae45f588e71d08cd",
+    "libplc4.so": "f58b8e85a7a2466b284cba6dcb1fc0ea7a85575ff4406ab88a07c0b51de619a1",
+    "libplds4.so": "83bcfbe411c5b3bc78c9148c78ea53176479fbc2c46dfb9abcdcfa5ed4eb5c54",
+    "libsoftokn3.so": "4efe3a7763f4d33a9c48052b9cc8a37d4b4d5efaa0f99aa4bfd95f74f34ffef5",
+    "libfreebl3.so": "43b8b9a524d7f63547c979a1ed63406bbdddc875ec1ba1fcb0975ab9c49a945f",
+    "libfreeblpriv3.so": "6441c97fb821655edd28f91e20ec4845ce9db110fa7cf39808be9736deff0dfb",
+    "libsqlite3.so": "8f150c52d76128c1babcc01e29b6b5a21ba9f791c075d1c37aa49417ae942bec",
+    "libnssckbi.so": "a259f907a01f5cc9411c7f967880b1755daaaea777e03a3a0526c58886c2b21e",
+    "libnsssysinit.so": "98ee4899f036dc4ea1c8b4150795299d51e5b0e6a0bdbefa5d678d15d4618653"
+  },
+  "loaded_package_siblings": [
+    "libnecko_core.so",
+    "libnecko_quic.so",
+    "libnspr4.so",
+    "libnss3.so",
+    "libnssutil3.so",
+    "libplc4.so",
+    "libplds4.so",
+    "libssl3.so"
+  ],
+  "nss": "3.133",
+  "nspr": "4.40",
+  "quic_abi": 32,
+  "version": "0.9.4",
+  "wheel_only_dependencies": true,
+  "loader_overrides": {
+    "LD_LIBRARY_PATH": null,
+    "PYTHONPATH": null,
+    "NECKO_CORE_LIBRARY": null,
+    "NECKO_QUIC_LIBRARY": null
+  },
+  "v093_pip_rejected": true,
+  "masque_cases": [
+    "ok",
+    "auth-required",
+    "deny",
+    "bad-gateway",
+    "wrong-relay-ca",
+    "wrong-relay-name",
+    "wrong-origin-ca",
+    "wrong-origin-name",
+    "no-connect",
+    "no-datagram",
+    "small-quic-datagram",
+    "blackhole",
+    "contexts",
+    "bad-context",
+    "capsule-reverse",
+    "custom-path",
+    "ipv6-origin",
+    "redirect-http",
+    "redirect-off-route",
+    "missing-extra",
+    "client-certificate",
+    "post-stall"
+  ],
+  "go_modules": {
+    "github.com/quic-go/masque-go": "v0.6.0",
+    "github.com/quic-go/quic-go": "v0.63.0"
+  },
+  "netns": "only loopback, no external route",
+  "verdict": "passed",
+  "additional_checks": {
+    "source_layout_tests_with_exact_final_wheel_native": 192,
+    "installed_masque_controls": 93,
+    "pytest_subtests": 9,
+    "source_layout_note": "The complete source suite includes a missing-unbundled-core diagnostic that is specifically intended for the source layout. The installed wheel is separately required to load its real package-local core."
+  },
+  "raw_evidence_sha256": {
+    "masque-wire.json": "e1fe641eb38535d7ab8b05ece3fee388daa074f0d830f5c4231b2488109bb2a2",
+    "masque-go.json": "864ede347a2f2f214cd501e7cb843cfafbed9bbcf77d3f0ed3735dc2434dbaa2",
+    "source-contracts-exact-native.log": "cc1d65a59d2313c21f9442037c4658632d87cef8c2c07f4598d7405018905c9c",
+    "masque-controls.log": "1466bab55d6dc2af133ad37266e2424ef56ef20fba79ba7c1d4919a704b9e4ab",
+    "netns-proof.txt": "b95ed75f23d5dd1aea23d5087944f9bc656cced5271178871498fee18d209cae",
+    "reject-old.txt": "6c32fdca3ce0b9e4735823b254b3452fe37ef45dfc5b5436b2537008b36861cf"
+  }
+}
