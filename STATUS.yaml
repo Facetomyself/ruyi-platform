@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T09:11:08+08:00'
+generated_at: '2026-11-26T10:04:57+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -144,6 +144,21 @@ projects:
         verification: 'outer SHA-256 + 2071 top-level RECORD file hashes + x86_64 ELF header; no extraction or execution'
         scope: reference-only
       private_linux_aarch64_stages:
+        oracle_reverse_dev_ondemand_host1:
+          terminal: installed_full_default_cli_and_separate_checked_recovery
+          host: oracle-reverse-dev
+          entry: /home/ubuntu/.local/bin/ruyijs
+          management: /home/ubuntu/.local/bin/ruyijsctl
+          active: r432-host1
+          previous: r432-base-host1
+          immutable_full: sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c
+          immutable_recovery: sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278
+          default_network: none
+          verified: [by_id_runtime, javascript_and_python, pinned_https_positive_and_negative, allocated_worker_and_webcrypto, native_quic_initial, actual_rollback_and_reactivation, idempotent_install, same_store_load, encrypted_escrow_byte_readback]
+          evidence: deliverables/linux-ruyijs-oracle-host1/deployment.json
+          evidence_sha256: 6e665288d14a920713579e97955a6a6dfecbd51bec4fc39cd993c581dfb040e2
+          repository_receipt: artifacts/receipts/ruyijs-oracle-arm64-host1/validation.json
+          excluded: [always_on_daemon, published_ports, registry_push, clean_host_restore, automatic_js_h3]
         product_r432:
           terminal: full_private_native_build_link_relocation_and_source_free_two_wheel_installation_verified
           host: oracle-reverse-dev
@@ -2941,7 +2956,7 @@ submodules:
     state: added
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
-    commit: 070f6cb76dbc95d52b825cba60e5dd42dcf11de3
+    commit: e3aa1f3fd98baff69802e9e022d456da93d71694
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace

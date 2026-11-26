@@ -1,0 +1,27 @@
+{
+  "bytes": 366909525,
+  "current": "r432-host1",
+  "docker_load": "Loaded image: ruyijs:arm64-r432-base-host1\nLoaded image: ruyijs:arm64-r432-host1",
+  "new_releases": [],
+  "passed": true,
+  "previous": "r432-base-host1",
+  "rebuild": false,
+  "same_store_reload": true,
+  "schema": 1,
+  "sha256": "6fff918cf20e7656929a931f72741de9b3aff7cf0def39bb2c034f0983c9eecc",
+  "unchanged_activation_state": true,
+  "unchanged_cli_and_manager_and_current_inodes": true,
+  "verified_after_reload": {
+    "r432-base-host1": {
+      "checked_at": "2026-11-26T01:25:16.615144+00:00",
+      "image_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+      "passed": true
+    },
+    "r432-host1": {
+      "checked_at": "2026-11-26T01:25:18.833177+00:00",
+      "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+      "passed": true
+    }
+  },
+  "verified_utc": "2026-11-26T01:25:22.738939+00:00"
+}

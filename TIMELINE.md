@@ -2,7 +2,9 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1051 个 commit**（platform 331 / ruyitrace 138 / ruyihttp 78 / ruyijs 443 / ruyi-mcp 61）。
+五个仓库共 **1059 个 commit**（platform 333 / ruyitrace 138 / ruyihttp 78 / ruyijs 449 / ruyi-mcp 61）。
+
+RuyiJS 在 `oracle-reverse-dev` 上有了与 RuyiDOM 并列的按需命令。固定完整版和纯基座恢复版均从正式入口实测，镜像归档另有独立私有密文回读。[主机部署回执](artifacts/receipts/ruyijs-oracle-arm64-host1/validation.json)。
 
 RuyiTrace ARM64 R5 CLI2：BuildID `20261125162841` 在目标机通过原生编译、审计与采集；三个锁定镜像在同机隔离空引擎加载，独立 Firefox 经真实公网 WSS 看到桌面、重连并成功撤销。[证据链](artifacts/receipts/trace-arm64-native-lease/README.md) · [独立发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)。
 
@@ -160,7 +162,7 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1051 |
+| 五个仓库 commit | 1059 |
 | 文档 | 47 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 20 |

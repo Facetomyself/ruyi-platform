@@ -84,6 +84,8 @@ ruyijs-inner/
 - 在**已安装的 wheel** 上：19 个离线测试 OK，3 个端到端测试 OK。补上了 R394 留下的缺口（此前打包产物早于 ABI 修复）。
 - 过程说明：一次传输不完整，该副本被改名为 `partial-invalid.whl` 并未发布；只有哈希与构建日志一致的文件才被采用。
 
+**`oracle-reverse-dev` 的正式使用入口：** `ssh oracle-reverse-dev '/home/ubuntu/.local/bin/ruyijs eval "6*7"'` 返回 `result: 42`。`ruyijs check` 校验固定 ID，`ruyijs verify` 实跑 DOM、Worker/WebCrypto、pinned HTTPS 和 QUIC 首包；`ruyijsctl rollback` 可切至已验的纯基座恢复版。日常保持 `r432-host1`，默认离线、按需启动。[主机手册](../../submodules/ruyijs/docs/oracle-arm64-on-demand.md) · [正式部署回执](../../artifacts/receipts/ruyijs-oracle-arm64-host1/validation.json)。
+
 **R432：Linux ARM64 私有产品已交付。** [完整私有发行](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-product-r432) · [安装指南](../../submodules/ruyijs/docs/linux-arm64.md) · [安装态验收](../../artifacts/receipts/ruyijs-linux-aarch64-product-r432/validation.json)。在 Ubuntu 24.04 / glibc 2.39 上，1,268 个私有 C++ 单元的 ARM 原生对象通过核验，严格链接、18 库搬迁、13 项原生功能门及 stock Ubuntu 的 C 宿主实跑均通过。全新无源码 venv 的默认 `Context()`、DOM、独立 Worker/回收和 WebCrypto 已验；双 wheel 安装后实际 JS HTTPS `fetch()`、`navigate()` 外部脚本及错 pin 零 HTTP 字节也已验。移除 companion 后基座行为复验通过。
 
 **R432：Linux ARM64 网络组件与协议范围。** [H3 协议回执](../../artifacts/receipts/ruyijs-linux-aarch64-h3-r432/validation.json) 区分原生 ABI 与 JS 路由：调用方验证 DER 链、主机名和 pin 后，ngtcp2/GnuTLS 对端实际返回 HTTP/3 200、32 字节及 FIN；错 CA 与错 pin 均为零请求。独立 aioquic 0.9.25 互操作对照未全部通过。JS 自动选 h3、WebTransport、公网和跨发行版不在本次证据内。

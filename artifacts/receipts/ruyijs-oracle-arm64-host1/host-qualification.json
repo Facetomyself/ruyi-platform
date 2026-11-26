@@ -1,0 +1,217 @@
+{
+  "RuyiDOM_image_and_wrapper_unchanged": true,
+  "account": "ubuntu",
+  "backup": {
+    "archive_name": "ruyijs-arm64-r432-host1.docker.tar.gz",
+    "bytes": 366909525,
+    "decrypted_bytes_verified": true,
+    "encrypted": {
+      "filename": "ruyijs-arm64-r432-host1.docker.tar.gz.gpg",
+      "sha256": "2f59d430fb4a9282748b8a3aba070298b673226bdf63a4de7bee57b8ad2dc031",
+      "size": 366999215
+    },
+    "encrypted_format": "GnuPG symmetric AES256, integrity protected, no compression; independent high-entropy passphrase",
+    "host_path": "/home/ubuntu/ruyijs-artifacts/r432-host1/ruyijs-arm64-r432-host1.docker.tar.gz",
+    "kit": {
+      "bytes": 22233,
+      "name": "ruyijs-arm64-r432-host1-recovery.tar.gz",
+      "sha256": "4e78dee7077c591ef5ee593c0f89f7b526510aea25cb37915b55a6ac96f4e8c9"
+    },
+    "sha256": "6fff918cf20e7656929a931f72741de9b3aff7cf0def39bb2c034f0983c9eecc"
+  },
+  "checked_at": "2026-11-26T01:44:08.023892+00:00",
+  "current": "r432-host1",
+  "evidence_sha256": {
+    "before-activation.json": "037c07c9f32e0540deb12903736cecea5fef9e9fbdcf71d9a8a3cadb73972747",
+    "build/images.json": "3cefdb4514fc76b5cff14471c8965ea3d264cbbb1d236edcfc58ad38250738b6",
+    "encrypted-archive.json": "eab1dd7dbe86e651099759b6d894b4e9d4f4fad968bdb6fdf203584799bf2b43",
+    "host-final.json": "f93142fe414b73219c43d9446ed8482a0edf560dd8f17fafd34fdd9a3a54a692",
+    "image-backup.json": "1bebaafc45bd58f0a1c9f3afb8c7377d9ae40665ad72f289e9f44b87c0e564b6",
+    "installed/acceptance.json": "587f488c09d09c24eef655e2b1a7e99c1e8eb02453368ba33aae86f7a0a7c998",
+    "installed/r432-base-host1.json": "265bc518fb5bfedd80d3deaf3b3baf972d43669081afebe83d8ea2f8959e7659",
+    "installed/r432-host1.json": "7e3934c5977761e8b243c3cc4894d17a80c4b21177f12cef930a3e7de488c264",
+    "kit-check.json": "f115ea7eff8c0bb3790ab40f4af3f911fb2296984e73b637ade7efa3f21c7e6d",
+    "kit-install.json": "2de023cbe997ff16c3412dcbffb43f481af3f1bdb0885592a0ac10507b1c22d3",
+    "recovery-kit.json": "195a7d70de9fb347815b3f7f7fb9ab97df19b4565c904069a61dba4414e2c8db",
+    "recovery.json": "21b7d822cee11625e52a88f7334da9ea1511939aa831cf3dc71d0ee9b271370d",
+    "reinstall.log": "3e5e8ff889bd19ba0c89a434d7cabdb0a375cf0345108760af830409c0328a95"
+  },
+  "host": "oracle-reverse-dev",
+  "image_alias": "ruyijs:arm64-use",
+  "image_recipe_commit": "69c154a8f2806bb131954fa8c259732c42bb0eb7",
+  "images": {
+    "base": {
+      "image_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+      "image_tag": "ruyijs:arm64-r432-base-host1",
+      "profile": "base",
+      "release": "r432-base-host1",
+      "size": 1053462133,
+      "verify_sha256": "c2188d7eff9c6c4582da95fa5d497c7be712009f72114e30efc431645513bad7"
+    },
+    "full": {
+      "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+      "image_tag": "ruyijs:arm64-r432-host1",
+      "profile": "full",
+      "release": "r432-host1",
+      "size": 1065435216,
+      "verify_sha256": "59f501269be70e16e0adcbd8b4072d55b709997b3d0a5a94d297d3afc0b4c1be"
+    }
+  },
+  "input_lock": "ba7e39a780378f25547c4e6e72fa4a8fc22477e8862d95e0ea1ee2b422eb6daf",
+  "isolation": {
+    "actual_id": "e4de2c41eb0c695fc9a99fc4bcbadf6f18029fbddbba800f7a5712fa669b13cf",
+    "actual_image": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+    "binds": [],
+    "caps_dropped": [
+      "ALL"
+    ],
+    "init": true,
+    "memory": 2147483648,
+    "memory_and_swap": 2147483648,
+    "nano_cpus": 2000000000,
+    "network": "none",
+    "observation": {
+      "cid": "e4de2c41eb0c",
+      "env_clean": true,
+      "interfaces": [
+        [
+          1,
+          "lo"
+        ]
+      ],
+      "pid": 8,
+      "root_readonly": true,
+      "uid": 10001
+    },
+    "pids_limit": 192,
+    "ports": {},
+    "read_only": true,
+    "security_options": [
+      "no-new-privileges=true"
+    ],
+    "shm": 134217728,
+    "tmpfs": {
+      "/tmp": "size=128m,nosuid,nodev,mode=1777"
+    },
+    "user": "10001:10001"
+  },
+  "maintenance": {
+    "full_and_base_reverified_after_docker_load": {
+      "r432-base-host1": {
+        "checked_at": "2026-11-26T01:25:16.615144+00:00",
+        "image_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+        "passed": true
+      },
+      "r432-host1": {
+        "checked_at": "2026-11-26T01:25:18.833177+00:00",
+        "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+        "passed": true
+      }
+    },
+    "full_reactivated": {
+      "changed": true,
+      "current": "r432-host1",
+      "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+      "previous": "r432-base-host1"
+    },
+    "idempotent_activate": {
+      "changed": false,
+      "current": "r432-host1",
+      "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+      "previous": "r432-base-host1"
+    },
+    "independent_clean_daemon_and_other_host_tested": false,
+    "kit_install_with_existing_state": true,
+    "offline_recovery_kit_check": true,
+    "real_rollback": {
+      "changed": true,
+      "current": "r432-base-host1",
+      "image_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+      "previous": "r432-host1"
+    },
+    "registered_new_on_kit_rerun": [],
+    "reinstall_preserved_inodes": true,
+    "reinstall_rebuilt": false,
+    "same_store_with_cached_layers_possible": true
+  },
+  "maintenance_entry": "/home/ubuntu/.local/bin/ruyijsctl",
+  "management_install_commit": "8c87cc1853968934ce4030e647b6ac57c68760a3",
+  "matched_listener_count": 13,
+  "matching_running_or_stopped_RuyiJS_containers": 0,
+  "matching_system_or_user_units": 0,
+  "no_host_listener_change": true,
+  "online_mode": {
+    "interfaces": [
+      "lo",
+      "eth0"
+    ],
+    "scope": "bridge attached explicitly; no external site contacted"
+  },
+  "passed": true,
+  "platform": "linux/arm64",
+  "previous": "r432-base-host1",
+  "product_input": "https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-product-r432",
+  "runtime_checks": {
+    "base_only_verified_without_companion": true,
+    "eval_and_script_arguments": {
+      "answer": 42,
+      "args": [
+        "a b",
+        "--example",
+        "\u03b2"
+      ]
+    },
+    "exit_codes": {
+      "js_error": 1,
+      "python_explicit": 17
+    },
+    "file_and_stdin": {
+      "args": [
+        "a b",
+        "--example",
+        "\u03b2"
+      ],
+      "private_file_mode": "0600",
+      "stdin_ok": true
+    },
+    "python_default_context": {
+      "args": [
+        "a b",
+        "--example",
+        "\u03b2"
+      ],
+      "default_Context": 42
+    },
+    "quic_first_output": {
+      "initial_bytes": 813,
+      "type": "QUIC v1 Initial",
+      "udp_bytes": 1252
+    },
+    "quic_sdk_files_mapped": 10,
+    "sha256_abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "smoke": {
+      "title": "RuyiJS ARM64",
+      "value": 42
+    },
+    "tls_http_status": 200,
+    "worker_actual": {
+      "isolated": true,
+      "text": "\u03b2",
+      "value": 42
+    },
+    "worker_reaped": true,
+    "wrong_pin_http_bytes": 0
+  },
+  "schema": "ruyijs-oracle-arm64-on-demand-host1.v1",
+  "scope_exclusions": [
+    "no public API or daemon",
+    "no registry push",
+    "no automatic scheduled upgrade",
+    "no default JS HTTP/3 routing claim",
+    "no clean-machine recovery claim"
+  ],
+  "source_and_product_runtime_verified_separately": true,
+  "ssh_and_docker": "active",
+  "user_entry": "/home/ubuntu/.local/bin/ruyijs",
+  "version_directory": "/home/ubuntu/.local/share/ruyijs/releases"
+}

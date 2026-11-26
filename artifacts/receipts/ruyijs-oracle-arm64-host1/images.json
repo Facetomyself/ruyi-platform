@@ -1,0 +1,47 @@
+{
+  "attempt": "attempt-sr4y1bel",
+  "base_image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "built_at": "2026-11-26T01:07:17.643622+00:00",
+  "files": {
+    "Dockerfile": "b3acc740a6ee3c300aeba96382aa926f132cb7376264be341f4cd4370d9e7880",
+    "check_linux_quic_component.py": "d34aeceb4e7c3f8939a857de35948c01abfd08b91b33b0f32e9c66c8a731310d",
+    "network/build_wheel.py": "d791aad176e473513d6e3052d149eb89b8710b5cf72cf4c4485f79f587b9fb30",
+    "network/check_wheel.py": "2821504b98a642cc2c9fd93c2960215373979626027919a29cf661afae2b728e",
+    "pack/common.py": "cb5a44b390268b02d55ce34ec62eb0c1f519d8eccfc44b372dc62d6807535af1",
+    "pack/exercise.py": "78b0583211ed75ffcf7f0ae449ab42b06e48e2f920f5b7bf2f2ca22c5f1ab221",
+    "payload.py": "2d3d91f676da09097f56b89b8c1c8d9d1492b9d6023fb12b84d62c05e2b59e63",
+    "runtime.py": "b47b4854e4bf14cddf0c01acd1faa21de41d633be41c6cf594d71ed16c189793"
+  },
+  "host_sha256": "34c604a689e7151bd09fb6546430262e90e668df279b840e6bf8c700fe70c179",
+  "images": {
+    "base": {
+      "image_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+      "image_tag": "ruyijs:arm64-r432-base-host1",
+      "profile": "base",
+      "release": "r432-base-host1",
+      "size": 1053462133,
+      "verify_sha256": "c2188d7eff9c6c4582da95fa5d497c7be712009f72114e30efc431645513bad7"
+    },
+    "full": {
+      "image_id": "sha256:82dcd7b11350ccf90dc38805b5c1d10df9e89c59c2c4a67c5b1b2cfedd28602c",
+      "image_tag": "ruyijs:arm64-r432-host1",
+      "profile": "full",
+      "release": "r432-host1",
+      "size": 1065435216,
+      "verify_sha256": "59f501269be70e16e0adcbd8b4072d55b709997b3d0a5a94d297d3afc0b4c1be"
+    }
+  },
+  "input_lock": "ba7e39a780378f25547c4e6e72fa4a8fc22477e8862d95e0ea1ee2b422eb6daf",
+  "product": "linux-arm64-product-r432",
+  "recipe_revision": "69c154a8f2806bb131954fa8c259732c42bb0eb7",
+  "schema": 1,
+  "upstream_artifacts": {
+    "libnecko_quic.so": "608572494bc9ac9d304803e860debaa07fec0f9182c89cb792435caaa7f087c8",
+    "openssl": "a2044013d30169104887d7823bf7a0a1d443eafc34d7501876e22da532f24f0e",
+    "pip-24.0-py3-none-any.whl": "e995a37590643450898cfa5bd5113831a547506cd545c335a409339d0c1e87ab",
+    "requirements-linux-aarch64.txt": "0ea1346768107e83a63180f3a9702d2131666f5c3c38d63570984c0b5888f63e",
+    "ruyijs-0.2.2+inner.20261101191032.r432-py3-none-linux_aarch64.whl": "1d1c119a0e8a8176df212bd118dd955e50be19b085b4c196918f86b4f7ebcc22",
+    "ruyijs_http1-0.2.39+inner.r432-py3-none-linux_aarch64.whl": "afe31c0601493f5e24af531099c8d4f61a634f34efe42190cf46962b7952bc4a",
+    "validation.json": "91f4d5eb1c554145c23e07ff01c5b0f397c76c8ff90f2d99ccde13d7ad0bb498"
+  }
+}

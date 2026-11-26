@@ -1,0 +1,16 @@
+{
+  "alias": "ruyijs:arm64-use",
+  "files": {
+    "README.md": "d332d196e27543bbdc0603456784adb750003a20f1cfa9a07c15d336c00a3934",
+    "host.py": "34c604a689e7151bd09fb6546430262e90e668df279b840e6bf8c700fe70c179"
+  },
+  "image_id": "sha256:b288aea46ea3b4b0dd714ac2a2715dc2b44b6098ac7a8983ad99d1a33db5a278",
+  "image_tag": "ruyijs:arm64-r432-base-host1",
+  "input_lock": "ba7e39a780378f25547c4e6e72fa4a8fc22477e8862d95e0ea1ee2b422eb6daf",
+  "parent_image": "sha256:1e624ee86c8114f9d66732d54213fb8b213b3959a94ad4f940213ddb430586ec",
+  "product": "linux-arm64-product-r432",
+  "profile": "base",
+  "release": "r432-base-host1",
+  "revision": "69c154a8f2806bb131954fa8c259732c42bb0eb7",
+  "schema": 1
+}

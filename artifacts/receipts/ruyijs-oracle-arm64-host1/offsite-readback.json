@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-26T01:49:36.096761+00:00",
+  "decrypted_archive_sha256": "6fff918cf20e7656929a931f72741de9b3aff7cf0def39bb2c034f0983c9eecc",
+  "decrypted_bytes_read_back": 366909525,
+  "encrypted_asset_id": 793904833,
+  "encrypted_bytes_read_back": 366999215,
+  "encrypted_sha256": "2f59d430fb4a9282748b8a3aba070298b673226bdf63a4de7bee57b8ad2dc031",
+  "other_verified_assets": {
+    "ON-DEMAND.md": "sha256:2993ccf34c23cdd880e613853e491232dbcecdd72cdbbe975d7c09166ee08beb",
+    "SHA256SUMS": "sha256:c17bd4cc2574863403baea252f0354ab43e62d475ccc595c3139731bb4ff50b1",
+    "encrypted-archive.json": "sha256:eab1dd7dbe86e651099759b6d894b4e9d4f4fad968bdb6fdf203584799bf2b43",
+    "ruyijs-arm64-r432-host1-recovery.tar.gz": "sha256:4e78dee7077c591ef5ee593c0f89f7b526510aea25cb37915b55a6ac96f4e8c9",
+    "validation.json": "sha256:e0aa53fdcd3ba2422101ce30853c5b0ddac899bfa7d96fb99649c4ae1abf7252"
+  },
+  "passed": true,
+  "plaintext_persisted_on_controller": false,
+  "private_release": "https://github.com/Facetomyself/ruyijs-inner/releases/tag/oracle-arm64-r432-host1",
+  "release_id": 458848655,
+  "schema": 1
+}
