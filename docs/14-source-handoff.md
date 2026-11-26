@@ -65,6 +65,8 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 **ARM64 日常使用**：在 `oracle-reverse-dev` 上以 `ubuntu` 运行 `/home/ubuntu/.local/bin/ruyidom verify`，验证真实浏览器导航。本地标签 `ruyidom:arm64-use` 指向下文同一个 v0.3.0 镜像 ID；入口按需启动临时容器，默认离线，未发布端口。见[主机使用与维护说明](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md)。
 
+**验收机空间维护**：正式归档、校验清单、原始回执和已配置的运行依赖留存；只回收已结束的 QA 展开树及校验相同的临时副本。具体分类和复验方法见[项目空间回收手册](https://github.com/Facetomyself/ruyidom/blob/6ffb604b5771ff9646c765d03db13cfdf0a5fe38/docs/DEVELOPMENT.md#验收机空间回收)。
+
 ### v0.3.1：源码版 ESR 的 amd64 与裸 Jammy ARM64 验收
 
 检出[发布标签 `v0.3.1`](https://github.com/Facetomyself/ruyidom/releases/tag/v0.3.1)并核对完整提交；真实运行所需的受控工件、部署与复验命令见[可移植性手册](https://github.com/Facetomyself/ruyidom/blob/b57891fb9348842e22bbc9395c3db810c0c569fc/docs/PORTABILITY.md)和[发行回执](../artifacts/receipts/ruyidom-source-portability-v0.3.1.json)。
