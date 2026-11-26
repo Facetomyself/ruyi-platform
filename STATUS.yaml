@@ -2399,6 +2399,18 @@ projects:
       raw_review: artifacts/receipts/trace-linux-gap-closure-v1/candidate-002-review.json
       downloaded_assets: artifacts/receipts/trace-linux-gap-closure-v1/candidate-002-publication.json
       deployed_as_default: false
+    linux_native_events_patched_v2:
+      operator_runtime_source: f177682d8dc4e028ad450a00f2d78acc4063e321
+      native_frame_patch_sha256: 3cecbf0b086ff1b630f79ce493d2c4f64782bdf96feb05a9d0a9db57fff3e45b
+      arm64:
+        state: scoped_native_case_and_archive_readback_verified
+        cases: {wasm: 6, jscall: 5, http: 6, websocket: 5}
+        archive_sha256: 10d940ce5a502fe7652ae7685534e16c7fdeb03579ea48d730453597e458ee33
+        kernel_sha256: 53747262e3af06ec0e4b98806efed38225b51b3c83b8b8d877eba133e4c9eacf
+        review: artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/arm64-review.json
+        full_bytes: artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/arm64-full-byte-review.json
+      amd64: {state: native_build_in_progress_no_final_receipt}
+      default_site_changed: false
     linux_electron_owner_prerelease:
       tag: linux-electron-owner-v0.1.0-alpha.1
       source: 724ef8e147dc1c688601346cb4d25cb3f26a8942
@@ -2408,6 +2420,8 @@ projects:
       release: artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/published.json
       real_panel_human_witness: pending
       real_local_system_ime_human_witness: pending
+      strict_seat_review: artifacts/receipts/trace-linux-gap-closure-v1/desktop-seat/desktop-seat-review.json
+      observed_virtual_product_ime: '4/4 field receipts on both architectures; strict trusted-end/focus conditions still failed; zero physical or human signoffs'
       deployed_as_default: false
     arm64_managed_site:
       host: oracle-reverse-dev
