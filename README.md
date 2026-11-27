@@ -13,7 +13,7 @@ Ruyi 三件套、RuyiDOM 与自动化控制面 **ruyi-mcp** 的文档总入口�
 | 职责 | 文档、规划、还原分析、移植路线、验收标准 | 各自的产品代码与构建 |
 | 内容 | Markdown + 少量校验脚本 | 源码 + 原生库 + 测试 |
 | 更新频率 | 每次结论变化 | 每次代码变化 |
-| 可见性 | private；公开目录的可选设计见[ADR 0003](docs/adr/0003-public-catalog-private-gitlinks.md) | 按项目分别设定，见 §三 |
+| 可见性 | **public**，可匿名克隆；访问边界见[ADR 0003](docs/adr/0003-public-catalog-private-gitlinks.md) | 按项目分别设定，见 §三 |
 
 **本仓是唯一的事实来源（single source of truth）**：三件套的版本矩阵、ABI 契约、缺口清单都以本仓为准。代码仓里的 README 是入口，不是权威。
 
@@ -22,7 +22,7 @@ Ruyi 三件套、RuyiDOM 与自动化控制面 **ruyi-mcp** 的文档总入口�
 ## 二、仓库拓扑
 
 ```
-ruyi-platform (private, 本仓)
+ruyi-platform (public, 本仓)
 ├── submodules/
 │   ├── ruyihttp      → Facetomyself/ruyihttp        (public)   ← RuyiHttp 代码
 │   ├── ruyijs        → Facetomyself/ruyijs-inner    (private)  ← 内部版反编译 + 工程化
@@ -180,7 +180,7 @@ ruyi-platform/
 
 ## 七、快速开始
 
-用 Git、Bash、Python 3 和 PyYAML，先验父仓的目录，再按使用范围拉源码。当前父仓为私有；子仓的代码权限独立。
+用 Git、Bash、Python 3 和 PyYAML，先匿名克隆公开父仓并核对目录。按路径检出公开组件无需登录；检出私有组件需相应子仓的读取权限。
 
 ```bash
 git clone --no-recurse-submodules https://github.com/Facetomyself/ruyi-platform.git

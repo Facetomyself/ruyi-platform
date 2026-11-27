@@ -1,4 +1,9 @@
-generated_at: '2026-11-27T09:26:04+08:00'
+generated_at: '2026-11-27T09:45:00+08:00'
+platform_repository:
+  url: https://github.com/Facetomyself/ruyi-platform
+  visibility: public
+  changed_at: '2026-11-27T09:44:05+08:00'
+  verification: anonymous HTTPS clone and catalog passed; component access verified separately
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402

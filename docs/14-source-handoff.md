@@ -18,7 +18,7 @@
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
 
-平台（private）负责四个 gitlink，代码在各组件仓。[.gitmodules](../.gitmodules) 定义来源，[STATUS.yaml](../STATUS.yaml) 记录状态。下游固定平台提交及其 gitlink；`git submodule update --remote` 跟踪组件分支，不能用于复现固定版本。只看父仓目录可普通 clone 后执行 `bash scripts/verify-pins.sh --catalog`。下列命令用于有全部子仓读取权限的维护者；仅取公开组件、CI 及公开目录的设计见[访问边界](adr/0003-public-catalog-private-gitlinks.md)。
+平台父仓公开，可匿名克隆；四个 gitlink 分别指向有独立权限的组件仓。[.gitmodules](../.gitmodules) 定义来源，[STATUS.yaml](../STATUS.yaml) 记录状态。下游固定平台提交及其 gitlink；`git submodule update --remote` 跟踪组件分支，不能用于复现固定版本。只看父仓目录可普通 clone 后执行 `bash scripts/verify-pins.sh --catalog`。下列命令用于有全部子仓读取权限的维护者；仅取公开组件、CI 及公开目录的设计见[访问边界](adr/0003-public-catalog-private-gitlinks.md)。
 
 ```bash
 git clone --branch main --recurse-submodules https://github.com/Facetomyself/ruyi-platform.git

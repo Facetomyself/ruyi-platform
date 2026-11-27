@@ -4,7 +4,7 @@
 | --- | --- | --- |
 | [0001](0001-repo-topology.md) | 仓库拓扑：单主体仓 + 三 submodule + 上游不挂载 | 已接受 |
 | [0002](0002-ruyijs-reverse-not-fork.md) | ruyijs 内部版走反编译还原，不基于 ff-ruyijs fork | 已接受 |
-| [0003](0003-public-catalog-private-gitlinks.md) | 公开目录、私有组件与内部验收材料分别交付 | 提议 |
+| [0003](0003-public-catalog-private-gitlinks.md) | 现有平台父仓公开，组件仓权限分别保留 | 已接受 |
 
 ## 写 ADR 的规则
 
