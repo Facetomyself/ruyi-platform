@@ -21,11 +21,12 @@
 
 | 我要… | 看这里 |
 | --- | --- |
-| 判断是否需要同时安装几个项目，谁持有浏览器 | [五个一级组件 + 独立 RuyiDOM：硬依赖、借用与数据对照](01-architecture.md#下游先选依赖再选证据) |
+| 判断是否需要同时安装几个项目，谁持有浏览器 | [六个一级组件：硬依赖、借用与数据对照](01-architecture.md#下游先选依赖再选证据) |
 | 拿到某个项目的源码 | [`02-source-recovery.md`](02-source-recovery.md) |
 | 把某层移植到 Linux | [`03-linux-port.md`](03-linux-port.md) |
 | 维护公开 RuyiJS 性能与 macOS/Linux 兼容、向上游提 PR | [公开 RuyiJS 项目入口](../projects/ff-ruyijs/README.md) · [公开开发 pin](../PINS.md#open-ruyijs) |
 | 维护 ruyi-mcp、更新 pin 或验收 Docker | [ruyi-mcp 项目入口](../projects/ruyi-mcp/README.md) |
+| 取用 RuyiDOM 源码，区分发行与在用宿主 | [RuyiDOM 项目入口](../projects/ruyidom/README.md) · [源码 pin](../PINS.md#ruyidom-source) |
 | 判断现在卡在哪、需要谁验收 | [交付缺口与通过条件](04-risks-and-gaps.md#当前交付缺口) + [机器状态](../STATUS.yaml) |
 | 反编译 domtrace 内核 | [`05-reverse-analysis.md`](05-reverse-analysis.md) |
 | **domtrace 该插在哪** | [`../projects/ruyitrace/instrumentation-sites.md`](../projects/ruyitrace/instrumentation-sites.md) |
@@ -45,7 +46,7 @@
 
 ## 选定复用边界
 
-先看[各组件的当前交付和源码获取方式](14-source-handoff.md)。平台开发基线用父仓提交的一级 gitlink；只读目录用普通 clone，只开发公开组件则选对应一级路径。复建已验收的 Trace amd64 无头 R5 用其专用源码标签。Win64 私有内核 `39bfd14c` 是产品来源标识，Linux 重建使用独立的[官方 Firefox pin](../PINS.md)。
+先看[各组件的当前交付和源码获取方式](14-source-handoff.md)。平台开发基线用父仓提交的一级 gitlink；只读目录用普通 clone，匿名 `--public` 仍只取原有三个公开一级组件。复建已验收的 Trace amd64 无头 R5 用其专用源码标签。Win64 私有内核 `39bfd14c` 是产品来源标识，Linux 重建使用独立的[官方 Firefox pin](../PINS.md)。
 
 ## 目录速查
 
@@ -59,6 +60,6 @@ ruyi-platform/
 ├── projects/              单项目文档
 ├── artifacts/manifests/   发布物 hash 记录
 ├── scripts/               校验脚本
-├── submodules/            ruyihttp / ruyijs / ruyitrace / ruyi-mcp / ff-ruyijs
+├── submodules/            ruyihttp / ruyijs / ruyitrace / ruyi-mcp / ff-ruyijs / ruyidom
 └── upstream/              历史只读参考说明
 ```

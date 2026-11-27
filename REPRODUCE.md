@@ -1,6 +1,6 @@
 # 复现手册：从零到这个状态
 
-**新接入项目先看[源码与构建交接](docs/14-source-handoff.md)。** 平台的五个一级 gitlink 是开发基线，Trace amd64 R5 产品使用另一个明确的源码标签。本页保留基础契约与静态分析的复现步骤；其中列出的历史测试数是示例，不能代替当前包验收。
+**新接入项目先看[源码与构建交接](docs/14-source-handoff.md)。** 平台的六个一级 gitlink 是开发基线，Trace amd64 R5 产品使用另一个明确的源码标签。本页保留基础契约与静态分析的复现步骤；其中列出的历史测试数是示例，不能代替当前包验收。
 
 ---
 
@@ -34,14 +34,14 @@ git clone https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
 ```
 
-普通 clone 只取父仓。匿名公开路径按固定提交检出 RuyiHttp、ruyi-mcp 和公开 RuyiJS：
+普通 clone 只取父仓。匿名 `bash scripts/sync-submodules.sh --public` 仍只按固定提交检出 RuyiHttp、ruyi-mcp 和公开 RuyiJS。直接用 Git 的等效命令是：
 
 ```bash
 git -c submodule.recurse=false submodule update --init --checkout -- \
   submodules/ruyihttp submodules/ruyi-mcp submodules/ff-ruyijs
 ```
 
-运行 `--repo` 或 `--full` 时，需要两个私有组件的读取权限，并检出全部一级组件：
+运行 `--repo` 或 `--full` 时，需要 RuyiJS 内部版、RuyiTrace 和 RuyiDOM 三个私有组件的读取权限，并检出全部六个一级组件：
 
 ```bash
 git -c submodule.recurse=false submodule update --init --checkout
@@ -52,11 +52,11 @@ git -c submodule.recurse=false submodule update --init --checkout
 ```bash
 git ls-tree HEAD:submodules
 git -c submodule.recurse=false submodule status
-# 五个一级 gitlink；空格表示已对齐，- 表示未初始化，+ 表示偏离 pin，U 表示冲突。
-# 只检出公开组件时，两个私有子模块应保持 -。
+# 六个一级 gitlink；空格表示已对齐，- 表示未初始化，+ 表示偏离 pin，U 表示冲突。
+# 在新克隆中只检出公开组件时，三个私有子模块应保持 -。
 ```
 
-只检出 MCP 时在相同命令后指定 `-- submodules/ruyi-mcp`，安装见 [ruyi-mcp 项目入口](projects/ruyi-mcp/README.md)。Firefox 是公开 fork 自己的下一层子模块；平台校验与普通开发检出无需它。仅在需要构建该 fork 时查[项目构建入口](projects/ff-ruyijs/README.md)。
+只检出 MCP 时在相同命令后指定 `-- submodules/ruyi-mcp`，安装见 [ruyi-mcp 项目入口](projects/ruyi-mcp/README.md)。只取 [RuyiDOM](projects/ruyidom/README.md) 时，具备私仓读取权限后指定 `-- submodules/ruyidom`；固定提交以[源码 pin](PINS.md#ruyidom-source)为准，检出本身与供应商输入恢复、产品部署分开。Firefox 是公开 fork 自己的下一层子模块；平台校验与普通开发检出无需它。仅在需要构建该 fork 时查[项目构建入口](projects/ff-ruyijs/README.md)。
 
 ---
 
@@ -67,14 +67,14 @@ git -c submodule.recurse=false submodule status
 | 档位 | 输入 | 退出 0 说明什么 |
 |---|---|---|
 | `--catalog` | 普通 clone，仅父仓 | 登记的模块地址、路径、固定 SHA 与 Git 指针一致。没有拉取、构建或运行组件。 |
-| `--repo` | 具备完整历史的父仓、五个固定提交的一级子模块 | 源码与仓内收据通过校验；JS 仅存于仓外的原件未验，此项在输出中单列。 |
+| `--repo` | 具备完整历史的父仓、六个固定提交的一级子模块 | 源码与仓内收据通过校验；JS 仅存于仓外的原件未验，此项在输出中单列。 |
 | `--full`（无参数也选此档） | 上一档，加上有权限读取的完整历史证据库 | 在仓内检查之外，重算外部原件、比对登记的仓内副本和次级摘要。缺件则非零退出。回放证据与在目标机重跑产品是两件事。 |
 
 ```bash
 # 无须初始化子模块
 bash scripts/verify-pins.sh --catalog
 
-# 只初始化一级 gitlink；需拥有两个私有组件的读取权限
+# 只初始化一级 gitlink；需拥有三个私有组件的读取权限
 git -c submodule.recurse=false submodule update --init --checkout
 bash scripts/verify-pins.sh --repo
 

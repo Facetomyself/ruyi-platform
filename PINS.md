@@ -299,9 +299,18 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 
 ## 10. 2026-11-24 交接：开发基线与发行源码分开
 
-当前五个一级组件的开发 pin 以 `git ls-tree HEAD:submodules` 为准；[状态账本](STATUS.yaml) 的 `submodules.*.commit` 是同一组完整 SHA。Trace 开发 pin 包含已验收的独立 CLI；历史 amd64 R5 仍使用独立的 [源码锁](artifacts/receipts/trace-amd64-r5/source-lock.json) 与原标签。发行、CLI、Win64 离线工具的完整提交与检出方式见[使用指南](docs/14-source-handoff.md)。
+当前六个一级组件的开发 pin 以 `git ls-tree HEAD:submodules` 为准；[状态账本](STATUS.yaml) 的 `submodules.*.commit` 是同一组完整 SHA。Trace 开发 pin 包含已验收的独立 CLI；历史 amd64 R5 仍使用独立的 [源码锁](artifacts/receipts/trace-amd64-r5/source-lock.json) 与原标签。发行、CLI、Win64 离线工具的完整提交与检出方式见[使用指南](docs/14-source-handoff.md)。
 
-## 11. RuyiDOM 独立仓
+<a id="11-ruyidom-独立仓"></a>
+<a id="ruyidom-source"></a>
+
+## 11. RuyiDOM：平台源码、独立发行与宿主入口
+
+| 组件 | 源码仓 | 维护分支 | 平台固定提交 |
+| --- | --- | --- | --- |
+| ruyidom | [Facetomyself/ruyidom](https://github.com/Facetomyself/ruyidom) | `main` | `b57891fb9348842e22bbc9395c3db810c0c569fc` |
+
+`submodules/ruyidom` 是第六个一级 gitlink，源码仓维持 private。首次登记沿用私有 runtime 已选的 `v0.3.1` 发布提交；`main` 只是维护分支。Git 树指向附注标签剥离后的 commit，不是标签对象、后续文档 HEAD 或容器镜像 ID。入口见[项目交接](projects/ruyidom/README.md)。
 
 | 对象 | 固定版本 | 用途 |
 | --- | --- | --- |
@@ -310,10 +319,12 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 | 主机日常命令 | [`5dd1ea218d0824207069ffba443593656039274d`](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md) | 后续提交只标识宿主入口与说明；部署沿用已验收镜像，不能将它当作一次新编译。 |
 | 第二台 ARM64 冷恢复 | [`1344fec24407b5d525ea5b47e0ba6522c8522279`](https://github.com/Facetomyself/ruyidom/blob/1344fec24407b5d525ea5b47e0ba6522c8522279/docs/releases/arm64-v0.3-cold-restore.json) | [独立回执副本](artifacts/receipts/ruyidom-arm64-v0.3-cold-restore.json)验收同一归档的空存储导入和真实导航，发行标签及发行回执保持原样。 |
 
-RuyiDOM 独立检出，不在平台的五个一级 gitlink 中。具备私库读取权限时，可复核附注标签剥离后的提交；平台内可直接校验状态与回执：
+具备该私仓读取权限时可按平台固定提交检出源码，再核对发行标签及回执；匿名用户可直接核对父仓目录：
 
 ```bash
-git ls-remote https://github.com/Facetomyself/ruyidom.git 'refs/tags/v0.3.1' 'refs/tags/v0.3.1^{}' 'refs/tags/v0.3.0^{}'
+git ls-tree HEAD -- submodules/ruyidom
+git -c submodule.recurse=false submodule update --init --checkout -- submodules/ruyidom
+git -C submodules/ruyidom rev-parse 'v0.3.1^{commit}'
 python3 -B -m unittest discover -s tests -p 'test_ruyidom_handoff.py' -q
 ```
 

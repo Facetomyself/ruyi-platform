@@ -15,3 +15,7 @@
 	path = submodules/ff-ruyijs
 	url = https://github.com/Facetomyself/ff-ruyijs.git
 	branch = main
+[submodule "submodules/ruyidom"]
+	path = submodules/ruyidom
+	url = https://github.com/Facetomyself/ruyidom.git
+	branch = main

@@ -14,7 +14,7 @@ class RuyiDOMHandoff(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.book = yaml.safe_load((ROOT / 'STATUS.yaml').read_text(encoding='utf-8'))
-        cls.entry = cls.book['related_projects']['ruyidom']
+        cls.entry = cls.book['projects']['ruyidom']
         cls.original = cls.entry['historical_v0_3_0_arm64_release']
         cls.original_body = (ROOT / cls.original['evidence']).read_bytes()
         cls.original_receipt = json.loads(cls.original_body)
@@ -23,10 +23,14 @@ class RuyiDOMHandoff(unittest.TestCase):
 
     def test_release_and_operator_sources_are_separate(self):
         e = self.entry
-        self.assertEqual(e['relationship'], 'independent_release')
-        self.assertIsNone(e['platform_gitlink'])
-        self.assertNotIn('ruyidom', self.book['submodules'])
-        self.assertEqual(subprocess.check_output(['git', 'ls-files', '--stage', '--', 'submodules/ruyidom'], cwd=ROOT), b'')
+        self.assertEqual(e['relationship'], 'platform_component_independent_release')
+        self.assertNotIn('ruyidom', self.book.get('related_projects', {}))
+        reg = self.book['submodules']['ruyidom']
+        path = e['submodule']
+        self.assertEqual((path, reg['url'], reg['visibility'], reg['branch']),
+                         ('submodules/ruyidom', e['repository'] + '.git', 'private', 'main'))
+        row = subprocess.check_output(['git', 'ls-files', '--stage', '--', path], cwd=ROOT, text=True).strip()
+        self.assertEqual(row, f"160000 {reg['commit']} 0\t{path}")
         repo, ref, operator = e['repository'], e['release_commit'], e['arm64_deployment']['operator_commit']
         self.assertRegex(ref, r'^[a-f0-9]{40}$')
         self.assertRegex(operator, r'^[a-f0-9]{40}$')
@@ -36,6 +40,29 @@ class RuyiDOMHandoff(unittest.TestCase):
         self.assertIn(f'{repo}/releases/tag/{e["release_tag"]}', handoff)
         self.assertIn(f'sha={ref}', handoff)
         self.assertIn(f'{repo}/blob/{operator}/deploy/arm64/README.md', handoff)
+
+    def test_tag_commit_source_and_platform_receipts_match_offline(self):
+        e = self.entry
+        repo = ROOT / e['submodule']
+        tag = e['release_tag']
+        pin = self.book['submodules']['ruyidom']['commit']
+        def git(*args):
+            return subprocess.check_output(['git', '--no-optional-locks', '-C', str(repo), *args])
+        self.assertEqual(git('rev-parse', '--show-toplevel').decode().strip(), str(repo))
+        self.assertEqual(git('rev-parse', 'HEAD^{commit}').decode().strip(), pin)
+        self.assertEqual(git('rev-parse', f'{tag}^{{tag}}').decode().strip(), e['release_tag_object'])
+        self.assertEqual(git('rev-parse', f'{tag}^{{commit}}').decode().strip(), e['release_commit'])
+        self.assertNotEqual(pin, e['release_tag_object'])
+        git('merge-base', '--is-ancestor', e['release_commit'], pin)
+        # Read frozen blobs from the release, not from a later worktree or a live host.
+        copies = {
+            'source-portability-v0.3.1.json': self.current_body,
+            'arm64-source-v0.3.json': self.original_body,
+            'arm64-v0.3-cold-restore.json': (ROOT / e['arm64_second_host_restore']['evidence']).read_bytes(),
+        }
+        for name, expected in copies.items():
+            with self.subTest(name=name):
+                self.assertEqual(git('show', f"{e['release_commit']}:docs/releases/{name}"), expected)
 
     def test_v030_release_and_arm64_use_match_frozen_qualification(self):
         e, h, r = self.entry, self.original, self.original_receipt

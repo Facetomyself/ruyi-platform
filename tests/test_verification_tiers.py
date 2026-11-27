@@ -40,7 +40,8 @@ class VerificationTiers(unittest.TestCase):
                    'ruyihttp': ('ruyihttp', 'public', '2' * 40),
                    'ruyijs': ('ruyijs-inner', 'private', '3' * 40),
                    'ruyitrace': ('ruyitrace', 'private', '4' * 40),
-                   'ff-ruyijs': ('ff-ruyijs', 'public', '5' * 40)}
+                   'ff-ruyijs': ('ff-ruyijs', 'public', '5' * 40),
+                   'ruyidom': ('ruyidom', 'private', '8' * 40)}
         self.status = dict(generated_at='fixture', baseline={'firefox_commit': '5' * 40}, projects={},
                            artifacts={}, blockers=[], submodules={})
         sections = []
@@ -51,7 +52,7 @@ class VerificationTiers(unittest.TestCase):
             self.status['projects'][name] = {'submodule': path, ('repo_inner' if name == 'ruyijs' else 'repo'): slug}
             self.status['submodules'][name] = dict(url=url, visibility=visibility, state='added', commit=oid)
             sections += [f'[submodule "{path}"]', f'\tpath = {path}', f'\turl = {url}']
-            if name in ('ruyi-mcp', 'ff-ruyijs'):
+            if name in ('ruyi-mcp', 'ff-ruyijs', 'ruyidom'):
                 branch = 'linux' if name == 'ruyi-mcp' else 'main'
                 sections.append(f'\tbranch = {branch}')
                 self.status['submodules'][name]['branch'] = branch
@@ -103,7 +104,7 @@ class VerificationTiers(unittest.TestCase):
 
     def write_pins(self):
         rows = []
-        for name in ('ruyi-mcp', 'ff-ruyijs'):
+        for name in ('ruyi-mcp', 'ff-ruyijs', 'ruyidom'):
             pin = self.status['submodules'][name]
             slug = f'Facetomyself/{name}'
             rows.append(f"| {name} | [{slug}](https://github.com/{slug}) | `{pin['branch']}` | `{pin['commit']}` |")
@@ -130,7 +131,7 @@ class VerificationTiers(unittest.TestCase):
         self.assertFalse((self.root / 'submodules').exists())
         self.receipt.unlink()
         result = self.pins('--catalog', evidence_root='ignored-relative-path')
-        output = self.expect(result, 0, '5 gitlinks', 'submodules/ff-ruyijs', 'recorded visibility: public', 'recorded visibility: private',
+        output = self.expect(result, 0, '6 gitlinks', 'submodules/ruyidom', 'submodules/ff-ruyijs', 'recorded visibility: public', 'recorded visibility: private',
                              'source, receipts, and tests not checked')
         self.assertNotIn('JS ledger', output)
 
@@ -197,6 +198,21 @@ class VerificationTiers(unittest.TestCase):
         self.status['submodules']['ff-ruyijs']['visibility'] = 'private'
         self.write_status()
         self.expect(self.pins('--catalog'), 1, 'wrong public fork')
+
+    def test_dom_is_a_private_gitlink_with_its_own_pin_row(self):
+        pin = self.status['submodules']['ruyidom']
+        pin['visibility'] = 'public'
+        self.write_status()
+        self.expect(self.pins('--catalog'), 1, 'ruyidom: wrong private source')
+        pin['visibility'] = 'private'
+        self.write_status()
+        pins = self.root / 'PINS.md'
+        original = pins.read_text()
+        pins.write_text(original.replace('8' * 40, '9' * 40))
+        self.expect(self.pins('--catalog'), 1, 'PINS.md: ruyidom')
+        pins.write_text(original)
+        self.git('update-index', '--force-remove', '--', 'submodules/ruyidom')
+        self.expect(self.pins('--catalog'), 1, "missing=['submodules/ruyidom']")
 
     def test_repo_rejects_missing_or_mismatched_checkout(self):
         path = self.root / 'submodules' / 'ruyijs'

@@ -1,6 +1,6 @@
 # 其他项目如何使用 Ruyi Platform
 
-**先区分平台开发 pin、发布工件和主机在用版本。** [PINS](../PINS.md) 与 [STATUS](../STATUS.yaml) 记录五个一级组件的开发固定提交；复现 amd64 无头 R5 的冻结输入仍用独立标签，Trace 的原生事件 Beta 与 Electron owner Alpha 各有交付标签，RuyiDOM 则单独检出。
+**先区分平台开发 pin、发布工件和主机在用版本。** [PINS](../PINS.md) 与 [STATUS](../STATUS.yaml) 记录六个一级组件的固定提交。复现 amd64 无头 R5 的冻结输入仍用独立标签，Trace 的原生事件 Beta 与 Electron owner Alpha 各有交付标签；[RuyiDOM](../projects/ruyidom/README.md) 的源码 pin、发行制品和在用宿主分别核对。
 
 ## 选择交付物
 
@@ -19,7 +19,7 @@
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
 
-平台父仓公开，可匿名普通 clone；[.gitmodules](../.gitmodules) 登记五个独立组件的来源，[STATUS](../STATUS.yaml) 记录状态。按父仓提交与其一级 gitlink 复现；`git submodule update --remote` 获取的是组件分支头。公开组件的路径与 CI 权限见[访问边界](adr/0003-public-catalog-private-gitlinks.md)。
+平台父仓公开，可匿名普通 clone；[.gitmodules](../.gitmodules) 登记六个一级组件的来源，[STATUS](../STATUS.yaml) 记录状态。按父仓提交与其一级 gitlink 复现；`git submodule update --remote` 获取的是组件分支头。公开组件的路径与 CI 权限见[访问边界](adr/0003-public-catalog-private-gitlinks.md)。
 
 ```bash
 git clone https://github.com/Facetomyself/ruyi-platform.git
@@ -29,14 +29,14 @@ git ls-tree HEAD:submodules
 bash scripts/verify-pins.sh --catalog
 ```
 
-仅取公开源码时，可列出全部三个公开路径，或只列当前所需路径：
+匿名 `bash scripts/sync-submodules.sh --public` 仍只取原有三个公开组件。直接用 Git 可列出全部三个公开路径，或只列当前所需路径：
 
 ```bash
 git -c submodule.recurse=false submodule update --init --checkout -- \
   submodules/ruyihttp submodules/ruyi-mcp submodules/ff-ruyijs
 ```
 
-具备两个私有子仓的读取权限时，可检出全部一级组件并核对仓内证据：
+具备三个私有子仓的读取权限时，可检出全部六个一级组件并核对仓内证据：
 
 ```bash
 git -c submodule.recurse=false submodule update --init --checkout
@@ -81,7 +81,7 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 ## RuyiDOM 独立源码交接
 
-[RuyiDOM 私有源码仓](https://github.com/Facetomyself/ruyidom)维护 Linux 启动器、适配层、测试与构建工具；`main` 用于日常维护。RuyiDOM 是第六个相关项目，仍单独检出，未纳入平台的五个一级 gitlink。
+[RuyiDOM 私有源码仓](https://github.com/Facetomyself/ruyidom)维护 Linux 启动器、适配层、测试与构建工具；`main` 用于日常维护。[组件入口](../projects/ruyidom/README.md)说明如何经 `submodules/ruyidom` 检出[平台源码 pin](../PINS.md#ruyidom-source)，首个 pin 沿用 runtime 已有的一级 gitlink，即正式 `v0.3.1` 标签指向的提交。下文的独立检出用于复现指定发行；供应商输入、发行工件和恢复材料依旧按各自权限取得。
 
 [RuyiDOM 实现与维护手册](https://github.com/Facetomyself/ruyidom/blob/1bfbd7c69e6ce4044510afd5ee9d04e774fb13c1/docs/architecture/README.md)涵盖 `native`／`browser` 双后端、RPC 与 BiDi 协议、句柄生命周期和优化复验，并说明如何编辑 Archify 图的 JSON 图源并再生成 SVG／HTML。这是知识手册入口，发布与运行证明仍以下文发行回执和实测记录为准。
 
@@ -179,4 +179,4 @@ make -C ruyidom check
 
 ## 以后如何维护
 
-组件改动先在所属仓提交并推送，记录测试范围。已由 gitlink 接入的平台组件再更新相应 gitlink 和 `STATUS.yaml`，跑 `scripts/verify-pins.sh`；RuyiDOM 在独立仓发布，在这里更新交接引用。已有发布标签保留原位；新发行另打标签、生成新的锁和回执。将包、镜像、工具链缓存和浏览器 profile 与源码分开保管。`git status` 中其他开发者的工作或某台机器的缓存不构成可构建版本。
+组件改动先在所属仓提交并推送，记录测试范围。纳管组件再更新平台 gitlink、`PINS.md` 和 `STATUS.yaml`，跑 `scripts/verify-pins.sh`。RuyiDOM 的源码仍在私仓维护并独立发版；按[接入决定](adr/0005-ruyidom-gitlink.md)同步平台与 runtime 的源码 pin，在这里更新适用的交接引用。源码同步与宿主部署分别审查。已有发布标签保留原位；新发行另打标签、生成新的锁和回执。将包、镜像、工具链缓存和浏览器 profile 与源码分开保管。`git status` 中其他开发者的工作或某台机器的缓存不构成可构建版本。

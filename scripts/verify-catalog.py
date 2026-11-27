@@ -111,7 +111,7 @@ def check_catalog():
                 and not path.is_symlink() and path.is_file(), f'{name}: missing regular parent file in checkout/index')
     status = read_status()
     pins = status['submodules']
-    for name in ('ruyi-mcp', 'ff-ruyijs', 'ruyijs'):
+    for name in ('ruyi-mcp', 'ff-ruyijs', 'ruyijs', 'ruyidom'):
         require(name in pins, f'STATUS.yaml: missing {name} submodule registration')
     expected = {f'submodules/{name}': name for name in pins}
     modules = module_config()
@@ -150,11 +150,14 @@ def check_catalog():
             'ff-ruyijs: wrong public fork, upstream, branch or private-source boundary')
     require(github_slug(inner['url']) == 'Facetomyself/ruyijs-inner' and inner['visibility'] == 'private',
             'ruyijs: the private product must remain separate from ff-ruyijs')
+    dom = pins['ruyidom']
+    require(github_slug(dom['url']) == 'Facetomyself/ruyidom' and dom['visibility'] == 'private'
+            and dom.get('branch') == 'main', 'ruyidom: wrong private source, visibility or maintenance branch')
     for field in ('upstream_integrated', 'firefox_gitlink'):
         require(isinstance(opened.get(field), str) and SHA.fullmatch(opened[field]),
                 f'ff-ruyijs: invalid {field} SHA in STATUS.yaml')
     lines = (ROOT / 'PINS.md').read_text(encoding='utf-8').splitlines()
-    for name in ('ruyi-mcp', 'ff-ruyijs'):
+    for name in ('ruyi-mcp', 'ff-ruyijs', 'ruyidom'):
         check_document_pin(name, pins[name], lines)
     for path, name in sorted(expected.items()):
         pin = pins[name]

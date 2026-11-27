@@ -56,7 +56,7 @@ class OpenRuyiJSHandoff(unittest.TestCase):
             run(child, 'git', 'commit', '-qm', 'nested source declaration')
             revision = run(child, 'git', 'rev-parse', 'HEAD')
             public = ('ff-ruyijs', 'ruyihttp', 'ruyi-mcp')
-            private = ('ruyijs', 'ruyitrace')
+            private = ('ruyijs', 'ruyitrace', 'ruyidom')
             for name in (*public, *private):
                 url = (child if name in public else work/'absent-private').as_uri()
                 register(parent, f'submodules/{name}', url, revision)

@@ -2,7 +2,7 @@
 
 ## 下游先选依赖，再选证据
 
-`ruyi-platform` 是**版本与交接仓，不是需要启动的服务**。[五个一级 gitlink](../.gitmodules) 分别锁定公开的 RuyiHttp、ruyi-mcp 和 `ff-ruyijs`，以及私有的 `ruyijs-inner` 和 RuyiTrace。RuyiDOM 是[独立发布的第六个相关项目](14-source-handoff.md#ruyidom-独立源码交接)。以下按实际接口区分依赖，共享 Firefox 技术来源并不代表产品之间存在运行依赖。
+`ruyi-platform` 是**版本与交接仓，不是需要启动的服务**。[六个一级 gitlink](../.gitmodules) 分别锁定公开的 RuyiHttp、ruyi-mcp 和 `ff-ruyijs`，以及私有的 `ruyijs-inner`、RuyiTrace 和 [RuyiDOM](../projects/ruyidom/README.md)。组件纳管只固定源码，RuyiDOM 仍按自己的版本与制品独立发布。以下按实际接口区分依赖，共享 Firefox 技术来源并不代表产品之间存在运行依赖。
 
 两个 RuyiJS 组件是**并列项目**：[公开 RuyiJS](../projects/ff-ruyijs/README.md) 维护 `Facetomyself/ff-ruyijs` 的 `main`，只做公开 RuyiJS 性能和 macOS/Linux 兼容，保留 Windows 在共用主干上的既有行为，公开贡献提交给 `cutetailbud/ff-ruyijs`。[内部版](../projects/ruyijs/README.md) 以私有仓及内部样本为准，公开源码只作语义参照，不能作为内部实现来源。公开开发 pin、历史 donor 和固定工件分别记录，见 [PINS](../PINS.md#open-ruyijs) 与 [ADR 0004](adr/0004-open-ruyijs-gitlink.md)。
 
@@ -14,7 +14,7 @@
 | Python 或 C 客户端 → RuyiJS 私有壳 | **运行依赖，网络 companion 可选**。ARM64 [R433 双 wheel](../artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md)验过基座与配套网络组件，以及真实切换和回滚。amd64 [R356 离线 wheel](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)与可单独卸载的 [R357 明文 HTTP/1 组件](../submodules/ruyijs/docs/linux-http1.md)各自固定。 | 离线 DOM/JS 无需浏览器 owner。安装态 HTTPS、h2 和原生 QUIC/H3 只按对应分项回执取证；原生 H3 实测与 JS 默认 H3 路由分开。 |
 | 公开 JS/DOM 调用方 → 公开 RuyiJS | **独立运行时**。源码检出与构建见[公开项目入口](../projects/ff-ruyijs/README.md)；构建所需 Firefox 由 fork 自己管理。 | 无需内部 JS 壳或内部 wheel；两条线的构建、发布与验收各自独立。 |
 | Python 调用方 → RuyiHttp → 自带的 Necko/NSS/QUIC 运行库 | **独立传输客户端**。0.9.4 的单跳 CONNECT-UDP 使用代理侧 H3 外层，原生 NSS / Neqo 仍负责内层源站 H3；见[五平台 wheel 回执](../artifacts/receipts/ruyihttp-0.9.4/README.md)。 | 发 HTTP 请求无需浏览器、MCP、JS 壳或 DOM。Http 的协议验收与 RuyiJS 联网各自独立。 |
-| 调用方 → RuyiDOM 的脚本宿主 → 可选的独立内容浏览器 | **两个角色分别固定**。`native` 在官方 Firefox 136.0 的 xpcshell 内执行；`browser` 保留该可信脚本宿主，通过 BiDi 驱动真正的标签页。源码发行 v0.3.1 与现用 ARM64 v0.3.0 Noble 镜像分别验收，详见[独立源码交接](14-source-handoff.md#ruyidom-独立源码交接)。 | 供应商 JS 单独恢复；无需 RuyiJS、RuyiTrace 或 MCP。内容引擎升级与 native 脚本宿主变更分别取证。 |
+| 调用方 → RuyiDOM 的脚本宿主 → 可选的独立内容浏览器 | **两个角色分别固定**。`native` 在官方 Firefox 136.0 的 xpcshell 内执行；`browser` 保留该可信脚本宿主，通过 BiDi 驱动真正的标签页。源码发行 v0.3.1 与现用 ARM64 v0.3.0 Noble 镜像分别验收，详见[RuyiDOM 项目入口](../projects/ruyidom/README.md)。 | 供应商 JS 单独恢复；无需 RuyiJS、RuyiTrace 或 MCP。内容引擎升级与 native 脚本宿主变更分别取证。 |
 
 **跨项目对照只传数据。** 在自有测试页上，业务项目可把同一 fixture 的 Trace 记录、RuyiJS（写明公开或内部版本）/RuyiDOM 求值结果、RuyiHttp 响应分开存档，以 fixture 摘要、组件 SHA、架构和运行时版本关联。它们是可选的结果对照；没有要求同时运行六个项目的流水线。发布阻塞及验收顺序见[当前缺口](04-risks-and-gaps.md#当前交付缺口)。
 
