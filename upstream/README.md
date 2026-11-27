@@ -1,17 +1,17 @@
 # upstream — 只读参考（gitignore）
 
-本目录的代码**不入本仓历史**，只记录 pin。
+**现行公开 RuyiJS 在 `submodules/ff-ruyijs`。** [项目入口](../projects/ff-ruyijs/README.md)与[开发 pin](../PINS.md#open-ruyijs)记录公开 fork 的开发、上游 PR 和构建。`upstream/` 仅保留历史说明，不是开发检出目录。
 
 ## 用途
 
-| 目录 | 用途 |
+| 历史目录 | 记录 |
 | --- | --- |
-| `ff-ruyijs/` | ① 向 `cutetailbud/ff-ruyijs` 提 PR；② 反编译内部版时的**语义对照物** |
-| `firefox/` | Firefox 159 源码树（数十 GB），只在需要重编内核时拉 |
+| `upstream/ff-ruyijs/` | 过去的只读对照检出；样本身份见 [PINS §3](../PINS.md) |
+| `upstream/firefox/` | 过去的独立 Firefox 参考目录；各组件构建按各自手册取固定输入 |
 
 ## 纪律
 
-**`ff-ruyijs` 不是内部基线。** 见 `docs/06-ruyijs-inner.md` §0 与 `docs/adr/0002`。
+**`ff-ruyijs` 不是内部基线。** 见[内部来源纪律](../docs/06-ruyijs-inner.md#0-三层边界先立规矩)与 [ADR 0002](../docs/adr/0002-ruyijs-reverse-not-fork.md)。
 
 | 允许 | 禁止 |
 | --- | --- |
@@ -21,16 +21,14 @@
 
 ## 拉取
 
-```bash
-cd upstream
-git clone https://github.com/Facetomyself/ff-ruyijs ff-ruyijs
-cd ff-ruyijs
-git checkout 3501a90          # 见 PINS.md §3
+从普通 clone 的平台父仓根目录，只检出公开 fork 的一级 gitlink：
 
-# firefox 子模块（数十 GB，按需）
-git submodule update --init --depth 1 firefox
+```bash
+git -c submodule.recurse=false submodule update --init --checkout -- submodules/ff-ruyijs
 ```
+
+只有需要构建公开 RuyiJS 时，再按 [fork 自己的构建手册入口](../projects/ff-ruyijs/README.md)处理嵌套 Firefox。
 
 ## 版本
 
-以 `PINS.md` §1、§3 为准。本目录的 commit 与 `PINS.md` 不符时，以 `PINS.md` 为准并更新 README。
+早期只读镜像（包括旧 `3501a90` 对照样本）、固定 donor、Firefox 构建输入及发行工件各看 [PINS 对应条目](../PINS.md)，不可用[当前公开开发 pin](../PINS.md#open-ruyijs)替换。旧「手动克隆公开 fork 到 `upstream/`」入门流程已由 [ADR 0004](../docs/adr/0004-open-ruyijs-gitlink.md) 覆盖。

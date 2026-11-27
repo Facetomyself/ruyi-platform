@@ -1,8 +1,8 @@
 # 阶段总结与交接
 
-**当前交付入口（2026-11-24）：[平台状态、源码与构建交接](docs/14-source-handoff.md)。** 下列记录保留为历史；其中“ARM64 插桩待验证”已由后续 ARM64 正式包和虚拟桌面回执更新。
+**当前交付入口：[平台状态、源码与构建交接](docs/14-source-handoff.md)。** 平台现有五个一级 gitlink，其中[公开 RuyiJS](projects/ff-ruyijs/README.md)与私有 RuyiJS 内部版并列；RuyiDOM 独立。克隆和一级初始化以[复现手册](REPRODUCE.md#1-拉仓)为准。下列三项目统计和测试输出是历史快照；“ARM64 插桩待验证”已由后续 ARM64 正式包和虚拟桌面回执更新。
 
-**Linux 最新交接（2026-11-21）：**已审计的 x86_64 Firefox 159 `attempt.6D26B4Jt` 通过发行身份、真实页面 OFF/ON 及同包来源边界。OFF 零文件，ON 同一活跃窗口 9 条 DOM 与 2 条点击；父进程持有实际日志的可写 FD，异源 iframe 零输出。原始记录已在 ARM64 Electron 沙箱窗口复验，并组装了 amd64 便携目录。同包已在隔离 amd64 来宾的原生 Electron 窗口通过启动、采集和日志表验收；`attempt.d7DBYN4g` 已通过同包双会话闸门、独立 Storage 摘要实采及两条 amd64 原生窗口链路。`d7DBYN4g` 的原样 `launch-ruyitrace` 还通过了认证 Xvfb 下的 X11 主面板和 renderer 沙箱验证。`7d76dc1` 修正版的同一便携包已同时通过原生 Weston Wayland 与认证 Xvfb 的空参数启动；扩展 producer、ARM64 插桩内核与物理显示仍需独立验证。旧包 `attempt.H5K1EqGg` 的失败回执保留。见[实时进度](docs/13-ruyitrace-progress.md)及[机器状态](STATUS.yaml)。以下为历史交接。
+**早期 Linux 交接（2026-11-21）：**已审计的 x86_64 Firefox 159 `attempt.6D26B4Jt` 通过发行身份、真实页面 OFF/ON 及同包来源边界。OFF 零文件，ON 同一活跃窗口 9 条 DOM 与 2 条点击；父进程持有实际日志的可写 FD，异源 iframe 零输出。原始记录已在 ARM64 Electron 沙箱窗口复验，并组装了 amd64 便携目录。同包已在隔离 amd64 来宾的原生 Electron 窗口通过启动、采集和日志表验收；`attempt.d7DBYN4g` 已通过同包双会话闸门、独立 Storage 摘要实采及两条 amd64 原生窗口链路。`d7DBYN4g` 的原样 `launch-ruyitrace` 还通过了认证 Xvfb 下的 X11 主面板和 renderer 沙箱验证。`7d76dc1` 修正版的同一便携包已同时通过原生 Weston Wayland 与认证 Xvfb 的空参数启动；扩展 producer、ARM64 插桩内核与物理显示仍需独立验证。旧包 `attempt.H5K1EqGg` 的失败回执保留。见[实时进度](docs/13-ruyitrace-progress.md)及[机器状态](STATUS.yaml)。以下为历史交接。
 
 本文是 17 轮工作的总账。目标：让一个新接手的人 10 分钟内知道
 **做了什么、做到哪、可信度多少、下一步卡在哪**。
@@ -187,16 +187,12 @@ RuyiTrace 的 39bfd14c 在官方仓库 git fetch 失败
 
 ## 八、如何验证这个仓库是健康的
 
-```bash
-git clone --recurse-submodules https://github.com/Facetomyself/ruyi-platform
-cd ruyi-platform
-python3 -m pip install --user pyyaml pefile capstone
-bash scripts/verify-pins.sh          # 七节全绿
-cd submodules/ruyitrace && bash tests/run-tests.sh   # 17 项 PASS
-cd ../ruyihttp && python3 -m unittest discover -s tests  # 19 tests OK
-```
+现行目录、仓内和完整历史校验分别见[复现手册](REPRODUCE.md#2-按取得的材料运行校验)。旧递归检出流程已退役；目前只取平台的一级 gitlink。下面两个命令是原交接快照的组件测试，历史预期各为 17 项 PASS 和 19 项 OK：
 
-四步全过，说明仓库状态与本文描述一致。
+```bash
+(cd submodules/ruyitrace && bash tests/run-tests.sh)
+(cd submodules/ruyihttp && python3 -m unittest discover -s tests)
+```
 
 ---
 

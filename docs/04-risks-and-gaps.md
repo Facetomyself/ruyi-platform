@@ -341,6 +341,7 @@ cd RuyiHttp/repo && /tmp/ruyivenv/bin/python -m unittest discover -s tests
 
 | 轮次 | 更正内容 |
 | --- | --- |
+| 2026-11-27 · 公开 RuyiJS 接入 | ~~公开 fork 只记参考 pin、平台不挂载~~，由 [ADR 0004](adr/0004-open-ruyijs-gitlink.md) 更正为 `submodules/ff-ruyijs` 独立一级 gitlink。普通 clone 后只初始化一级；嵌套 Firefox 由 fork 在需要构建时按其手册处理。内部版来源维持 [ADR 0002](adr/0002-ruyijs-reverse-not-fork.md)，历史 donor 与发行工件的锁保持独立。 |
 | 2026-11-27 · 首页与交接状态 | ~~R376 是当前 JS 状态、RuyiJS 仅有明文 HTTP/1、生产 CLI 借用只有 amd64、`f1253a6` 是 Trace 开发 gitlink~~。页首改按 [R433](../artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)、[双架构生产矩阵](../projects/ruyi-mcp/LIVE-MATRIX.md)与[开发 pin](../PINS.md#10-2026-11-24-交接开发基线与发行源码分开)区分，旧分项回执仍保留。原生事件 Beta 与 Electron Alpha 各按发布范围；~~常驻交付~~ 指稳定的站点入口，浏览器和桌面按需运行；实体显示和人工 IME 继续待签。 |
 | 2026-11-27 · RuyiHttp / RuyiDOM | ~~早期 `GLIBC_2.38` 是当前 RuyiHttp Linux 下限~~：改为 0.9.4 双架构实装验证的 2.31。RuyiDOM 的 v0.3.1 源码发行与 v0.3.0 Noble 宿主入口分别核实，见[现场留档与源码交接](14-source-handoff.md#ruyidom-独立源码交接)。 |
 | 2026-11-26 · RuyiDOM v0.3.1 | 原先待验的裸 Jammy ABI 与 amd64 完整源码构建均有各自的正证据。只认证新包和对应运行环境；原 Noble 包的裸 Jammy 失败以及原 amd64/P3 结果保持历史意义。见[源码可移植性交接](14-source-handoff.md#ruyidom-独立源码交接)。 |

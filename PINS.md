@@ -10,9 +10,9 @@
 
 | 用途 | commit | BuildID | 出处 |
 | --- | --- | --- | --- |
-| **基线（本仓唯一）** | `39bfd14cb45c` | `20261101193257` | RuyiTrace 3.5.0 `kernel/application.ini` |
+| Win64 原件的来源标识（非公开 fork 的基线） | `39bfd14cb45c` | `20261101193257` | RuyiTrace 3.5.0 `kernel/application.ini` |
 | ruyijs 内部 wheel 构建 | `9a2dc53c369c7ae5172018b35988e1d2ffeff402` | — | `_runtime/SOURCE_NOTICE.md` |
-| ff-ruyijs 上游子模块 | `2887d9de1f69c0e9776413da80e7ba0d1225dd9b` | — | `Facetomyself/ff-ruyijs` `.gitmodules` |
+| 公开 ff-ruyijs 的嵌套 Firefox | `2887d9de1f69c0e9776413da80e7ba0d1225dd9b` | — | 公开 fork 对应提交的 `git ls-tree HEAD -- firefox`（`.gitmodules` 只记录来源） |
 
 **决策已更正（2026-11-19 实地核查）**：
 
@@ -31,12 +31,11 @@
 `ff-ruyijs` 的 `firefox` 子模块仍应 pin 到官方可验证的 commit，
 不要 pin 到 `39bfd14c`（那会让 clone 失败）。
 
+早期将 Win64 来源标识写入公开 fork 的草案已撤回。以下是只读复查，不需要克隆 Firefox 或修改其嵌套指针：
+
 ```bash
-# 改 pin（在 ff-ruyijs 工作副本里）
-cd upstream/ff-ruyijs
-cd firefox && git fetch origin 39bfd14cb45c && git checkout 39bfd14cb45c && cd ..
-git add firefox
-git commit -m "chore: pin firefox to 39bfd14cb45c (RuyiTrace kernel build)"
+git -C submodules/ff-ruyijs ls-tree HEAD -- firefox
+git -C submodules/ff-ruyijs config --blob HEAD:.gitmodules --get submodule.firefox.url
 ```
 
 ---
@@ -66,37 +65,28 @@ python3 tools/build_native.py --check
 
 ---
 
-## 3. ff-ruyijs（**只读参考 + PR 目标，非内部基线**）
+<a id="open-ruyijs"></a>
 
-| 项 | 值 |
-| --- | --- |
-| 开源上游 | `cutetailbud/ff-ruyijs`（public） |
-| 我们的 fork | `Facetomyself/ff-ruyijs`（public） |
-| 用途 ① | 向 `cutetailbud` 提 PR（能力单向流出） |
-| 用途 ② | 反编译内部版时的**语义对照物** |
-| 用途 ③ | necko 原生源码的公开参照（C/C++/Rust 的 ABI 实现） |
-| **不作什么** | ❌ 不是 `ruyijs-inner` 的基线；❌ 不承载内部功能；❌ 不挂 submodule |
+## 3. 开源 RuyiJS：维护 fork 与上游来源
 
-**硬规则**（详见 `docs/06-ruyijs-inner.md` §0）：
-1. 内部改动一律进 `Facetomyself/ruyijs-inner`（private），不进 fork。
-2. `ruyijs-inner` 的源码来自对内部产物的反编译还原，不是从 fork 复制。
-3. 对照物必须固定 commit，漂移会导致结论失效。
+| 组件 | 源码仓 | 维护分支 | 平台固定提交 |
+| --- | --- | --- | --- |
+| ff-ruyijs | [Facetomyself/ff-ruyijs](https://github.com/Facetomyself/ff-ruyijs) | `main` | `f1490a564c4cf4c754e7f99af2ed04ee8b2a12ef` |
 
-### 本仓追踪的上游 commit
-
-| 日期 | fork commit | 说明 |
-| --- | --- | --- |
-| 2026-11-19 | `3501a90` | `fix(editing): Selection state, contenteditable typing, IndexedDB upgrade writes (#44)` |
-
-复查：
+固定的是公开 fork 的源码，不是上游分支顶端，也不是内部产品或已签收的 wheel。上游是 [cutetailbud/ff-ruyijs](https://github.com/cutetailbud/ff-ruyijs)。2026-11-27 核对：fork 已吸收 `469b44951957c525393e717fa296ff74d676d9d0`；当时上游还多一个 `runtime.json` 发布记录 `b24604553dff295308b48b36d08e04e68c16d91f`。源包版本声明为 `0.4.5`；fork 自己的 Firefox 内层 gitlink 为 `2887d9de1f69c0e9776413da80e7ba0d1225dd9b`。三种指针分开登记，复查只需一级检出：
 
 ```bash
-cd upstream/ff-ruyijs      # 本地只读克隆（gitignore，不入本仓历史）
-git log --oneline -1
-git ls-tree HEAD firefox   # 子模块 pin = 2887d9de1f69c0e9776413da80e7ba0d1225dd9b
+git ls-tree HEAD -- submodules/ff-ruyijs
+git -C submodules/ff-ruyijs rev-parse HEAD
+git -C submodules/ff-ruyijs merge-base --is-ancestor 469b44951957c525393e717fa296ff74d676d9d0 HEAD
+git -C submodules/ff-ruyijs ls-tree HEAD -- firefox
 ```
 
-> 注意：fork 的 firefox pin（`2887d9de`）与本仓基线（`39bfd14c`）不同。这进一步说明 fork 不能当内部基线。
+[维护与升 pin 规则](projects/ff-ruyijs/README.md)适用于这条公开主线。内部版仍只以 `ruyijs-inner` 为来源；既有 RuyiHttp 构建的特定 donor 也保留各自来源锁。
+
+<a id="3-ff-ruyijs只读参考--pr-目标非内部基线"></a>
+
+**历史记录：**2026-11-19 的 `3501a909983f54d949fae281713496866d5272d5` 仅用于当时的代码对照。旧的“只做 PR 和对照、未挂载”是纳管前的决定，不是本次 gitlink。
 
 ---
 
@@ -130,7 +120,7 @@ git ls-tree HEAD firefox   # 子模块 pin = 2887d9de1f69c0e9776413da80e7ba0d122
 | seed 仓库 | `ff-ruyijs` |
 | seed commit | `c69875b5b5c34ba95953c4f382bab6a74d55cfb4` |
 | seed 版本 | **0.2.1** |
-| 当前 fork HEAD | `3501a90`（0.4.1） |
+| 当时用于对照的 fork 快照（非现行 gitlink） | `3501a90`（0.4.1）；[当前公开线](#open-ruyijs) |
 
 > **注意**：seed 是 0.2.1，没有跨平台代码。0.4.1 的 `_pipe.py`（208 行含 AF_UNIX）是**后出现的能力**，不能反推 0.2.1 也有。见 ADR 0002。
 
@@ -309,7 +299,7 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 
 ## 10. 2026-11-24 交接：开发基线与发行源码分开
 
-四个组件的开发 pin 以 `git ls-tree HEAD:submodules` 为准；[状态账本](STATUS.yaml) 的 `submodules.*.commit` 是同一组完整 SHA。Trace 开发 pin 包含已验收的独立 CLI；历史 amd64 R5 仍使用独立的 [源码锁](artifacts/receipts/trace-amd64-r5/source-lock.json) 与原标签。发行、CLI、Win64 离线工具的完整提交与检出方式见[使用指南](docs/14-source-handoff.md)。
+当前五个一级组件的开发 pin 以 `git ls-tree HEAD:submodules` 为准；[状态账本](STATUS.yaml) 的 `submodules.*.commit` 是同一组完整 SHA。Trace 开发 pin 包含已验收的独立 CLI；历史 amd64 R5 仍使用独立的 [源码锁](artifacts/receipts/trace-amd64-r5/source-lock.json) 与原标签。发行、CLI、Win64 离线工具的完整提交与检出方式见[使用指南](docs/14-source-handoff.md)。
 
 ## 11. RuyiDOM 独立仓
 
@@ -320,7 +310,7 @@ node -p "JSON.stringify(require('./submodules/ruyi-mcp/package.json').engines)"
 | 主机日常命令 | [`5dd1ea218d0824207069ffba443593656039274d`](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md) | 后续提交只标识宿主入口与说明；部署沿用已验收镜像，不能将它当作一次新编译。 |
 | 第二台 ARM64 冷恢复 | [`1344fec24407b5d525ea5b47e0ba6522c8522279`](https://github.com/Facetomyself/ruyidom/blob/1344fec24407b5d525ea5b47e0ba6522c8522279/docs/releases/arm64-v0.3-cold-restore.json) | [独立回执副本](artifacts/receipts/ruyidom-arm64-v0.3-cold-restore.json)验收同一归档的空存储导入和真实导航，发行标签及发行回执保持原样。 |
 
-RuyiDOM 独立检出，不在平台的四个 gitlink 中。具备私库读取权限时，可复核附注标签剥离后的提交；平台内可直接校验状态与回执：
+RuyiDOM 独立检出，不在平台的五个一级 gitlink 中。具备私库读取权限时，可复核附注标签剥离后的提交；平台内可直接校验状态与回执：
 
 ```bash
 git ls-remote https://github.com/Facetomyself/ruyidom.git 'refs/tags/v0.3.1' 'refs/tags/v0.3.1^{}' 'refs/tags/v0.3.0^{}'

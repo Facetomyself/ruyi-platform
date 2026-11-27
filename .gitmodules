@@ -11,3 +11,7 @@
 	path = submodules/ruyi-mcp
 	url = https://github.com/Facetomyself/ruyi-mcp.git
 	branch = linux
+[submodule "submodules/ff-ruyijs"]
+	path = submodules/ff-ruyijs
+	url = https://github.com/Facetomyself/ff-ruyijs.git
+	branch = main

@@ -1,6 +1,6 @@
 # 其他项目如何使用 Ruyi Platform
 
-**先区分平台开发 pin、发布工件和主机在用版本。** [PINS](../PINS.md) 与 [STATUS](../STATUS.yaml) 记录四个组件的固定提交；复现 amd64 无头 R5 的冻结输入仍用独立标签，Trace 的原生事件 Beta 与 Electron owner Alpha 各有交付标签，RuyiDOM 则单独检出。
+**先区分平台开发 pin、发布工件和主机在用版本。** [PINS](../PINS.md) 与 [STATUS](../STATUS.yaml) 记录五个一级组件的开发固定提交；复现 amd64 无头 R5 的冻结输入仍用独立标签，Trace 的原生事件 Beta 与 Electron owner Alpha 各有交付标签，RuyiDOM 则单独检出。
 
 ## 选择交付物
 
@@ -12,21 +12,38 @@
 | Electron 桌面配置、预览或持有会话 | [Electron owner Alpha 1](https://github.com/Facetomyself/ruyitrace/releases/tag/linux-electron-owner-v0.1.0-alpha.1) + 对应架构内核 | [每架构五项持有者生命周期](../artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/README.md)和[原启动器复跑](../projects/ruyi-mcp/LIVE-MATRIX.md#独立-electron-发行线)均使用虚拟席位；[实体显示与本地人工 IME](../artifacts/receipts/trace-linux-gap-closure-v1/desktop-seat/desktop-seat-review.json)仍待现场见证。 |
 | 校验旧版 Win64 产物 / 读取离线统计 | Trace **Win64 离线交接分支**，见下表 | 静态原件证据与合成测试，不是 Win64 私有 Firefox 的完整源树，也不是 Linux 实采证明。业务项目宜依赖有版本的输出 schema，避免把推断地址当成稳定 ABI。 |
 | HTTP 客户端 | [RuyiHttp 0.9.4](https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.4)：Python API、wheel、已入库原生库 | [精确 wheel 验收](../artifacts/receipts/ruyihttp-0.9.4/README.md)：Linux amd64 / ARM64 在 glibc 2.31 实装并通过直连 H1/H2/H3、双跳 TCP 和单跳 CONNECT-UDP 内层原生 H3；Windows 和两种 macOS 各验同平台工件。 |
-| JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | ARM64 选 [R433 双 wheel](../artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md)，正式下载实装及 `r433-host1`／完整 `r432-host1` 切换见[安装与回滚](../submodules/ruyijs/docs/linux-arm64-r433.md)。amd64 可用 [R355 原生包回执](../artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json)和 [R356 wheel 安装](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)；[R357 明文 HTTP/1](../submodules/ruyijs/docs/linux-http1.md)可独立卸载。分项能力见[当前交付缺口](04-risks-and-gaps.md#当前交付缺口)。 |
+| 公开 JS/DOM 开发与上游贡献 | [公开 RuyiJS 项目入口](../projects/ff-ruyijs/README.md)；开发检出按 [gitlink](../PINS.md#open-ruyijs) | `Facetomyself/ff-ruyijs` 的 `main` 用于公开源码维护，复现以 gitlink 为准；公开性能与 macOS/Linux 兼容改动提交上游，保留 Windows 共用主干的既有行为。公开发行、历史 donor 和内部 wheel 各自固定。 |
+| 私有 JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | ARM64 选 [R433 双 wheel](../artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md)，正式下载实装及 `r433-host1`／完整 `r432-host1` 切换见[安装与回滚](../submodules/ruyijs/docs/linux-arm64-r433.md)。amd64 可用 [R355 原生包回执](../artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json)和 [R356 wheel 安装](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)；[R357 明文 HTTP/1](../submodules/ruyijs/docs/linux-http1.md)可独立卸载。分项能力见[当前交付缺口](04-risks-and-gaps.md#当前交付缺口)。 |
 | 程序化管理浏览器 | [MCP / owner 交接](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | [生产矩阵](../projects/ruyi-mcp/LIVE-MATRIX.md)涵盖双架构 CLI 同镜像、跨机 SSH stdio 和仅 ARM64 的意外退出恢复；早期 [amd64 R5 生产 M2](../projects/ruyi-mcp/PRODUCTION-OWNER.md)仍是独立证据。 |
 | 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM 独立源码交接](#ruyidom-独立源码交接) | v0.3.1 交付 amd64 源码版 Docker 和裸 Jammy ARM64 专用包；现用 ARM64 宿主沿用 v0.3.0 Noble 镜像，可信脚本宿主仍是 Firefox 136.0。 |
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
 
-平台父仓公开，可匿名克隆；四个 gitlink 分别指向有独立权限的组件仓。[.gitmodules](../.gitmodules) 定义来源，[STATUS.yaml](../STATUS.yaml) 记录状态。下游固定平台提交及其 gitlink；`git submodule update --remote` 跟踪组件分支，不能用于复现固定版本。只看父仓目录可普通 clone 后执行 `bash scripts/verify-pins.sh --catalog`。下列命令用于有全部子仓读取权限的维护者；仅取公开组件、CI 及公开目录的设计见[访问边界](adr/0003-public-catalog-private-gitlinks.md)。
+平台父仓公开，可匿名普通 clone；[.gitmodules](../.gitmodules) 登记五个独立组件的来源，[STATUS](../STATUS.yaml) 记录状态。按父仓提交与其一级 gitlink 复现；`git submodule update --remote` 获取的是组件分支头。公开组件的路径与 CI 权限见[访问边界](adr/0003-public-catalog-private-gitlinks.md)。
 
 ```bash
-git clone --branch main --recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
+git clone https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
 git rev-parse HEAD
 git ls-tree HEAD:submodules
-bash scripts/verify-pins.sh --repo  # 固定源码、开关清单和仓内回执；无需内部归档
+bash scripts/verify-pins.sh --catalog
 ```
+
+仅取公开源码时，可列出全部三个公开路径，或只列当前所需路径：
+
+```bash
+git -c submodule.recurse=false submodule update --init --checkout -- \
+  submodules/ruyihttp submodules/ruyi-mcp submodules/ff-ruyijs
+```
+
+具备两个私有子仓的读取权限时，可检出全部一级组件并核对仓内证据：
+
+```bash
+git -c submodule.recurse=false submodule update --init --checkout
+bash scripts/verify-pins.sh --repo
+```
+
+仅在需要构建公开 RuyiJS 时，按 [fork 自己的构建手册入口](../projects/ff-ruyijs/README.md)取得其嵌套 Firefox。这个构建输入与 Trace Firefox、历史 donor、固定发布物及宿主现用版本均独立。
 
 Trace 特定交付位于同一个[私有源码仓](https://github.com/Facetomyself/ruyitrace)。`main` 是 CLI 与构建工具的维护入口；R5 复现标签、早期 CLI 候选及独立证据分支保留原样。构建请用新的工作目录。
 
@@ -64,7 +81,7 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 ## RuyiDOM 独立源码交接
 
-[RuyiDOM 私有源码仓](https://github.com/Facetomyself/ruyidom)维护 Linux 启动器、适配层、测试与构建工具；`main` 用于日常维护。RuyiDOM 单独检出，现有四个 gitlink 与各自的版本固定方式维持原样。
+[RuyiDOM 私有源码仓](https://github.com/Facetomyself/ruyidom)维护 Linux 启动器、适配层、测试与构建工具；`main` 用于日常维护。RuyiDOM 是第六个相关项目，仍单独检出，未纳入平台的五个一级 gitlink。
 
 [RuyiDOM 实现与维护手册](https://github.com/Facetomyself/ruyidom/blob/1bfbd7c69e6ce4044510afd5ee9d04e774fb13c1/docs/architecture/README.md)涵盖 `native`／`browser` 双后端、RPC 与 BiDi 协议、句柄生命周期和优化复验，并说明如何编辑 Archify 图的 JSON 图源并再生成 SVG／HTML。这是知识手册入口，发布与运行证明仍以下文发行回执和实测记录为准。
 

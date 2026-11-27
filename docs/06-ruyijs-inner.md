@@ -2,33 +2,35 @@
 
 对象：内部 wheel `ruyijs 0.2.2+inner.*`。目标：把它的原生壳与 Python 层还原成**自有、可维护、可跨平台编译**的源码树，落在 `Facetomyself/ruyijs-inner`（private）。
 
-> **现状（2026-11-19）**：`ruyijs-inner` 仓库已于 2026-11-04 建立，语义重建正在进行。
+> **历史状态（2026-11-19）**：`ruyijs-inner` 仓库已于 2026-11-04 建立，语义重建正在进行。
 > identity 2038 条中：1792 条 eol-insensitive 对齐 0.2.1 正文，237 条 hash_diff（其中 **56 条 identity 命中**），9 条 inner_only 已全部语义化。
 > 进度详情见 [`../projects/ruyijs/reverse-analysis.md`](../projects/ruyijs/reverse-analysis.md)。
-> 本文描述的是**方法与标准**，不是进度。
+> 本文描述的是**方法与标准**；现行内部制品与验收见[源码交接](14-source-handoff.md#选择交付物)。
 
 ---
 
 ## 0. 三层边界（先立规矩）
 
+[ADR 0004](adr/0004-open-ruyijs-gitlink.md) 把[公开 RuyiJS fork](../projects/ff-ruyijs/README.md) 与内部版作为两个独立组件并列接入；公开性能和 macOS/Linux 兼容工作去公开 fork，保留 Windows 在共用主干上的既有行为。本节约定的是**内部版的来源和对照纪律**。
+
 ```
-cutetailbud/ff-ruyijs      public   只读，看不到就 clone
-        ↓ fork
-Facetomyself/ff-ruyijs     public   ① 向上游提 PR；② 反编译时的语义对照
-        ↓ 仅参考，不作基线
-Facetomyself/ruyijs-inner  private  ← 内部版的唯一来源
+cutetailbud/ff-ruyijs       public  ← 公开上游，接收 PR
+          ↑ PR
+submodules/ff-ruyijs        public  ← Facetomyself/ff-ruyijs main（公开开发）
+          ⋮ 仅作语义对照，无内部源码依赖
+submodules/ruyijs           private ← Facetomyself/ruyijs-inner（内部版实现）
 ```
 
 | 规则 | 内容 |
 | --- | --- |
 | R1 | `ff-ruyijs` 不承载任何内部功能，内部改动一律进 `ruyijs-inner` |
 | R2 | `ruyijs-inner` 的代码来自**对内部产物的反编译还原**，不是从 `ff-ruyijs` 复制 |
-| R3 | `ff-ruyijs` 只当「公开实现长什么样」的对照物；对照结论必须标注「参照，未采用」或「与二进制一致，采用」 |
+| R3 | 在内部版还原中，公开 `ff-ruyijs` 只当「公开实现长什么样」的对照物；对照结论必须标注「参照，未采用」或「与二进制一致，采用」 |
 | R4 | 内部版有能力回流上游时，走 `ff-ruyijs` → `cutetailbud` 的 PR 单向流出，不回灌 |
 
-**为什么这条边界重要**：内部 wheel 的 `js.exe` 与 `ff-ruyijs` 的 `js` 是**不同构建**（前者 Firefox `9a2dc53c`，后者子模块 `2887d9de`，而 RuyiTrace 内核是 `39bfd14c`）。混用会带来无法定位的行为差异。
+**为什么这条边界重要**：历史上对照的内部 `js.exe` 与公开样本 `js` 是**不同构建**（内部分别取证，示例 Firefox `9a2dc53c`；旧公开样本子模块 `2887d9de`；Trace 的另一个 Win64 样本是 `39bfd14c`）。这些记录不指代[当前公开开发 pin](../PINS.md#open-ruyijs)。混用会带来无法定位的行为差异。
 
-**关键事实：`ruyijs-inner` 的 seed 是 `ff-ruyijs` 0.2.1（`c69875b5`），不是当前的 0.4.1（`3501a90`）。** 0.2.1 没有跨平台代码——`python/ruyijs/_pipe.py` 还是 Windows 独占的 127 行版本。0.4.1 里的 AF_UNIX 分支（208 行）是**后出现的能力**，只能当「这件事有人做成过」的证据，不能当「内部版已有」的依据。
+**关键事实：`ruyijs-inner` 的 seed 是 `ff-ruyijs` 0.2.1（`c69875b5`），不是后续对照样本 0.4.1（`3501a90`）。** 0.2.1 没有跨平台代码——`python/ruyijs/_pipe.py` 还是 Windows 独占的 127 行版本。0.4.1 里的 AF_UNIX 分支（208 行）是**后出现的能力**，只能当「这件事有人做成过」的证据，不能当「内部版已有」的依据。
 
 ---
 
@@ -44,7 +46,7 @@ Facetomyself/ruyijs-inner  private  ← 内部版的唯一来源
 | `dist/mozglue.dll` | 250 KB | Gecko glue | 🟡 需反编译 |
 | `dist/ruyijs_client.dll` | 35 KB | 客户端库（仅 1011 版） | 🟢 小，快 |
 | 内嵌 CPython（`vendor/.../python/`） | ~15 MB | 官方 CPython 3.14 + 预编译包 | 🟢 无需反编译 |
-| Necko 原生（`necko_core.dll` 等 6 个） | — | 与 ruyihttp 同源 | 🟢 源码在 `ff-ruyijs/native/` |
+| Necko 原生（`necko_core.dll` 等 6 个） | — | 与 ruyihttp 同源 | 历史公开 `ff-ruyijs/native/` 可作 ABI 对照 |
 
 > **关键判断**：Python 层是明文，原生壳是真正的反编译对象。所以 ruyijs-inner 的难点集中在 `js.exe`。
 
@@ -193,7 +195,7 @@ ruyijs-inner/
 │   ├── execution_scheduling/
 │   └── ...（共 2069 文件）
 ├── python/ruyijs/              ← 明文，直接取（但要判定是否需要改）
-└── native/                     ← necko C/C++/Rust，从 ff-ruyijs 参照实现
+└── native/                     ← necko C/C++/Rust，按内部来源和验收规则维护
 ```
 
 **关键**：`build-identity.json` 的 `source_inputs` 给了**每个文件的路径与 sha256**。这意味着：
@@ -232,7 +234,7 @@ with Context() as ctx:
 | --- | --- |
 | Linux 可编译 | `js` 产出，`Context().eval("1+1")` 通过 |
 | Windows 可编译 | 产出与内部 wheel 行为一致 |
-| Python 层可直接复用 | 19 个 `.py` 与上游 0.4.1 的差异只有已知的 5 个文件 |
+| Python 层沿用内部明文 | 以内部样本的 19 个 `.py` 的契约为准；与公开 0.4.1 的 5 个差异只作对照 |
 | 测试套件 | 至少覆盖 §4 的断言集 |
 
 ---
@@ -314,11 +316,13 @@ with Context() as ctx:
 | 无 `js.exe` 的调试符号 | 中 | 靠 operation 字符串 + 行为断言，不靠符号 |
 | 反编译出的实现与二进制行为有细微差异 | 高（正常） | 以 §4 断言集为唯一验收 |
 | `working_tree_changes: true` 导致基线不确定 | 高 | 反编译对象就是**内部 wheel 本身**，不追 base_commit |
-| 上游 `ff-ruyijs` 持续演进，对照物漂移 | 中 | 对照时固定 commit（`3501a90`），写进 `PINS.md` |
+| 上游 `ff-ruyijs` 持续演进，对照物漂移 | 中 | 对照时记录准确 commit（如历史样本 `3501a90`），与现行开发 pin 分开 |
 
 ---
 
 ## 8. 当前进度
+
+以下是 2026-11-19 的还原进度快照，不代表当前交付；见[现行内部制品](14-source-handoff.md#选择交付物)。
 
 | 步骤 | 进度 | 位置 |
 | --- | --- | --- |

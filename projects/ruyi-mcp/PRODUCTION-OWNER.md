@@ -11,12 +11,12 @@
 预备 Git、Node ≥22.12（验收用 Node 24）、Python ≥3.10、Python venv、PyYAML、C++17 编译器和 npm。真机门禁另需目标架构的 Linux Firefox 依赖或 Docker。私有仓读取权限由该机器的 Git 凭据配置负责。
 
 ```bash
-git clone --recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
+git clone https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
 # 要复现某份验收时，先切到该回执所在的平台提交，再初始化对应 gitlink。
-git submodule update --init --recursive --checkout
+git -c submodule.recurse=false submodule update --init --checkout
 git ls-tree HEAD:submodules
-bash scripts/verify-pins.sh
+bash scripts/verify-pins.sh --repo
 ```
 
 保留子模块检出在版本清单指定的提交；开发到各自组件仓创建分支，组件先提交并推送，平台再更新 gitlink、[PINS](../../PINS.md) 和 [STATUS](../../STATUS.yaml)。平台固定的 MCP、Trace 源码、R5 浏览器输入和实际制品是不同层，禁止用当前分支头冒充历史制品。

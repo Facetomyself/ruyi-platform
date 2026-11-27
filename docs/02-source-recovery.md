@@ -1,6 +1,8 @@
 # 02 · 源码还原路线
 
-目标：三个项目全部拿到**可重建的源码**，而不是只拿到二进制。
+**历史研究路线，下文保留原始候选和命令。** 现行检出见[源码交接](14-source-handoff.md)；公开 RuyiJS 在[独立 fork](../projects/ff-ruyijs/README.md)开发。旧工作区资料和 0.4.1 只读样本不是现行公开开发 pin，也不是私有 RuyiJS 的实现来源。早期「覆盖内部文件」方案已由 [ADR 0002](adr/0002-ruyijs-reverse-not-fork.md) 否决；[ADR 0004](adr/0004-open-ruyijs-gitlink.md) 只改变公开 fork 的挂载。
+
+历史目标：三个项目全部拿到**可重建的源码**，而不是只拿到二进制。
 
 **先说一个决定性的好消息**（本轮新查证）：`necko` C ABI 的**跨平台实现源码是现成的**，就在 `cutetailbud/ff-ruyijs` 里，不是闭源。
 
@@ -11,7 +13,7 @@
 | 项目 | 源码可得性 | 关键来源 | 预计工作量 |
 | --- | --- | --- | --- |
 | **RuyiHttp** | 🟢 **已有 100%** | 本地 `RuyiHttp/repo/` 就是完整源码树 | 0（只需合流维护） |
-| **RuyiJS** | 🟢 **约 95% 已有** | `ff-ruyijs` 0.4.1 完整源码（已落在 `RuyiJS/upstream-ff-ruyijs/`，47 MB，含 src/ native/ ci/ tools/）；内部 wheel 是它的旧快照 | 小（覆盖 4 个 py + 重编） |
+| **RuyiJS（早期误判）** | ~~内部源码约 95% 已有~~ | 旧 `ff-ruyijs` 0.4.1 样本是公开对照物，不是内部 wheel 对应源码 | ~~覆盖 4 个 py + 重编~~；内部来源及验收按 [ADR 0002](adr/0002-ruyijs-reverse-not-fork.md) |
 | **RuyiTrace - Electron 层** | 🟢 **已有 100%** | `app-3.5.0/unpacked-asar/src/` 74 文件 3644 行 | 0 |
 | **RuyiTrace - domtrace 内核** | 🔴 **源码不在包内** | 只能去 Firefox 159 源码树找 `dom/bindings/domtrace` | **大（本项目最重）** |
 
@@ -102,6 +104,8 @@ git mv dist/*.whl dist-v0.9.0-legacy/ 2>/dev/null || mv dist/*.whl dist-v0.9.0-l
 
 ## 3. RuyiJS 源码还原
 
+本节的公开源码与内部 wheel 是不同样本；构建链及命令仅复述早期研究记录。实际构建公开 RuyiJS 查 [fork 自己的构建入口](../projects/ff-ruyijs/README.md)。
+
 ### 3.1 已有
 
 | 层 | 状态 | 位置 |
@@ -132,7 +136,7 @@ Windows 侧对应 `ci/firefox/build.sh js|browser|toolchain` + `ci/package/`。
 
 | 缺口 | 影响 | 补法 |
 | --- | --- | --- |
-| **内部 wheel 落后上游 0.4.1** | 没有跨平台代码 | 覆盖 4 个 `.py`（见 `03-linux-port.md` L2） |
+| **内部 wheel 与公开 0.4.1 样本不同** | 旧内部 Win64 wheel 缺跨平台代码 | ~~覆盖 4 个 `.py`~~ 已否决；以[内部来源规则](06-ruyijs-inner.md#0-三层边界先立规矩)为准 |
 | `+inner.492ee47` **没有 `build-identity.json`** | 无法追溯到 ff-ruyijs 的哪个 commit | 用 `20261101191032` 的 `base_commit aa255fbb…` 反推；或从 ff-ruyijs 重新构建 |
 | `SOURCE_NOTICE.md` 写 `0.3.3`，版本号是 `0.2.2+inner` | 溯源链断裂 | 在 fork 里补一张 `PROVENANCE.md`：`wheel → ff-ruyijs commit → firefox commit` |
 | `492ee47` 的 `_runtime/SHA256SUMS` 是 CRLF | 直接 `sha256sum -c` 全 FAILED | 已在文档记录：先 `sed 's/\r$//'` |
@@ -202,9 +206,9 @@ SourceStamp=39bfd14cb45c
 
 ### 4.3 还原动作（按投入排序）
 
-**方案 A：取官方源码树找 domtrace（先验证存在性）**
+**历史方案 A（已排除）：试图在官方源码树找私有 domtrace。** 下面仅记录当时的试探命令，不用于平台或公开 RuyiJS 的检出。
 
-```bash
+```text
 cd /tmp && git clone --depth 1 --filter=blob:none --sparse \
   https://github.com/mozilla-firefox/firefox ff159
 cd ff159 && git sparse-checkout set dom/bindings
@@ -238,7 +242,7 @@ for s in pe.sections: print(s.Name, hex(s.VirtualAddress), hex(s.Misc_VirtualSiz
 | B 反推 | 确定可行 | **极高**（74 个开关 × 每个 1-3 个插桩点） | 语义无法保证 |
 | C 问上游 | 确定可行 | 低 | 需对方配合 |
 
-**建议顺序：先跑 A 验证 10 分钟，失败立刻走 C 并行 B 的准备。**
+**历史建议（已退役）**：~~先跑 A，再并行 B/C~~。现行 Trace 构建使用独立固定的官方 Firefox 基线加还原插桩，见[构建交接](14-source-handoff.md#真正重建时还需要什么)。
 
 ---
 

@@ -1,6 +1,10 @@
 # 03 · Linux 适配路线
 
-前置：目标机需要 **glibc ≥ 2.38**。本机 2.35，`libnecko_core.so` 直接 `dlopen` 失败（`cannot open shared object file`，`DT_NEEDED` 满足但 `GLIBC_2.38` 符号版本不满足）。这不是代码问题，是跑测试的机器版本不够。
+**现行路线先分项目：**公开 RuyiJS 的性能与 macOS/Linux 兼容工作在 [公开 fork](../projects/ff-ruyijs/README.md)开展，向公开上游提 PR；保持 Windows 在共用主干上的既有行为。平台检出只到一级；公开 fork 的 Firefox 仅在需要构建时按其自己的手册取得。私有内部版的来源见[内部版规则](06-ruyijs-inner.md#0-三层边界先立规矩)，交付看[分平台回执](14-source-handoff.md#选择交付物)，公开源码、历史 donor 与固定工件各用自己的 pin。
+
+**历史说明：**开头及 §1–§5 保留早期三件套的样本、方案和依赖。当时的统一 Firefox pin、覆盖内部源码和 glibc 门槛均不是现行要求；[当前交付缺口](04-risks-and-gaps.md#当前交付缺口)给出各制品范围。
+
+历史样本前置：目标机需要 **glibc ≥ 2.38**。本机 2.35，`libnecko_core.so` 直接 `dlopen` 失败（`cannot open shared object file`，`DT_NEEDED` 满足但 `GLIBC_2.38` 符号版本不满足）。这不是代码问题，是跑测试的机器版本不够。
 
 ```bash
 # 检查
@@ -12,7 +16,7 @@ Ubuntu 24.04 起满足。Ubuntu 22.04（glibc 2.35）上**只能跑静态分析*
 
 ---
 
-## 1. 第零步：统一版本基线（必须先做）
+## 1. 第零步：统一版本基线（历史方案，已退役）
 
 三套 Firefox 提交号不一致，Linux 适配会互相污染：
 
@@ -22,16 +26,16 @@ Ubuntu 24.04 起满足。Ubuntu 22.04（glibc 2.35）上**只能跑静态分析*
 | RuyiTrace 内核 | `39bfd14cb45c` | `kernel/application.ini` → `SourceStamp` |
 | ff-ruyijs 子模块 | `2887d9de1f69c0e9776413da80e7ba0d1225dd9b` | `.gitmodules` + `git ls-tree HEAD firefox` |
 
-**决定**：以 **`39bfd14cb45c`** 为准（RuyiTrace 的内核是这个，domtrace 插桩只在这个树上验证过）。
+**早期决定（已更正）**：~~统一到 `39bfd14cb45c`~~。该值标识 Trace 的 Win64 私有内核；各组件现在各自固定构建来源，见 [PINS](../PINS.md)。下列原命令只作历史记录，不是可执行的现行构建步骤。
 
-```bash
-# 在 ff-ruyijs 里改子模块 pin
+```text
+# 历史方案：在 ff-ruyijs 里改子模块 pin
 cd /var/lib/dsh/Ruyi/RuyiJS/upstream-ff-ruyijs
 cd firefox && git fetch origin 39bfd14cb45c && git checkout 39bfd14cb45c && cd ..
 git add firefox && git commit -m "chore: pin firefox to 39bfd14cb45c (RuyiTrace kernel build)"
 ```
 
-改完要重跑 `ci/linux/build.sh donor/shell/necko`，因为 SpiderMonkey 单独构建和 NSS/NSPR 都从这棵树取。
+原方案随后计划重跑 `ci/linux/build.sh donor/shell/necko`，这一串步骤与上面的统一 pin 一起退役。
 
 ---
 
@@ -108,8 +112,7 @@ self.assertEqual(runtime_platform(), expected_platform_for_this_host)
 > 初版：判定「`_pipe.py` 需整文件重写 127 行」——**错**。
 > 二版：发现 `ff-ruyijs` 0.4.1 的 `_pipe.py` 已 208 行含 AF_UNIX，判定「直接取上游 4 个文件」——**部分错**。
 >
-> **当前定论**（按 `06-ruyijs-inner.md` §0）：`ff-ruyijs` 是 public fork，只作 PR 目标与**语义对照**，
-> 不作内部基线。内部版必须**反编译还原**，上游实现只提供假设，最终以二进制行为为准。
+> **对内部版仍有效**：公开实现只作**语义对照**，不作内部基线；内部实现来自内部产物的还原，以二进制行为验收。平台接入公开 fork 不改变这条规则，见 [ADR 0002](adr/0002-ruyijs-reverse-not-fork.md)与 [ADR 0004](adr/0004-open-ruyijs-gitlink.md)。
 >
 > 上游那 4 个跨平台文件（`_pipe.py` 208 行 / `_runtime_paths.py` 59 行 / `_context.py` 495 行 /
 > `_engine.py` 215 行）证明了一件事：**这件事有人做成过，方案可行**。但代码不能直接搬——
@@ -217,7 +220,7 @@ def get_runtime_path():
 | `_prefer_bundled_crt()` | 直接 import `winreg` | 第 104 行在函数内条件导入 |
 | darwin 分支 | 无 | 第 132 行 `if sys.platform == "darwin":` |
 
-移植 = 把这 4 个文件从上游覆盖进内部 wheel 的 `ruyijs/`，保留内部版有的 `build-identity.json` / `ruyijs_client.dll` / `examples/`。
+**旧建议（已否决）**：~~把这 4 个文件从上游覆盖进内部 wheel 的 `ruyijs/`~~。此表仅比较历史实现差异；内部移植以[来源约定](06-ruyijs-inner.md#0-三层边界先立规矩)为准。
 
 #### L2.4 帧格式：Python 与 C++ 必须对齐
 
@@ -230,7 +233,7 @@ def get_runtime_path():
 - 上限：`MAX_FRAME = 16 * 1024 * 1024`
 - socket 路径语法：`ruyijs-<16-64 hex>.sock`（与 C++ 端共享的规则）
 
-C++ 端在 ff-ruyijs `src/runtime/`（156 个文件）：
+以下是历史样本当时的对照命令；现行公开源码入口见[项目说明](../projects/ff-ruyijs/README.md)。C++ 对照代码在样本 `src/runtime/`（156 个文件）：
 
 ```bash
 cd /var/lib/dsh/Ruyi/RuyiJS/upstream-ff-ruyijs
@@ -246,7 +249,7 @@ cd /var/lib/dsh/Ruyi/RuyiJS/upstream-ff-ruyijs
 grep -rn 'CreateNamedPipe\|AF_UNIX\|\.sock' src/ | head -12
 ```
 
-**策略：不要改协议。** Windows 走 named pipe、非 Windows 走 AF_UNIX，但帧格式（4 字节小端长度前缀 + 16 MiB 上限 + JSON 体）完全一致。这样 `_values.py` 编解码、`_callbacks.py`、`_jsvalue.py` 全部原样复用。
+**当时的协议兼容目标**是保留 named pipe 与 AF_UNIX 共用的帧格式（4 字节小端长度前缀 + 16 MiB 上限 + JSON 体）。公开样本用于对照；内部编码、回调和句柄行为按内部产物验证。
 
 ---
 
@@ -301,9 +304,9 @@ const EXE = process.platform === 'win32' ? 'firefox.exe' : 'firefox'
 
 ---
 
-## 3. 建议的执行顺序（已按实际工作量重排）
+## 3. 建议的执行顺序（历史，保留）
 
-初版把 ruyijs 移植当主战场，实测上游 0.4.1 已做完，**重心整体后移**。
+以下保留初期排期作为记录。其中 [A] 覆盖内部源码及 [D] 合并 Firefox pin 已被上面的更正覆盖，整表不是当前任务清单。
 
 ```
 阶段 1（半天到 1 天，全并行）
@@ -360,7 +363,7 @@ tshark -r cap.pcap -Y 'tls.handshake.type==1' -T fields -e tls.handshake.ja3
 
 ### R4 · `ruyijs_client.dll` 只有 Windows 版
 
-`+inner.20261101191032` 的 `dist/` 里有 `ruyijs_client.dll`（35 KB），是给外部集成的客户端库。Linux 侧对应产物是 `dist/libruyijs_client.so`（`ci/linux/build.sh shell` 会产出），但**内部版没有 Linux 版**，要从 ff-ruyijs 构建。
+`+inner.20261101191032` 的 `dist/` 里有 `ruyijs_client.dll`（35 KB），是给外部集成的客户端库。Linux 侧对应产物是 `dist/libruyijs_client.so`（`ci/linux/build.sh shell` 会产出），当时的内部 Win64 样本没有 Linux 制品。公开 fork 的 Linux 构建只产出公开工件；内部 C ABI 与私有 Linux 制品见[内部交接](14-source-handoff.md#选择交付物)。
 
 ### R5 · 测试覆盖缺口
 
@@ -371,11 +374,11 @@ tshark -r cap.pcap -Y 'tls.handshake.type==1' -T fields -e tls.handshake.ja3
 | RuyiJS（上游 ff-ruyijs） | `ci/*_check.py` 13 个 + `tests/` | 需重编后跑 |
 | RuyiTrace | 201 项（README 自述） | 源码不在，无法跑 |
 
-**内部 wheel 没有测试套件**是盲点。上游 `ff-ruyijs` 有 `ci/smoke_test.py`、`atob_check.py`、`fetch_abort_check.py`、`load_timer_check.py`、`network_smoke.py`、`socks_proxy_check.py`、`engine_check.py` 等 13 个，**覆盖移植后的关键面**——移植完直接照 `ci/linux/build.sh test` 跑。
+**当时的内部 wheel 没有自带测试套件。** `ff-ruyijs` 样本的 `ci/smoke_test.py`、`atob_check.py`、`fetch_abort_check.py`、`load_timer_check.py`、`network_smoke.py`、`socks_proxy_check.py`、`engine_check.py` 等 13 个检查针对公开样本，不能替代私有制品的单独验收。
 
 ---
 
-## 5. 端到端验证脚本（阶段 2 的出口标准）
+## 5. 端到端验证脚本（历史阶段 2 的出口标准）
 
 ```python
 """[占位符] verify_linux.py —— 三件套 Linux 冒烟"""

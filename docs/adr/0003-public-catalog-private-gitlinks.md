@@ -1,7 +1,9 @@
 # ADR 0003 · 公开目录与私有组件的权限边界
 
-- 状态：已接受。2026-11-27 09:44（北京时间），现有 `Facetomyself/ruyi-platform` 原地由 private 改为 public；四个 gitlink 与各组件仓权限保持原样。
-- 核对：切换后，GitHub 管理接口与匿名接口均返回父仓 `public`。两个公开组件匿名返回 200；两个私有子模块及独立的 RuyiDOM 匿名返回 404，管理接口仍标记为 `private`。
+- 状态：已接受。2026-11-27 09:44（北京时间），现有 `Facetomyself/ruyi-platform` 原地由 private 改为 public；当时的四个 gitlink 与各组件仓权限保持原样。
+- 核对：切换后，GitHub 管理接口与匿名接口均返回父仓 `public`。当时两个公开组件匿名返回 200；两个私有子模块及独立的 RuyiDOM 匿名返回 404，管理接口仍标记为 `private`。
+
+父仓转公开的记录保留；[ADR 0004](0004-open-ruyijs-gitlink.md) 随后增加公开 RuyiJS，现行检出是三个公开和两个私有一级 gitlink，访问规则照旧。
 
 ## 公开父仓可以挂私有子仓吗？
 
@@ -10,10 +12,10 @@
 | 使用者 | 能读什么 | 在克隆好的父仓中怎么做 |
 |---|---|---|
 | 只读目录的人 | 父仓文件、可见历史、模块路径、URL 和 SHA | 普通 clone 后运行 `bash scripts/verify-pins.sh --catalog`，无需拉子仓 |
-| 只用公开组件的人 | 上述内容，以及公开的 HTTP 与 MCP 源码 | `git submodule update --init --checkout -- submodules/ruyihttp submodules/ruyi-mcp` |
-| 内部维护者 | 权限覆盖的私仓内容；内部原件仍单独分发 | `git submodule update --init --recursive`，再按[复现手册](../../REPRODUCE.md)运行仓内或完整验收 |
+| 只用公开组件的人 | 上述内容，以及公开的 HTTP、MCP 与 RuyiJS 源码 | `git -c submodule.recurse=false submodule update --init --checkout -- submodules/ruyihttp submodules/ruyi-mcp submodules/ff-ruyijs` |
+| 内部维护者 | 权限覆盖的私仓内容；内部原件仍单独分发 | `git -c submodule.recurse=false submodule update --init --checkout`，再按[复现手册](../../REPRODUCE.md)运行仓内或完整验收 |
 
-`ruyi-platform` 可匿名普通 clone。公开读者可继续检出 RuyiHttp 和 ruyi-mcp；对全部子模块使用 `--recurse-submodules` 会在需要私仓权限的步骤返回失败。RuyiJS 内部版与 RuyiTrace 仍是私有子模块，RuyiDOM 仍是独立私仓。
+`ruyi-platform` 可匿名普通 clone。RuyiJS 内部版与 RuyiTrace 仍是私有子模块，RuyiDOM 仍是独立私仓。平台克隆与校验只取一级组件；只有构建需要时，才按[公开 RuyiJS 构建入口](../../projects/ff-ruyijs/README.md)处理其嵌套 Firefox。
 
 ## 候选方案与取舍
 

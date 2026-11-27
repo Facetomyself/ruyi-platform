@@ -2,7 +2,9 @@
 
 ## 下游先选依赖，再选证据
 
-`ruyi-platform` 是**版本与交接仓，不是需要启动的服务**。[四个 gitlink](../.gitmodules) 分别锁定 Trace、MCP、JS、Http；RuyiDOM 是[独立发布的第五个相关项目](14-source-handoff.md#ruyidom-独立源码交接)。以下按实际接口区分依赖，不能把共享 Firefox 技术来源画成产品之间的调用链。
+`ruyi-platform` 是**版本与交接仓，不是需要启动的服务**。[五个一级 gitlink](../.gitmodules) 分别锁定公开的 RuyiHttp、ruyi-mcp 和 `ff-ruyijs`，以及私有的 `ruyijs-inner` 和 RuyiTrace。RuyiDOM 是[独立发布的第六个相关项目](14-source-handoff.md#ruyidom-独立源码交接)。以下按实际接口区分依赖，共享 Firefox 技术来源并不代表产品之间存在运行依赖。
+
+两个 RuyiJS 组件是**并列项目**：[公开 RuyiJS](../projects/ff-ruyijs/README.md) 维护 `Facetomyself/ff-ruyijs` 的 `main`，只做公开 RuyiJS 性能和 macOS/Linux 兼容，保留 Windows 在共用主干上的既有行为，公开贡献提交给 `cutetailbud/ff-ruyijs`。[内部版](../projects/ruyijs/README.md) 以私有仓及内部样本为准，公开源码只作语义参照，不能作为内部实现来源。公开开发 pin、历史 donor 和固定工件分别记录，见 [PINS](../PINS.md#open-ruyijs) 与 [ADR 0004](adr/0004-open-ruyijs-gitlink.md)。
 
 | 谁使用谁 | 关系与所有权 | 下游可以省掉什么 |
 |---|---|---|
@@ -10,10 +12,11 @@
 | MCP → Python bridge → Firefox | **自启模式**。MCP 管自己的进程、profile 与 BiDi；可选用 Trace Firefox，导航和 RDP 与内核 DOMTrace 分别取证。[自启验收](../artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json) | 仅需自动化或调试时，无需先运行 Trace owner。 |
 | MCP → Trace owner → 已运行的 Firefox | **借用模式，可选集成**。MCP 只持排他租约，经回环 owner IPC 做页面操作；RDP 调试是独立通道。Trace 持有唯一 BiDi 会话并负责进程生命周期和刷盘；归还租约时 Firefox 继续运行。原生双架构 CLI 同镜像、跨机 SSH stdio 及各分项见[生产矩阵](../projects/ruyi-mcp/LIVE-MATRIX.md)。 | MCP 无需启动第二个 Firefox，也无需 JS 或 Http 库。Electron Alpha 用单独的版本和席位证据。 |
 | Python 或 C 客户端 → RuyiJS 私有壳 | **运行依赖，网络 companion 可选**。ARM64 [R433 双 wheel](../artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md)验过基座与配套网络组件，以及真实切换和回滚。amd64 [R356 离线 wheel](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)与可单独卸载的 [R357 明文 HTTP/1 组件](../submodules/ruyijs/docs/linux-http1.md)各自固定。 | 离线 DOM/JS 无需浏览器 owner。安装态 HTTPS、h2 和原生 QUIC/H3 只按对应分项回执取证；原生 H3 实测与 JS 默认 H3 路由分开。 |
+| 公开 JS/DOM 调用方 → 公开 RuyiJS | **独立运行时**。源码检出与构建见[公开项目入口](../projects/ff-ruyijs/README.md)；构建所需 Firefox 由 fork 自己管理。 | 无需内部 JS 壳或内部 wheel；两条线的构建、发布与验收各自独立。 |
 | Python 调用方 → RuyiHttp → 自带的 Necko/NSS/QUIC 运行库 | **独立传输客户端**。0.9.4 的单跳 CONNECT-UDP 使用代理侧 H3 外层，原生 NSS / Neqo 仍负责内层源站 H3；见[五平台 wheel 回执](../artifacts/receipts/ruyihttp-0.9.4/README.md)。 | 发 HTTP 请求无需浏览器、MCP、JS 壳或 DOM。Http 的协议验收与 RuyiJS 联网各自独立。 |
 | 调用方 → RuyiDOM 的脚本宿主 → 可选的独立内容浏览器 | **两个角色分别固定**。`native` 在官方 Firefox 136.0 的 xpcshell 内执行；`browser` 保留该可信脚本宿主，通过 BiDi 驱动真正的标签页。源码发行 v0.3.1 与现用 ARM64 v0.3.0 Noble 镜像分别验收，详见[独立源码交接](14-source-handoff.md#ruyidom-独立源码交接)。 | 供应商 JS 单独恢复；无需 RuyiJS、RuyiTrace 或 MCP。内容引擎升级与 native 脚本宿主变更分别取证。 |
 
-**跨项目对照只传数据。** 在自有测试页上，业务项目可把同一 fixture 的 Trace 记录、RuyiJS/RuyiDOM 求值结果、RuyiHttp 响应分开存档，以 fixture 摘要、组件 SHA、架构和运行时版本关联。它们是可选的结果对照；不存在一条需要同时运行五个产品的流水线。发布阻塞及验收顺序见[当前缺口](04-risks-and-gaps.md#当前交付缺口)。
+**跨项目对照只传数据。** 在自有测试页上，业务项目可把同一 fixture 的 Trace 记录、RuyiJS（写明公开或内部版本）/RuyiDOM 求值结果、RuyiHttp 响应分开存档，以 fixture 摘要、组件 SHA、架构和运行时版本关联。它们是可选的结果对照；没有要求同时运行六个项目的流水线。发布阻塞及验收顺序见[当前缺口](04-risks-and-gaps.md#当前交付缺口)。
 
 下文保留最初三件套样本的实现细节。§1 的内部 wheel 和 §3 的 Win64 3.5.0 描述仅针对各自样本；§2 的旧原生参数与 0.9.4 当前矩阵分开。版本演进见[缺口页更正记录](04-risks-and-gaps.md#附本文的更正记录)。
 
@@ -72,8 +75,8 @@
 > 的 `_pipe.py`（208 行）、`_runtime_paths.py`（59 行）、`_context.py`（495 行）都是跨平台的。
 >
 > **但这不等于内部版可以抄。** 按 `06-ruyijs-inner.md` §0 的硬规则：
-> `ff-ruyijs` 是 public fork，**只作 PR 目标与反编译对照**，不作内部基线。
-> 内部版 `js.exe` 与它的构建 commit 不同（`9a2dc53c` vs `2887d9de`），行为会漂移。
+> 就**内部版还原**而言，`ff-ruyijs` 只作语义对照，既不作内部基线，也不是内部实现来源。公开开发另见[公开项目入口](../projects/ff-ruyijs/README.md)。
+> 当时对照的内部 `js.exe` 与公开 0.4.1 样本使用不同 Firefox commit（`9a2dc53c` 与 `2887d9de`），其行为可能不同。
 > 正确做法是：反编译还原内部版 → 用上游做语义对照 → 结论标注「参照」或「与二进制一致，采用」。
 > 详见 [`06-ruyijs-inner.md`](06-ruyijs-inner.md)。
 
@@ -277,7 +280,7 @@ Linux 适配后这条链路应保持，只是两端都换成 Linux 二进制（�
 | 组件 | 与 ruyi-mcp 的关系 | 交接边界 |
 | --- | --- | --- |
 | [RuyiTrace](../projects/ruyitrace/README.md) | 直接运行集成：可使用经校验的 Firefox，也可借用 Trace 正在运行的 Firefox | 独立运行时 ruyi-mcp 管理自己的浏览器；借用时 Trace owner 独占 BiDi 和进程生命周期，MCP 通过 loopback owner IPC 与租约发出操作，经 loopback RDP 调试；Trace 负责 flush 和 DOMTrace |
-| [RuyiJS](../projects/ruyijs/README.md) | 并行参考：真实浏览器脚本行为与独立 JS/DOM 运行时可做对照 | 无直接运行依赖；新对照用例显式定义 fixture、版本和结果格式 |
+| [RuyiJS 内部版](../projects/ruyijs/README.md) / [公开 RuyiJS](../projects/ff-ruyijs/README.md) | 各自独立的并行参考：真实浏览器脚本行为与独立 JS/DOM 运行时可做对照 | 无直接运行依赖；新对照用例显式定义 fixture、版本和结果格式 |
 | [RuyiHttp](../projects/ruyihttp/README.md) | 并行参考：浏览器请求观察与独立 HTTP 客户端可比较 | 无直接运行依赖；用各自输出对比同一 fixture 的 HTTP 行为，MCP 无需加载 RuyiHttp 原生库 |
 
 MCP 的 BiDi 事件、RDP 调试记录和内核 DOMTrace 是三种独立证据。同一用例可关联 run ID、浏览器 BuildID 与制品哈希，仍须区分各自的采集来源。Linux 真机与 Docker 的阶段边界见 [迁移路线](03-linux-port.md#6-ruyi-mcp-分阶段验收)。

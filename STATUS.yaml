@@ -1,4 +1,4 @@
-generated_at: '2026-11-27T09:45:00+08:00'
+generated_at: '2026-11-27T10:11:17+08:00'
 platform_repository:
   url: https://github.com/Facetomyself/ruyi-platform
   visibility: public
@@ -9,10 +9,32 @@ baseline:
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline_tag: FIREFOX_159_0_RELEASE
   ruyitrace_kernel_commit: 39bfd14cb45c (NOT in official repo — private fork)
-  ff_ruyijs_pin: 2887d9de1f69c0e9776413da80e7ba0d1225dd9b (official release branch)
+  ff_ruyijs_pin: 2887d9de1f69c0e9776413da80e7ba0d1225dd9b (official release branch)  # historical field for Firefox; the fork SHA is submodules.ff-ruyijs.commit
   domtrace_in_official: false
   verified: 2026-11-19 sparse clone + git ls-remote
 projects:
+  ff-ruyijs:
+    repo: Facetomyself/ff-ruyijs
+    upstream: cutetailbud/ff-ruyijs
+    upstream_branch: main
+    submodule: submodules/ff-ruyijs
+    source: complete
+    relationship: maintained_open_source_fork
+    downstream_scope: [performance, macos_compatibility, linux_compatibility]
+    private_product_source: false
+    upstream_integrated: 469b44951957c525393e717fa296ff74d676d9d0
+    upstream_head_observed: b24604553dff295308b48b36d08e04e68c16d91f
+    upstream_observed_date: '2026-11-27'
+    firefox_gitlink: 2887d9de1f69c0e9776413da80e7ba0d1225dd9b
+    package_version: '0.4.5'
+    maintenance_pr: https://github.com/Facetomyself/ff-ruyijs/pull/39
+    checks:
+      fork_ci: https://github.com/Facetomyself/ff-ruyijs/actions/runs/45926411683
+      fork_mac_pr_guard: https://github.com/Facetomyself/ff-ruyijs/actions/runs/45926411539
+    build: source_pin_only
+    tests: product build and performance measurements not run for platform enrollment
+    phase: public fork enrolled; compatibility and performance changes are reviewed in the fork before proposing focused upstream PRs
+    blocked_by: []
   ruyi-mcp:
     repo: Facetomyself/ruyi-mcp
     submodule: submodules/ruyi-mcp
@@ -162,7 +184,7 @@ projects:
     repo_inner: Facetomyself/ruyijs-inner
     repo_upstream_fork: Facetomyself/ff-ruyijs
     submodule: submodules/ruyijs
-    role_of_fork: reference_only
+    role_of_fork: semantic_reference_only_for_the_internal_product  # The public fork is separately maintained under projects.ff-ruyijs.
     source:
       python_layer: complete
       necko_adapter: complete
@@ -3089,6 +3111,12 @@ blockers:
     severity: A
     decision: 反编译先行
 submodules:
+  ff-ruyijs:
+    url: https://github.com/Facetomyself/ff-ruyijs.git
+    branch: main
+    commit: f1490a564c4cf4c754e7f99af2ed04ee8b2a12ef
+    visibility: public
+    state: added
   ruyi-mcp:
     url: https://github.com/Facetomyself/ruyi-mcp.git
     branch: linux
@@ -3111,11 +3139,11 @@ submodules:
     visibility: private
     state: added
 docs_health:
-  total_markdown: 49
+  total_markdown: 52
   total_cpp_files: 62
   total_scripts: 22
   reproduce_manual: REPRODUCE.md
-  last_full_verification: '2026-11-27 09:26 +08:00: catalog, pinned source checkout and full archival verification passed separately. RuyiJS: 165 ledger blocks, 76 repository copies, 77 secondary digests. Existing product receipts replayed; no new product build.'
+  last_full_verification: '2026-11-27 10:11 +08:00: five first-level gitlinks; catalog, source and full archival checks passed, including the public RuyiJS upstream ancestor and nested Firefox pointer without fetching Firefox. Private JS: 165 ledger blocks, 76 repository copies, 77 secondary digests. No new product build.'
   previous_site_verification: '2026-11-26 +08:00: 60 byte-indexed site operations receipts; real two-slot Docker reloads, independent public desktop A/B, guarded upgrade, rollback, SIGKILL recovery, and 7 streamed GitHub assets. Original ARM product and amd64 receipts retained.'
 tooling:
   scripts:
@@ -3248,10 +3276,10 @@ timeline:
   doc: TIMELINE.md
   verifier: scripts/verify-timeline.py (wired into verify-pins.sh §3.8)
   numbers_verified:
-    basis_platform_commit: e57cbdbabaaad0b019d0fc56e41dc639c33c198a  # 历史计数截至本次维护之前
-    docs: 49
+    basis_platform_commit: 14315177ff1924558df359742f5a92bcbbee8e85  # 计入父仓与本次登记的五个一级 gitlink
+    docs: 52
     cpp_files: 62
     scripts: 22
-    total_commits: 1217
+    total_commits: 1553
   corrections_recorded: 3
 progress_doc: docs/13-ruyitrace-progress.md

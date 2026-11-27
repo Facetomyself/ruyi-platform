@@ -4,6 +4,8 @@
 - 日期：2026-11-19
 - 决策者：项目主体维护者
 
+[ADR 0004](0004-open-ruyijs-gitlink.md) 将 `submodules/ff-ruyijs` 作为公开开发项目接入，与私有 `submodules/ruyijs` 并列；本 ADR 的**内部实现来源与验收规则继续有效**。历史样本和工作量判断按 2026-11-19 当日理解，现行内部制品见[源码交接](../14-source-handoff.md#选择交付物)。
+
 ## 背景
 
 内部 wheel `ruyijs 0.2.2+inner.*` 的 Python 层（19 文件，1605 行）是明文，但原生壳 `dist/js.exe`（49.5 MB）只有二进制。
@@ -20,7 +22,7 @@
 
 ### B. 独立反编译还原（选中）
 
-内部产物自成一个还原目标，fork 只作语义对照。
+对于内部版，内部产物自成一个还原目标，公开 fork 只作语义对照。
 
 ## 决策
 
@@ -66,6 +68,6 @@
 
 ## 关联
 
-- `docs/06-ruyijs-inner.md`
-- `docs/03-linux-port.md` L2
-- `PINS.md` §3
+- [内部实现来源规则](../06-ruyijs-inner.md)
+- [Linux 移植对照](../03-linux-port.md)
+- [公开开发 pin](../../PINS.md#open-ruyijs)与 [PINS §3 历史样本](../../PINS.md)

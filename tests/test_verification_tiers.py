@@ -39,7 +39,8 @@ class VerificationTiers(unittest.TestCase):
         sources = {'ruyi-mcp': ('ruyi-mcp', 'public', '1' * 40),
                    'ruyihttp': ('ruyihttp', 'public', '2' * 40),
                    'ruyijs': ('ruyijs-inner', 'private', '3' * 40),
-                   'ruyitrace': ('ruyitrace', 'private', '4' * 40)}
+                   'ruyitrace': ('ruyitrace', 'private', '4' * 40),
+                   'ff-ruyijs': ('ff-ruyijs', 'public', '5' * 40)}
         self.status = dict(generated_at='fixture', baseline={'firefox_commit': '5' * 40}, projects={},
                            artifacts={}, blockers=[], submodules={})
         sections = []
@@ -50,10 +51,14 @@ class VerificationTiers(unittest.TestCase):
             self.status['projects'][name] = {'submodule': path, ('repo_inner' if name == 'ruyijs' else 'repo'): slug}
             self.status['submodules'][name] = dict(url=url, visibility=visibility, state='added', commit=oid)
             sections += [f'[submodule "{path}"]', f'\tpath = {path}', f'\turl = {url}']
-            if name == 'ruyi-mcp':
-                sections.append('\tbranch = linux')
-                self.status['submodules'][name]['branch'] = 'linux'
+            if name in ('ruyi-mcp', 'ff-ruyijs'):
+                branch = 'linux' if name == 'ruyi-mcp' else 'main'
+                sections.append(f'\tbranch = {branch}')
+                self.status['submodules'][name]['branch'] = branch
             self.git('update-index', '--add', '--cacheinfo', f'160000,{oid},{path}')
+        self.status['projects']['ff-ruyijs'].update(upstream='cutetailbud/ff-ruyijs', upstream_branch='main',
+                                                   private_product_source=False, upstream_integrated='6' * 40,
+                                                   firefox_gitlink='7' * 40)
         self.status['projects']['ruyijs']['verified'] = {
             'private_linux_x86_donor_source': {'guarded_build': {
                 'with_copy': dict(evidence='deliverables/history/validation.json', evidence_sha256=sha(COPY),
@@ -97,9 +102,12 @@ class VerificationTiers(unittest.TestCase):
         (self.root / 'STATUS.yaml').write_text(yaml.safe_dump(self.status, sort_keys=False))
 
     def write_pins(self):
-        oid = self.status['submodules']['ruyi-mcp']['commit']
-        (self.root / 'PINS.md').write_text('| ruyi-mcp | [Facetomyself/ruyi-mcp]'
-                                         f'(https://github.com/Facetomyself/ruyi-mcp) | `linux` | `{oid}` |\n')
+        rows = []
+        for name in ('ruyi-mcp', 'ff-ruyijs'):
+            pin = self.status['submodules'][name]
+            slug = f'Facetomyself/{name}'
+            rows.append(f"| {name} | [{slug}](https://github.com/{slug}) | `{pin['branch']}` | `{pin['commit']}` |")
+        (self.root / 'PINS.md').write_text('\n'.join(rows) + '\n')
 
     def checkout(self, name):
         path = self.root / 'submodules' / name
@@ -122,7 +130,7 @@ class VerificationTiers(unittest.TestCase):
         self.assertFalse((self.root / 'submodules').exists())
         self.receipt.unlink()
         result = self.pins('--catalog', evidence_root='ignored-relative-path')
-        output = self.expect(result, 0, '4 gitlinks', 'recorded visibility: public', 'recorded visibility: private',
+        output = self.expect(result, 0, '5 gitlinks', 'submodules/ff-ruyijs', 'recorded visibility: public', 'recorded visibility: private',
                              'source, receipts, and tests not checked')
         self.assertNotIn('JS ledger', output)
 
@@ -172,6 +180,23 @@ class VerificationTiers(unittest.TestCase):
             with self.subTest(row=bad):
                 pins.write_text(bad)
                 self.expect(self.pins('--catalog'), 1, 'PINS.md:')
+
+    def test_open_fork_identity_and_pin_are_independent_of_private_product(self):
+        file = self.root / 'PINS.md'
+        good = file.read_text()
+        file.write_text(good.replace('5' * 40, 'a' * 40))
+        self.expect(self.pins('--catalog'), 1, 'PINS.md: ff-ruyijs')
+        file.write_text(good)
+        fork = self.status['projects']['ff-ruyijs']
+        for key, wrong in [('upstream', 'Facetomyself/ff-ruyijs'), ('private_product_source', True),
+                           ('firefox_gitlink', 'not-a-sha')]:
+            old = fork[key]; fork[key] = wrong
+            self.write_status()
+            self.expect(self.pins('--catalog'), 1, 'ff-ruyijs:')
+            fork[key] = old
+        self.status['submodules']['ff-ruyijs']['visibility'] = 'private'
+        self.write_status()
+        self.expect(self.pins('--catalog'), 1, 'wrong public fork')
 
     def test_repo_rejects_missing_or_mismatched_checkout(self):
         path = self.root / 'submodules' / 'ruyijs'

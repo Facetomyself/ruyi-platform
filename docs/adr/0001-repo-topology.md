@@ -1,6 +1,6 @@
 # ADR 0001 · 仓库拓扑：单主体仓 + 三 submodule + 上游不挂载
 
-- 状态：已接受
+- 状态：已接受。本文保留建仓时的三项目拓扑；[ADR 0004](0004-open-ruyijs-gitlink.md) 仅覆盖「公开 fork 不挂载」，内部版边界照旧。
 - 日期：2026-11-19
 - 决策者：项目主体维护者
 
@@ -33,7 +33,7 @@ Ruyi 三件套（RuyiJS / RuyiHttp / RuyiTrace）有共同的 Firefox 159 血统
 **选 A**，并且：
 
 1. `submodules/ruyijs` 指向**新建的** `Facetomyself/ruyijs-inner`（private），而非 `ff-ruyijs`
-2. `Facetomyself/ff-ruyijs` **不挂 submodule**，只记录 pin
+2. ~~`Facetomyself/ff-ruyijs` 不挂 submodule，只记录 pin~~（历史决定，由 [ADR 0004](0004-open-ruyijs-gitlink.md) 覆盖）
 3. `ruyitrace` 独立建 private 库
 
 ## 理由
@@ -45,7 +45,7 @@ Ruyi 三件套（RuyiJS / RuyiHttp / RuyiTrace）有共同的 Firefox 159 血统
 
 ### 为什么 ff-ruyijs 不挂、内部版另建
 
-`ff-ruyijs` 是 **public** fork。它承担两个职责：向 `cutetailbud` 提 PR、提供反编译时的语义对照。
+以下是当时不挂载的理由。并列接入后，公开 fork 仍可作语义对照，但不是内部版来源；现行职责见 [ADR 0004](0004-open-ruyijs-gitlink.md)。
 
 一旦把它挂成 submodule，会产生三个错误暗示：
 
@@ -64,18 +64,18 @@ Ruyi 三件套（RuyiJS / RuyiHttp / RuyiTrace）有共同的 Firefox 159 血统
 
 ### 负面
 
-- clone 需要 `--recurse-submodules`
+- ~~clone 需要 `--recurse-submodules`~~。现行用普通 clone，并只初始化一级组件，见[复现手册](../../REPRODUCE.md#1-拉仓)。
 - 跨项目改动（如 necko ABI 变更）需要三个仓一起提交
 - 需要 `scripts/sync-submodules.sh` 与 `verify-pins.sh` 维持一致性
 
 ### 缓解
 
-- `PINS.md` 是唯一版本真相源，三仓共用一个基线（Firefox `39bfd14c`）
+- ~~三仓共用一个基线（Firefox `39bfd14c`）~~。各项目构建及历史样本分别由 [PINS](../../PINS.md) 固定。
 - `STATUS.yaml` 机器可读，脚本可校验
 - 提交前跑 `verify-pins.sh` + `verify-links.py` + `verify-manifests.py`
 
 ## 关联
 
-- `README.md` §二 仓库拓扑
-- `PINS.md` §3（ff-ruyijs 定位）
-- `docs/06-ruyijs-inner.md` §0（三层边界规则）
+- [平台拓扑](../../README.md#二仓库拓扑)
+- [公开 RuyiJS 开发 pin](../../PINS.md#open-ruyijs)；早期参考快照仍见 [PINS §3](../../PINS.md)
+- [RuyiJS 内部版来源规则](../06-ruyijs-inner.md#0-三层边界先立规矩)

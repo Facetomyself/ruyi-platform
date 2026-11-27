@@ -89,15 +89,15 @@ def github_slug(url):
     return match[1] if match else None
 
 
-def check_mcp_pin(mcp):
-    lines = (ROOT / 'PINS.md').read_text(encoding='utf-8').splitlines()
-    rows = [line for line in lines if re.match(r'^\|\s*ruyi-mcp\s*\|', line)]
-    require(len(rows) == 1, 'PINS.md: expected exactly one ruyi-mcp pin row')
-    row = re.fullmatch(r'\|\s*ruyi-mcp\s*\|\s*\[([^\]]+)\]\(([^)]+)\)\s*\|\s*'
+def check_document_pin(name, registration, lines):
+    prefix = rf'\|\s*{re.escape(name)}\s*\|'
+    rows = [line for line in lines if re.match(prefix, line)]
+    require(len(rows) == 1, f'PINS.md: expected exactly one {name} pin row')
+    row = re.fullmatch(prefix + r'\s*\[([^\]]+)\]\(([^)]+)\)\s*\|\s*'
                        r'`([^`]+)`\s*\|\s*`([0-9a-f]{40})`\s*\|\s*', rows[0])
-    require(row and row[1] == github_slug(mcp['url']) == github_slug(row[2])
-            and row[3] == mcp.get('branch') and row[4] == mcp['commit'],
-            'PINS.md: ruyi-mcp source URL, branch or SHA differs from STATUS.yaml')
+    require(row and row[1] == github_slug(registration['url']) == github_slug(row[2])
+            and row[3] == registration.get('branch') and row[4] == registration['commit'],
+            f'PINS.md: {name} source URL, branch or SHA differs from STATUS.yaml')
 
 
 def check_catalog():
@@ -111,7 +111,8 @@ def check_catalog():
                 and not path.is_symlink() and path.is_file(), f'{name}: missing regular parent file in checkout/index')
     status = read_status()
     pins = status['submodules']
-    require('ruyi-mcp' in pins, 'STATUS.yaml: missing ruyi-mcp submodule registration')
+    for name in ('ruyi-mcp', 'ff-ruyijs', 'ruyijs'):
+        require(name in pins, f'STATUS.yaml: missing {name} submodule registration')
     expected = {f'submodules/{name}': name for name in pins}
     modules = module_config()
     same_set('.gitmodules sections vs STATUS.yaml', modules.keys(), expected.keys())
@@ -139,7 +140,22 @@ def check_catalog():
                 f'{path}: branch differs between STATUS.yaml and .gitmodules, or is missing')
         require(pin.get('visibility') in ('public', 'private'),
                 f'{path}: missing or invalid visibility in STATUS.yaml')
-    check_mcp_pin(pins['ruyi-mcp'])
+    # The public performance/portability fork and the private product must
+    # remain distinct even if the YAML and .gitmodules are edited together.
+    public, inner = pins['ff-ruyijs'], pins['ruyijs']
+    opened = status['projects']['ff-ruyijs']
+    require(github_slug(public['url']) == 'Facetomyself/ff-ruyijs' and public['visibility'] == 'public'
+            and public.get('branch') == 'main' and opened.get('upstream') == 'cutetailbud/ff-ruyijs'
+            and opened.get('upstream_branch') == 'main' and opened.get('private_product_source') is False,
+            'ff-ruyijs: wrong public fork, upstream, branch or private-source boundary')
+    require(github_slug(inner['url']) == 'Facetomyself/ruyijs-inner' and inner['visibility'] == 'private',
+            'ruyijs: the private product must remain separate from ff-ruyijs')
+    for field in ('upstream_integrated', 'firefox_gitlink'):
+        require(isinstance(opened.get(field), str) and SHA.fullmatch(opened[field]),
+                f'ff-ruyijs: invalid {field} SHA in STATUS.yaml')
+    lines = (ROOT / 'PINS.md').read_text(encoding='utf-8').splitlines()
+    for name in ('ruyi-mcp', 'ff-ruyijs'):
+        check_document_pin(name, pins[name], lines)
     for path, name in sorted(expected.items()):
         pin = pins[name]
         print(f"  PASS {path} {pin['commit']} (recorded visibility: {pin['visibility']})")

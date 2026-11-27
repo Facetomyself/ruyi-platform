@@ -1,8 +1,8 @@
 # RuyiJS（内部版）
 
-仓库：`Facetomyself/ruyijs-inner`（private，**已存在**：2026-11-04 创建，7.4 MB，默认分支 `main`）
-挂载：`submodules/ruyijs`
-上游参考：`Facetomyself/ff-ruyijs`（public fork，**只作 PR 与对照，不作基线**）
+仓库：`Facetomyself/ruyijs-inner`（private，`main`），平台路径为 `submodules/ruyijs`。
+
+[公开 RuyiJS](../ff-ruyijs/README.md) 是独立的 `submodules/ff-ruyijs`，其[开发 pin](../../PINS.md#open-ruyijs)不作为内部实现来源，也不替换历史 donor 或固定工件。对内部版而言，公开实现只作语义对照；内部源码与验收见[来源约定](../../docs/06-ruyijs-inner.md#0-三层边界先立规矩)及[交接说明](../../docs/14-source-handoff.md#选择交付物)。
 
 ## 是什么
 
@@ -24,7 +24,7 @@ Firefox 159 的 SpiderMonkey + 38 个浏览器子系统的 Python 可编程封�
 | `0.2.2+inner.492ee47` | 46.0 MB | ✅ | 26 个 | ❌ |
 | `0.2.2+inner.20261101191032` | 46.6 MB | ❌ | 0 | ✅ |
 
-记录：`artifacts/manifests/ruyijs-inner-*.yaml`
+以上是早期两个 Win64 wheel 的身份；后续 Linux 制品及各自的验收见[平台交接](../../docs/14-source-handoff.md#选择交付物)。原件清单：`artifacts/manifests/ruyijs-inner-*.yaml`。
 
 ## 期望目录（ruyijs-inner 建库后）
 
@@ -49,7 +49,7 @@ ruyijs-inner/
 
 ## 当前状态
 
-**语义重建进行中**（不是从 0 开始）。
+**早期语义重建快照**如下；现行内部产品交付以[源码交接](../../docs/14-source-handoff.md#选择交付物)为准。
 
 | 分类 | 数量 |
 | --- | ---: |
@@ -2202,7 +2202,7 @@ pixman 第一次编译 40 个失败，因为它要求 Mozilla 头文件（`pixma
 
 ## Seed 关系（重要）## Seed 关系（重要）
 
-`ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是当前的 0.4.1（`3501a90`）。
+`ruyijs-inner` 的 seed 是 `ff-ruyijs` **0.2.1**（`c69875b5`），不是后来用于对照的 0.4.1（`3501a90`），也不是现在的公开开发 gitlink。
 
 **0.2.1 没有跨平台代码**——`python/ruyijs/_pipe.py` 仍是 Windows 独占的 127 行。0.4.1 的 AF_UNIX 分支（208 行）是后出现的能力，只能作可行性证据，不能作内部版现状依据。
 

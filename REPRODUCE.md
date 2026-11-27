@@ -1,6 +1,6 @@
 # 复现手册：从零到这个状态
 
-**新接入项目先看[源码与构建交接](docs/14-source-handoff.md)。** 默认四个 gitlink 是平台开发基线，Trace amd64 R5 产品使用另一个明确的源码标签。本页保留基础契约与静态分析的复现步骤；其中列出的历史测试数是示例，不能代替当前包验收。
+**新接入项目先看[源码与构建交接](docs/14-source-handoff.md)。** 平台的五个一级 gitlink 是开发基线，Trace amd64 R5 产品使用另一个明确的源码标签。本页保留基础契约与静态分析的复现步骤；其中列出的历史测试数是示例，不能代替当前包验收。
 
 ---
 
@@ -30,24 +30,33 @@ python3 -m pip install --user pyyaml pefile capstone
 ## 1. 拉仓
 
 ```bash
-git clone --recurse-submodules https://github.com/Facetomyself/ruyi-platform
+git clone https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
 ```
 
-已有 clone 但缺 submodule：
+普通 clone 只取父仓。匿名公开路径按固定提交检出 RuyiHttp、ruyi-mcp 和公开 RuyiJS：
 
 ```bash
-git submodule update --init --recursive
+git -c submodule.recurse=false submodule update --init --checkout -- \
+  submodules/ruyihttp submodules/ruyi-mcp submodules/ff-ruyijs
 ```
 
-**验证**（四个指针应全部匹配当前平台提交）：
+运行 `--repo` 或 `--full` 时，需要两个私有组件的读取权限，并检出全部一级组件：
 
 ```bash
-git submodule status
-# 期望四行，每行以空格和固定 commit 开头；-、+、U 前缀表示未初始化、偏离 pin 或冲突
+git -c submodule.recurse=false submodule update --init --checkout
 ```
 
-只检出 MCP 时可运行 `git submodule update --init --checkout -- submodules/ruyi-mcp`。组件安装和 Docker 路线见 [ruyi-mcp 项目入口](projects/ruyi-mcp/README.md)。
+**验证**（核对父仓记录与一级检出）：
+
+```bash
+git ls-tree HEAD:submodules
+git -c submodule.recurse=false submodule status
+# 五个一级 gitlink；空格表示已对齐，- 表示未初始化，+ 表示偏离 pin，U 表示冲突。
+# 只检出公开组件时，两个私有子模块应保持 -。
+```
+
+只检出 MCP 时在相同命令后指定 `-- submodules/ruyi-mcp`，安装见 [ruyi-mcp 项目入口](projects/ruyi-mcp/README.md)。Firefox 是公开 fork 自己的下一层子模块；平台校验与普通开发检出无需它。仅在需要构建该 fork 时查[项目构建入口](projects/ff-ruyijs/README.md)。
 
 ---
 
@@ -58,15 +67,15 @@ git submodule status
 | 档位 | 输入 | 退出 0 说明什么 |
 |---|---|---|
 | `--catalog` | 普通 clone，仅父仓 | 登记的模块地址、路径、固定 SHA 与 Git 指针一致。没有拉取、构建或运行组件。 |
-| `--repo` | 完整历史、递归检出的四个固定子模块 | 源码与仓内收据通过校验；JS 仅存于仓外的原件未验，此项在输出中单列。 |
+| `--repo` | 具备完整历史的父仓、五个固定提交的一级子模块 | 源码与仓内收据通过校验；JS 仅存于仓外的原件未验，此项在输出中单列。 |
 | `--full`（无参数也选此档） | 上一档，加上有权限读取的完整历史证据库 | 在仓内检查之外，重算外部原件、比对登记的仓内副本和次级摘要。缺件则非零退出。回放证据与在目标机重跑产品是两件事。 |
 
 ```bash
 # 无须初始化子模块
 bash scripts/verify-pins.sh --catalog
 
-# 递归检出；需拥有每个私有组件的读取权限
-git submodule update --init --recursive
+# 只初始化一级 gitlink；需拥有两个私有组件的读取权限
+git -c submodule.recurse=false submodule update --init --checkout
 bash scripts/verify-pins.sh --repo
 
 # 证据根包含 deliverables/ 与 acceptance/；路径可独立于平台 clone
@@ -189,7 +198,7 @@ python3 scripts/gen-trace-config.py --asm /tmp/p1p2.asm \
 
 | 现象 | 原因 | 处理 |
 | --- | --- | --- |
-| `verify-pins.sh` 报 submodule `NOT INIT` | 没拉 submodule | `git submodule update --init --recursive` |
+| `verify-pins.sh` 报 submodule `NOT INIT` | 尚未检出所需一级组件 | `git -c submodule.recurse=false submodule update --init --checkout`；只有公开权限时运行 `--catalog` 并按公开路径检出 |
 | `wiring` 测试 SKIP | 缺 `artifacts/analysis/domtrace/switches.json` | 跑第 4 节第 2 步 |
 | `ModuleNotFoundError: yaml` | 缺 pyyaml | `pip install --user pyyaml` |
 | `verify-manifests.py` 全 SKIP | 本地没有二进制实物 | 正常；放进 `artifacts/binaries/` 后才会真的核对 hash |
@@ -203,7 +212,7 @@ python3 scripts/gen-trace-config.py --asm /tmp/p1p2.asm \
 | --- | --- | --- |
 | `xul.dll` / `js.exe` / wheel | 二进制不入 git | 从发布包取，见第 4 节与 `artifacts/manifests/` |
 | domtrace 内核原始源码 | 包里没有，需反编译 | `docs/05-reverse-analysis.md` |
-| Firefox 源码树 | 数十 GB | `upstream/README.md` 的 pin |
+| Firefox 源码树 | 各项目独立固定，平台不自动取得 | [公开 RuyiJS 构建入口](projects/ff-ruyijs/README.md)或对应组件自己的构建手册 |
 | `env_inventory` 的字段定义 | 手册没写 | `projects/ruyitrace/outputs-remaining.md` |
 | Windows 上的实跑能力 | 需要 Windows | 当前所有验证都是 host 可跑的静态契约 |
 
@@ -231,7 +240,7 @@ python3 scripts/gen-trace-config.py --asm /tmp/p1p2.asm \
 ## 10. 如果你只有 5 分钟
 
 ```bash
-git clone --no-recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
+git clone https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
 python3 -c 'import yaml'
 bash scripts/verify-pins.sh --catalog

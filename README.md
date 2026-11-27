@@ -1,8 +1,8 @@
 # ruyi-platform
 
-Ruyi 三件套、RuyiDOM 与自动化控制面 **ruyi-mcp** 的文档总入口：结构规划、源码还原与跨平台工程化。
+Ruyi 各组件的文档总入口：结构规划、源码还原与跨平台工程化。
 
-代码在各组件仓维护。四个现有组件由 submodule 接入；[RuyiDOM](docs/14-source-handoff.md#ruyidom-独立源码交接) 是独立维护仓，单独检出。本仓负责说明各组件的边界、还原、移植与验收方式。
+代码在各组件仓维护。平台以一级 gitlink 接入五个项目：公开的 RuyiHttp、ruyi-mcp 和公开 RuyiJS，以及私有的 RuyiJS 内部版和 RuyiTrace。[RuyiDOM](docs/14-source-handoff.md#ruyidom-独立源码交接) 是独立维护的第六个相关项目，单独检出。
 
 ---
 
@@ -15,7 +15,7 @@ Ruyi 三件套、RuyiDOM 与自动化控制面 **ruyi-mcp** 的文档总入口�
 | 更新频率 | 每次结论变化 | 每次代码变化 |
 | 可见性 | **public**，可匿名克隆；访问边界见[ADR 0003](docs/adr/0003-public-catalog-private-gitlinks.md) | 按项目分别设定，见 §三 |
 
-**本仓是唯一的事实来源（single source of truth）**：三件套的版本矩阵、ABI 契约、缺口清单都以本仓为准。代码仓里的 README 是入口，不是权威。
+**跨项目结论以本仓为准**：版本矩阵、组件间 ABI 契约与交付缺口集中记录；项目自身的构建方法以各组件手册为准。
 
 ---
 
@@ -27,42 +27,28 @@ ruyi-platform (public, 本仓)
 │   ├── ruyihttp      → Facetomyself/ruyihttp        (public)   ← RuyiHttp 代码
 │   ├── ruyijs        → Facetomyself/ruyijs-inner    (private)  ← 内部版反编译 + 工程化
 │   ├── ruyitrace     → Facetomyself/ruyitrace       (private)  ← RuyiTrace 主体
-│   └── ruyi-mcp      → Facetomyself/ruyi-mcp        (public)   ← Linux 自动化与调试控制面
+│   ├── ruyi-mcp      → Facetomyself/ruyi-mcp        (public)   ← Linux 自动化与调试控制面
+│   └── ff-ruyijs     → Facetomyself/ff-ruyijs       (public)   ← 公开 RuyiJS；维护分支 main
+│                        ↑ 公开上游：cutetailbud/ff-ruyijs
 │
-├── upstream/         只读参考（不挂 submodule）
-│   ├── ff-ruyijs     → Facetomyself/ff-ruyijs        (public fork)
-│   │                    用途：① 向上游 cutetailbud 提 PR；② 反编译时的对照基线
-│   │                    禁止：把它的代码当作内部版来源
-│   └── firefox       → mozilla-firefox/firefox      只记 commit
+├── upstream/         历史只读参考说明；不包含现行组件或 Firefox 源码
 │
 └── docs/             全部规划与结论（唯一权威）
 ```
 
-### RuyiJS 的三层关系（**重要，不要混**）
+### 公开 RuyiJS 与内部版的来源边界
 
 | 层 | 仓库 | 性质 | 允许做什么 |
 | --- | --- | --- | --- |
 | 开源上游 | `cutetailbud/ff-ruyijs` | public | 只读 |
-| 我们的 fork | `Facetomyself/ff-ruyijs` | public | **只做 PR 贡献 + 反编译对照**，不当内部版基线 |
+| [公开 RuyiJS fork](projects/ff-ruyijs/README.md) | `Facetomyself/ff-ruyijs`（`main`） | public | 只做公开 RuyiJS 性能与 macOS/Linux 兼容，并向上游提 PR；保留 Windows 在共用主干上的既有行为 |
 | **内部版** | `Facetomyself/ruyijs-inner` | **private** | **反编译分析 + 工程化 + 语义化**，内部 wheel 的唯一来源 |
 
-**硬规则**：
+`submodules/ff-ruyijs` 与 `submodules/ruyijs` 是并列的独立源码入口。公开实现可以用作内部还原时的语义对照，内部实现及验收以私有仓与内部产物为准。详细规则见[内部版来源约定](docs/06-ruyijs-inner.md#0-三层边界先立规矩)。
 
-1. `ff-ruyijs` 是公开仓库，**不承载内部功能**。内部改动一律进 `ruyijs-inner`。
-2. `ruyijs-inner` 的源码来自**对内部 wheel 的反编译还原**，而不是从 `ff-ruyijs` 抄。
-3. `ff-ruyijs` 只用于两件事：给上游提 PR；反编译时当「公开实现长什么样」的对照物。
-4. 内部版要向 `ff-ruyijs` 回流的能力，走 PR 流程单向流出，不回灌。
+### 历史决策：公开 fork 曾独立于平台检出
 
-### 为什么 ff-ruyijs 不挂 submodule
-
-因为它**不是内部产品的组成部分**，只是外部参考：
-
-1. **PR 目标**——上游修复要回流到 `cutetailbud/ff-ruyijs`，走 public fork。
-2. **反编译对照**——还原内部版时，需要知道「官方公开实现是怎么写的」，但这只是参照，不是来源。
-
-挂成 submodule 会让人误以为内部版基于它构建。实际关系是：**内部版独立反编译，ff-ruyijs 提供语义参照。**
-
-所以本仓只记录它指向的 commit（见 `PINS.md` §3），不引入代码。
+**现已覆盖。** [ADR 0001](docs/adr/0001-repo-topology.md) 曾决定「~~公开 fork 不挂 submodule，只记录参考提交~~」。[ADR 0004](docs/adr/0004-open-ruyijs-gitlink.md) 将公开 fork 作为独立开发项目接入；[ADR 0002](docs/adr/0002-ruyijs-reverse-not-fork.md) 的内部来源规则仍有效。新的[公开开发 pin](PINS.md#open-ruyijs) 与早期只读样本、固定 donor 及已发布工件分别追溯。
 
 ### 为什么 RuyiTrace 单独建私有库
 
@@ -86,8 +72,9 @@ RuyiTrace 有三块互不重叠的内容，混在一个仓里会互相污染版�
 | `submodules/ruyijs` | `Facetomyself/ruyijs-inner` | private | ✅ 已有（2026-11-04） | **内部版反编译产物 + 工程化源码**，wheel 的唯一来源 |
 | `submodules/ruyitrace` | `Facetomyself/ruyitrace` | private | ✅ 已有 | 控制台 + domtrace 还原 + 发布清单 |
 | `submodules/ruyi-mcp` | `Facetomyself/ruyi-mcp` | public | ✅ 已纳管 | [MCP 项目入口](projects/ruyi-mcp/README.md)：Linux 控制面、Firefox 与 Trace 共会话 |
+| `submodules/ff-ruyijs` | `Facetomyself/ff-ruyijs`（`main`） | public | ✅ 已纳管 | [公开 RuyiJS 项目入口](projects/ff-ruyijs/README.md)与[开发 pin](PINS.md#open-ruyijs) |
 
-**不在 submodule 里**：`Facetomyself/ff-ruyijs`（public fork，只做 PR 与反编译对照）。
+[RuyiDOM](docs/14-source-handoff.md#ruyidom-独立源码交接) 仍独立检出，平台父仓只登记上述一级 gitlink。
 
 ruyi-mcp 以 [固定 gitlink](PINS.md#9-ruyi-mcp) 接入，同时继续在组件仓 `linux` 分支独立维护。它连接 RuyiTrace 的 Firefox 运行时，与 RuyiJS、RuyiHttp 的关系见 [组件架构](docs/01-architecture.md#5-ruyi-mcp-控制面与组件边界)。原生组件的 Firefox、NSS、Neqo 基线各自见 [PINS](PINS.md)，MCP 源码 pin 与浏览器发布制品独立。
 
@@ -128,10 +115,11 @@ ruyi-platform/
 │   ├── ruyijs/                   README / structure / reverse-analysis
 │   │                             / operation-dispatch / CHANGELOG
 │   ├── ruyitrace/                README / structure / domtrace-analysis
-│   └── ruyi-mcp/                 README / CHANGELOG
-│                                 / domtrace-contract / domtrace-readers
-│                                 / instrumentation-sites / codegen-changes
-│                                 / outputs-remaining / CHANGELOG
+│   │                             / domtrace-contract / domtrace-readers
+│   │                             / instrumentation-sites / codegen-changes
+│   │                             / outputs-remaining / CHANGELOG
+│   ├── ruyi-mcp/                 README / CHANGELOG
+│   └── ff-ruyijs/                公开 RuyiJS 项目入口
 │
 ├── artifacts/                    ← 发布物清单（不含二进制）
 │   ├── README.md
@@ -171,7 +159,7 @@ ruyi-platform/
 | 原生库 `.so` / `.dll` / `.dylib` | ✅ **入库** | 每个已验收目标仅保留一套原生库，保证 wheel 可离线封装 |
 | 内部 wheel（46 MB） | ❌ | 只记 SHA256 + 来源，见 `artifacts/manifests/` |
 | RuyiTrace 包（557 MB zip / 1.5 GB 解包） | ❌ | 只记 SHA256 + 内核文件 hash |
-| Firefox 源码树 | ❌ | 数十 GB，靠 submodule + pin |
+| Firefox 源码树 | ❌ | 各构建各自固定；公开 RuyiJS 仅在构建时按 fork 自己的手册取得嵌套源码 |
 | 反编译中间产物（`.idb` / `.i64` / dump） | ❌ | 体积大且可再生，目录 gitignore |
 
 原生库入库的代价是仓库会随平台增加而膨胀，**因此规定**：每个平台的库目录一旦入库，不允许出现同一文件的多个版本；换代必须整目录替换并更新 `PINS.md` 与 `STATUS.yaml`。
@@ -183,17 +171,26 @@ ruyi-platform/
 用 Git、Bash、Python 3 和 PyYAML，先匿名克隆公开父仓并核对目录。按路径检出公开组件无需登录；检出私有组件需相应子仓的读取权限。
 
 ```bash
-git clone --no-recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
+git clone https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
 bash scripts/verify-pins.sh --catalog
+```
 
-# 只用公开组件：只初始化这两项
-git submodule update --init --checkout -- submodules/ruyihttp submodules/ruyi-mcp
+**公开开发**：只检出所需的一级组件；需要三个公开组件时执行：
 
-# 内部维护：在干净副本按父仓固定提交初始化全部子模块
-git submodule update --init --recursive
+```bash
+git -c submodule.recurse=false submodule update --init --checkout -- \
+  submodules/ruyihttp submodules/ruyi-mcp submodules/ff-ruyijs
+```
+
+**内部维护**：具备两个私仓读取权限时，在干净副本检出全部一级组件并校验：
+
+```bash
+git -c submodule.recurse=false submodule update --init --checkout
 bash scripts/verify-pins.sh --repo
 ```
+
+上述检出只到平台的一级组件。仅在构建公开 RuyiJS 需要 Firefox 时，按 [fork 的构建入口](projects/ff-ruyijs/README.md)处理其嵌套源码。
 
 完整历史验收使用 `--full`（也是无参数时的严格默认档），须另备内部证据库并指定 `RUYI_PLATFORM_EVIDENCE_ROOT`。各档输入、退出码含义与单件原包核验见[复现手册](REPRODUCE.md#2-按取得的材料运行校验)。
 
@@ -208,8 +205,9 @@ bash scripts/verify-pins.sh --repo
 | **RuyiTrace** | amd64 R5 历史包独立保留；[ARM64 R5 CLI2 正式发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)供稳定站点使用，site2 在用、site1 可回退，浏览器和桌面按需运行，见[站点回执](artifacts/receipts/trace-arm64-site-operations/README.md)。[原生事件 Beta 1](artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/two-architecture-review.json)在 amd64、ARM64 各有 22 案；[Electron owner Alpha 1](artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/README.md)是另一个按需预发行，只验虚拟席位。两者均未替换默认站点或平台 gitlink；[实体显示和人工 IME 仍待签收](docs/04-risks-and-gaps.md#当前交付缺口)。 |
 | **RuyiHttp** | [0.9.4 已公开发行](https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.4)，[五平台精确 wheel 回执](artifacts/receipts/ruyihttp-0.9.4/README.md)保留固定构建与验收依据。Linux amd64、ARM64 均在 glibc 2.31 实装并验证直连 H1/H2/H3 和单跳 CONNECT-UDP 内层原生 H3；[v0.9.3](https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.3)继续保留。 |
 | **RuyiJS 内部版** | **Linux ARM64：**[R433 私有双 wheel 正式发行](artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md)，`oracle-reverse-dev` 使用 `r433-host1`，已实测回到完整 `r432-host1` 再切回。[安装与回滚](submodules/ruyijs/docs/linux-arm64-r433.md) · [发布下载与生产验收](artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)。Linux amd64 的 [R356 离线 wheel](artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json)与 [R357 明文 HTTP/1 组件](artifacts/receipts/ruyijs-linux-http1-r357/validation.json)独立保留。 |
+| **公开 RuyiJS** | [项目入口](projects/ff-ruyijs/README.md)及[源码 pin](PINS.md#open-ruyijs)用于检出与上游贡献；gitlink 只固定开发源码，历史固定 donor、公开发行工件与私有 wheel 均独立。 |
 | **ruyi-mcp** | Firefox 自启与 owner 借用分开验收。[生产 CLI 矩阵](projects/ruyi-mcp/LIVE-MATRIX.md)覆盖 amd64、ARM64 各自同一 QA 镜像中的借用和跨机 SSH stdio；意外退出与同客户端恢复仅为 ARM64 CLI 证据。Electron Alpha 按其独立客户端和虚拟席位回执选用。 |
-| **RuyiDOM（独立仓）** | **现有宿主**：在 `oracle-reverse-dev` 执行 `~/.local/bin/ruyidom verify`；按需、默认离线，沿用 v0.3.0 Noble 镜像。**取源码或对应制品**：现发行 v0.3.1，见[独立交接](docs/14-source-handoff.md#ruyidom-独立源码交接)及[发行与宿主的独立固定值](PINS.md#11-ruyidom-独立仓)，平台仍为四个 gitlink。 |
+| **RuyiDOM（独立仓）** | **现有宿主**：在 `oracle-reverse-dev` 执行 `~/.local/bin/ruyidom verify`；按需、默认离线，沿用 v0.3.0 Noble 镜像。**取源码或对应制品**：现发行 v0.3.1，见[独立交接](docs/14-source-handoff.md#ruyidom-独立源码交接)及[发行与宿主的独立固定值](PINS.md#11-ruyidom-独立仓)；它仍是平台 gitlink 之外的第六个相关项目。 |
 
 **反编译是本仓两条主线**：`ruyijs-inner` 与 `ruyitrace/domtrace`。方法论相同（见 `docs/05-reverse-analysis.md`），对象与难度不同：
 
@@ -241,7 +239,7 @@ bash scripts/verify-pins.sh --repo
 | [`docs/11-aarch64-assessment.md`](docs/11-aarch64-assessment.md) | linux_aarch64 原生库可行性评估 |
 | [`docs/12-real-build-findings.md`](docs/12-real-build-findings.md) | 补丁在真实 Firefox 树里的验证结论 |
 | [`docs/13-ruyitrace-progress.md`](docs/13-ruyitrace-progress.md) | RuyiTrace 整体进度评估 |
-| [`docs/adr/`](docs/adr/) | 架构决策记录（0001 仓库拓扑 / 0002 ruyijs 反编译而非 fork） |
+| [`docs/adr/`](docs/adr/) | 架构决策记录（含公开目录权限、两条 RuyiJS 来源规则及公开 fork 接入） |
 | [`TIMELINE.md`](TIMELINE.md) | 工作主线（为何做、遇到什么、怎么解决） |
 | [`HANDOVER.md`](HANDOVER.md) | 阶段总结与交接（做了什么、可信度、卡在哪） |
 | [`REPRODUCE.md`](REPRODUCE.md) | 从零到当前状态的完整路径（已实测） |

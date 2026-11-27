@@ -9,7 +9,7 @@
 | `verify-reference-wheel.py` | 只读校验第三方 RuyiJS Linux 样本的整包与 ZIP 成员摘要 | python3 |
 | `domtrace-anchors.py` | **从 xul.dll 提取 74 个 MOZ_DOM_* 读取点** | python3, pefile |
 | `reverse-anchors.py` | PE 字符串锚点通用提取 | python3, pefile |
-| `sync-submodules.sh` | 初始化/更新 submodule | bash, git |
+| `sync-submodules.sh` | 干净副本中按固定提交初始化一级子模块；`--public` 仅取公开三项，Firefox 源码另按需获取 | Bash、Git |
 
 ## 安装依赖
 

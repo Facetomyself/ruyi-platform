@@ -18,11 +18,12 @@
 
 ## 在其他机器复跑
 
-在平台递归检出的干净代码树中安装锁定依赖。构建器只允许固定的应用文件、无目标架构 ELF/native addon 的 Node 生产依赖、以及登记的回环 QA runner 进入测试层。Python 浏览器自启与借用是不同路径：这一矩阵只验后者。
+普通 clone 平台后，只检出 Trace 与 MCP 的一级 gitlink，再安装锁定依赖。构建器只允许固定的应用文件、无目标架构 ELF/native addon 的 Node 生产依赖、以及登记的回环 QA runner 进入测试层。Python 浏览器自启与借用是不同路径：这一矩阵只验后者。
 
 ```bash
 set -euo pipefail
 ROOT=$(pwd -P)  # ruyi-platform
+git -c submodule.recurse=false submodule update --init --checkout -- submodules/ruyitrace submodules/ruyi-mcp
 Q="$ROOT/projects/ruyi-mcp/qa"
 NEW=$(mktemp -d)
 T="$ROOT/submodules/ruyitrace"; M="$ROOT/submodules/ruyi-mcp"

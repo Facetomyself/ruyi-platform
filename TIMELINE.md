@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1217 个 commit**（platform 351 / ruyitrace 157 / ruyihttp 190 / ruyijs 454 / ruyi-mcp 65；维护前固定修订计数）。
+平台与一级子模块共 **1553 个 commit**（platform 353 / ff-ruyijs 334 / ruyitrace 157 / ruyihttp 190 / ruyijs 454 / ruyi-mcp 65；按父仓修订及各自 gitlink 统计，含开源 fork 的上游历史，不含嵌套 Firefox 和独立 RuyiDOM）。
 
 R433：RuyiJS 发布两只 Linux ARM64 wheel，并用实际下载包验证安装。`oracle-reverse-dev` 正式入口已切换至 R433，完整 R432 回滚与恢复均经实测。[发布与部署回执](artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)。
 
@@ -180,12 +180,16 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 此前普通使用者按首页指示递归检出，会遇到私仓访问要求；即使已检出全部固定源码，也欠缺旧版校验所需的内部原件。[复现手册](REPRODUCE.md#2-按取得的材料运行校验)区分这三种输入。09:26 的维护提交没有调整仓库权限或组件 pin。09:44（北京时间）随后按[公开父仓决策](docs/adr/0003-public-catalog-private-gitlinks.md)将现有平台仓原地设为 public；父仓及两个公开组件经匿名检出，私有组件权限和固定提交保持原样。
 
+## 2026-11-27 · 纳入开源 RuyiJS 维护 fork
+
+`ff-ruyijs` 成为第五个一级 gitlink（第三个公开组件），与私有内部产品分开维护。平台固定经过审核的 fork `main` 提交，公开版吸收上游并回送适合合入的单项优化与兼容修复；嵌套 Firefox 仅在源码构建时准备。见[维护规则与平台准入](projects/ff-ruyijs/README.md)和[版本依据](PINS.md#open-ruyijs)。
+
 ## 关键数字
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1217 |
-| 文档 | 49 篇（含本文）|
+| 平台与一级子模块 commit | 1553 |
+| 文档 | 52 篇（含本文）|
 | C++ 文件 | 62 |
 | 校验脚本 | 22 |
 | domtrace 测试 | 20 项 |

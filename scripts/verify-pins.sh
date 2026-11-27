@@ -6,7 +6,7 @@ set -uo pipefail
 usage() {
   printf '%s\n' \
     '用法: bash scripts/verify-pins.sh [--catalog | --repo | --full] [--evidence-root /absolute/path]' \
-    '  --catalog  仅核对父仓 gitlink、STATUS、.gitmodules 与 MCP PINS；无需子模块、外部材料或网络。' \
+    '  --catalog  仅核对父仓 gitlink、STATUS、.gitmodules 与 MCP、开源 RuyiJS 的 PINS 行；无需子模块、外部材料或网络。' \
     '  --repo     核对固定子模块、现有源/回执门禁及 RuyiJS 仓内副本；仓外原件和次级哈希出处未核。' \
     '  --full     核对同一组门禁，再核对 RuyiJS 仓外原件与次级哈希出处；无参数默认此层。' \
     '  --evidence-root /absolute/path  仅用于 full，优先于 RUYI_PLATFORM_EVIDENCE_ROOT。' \
@@ -252,6 +252,10 @@ python3 -B -m unittest discover -s tests -p 'test_ruyidom_handoff.py' -q || fail
 echo
 echo '== 10. RuyiHTTP 公开发行与 CI 工件回执 =='
 python3 -B -m unittest discover -s tests -p 'test_ruyihttp_public_release.py' -q || fail=1
+
+echo
+echo '== 11. 开源 RuyiJS：上游祖先与固定 Firefox 树项（仅源码） =='
+python3 -B -m unittest discover -s tests -p 'test_open_ruyijs_handoff.py' -q || fail=1
 
 echo
 if [ "$fail" -ne 0 ]; then
