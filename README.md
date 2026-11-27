@@ -13,7 +13,7 @@ Ruyi 三件套、RuyiDOM 与自动化控制面 **ruyi-mcp** 的文档总入口�
 | 职责 | 文档、规划、还原分析、移植路线、验收标准 | 各自的产品代码与构建 |
 | 内容 | Markdown + 少量校验脚本 | 源码 + 原生库 + 测试 |
 | 更新频率 | 每次结论变化 | 每次代码变化 |
-| 可见性 | private | 按项目分别设定，见 §三 |
+| 可见性 | private；公开目录的可选设计见[ADR 0003](docs/adr/0003-public-catalog-private-gitlinks.md) | 按项目分别设定，见 §三 |
 
 **本仓是唯一的事实来源（single source of truth）**：三件套的版本矩阵、ABI 契约、缺口清单都以本仓为准。代码仓里的 README 是入口，不是权威。
 
@@ -180,35 +180,36 @@ ruyi-platform/
 
 ## 七、快速开始
 
+用 Git、Bash、Python 3 和 PyYAML，先验父仓的目录，再按使用范围拉源码。当前父仓为私有；子仓的代码权限独立。
+
 ```bash
-# clone 带 submodule
-git clone --recurse-submodules https://github.com/Facetomyself/ruyi-platform
+git clone --no-recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
+bash scripts/verify-pins.sh --catalog
 
-# 已有 clone 补 submodule
+# 只用公开组件：只初始化这两项
+git submodule update --init --checkout -- submodules/ruyihttp submodules/ruyi-mcp
+
+# 内部维护：在干净副本按父仓固定提交初始化全部子模块
 git submodule update --init --recursive
-
-# 校验所有 pin 与发布物
-./scripts/verify-pins.sh
-python3 scripts/verify-manifests.py
-
-# 看当前状态
-cat STATUS.yaml
+bash scripts/verify-pins.sh --repo
 ```
+
+完整历史验收使用 `--full`（也是无参数时的严格默认档），须另备内部证据库并指定 `RUYI_PLATFORM_EVIDENCE_ROOT`。各档输入、退出码含义与单件原包核验见[复现手册](REPRODUCE.md#2-按取得的材料运行校验)。
 
 ---
 
-## 八、交付与复用状态（2026-11-24）
+## 八、交付与复用状态
 
-**先选依赖，再选制品：**[项目关系表](docs/01-architecture.md#下游先选依赖再选证据)区分运行依赖、可选借用和数据对照；[当前交付缺口](docs/04-risks-and-gaps.md#当前交付缺口)列出每项阻塞的用途和通过条件。拉源码、构建或校验制品见[交接手册](docs/14-source-handoff.md)，机器账本见 [STATUS.yaml](STATUS.yaml)。
+**先选依赖，再选制品：**[项目关系表](docs/01-architecture.md#下游先选依赖再选证据)区分运行依赖、可选借用和数据对照；[当前交付缺口](docs/04-risks-and-gaps.md#当前交付缺口)列出逐项边界与通过条件。选择源码或制品见[交接手册](docs/14-source-handoff.md)，开发 pin 和已验收状态分别见 [PINS](PINS.md) 与 [STATUS](STATUS.yaml)。
 
 | 项目 | 当前交付 |
 | --- | --- |
-| **RuyiTrace** | amd64 R5 历史包保持不变；[ARM64 R5 CLI2 正式发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)已在 4 核 ARM 主机原生编译，支持按 ID 离线加载、采集和按需 TLS 桌面。[33 份原生产品回执](artifacts/receipts/trace-arm64-native-lease/README.md)。该机日常用 `ruyitrace`：已部署 site2，保留 site1 可回滚；见[操作手册](submodules/ruyitrace/product/arm64/site/README.md)与[60 份站点实机回执](artifacts/receipts/trace-arm64-site-operations/README.md)。 |
-| **RuyiHttp** | Python 客户端及[原生平台矩阵](projects/ruyihttp/README.md)可复用；Linux 有 amd64 HTTPS 实跑和独立的 [ARM64 H1/H2/H3 验收](artifacts/receipts/ruyihttp-native-20261124/linux-aarch64.json)。 |
-| **RuyiJS 内部版** | **Linux ARM64：**[R433 双 wheel 正式发行](https://github.com/Facetomyself/ruyijs-inner/releases/tag/linux-arm64-product-r433)，`oracle-reverse-dev` 使用 `r433-host1`，可回滚至完整 R432。[安装与回滚](submodules/ruyijs/docs/linux-arm64-r433.md) · [发布下载与生产验收](artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)。Linux amd64 的 [R356 离线 wheel](artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json)与 [R357 HTTP/1 组件](artifacts/receipts/ruyijs-linux-http1-r357/validation.json)独立保留。 |
-| **ruyi-mcp** | 可自启 Firefox，也可在原生 amd64 上借用 Trace CLI 持有的 R5 会话；生产同会话已验，ARM64 与 Electron owner 另验。[管理面交接](projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) |
-| **RuyiDOM（独立仓）** | **现在用**：登录 `oracle-reverse-dev`，执行 `~/.local/bin/ruyidom verify` 验证真实导航；按需运行，默认离线。**换机或开发**：看[日常使用、部署和源码交接](docs/14-source-handoff.md#ruyidom-独立源码交接)。[发行版与宿主入口分别固定](PINS.md#11-ruyidom-独立仓)，不是第五个 gitlink。 |
+| **RuyiTrace** | amd64 R5 历史包独立保留；[ARM64 R5 CLI2 正式发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)供稳定站点使用，site2 在用、site1 可回退，浏览器和桌面按需运行，见[站点回执](artifacts/receipts/trace-arm64-site-operations/README.md)。[原生事件 Beta 1](artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/two-architecture-review.json)在 amd64、ARM64 各有 22 案；[Electron owner Alpha 1](artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/README.md)是另一个按需预发行，只验虚拟席位。两者均未替换默认站点或平台 gitlink；[实体显示和人工 IME 仍待签收](docs/04-risks-and-gaps.md#当前交付缺口)。 |
+| **RuyiHttp** | [0.9.4 已公开发行](https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.4)，[五平台精确 wheel 回执](artifacts/receipts/ruyihttp-0.9.4/README.md)保留固定构建与验收依据。Linux amd64、ARM64 均在 glibc 2.31 实装并验证直连 H1/H2/H3 和单跳 CONNECT-UDP 内层原生 H3；[v0.9.3](https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.3)继续保留。 |
+| **RuyiJS 内部版** | **Linux ARM64：**[R433 私有双 wheel 正式发行](artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md)，`oracle-reverse-dev` 使用 `r433-host1`，已实测回到完整 `r432-host1` 再切回。[安装与回滚](submodules/ruyijs/docs/linux-arm64-r433.md) · [发布下载与生产验收](artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)。Linux amd64 的 [R356 离线 wheel](artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json)与 [R357 明文 HTTP/1 组件](artifacts/receipts/ruyijs-linux-http1-r357/validation.json)独立保留。 |
+| **ruyi-mcp** | Firefox 自启与 owner 借用分开验收。[生产 CLI 矩阵](projects/ruyi-mcp/LIVE-MATRIX.md)覆盖 amd64、ARM64 各自同一 QA 镜像中的借用和跨机 SSH stdio；意外退出与同客户端恢复仅为 ARM64 CLI 证据。Electron Alpha 按其独立客户端和虚拟席位回执选用。 |
+| **RuyiDOM（独立仓）** | **现有宿主**：在 `oracle-reverse-dev` 执行 `~/.local/bin/ruyidom verify`；按需、默认离线，沿用 v0.3.0 Noble 镜像。**取源码或对应制品**：现发行 v0.3.1，见[独立交接](docs/14-source-handoff.md#ruyidom-独立源码交接)及[发行与宿主的独立固定值](PINS.md#11-ruyidom-独立仓)，平台仍为四个 gitlink。 |
 
 **反编译是本仓两条主线**：`ruyijs-inner` 与 `ruyitrace/domtrace`。方法论相同（见 `docs/05-reverse-analysis.md`），对象与难度不同：
 

@@ -1,4 +1,4 @@
-generated_at: '2026-11-26T23:49:14+08:00'
+generated_at: '2026-11-27T09:26:04+08:00'
 baseline:
   firefox_commit: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
   analysis_baseline: 9a2dc53c369c7ae5172018b35988e1d2ffeff402
@@ -130,6 +130,9 @@ projects:
       commit: 74953f70e87f5935a9ce4410c639727d26ea323e
       full_matrix: https://github.com/Facetomyself/ruyihttp/actions/runs/45810139410
       receipt: artifacts/receipts/ruyihttp-0.9.4/qualification.json
+      public_release: https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.4
+      publication: artifacts/receipts/ruyihttp-0.9.4/publication.json
+      publication_sha256: b5d5c47edcafa351c10891b5de9265beda8cd77b308da4b5b36aa7be2c4721a2
       new_floor: glibc 2.31 (Debian Bullseye) x86_64 and AArch64; actual pip install and H1/H2/H3 plus MASQUE
       maximum_local_glibc_import: '2.30'
       outer: HTTP/3 CONNECT-UDP (RFC 9298) and QUIC DATAGRAM; independent proxy TLS and no direct fallback
@@ -2971,6 +2974,7 @@ reverse_analysis:
 related_projects:
   ruyidom:
     repository: https://github.com/Facetomyself/ruyidom
+    visibility: private
     relationship: independent_release
     platform_gitlink: null
     release_tag: v0.3.1
@@ -3094,17 +3098,20 @@ submodules:
   ruyijs:
     url: https://github.com/Facetomyself/ruyijs-inner
     commit: 1ee61b9e368c53da6cb4d37ac8edf4e79001df93
+    visibility: private
     state: added
   ruyitrace:
     url: https://github.com/Facetomyself/ruyitrace
     commit: 51852ce98804390a11ae326bd1205a5abf1a3eb6
+    visibility: private
     state: added
 docs_health:
-  total_markdown: 48
+  total_markdown: 49
   total_cpp_files: 62
-  total_scripts: 21
+  total_scripts: 22
   reproduce_manual: REPRODUCE.md
-  last_full_verification: '2026-11-26 +08:00: 60 byte-indexed site operations receipts; real two-slot Docker reloads, independent public desktop A/B, guarded upgrade, rollback, SIGKILL recovery, and 7 streamed GitHub assets. Original ARM product and amd64 receipts retained.'
+  last_full_verification: '2026-11-27 09:26 +08:00: catalog, pinned source checkout and full archival verification passed separately. RuyiJS: 165 ledger blocks, 76 repository copies, 77 secondary digests. Existing product receipts replayed; no new product build.'
+  previous_site_verification: '2026-11-26 +08:00: 60 byte-indexed site operations receipts; real two-slot Docker reloads, independent public desktop A/B, guarded upgrade, rollback, SIGKILL recovery, and 7 streamed GitHub assets. Original ARM product and amd64 receipts retained.'
 tooling:
   scripts:
     domtrace-anchors.py: xul.dll 74 开关锚点提取
@@ -3112,9 +3119,10 @@ tooling:
     annotate-asm.py: 按符号表标注反汇编
     gen-reader-names.py: 地址→语义名映射
     verify-coverage.py: switches.js/anchors.json/switchlist.h 三处一致
-    verify-pins.sh: pin + coverage + links + submodule 综合校验
+    verify-pins.sh: 目录 / 仓内 / 加验内部原件；默认完整，校验范围显式输出
+    verify-catalog.py: 父仓登记与 Git 模块目录交叉核对，无需取得子仓
     verify-links.py: Markdown 链接
-    verify-manifests.py: 发布物 hash
+    verify-manifests.py: 区分实物匹配、缺件与失败；--require-local 要求全部历史原件
     reverse-anchors.py: PE 字符串锚点通用提取
     sync-submodules.sh: submodule 同步
   python_deps:
@@ -3235,9 +3243,10 @@ timeline:
   doc: TIMELINE.md
   verifier: scripts/verify-timeline.py (wired into verify-pins.sh §3.8)
   numbers_verified:
-    docs: 39
-    cpp_files: 48
-    scripts: 15
-    total_commits: 68
+    basis_platform_commit: e57cbdbabaaad0b019d0fc56e41dc639c33c198a  # 历史计数截至本次维护之前
+    docs: 49
+    cpp_files: 62
+    scripts: 22
+    total_commits: 1217
   corrections_recorded: 3
 progress_doc: docs/13-ruyitrace-progress.md

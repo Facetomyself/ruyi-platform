@@ -1,0 +1,112 @@
+{
+  "repo": "Facetomyself/ruyihttp",
+  "tag": "v0.9.4",
+  "commit": "74953f70e87f5935a9ce4410c639727d26ea323e",
+  "url": "https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.4",
+  "release_id": 459362248,
+  "published_at": "2026-11-26T12:10:07Z",
+  "latest": true,
+  "prerelease": false,
+  "verified_at_utc": "2026-11-26T12:11:12.948666+00:00",
+  "verification": "Anonymous GET of eight public assets; size and SHA-256 verified against exact local release inputs and original CI wheel digests. All five wheels in the ZIP also byte-match the independent public wheels.",
+  "previous_release_unchanged": 459127741,
+  "preserved_prior_release_ids": [
+    459127741,
+    458940726
+  ],
+  "wheel_run": 45810139410,
+  "qualification_sha256": "7b05ecd08a3019555367956725ab646270eda0c6546b954d21ea2db085e3f5ce",
+  "public_archive_sha256": "6090fc4d693b9ba756a3acde0ff2a1949be14b12b39cca6e51ca3b6442a6e0fd",
+  "qualification_archive_sha256": "c36913a1e3c152c07bf5ad028f1a97e7a6b851bc0be7385d1aed4d1d6079b111",
+  "assets": [
+    {
+      "name": "SHA256SUMS",
+      "asset_id": 795722528,
+      "bytes": 747,
+      "sha256": "8365ce43b8b57d6aad55e7650b078e32382fbdc9a0b2db24363140cb605e165d",
+      "url": "https://github.com/Facetomyself/ruyihttp/releases/download/v0.9.4/SHA256SUMS",
+      "download_host": "release-assets.githubusercontent.com",
+      "http_status": 200
+    },
+    {
+      "name": "qualification.json",
+      "asset_id": 795722542,
+      "bytes": 820866,
+      "sha256": "7b05ecd08a3019555367956725ab646270eda0c6546b954d21ea2db085e3f5ce",
+      "url": "https://github.com/Facetomyself/ruyihttp/releases/download/v0.9.4/qualification.json",
+      "download_host": "release-assets.githubusercontent.com",
+      "http_status": 200
+    },
+    {
+      "name": "ruyihttp-0.9.4-py3-none-macosx_15_0_x86_64.whl",
+      "asset_id": 795722531,
+      "bytes": 4405464,
+      "sha256": "cf038b0ceed31963c5cd810dbca0e9380802c057f92288c584ec7933b4baf616",
+      "url": "https://github.com/Facetomyself/ruyihttp/releases/download/v0.9.4/ruyihttp-0.9.4-py3-none-macosx_15_0_x86_64.whl",
+      "download_host": "release-assets.githubusercontent.com",
+      "http_status": 200
+    },
+    {
+      "name": "ruyihttp-0.9.4-py3-none-macosx_26_0_arm64.whl",
+      "asset_id": 795722564,
+      "bytes": 4214369,
+      "sha256": "a04671785eba6c61de45b93dd0d8fcc6bbc9778aa39f02e495aafd38c2100e68",
+      "url": "https://github.com/Facetomyself/ruyihttp/releases/download/v0.9.4/ruyihttp-0.9.4-py3-none-macosx_26_0_arm64.whl",
+      "download_host": "release-assets.githubusercontent.com",
+      "http_status": 200
+    },
+    {
+      "name": "ruyihttp-0.9.4-py3-none-manylinux_2_31_aarch64.whl",
+      "asset_id": 795722575,
+      "bytes": 4141024,
+      "sha256": "191552eeb0428961e77113f1022c84ac2ec7da7c9be7e1921dca772a6bc469ef",
+      "url": "https://github.com/Facetomyself/ruyihttp/releases/download/v0.9.4/ruyihttp-0.9.4-py3-none-manylinux_2_31_aarch64.whl",
+      "download_host": "release-assets.githubusercontent.com",
+      "http_status": 200
+    },
+    {
+      "name": "ruyihttp-0.9.4-py3-none-manylinux_2_31_x86_64.whl",
+      "asset_id": 795722636,
+      "bytes": 4200542,
+      "sha256": "8f6e78ba29799625bd46adc2d73928e06fbbe4a06c541e9bb1f9f7f9b15854d3",
+      "url": "https://github.com/Facetomyself/ruyihttp/releases/download/v0.9.4/ruyihttp-0.9.4-py3-none-manylinux_2_31_x86_64.whl",
+      "download_host": "release-assets.githubusercontent.com",
+      "http_status": 200
+    },
+    {
+      "name": "ruyihttp-0.9.4-py3-none-win_amd64.whl",
+      "asset_id": 795722635,
+      "bytes": 4091750,
+      "sha256": "e6692f97d83eb8433640ad81a75d7a8aee7498729eae58f1f072591829d0f3c3",
+      "url": "https://github.com/Facetomyself/ruyihttp/releases/download/v0.9.4/ruyihttp-0.9.4-py3-none-win_amd64.whl",
+      "download_host": "release-assets.githubusercontent.com",
+      "http_status": 200
+    },
+    {
+      "name": "ruyihttp-0.9.4-release-bundle.zip",
+      "asset_id": 795722631,
+      "bytes": 22186339,
+      "sha256": "6090fc4d693b9ba756a3acde0ff2a1949be14b12b39cca6e51ca3b6442a6e0fd",
+      "url": "https://github.com/Facetomyself/ruyihttp/releases/download/v0.9.4/ruyihttp-0.9.4-release-bundle.zip",
+      "download_host": "release-assets.githubusercontent.com",
+      "http_status": 200
+    }
+  ],
+  "readme_commit": "9e88bfe023fd46a96254f8de66e8d72517339911",
+  "readme_ci": "https://github.com/Facetomyself/ruyihttp/actions/runs/45817459601",
+  "readme_ci_conclusion": "success",
+  "pip_checked_slots": [
+    "darwin_arm64",
+    "darwin_x86_64",
+    "linux_aarch64",
+    "linux_x86_64",
+    "win_amd64"
+  ],
+  "public_install": {
+    "slot": "linux_aarch64",
+    "glibc": "2.35",
+    "wheel_sha256": "191552eeb0428961e77113f1022c84ac2ec7da7c9be7e1921dca772a6bc469ef",
+    "masque_cases": 22
+  },
+  "archive_note": "The public ZIP has a distribution-facing wrapper and documentation. The five released wheels and qualification JSON are byte-for-byte identical to the previously verified GitHub Actions delivery."
+}

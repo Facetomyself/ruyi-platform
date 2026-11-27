@@ -1,10 +1,47 @@
 #!/usr/bin/env bash
 # 校验 PINS.md / STATUS.yaml 与实物一致。
-# 退出码：0 全通过；1 有失败项。
+# 退出码：0 所选层通过；1 验证失败；2 参数错误。
 set -uo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT"
+usage() {
+  printf '%s\n' \
+    '用法: bash scripts/verify-pins.sh [--catalog | --repo | --full] [--evidence-root /absolute/path]' \
+    '  --catalog  仅核对父仓 gitlink、STATUS、.gitmodules 与 MCP PINS；无需子模块、外部材料或网络。' \
+    '  --repo     核对固定子模块、现有源/回执门禁及 RuyiJS 仓内副本；仓外原件和次级哈希出处未核。' \
+    '  --full     核对同一组门禁，再核对 RuyiJS 仓外原件与次级哈希出处；无参数默认此层。' \
+    '  --evidence-root /absolute/path  仅用于 full，优先于 RUYI_PLATFORM_EVIDENCE_ROOT。' \
+    '  --help, -h  显示此帮助。'
+}
+usage_error() { printf '参数错误: %s\n' "$1" >&2; usage >&2; exit 2; }
+
+if [[ $# -eq 1 && ( $1 == --help || $1 == -h ) ]]; then usage; exit 0; fi
+tier=''
+evidence_args=()
+while (( $# )); do
+  case "$1" in
+    --catalog|--repo|--full)
+      [[ -z $tier ]] || usage_error '只能指定一个验收层'
+      tier=${1#--}
+      shift ;;
+    --evidence-root)
+      [[ ${#evidence_args[@]} -eq 0 && ${2-} == /* ]] || usage_error '--evidence-root 需要一个绝对路径，且只能指定一次'
+      evidence_args=(--evidence-root "$2")
+      shift 2 ;;
+    *) usage_error "未知参数 $1" ;;
+  esac
+done
+tier=${tier:-full}
+[[ $tier == full || ${#evidence_args[@]} -eq 0 ]] || usage_error '--evidence-root 仅用于 full'
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)" || exit 1
+cd "$ROOT" || exit 1
+# These checks use local Git data, including when a checkout is a partial clone.
+export GIT_ALLOW_PROTOCOL= GIT_NO_LAZY_FETCH=1 GIT_OPTIONAL_LOCKS=0
+export PYTHONDONTWRITEBYTECODE=1 PYTHONOPTIMIZE=0
+
+if [[ $tier == catalog ]]; then exec python3 -B scripts/verify-catalog.py; fi
+printf '== %s：父仓登记与固定子模块检出 ==\n' "$tier"
+python3 -B scripts/verify-catalog.py --checkouts || exit 1
 
 fail=0
 say() { printf '%-58s %s\n' "$1" "$2"; }
@@ -51,7 +88,7 @@ python3 scripts/verify-coverage.py || fail=1
 
 echo
 echo "== 3.6 证据等级总账 =="
-python3 scripts/verify-ledger.py || fail=1
+python3 -B scripts/verify-ledger.py "--$tier" "${evidence_args[@]}" || fail=1
 python3 scripts/verify-claims.py || fail=1
 
 echo
@@ -65,56 +102,6 @@ python3 scripts/verify-timeline.py || fail=1
 echo
 echo "== 4. 文档内部链接 =="
 python3 scripts/verify-links.py || fail=1
-
-echo
-echo "== 5. submodule 状态 =="
-python3 - <<'PY' || fail=1
-from pathlib import Path
-import re
-import subprocess
-import sys
-import yaml
-
-path = 'submodules/ruyi-mcp'
-key = f'submodule.{path}'
-entry = yaml.safe_load(Path('STATUS.yaml').read_text(encoding='utf-8'))['submodules']['ruyi-mcp']
-
-def git(*args):
-    return subprocess.check_output(['git', *args], text=True).strip()
-
-indexed = git('ls-files', '--stage', '--', path).split()
-branch = git('config', '-f', '.gitmodules', '--get', f'{key}.branch')
-url = git('config', '-f', '.gitmodules', '--get', f'{key}.url')
-row = re.search(r'^\| ruyi-mcp \| .* \| `([^`]+)` \| `([0-9a-f]{40})` \|$',
-                Path('PINS.md').read_text(encoding='utf-8'), re.M)
-head = git('-C', path, 'rev-parse', 'HEAD')
-valid = (len(indexed) == 4 and indexed[0] == '160000' and indexed[2] == '0' and row
-         and indexed[1] == entry['commit'] == row[2] == head
-         and branch == entry['branch'] == row[1] and url == entry['url'])
-print(f'  ruyi-mcp gitlink / HEAD / PINS / STATUS / .gitmodules: {"PASS" if valid else "FAIL"}')
-sys.exit(0 if valid else 1)
-PY
-python3 - <<'PY' || fail=1
-import subprocess, sys
-from pathlib import Path
-import yaml
-
-def git(*args):
-    return subprocess.check_output(['git', *args], text=True).strip()
-
-ok = True
-pins = yaml.safe_load(Path('STATUS.yaml').read_text())['submodules']
-for name, item in pins.items():
-    path = 'submodules/' + name
-    # A subdirectory without its own .git can resolve HEAD from its parent.
-    raw = git('ls-files', '--stage', '--', path).split()
-    pin = raw[1] if len(raw) == 4 and raw[0] == '160000' and raw[2] == '0' else None
-    head = git('-C', path, 'rev-parse', 'HEAD') if (Path(path) / '.git').exists() else None
-    good = pin is not None and pin == head == item.get('commit')
-    print(f'  {name}: {"PASS" if good else "FAIL"} gitlink={pin} checkout={head} ledger={item.get("commit")}')
-    ok &= good
-sys.exit(0 if ok else 1)
-PY
 
 echo
 echo "== 6. Trace amd64 R5 发行身份 =="
@@ -263,5 +250,15 @@ echo '== 9. RuyiDOM 独立发行与主机入口 =='
 python3 -B -m unittest discover -s tests -p 'test_ruyidom_handoff.py' -q || fail=1
 
 echo
-if [ "$fail" -eq 0 ]; then echo "全部通过"; else echo "有失败项"; fi
+echo '== 10. RuyiHTTP 公开发行与 CI 工件回执 =='
+python3 -B -m unittest discover -s tests -p 'test_ruyihttp_public_release.py' -q || fail=1
+
+echo
+if [ "$fail" -ne 0 ]; then
+  printf '%s 验收有失败项\n' "$tier"
+elif [[ $tier == repo ]]; then
+  echo 'repo 验收通过；RuyiJS 仓外原件与次级哈希出处未核。'
+else
+  echo 'full 验收通过；含 RuyiJS 仓外证据。'
+fi
 exit "$fail"

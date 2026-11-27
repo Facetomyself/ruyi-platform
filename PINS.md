@@ -203,9 +203,11 @@ git ls-tree HEAD firefox   # 子模块 pin = 2887d9de1f69c0e9776413da80e7ba0d122
 | Linux | `native/necko_posix/src/socket.cpp` | 125 |
 | 两平台 | `native/necko_quic/src/lib.rs` | 1007 |
 
-### ABI 底线
+### 早期 Linux x86_64 参考库的 ABI（历史快照）
 
-```
+以下是原样本的导入符号；当前 RuyiHttp wheel 的 Linux 发行下限及实装证据见[0.9.4 资格验收](artifacts/receipts/ruyihttp-0.9.4/README.md)。
+
+```text
 GLIBC_2.38
 GLIBCXX_3.4.31
 CXXABI_1.3.9
@@ -268,7 +270,7 @@ ARM 编译工具为 Clang/LLD 19.1.1、Rust 1.100.0、cbindgen 0.29.4；CLI 运�
 | Rust / cargo | 最新稳定 | Neqo、necko_quic |
 | cbindgen | 最新 | NSS 绑定 |
 | Node | ≥ 22.12.0（以 `console/tooling/package.json` 的 engines 为准） | RuyiTrace 控制台构建；Electron 运行时另行固定 |
-| glibc | **≥ 2.38** | Linux 原生库运行 |
+| glibc | 按项目、架构与具体工件选取 | [RuyiHttp 0.9.4](artifacts/receipts/ruyihttp-0.9.4/README.md) 的 Linux 双架构 wheel 在 2.31 实装；[RuyiJS ARM64 R433](artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md) 的已验环境是 Ubuntu 24.04 / 2.39。后者是验收环境，非更低版本的承诺。 |
 | pefile / 类似 | — | domtrace 反编译（`scripts/env-anchors.py` 依赖） |
 
 ---

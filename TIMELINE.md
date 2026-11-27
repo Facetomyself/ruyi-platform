@@ -2,7 +2,7 @@
 
 本文按「为什么做这件事」组织，不是按 commit 顺序。每段说明：**遇到什么问题 → 怎么解决 → 得出什么结论**。
 
-五个仓库共 **1216 个 commit**（platform 350 / ruyitrace 157 / ruyihttp 190 / ruyijs 454 / ruyi-mcp 65）。
+五个仓库共 **1217 个 commit**（platform 351 / ruyitrace 157 / ruyihttp 190 / ruyijs 454 / ruyi-mcp 65；维护前固定修订计数）。
 
 R433：RuyiJS 发布两只 Linux ARM64 wheel，并用实际下载包验证安装。`oracle-reverse-dev` 正式入口已切换至 R433，完整 R432 回滚与恢复均经实测。[发布与部署回执](artifacts/receipts/ruyijs-linux-aarch64-product-r433/validation.json)。
 
@@ -176,17 +176,21 @@ Linux 版 MCP 保留独立发布节奏，平台增加第四个子模块来复现
 
 [Native Events Beta 1](https://github.com/Facetomyself/ruyitrace/releases/tag/native-events-v0.2.0-beta.1) 于 15:40 UTC 发布。两个原生架构各跑 5 个 WS 案和相同新镜像上的 17 个回归，独立确认 44 个不同的运行；另测选路、超限真实部分观测及操作员自选的 GET/函数。[全部八个附件在发布后下载验 SHA](artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/beta-published.json)。本次没有更换站点版本；实体面板、人工输入法与原生浏览器事件分开验收。
 
+## 2026-11-27 · 分开交付指针、源码和内部原件
+
+此前普通使用者按首页指示递归检出，会遇到私仓访问要求；即使已检出全部固定源码，也欠缺旧版校验所需的内部原件。[复现手册](REPRODUCE.md#2-按取得的材料运行校验)区分这三种输入。[公开目录提议](docs/adr/0003-public-catalog-private-gitlinks.md)记录可见性和历史材料的范围；本次没有调整仓库权限或组件 pin。
+
 ## 关键数字
 
 | 项 | 值 |
 | --- | ---: |
-| 五个仓库 commit | 1216 |
-| 文档 | 48 篇（含本文）|
+| 五个仓库 commit | 1217 |
+| 文档 | 49 篇（含本文）|
 | C++ 文件 | 62 |
-| 校验脚本 | 21 |
+| 校验脚本 | 22 |
 | domtrace 测试 | 20 项 |
 | ruyihttp 测试 | 171 项（原生开关全开）；另有五平台双端点官方线路门禁 |
-| 校验节数（verify-pins） | 8 |
+| 平台校验档位 | 目录、仓内、完整；用途见[复现手册](REPRODUCE.md#2-按取得的材料运行校验) |
 
 > 口径：文档 = 排除 `submodules/` `upstream/` `artifacts/` 后的 `.md`；
 > 校验脚本 = `scripts/` 下的 `.py` 与 `.sh`。两者都由

@@ -51,26 +51,29 @@ git submodule status
 
 ---
 
-## 2. 一条命令跑全部验证
+## 2. 按取得的材料运行校验
+
+以下均在平台根目录执行，依赖 Git、Bash、Python 3 与 PyYAML。三个档位回答不同的问题：
+
+| 档位 | 输入 | 退出 0 说明什么 |
+|---|---|---|
+| `--catalog` | 普通 clone，仅父仓 | 登记的模块地址、路径、固定 SHA 与 Git 指针一致。没有拉取、构建或运行组件。 |
+| `--repo` | 完整历史、递归检出的四个固定子模块 | 源码与仓内收据通过校验；JS 仅存于仓外的原件未验，此项在输出中单列。 |
+| `--full`（无参数也选此档） | 上一档，加上有权限读取的完整历史证据库 | 在仓内检查之外，重算外部原件、比对登记的仓内副本和次级摘要。缺件则非零退出。回放证据与在目标机重跑产品是两件事。 |
 
 ```bash
-bash scripts/verify-pins.sh
+# 无须初始化子模块
+bash scripts/verify-pins.sh --catalog
+
+# 递归检出；需拥有每个私有组件的读取权限
+git submodule update --init --recursive
+bash scripts/verify-pins.sh --repo
+
+# 证据根包含 deliverables/ 与 acceptance/；路径可独立于平台 clone
+RUYI_PLATFORM_EVIDENCE_ROOT=/var/lib/dsh/Ruyi bash scripts/verify-pins.sh --full
 ```
 
-期望输出末尾：
-
-```
-== 5. submodule 状态 ==
-  <hash> submodules/ruyihttp (heads/main) OK
-  <hash> submodules/ruyijs (heads/main) OK
-  <hash> submodules/ruyitrace (heads/main) OK
-  <hash> submodules/ruyi-mcp (heads/linux) OK
-
-全部通过
-```
-
-它依次检查六节：必需文件 → STATUS 可解析 → Firefox 基线一致 → 开关三处一致
-→ 文档链接 → submodule 状态。
+准备 `--repo` 的输入时优先使用新目录，避免改变现有开发树。历史 Win64 原包有独立门禁：`python3 -B scripts/verify-manifests.py` 分别统计实物匹配、缺件跳过、失败；交付承诺包含全部原包时加 `--require-local`，缺一件即返回非零。三档平台校验都属于核对版本和既有证据，而非现场重建浏览器。
 
 ---
 
@@ -160,7 +163,7 @@ python3 scripts/gen-trace-config.py --asm /tmp/p1p2.asm \
 
 | 目的 | 命令 |
 | --- | --- |
-| 六节综合校验 | `bash scripts/verify-pins.sh` |
+| 目录、仓内、完整校验 | `bash scripts/verify-pins.sh --help`；见[三档材料表](#2-按取得的材料运行校验) |
 | 开关三处一致 | `python3 scripts/verify-coverage.py` |
 | 文档链接 | `python3 scripts/verify-links.py` |
 | 发布物 hash | `python3 scripts/verify-manifests.py` |
@@ -169,7 +172,9 @@ python3 scripts/gen-trace-config.py --asm /tmp/p1p2.asm \
 
 ---
 
-## 6. 各项目当前的期望状态
+## 6. 建仓时期的期望状态（2026-11-19）
+
+下表仅用于复现当时的源码快照。当前各项目的安装态、双架构及网络能力以[首页交付矩阵](README.md)和[项目交接](docs/14-source-handoff.md)的按版证据为准。
 
 | 项目 | 命令 | 期望 |
 | --- | --- | --- |
@@ -226,11 +231,10 @@ python3 scripts/gen-trace-config.py --asm /tmp/p1p2.asm \
 ## 10. 如果你只有 5 分钟
 
 ```bash
-git clone --recurse-submodules https://github.com/Facetomyself/ruyi-platform
+git clone --no-recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
-python3 -m pip install --user pyyaml pefile capstone
-bash scripts/verify-pins.sh
-cd submodules/ruyitrace && bash tests/run-tests.sh
+python3 -c 'import yaml'
+bash scripts/verify-pins.sh --catalog
 ```
 
-看到 `全部通过` 两次，就说明仓库是健康的、17 项契约测试全绿、74 个开关三处一致。
+这只确认父仓目录可读、模块登记与指针一致。要复验源码与产品回执，继续按[第 2 节](#2-按取得的材料运行校验)准备对应材料。

@@ -1,30 +1,31 @@
-# 其他项目如何使用 Ruyi Platform（2026-11-24 交接）
+# 其他项目如何使用 Ruyi Platform
 
-**Trace 的独立 Linux CLI 已纳入主线。** 平台固定的是可继续开发的 Trace 源码；复现已发布的 amd64 无头 R5 原始内核输入仍使用独立标签。先选择目标：构建 CLI、重建 Firefox，或组装可选的 Electron 桌面。
+**先区分平台开发 pin、发布工件和主机在用版本。** [PINS](../PINS.md) 与 [STATUS](../STATUS.yaml) 记录四个组件的固定提交；复现 amd64 无头 R5 的冻结输入仍用独立标签，Trace 的原生事件 Beta 与 Electron owner Alpha 各有交付标签，RuyiDOM 则单独检出。
 
 ## 选择交付物
 
 | 需求 | 使用什么 | 已有证据与边界 |
 | --- | --- | --- |
 | 自有页面的浏览器采集 | Trace amd64 **R5 无头运行时** | 原生完整构建、Rust 归档审计、打包、镜像保存后本机重新加载并运行两档 QA；覆盖 DOM、click、脱敏 Storage、双会话及显式 script-error 档。它不是 Electron、MCP 服务或任意 producer 的保证。 |
-| Linux 命令行采集 | [独立 CLI](../submodules/ruyitrace/console/cli/README.md) + 合格内核 | 与 R5 同一 amd64 实包验过双会话开关、活进程停止、异常摘要一条；[实机回执](../artifacts/receipts/trace-amd64-r5/cli-native-amd64.json)。 |
-| 桌面配置和日志预览 | Trace 的可选 Electron + **对应架构**的合格内核 | 较早的 x86_64 和 ARM64 各有独立实包及虚拟 X11/Wayland 验收，[详情](13-ruyitrace-progress.md)。物理显示、更广 producer 和所有 Win64 行为的等价性另验。 |
+| Linux 命令行采集 | [独立 CLI](../submodules/ruyitrace/console/cli/README.md) + 对应架构内核 | [amd64 R5 CLI 原件](../artifacts/receipts/trace-amd64-r5/cli-native-amd64.json)和 [ARM64 R5 CLI2 正式发行](../artifacts/receipts/trace-arm64-native-lease/README.md)分开验收；ARM64 稳定站点使用 site2、回退 site1；浏览器和桌面按需运行，见[站点手册](../submodules/ruyitrace/product/arm64/site/README.md)。 |
+| Wasm、JSCall、HTTP、WebSocket 原生事件 | [Trace 原生事件 Beta 1](https://github.com/Facetomyself/ruyitrace/releases/tag/native-events-v0.2.0-beta.1)，独立非默认交付 | 双架构各 22 案，限对应工件和受控合成回环页面；[双架构原始审核](../artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/two-architecture-review.json) · [发布下载读回](../artifacts/receipts/trace-linux-gap-closure-v1/patched-websocket/beta-published.json)。 |
+| Electron 桌面配置、预览或持有会话 | [Electron owner Alpha 1](https://github.com/Facetomyself/ruyitrace/releases/tag/linux-electron-owner-v0.1.0-alpha.1) + 对应架构内核 | [每架构五项持有者生命周期](../artifacts/receipts/trace-linux-gap-closure-v1/electron-owner/README.md)和[原启动器复跑](../projects/ruyi-mcp/LIVE-MATRIX.md#独立-electron-发行线)均使用虚拟席位；[实体显示与本地人工 IME](../artifacts/receipts/trace-linux-gap-closure-v1/desktop-seat/desktop-seat-review.json)仍待现场见证。 |
 | 校验旧版 Win64 产物 / 读取离线统计 | Trace **Win64 离线交接分支**，见下表 | 静态原件证据与合成测试，不是 Win64 私有 Firefox 的完整源树，也不是 Linux 实采证明。业务项目宜依赖有版本的输出 schema，避免把推断地址当成稳定 ABI。 |
-| HTTP 客户端 | [RuyiHttp](../projects/ruyihttp/README.md)：Python API、wheel 构建与已入库原生库 | [0.9.4 精确 wheel 验收](../artifacts/receipts/ruyihttp-0.9.4/README.md)：Linux amd64 / ARM64 在 glibc 2.31 实装，另验直连 H1/H2/H3、双跳 TCP、原生内层 H3 通过单跳 CONNECT-UDP。Windows 和两种 Mac 分别检验同平台工件。这些证据属于 RuyiHttp，不替代 RuyiJS 联网验收。 |
-| JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | [R355 干净重建原生包](../artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json)：Ubuntu 24.04/glibc 2.39 从空目录编译 1,268 个私有单元、解包实跑 Python/C 13/13，另验 Worker 与 WebCrypto。[原生包运行命令](../submodules/ruyijs/docs/linux-amd64-clean.md)。pip 安装使用[R356](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)；直接明文 HTTP/1 另装可卸载的 [R357 组件](../submodules/ruyijs/docs/linux-http1.md)。[R356 安装态回执](../artifacts/receipts/ruyijs-linux-amd64-wheel-r356/validation.json) · [R357 真实回环收发回执](../artifacts/receipts/ruyijs-linux-http1-r357/validation.json)。TLS、h2、QUIC 与 RuyiJS ARM64 产品另验。 |
-| 程序化管理浏览器 | [MCP / owner 交接及验收表](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | [AMD64 R5 生产 M2](../projects/ruyi-mcp/PRODUCTION-OWNER.md)通过排他借用、真断点、归还与重借、暂停中停止及原生关闸读回；使用从干净 GitHub 检出构建并搬到另一台主机的独立 CLI。 |
-| 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM 独立源码交接](#ruyidom-独立源码交接) | v0.3.1 验收了 amd64 源码版 Docker 和裸 Jammy ARM64 内容引擎；现有 ARM64 日常入口沿用 v0.3.0 Noble 镜像，可信脚本宿主仍是 Firefox 136.0。 |
+| HTTP 客户端 | [RuyiHttp 0.9.4](https://github.com/Facetomyself/ruyihttp/releases/tag/v0.9.4)：Python API、wheel、已入库原生库 | [精确 wheel 验收](../artifacts/receipts/ruyihttp-0.9.4/README.md)：Linux amd64 / ARM64 在 glibc 2.31 实装并通过直连 H1/H2/H3、双跳 TCP 和单跳 CONNECT-UDP 内层原生 H3；Windows 和两种 macOS 各验同平台工件。 |
+| JS/DOM 运行环境 | [RuyiJS 内部仓](../projects/ruyijs/README.md)：Python、C ABI、语义重建和构建脚本 | ARM64 选 [R433 双 wheel](../artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md)，正式下载实装及 `r433-host1`／完整 `r432-host1` 切换见[安装与回滚](../submodules/ruyijs/docs/linux-arm64-r433.md)。amd64 可用 [R355 原生包回执](../artifacts/receipts/ruyijs-linux-amd64-clean-r355/validation.json)和 [R356 wheel 安装](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)；[R357 明文 HTTP/1](../submodules/ruyijs/docs/linux-http1.md)可独立卸载。分项能力见[当前交付缺口](04-risks-and-gaps.md#当前交付缺口)。 |
+| 程序化管理浏览器 | [MCP / owner 交接](../projects/ruyi-mcp/MANAGEMENT-HANDOFF.md) | [生产矩阵](../projects/ruyi-mcp/LIVE-MATRIX.md)涵盖双架构 CLI 同镜像、跨机 SSH stdio 和仅 ARM64 的意外退出恢复；早期 [amd64 R5 生产 M2](../projects/ruyi-mcp/PRODUCTION-OWNER.md)仍是独立证据。 |
+| 离线 HTML/DOM 或显式 HTTP(S) 导航脚本 | [RuyiDOM 独立源码交接](#ruyidom-独立源码交接) | v0.3.1 交付 amd64 源码版 Docker 和裸 Jammy ARM64 专用包；现用 ARM64 宿主沿用 v0.3.0 Noble 镜像，可信脚本宿主仍是 Firefox 136.0。 |
 
 ## 源码检出：业务项目固定 SHA，不跟随最新分支构建
 
-平台（private）负责四个 gitlink，代码在各组件仓。[.gitmodules](../.gitmodules) 定义来源，[STATUS.yaml](../STATUS.yaml) 记录状态。下游可将平台交接标签解析为提交，写入自己的依赖锁；已有子模块的仓库勿用 `git submodule update --remote` 替代固定提交。需要私有仓读取权限，凭据由使用方的 Git 客户端管理。
+平台（private）负责四个 gitlink，代码在各组件仓。[.gitmodules](../.gitmodules) 定义来源，[STATUS.yaml](../STATUS.yaml) 记录状态。下游固定平台提交及其 gitlink；`git submodule update --remote` 跟踪组件分支，不能用于复现固定版本。只看父仓目录可普通 clone 后执行 `bash scripts/verify-pins.sh --catalog`。下列命令用于有全部子仓读取权限的维护者；仅取公开组件、CI 及公开目录的设计见[访问边界](adr/0003-public-catalog-private-gitlinks.md)。
 
 ```bash
 git clone --branch main --recurse-submodules https://github.com/Facetomyself/ruyi-platform.git
 cd ruyi-platform
 git rev-parse HEAD
 git ls-tree HEAD:submodules
-bash scripts/verify-pins.sh  # Python 3 + PyYAML；使用已入库的开关清单或本地重新生成的清单
+bash scripts/verify-pins.sh --repo  # 固定源码、开关清单和仓内回执；无需内部归档
 ```
 
 Trace 特定交付位于同一个[私有源码仓](https://github.com/Facetomyself/ruyitrace)。`main` 是 CLI 与构建工具的维护入口；R5 复现标签、早期 CLI 候选及独立证据分支保留原样。构建请用新的工作目录。
@@ -33,7 +34,9 @@ Trace 特定交付位于同一个[私有源码仓](https://github.com/Facetomyse
 | --- | --- | --- |
 | amd64 无头 R5 的冻结源码 | `source/amd64-headless-r5-20261124`（tag） | [ccc0ffa](https://github.com/Facetomyself/ruyitrace/tree/ccc0ffa1e65c291aa6cbdd68648f587eed6c0de9)，可重新导出验收时的原始输入 tar |
 | R5 导出工具 | `handoff/oci-export-20261124` | [2cfa904](https://github.com/Facetomyself/ruyitrace/tree/2cfa904741da1ba07d0d31175c8124b5b2afd6f6)，用于传输验证，独立于内核输入 |
-| 日常开发、独立 Linux CLI 和当前构建工具 | `main`；平台 gitlink 固定开发版本 | [f1253a6](https://github.com/Facetomyself/ruyitrace/tree/f1253a6ddf03dffa178d349231facc61866e686b)，含独立 CLI、常驻采集、双架构技能及 [ARM64 R5 租约发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)。独立的 amd64 交互镜像来源仍固定于 [9f8dbb9](https://github.com/Facetomyself/ruyitrace/tree/9f8dbb9bbbd322c2e6a17b05b89fd23690067f2c)。克隆后 `bash tests/linux/check_developer_checkout.sh`。生产 M2 回执仍指 [f8eeb0e](https://github.com/Facetomyself/ruyitrace/tree/f8eeb0ee909436fbe038a9e0bff67b5f96326022)，[13fd24b](https://github.com/Facetomyself/ruyitrace/tree/13fd24bf77f1a81cc12af3939049e72f04138d53) 保留早期 CLI 证据 |
+| 平台开发检出与生产 CLI/MCP 矩阵 | Trace `main`、MCP `linux` 为维护分支；复现按 gitlink | Trace [51852ce](https://github.com/Facetomyself/ruyitrace/tree/51852ce98804390a11ae326bd1205a5abf1a3eb6) 与 MCP [df0db85](https://github.com/Facetomyself/ruyi-mcp/tree/df0db8545a3f75461627a3f45c5bca8668211ea7) 是[生产矩阵](../projects/ruyi-mcp/LIVE-MATRIX.md)的 `corrected` 组合。开发检出可执行 `bash tests/linux/check_developer_checkout.sh`（在 Trace 仓根）。 |
+| ARM64 R5 CLI2 发行、站点和较早 CLI | 独立标签与历史回执 | [f1253a6](https://github.com/Facetomyself/ruyitrace/tree/f1253a6ddf03dffa178d349231facc61866e686b) 固定 [ARM64 R5 租约发行](https://github.com/Facetomyself/ruyitrace/releases/tag/arm64-r5-cli2-lease-v1)，站点另用 [站点运维锁](../PINS.md#arm64-主机运维版本独立于原生内核发行)。amd64 交互镜像 [9f8dbb9](https://github.com/Facetomyself/ruyitrace/tree/9f8dbb9bbbd322c2e6a17b05b89fd23690067f2c)、旧生产 M2 [f8eeb0e](https://github.com/Facetomyself/ruyitrace/tree/f8eeb0ee909436fbe038a9e0bff67b5f96326022)、早期 CLI [13fd24b](https://github.com/Facetomyself/ruyitrace/tree/13fd24bf77f1a81cc12af3939049e72f04138d53) 各自保留。 |
+| Trace 独立预发行 | 原生事件 Beta 1 与 Electron owner Alpha 1 | [独立发行固定值](../PINS.md#linux-原生事件私有候选不改默认子模块或站点)区分交付标签与实际运行时源码；两条预发行均未替换开发 gitlink 或稳定站点。 |
 | ARM64 owner 受控 fixture | `handoff/owner-arm64-fixture-20261124` | [b4ba3a8](https://github.com/Facetomyself/ruyitrace/tree/b4ba3a876479f4fcfc68428051f2a1d9c5f78d31)，生命周期与基础 DOM 对照；不是生产管理面 |
 | Win64 离线分析和测试 | `handoff/win64-offline-20261124` | [c3e0937 交接说明](https://github.com/Facetomyself/ruyitrace/blob/c3e0937cc455fac6b45f2725185dc5735e927785/docs/win64-offline-handoff.md)；115 份静态回执。检出后运行 `python3 -B tools/win64_offline_verify.py --tests`；原 DLL、随包 JS 和真实采集不随交接增量提交 |
 
@@ -65,7 +68,7 @@ python3 scripts/verify-trace-release.py --source ../trace-amd64-r5 --inputs ../t
 
 [RuyiDOM 实现与维护手册](https://github.com/Facetomyself/ruyidom/blob/1bfbd7c69e6ce4044510afd5ee9d04e774fb13c1/docs/architecture/README.md)涵盖 `native`／`browser` 双后端、RPC 与 BiDi 协议、句柄生命周期和优化复验，并说明如何编辑 Archify 图的 JSON 图源并再生成 SVG／HTML。这是知识手册入口，发布与运行证明仍以下文发行回执和实测记录为准。
 
-**ARM64 日常使用**：在 `oracle-reverse-dev` 上以 `ubuntu` 运行 `/home/ubuntu/.local/bin/ruyidom verify`，验证真实浏览器导航。本地标签 `ruyidom:arm64-use` 指向下文同一个 v0.3.0 镜像 ID；入口按需启动临时容器，默认离线，未发布端口。见[主机使用与维护说明](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md)。
+**ARM64 日常使用**：在 `oracle-reverse-dev` 上以 `ubuntu` 运行 `~/.local/bin/ruyidom verify`，验证真实浏览器导航。2026-11-26 11:36 UTC 的[宿主读回](../artifacts/receipts/ruyijs-linux-aarch64-product-r433/independent-live.json)分别核对启动器目标 `v0.3.0-host1` 与本地标签 `ruyidom:arm64-use`；它仍指向下文的 Noble 镜像，和 v0.3.1 源码发行分开。入口按需启动临时容器，默认离线，未发布端口。见[主机使用与维护说明](https://github.com/Facetomyself/ruyidom/blob/5dd1ea218d0824207069ffba443593656039274d/deploy/arm64/README.md)。
 
 **验收机空间维护**：正式归档、校验清单、原始回执和已配置的运行依赖留存；只回收已结束的 QA 展开树及校验相同的临时副本。具体分类和复验方法见[项目空间回收手册](https://github.com/Facetomyself/ruyidom/blob/6ffb604b5771ff9646c765d03db13cfdf0a5fe38/docs/DEVELOPMENT.md#验收机空间回收)。
 

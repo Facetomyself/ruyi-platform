@@ -6,16 +6,16 @@
 
 | 谁使用谁 | 关系与所有权 | 下游可以省掉什么 |
 |---|---|---|
-| Trace CLI 或 Electron → 匹配架构的插桩 Firefox | **运行依赖**。CLI 与 Electron 是两种入口。由启动方持有进程、profile、采集闸门和最终刷盘；amd64 R5 内核的冻结输入与管理 CLI 的维护提交不同。[构建与制品](14-source-handoff.md) | 无头采集无需 Electron、MCP、RuyiJS、RuyiHttp 或 RuyiDOM。旧包附带的内部 JS wheel 是可选工具资源。 |
-| MCP → Python bridge → Firefox | **自启模式**。MCP 管自己的进程、profile 与 BiDi；可选用 Trace Firefox 做浏览器，但导航和 RDP 通过本身不等于产生 DOMTrace。[自启验收](../artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json) | 仅需自动化或调试时，无需先运行 Trace owner。 |
-| MCP → Trace owner → 已运行的 Firefox | **借用模式，可选集成**。MCP 只持排他租约，经回环 owner IPC 做页面操作；RDP 调试是独立通道。Trace 保留唯一 BiDi 会话、进程和 flush 权；MCP 归还后浏览器继续运行。证据分别看 [M2 两种停止方式](../artifacts/receipts/trace-amd64-r5/m2-delivery.json)及[自然到期和范围检查](../artifacts/receipts/trace-amd64-r5/borrowed-behaviors-b5e204a.json)。 | 不启动第二个 Firefox，不把“归还租约”实现成关闭 owner 的浏览器。无需 JS/Http 库。 |
-| Python 或 C 客户端 → RuyiJS 私有壳 | **运行依赖，加可选明文组件**。[R356 wheel](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md) 提供 R355 壳、C 客户端和库；可独立卸载的 [R357 HTTP/1 组件](../submodules/ruyijs/docs/linux-http1.md) 才提供经实测的明文 HTTP/1 helper。两者都不包含 Mozilla Necko/NSS。 | 离线 DOM/JS 无需浏览器 owner；直接明文 HTTP/1 需要安装 R357。HTTPS、h2、QUIC 和代理仍无已验实现。 |
-| Python 调用方 → RuyiHttp → 自带的 Necko/NSS/QUIC 运行库 | **独立传输客户端**。与 RuyiJS 的派生适配有共同的协议/ABI 来源；双方有各自的包、依赖和验收。[HTTP 的平台矩阵](../projects/ruyihttp/README.md) | 发 HTTP 请求无需浏览器、MCP、JS 壳或 DOM。HTTP 的 h2 成功也不是 JS 联网或 H3 验收。 |
-| 调用方 → RuyiDOM 的脚本宿主 → 可选的独立内容浏览器 | **两个角色分别固定**。`native` 在官方 Firefox 136 的 xpcshell 内执行；`browser` 保留该可信脚本宿主，通过 BiDi 驱动真正的标签页。现用 ARM64 镜像选用从源码编译的 Firefox 153.8.0 ESR 内容引擎，见[平台交接与实测证据](14-source-handoff.md#ruyidom-独立源码交接)。 | 供应商 JS 单独恢复；无需 RuyiJS、RuyiTrace 或 MCP，仍是独立仓。内容浏览器升级不等于替换 native 脚本宿主。 |
+| Trace CLI 或 Electron → 匹配架构的插桩 Firefox | **运行依赖**。启动方持有进程、profile、采集闸门和最终刷盘。稳定 R5／CLI2、原生事件 Beta 和 Electron owner Alpha 是独立交付线，内核、启动方和对应回执见[制品选择](14-source-handoff.md#选择交付物)。 | 无头采集无需 Electron、MCP、RuyiJS、RuyiHttp 或 RuyiDOM。旧包附带的内部 JS wheel 是可选工具资源。 |
+| MCP → Python bridge → Firefox | **自启模式**。MCP 管自己的进程、profile 与 BiDi；可选用 Trace Firefox，导航和 RDP 与内核 DOMTrace 分别取证。[自启验收](../artifacts/receipts/ruyi-mcp-amd64-d7DBYN4g-20261124.json) | 仅需自动化或调试时，无需先运行 Trace owner。 |
+| MCP → Trace owner → 已运行的 Firefox | **借用模式，可选集成**。MCP 只持排他租约，经回环 owner IPC 做页面操作；RDP 调试是独立通道。Trace 持有唯一 BiDi 会话并负责进程生命周期和刷盘；归还租约时 Firefox 继续运行。原生双架构 CLI 同镜像、跨机 SSH stdio 及各分项见[生产矩阵](../projects/ruyi-mcp/LIVE-MATRIX.md)。 | MCP 无需启动第二个 Firefox，也无需 JS 或 Http 库。Electron Alpha 用单独的版本和席位证据。 |
+| Python 或 C 客户端 → RuyiJS 私有壳 | **运行依赖，网络 companion 可选**。ARM64 [R433 双 wheel](../artifacts/receipts/ruyijs-linux-aarch64-product-r433/README.md)验过基座与配套网络组件，以及真实切换和回滚。amd64 [R356 离线 wheel](../submodules/ruyijs/docs/linux-amd64-clean-wheel.md)与可单独卸载的 [R357 明文 HTTP/1 组件](../submodules/ruyijs/docs/linux-http1.md)各自固定。 | 离线 DOM/JS 无需浏览器 owner。安装态 HTTPS、h2 和原生 QUIC/H3 只按对应分项回执取证；原生 H3 实测与 JS 默认 H3 路由分开。 |
+| Python 调用方 → RuyiHttp → 自带的 Necko/NSS/QUIC 运行库 | **独立传输客户端**。0.9.4 的单跳 CONNECT-UDP 使用代理侧 H3 外层，原生 NSS / Neqo 仍负责内层源站 H3；见[五平台 wheel 回执](../artifacts/receipts/ruyihttp-0.9.4/README.md)。 | 发 HTTP 请求无需浏览器、MCP、JS 壳或 DOM。Http 的协议验收与 RuyiJS 联网各自独立。 |
+| 调用方 → RuyiDOM 的脚本宿主 → 可选的独立内容浏览器 | **两个角色分别固定**。`native` 在官方 Firefox 136.0 的 xpcshell 内执行；`browser` 保留该可信脚本宿主，通过 BiDi 驱动真正的标签页。源码发行 v0.3.1 与现用 ARM64 v0.3.0 Noble 镜像分别验收，详见[独立源码交接](14-source-handoff.md#ruyidom-独立源码交接)。 | 供应商 JS 单独恢复；无需 RuyiJS、RuyiTrace 或 MCP。内容引擎升级与 native 脚本宿主变更分别取证。 |
 
 **跨项目对照只传数据。** 在自有测试页上，业务项目可把同一 fixture 的 Trace 记录、RuyiJS/RuyiDOM 求值结果、RuyiHttp 响应分开存档，以 fixture 摘要、组件 SHA、架构和运行时版本关联。它们是可选的结果对照；不存在一条需要同时运行五个产品的流水线。发布阻塞及验收顺序见[当前缺口](04-risks-and-gaps.md#当前交付缺口)。
 
-下文保留三件套的实现细节；涉及旧 Win64 包的描述按该包理解。
+下文保留最初三件套样本的实现细节。§1 的内部 wheel 和 §3 的 Win64 3.5.0 描述仅针对各自样本；§2 的旧原生参数与 0.9.4 当前矩阵分开。版本演进见[缺口页更正记录](04-risks-and-gaps.md#附本文的更正记录)。
 
 ---
 
@@ -124,6 +124,8 @@
 
 ### 2.2 三个平台档位的差异
 
+以下是早期三平台样本，所列 NSS、Neqo、部署下限和实测均保留为历史。五平台现行状态见 [RuyiHttp 平台矩阵](../projects/ruyihttp/README.md#平台矩阵)和 [0.9.4 wheel 回执](../artifacts/receipts/ruyihttp-0.9.4/README.md)。
+
 | | `win_amd64` | `darwin_arm64` | `linux_x86_64` |
 | --- | --- | --- | --- |
 | 状态 | ready | ready | ready（amd64 Ubuntu 24.04 / glibc 2.39 已实测 HTTPS） |
@@ -150,7 +152,9 @@ PLATFORM_PROFILES = {
 
 > 含义：Linux 版的 JA3/JA4 指纹**未必**和真 Firefox Linux 一致。这是已知缺口，记在 `04-risks-and-gaps.md`。
 
-### 2.4 Linux 原生依赖闭包（实测）
+### 2.4 Linux 原生依赖闭包（早期 amd64 实测）
+
+以下 `GLIBC_2.38` 是早期样本的符号记录；0.9.4 两种 Linux 架构的已验发行下限是 glibc 2.31，最高动态符号需求为 `GLIBC_2.30`。制品身份和复验步骤见 [0.9.4 回执](../artifacts/receipts/ruyihttp-0.9.4/README.md)与 [glibc 2.31 验收手册](../submodules/ruyihttp/docs/linux-glibc231-qualification.md)。
 
 `libnecko_core.so` 的 `DT_NEEDED`：
 ```

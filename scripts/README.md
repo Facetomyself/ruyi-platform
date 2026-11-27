@@ -2,7 +2,8 @@
 
 | 脚本 | 用途 | 依赖 |
 | --- | --- | --- |
-| `verify-pins.sh` | 校验 PINS.md / STATUS.yaml / submodule 一致性 | bash, python3, pyyaml |
+| `verify-pins.sh` | `--catalog`：父仓指针目录；`--repo`：固定源码和仓内回执；`--full`（默认）：加验仓外原件。见[运行条件](../REPRODUCE.md#2-按取得的材料运行校验) | Bash、Git、Python 3、PyYAML |
+| `verify-catalog.py` | 对照 Git 的 160000 条目、模块配置和平台登记；无需检出子模块或联网 | Git、Python 3、PyYAML |
 | `verify-links.py` | 校验 Markdown 内部链接 | python3 |
 | `verify-manifests.py` | 校验发布物 manifest 与实物 hash | python3, pyyaml |
 | `verify-reference-wheel.py` | 只读校验第三方 RuyiJS Linux 样本的整包与 ZIP 成员摘要 | python3 |
